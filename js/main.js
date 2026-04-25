@@ -2,9 +2,12 @@ $(function() {
   "use strict";
 
   //------- Parallax -------//
-  skrollr.init({
+  var s = skrollr.init({
     forceHeight: false
   });
+  if (s.isMobile()) {
+    s.destroy();
+  }
 
   //------- Active Nice Select --------//
   $('select').niceSelect();
@@ -13,10 +16,12 @@ $(function() {
   $(".hero-carousel").owlCarousel({
     items:3,
     margin: 10,
-    autoplay:false,
-    autoplayTimeout: 5000,
+    autoplay:true,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: true,
     loop:true,
-    nav:false,
+    nav:true,
+    navText: ["<i class='ti-angle-left'></i>","<i class='ti-angle-right'></i>"],
     dots:false,
     responsive:{
       0:{
@@ -37,6 +42,9 @@ $(function() {
       loop:true,
       margin:30,
       nav:true,
+      autoplay: true,
+      autoplayTimeout: 4500,
+      autoplayHoverPause: true,
       navText: ["<i class='ti-arrow-left'></i>","<i class='ti-arrow-right'></i>"],
       dots: false,
       responsive:{
@@ -59,8 +67,9 @@ $(function() {
   //------- single product area carousel -------//
   $(".s_Product_carousel").owlCarousel({
     items:1,
-    autoplay:false,
+    autoplay:true,
     autoplayTimeout: 5000,
+    autoplayHoverPause: true,
     loop:true,
     nav:false,
     dots:false
@@ -116,4 +125,86 @@ $(function() {
   
 });
 
+// I Rasa Custom JS Enhancements
+$(document).ready(function() {
+    // Add modal click events to all product buttons
+    $('.card-product__imgOverlay button').on('click', function(e) {
+        e.preventDefault();
+        var iconClass = $(this).find('i').attr('class');
+        var card = $(this).closest('.card-product');
+        var title = card.find('.card-product__title').text().trim();
+        var price = card.find('.card-product__price').text().trim();
+        var imgSrc = card.find('.card-img').attr('src');
+        
+        if (iconClass.includes('ti-search') || iconClass.includes('ti-shopping-cart') || iconClass.includes('ti-heart')) {
+            // Check if modal exists
+            if ($('#product_modal').length) {
+                $('#product_modal #modal_title').text(title);
+                $('#product_modal .price').text(price);
+                $('#product_modal #modal_img').attr('src', imgSrc);
+                
+                if (iconClass.includes('ti-shopping-cart')) {
+                    $('#product_modal .button--active').text('Add to Cart');
+                } else if (iconClass.includes('ti-heart')) {
+                    $('#product_modal .button--active').text('Add to Wishlist');
+                } else {
+                    $('#product_modal .button--active').text('View Details');
+                }
+                
+                $('#product_modal').modal('show');
+            } else {
+                alert('Action triggered for ' + title);
+            }
+        }
+    });
 
+    $('.navbar-collapse .nav-link:not(.dropdown-toggle)').on('click', function() {
+        if ($('.navbar-toggler').is(':visible')) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+
+    if (!$('.irasa-offcanvas-backdrop').length) {
+        $('body').append('<div class="irasa-offcanvas-backdrop"></div>');
+    }
+
+    if (!$('.navbar-collapse .dropdown-toggle .irasa-submenu-indicator').length) {
+        $('.navbar-collapse .dropdown-toggle').append('<span class="irasa-submenu-indicator" aria-hidden="true"></span>');
+    }
+
+    $(document).on('click', '.navbar-collapse .dropdown-toggle', function(e) {
+        if ($('.navbar-toggler').is(':visible')) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).dropdown('toggle');
+        }
+    });
+
+    $(document)
+        .on('show.bs.dropdown', '.navbar-collapse .nav-item.submenu', function() {
+            $(this).addClass('irasa-submenu-open');
+        })
+        .on('hide.bs.dropdown', '.navbar-collapse .nav-item.submenu', function() {
+            $(this).removeClass('irasa-submenu-open');
+        });
+
+    $(document).on('show.bs.modal', function() {
+        if ($('.navbar-toggler').is(':visible')) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+
+    $('.navbar-collapse')
+        .on('show.bs.collapse', function() {
+            $('body').addClass('irasa-offcanvas-open');
+        })
+        .on('hidden.bs.collapse', function() {
+            $('body').removeClass('irasa-offcanvas-open');
+        });
+
+    $(document).on('click', '.irasa-offcanvas-backdrop', function() {
+        if ($('.navbar-toggler').is(':visible')) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+});

@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>I Rasa Perfumes - Home</title>
-  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
 
   <link rel="stylesheet" href="css/style.css">
+  <link href="css/vendors/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -45,8 +46,8 @@
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
               <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Shop</a>
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
@@ -56,16 +57,16 @@
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Blog</a>
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Blog</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Pages</a>
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Pages</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
@@ -76,10 +77,19 @@
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span
-                    class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+
+              <li class="nav-item">
+                <button data-toggle="modal" data-target="#product_modal"
+                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease;">
+                  <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
+                  <span class="nav-shop__circle" style="background: #d4af37; color: #000; font-weight: bold;">3</span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <a class="button button-header" href="category.html"
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
+                  Now</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -91,21 +101,27 @@
   <main class="site-main">
 
     <!--================ Hero banner start =================-->
-    <section class="hero-banner">
+    <section data-aos="fade-up" data-aos-duration="1000" class="hero-banner">
       <div class="container">
         <div class="row no-gutters align-items-center pt-60px">
-          <div class="col-5 d-none d-sm-block">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-5 d-none d-sm-block">
             <div class="hero-banner__img">
-              <img class="img-fluid" src="img/home/hero-banner.png" alt="">
+
+              <div class="hero-banner__video"
+                style="position: relative; border: 2px solid #d4af37; border-radius: 10px; overflow: hidden; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);">
+                <img class="img" src="img/home/image.png" alt="I Rasa Perfumes Hero">
+              </div>
+
             </div>
           </div>
-          <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
+            class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
             <div class="hero-banner__content">
               <h4>Fragrance like never before</h4>
               <h1>Discover Premium Perfumes In India</h1>
               <p>Experience the essence of luxury. Handcrafted long-lasting fragrances designed perfectly for the Indian
                 climate. Elevate your presence with I Rasa.</p>
-              <a class="button button-hero" href="#">Browse Now</a>
+              <a class="button button-hero" href="javascript:void(0);">Browse Now</a>
             </div>
           </div>
         </div>
@@ -114,25 +130,25 @@
     <!--================ Hero banner start =================-->
 
     <!--================ Hero Carousel start =================-->
-    <section class="section-margin mt-0">
-      <div class="owl-carousel owl-theme hero-carousel">
+    <section data-aos="fade-up" data-aos-duration="1000" class="section-margin mt-0">
+      <div class="owl-carousel owl-theme hero-carousel p-3 ">
         <div class="hero-carousel__slide">
           <img src="img/home/hero-slide1.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
+          <a href="javascript:void(0);" class="hero-carousel__slideOverlay">
             <h3>Signature Collection</h3>
             <p>Premium Extrait De Parfum</p>
           </a>
         </div>
         <div class="hero-carousel__slide">
           <img src="img/home/hero-slide2.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
+          <a href="javascript:void(0);" class="hero-carousel__slideOverlay">
             <h3>Signature Collection</h3>
             <p>Premium Extrait De Parfum</p>
           </a>
         </div>
         <div class="hero-carousel__slide">
           <img src="img/home/hero-slide3.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
+          <a href="javascript:void(0);" class="hero-carousel__slideOverlay">
             <h3>Signature Collection</h3>
             <p>Premium Extrait De Parfum</p>
           </a>
@@ -142,16 +158,16 @@
     <!--================ Hero Carousel end =================-->
 
     <!-- ================ trending product section start ================= -->
-    <section class="section-margin calc-60px">
+    <section data-aos="fade-up" data-aos-duration="1000" class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
           <p>Hand-picked for our finest customers</p>
           <h2>Exclusive <span class="section-intro__style">Collection</span></h2>
         </div>
         <div class="row">
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
                 <img class="card-img" src="img/product/product1.png" alt="">
                 <ul class="card-product__imgOverlay">
                   <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -159,16 +175,16 @@
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p>Men's Perfume</p>
                 <h4 class="card-product__title"><a href="single-product.html">Oud Supreme Perfume</a></h4>
                 <p class="card-product__price">Rs. 299</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
                 <img class="card-img" src="img/product/product2.png" alt="">
                 <ul class="card-product__imgOverlay">
                   <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -176,16 +192,16 @@
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p>Women's Perfume</p>
                 <h4 class="card-product__title"><a href="single-product.html">Rose Gold Perfume</a></h4>
                 <p class="card-product__price">Rs. 299</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
                 <img class="card-img" src="img/product/product3.png" alt="">
                 <ul class="card-product__imgOverlay">
                   <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -193,16 +209,16 @@
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p>Unisex Perfume</p>
                 <h4 class="card-product__title"><a href="single-product.html">Musk Velvet Perfume</a></h4>
                 <p class="card-product__price">Rs. 299</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
                 <img class="card-img" src="img/product/product4.png" alt="">
                 <ul class="card-product__imgOverlay">
                   <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -210,16 +226,16 @@
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p>Unisex Perfume</p>
                 <h4 class="card-product__title"><a href="single-product.html">Musk Velvet Perfume</a></h4>
                 <p class="card-product__price">Rs. 299</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
                 <img class="card-img" src="img/product/product5.png" alt="">
                 <ul class="card-product__imgOverlay">
                   <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -227,16 +243,16 @@
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p>Men's Perfume</p>
                 <h4 class="card-product__title"><a href="single-product.html">Aqua Deep Perfume</a></h4>
                 <p class="card-product__price">Rs. 299</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
                 <img class="card-img" src="img/product/product6.png" alt="">
                 <ul class="card-product__imgOverlay">
                   <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -244,16 +260,16 @@
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p>Attar Collection</p>
                 <h4 class="card-product__title"><a href="single-product.html">Sandalwood Essence</a></h4>
                 <p class="card-product__price">Rs. 299</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
                 <img class="card-img" src="img/product/product7.png" alt="">
                 <ul class="card-product__imgOverlay">
                   <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -261,16 +277,16 @@
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p>Men's Perfume</p>
                 <h4 class="card-product__title"><a href="single-product.html">Jasmine Bloom Essence</a></h4>
                 <p class="card-product__price">Rs. 299</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
                 <img class="card-img" src="img/product/product8.png" alt="">
                 <ul class="card-product__imgOverlay">
                   <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -278,9 +294,9 @@
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p>Attar Collection</p>
-                <h4 class="card-product__title"><a href="#">Sandalwood Essence</a></h4>
+                <h4 class="card-product__title"><a href="javascript:void(0);">Sandalwood Essence</a></h4>
                 <p class="card-product__price">Rs. 299</p>
               </div>
             </div>
@@ -292,11 +308,11 @@
 
 
     <!-- ================ offer section start ================= -->
-    <section class="offer" id="parallax-1" data-anchor-target="#parallax-1"
+    <section data-aos="fade-up" data-aos-duration="1000" class="offer" id="parallax-1" data-anchor-target="#parallax-1"
       data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
       <div class="container">
         <div class="row">
-          <div class="col-xl-5">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-xl-5">
             <div class="offer__content text-center">
               <h3 style="font-size: 55px !important; margin-bottom: 20px; text-transform: uppercase;">EXCLUSIVE OFFERS
               </h3>
@@ -313,15 +329,15 @@
     <!-- ================ offer section end ================= -->
 
     <!-- ================ Best Selling item  carousel ================= -->
-    <section class="section-margin calc-60px">
+    <section data-aos="fade-up" data-aos-duration="1000" class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
           <p>Top Rated in India</p>
           <h2>Most Loved <span class="section-intro__style">Fragrances</span></h2>
         </div>
         <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-          <div class="card text-center card-product">
-            <div class="card-product__img">
+          <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <img class="img-fluid" src="img/product/product1.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -329,15 +345,15 @@
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
-            <div class="card-body">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Men's Perfume</p>
               <h4 class="card-product__title"><a href="single-product.html">Oud Supreme Perfume</a></h4>
               <p class="card-product__price">Rs. 299</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
+          <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <img class="img-fluid" src="img/product/product2.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -345,15 +361,15 @@
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
-            <div class="card-body">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Women's Perfume</p>
               <h4 class="card-product__title"><a href="single-product.html">Rose Gold Perfume</a></h4>
               <p class="card-product__price">Rs. 299</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
+          <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <img class="img-fluid" src="img/product/product3.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -361,15 +377,15 @@
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
-            <div class="card-body">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Unisex Perfume</p>
               <h4 class="card-product__title"><a href="single-product.html">Musk Velvet Perfume</a></h4>
               <p class="card-product__price">Rs. 299</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
+          <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <img class="img-fluid" src="img/product/product4.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -377,15 +393,15 @@
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
-            <div class="card-body">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Unisex Perfume</p>
               <h4 class="card-product__title"><a href="single-product.html">Musk Velvet Perfume</a></h4>
               <p class="card-product__price">Rs. 299</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
+          <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <img class="img-fluid" src="img/product/product1.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -393,15 +409,15 @@
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
-            <div class="card-body">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Men's Perfume</p>
               <h4 class="card-product__title"><a href="single-product.html">Oud Supreme Perfume</a></h4>
               <p class="card-product__price">Rs. 299</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
+          <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <img class="img-fluid" src="img/product/product2.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -409,15 +425,15 @@
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
-            <div class="card-body">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Women's Perfume</p>
               <h4 class="card-product__title"><a href="single-product.html">Rose Gold Perfume</a></h4>
               <p class="card-product__price">Rs. 299</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
+          <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <img class="img-fluid" src="img/product/product3.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -425,15 +441,15 @@
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
-            <div class="card-body">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Unisex Perfume</p>
               <h4 class="card-product__title"><a href="single-product.html">Musk Velvet Perfume</a></h4>
               <p class="card-product__price">Rs. 299</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
+          <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <img class="img-fluid" src="img/product/product4.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal"><i class="ti-search"></i></button></li>
@@ -441,7 +457,7 @@
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
             </div>
-            <div class="card-body">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Unisex Perfume</p>
               <h4 class="card-product__title"><a href="single-product.html">Musk Velvet Perfume</a></h4>
               <p class="card-product__price">Rs. 299</p>
@@ -453,7 +469,7 @@
     <!-- ================ Best Selling item  carousel end ================= -->
 
     <!-- ================ Blog section start ================= -->
-    <section class="blog">
+    <section data-aos="fade-up" data-aos-duration="1000" class="blog">
       <div class="container">
         <div class="section-intro pb-60px">
           <p>Fragrance Stories from I Rasa</p>
@@ -461,56 +477,62 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="img/blog/blog1.png" alt="">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card card-blog">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-blog__img">
+                <img class="card-img rounded-0" src="img/blog/blog1.avif" alt="">
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <ul class="card-blog__info">
-                  <li><a href="#">By Rajesh Kumar</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 12 Comments</a></li>
+                  <li><a href="javascript:void(0);">By Kunal Patil</a></li>
+                  <li><a href="javascript:void(0);"><i class="ti-comments-smiley"></i> 11 Comments</a></li>
                 </ul>
-                <h4 class="card-blog__title"><a href="#">Discovering the Hidden Oud Trails of Assam</a></h4>
-                <p>Explore the deep heritage of Indian Agarwood and how we source the purest Oud for our I Rasa collections.
+                <h4 class="card-blog__title"><a href="javascript:void(0);">Discovering the Hidden Oud Trails of
+                    Assam</a></h4>
+                <p>Explore the deep heritage of Indian Agarwood and how we source the purest Oud for our I Rasa
+                  collections.
                 </p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+                <a class="card-blog__link" href="javascript:void(0);">Read More <i class="ti-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="img/blog/blog2.png" alt="">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card card-blog">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-blog__img">
+                <img class="card-img rounded-0" src="img/blog/blog2.avif" alt="">
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <ul class="card-blog__info">
-                  <li><a href="#">By Priya Sharma</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 8 Comments</a></li>
+                  <li><a href="javascript:void(0);">By Ankush Pandit</a></li>
+                  <li><a href="javascript:void(0);"><i class="ti-comments-smiley"></i> 8 Comments</a></li>
                 </ul>
-                <h4 class="card-blog__title"><a href="#">The Art of Traditional Ittar Making in Kannauj</a></h4>
-                <p>A journey through the "Perfume Capital of India," where centuries-old traditions meet modern luxury scents.
+                <h4 class="card-blog__title"><a href="javascript:void(0);">The Art of Traditional Ittar Making in
+                    Kannauj</a></h4>
+                <p>A journey through the "Perfume Capital of India," where centuries-old traditions meet modern luxury
+                  scents.
                 </p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+                <a class="card-blog__link" href="javascript:void(0);">Read More <i class="ti-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="img/blog/blog3.png" alt="">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div data-aos="zoom-in" data-aos-duration="800" class="card card-blog">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-blog__img">
+                <img class="card-img rounded-0" src="img/blog/blog3.avif" alt="">
               </div>
-              <div class="card-body">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <ul class="card-blog__info">
-                  <li><a href="#">By I Rasa Team</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 15 Comments</a></li>
+                  <li><a href="javascript:void(0);">By Nikita Patil</a></li>
+                  <li><a href="javascript:void(0);"><i class="ti-comments-smiley"></i> 17 Comments</a></li>
                 </ul>
-                <h4 class="card-blog__title"><a href="#">Why Nashik is the Newest Fragrance Destination</a></h4>
-                <p>From our boutique in Saraf Bazar to homes across India, see how Nashik is embracing premium luxury perfumes.
+                <h4 class="card-blog__title"><a href="javascript:void(0);">Why Nashik is the Newest Fragrance
+                    Destination</a></h4>
+                <p>From our boutique in Saraf Bazar to homes across India, see how Nashik is embracing premium luxury
+                  perfumes.
                 </p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+                <a class="card-blog__link" href="javascript:void(0);">Read More <i class="ti-arrow-right"></i></a>
               </div>
             </div>
           </div>
@@ -520,7 +542,7 @@
     <!-- ================ Blog section end ================= -->
 
     <!-- ================ Subscribe section start ================= -->
-    <section class="subscribe-position">
+    <section data-aos="fade-up" data-aos-duration="1000" class="subscribe-position">
       <div class="container">
         <div class="subscribe text-center">
           <h3 class="subscribe__title">Join the I Rasa Luxury Club</h3>
@@ -555,7 +577,7 @@
     <div class="footer-area">
       <div class="container">
         <div class="row section_gap">
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-3 col-md-6 col-sm-6">
             <div class="single-footer-widget tp_widgets">
               <h4 class="footer_title large_title"
                 style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase;">i rasa</h4>
@@ -564,10 +586,10 @@
                 touch of elegance and luxury every day. Starting at just Rs. 299.
               </p>
               <div class="footer-social mt-4">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/i_rasa_perfumes/"><i class="fab fa-instagram"></i></a>
+                <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
+                <a href="javascript:void(0);"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
           </div>
@@ -583,16 +605,16 @@
               </ul>
             </div>
           </div>
-          <div class="col-lg-2 col-md-6 col-sm-6">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-2 col-md-6 col-sm-6">
             <div class="single-footer-widget instafeed">
               <h4 class="footer_title">Our Gallery</h4>
               <ul class="list instafeed d-flex flex-wrap">
-                <li><img src="img/gallery/r1.jpg" alt="" style="border: 1px solid #d4af37;"></li>
-                <li><img src="img/gallery/r2.jpg" alt="" style="border: 1px solid #d4af37;"></li>
-                <li><img src="img/gallery/r3.jpg" alt="" style="border: 1px solid #d4af37;"></li>
-                <li><img src="img/gallery/r5.jpg" alt="" style="border: 1px solid #d4af37;"></li>
-                <li><img src="img/gallery/r7.jpg" alt="" style="border: 1px solid #d4af37;"></li>
-                <li><img src="img/gallery/r8.jpg" alt="" style="border: 1px solid #d4af37;"></li>
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r5.avif" alt="Premium Attar" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r7.avif" alt="Bespoke Collection" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r8.avif" alt="I Rasa Perfumes" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
               </ul>
             </div>
           </div>
@@ -649,10 +671,10 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-6">
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
               <img src="img/product/product1.png" class="img-fluid rounded" id="modal_img" alt="Perfume">
             </div>
-            <div class="col-md-6">
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
               <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
               </h2>
               <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
@@ -695,6 +717,8 @@
       });
     });
   </script>
+  <script src="js/vendors/aos.js"></script>
+  <script>AOS.init();</script>
 </body>
 
 </html>
