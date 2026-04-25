@@ -3,15 +3,36 @@
     src: url('../fonts/SAMARN__.TTF') format('truetype');
 }
 
-@import url("https://fonts.googleapis.com/css?family=Oswald:400,500,600");
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,500");
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Michroma&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Outfit:wght@300;400;600&display=swap');
 
 body {
     color: #777;
-    font-family: "Roboto", sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.667
+    font-family: "Outfit", sans-serif !important;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8
+}
+
+a,
+p,
+span,
+li,
+input,
+select,
+textarea {
+    font-family: "Outfit", sans-serif !important;
+}
+
+/* Modern Luxury Accents */
+.button,
+.nav-link,
+.nav-shop__circle,
+.card-product__price,
+.widget_title,
+.modal-title,
+button {
+    font-family: "Michroma", sans-serif !important;
+    letter-spacing: 1px;
 }
 
 ul {
@@ -36,30 +57,44 @@ button:focus {
 h1,
 h2,
 h3,
+.h1,
+.h2,
+.h3 {
+    font-family: "Cormorant Garamond", serif !important;
+    color: #d4af37;
+    line-height: 1.2;
+    text-transform: none;
+    font-style: italic;
+}
+
 h4,
 h5,
-h6 {
-    font-family: "Oswald", sans-serif;
-    color: #cccccc;
-    line-height: 1.1
+h6,
+.h4,
+.h5,
+.h6 {
+    font-family: "Playfair Display", serif !important;
+    color: #d4af37;
+    line-height: 1.3;
+    letter-spacing: 1px;
 }
 
 h1,
 .h1 {
-    font-size: 50px;
-    font-weight: 700
+    font-size: 64px;
+    font-weight: 600
 }
 
 h2,
 .h2 {
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 600
 }
 
 h3,
 .h3 {
-    font-size: 26px;
-    font-weight: 600
+    font-size: 32px;
+    font-weight: 500
 }
 
 @media (min-width: 600px) {
@@ -1089,14 +1124,22 @@ a {
 }
 
 .offer {
-    background: url("../img/home/parallax-bg.png") right center no-repeat;
-    background-size: cover
+    position: relative;
+    background: url("../img/home/offer-bg.avif") center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 1;
 }
 
-@media (min-width: 1200px) {
-    .offer {
-        background-size: 100% 100%
-    }
+.offer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
 }
 
 .offer__content {
@@ -1113,6 +1156,12 @@ a {
     font-size: 35px;
     font-weight: 400;
     margin-bottom: 20px
+}
+
+.offer__content h3,
+.offer__content h4,
+.offer__content p {
+    color: #fff !important;
 }
 
 @media (min-width: 650px) {
@@ -1455,7 +1504,8 @@ a {
 .button:hover {
     border-color: #d4af37;
     background: transparent;
-    color: #cccccc
+    color: #cccccc;
+    border-radius: 0 !important;
 }
 
 .button-register {
@@ -2256,7 +2306,7 @@ a {
 }
 
 .single-post-area .social-links li a:hover {
-    color: #cccccc
+    color: #d4af37 !important;
 }
 
 .single-post-area .blog_details {
@@ -2264,7 +2314,7 @@ a {
 }
 
 .single-post-area .blog_details p {
-    margin-bottom: 10px
+    margin-bottom: 25px;
 }
 
 .single-post-area .quotes {
@@ -3797,7 +3847,8 @@ a {
     height: 100%;
     width: 100%;
     content: "";
-    background: rgba(20, 20, 20, 0.7); /* Dark overlay instead of gold */
+    background: rgba(20, 20, 20, 0.7);
+    /* Dark overlay instead of gold */
 }
 
 .login_box_area .login_box_img .hover {
@@ -6280,9 +6331,12 @@ input[type=number] {
     background: #111 !important;
     border: 1px solid #333 !important;
     color: #ccc !important;
-    padding: 8px 15px !important;
+    padding: 4px 12px !important;
     border-radius: 4px !important;
     transition: all 0.3s ease !important;
+    margin: 2px !important;
+    display: inline-block !important;
+    font-size: 13px !important;
 }
 
 .tag_cloud_widget ul li a:hover,
@@ -6290,6 +6344,7 @@ input[type=number] {
     background: #d4af37 !important;
     color: #000 !important;
     border-color: #d4af37 !important;
+    border-radius: 0 !important;
 }
 
 /* Input boxes in sidebar */
@@ -6361,4 +6416,12 @@ input[type=number] {
 .login_form_inner .button-login:hover {
     background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%) !important;
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4) !important;
+    border-radius: 0 !important;
+}
+
+/* Remove border radius from all navigation links on hover */
+.header_area .navbar .nav .nav-item:hover .nav-link,
+.header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link,
+.nav-link:hover {
+    border-radius: 0 !important;
 }
