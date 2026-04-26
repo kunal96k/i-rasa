@@ -116,12 +116,13 @@ a {
     display: inline-block
 }
 
-.ed {
-    background: #fff;
-    position: ed !important;
+.fixed-top-active {
+    background: #0a0a0a;
+    position: fixed !important;
     top: 0;
     left: 0;
-    width: 100% !important
+    width: 100% !important;
+    z-index: 10000;
 }
 
 .owl-carousel .owl-stage {
@@ -181,11 +182,56 @@ a {
 }
 
 .header_area {
-    position: relative;
+    position: sticky;
+    top: 0;
     width: 100%;
     z-index: 9999;
-    transition: background 0.4s, all 0.3s linear;
-    box-shadow: 0px 10px 27px 3px rgba(221, 221, 221, 0.3)
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #000;
+    /* Default background to prevent transparency issues if not over hero */
+}
+
+/* If header is over a transparent hero, we might want it transparent initially */
+/* But for now, let's keep it solid or use a specific class if needed */
+.header_area.navbar_fixed {
+    background: rgba(10, 10, 10, 0.85) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.header_area.navbar_fixed .navbar-brand span {
+    font-size: 42px !important;
+}
+
+.header_area.navbar_fixed .nav-item .nav-link {
+    padding: 15px 0px !important;
+}
+
+.header_area.navbar_fixed .nav-shop li .button-header {
+    padding: 8px 20px !important;
+    font-size: 12px !important;
+}
+
+.header_area.navbar_fixed .nav-shop li i {
+    font-size: 18px !important;
+}
+
+.navbar-brand span {
+    font-family: 'Samarkan', sans-serif !important;
+    font-size: 62px;
+    color: #d4af37;
+    font-weight: normal;
+    text-transform: lowercase;
+    text-shadow: 1px 1px 2px #000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-brand,
+.button-header,
+.nav-shop li i {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .header_area .navbar {
@@ -200,14 +246,18 @@ a {
 }
 
 .header_area .navbar .nav .nav-item .nav-link {
-    text-transform: capitalize;
+    text-transform: uppercase;
     color: #cccccc;
-    display: inline-block
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 @media (min-width: 991px) {
     .header_area .navbar .nav .nav-item .nav-link {
-        padding: 32px 0px
+        padding: 32px 0px;
+        transition: all 0.4s ease;
     }
 }
 
@@ -319,27 +369,26 @@ a {
     font-weight: 600
 }
 
-.header_area.navbar_ed .main_menu {
-    position: ed;
-    width: 100%;
-    top: -70px;
-    left: 0;
-    right: 0;
-    background: #ffffff;
-    -webkit-transform: translateY(70px);
-    -moz-transform: translateY(70px);
-    -ms-transform: translateY(70px);
-    -o-transform: translateY(70px);
-    transform: translateY(70px);
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1)
+.header_area.navbar_fixed .navbar .nav .nav-item .nav-link {
+    line-height: 70px;
+    transition: all 0.3s ease;
 }
 
-.header_area.navbar_ed .main_menu .navbar .nav .nav-item .nav-link {
-    line-height: 70px
+/* Animation for the navbar contents when sticking */
+.header_area.navbar_fixed .main_menu {
+    animation: fadeInDown 0.5s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 #search_input_box {
@@ -6424,4 +6473,78 @@ input[type=number] {
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link,
 .nav-link:hover {
     border-radius: 0 !important;
+}
+
+/* ---- PREMIUM SCROLL TO TOP BUTTON ---- */
+#scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    /* Controlled by JS */
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+#scroll-top:hover {
+    background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+}
+
+#scroll-top.visible {
+    display: flex;
+    animation: fadeInUpScroll 0.4s ease-out;
+}
+
+@keyframes fadeInUpScroll {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---- FOOTER BRANDING ENHANCEMENT ---- */
+.footer .large_title {
+    font-family: 'Samarkan', sans-serif !important;
+    font-size: 52px !important;
+    /* High visibility in footer */
+    color: #d4af37 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 25px !important;
+    display: inline-block;
+    letter-spacing: 1px;
+    text-transform: lowercase !important;
+}
+
+/* Ensure footer icons are perfectly centered in gold circles */
+.single-footer-widget .sm-head span {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease;
+}
+
+.single-footer-widget .sm-head:hover span {
+    transform: scale(1.2);
+    background: #fff;
+    color: #d4af37;
 }

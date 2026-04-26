@@ -86,8 +86,22 @@ $(function () {
     var sticky = $('.header_area'),
       scroll = $(window).scrollTop();
 
-    if (scroll >= 100) sticky.addClass('fixed');
-    else sticky.removeClass('fixed');
+    if (scroll >= 100) sticky.addClass('navbar_fixed');
+    else sticky.removeClass('navbar_fixed');
+
+    // Show/hide scroll-top button after hero section
+    if (scroll > window.innerHeight) {
+      $('#scroll-top').addClass('visible');
+    } else {
+      $('#scroll-top').removeClass('visible');
+    }
+  });
+
+  $('#scroll-top').on('click', function () {
+    $('html, body').animate({
+      scrollTop: 0
+    }, 600);
+    return false;
   });
 
   //------- Price Range slider -------//
