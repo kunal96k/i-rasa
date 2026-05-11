@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,13 @@
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background: #0d0d0d;
@@ -31,19 +38,66 @@
       top: 0;
       z-index: 100;
     }
-    .c-nav .logo { color: #d4af37; font-size: 22px; font-weight: 700; text-decoration: none; letter-spacing: 2px; }
-    .c-nav .nav-right { display: flex; align-items: center; gap: 16px; }
-    .c-nav a.nav-link-item { color: #888; font-size: 13px; text-decoration: none; transition: color 0.2s; }
-    .c-nav a.nav-link-item:hover { color: #d4af37; }
-    .back-link { display: flex; align-items: center; gap: 6px; color: #d4af37 !important; font-size: 13px; font-weight: 600; text-decoration: none; }
-    .profile-nav-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 38px; height: 38px; border-radius: 50%;
-      border: 2px solid #d4af37; overflow: hidden;
-      box-shadow: 0 0 8px rgba(212,175,55,0.35); text-decoration: none;
+
+    .c-nav .logo {
+      color: #d4af37;
+      font-size: 22px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 2px;
     }
-    .profile-nav-icon img { width: 100%; height: 100%; object-fit: cover; display: none; }
-    .profile-nav-icon i { color: #d4af37; font-size: 16px; }
+
+    .c-nav .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .c-nav a.nav-link-item {
+      color: #888;
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .c-nav a.nav-link-item:hover {
+      color: #d4af37;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #d4af37 !important;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .profile-nav-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid #d4af37;
+      overflow: hidden;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.35);
+      text-decoration: none;
+    }
+
+    .profile-nav-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .profile-nav-icon i {
+      color: #d4af37;
+      font-size: 16px;
+    }
 
     /* ========== HERO ========== */
     .hero {
@@ -54,44 +108,112 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero::before {
       content: '';
-      position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
-      width: 500px; height: 300px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%);
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, transparent 70%);
       pointer-events: none;
     }
+
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #1e1500; color: #d4af37;
-      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 20px; border: 1px solid #3a2800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e1500;
+      color: #d4af37;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid #3a2800;
       margin-bottom: 14px;
     }
-    .hero h1 { color: #d4af37; font-size: 32px; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; }
-    .hero p { color: #888; font-size: 14px; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    .hero h1 {
+      color: #d4af37;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #888;
+      font-size: 14px;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
 
     /* ========== STEP INDICATOR ========== */
     .steps-bar {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0; padding: 24px 40px; background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 24px 40px;
+      background: #111;
       border-bottom: 1px solid #1e1e1e;
     }
+
     .step-item {
-      display: flex; align-items: center; gap: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+
     .step-num {
-      width: 32px; height: 32px; border-radius: 50%;
-      border: 2px solid #333; background: transparent;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; color: #555;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #333;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #555;
       transition: all 0.3s;
     }
-    .step-num.active { border-color: #d4af37; color: #d4af37; box-shadow: 0 0 10px rgba(212,175,55,0.3); }
-    .step-num.done { border-color: #d4af37; background: #d4af37; color: #000; }
-    .step-label { font-size: 11px; color: #555; letter-spacing: 0.5px; transition: color 0.3s; }
-    .step-label.active { color: #d4af37; }
-    .step-divider { width: 40px; height: 1px; background: #2a2a2a; margin: 0 8px; }
+
+    .step-num.active {
+      border-color: #d4af37;
+      color: #d4af37;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+
+    .step-num.done {
+      border-color: #d4af37;
+      background: #d4af37;
+      color: #000;
+    }
+
+    .step-label {
+      font-size: 11px;
+      color: #555;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    .step-label.active {
+      color: #d4af37;
+    }
+
+    .step-divider {
+      width: 40px;
+      height: 1px;
+      background: #2a2a2a;
+      margin: 0 8px;
+    }
 
     /* ========== MAIN LAYOUT ========== */
     .main-layout {
@@ -100,23 +222,58 @@
       gap: 0;
       min-height: calc(100vh - 200px);
     }
-    .left-col { padding: 32px 32px 60px; border-right: 1px solid #1a1a1a; }
-    .right-col { padding: 24px; background: #0a0a0a; position: sticky; top: 72px; height: fit-content; }
+
+    .left-col {
+      padding: 32px 32px 60px;
+      border-right: 1px solid #1a1a1a;
+    }
+
+    .right-col {
+      padding: 24px;
+      background: #0a0a0a;
+      position: sticky;
+      top: 72px;
+      height: fit-content;
+    }
 
     /* ========== SECTION TITLE ========== */
     .sec-title {
-      display: flex; align-items: center; gap: 10px;
-      color: #d4af37; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-      font-weight: 700; margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #d4af37;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 20px;
     }
+
     .sec-title .num {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: #1e1500; border: 1px solid #d4af37;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; color: #d4af37; font-weight: 700; flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #1e1500;
+      border: 1px solid #d4af37;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #d4af37;
+      font-weight: 700;
+      flex-shrink: 0;
     }
-    .sec-title::after { content: ''; flex: 1; height: 0.5px; background: #2a2a2a; }
-    .section-block { margin-bottom: 36px; }
+
+    .sec-title::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: #2a2a2a;
+    }
+
+    .section-block {
+      margin-bottom: 36px;
+    }
 
     /* ========== PERFUME CARDS ========== */
     .perfume-grid {
@@ -124,6 +281,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
+
     .p-card {
       background: #141414;
       border: 1.5px solid #2a2a2a;
@@ -134,38 +292,117 @@
       transition: all 0.25s;
       position: relative;
       user-select: none;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
+
     .p-card:hover {
-    
-       transform: translateY(0px); 
-      }
+
+      transform: translateY(0px);
+    }
+
     .p-card.selected {
       border-color: #d4af37;
       background: #1a1200;
-      box-shadow: 0 0 16px rgba(212,175,55,0.15);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.15);
     }
-    .p-card.disabled { opacity: 0.4; pointer-events: none; }
+
+    .p-card.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
     .p-card .badge-check {
-      position: absolute; top: 8px; right: 8px;
-      width: 18px; height: 18px; border-radius: 50%;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
       background: #d4af37;
-      display: none; align-items: center; justify-content: center;
+      display: none;
+      align-items: center;
+      justify-content: center;
     }
-    .p-card.selected .badge-check { display: flex; }
-    .p-card .badge-check i { font-size: 9px; color: #000; }
+
+    .p-card.selected .badge-check {
+      display: flex;
+    }
+
+    .p-card .badge-check i {
+      font-size: 9px;
+      color: #000;
+    }
+
     .p-card .blend-badge {
-      position: absolute; top: 8px; left: 8px;
-      font-size: 8px; padding: 2px 6px; border-radius: 8px;
-      font-weight: 700; letter-spacing: 0.5px; display: none;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: 8px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: none;
     }
-    .p-card.blend-a .blend-badge { display: block; background: #d4af37; color: #000; content: 'A'; }
-    .p-card.blend-b .blend-badge { display: block; background: #aa8422; color: #000; }
-    .p-icon { font-size: 32px; margin-bottom: 8px; display: block; }
-    .p-name { color: #ddd; font-size: 12px; font-weight: 600; margin-bottom: 3px; }
-    .p-notes { color: #666; font-size: 10px; line-height: 1.4; }
-    .p-price { color: #d4af37; font-size: 11px; font-weight: 600; margin-top: 6px; }
-    .select-hint { color: #666; font-size: 11px; margin-top: 10px; }
-    .selected-count { display: inline-block; background: #1e1500; color: #d4af37; font-size: 11px; padding: 4px 12px; border-radius: 20px; border: 1px solid #3a2800; margin-bottom: 14px; }
+
+    .p-card.blend-a .blend-badge {
+      display: block;
+      background: #d4af37;
+      color: #000;
+      content: 'A';
+    }
+
+    .p-card.blend-b .blend-badge {
+      display: block;
+      background: #aa8422;
+      color: #000;
+    }
+
+    .p-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .p-name {
+      color: #ddd;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .p-notes {
+      color: #666;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .p-price {
+      color: #d4af37;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    .select-hint {
+      color: #666;
+      font-size: 11px;
+      margin-top: 10px;
+    }
+
+    .selected-count {
+      display: inline-block;
+      background: #1e1500;
+      color: #d4af37;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #3a2800;
+      margin-bottom: 14px;
+    }
 
     /* ========== BLEND SLIDER ========== */
     .blend-slider-wrap {
@@ -174,44 +411,121 @@
       border-radius: 12px;
       padding: 20px;
     }
+
     .blend-labels {
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 14px;
     }
-    .blend-label-item { text-align: center; }
-    .blend-label-item .icon { font-size: 22px; display: block; margin-bottom: 4px; }
-    .blend-label-item .name { color: #ddd; font-size: 12px; font-weight: 600; }
+
+    .blend-label-item {
+      text-align: center;
+    }
+
+    .blend-label-item .icon {
+      font-size: 22px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .blend-label-item .name {
+      color: #ddd;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
     .blend-label-item .pct {
-      font-size: 20px; font-weight: 700; color: #d4af37; margin-top: 2px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #d4af37;
+      margin-top: 2px;
       transition: all 0.2s;
     }
-    .blend-vs { color: #444; font-size: 16px; font-weight: 700; }
+
+    .blend-vs {
+      color: #444;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
     .blend-track {
-      display: flex; height: 10px; border-radius: 5px; overflow: hidden;
+      display: flex;
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
       margin-bottom: 10px;
     }
-    .blend-track .seg-a { background: #d4af37; transition: flex 0.1s; }
-    .blend-track .seg-b { background: #5a4010; transition: flex 0.1s; }
-    .blend-slider {
-      width: 100%; accent-color: #d4af37; cursor: pointer;
+
+    .blend-track .seg-a {
+      background: #d4af37;
+      transition: flex 0.1s;
     }
-    .blend-slider-hint { color: #555; font-size: 11px; text-align: center; margin-top: 6px; }
+
+    .blend-track .seg-b {
+      background: #5a4010;
+      transition: flex 0.1s;
+    }
+
+    .blend-slider {
+      width: 100%;
+      accent-color: #d4af37;
+      cursor: pointer;
+    }
+
+    .blend-slider-hint {
+      color: #555;
+      font-size: 11px;
+      text-align: center;
+      margin-top: 6px;
+    }
 
     /* ========== INTENSITY ========== */
     .intensity-options {
-      display: flex; gap: 10px;
+      display: flex;
+      gap: 10px;
     }
+
     .int-btn {
-      flex: 1; padding: 10px 6px; border-radius: 8px;
-      border: 1.5px solid #2a2a2a; background: #141414;
-      color: #666; font-size: 11px; font-weight: 600;
-      cursor: pointer; text-align: center; transition: all 0.2s;
+      flex: 1;
+      padding: 10px 6px;
+      border-radius: 8px;
+      border: 1.5px solid #2a2a2a;
+      background: #141414;
+      color: #666;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
     }
-    .int-btn:hover { border-color: #555; color: #aaa; }
-    .int-btn.active { border-color: #d4af37; color: #d4af37; background: #1a1200; }
-    .int-btn .int-icon { font-size: 18px; display: block; margin-bottom: 4px; }
-    .int-btn .int-hours { color: #555; font-size: 9px; margin-top: 2px; }
-    .int-btn.active .int-hours { color: #888; }
+
+    .int-btn:hover {
+      border-color: #555;
+      color: #aaa;
+    }
+
+    .int-btn.active {
+      border-color: #d4af37;
+      color: #d4af37;
+      background: #1a1200;
+    }
+
+    .int-btn .int-icon {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .int-btn .int-hours {
+      color: #555;
+      font-size: 9px;
+      margin-top: 2px;
+    }
+
+    .int-btn.active .int-hours {
+      color: #888;
+    }
 
     /* ========== PROMPT BOX ========== */
     .prompt-wrap {
@@ -221,92 +535,163 @@
       padding: 16px;
       transition: border-color 0.2s;
     }
-    .prompt-wrap:focus-within { border-color: #d4af37; }
+
+    .prompt-wrap:focus-within {
+      border-color: #d4af37;
+    }
+
     .prompt-wrap textarea {
-      width: 100%; background: transparent; border: none;
-      color: #ccc; font-size: 13px; resize: none; outline: none;
-      font-family: inherit; line-height: 1.7; min-height: 90px;
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: #ccc;
+      font-size: 13px;
+      resize: none;
+      outline: none;
+      font-family: inherit;
+      line-height: 1.7;
+      min-height: 90px;
     }
-    .prompt-wrap textarea::placeholder { color: #444; }
+
+    .prompt-wrap textarea::placeholder {
+      color: #444;
+    }
+
     .prompt-footer {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 10px; padding-top: 10px; border-top: 1px solid #1e1e1e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #1e1e1e;
     }
-    .prompt-hints { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .prompt-hints {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
     .hint-chip {
-      background: #1e1e1e; color: #666; font-size: 10px;
-      padding: 3px 10px; border-radius: 12px; border: 1px solid #2a2a2a;
-      cursor: pointer; transition: all 0.2s;
+      background: #1e1e1e;
+      color: #666;
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px solid #2a2a2a;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .hint-chip:hover { color: #d4af37; border-color: #d4af37; background: #1a1200; }
+
+    .hint-chip:hover {
+      color: #d4af37;
+      border-color: #d4af37;
+      background: #1a1200;
+    }
+
     .ai-badge {
-      background: #0f0f2a; color: #8888ff;
-      font-size: 10px; padding: 4px 10px; border-radius: 10px;
-      border: 1px solid #2a2a4e; white-space: nowrap;
+      background: #0f0f2a;
+      color: #8888ff;
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 10px;
+      border: 1px solid #2a2a4e;
+      white-space: nowrap;
     }
 
     /* ========== BOTTLE CUSTOMIZATION ========== */
     .bottle-options {
-  display: flex;
-  gap: 20px;
-}
+      display: flex;
+      gap: 20px;
+    }
 
-.bottle-opt {
-  flex: 1;
-  text-align: center;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 12px;
-  border: 2px solid #2a2a2a;
-  background: #141414;
-  transition: 0.3s;
-}
+    .bottle-opt {
+      flex: 1;
+      text-align: center;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 12px;
+      border: 2px solid #2a2a2a;
+      background: #141414;
+      transition: 0.3s;
+    }
 
-.b-icon {
-  font-size: 32px;
-  display: block;
-  margin-bottom: 6px;
-}
+    .b-icon {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 6px;
+    }
 
-.b-name {
-  font-size: 13px;
-  color: #ddd;
-  font-weight: 600;
-}
+    .b-name {
+      font-size: 13px;
+      color: #ddd;
+      font-weight: 600;
+    }
 
-.b-size {
-  font-size: 11px;
-  color: #666;
-}
+    .b-size {
+      font-size: 11px;
+      color: #666;
+    }
 
-/* hover */
-.bottle-opt:hover {
-  transform: translateY(0px);
-  border-color: #d4af37;
-}
+    /* hover */
+    .bottle-opt:hover {
+      transform: translateY(0px);
+      border-color: #d4af37;
+    }
 
-/* selected */
-.bottle-opt.active {
-  border-color: #d4af37;
-  background: #1a1200;
-  box-shadow: 0 0 12px rgba(212,175,55,0.3);
-}
-    .bottle-opt:hover { border-color: #555; }
-    .bottle-opt.active { border-color: #d4af37; background: #1a1200; }
-    .bottle-opt .b-icon { font-size: 26px; display: block; margin-bottom: 6px; }
-    .bottle-opt .b-name { color: #ddd; font-size: 11px; font-weight: 600; }
-    .bottle-opt .b-size { color: #666; font-size: 10px; margin-top: 2px; }
-    .bottle-opt .b-price { color: #d4af37; font-size: 11px; font-weight: 700; margin-top: 4px; }
+    /* selected */
+    .bottle-opt.active {
+      border-color: #d4af37;
+      background: #1a1200;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+    }
+
+    .bottle-opt:hover {
+      border-color: #555;
+    }
+
+    .bottle-opt.active {
+      border-color: #d4af37;
+      background: #1a1200;
+    }
+
+    .bottle-opt .b-icon {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .bottle-opt .b-name {
+      color: #ddd;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .bottle-opt .b-size {
+      color: #666;
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    .bottle-opt .b-price {
+      color: #d4af37;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
 
     /* ========== RIGHT PANEL - PREVIEW ========== */
     .preview-card {
-      background: linear-gradient(160deg, #1a1200, #0d0d0d);
-      border: 1px solid #2a2000;
+      background: rgba(26, 18, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.15);
       border-radius: 14px;
       padding: 22px;
       margin-bottom: 16px;
       text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
+
     .preview-bottle-icon {
       font-size: 64px;
       display: block;
@@ -314,103 +699,549 @@
       /* filter: drop-shadow(0 0 12px rgba(212,175,55,0.3));
       animation: floatBottle 3s ease-in-out infinite; */
     }
+
     @keyframes floatBottle {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
-    }
-    .preview-blend-name { color: #d4af37; font-size: 18px; font-weight: 700; margin-bottom: 4px; letter-spacing: 1px; }
-    .preview-tagline { color: #888; font-size: 12px; line-height: 1.6; margin-bottom: 14px; }
-    .preview-tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
-    .tag-pill { background: #1e1500; color: #d4af37; font-size: 9px; padding: 3px 10px; border-radius: 12px; border: 1px solid #3a2800; }
 
-    .ratio-bar-wrap { margin-bottom: 14px; }
-    .ratio-bar-label { display: flex; justify-content: space-between; margin-bottom: 4px; }
-    .ratio-bar-label span { font-size: 10px; color: #666; }
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .preview-blend-name {
+      color: #d4af37;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+    }
+
+    .preview-tagline {
+      color: #888;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .preview-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .tag-pill {
+      background: #1e1500;
+      color: #d4af37;
+      font-size: 9px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px solid #3a2800;
+    }
+
+    .ratio-bar-wrap {
+      margin-bottom: 14px;
+    }
+
+    .ratio-bar-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .ratio-bar-label span {
+      font-size: 10px;
+      color: #666;
+    }
+
     .ratio-bar {
-      display: flex; height: 8px; border-radius: 4px; overflow: hidden;
+      display: flex;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
     }
-    .ratio-bar .ra { background: #d4af37; transition: flex 0.3s; }
-    .ratio-bar .rb { background: #5a4010; transition: flex 0.3s; }
 
-    .longevity-row { margin-bottom: 16px; }
-    .longevity-label { font-size: 10px; color: #666; margin-bottom: 6px; }
-    .longevity-dots { display: flex; gap: 4px; }
-    .l-dot { flex: 1; height: 6px; border-radius: 3px; background: #222; transition: background 0.3s; }
-    .l-dot.lit { background: #d4af37; }
+    .ratio-bar .ra {
+      background: #d4af37;
+      transition: flex 0.3s;
+    }
+
+    .ratio-bar .rb {
+      background: #5a4010;
+      transition: flex 0.3s;
+    }
+
+    .longevity-row {
+      margin-bottom: 16px;
+    }
+
+    .longevity-label {
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .longevity-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .l-dot {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: #222;
+      transition: background 0.3s;
+    }
+
+    .l-dot.lit {
+      background: #d4af37;
+    }
 
     .price-block {
-      background: #0d0d0d; border-radius: 10px; padding: 14px;
-      border: 1px solid #2a2a2a; margin-bottom: 14px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
     }
+
     .price-row-item {
-      display: flex; justify-content: space-between;
-      font-size: 12px; color: #888; padding: 4px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #777;
+      font-size: 11px;
+      margin-bottom: 8px;
     }
+
     .price-total {
-      display: flex; justify-content: space-between;
-      padding-top: 10px; margin-top: 8px; border-top: 1px solid #222;
-      font-size: 16px; font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      border-top: 1px solid #222;
+      padding-top: 10px;
+      margin-top: 5px;
     }
-    .price-total span:first-child { color: #aaa; }
-    .price-total span:last-child { color: #d4af37; }
 
     .order-btn {
       width: 100%;
       background: linear-gradient(135deg, #d4af37, #aa8422);
-      color: #000; border: none; padding: 14px;
-      border-radius: 10px; font-size: 14px; font-weight: 700;
-      cursor: pointer; letter-spacing: 1px; text-transform: uppercase;
-      margin-bottom: 10px; transition: opacity 0.2s, transform 0.1s;
+      color: #000;
+      border: none;
+      padding: 14px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
     }
-    .order-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
     .save-btn {
-      width: 100%; background: transparent; color: #d4af37;
-      border: 1.5px solid #d4af37; padding: 12px;
-      border-radius: 10px; font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;
+      width: 100%;
+      background: transparent;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+      padding: 14px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
     }
-    .save-btn:hover { background: rgba(212,175,55,0.08); }
+
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #111;
+      border: 1px solid #333;
+      padding: 12px 24px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1200px) {
+      .main-layout {
+        grid-template-columns: 1fr 340px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .c-nav {
+        padding: 14px 20px;
+      }
+
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .right-col {
+        position: static;
+        border-top: 1px solid #1a1a1a;
+        padding-bottom: 100px;
+      }
+
+      .left-col {
+        border-right: none;
+        padding: 24px 20px;
+      }
+
+      .perfume-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps-bar {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 15px 10px;
+        scrollbar-width: none;
+        gap: 15px;
+      }
+
+      .steps-bar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .step-item {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .step-label {
+        font-size: 10px;
+        white-space: nowrap;
+      }
+
+      .step-divider {
+        width: 15px;
+        min-width: 15px;
+        height: 1px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding: 40px 20px;
+      }
+
+      .perfume-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intensity-options {
+        flex-wrap: wrap;
+      }
+
+      .int-btn {
+        flex: 1 1 calc(50% - 10px);
+      }
+
+      .bottle-options {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .step-divider {
+        width: 20px;
+      }
+
+      .blend-labels {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .blend-vs {
+        display: none;
+      }
+    }
+
+    /* Floating Mobile Preview Toggle */
+    .mobile-preview-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #d4af37;
+      color: #000;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      border: none;
+    }
+
+    @media (max-width: 991px) {
+      .mobile-preview-toggle {
+        display: flex;
+      }
+    }
+
+    .l-dot.lit {
+      background: #d4af37;
+    }
+
+    .price-block {
+      background: #0d0d0d;
+      border-radius: 10px;
+      padding: 14px;
+      border: 1px solid #2a2a2a;
+      margin-bottom: 14px;
+    }
+
+    .price-row-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #888;
+      padding: 4px 0;
+    }
+
+    .price-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      margin-top: 8px;
+      border-top: 1px solid #222;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .price-total span:first-child {
+      color: #aaa;
+    }
+
+    .price-total span:last-child {
+      color: #d4af37;
+    }
+
+    .order-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #d4af37, #aa8422);
+      color: #000;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .save-btn {
+      width: 100%;
+      background: transparent;
+      color: #d4af37;
+      border: 1.5px solid #d4af37;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .save-btn:hover {
+      background: rgba(212, 175, 55, 0.08);
+    }
 
     /* ========== PAST BLENDS ========== */
-    .past-blends { margin-top: 16px; }
-    .past-title { color: #d4af37; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    .past-blends {
+      margin-top: 16px;
+    }
+
+    .past-title {
+      color: #d4af37;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
     .past-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 12px; background: #141414; border-radius: 8px;
-      margin-bottom: 6px; border: 1px solid #1e1e1e; cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: #141414;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      border: 1px solid #1e1e1e;
+      cursor: pointer;
       transition: border-color 0.2s;
     }
-    .past-item:hover { border-color: #333; }
-    .past-item .pi-left { display: flex; align-items: center; gap: 8px; }
-    .past-item .pi-name { color: #bbb; font-size: 12px; }
-    .past-item .pi-date { color: #555; font-size: 10px; }
-    .past-item .pi-reuse { color: #d4af37; font-size: 10px; }
+
+    .past-item:hover {
+      border-color: #333;
+    }
+
+    .past-item .pi-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .past-item .pi-name {
+      color: #bbb;
+      font-size: 12px;
+    }
+
+    .past-item .pi-date {
+      color: #555;
+      font-size: 10px;
+    }
+
+    .past-item .pi-reuse {
+      color: #d4af37;
+      font-size: 10px;
+    }
 
     /* ========== TOAST ========== */
     .toast-msg {
-      position: fixed; bottom: 28px; right: 28px;
-      background: #1a2a1a; border: 1px solid #4caf50; color: #4caf50;
-      padding: 14px 20px; border-radius: 10px; font-size: 13px; font-weight: 600;
-      display: flex; align-items: center; gap: 8px;
-      transform: translateY(80px); opacity: 0;
-      transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-      z-index: 9999; pointer-events: none;
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #1a2a1a;
+      border: 1px solid #4caf50;
+      color: #4caf50;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 9999;
+      pointer-events: none;
     }
-    .toast-msg.show { transform: translateY(0); opacity: 1; }
+
+    .toast-msg.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 900px) {
-      .main-layout { grid-template-columns: 1fr; }
-      .right-col { position: static; }
-      .perfume-grid { grid-template-columns: repeat(2, 1fr); }
-      .c-nav { padding: 14px 20px; }
-      .hero { padding: 36px 20px 28px; }
-      .left-col { padding: 24px 20px; }
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .right-col {
+        position: static;
+      }
+
+      .perfume-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .c-nav {
+        padding: 14px 20px;
+      }
+
+      .hero {
+        padding: 36px 20px 28px;
+      }
+
+      .left-col {
+        padding: 24px 20px;
+      }
+    }
+    /* Gold Toggler for Mobile */
+    .navbar-toggler {
+      border: 1px solid #d4af37 !important;
+      padding: 4px 6px;
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+
+    .navbar-toggler .icon-bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: #d4af37;
+      border-radius: 1px;
+      margin-bottom: 4px;
+    }
+
+    .navbar-toggler .icon-bar:last-child {
+      margin-bottom: 0;
+    }
+    /* Responsive Modal Fixes */
+    @media (max-width: 768px) {
+      .modal-dialog {
+        margin: 10px;
+        max-width: calc(100% - 20px) !important;
+      }
+      .modal-body {
+        padding: 20px !important;
+      }
+      #modal_img {
+        max-height: 250px;
+        object-fit: contain;
+        margin-bottom: 20px;
+      }
+      #modal_title {
+        font-size: 22px !important;
+        margin-top: 0 !important;
+        text-align: center;
+      }
+      .price {
+        font-size: 20px !important;
+        margin-bottom: 10px !important;
+        text-align: center;
+      }
+      .rating {
+        margin-bottom: 15px !important;
+        justify-content: center;
+        display: flex;
+      }
+      .modal-body .button {
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
+
 <body>
-    <header class="header_area">
+  <!--================ Start Header Menu Area =================-->
+  <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -426,12 +1257,14 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
               <li class="nav-item submenu dropdown">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                   aria-haspopup="true" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
+                  <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  </li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
                   <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                   <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
@@ -446,40 +1279,32 @@
                   <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
                 </ul>
               </li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
-                </ul>
-              </li>
-                            <li class="nav-item"><a class="nav-link" href="customize.html" style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;">✦ Customize</a></li>
+
+              <li class="nav-item active"><a class="nav-link" href="customize.html"
+                  style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;"><i class='fas fa-magic'></i>
+                  Customize</a></li>
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
 
             <ul class="nav-shop">
-
-              <!-- Cart -->
               <li class="nav-item">
-                <button data-toggle="modal" data-target="#product_modal"
-                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <a href="cart.html"
+                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
                   <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="background: #d4af37; color: #000; font-weight: bold;">3</span>
                 </button>
               </li>
 
               <!-- Profile Icon -->
-             
+
 
               <!-- Shop Now -->
               <li class="nav-item">
                 <a class="button button-header" href="category.html"
-                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop Now</a>
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
+                  Now</a>
               </li>
-              
-               <li class="nav-item">
+
+              <li class="nav-item">
                 <a href="profile.html" id="profileNavLink"
                   style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
                   <img id="profileNavImg" src="" alt="Profile"
@@ -493,287 +1318,326 @@
       </nav>
     </div>
   </header>
+  <!--================ End Header Menu Area =================-->
 
-<!-- NAV
-<nav class="c-nav">
-  <a href="index.html" class="logo">i rasa</a>
-  <div class="nav-right">
-    <a href="index.html" class="back-link"><i class="ti-arrow-left"></i> Back to Home</a>
-    <a href="profile.html" class="profile-nav-icon" id="profileNavLink">
-      <img id="profileNavImg" src="" alt="" />
-      <i id="profileNavIcon" class="ti-user"></i>
-    </a>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge"><i class='fas fa-star'></i> NEW FEATURE</div>
+    <h1>Create Your Signature Fragrance</h1>
+    <p>Mix two of our premium perfumes, adjust the blend ratio, set the intensity and describe your dream scent — we'll
+      craft it just for you.</p>
   </div>
-</nav> -->
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">✦ NEW FEATURE</div>
-  <h1>Create Your Signature Fragrance</h1>
-  <p>Mix two of our premium perfumes, adjust the blend ratio, set the intensity and describe your dream scent — we'll craft it just for you.</p>
-</div>
-
-<!-- STEP INDICATOR -->
-<div class="steps-bar">
-  <div class="step-item">
-    <div class="step-num active" id="sn1">1</div>
-    <div class="step-label active" id="sl1">Choose Perfumes</div>
-  </div>  
-  <div class="step-divider"></div>
-  <div class="step-item">
-    <div class="step-num" id="sn2">2</div>
-    <div class="step-label" id="sl2">Blend Ratio</div>
-  </div>
-  <div class="step-divider"></div>
-  <div class="step-item">
-    <div class="step-num" id="sn3">3</div>
-    <div class="step-label" id="sl3">Intensity</div>
-  </div>
-  <div class="step-divider"></div>
-  <div class="step-item">
-    <div class="step-num" id="sn4">4</div>
-    <div class="step-label" id="sl4">Your Vision</div>
-  </div>
-  <div class="step-divider"></div>
-  <div class="step-item">
-    <div class="step-num" id="sn5">5</div>
-    <div class="step-label" id="sl5">Bottle & Order</div>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="main-layout">
-
-  <!-- LEFT COLUMN -->
-  <div class="left-col">
-
-    <!-- STEP 1: Choose Perfumes -->
-    <div class="section-block">
-      <div class="sec-title"><span class="num">1</span> Choose 2 perfumes to blend</div>
-      <div id="selectedCount" class="selected-count">0 of 2 selected</div>
-      <div class="perfume-grid" id="perfumeGrid">
-
-        <div class="p-card" data-id="rose" data-name="Rose Oud" data-icon="🌹" data-notes="Floral · Woody · Warm" data-price="399" onclick="selectPerfume(this)">
-          <div class="badge-check"><i class="ti-check"></i></div>
-          <div class="blend-badge" id="badge-rose"></div>
-          <span class="p-icon">🌹</span>
-          <div class="p-name">Rose Oud</div>
-          <div class="p-notes">Floral · Woody · Warm</div>
-          <div class="p-price">₹399</div>
-        </div>
-
-        <div class="p-card" data-id="aqua" data-name="Fresh Aqua" data-icon="🌊" data-notes="Aquatic · Fresh · Clean" data-price="349" onclick="selectPerfume(this)">
-          <div class="badge-check"><i class="ti-check"></i></div>
-          <span class="p-icon">🌊</span>
-          <div class="p-name">Fresh Aqua</div>
-          <div class="p-notes">Aquatic · Fresh · Clean</div>
-          <div class="p-price">₹349</div>
-        </div>
-
-        <div class="p-card" data-id="citrus" data-name="Citrus Musk" data-icon="🍋" data-notes="Citrus · Musky · Zesty" data-price="379" onclick="selectPerfume(this)">
-          <div class="badge-check"><i class="ti-check"></i></div>
-          <span class="p-icon">🍋</span>
-          <div class="p-name">Citrus Musk</div>
-          <div class="p-notes">Citrus · Musky · Zesty</div>
-          <div class="p-price">₹379</div>
-        </div>
-
-        <div class="p-card" data-id="midnight" data-name="Midnight Oud" data-icon="🌙" data-notes="Dark · Spicy · Oriental" data-price="499" onclick="selectPerfume(this)">
-          <div class="badge-check"><i class="ti-check"></i></div>
-          <span class="p-icon">🌙</span>
-          <div class="p-name">Midnight Oud</div>
-          <div class="p-notes">Dark · Spicy · Oriental</div>
-          <div class="p-price">₹499</div>
-        </div>
-
-        <div class="p-card" data-id="jasmine" data-name="Jasmine Silk" data-icon="🌸" data-notes="Floral · Soft · Powdery" data-price="359" onclick="selectPerfume(this)">
-          <div class="badge-check"><i class="ti-check"></i></div>
-          <span class="p-icon">🌸</span>
-          <div class="p-name">Jasmine Silk</div>
-          <div class="p-notes">Floral · Soft · Powdery</div>
-          <div class="p-price">₹359</div>
-        </div>
-
-        <div class="p-card" data-id="sandal" data-name="Sandalwood" data-icon="🪵" data-notes="Woody · Warm · Earthy" data-price="429" onclick="selectPerfume(this)">
-          <div class="badge-check"><i class="ti-check"></i></div>
-          <span class="p-icon">🪵</span>
-          <div class="p-name">Sandalwood</div>
-          <div class="p-notes">Woody · Warm · Earthy</div>
-          <div class="p-price">₹429</div>
-        </div>
-
-      </div>
+  <!-- STEP INDICATOR -->
+  <div class="steps-bar">
+    <div class="step-item">
+      <div class="step-num active" id="sn1">1</div>
+      <div class="step-label active" id="sl1">Choose Perfumes</div>
     </div>
+    <div class="step-divider"></div>
+    <div class="step-item">
+      <div class="step-num" id="sn2">2</div>
+      <div class="step-label" id="sl2">Blend Ratio</div>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step-item">
+      <div class="step-num" id="sn3">3</div>
+      <div class="step-label" id="sl3">Intensity</div>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step-item">
+      <div class="step-num" id="sn4">4</div>
+      <div class="step-label" id="sl4">Your Vision</div>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step-item">
+      <div class="step-num" id="sn5">5</div>
+      <div class="step-label" id="sl5">Bottle & Order</div>
+    </div>
+  </div>
 
-    <!-- STEP 2: Blend Ratio -->
-    <div class="section-block">
-      <div class="sec-title"><span class="num">2</span> Adjust the blend ratio</div>
-      <div class="blend-slider-wrap">
-        <div class="blend-labels">
-          <div class="blend-label-item">
-            <span class="icon" id="blendIconA">🌹</span>
-            <div class="name" id="blendNameA">Rose Oud</div>
-            <div class="pct" id="blendPctA">60%</div>
+  <!-- MAIN -->
+  <div class="main-layout">
+
+    <!-- LEFT COLUMN -->
+    <div class="left-col">
+
+      <!-- STEP 1: Choose Perfumes -->
+      <div class="section-block">
+        <div class="sec-title"><span class="num">1</span> Choose 2 perfumes to blend</div>
+        <div id="selectedCount" class="selected-count">0 of 2 selected</div>
+        <div class="perfume-grid" id="perfumeGrid">
+
+          <div class="p-card" data-id="gucciflora" data-name="Gucci Flora" data-icon="fas fa-seedling"
+            data-notes="Iconic · Floral · Sweet" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge" id="badge-gucciflora"></div>
+            <span class="p-icon"><i class='fas fa-seedling'></i></span>
+            <div class="p-name">Gucci Flora</div>
+            <div class="p-notes">Iconic · Floral · Sweet</div>
+            <div class="p-price">₹399</div>
           </div>
-          <div class="blend-vs">VS</div>
-          <div class="blend-label-item">
-            <span class="icon" id="blendIconB">🍋</span>
-            <div class="name" id="blendNameB">Citrus Musk</div>
-            <div class="pct" id="blendPctB">40%</div>
+
+          <div class="p-card" data-id="hawas" data-name="Rasassi Hawas" data-icon="fas fa-tint"
+            data-notes="Oriental · Fresh · Aqua" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge"></div>
+            <span class="p-icon"><i class='fas fa-tint'></i></span>
+            <div class="p-name">Rasassi Hawas</div>
+            <div class="p-notes">Oriental · Fresh · Aqua</div>
+            <div class="p-price">₹399</div>
+          </div>
+
+          <div class="p-card" data-id="bluechannel" data-name="Blue De Channel" data-icon="fas fa-gem"
+            data-notes="Aromatic · Sharp · Modern" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge"></div>
+            <span class="p-icon"><i class='fas fa-gem'></i></span>
+            <div class="p-name">Blue De Channel</div>
+            <div class="p-notes">Aromatic · Sharp · Modern</div>
+            <div class="p-price">₹399</div>
+          </div>
+
+          <div class="p-card" data-id="guccibloom" data-name="Gucci Bloom" data-icon="fas fa-spa"
+            data-notes="Floral · Rich · Elegant" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge"></div>
+            <span class="p-icon"><i class='fas fa-spa'></i></span>
+            <div class="p-name">Gucci Bloom</div>
+            <div class="p-notes">Floral · Rich · Elegant</div>
+            <div class="p-price">₹399</div>
+          </div>
+
+          <div class="p-card" data-id="aventus" data-name="Creed Aventus" data-icon="fas fa-crown"
+            data-notes="Premium · Woody · Smoky" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge"></div>
+            <span class="p-icon"><i class='fas fa-crown'></i></span>
+            <div class="p-name">Creed Aventus</div>
+            <div class="p-notes">Premium · Woody · Smoky</div>
+            <div class="p-price">₹399</div>
+          </div>
+
+          <div class="p-card" data-id="whitemusk" data-name="White Musk" data-icon="fas fa-feather"
+            data-notes="Soft · Musky · Pure" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge"></div>
+            <span class="p-icon"><i class='fas fa-feather'></i></span>
+            <div class="p-name">White Musk</div>
+            <div class="p-notes">Soft · Musky · Pure</div>
+            <div class="p-price">₹399</div>
+          </div>
+
+          <div class="p-card" data-id="savage" data-name="Savage Dior" data-icon="fas fa-bolt"
+            data-notes="Sharp · Spicy · Bold" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge"></div>
+            <span class="p-icon"><i class='fas fa-bolt'></i></span>
+            <div class="p-name">Savage Dior</div>
+            <div class="p-notes">Sharp · Spicy · Bold</div>
+            <div class="p-price">₹399</div>
+          </div>
+
+          <div class="p-card" data-id="eternity" data-name="Eternity" data-icon="fas fa-infinity"
+            data-notes="Fresh · Classic · Crisp" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge"></div>
+            <span class="p-icon"><i class='fas fa-infinity'></i></span>
+            <div class="p-name">Eternity</div>
+            <div class="p-notes">Fresh · Classic · Crisp</div>
+            <div class="p-price">₹399</div>
+          </div>
+
+          <div class="p-card" data-id="blackrose" data-name="Black Rose" data-icon="fas fa-rose"
+            data-notes="Dark · Floral · Exotic" data-price="399" onclick="selectPerfume(this)">
+            <div class="badge-check"><i class="ti-check"></i></div>
+            <div class="blend-badge"></div>
+            <span class="p-icon"><i class='fas fa-rose'></i></span>
+            <div class="p-name">Black Rose</div>
+            <div class="p-notes">Dark · Floral · Exotic</div>
+            <div class="p-price">₹399</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STEP 2: Blend Ratio -->
+      <div class="section-block">
+        <div class="sec-title"><span class="num">2</span> Adjust the blend ratio</div>
+        <div class="blend-slider-wrap">
+          <div class="blend-labels">
+            <div class="blend-label-item">
+              <span class="icon" id="blendIconA"><i class='fas fa-seedling'></i></span>
+              <div class="name" id="blendNameA">Gucci Flora</div>
+              <div class="pct" id="blendPctA">60%</div>
+            </div>
+            <div class="blend-vs">VS</div>
+            <div class="blend-label-item">
+              <span class="icon" id="blendIconB"><i class='fas fa-tint'></i></span>
+              <div class="name" id="blendNameB">Rasassi Hawas</div>
+              <div class="pct" id="blendPctB">40%</div>
+            </div>
+          </div>
+          <div class="blend-track">
+            <div class="seg-a" id="blendSegA" style="flex:60"></div>
+            <div class="seg-b" id="blendSegB" style="flex:40"></div>
+          </div>
+          <input type="range" class="blend-slider" id="blendSlider" min="10" max="90" value="60"
+            oninput="updateBlend(this.value)" />
+          <div class="blend-slider-hint">Drag to adjust how much of each perfume</div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Intensity -->
+      <div class="section-block">
+        <div class="sec-title"><span class="num">3</span> Choose fragrance intensity</div>
+        <div class="intensity-options">
+          <div class="int-btn" onclick="selectIntensity(this, 'Eau de Cologne', 1)">
+            <span class="int-icon"><i class='fas fa-tint'></i></span>
+            Cologne
+            <div class="int-hours">3–4 hours · Light</div>
+          </div>
+          <div class="int-btn active" onclick="selectIntensity(this, 'Eau de Toilette', 3)">
+            <span class="int-icon"><i class='fas fa-magic'></i></span>
+            Toilette
+            <div class="int-hours">5–7 hours · Standard</div>
+          </div>
+          <div class="int-btn" onclick="selectIntensity(this, 'Eau de Parfum', 4)">
+            <span class="int-icon"><i class='fas fa-fire'></i></span>
+            Parfum
+            <div class="int-hours">8–10 hours · Strong</div>
+          </div>
+          <div class="int-btn" onclick="selectIntensity(this, 'Extrait de Parfum', 5)">
+            <span class="int-icon"><i class='fas fa-bolt'></i></span>
+            Extrait
+            <div class="int-hours">12+ hours · Intense</div>
           </div>
         </div>
-        <div class="blend-track">
-          <div class="seg-a" id="blendSegA" style="flex:60"></div>
-          <div class="seg-b" id="blendSegB" style="flex:40"></div>
-        </div>
-        <input type="range" class="blend-slider" id="blendSlider" min="10" max="90" value="60" oninput="updateBlend(this.value)" />
-        <div class="blend-slider-hint">Drag to adjust how much of each perfume</div>
       </div>
-    </div>
 
-    <!-- STEP 3: Intensity -->
-    <div class="section-block">
-      <div class="sec-title"><span class="num">3</span> Choose fragrance intensity</div>
-      <div class="intensity-options">
-        <div class="int-btn" onclick="selectIntensity(this, 'Light', 1)">
-          <span class="int-icon">💧</span>
-          Light
-          <div class="int-hours">3–4 hours</div>
-        </div>
-        <div class="int-btn active" onclick="selectIntensity(this, 'Medium', 3)">
-          <span class="int-icon">✨</span>
-          Medium
-          <div class="int-hours">5–7 hours</div>
-        </div>
-        <div class="int-btn" onclick="selectIntensity(this, 'Strong', 4)">
-          <span class="int-icon">🔥</span>
-          Strong
-          <div class="int-hours">8–10 hours</div>
-        </div>
-        <div class="int-btn" onclick="selectIntensity(this, 'Intense', 5)">
-          <span class="int-icon">⚡</span>
-          Intense
-          <div class="int-hours">12+ hours</div>
-        </div>
-      </div>
-    </div>
+      <!-- STEP 4: Prompt -->
+      <div class="section-block">
+        <div class="sec-title"><span class="num">4</span> Describe your dream scent</div>
+        <div class="prompt-wrap">
+          <textarea id="userPrompt"
+            placeholder="e.g. I want something that smells like a warm summer evening in a flower garden, slightly sweet but fresh — perfect for office wear in Indian climate..."></textarea>
+          <div class="prompt-footer">
+            <div class="prompt-hints">
+              <span class="hint-chip" onclick="addHint('for office wear')">Office wear <i
+                  class='fas fa-briefcase'></i></span>
+              <span class="hint-chip" onclick="addHint('for evening parties')">Evening party <i
+                  class='fas fa-glass-cheers'></i></span>
+              <span class="hint-chip" onclick="addHint('fresh and light')">Fresh & light <i
+                  class='fas fa-smile-beam'></i></span>
+              <span class="hint-chip" onclick="addHint('romantic and warm')">Romantic <i
+                  class='fas fa-heart'></i></span>
 
-    <!-- STEP 4: Prompt -->
-    <div class="section-block">
-      <div class="sec-title"><span class="num">4</span> Describe your dream scent</div>
-      <div class="prompt-wrap">
-        <textarea id="userPrompt" placeholder="e.g. I want something that smells like a warm summer evening in a flower garden, slightly sweet but fresh — perfect for office wear in Indian climate..."></textarea>
-        <div class="prompt-footer">
-          <div class="prompt-hints">
-            <span class="hint-chip" onclick="addHint('for office wear')">Office wear🏢</span>
-            <span class="hint-chip" onclick="addHint('for evening parties')">Evening party💃</span>
-            <span class="hint-chip" onclick="addHint('fresh and light')">Fresh & light🤩</span>
-            <span class="hint-chip" onclick="addHint('romantic and warm')">Romantic❤️</span>
-           
+            </div>
+
           </div>
-          
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 5: Bottle Size -->
-    <div class="section-block">
-      <div class="sec-title"><span class="num">5</span> Choose bottle size</div>
-     <div class="bottle-options">
-
-  <div class="bottle-opt active" onclick="selectBottle(this, 30, 199)">
-    <span class="b-icon">🫙</span>
-    <div class="b-name">Mini</div>
-    <div class="b-size">30ml</div>
-  </div>
-
-  <div class="bottle-opt" onclick="selectBottle(this, 50, 299)">
-    <span class="b-icon">🫙</span>
-    <div class="b-name">Classic</div>
-    <div class="b-size">50ml</div>
-  </div>
-
-  <div class="bottle-opt" onclick="selectBottle(this, 100, 499)">
-    <span class="b-icon">🫙</span>
-    <div class="b-name">Premium</div>
-    <div class="b-size">100ml</div>
-  </div>
-
-</div>
-    </div>
-
-  </div>
-
-  <!-- RIGHT COLUMN - LIVE PREVIEW -->
-  <div class="right-col">
-
-    <div style="color:#d4af37; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;">Live Preview</div>
-
-    <div class="preview-card">
-      <span class="preview-bottle-icon">🫙</span>
-      <div class="preview-blend-name" id="previewName">Rose Citrus Fusion</div>
-      <div class="preview-tagline" id="previewTagline">A warm floral-citrus blend with musky base notes. Perfect for daytime wear in Indian climate.</div>
-      <div class="preview-tags" id="previewTags">
-        <span class="tag-pill">Floral</span>
-        <span class="tag-pill">Citrus</span>
-        <span class="tag-pill">Musky</span>
-        <span class="tag-pill">Long lasting</span>
-      </div>
-
-      <div class="ratio-bar-wrap">
-        <div class="ratio-bar-label">
-          <span id="previewLabelA">Rose Oud 60%</span>
-          <span id="previewLabelB">Citrus Musk 40%</span>
-        </div>
-        <div class="ratio-bar">
-          <div class="ra" id="previewRatioA" style="flex:60"></div>
-          <div class="rb" id="previewRatioB" style="flex:40"></div>
         </div>
       </div>
 
-      <div class="longevity-row">
-        <div class="longevity-label">Longevity</div>
-        <div class="longevity-dots" id="longevityDots">
-          <div class="l-dot lit"></div>
-          <div class="l-dot lit"></div>
-          <div class="l-dot lit"></div>
-          <div class="l-dot"></div>
-          <div class="l-dot"></div>
+      <!-- STEP 5: Bottle Size -->
+      <div class="section-block">
+        <div class="sec-title"><span class="num">5</span> Choose bottle size</div>
+        <div class="bottle-options">
+
+          <div class="bottle-opt active" onclick="selectBottle(this, 30, 199)">
+            <span class="b-icon"><i class='fas fa-flask'></i></span>
+            <div class="b-name">Mini</div>
+            <div class="b-size">30ml</div>
+          </div>
+
+          <div class="bottle-opt" onclick="selectBottle(this, 50, 299)">
+            <span class="b-icon"><i class='fas fa-flask'></i></span>
+            <div class="b-name">Classic</div>
+            <div class="b-size">50ml</div>
+          </div>
+
+          <div class="bottle-opt" onclick="selectBottle(this, 100, 499)">
+            <span class="b-icon"><i class='fas fa-flask'></i></span>
+            <div class="b-name">Premium</div>
+            <div class="b-size">100ml</div>
+          </div>
+
         </div>
       </div>
+
     </div>
 
-    <div class="price-block" id="priceBlock">
-      <div class="price-row-item"><span>Base perfumes</span><span id="priceBase">₹778</span></div>
-      <div class="price-row-item"><span>Bottle (50ml)</span><span id="priceBottle">₹299</span></div>
-      <div class="price-row-item"><span>Blending charge</span><span>₹99</span></div>
-      <div class="price-total">
-        <span>Total</span>
-        <span id="priceTotal">₹1,176</span>
+    <!-- RIGHT COLUMN - LIVE PREVIEW -->
+    <div class="right-col">
+
+      <div style="color:#d4af37; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;">Live
+        Preview</div>
+
+      <div class="preview-card">
+        <span class="preview-bottle-icon"><i class='fas fa-flask'></i></span>
+        <div class="preview-blend-name" id="previewName">Rose Citrus Fusion</div>
+        <div class="preview-tagline" id="previewTagline">A warm floral-citrus blend with musky base notes. Perfect for
+          daytime wear in Indian climate.</div>
+        <div class="preview-tags" id="previewTags">
+          <span class="tag-pill">Floral</span>
+          <span class="tag-pill">Citrus</span>
+          <span class="tag-pill">Musky</span>
+          <span class="tag-pill">Long lasting</span>
+        </div>
+
+        <div class="ratio-bar-wrap">
+          <div class="ratio-bar-label">
+            <span id="previewLabelA">Gucci Flora 60%</span>
+            <span id="previewLabelB">Rasassi Hawas 40%</span>
+          </div>
+          <div class="ratio-bar">
+            <div class="ra" id="previewRatioA" style="flex:60"></div>
+            <div class="rb" id="previewRatioB" style="flex:40"></div>
+          </div>
+        </div>
+
+        <div class="longevity-row">
+          <div class="longevity-label">Longevity</div>
+          <div class="longevity-dots" id="longevityDots">
+            <div class="l-dot lit"></div>
+            <div class="l-dot lit"></div>
+            <div class="l-dot lit"></div>
+            <div class="l-dot"></div>
+            <div class="l-dot"></div>
+          </div>
+        </div>
       </div>
+
+      <div class="price-block" id="priceBlock">
+        <div class="price-row-item"><span>Base perfumes (Premium Mix)</span><span id="priceBase">₹798</span></div>
+        <div class="price-row-item"><span>Custom Glass Bottle</span><span id="priceBottle">₹299</span></div>
+        <div class="price-row-item"><span>Artisan Blending Fee</span><span>₹99</span></div>
+        <div class="price-total">
+          <span>Final Amount</span>
+          <span id="priceTotal">₹1,196</span>
+        </div>
+      </div>
+
+      <button class="order-btn" onclick="AuthGuard.requireAuth(placeOrder)">
+        <i class="ti-shopping-cart"></i>&nbsp; Order This Blend
+      </button>
+      <button class="save-btn" onclick="AuthGuard.requireAuth(saveBlend)">
+        <i class="ti-bookmark"></i>&nbsp; Save to My Profile
+      </button>
+
+      <!-- Past Blends -->
+      <div class="past-blends" id="pastBlendsSection" style="display:none">
+        <div class="past-title">Your saved blends</div>
+        <div id="pastBlendsList"></div>
+      </div>
+
     </div>
-
-    <button class="order-btn" onclick="placeOrder()">
-      <i class="ti-shopping-cart"></i>&nbsp; Order This Blend
-    </button>
-    <button class="save-btn" onclick="saveBlend()">
-      <i class="ti-bookmark"></i>&nbsp; Save to My Profile
-    </button>
-
-    <!-- Past Blends -->
-    <div class="past-blends" id="pastBlendsSection" style="display:none">
-      <div class="past-title">Your saved blends</div>
-      <div id="pastBlendsList"></div>
-    </div>
-
   </div>
-</div>
 
-<!-- TOAST -->
-<div class="toast-msg" id="toast">
-  <i class="ti-check-box"></i>
-  <span id="toastText">Saved!</span>
-</div>
+  <!-- TOAST -->
+  <div class="toast-msg" id="toast">
+    <i class="ti-check-box"></i>
+    <span id="toastText">Saved!</span>
+  </div>
   <footer class="footer">
     <div class="footer-area">
       <div class="container">
@@ -810,12 +1674,18 @@
             <div class="single-footer-widget instafeed">
               <h4 class="footer_title">Our Gallery</h4>
               <ul class="list instafeed d-flex flex-wrap">
-                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r2.webp" alt="Signature Scent" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r5.avif" alt="Premium Attar" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r7.avif" alt="Bespoke Collection" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r8.avif" alt="I Rasa Perfumes" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r5.avif" alt="Premium Attar"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r7.avif" alt="Bespoke Collection"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r8.avif" alt="I Rasa Perfumes"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
               </ul>
             </div>
           </div>
@@ -860,283 +1730,344 @@
     </div>
   </footer>
 
-<script>
-  // ======== STATE ========
-  var state = {
-    selectedCards: [],   // max 2 card elements
-    blendRatio: 60,
-    intensity: 'Medium',
-    intensityDots: 3,
-    bottlePrice: 299,
-    bottleSize: 50,
-    prompt: ''
-  };
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script>
+    // ======== STATE ========
+    var state = {
+      selectedCards: [],   // max 2 card elements
+      blendRatio: 60,
+      intensity: 'Medium',
+      intensityDots: 3,
+      bottlePrice: 299,
+      bottleSize: 50,
+      prompt: ''
+    };
 
-  // ======== PERFUME SELECT ========
-  function selectPerfume(card) {
-    var id = card.dataset.id;
-    var alreadyIdx = state.selectedCards.indexOf(card);
+    // ======== PERFUME SELECT ========
+    function selectPerfume(card) {
+      var id = card.dataset.id;
+      var alreadyIdx = state.selectedCards.indexOf(card);
 
-    if (alreadyIdx > -1) {
-      // Deselect
-      card.classList.remove('selected', 'blend-a', 'blend-b');
-      card.querySelector('.blend-badge').textContent = '';
-      state.selectedCards.splice(alreadyIdx, 1);
-    } else {
-      if (state.selectedCards.length >= 2) {
-        // Remove first selected
-        var old = state.selectedCards.shift();
-        old.classList.remove('selected', 'blend-a', 'blend-b');
-        old.querySelector('.blend-badge').textContent = '';
-      }
-      state.selectedCards.push(card);
-      card.classList.add('selected');
-    }
-
-    // Reassign A/B badges
-    state.selectedCards.forEach(function(c, i) {
-      c.classList.remove('blend-a', 'blend-b');
-      var badge = c.querySelector('.blend-badge');
-      if (i === 0) { c.classList.add('blend-a'); badge.textContent = 'A'; }
-      else         { c.classList.add('blend-b'); badge.textContent = 'B'; }
-    });
-
-    updateCountBadge();
-    updateBlendLabels();
-    updatePreview();
-    updateStepIndicators();
-  }
-
-  function updateCountBadge() {
-    document.getElementById('selectedCount').textContent =
-      state.selectedCards.length + ' of 2 selected';
-  }
-
-  // ======== BLEND RATIO ========
-  function updateBlend(val) {
-    state.blendRatio = parseInt(val);
-    var other = 100 - state.blendRatio;
-    document.getElementById('blendPctA').textContent = state.blendRatio + '%';
-    document.getElementById('blendPctB').textContent = other + '%';
-    document.getElementById('blendSegA').style.flex = state.blendRatio;
-    document.getElementById('blendSegB').style.flex = other;
-    // preview ratio bar
-    document.getElementById('previewRatioA').style.flex = state.blendRatio;
-    document.getElementById('previewRatioB').style.flex = other;
-    updatePreviewLabels();
-    updatePreviewName();
-  }
-
-  function updateBlendLabels() {
-    var a = state.selectedCards[0];
-    var b = state.selectedCards[1];
-    document.getElementById('blendIconA').textContent = a ? a.dataset.icon : '?';
-    document.getElementById('blendNameA').textContent = a ? a.dataset.name : 'Select A';
-    document.getElementById('blendIconB').textContent = b ? b.dataset.icon : '?';
-    document.getElementById('blendNameB').textContent = b ? b.dataset.name : 'Select B';
-  }
-
-  function updatePreviewLabels() {
-    var a = state.selectedCards[0];
-    var b = state.selectedCards[1];
-    var other = 100 - state.blendRatio;
-    document.getElementById('previewLabelA').textContent = (a ? a.dataset.name : 'A') + ' ' + state.blendRatio + '%';
-    document.getElementById('previewLabelB').textContent = (b ? b.dataset.name : 'B') + ' ' + other + '%';
-  }
-
-  // ======== INTENSITY ========
-  function selectIntensity(btn, label, dots) {
-    document.querySelectorAll('.int-btn').forEach(function(b){ b.classList.remove('active'); });
-    btn.classList.add('active');
-    state.intensity = label;
-    state.intensityDots = dots;
-    var dotEls = document.querySelectorAll('.l-dot');
-    dotEls.forEach(function(d, i){ d.classList.toggle('lit', i < dots); });
-    updateStepIndicators();
-  }
-
-  // ======== BOTTLE ========
-  function selectBottle(el, size, price) {
-    document.querySelectorAll('.bottle-opt').forEach(function(b){ b.classList.remove('active'); });
-    el.classList.add('active');
-    state.bottlePrice = price;
-    state.bottleSize = size;
-    updatePrice();
-  }
-
-  // ======== PREVIEW ========
-  var nameMap = {
-    'rose+citrus': 'Rose Citrus Fusion',
-    'rose+aqua': 'Rose Aqua Bloom',
-    'rose+midnight': 'Midnight Rose',
-    'rose+jasmine': 'Rose Jasmine Elixir',
-    'rose+sandal': 'Rose Sandal Dreams',
-    'citrus+aqua': 'Aqua Citrus Breeze',
-    'citrus+midnight': 'Dark Citrus Noir',
-    'citrus+jasmine': 'Citrus Jasmine Glow',
-    'citrus+sandal': 'Citrus Wood Fusion',
-    'aqua+midnight': 'Deep Ocean Night',
-    'aqua+jasmine': 'Fresh Jasmine Air',
-    'aqua+sandal': 'Aqua Wood Blend',
-    'midnight+jasmine': 'Midnight Jasmine',
-    'midnight+sandal': 'Dark Wood Oud',
-    'jasmine+sandal': 'Jasmine Sandal Silk'
-  };
-  var tagMap = {
-    rose: ['Floral','Woody'],
-    aqua: ['Aquatic','Fresh'],
-    citrus: ['Citrus','Zesty'],
-    midnight: ['Dark','Spicy'],
-    jasmine: ['Floral','Soft'],
-    sandal: ['Woody','Earthy']
-  };
-
-  function updatePreviewName() {
-    var a = state.selectedCards[0];
-    var b = state.selectedCards[1];
-    if (!a || !b) return;
-    var key = [a.dataset.id, b.dataset.id].sort().join('+');
-    var name = nameMap[key] || (a.dataset.name + ' & ' + b.dataset.name);
-    document.getElementById('previewName').textContent = name;
-  }
-
-  function updatePreview() {
-    updateBlendLabels();
-    updatePreviewLabels();
-    updatePreviewName();
-    updatePrice();
-
-    var a = state.selectedCards[0];
-    var b = state.selectedCards[1];
-
-    // Tags
-    var tags = [];
-    if (a) tags = tags.concat(tagMap[a.dataset.id] || []);
-    if (b) (tagMap[b.dataset.id] || []).forEach(function(t){ if (tags.indexOf(t) === -1) tags.push(t); });
-    if (state.intensity === 'Strong' || state.intensity === 'Intense') tags.push('Long lasting');
-    var tagsEl = document.getElementById('previewTags');
-    tagsEl.innerHTML = tags.map(function(t){ return '<span class="tag-pill">'+t+'</span>'; }).join('');
-
-    // Tagline
-    var tagline = 'A beautiful custom blend crafted for you.';
-    if (a && b) {
-      tagline = 'A unique ' + (tagMap[a.dataset.id]||[''])[0].toLowerCase() + '-' +
-        (tagMap[b.dataset.id]||[''])[0].toLowerCase() + ' fusion. ' +
-        (state.intensity === 'Intense' ? 'Lasts all day in Indian climate.' :
-         state.intensity === 'Strong' ? 'Perfect for evening wear.' :
-         state.intensity === 'Light' ? 'Fresh and subtle for daily wear.' :
-         'Great for office and casual occasions.');
-    }
-    document.getElementById('previewTagline').textContent = tagline;
-  }
-
-  function updatePrice() {
-    var a = state.selectedCards[0];
-    var b = state.selectedCards[1];
-    var base = (a ? parseInt(a.dataset.price) : 0) + (b ? parseInt(b.dataset.price) : 0);
-    var total = base + state.bottlePrice + 99;
-    document.getElementById('priceBase').textContent = '₹' + base;
-    document.getElementById('priceBottle').textContent = '₹' + state.bottlePrice + ' (' + state.bottleSize + 'ml)';
-    document.getElementById('priceTotal').textContent = '₹' + total.toLocaleString('en-IN');
-  }
-
-  // ======== HINT CHIPS ========
-  function addHint(text) {
-    var ta = document.getElementById('userPrompt');
-    var cur = ta.value.trim();
-    ta.value = cur ? cur + ', ' + text : text;
-    ta.focus();
-  }
-
-  // ======== STEP INDICATORS ========
-  function updateStepIndicators() {
-    var steps = [
-      state.selectedCards.length === 2,
-      state.selectedCards.length === 2,
-      true,
-      true,
-      true
-    ];
-    steps.forEach(function(done, i) {
-      var n = document.getElementById('sn' + (i+1));
-      var l = document.getElementById('sl' + (i+1));
-      if (done) {
-        n.classList.add('done');
-        n.classList.remove('active');
-        n.innerHTML = '<i class="ti-check" style="font-size:10px;color:#000"></i>';
+      if (alreadyIdx > -1) {
+        // Deselect
+        card.classList.remove('selected', 'blend-a', 'blend-b');
+        card.querySelector('.blend-badge').textContent = '';
+        state.selectedCards.splice(alreadyIdx, 1);
       } else {
-        n.classList.remove('done');
-        n.classList.add('active');
-        n.textContent = (i+1);
+        if (state.selectedCards.length >= 2) {
+          // Remove first selected
+          var old = state.selectedCards.shift();
+          old.classList.remove('selected', 'blend-a', 'blend-b');
+          old.querySelector('.blend-badge').textContent = '';
+        }
+        state.selectedCards.push(card);
+        card.classList.add('selected');
       }
-      l.classList.toggle('active', done || i === 0);
+
+      // Reassign A/B badges
+      state.selectedCards.forEach(function (c, i) {
+        c.classList.remove('blend-a', 'blend-b');
+        var badge = c.querySelector('.blend-badge');
+        if (i === 0) { c.classList.add('blend-a'); badge.textContent = 'A'; }
+        else { c.classList.add('blend-b'); badge.textContent = 'B'; }
+      });
+
+      updateCountBadge();
+      updateBlendLabels();
+      updatePreview();
+      updateStepIndicators();
+    }
+
+    function updateCountBadge() {
+      document.getElementById('selectedCount').textContent =
+        state.selectedCards.length + ' of 2 selected';
+    }
+
+    // ======== BLEND RATIO ========
+    function updateBlend(val) {
+      state.blendRatio = parseInt(val);
+      var other = 100 - state.blendRatio;
+      document.getElementById('blendPctA').textContent = state.blendRatio + '%';
+      document.getElementById('blendPctB').textContent = other + '%';
+      document.getElementById('blendSegA').style.flex = state.blendRatio;
+      document.getElementById('blendSegB').style.flex = other;
+      // preview ratio bar
+      document.getElementById('previewRatioA').style.flex = state.blendRatio;
+      document.getElementById('previewRatioB').style.flex = other;
+      updatePreviewLabels();
+      updatePreviewName();
+    }
+
+    function updateBlendLabels() {
+      var a = state.selectedCards[0];
+      var b = state.selectedCards[1];
+      document.getElementById('blendIconA').innerHTML = a ? '<i class="' + a.dataset.icon + '"></i>' : '?';
+      document.getElementById('blendNameA').textContent = a ? a.dataset.name : 'Select A';
+      document.getElementById('blendIconB').innerHTML = b ? '<i class="' + b.dataset.icon + '"></i>' : '?';
+      document.getElementById('blendNameB').textContent = b ? b.dataset.name : 'Select B';
+    }
+
+    function updatePreviewLabels() {
+      var a = state.selectedCards[0];
+      var b = state.selectedCards[1];
+      var other = 100 - state.blendRatio;
+      document.getElementById('previewLabelA').textContent = (a ? a.dataset.name : 'A') + ' ' + state.blendRatio + '%';
+      document.getElementById('previewLabelB').textContent = (b ? b.dataset.name : 'B') + ' ' + other + '%';
+    }
+
+    // ======== INTENSITY ========
+    function selectIntensity(btn, label, dots) {
+      document.querySelectorAll('.int-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      state.intensity = label;
+      state.intensityDots = dots;
+      var dotEls = document.querySelectorAll('.l-dot');
+      dotEls.forEach(function (d, i) { d.classList.toggle('lit', i < dots); });
+      updateStepIndicators();
+    }
+
+    // ======== BOTTLE ========
+    function selectBottle(el, size, price) {
+      document.querySelectorAll('.bottle-opt').forEach(function (b) { b.classList.remove('active'); });
+      el.classList.add('active');
+      state.bottlePrice = price;
+      state.bottleSize = size;
+      updatePrice();
+    }
+
+    // ======== PREVIEW ========
+    var nameMap = {
+      'gucciflora+hawas': 'Flora Hawas Fusion',
+      'gucciflora+bluechannel': 'Floral Aromatic Bloom',
+      'gucciflora+guccibloom': 'Ultimate Floral Bouquet',
+      'gucciflora+aventus': 'Royal Flora Wood',
+      'gucciflora+whitemusk': 'Floral Musk Silk',
+      'gucciflora+savage': 'Bold Floral Spark',
+      'gucciflora+eternity': 'Everlasting Bloom',
+      'gucciflora+blackrose': 'Midnight Floral Garden',
+      'hawas+bluechannel': 'Aqua Aromatic Sharp',
+      'hawas+guccibloom': 'Fresh Floral Oasis',
+      'hawas+aventus': 'Oriental King Blend',
+      'hawas+whitemusk': 'Fresh Musk Dew',
+      'hawas+savage': 'Sharp Oriental Spice',
+      'hawas+eternity': 'Endless Ocean Breeze',
+      'hawas+blackrose': 'Dark Aqua Rose',
+      'bluechannel+guccibloom': 'Sharp Floral Elegance',
+      'bluechannel+aventus': 'Modern Royal Woody',
+      'bluechannel+whitemusk': 'Clean Musk Fusion',
+      'bluechannel+savage': 'Intense Aromatic Power',
+      'bluechannel+eternity': 'Classic Modern Sharp',
+      'bluechannel+blackrose': 'Midnight Sharpness',
+      'guccibloom+aventus': 'Crown Floral Wood',
+      'guccibloom+whitemusk': 'Soft Bloom Silk',
+      'guccibloom+savage': 'Bold Bloom Spice',
+      'guccibloom+eternity': 'Infinite Floral Elegance',
+      'guccibloom+blackrose': 'Mystery Bloom Garden',
+      'aventus+whitemusk': 'Smoky Musk Premium',
+      'aventus+savage': 'The Alpha Blend',
+      'aventus+eternity': 'Eternal Royalty',
+      'aventus+blackrose': 'Smoky Royal Rose',
+      'whitemusk+savage': 'Clean Spicy Power',
+      'whitemusk+eternity': 'Pure Infinite Fresh',
+      'whitemusk+blackrose': 'Soft Midnight Rose',
+      'savage+eternity': 'Endless Sharp Power',
+      'savage+blackrose': 'Dark Spicy Bloom',
+      'eternity+blackrose': 'Eternal Dark Rose'
+    };
+    var tagMap = {
+      gucciflora: ['Floral', 'Sweet'],
+      hawas: ['Oriental', 'Fresh'],
+      bluechannel: ['Aromatic', 'Sharp'],
+      guccibloom: ['Floral', 'Elegant'],
+      aventus: ['Premium', 'Woody'],
+      whitemusk: ['Musk', 'Soft'],
+      savage: ['Sharp', 'Spicy'],
+      eternity: ['Fresh', 'Classic'],
+      blackrose: ['Dark', 'Floral']
+    };
+
+    function updatePreviewName() {
+      var a = state.selectedCards[0];
+      var b = state.selectedCards[1];
+      if (!a || !b) return;
+      var key = [a.dataset.id, b.dataset.id].sort().join('+');
+      var name = nameMap[key] || (a.dataset.name + ' & ' + b.dataset.name);
+      document.getElementById('previewName').textContent = name;
+    }
+
+    function updatePreview() {
+      updateBlendLabels();
+      updatePreviewLabels();
+      updatePreviewName();
+      updatePrice();
+
+      var a = state.selectedCards[0];
+      var b = state.selectedCards[1];
+
+      // Tags
+      var tags = [];
+      if (a) tags = tags.concat(tagMap[a.dataset.id] || []);
+      if (b) (tagMap[b.dataset.id] || []).forEach(function (t) { if (tags.indexOf(t) === -1) tags.push(t); });
+      if (state.intensity === 'Eau de Parfum' || state.intensity === 'Extrait de Parfum') tags.push('Long lasting');
+      var tagsEl = document.getElementById('previewTags');
+      tagsEl.innerHTML = tags.map(function (t) { return '<span class="tag-pill">' + t + '</span>'; }).join('');
+
+      // Tagline
+      var tagline = 'A beautiful custom blend crafted for you.';
+      if (a && b) {
+        tagline = 'A unique ' + (tagMap[a.dataset.id] || [''])[0].toLowerCase() + '-' +
+          (tagMap[b.dataset.id] || [''])[0].toLowerCase() + ' fusion. ' +
+          (state.intensity === 'Extrait de Parfum' ? 'Lasts all day in Indian climate.' :
+            state.intensity === 'Eau de Parfum' ? 'Perfect for evening wear.' :
+              state.intensity === 'Eau de Cologne' ? 'Fresh and subtle for daily wear.' :
+                'Great for office and casual occasions.');
+      }
+      document.getElementById('previewTagline').textContent = tagline;
+    }
+
+    function updatePrice() {
+      var a = state.selectedCards[0];
+      var b = state.selectedCards[1];
+      var base = (a ? parseInt(a.dataset.price) : 0) + (b ? parseInt(b.dataset.price) : 0);
+      var total = base + state.bottlePrice + 99;
+      document.getElementById('priceBase').textContent = '₹' + base;
+      document.getElementById('priceBottle').textContent = '₹' + state.bottlePrice + ' (' + state.bottleSize + 'ml)';
+      document.getElementById('priceTotal').textContent = '₹' + total.toLocaleString('en-IN');
+    }
+
+    // ======== HINT CHIPS ========
+    function addHint(text) {
+      var ta = document.getElementById('userPrompt');
+      var cur = ta.value.trim();
+      ta.value = cur ? cur + ', ' + text : text;
+      ta.focus();
+    }
+
+    // ======== STEP INDICATORS ========
+    function updateStepIndicators() {
+      var steps = [
+        state.selectedCards.length === 2,
+        state.selectedCards.length === 2,
+        true,
+        true,
+        true
+      ];
+      steps.forEach(function (done, i) {
+        var n = document.getElementById('sn' + (i + 1));
+        var l = document.getElementById('sl' + (i + 1));
+        if (done) {
+          n.classList.add('done');
+          n.classList.remove('active');
+          n.innerHTML = '<i class="ti-check" style="font-size:10px;color:#000"></i>';
+        } else {
+          n.classList.remove('done');
+          n.classList.add('active');
+          n.textContent = (i + 1);
+        }
+        l.classList.toggle('active', done || i === 0);
+      });
+    }
+
+    // ======== ORDER ========
+    function placeOrder() {
+      if (state.selectedCards.length < 2) {
+        showToast('Please select 2 perfumes first!', false);
+        return;
+      }
+      showToast('Order placed! We will contact you soon. <i class="fas fa-gift"></i>', true);
+    }
+
+    // ======== SAVE ========
+    function saveBlend() {
+      if (state.selectedCards.length < 2) {
+        showToast('Please select 2 perfumes first!', false);
+        return;
+      }
+      var profile = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
+      var blends = profile.blends || [];
+      blends.unshift({
+        name: document.getElementById('previewName').textContent,
+        iconA: state.selectedCards[0].dataset.icon,
+        iconB: state.selectedCards[1].dataset.icon,
+        date: new Date().toLocaleDateString('en-IN')
+      });
+      profile.blends = blends.slice(0, 5);
+      localStorage.setItem('irasa_profile', JSON.stringify(profile));
+      loadPastBlends();
+      showToast('Blend saved to your profile! ✓', true);
+    }
+
+    // ======== PAST BLENDS ========
+    function loadPastBlends() {
+      var profile = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
+      var blends = profile.blends || [];
+      if (blends.length === 0) { document.getElementById('pastBlendsSection').style.display = 'none'; return; }
+      document.getElementById('pastBlendsSection').style.display = 'block';
+      document.getElementById('pastBlendsList').innerHTML = blends.map(function (b) {
+        return '<div class="past-item"><div class="pi-left"><span><i class="' + b.iconA + '"></i><i class="' + b.iconB + '"></i></span><span class="pi-name">' + b.name + '</span></div><div><span class="pi-date">' + b.date + '</span></div></div>';
+      }).join('');
+    }
+
+    // ======== TOAST ========
+    function showToast(msg, success) {
+      var t = document.getElementById('toast');
+      document.getElementById('toastText').textContent = msg;
+      t.style.borderColor = success ? '#4caf50' : '#e57373';
+      t.style.color = success ? '#4caf50' : '#e57373';
+      t.style.background = success ? '#1a2a1a' : '#2a1a1a';
+      t.classList.add('show');
+      setTimeout(function () { t.classList.remove('show'); }, 3000);
+    }
+
+    // ======== INIT ========
+    window.addEventListener('DOMContentLoaded', function () {
+      // Load profile photo in nav
+      var p = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
+      if (p.img) {
+        document.getElementById('profileNavImg').src = p.img;
+        document.getElementById('profileNavImg').style.display = 'block';
+        document.getElementById('profileNavIcon').style.display = 'none';
+      }
+      loadPastBlends();
+      updatePrice();
     });
-  }
 
-  // ======== ORDER ========
-  function placeOrder() {
-    if (state.selectedCards.length < 2) {
-      showToast('Please select 2 perfumes first!', false);
-      return;
+    function toggleMobilePreview() {
+      var rightCol = document.querySelector('.right-col');
+      rightCol.scrollIntoView({ behavior: 'smooth' });
     }
-    showToast('Order placed! We will contact you soon. 🎉', true);
-  }
+  </script>
 
-  // ======== SAVE ========
-  function saveBlend() {
-    if (state.selectedCards.length < 2) {
-      showToast('Please select 2 perfumes first!', false);
-      return;
-    }
-    var profile = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
-    var blends = profile.blends || [];
-    blends.unshift({
-      name: document.getElementById('previewName').textContent,
-      iconA: state.selectedCards[0].dataset.icon,
-      iconB: state.selectedCards[1].dataset.icon,
-      date: new Date().toLocaleDateString('en-IN')
-    });
-    profile.blends = blends.slice(0, 5);
-    localStorage.setItem('irasa_profile', JSON.stringify(profile));
-    loadPastBlends();
-    showToast('Blend saved to your profile! ✓', true);
-  }
+  <!-- Logout Modal -->
+  <div class="modal fade" id="logout_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background:#0a0a0a; border:1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8);">
+        <div class="modal-body text-center p-5">
+          <div
+            style="width:80px; height:80px; border-radius:50%; background:rgba(255,77,77,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 25px; border:1px solid rgba(255,77,77,0.2);">
+            <i class="ti-power-off" style="font-size:32px; color:#ff4d4d;"></i>
+          </div>
+          <h4
+            style="color:#fff; margin-bottom:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; font-size:18px;">
+            End Session?</h4>
+          <p style="color:#666; font-size:14px; margin-bottom:35px; line-height:1.6;">Are you sure you want to log out
+            of your I Rasa account? You can always sign back in anytime.</p>
+          <div class="d-flex gap-3 justify-content-center">
+            <button class="btn" data-dismiss="modal"
+              style="background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:30px; padding:12px 35px; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s;">Stay</button>
+            <button class="btn" onclick="location.href='index.html'"
+              style="margin-left: 10px; background:linear-gradient(135deg, #ff4d4d, #b30000); color:#fff; border:none; border-radius:30px; padding:12px 35px; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:1px; box-shadow: 0 4px 15px rgba(255,77,77,0.3); transition:all 0.3s;">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  // ======== PAST BLENDS ========
-  function loadPastBlends() {
-    var profile = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
-    var blends = profile.blends || [];
-    if (blends.length === 0) { document.getElementById('pastBlendsSection').style.display = 'none'; return; }
-    document.getElementById('pastBlendsSection').style.display = 'block';
-    document.getElementById('pastBlendsList').innerHTML = blends.map(function(b) {
-      return '<div class="past-item"><div class="pi-left"><span>'+b.iconA+b.iconB+'</span><span class="pi-name">'+b.name+'</span></div><div><span class="pi-date">'+b.date+'</span></div></div>';
-    }).join('');
-  }
-
-  // ======== TOAST ========
-  function showToast(msg, success) {
-    var t = document.getElementById('toast');
-    document.getElementById('toastText').textContent = msg;
-    t.style.borderColor = success ? '#4caf50' : '#e57373';
-    t.style.color = success ? '#4caf50' : '#e57373';
-    t.style.background = success ? '#1a2a1a' : '#2a1a1a';
-    t.classList.add('show');
-    setTimeout(function(){ t.classList.remove('show'); }, 3000);
-  }
-
-  // ======== INIT ========
-  window.addEventListener('DOMContentLoaded', function() {
-    // Load profile photo in nav
-    var p = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
-    if (p.img) {
-      document.getElementById('profileNavImg').src = p.img;
-      document.getElementById('profileNavImg').style.display = 'block';
-      document.getElementById('profileNavIcon').style.display = 'none';
-    }
-    loadPastBlends();
-    updatePrice();
-  });
-</script>
-
+  <button class="mobile-preview-toggle" onclick="toggleMobilePreview()">
+    <i class="ti-shopping-cart"></i>
+  </button>
+  <script src="js/auth-guard.js"></script>
 </body>
+
 </html>

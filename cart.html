@@ -1,36 +1,1198 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta name="description" content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 299.">
-  <meta name="keywords" content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
+  <meta name="description"
+    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 299.">
+  <meta name="keywords"
+    content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
   <meta name="author" content="Technokraft services LLP">
   <link rel="canonical" href="https://irasaperfumes.in/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>I Rasa Perfumes - Cart</title>
-	<link rel="icon" href="img/favicon-irasa.png" type="image/png">
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="vendors/linericon/style.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="vendors/linericon/style.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
-
   <link rel="stylesheet" href="css/style.css">
   <link href="css/vendors/aos.css" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       MOBILE-FIRST RESPONSIVE ENHANCEMENTS
+       I Rasa Perfumes — Cart Page
+       ============================================= */
+
+    /* =============================================
+    PREVENT ALL PAGE-LEVEL SCROLLBARS
+   ============================================= */
+
+    /* 2. Contain cart section — clip X only, never Y */
+    .cart_area,
+    .cart_inner {
+      overflow-x: clip !important;
+      overflow-y: unset !important;
+      max-width: 100% !important;
+    }
+
+    /* 3. .table-responsive — main cause of X scrollbar on desktop */
+    .table-responsive {
+      overflow-x: auto;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100% !important;
+    }
+
+    /* 4. coupon row negative-margin bleed */
+    .cupon_text {
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
+
+    /* 5. Consistent horizontal padding for all containers */
+    .container {
+      max-width: 1200px !important;
+      /* Standardized max-width for luxury feel */
+      padding-left: 30px !important;
+      padding-right: 30px !important;
+      box-sizing: border-box !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    @media (max-width: 767px) {
+      .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+    }
+
+    /* 6. Hide scrollbars on .table-responsive on desktop */
+    @media (min-width: 768px) {
+      .table-responsive {
+        overflow-x: hidden !important;
+      }
+    }
+
+    /* === GLOBAL MOBILE BASE === */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* === HEADER — MOBILE === */
+    @media (max-width: 991px) {
+      .header_area .main_menu nav.navbar {
+        padding: 10px 0;
+      }
+
+      .navbar-brand.logo_h {
+        font-size: 22px !important;
+      }
+
+      .navbar-toggler {
+        border: 1px solid #d4af37 !important;
+        border-radius: 4px;
+        padding: 6px 10px;
+      }
+
+      .navbar-toggler .icon-bar {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #d4af37;
+        margin: 4px 0;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .collapse.navbar-collapse {
+        background: #0d0d0d;
+        border-top: 1px solid #2a2200;
+        padding: 10px 0 16px;
+        margin-top: 8px;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+
+      .menu_nav .nav-item {
+        border-bottom: 1px solid #1a1a1a;
+      }
+
+      .menu_nav .nav-item:last-child {
+        border-bottom: none;
+      }
+
+      .menu_nav .nav-link {
+        padding: 12px 20px !important;
+        font-size: 14px;
+      }
+
+      .nav-shop {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 20px 4px;
+        flex-wrap: wrap;
+      }
+
+      .nav-shop .nav-item {
+        border-bottom: none !important;
+      }
+    }
+
+    /* === BANNER — MOBILE === */
+    @media (max-width: 768px) {
+      .blog-banner-area {
+        padding: 40px 0 30px !important;
+        min-height: auto !important;
+      }
+
+      .blog-banner h1 {
+        font-size: 28px !important;
+        letter-spacing: 2px !important;
+      }
+
+      .blog-banner .breadcrumb {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Nice Select Global Dark Theme */
+    .nice-select {
+      background-color: #0d0d0d !important;
+      border-color: #2a2a2a !important;
+      color: #ccc !important;
+      width: 100% !important;
+      float: none !important;
+      margin-bottom: 12px !important;
+      height: 44px !important;
+      line-height: 42px !important;
+    }
+
+    .nice-select .list {
+      background-color: #111 !important;
+      border: 1px solid #2a2a2a !important;
+      width: 100% !important;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6) !important;
+      z-index: 9999 !important;
+      max-height: 250px !important;
+      overflow-y: auto !important;
+      pointer-events: auto !important;
+    }
+
+    .nice-select .list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .nice-select .list::-webkit-scrollbar-thumb {
+      background: #d4af37;
+      border-radius: 10px;
+    }
+
+    .nice-select .option {
+      color: #ccc !important;
+      line-height: 40px !important;
+      min-height: 40px !important;
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+    }
+
+    .nice-select .option:hover,
+    .nice-select .option.focus,
+    .nice-select .option.selected.focus {
+      background-color: #222 !important;
+      color: #d4af37 !important;
+    }
+
+    .nice-select .current {
+      color: #ccc !important;
+    }
+
+    /* === CART SECTION — MOBILE CARD LAYOUT === */
+    @media (max-width: 767px) {
+      .cart_area {
+        padding: 20px 0 100px !important;
+        /* bottom padding for sticky bar */
+      }
+
+      .cart_inner {
+        border-radius: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+      }
+
+      /* Hide desktop table, show mobile cards */
+      .cart_inner .table-responsive {
+        display: none !important;
+      }
+
+      /* ─── MOBILE CART CARDS CONTAINER ─── */
+      .mobile-cart-container {
+        display: block;
+        padding: 0 14px;
+      }
+
+      /* ─── SECTION DIVIDER LABEL ─── */
+      .mobile-section-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #666;
+        text-transform: uppercase;
+        padding: 14px 2px 10px;
+      }
+
+      /* ─── INDIVIDUAL CART ITEM CARD ─── */
+      .mobile-cart-card {
+        background: #111111;
+        border: 1px solid #242000;
+        border-radius: 14px;
+        padding: 14px;
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        position: relative;
+        margin-bottom: 12px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .mobile-cart-card:active {
+        border-color: #d4af37;
+      }
+
+      /* Product Image Box */
+      .mobile-cart-img {
+        width: 76px;
+        height: 76px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: #1a1500;
+        border: 1px solid #2a2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .mobile-cart-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 4px;
+      }
+
+      /* Info Column */
+      .mobile-cart-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .mobile-cart-name {
+        font-size: 13px;
+        font-weight: 500;
+        color: #e8dfc8;
+        line-height: 1.4;
+        margin-bottom: 3px;
+        padding-right: 28px;
+        /* space for remove btn */
+      }
+
+      .mobile-cart-meta {
+        font-size: 11px;
+        color: #555;
+        margin-bottom: 11px;
+      }
+
+      .mobile-cart-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      /* Price */
+      .mobile-cart-price {
+        font-size: 15px;
+        font-weight: 700;
+        color: #d4af37;
+      }
+
+      /* Quantity Control */
+      .mobile-qty-wrap {
+        display: flex;
+        align-items: center;
+        background: #1a1a1a;
+        border: 1px solid #2a2a2a;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .mobile-qty-wrap .qty-btn {
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        border: none;
+        color: #d4af37;
+        font-size: 17px;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .mobile-qty-wrap .qty-btn:active {
+        background: #2a1f00;
+      }
+
+      .mobile-qty-wrap .qty-num {
+        width: 34px;
+        height: 32px;
+        text-align: center;
+        background: transparent;
+        border: none;
+        border-left: 1px solid #2a2a2a;
+        border-right: 1px solid #2a2a2a;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      /* Row total */
+      .mobile-cart-total {
+        font-size: 11px;
+        color: #555;
+        margin-top: 7px;
+      }
+
+      .mobile-cart-total span {
+        color: #d4af37;
+        font-weight: 600;
+      }
+
+      /* Remove Button */
+      .mobile-remove-btn {
+        position: absolute;
+        top: 11px;
+        right: 12px;
+        background: transparent;
+        border: none;
+        color: #3a3a3a;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50%;
+        transition: color 0.2s, background 0.2s;
+        -webkit-tap-highlight-color: transparent;
+        line-height: 1;
+      }
+
+      .mobile-remove-btn:active {
+        color: #e24b4a;
+        background: rgba(226, 75, 74, 0.1);
+      }
+
+      /* ─── COUPON ROW ─── */
+      .mobile-coupon-box {
+        background: #111;
+        border: 1px solid #242000;
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+
+      .mobile-coupon-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #666;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .mobile-coupon-row {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .mobile-coupon-row input[type="text"] {
+        flex: 1;
+        background: #0d0d0d;
+        border: 1px solid #2a2a2a;
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #fff;
+        font-size: 13px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .mobile-coupon-row input:focus {
+        border-color: #d4af37;
+      }
+
+      .mobile-coupon-row input::placeholder {
+        color: #3a3a3a;
+      }
+
+      .mobile-coupon-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .mobile-coupon-actions .primary-btn,
+      .mobile-coupon-actions .button {
+        flex: 1;
+        margin: 0 !important;
+        padding: 12px 10px !important;
+        font-size: 11px !important;
+        white-space: nowrap;
+        border-radius: 8px !important;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+      }
+
+      /* ─── ORDER SUMMARY CARD ─── */
+      .mobile-summary-card {
+        background: #111;
+        border: 1px solid #242000;
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .mobile-summary-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 13px 16px;
+        border-bottom: 1px solid #1a1a1a;
+      }
+
+      .mobile-summary-row:last-child {
+        border-bottom: none;
+      }
+
+      .mobile-summary-label {
+        font-size: 13px;
+        color: #777;
+      }
+
+      .mobile-summary-val {
+        font-size: 13px;
+        color: #e8dfc8;
+        font-weight: 500;
+      }
+
+      .mobile-summary-total {
+        background: #1a1500;
+        padding: 15px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #2a2000;
+      }
+
+      .mobile-summary-total-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #e8dfc8;
+      }
+
+      .mobile-summary-total-val {
+        font-size: 20px;
+        font-weight: 700;
+        color: #d4af37;
+      }
+
+      /* ─── SHIPPING ACCORDION ─── */
+      .mobile-shipping-card {
+        background: #111;
+        border: 1px solid #242000;
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .mobile-shipping-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        border-bottom: none !important;
+      }
+
+      .mobile-shipping-body.open {
+        border-top: 1px solid #1a1a1a;
+        display: flex;
+      }
+
+      .mobile-shipping-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: #e8dfc8;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .mobile-shipping-title i {
+        color: #d4af37;
+      }
+
+      .mobile-shipping-chevron {
+        color: #555;
+        font-size: 14px;
+        transition: transform 0.25s ease;
+      }
+
+      .mobile-shipping-chevron.open {
+        transform: rotate(180deg);
+      }
+
+      .mobile-shipping-body {
+        padding: 14px 16px;
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* Shipping options list */
+      .shipping_box .list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .shipping_box .list li a {
+        font-size: 13px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+      }
+
+      .shipping_box .list li a::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 2px solid #333;
+        flex-shrink: 0;
+        display: inline-block;
+      }
+
+      .shipping_box .list li.active a {
+        color: #d4af37;
+      }
+
+      .shipping_box .list li.active a::before {
+        border-color: #d4af37;
+        background: #d4af37;
+      }
+
+      .shipping_box h6 {
+        font-size: 12px;
+        color: #777;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      .shipping_box select.shipping_select,
+      .shipping_box input[type="text"] {
+        width: 100% !important;
+        background: #0d0d0d !important;
+        border: 1px solid #2a2a2a !important;
+        border-radius: 8px !important;
+        padding: 10px 14px !important;
+        color: #fff !important;
+        font-size: 13px !important;
+        margin-bottom: 8px !important;
+        outline: none !important;
+        min-height: 44px !important;
+      }
+
+      .shipping_box .gray_btn {
+        width: 100% !important;
+        text-align: center !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin: 4px 0 0 !important;
+        border-radius: 8px !important;
+        min-height: 44px !important;
+        background: #1e1e1e !important;
+        color: #888 !important;
+        border: 1px solid #333 !important;
+      }
+
+      /* Update Cart button row */
+      .mobile-update-row {
+        padding: 4px 2px 14px;
+      }
+
+      .mobile-update-row .button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        min-height: 44px;
+      }
+
+      /* ─── STICKY CHECKOUT BAR ─── */
+      .mobile-sticky-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2000;
+        background: #0d0d0d;
+        border-top: 1px solid #2a2000;
+        padding: 12px 14px 18px;
+        /* Increased padding */
+        padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        /* Safe area for notched phones */
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        height: auto;
+      }
+
+      .mobile-sticky-totals {
+        flex-shrink: 0;
+        padding-right: 8px;
+        border-right: 1px solid #222;
+        min-width: 70px;
+      }
+
+      .mobile-sticky-totals .mini-label {
+        font-size: 9px;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 1px;
+      }
+
+      .mobile-sticky-totals .mini-val {
+        font-size: 15px;
+        font-weight: 700;
+        color: #d4af37;
+        line-height: 1.3;
+      }
+
+      .mobile-sticky-bar .gray_btn,
+      .mobile-sticky-bar a.gray_btn {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 8px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #1a1a1a !important;
+        color: #d4af37 !important;
+        border: 1px solid #333 !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none !important;
+        font-size: 0 !important;
+      }
+
+      .mobile-sticky-bar .gray_btn::before {
+        content: '\f2f5';
+        /* Logout or arrow icon */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        font-size: 18px;
+      }
+
+      .mobile-sticky-bar .primary-btn,
+      .mobile-sticky-bar a.primary-btn {
+        flex: 1;
+        text-align: center;
+        border-radius: 10px !important;
+        padding: 12px 10px !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+        margin: 0 !important;
+        letter-spacing: 0.5px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.2 !important;
+        text-transform: uppercase !important;
+        white-space: nowrap !important;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+      }
+
+      /* DESKTOP REMOVE BUTTON — Styled as a prominent red circle */
+      .desktop-remove-btn {
+        color: #e24b4a;
+        background: rgba(226, 75, 74, 0.1);
+        border: 1px solid rgba(226, 75, 74, 0.3);
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+
+      .desktop-remove-btn:hover {
+        color: #fff;
+
+        transform: scale(1.1);
+      }
+
+      /* DESKTOP TABLE — Resolve horizontal overflow and large images */
+      @media (min-width: 768px) {
+        .cart_inner .table-responsive {
+          overflow-x: visible !important;
+          /* Remove scrollbar on desktop if content fits */
+        }
+
+        /* FIX: Fixed image size so rows don't expand unpredictably */
+        .cart_inner .table tbody tr td .media .d-flex img {
+          width: 85px !important;
+          height: 85px !important;
+          object-fit: cover !important;
+          border-radius: 10px !important;
+          border: 1px solid #2a2000 !important;
+          flex-shrink: 0 !important;
+          display: block !important;
+        }
+
+        /* Keep the d-flex wrapper from stretching */
+        .cart_inner .table tbody tr td .media .d-flex {
+          padding-right: 16px !important;
+          flex-shrink: 0 !important;
+        }
+
+        .cart_inner .table tbody tr td .media .media-body p {
+          font-size: 14px !important;
+          color: #e8dfc8 !important;
+          max-width: 250px;
+          white-space: normal;
+        }
+
+        /* Neutralize problematic global negative margins from style.css */
+        .cart_inner .table tbody tr.bottom_button td .cupon_text {
+          margin-left: 0 !important;
+          justify-content: flex-start;
+          gap: 10px;
+        }
+
+        .cart_inner .table {
+          width: 100% !important;
+          table-layout: auto;
+        }
+
+        .cart_inner .table th {
+          border-bottom: 1px solid #222 !important;
+          padding-bottom: 15px !important;
+        }
+
+        .cart_inner .table td {
+          border-bottom: 1px solid #1a1a1a !important;
+          padding: 25px 15px !important;
+        }
+
+        /* Desktop: no Y scroll on section, no X scroll on table */
+        .cart_area {
+          overflow-x: hidden !important;
+          overflow-y: visible !important;
+          height: auto !important;
+        }
+
+        .cart_inner {
+          overflow: visible !important;
+          height: auto !important;
+        }
+
+        /* Allow dropdowns to overflow table wrapper on desktop */
+        .table-responsive {
+          overflow: visible !important;
+          overflow-x: visible !important;
+          overflow-y: visible !important;
+          -ms-overflow-style: none !important;
+          scrollbar-width: none !important;
+        }
+
+        .table-responsive::-webkit-scrollbar {
+          display: none !important;
+        }
+      }
+
+      /*  shipping selects & inputs — override Bootstrap/nice-select white bg */
+      .shipping_box select.shipping_select,
+      .mobile-shipping-body select.shipping_select {
+        width: 100% !important;
+        background: #0d0d0d !important;
+        background-color: #0d0d0d !important;
+        border: 1px solid #2a2a2a !important;
+        border-radius: 8px !important;
+        padding: 10px 32px 10px 14px !important;
+        color: #ccc !important;
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
+        outline: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        display: block !important;
+        /* custom dropdown arrow */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23d4af37' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+      }
+
+      .shipping_box select.shipping_select:focus,
+      .mobile-shipping-body select.shipping_select:focus {
+        border-color: #d4af37 !important;
+      }
+
+      /*  select option elements (browser-rendered) */
+      .shipping_box select.shipping_select option {
+        background: #111 !important;
+        color: #ccc !important;
+      }
+
+      /*  shipping text input dark bg */
+      .shipping_box input[type="text"],
+      .mobile-shipping-body input[type="text"] {
+        width: 100% !important;
+        background: #0d0d0d !important;
+        background-color: #0d0d0d !important;
+        border: 1px solid #2a2a2a !important;
+        border-radius: 8px !important;
+        padding: 10px 14px !important;
+        color: #ccc !important;
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
+        outline: none !important;
+        display: block !important;
+        box-shadow: none !important;
+      }
+
+      .shipping_box input[type="text"]::placeholder {
+        color: #444 !important;
+      }
+
+      .shipping_box input[type="text"]:focus {
+        border-color: #d4af37 !important;
+      }
+
+      /*  gray_btn inside shipping box */
+      .shipping_box .gray_btn,
+      .shipping_box a.gray_btn {
+        width: 100% !important;
+        text-align: center !important;
+        display: block !important;
+        margin: 4px 0 0 !important;
+        border-radius: 8px !important;
+        background: #1e1e1e !important;
+        background-color: #1e1e1e !important;
+        color: #aaa !important;
+        border: 1px solid #333 !important;
+        padding: 11px 16px !important;
+        font-size: 13px !important;
+        text-decoration: none !important;
+      }
+
+      .shipping_box a.gray_btn:hover {
+        background: #2a2a2a !important;
+        color: #ccc !important;
+      }
+
+      /*  mobile-shipping-header border-bottom only when open */
+      .mobile-shipping-header {
+        border-bottom: none !important;
+      }
+
+      .mobile-shipping-body.open {
+        border-top: 1px solid #1a1a1a;
+      }
+
+      /*  coupon actions layout — vertical stacking caused misalign */
+      .mobile-coupon-row {
+        align-items: flex-start;
+      }
+
+      .mobile-coupon-actions .primary-btn,
+      .mobile-coupon-actions a.primary-btn {
+        background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%) !important;
+        color: #000 !important;
+        font-weight: 700 !important;
+        border: none !important;
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+        font-size: 12px !important;
+        display: block !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        white-space: nowrap;
+        margin: 0 !important;
+        line-height: 1.4 !important;
+      }
+
+      .mobile-coupon-actions .button,
+      .mobile-coupon-actions a.button {
+        background: #1e1e1e !important;
+        color: #888 !important;
+        border: 1px solid #333 !important;
+        padding: 8px 14px !important;
+        border-radius: 8px !important;
+        font-size: 11px !important;
+        display: block !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        white-space: nowrap;
+        margin: 0 !important;
+        line-height: 1.4 !important;
+      }
+    }
+
+    /* BASE: mobile-only elements hidden by default */
+    .mobile-cart-container,
+    .mobile-sticky-bar {
+      display: none !important;
+    }
+
+    /* === MOBILE: reveal mobile layout === */
+    @media (max-width: 767px) {
+      .mobile-cart-container {
+        display: block !important;
+      }
+
+      .mobile-sticky-bar {
+        display: flex !important;
+      }
+    }
+
+    /* === FOOTER — MOBILE === */
+    @media (max-width: 767px) {
+      .footer .footer-area .row.section_gap {
+        padding: 40px 0 20px !important;
+      }
+
+      .single-footer-widget {
+        margin-bottom: 30px !important;
+      }
+
+      .footer_title {
+        margin-bottom: 16px !important;
+      }
+
+      .footer-social {
+        gap: 10px !important;
+      }
+
+      .instafeed li img {
+        width: 60px !important;
+        height: 60px !important;
+      }
+
+      .footer-bottom {
+        padding: 14px 0 !important;
+      }
+
+      .footer-bottom .footer-text {
+        font-size: 11px !important;
+        letter-spacing: 0.5px !important;
+      }
+    }
+
+    /* === TABLET 768px–991px (table-based, but improved) === */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .cart_inner .table thead th {
+        font-size: 12px;
+        padding: 12px 10px;
+      }
+
+      .cart_inner .table tbody tr td {
+        padding: 14px 10px;
+        vertical-align: middle;
+      }
+
+      .cart_inner .table tbody tr td .media img {
+        max-width: 70px;
+        height: auto;
+      }
+
+      .cart_inner .table tbody tr td .media-body p {
+        font-size: 13px;
+      }
+
+      .cupon_text {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+      }
+
+      .cupon_text input {
+        width: 100%;
+      }
+
+      .cupon_text .primary-btn,
+      .cupon_text .button {
+        width: 100%;
+        text-align: center;
+        margin: 0 !important;
+      }
+
+      .checkout_btn_inner {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+      }
+
+      .checkout_btn_inner .gray_btn,
+      .checkout_btn_inner .primary-btn {
+        text-align: center;
+        margin: 0 !important;
+        display: block;
+      }
+
+      .shipping_box select,
+      .shipping_box input {
+        width: 100% !important;
+        margin-bottom: 8px;
+        display: block;
+      }
+    }
+
+    /* === MODAL — MOBILE === */
+    @media (max-width: 768px) {
+      .modal-dialog {
+        margin: 10px;
+        max-width: calc(100% - 20px) !important;
+      }
+
+      .modal-body {
+        padding: 20px !important;
+      }
+
+      #modal_img {
+        max-height: 220px;
+        object-fit: contain;
+        margin-bottom: 16px;
+      }
+
+      #modal_title {
+        font-size: 20px !important;
+        margin-top: 0 !important;
+        text-align: center;
+      }
+
+      .price {
+        font-size: 20px !important;
+        text-align: center;
+        margin-bottom: 8px !important;
+      }
+
+      .rating {
+        justify-content: center;
+        display: flex;
+        margin-bottom: 14px !important;
+      }
+
+      .modal-body .d-flex {
+        flex-direction: column;
+      }
+
+      .modal-body .d-flex input[type="number"] {
+        width: 100% !important;
+        margin-bottom: 10px;
+        margin-right: 0 !important;
+      }
+
+      .modal-body .d-flex .button {
+        width: 100%;
+      }
+    }
+
+    /* === TOUCH TARGETS — ensure all interactive elements are 44px min === */
+    @media (max-width: 767px) {
+
+      .button,
+      .primary-btn,
+      .gray_btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .nav-shop a {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    /* Redundant block removed */
+
+    /* 6. Hide scrollbars on .table-responsive on desktop */
+    @media (min-width: 768px) {
+      .table-responsive {
+        overflow-x: hidden !important;
+      }
+    }
+  </style>
+  <script src="js/auth-guard.js"></script>
 </head>
+
 <body>
   <!--================ Start Header Menu Area =================-->
-	<header class="header_area">
+  <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+          <a class="navbar-brand logo_h" href="index.html"
+            style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
             <span>i rasa</span>
-            </a>
+          </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -40,56 +1202,51 @@
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item active submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Shop</a>
+              <li class="nav-item submenu dropdown">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
                   <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                   <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
                   <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                 </ul>
-							</li>
+              </li>
               <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Blog</a>
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Blog</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
                 </ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
-                </ul>
               </li>
-                            <li class="nav-item"><a class="nav-link" href="customize.html" style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;">✦ Customize</a></li>
+              <li class="nav-item"><a class="nav-link" href="customize.html"
+                  style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;"><i class='fas fa-magic'></i>
+                  Customize</a></li>
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
-
             <ul class="nav-shop">
-              
               <li class="nav-item">
-                <button data-toggle="modal" data-target="#product_modal" style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <a href="cart.html"
+                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
                   <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="background: #d4af37; color: #000; font-weight: bold;">3</span>
-                </button>
+                  <span class="nav-shop__circle"
+                    style="background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="button button-header" href="checkout.html"
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Checkout</a>
               </li>
               <li class="nav-item">
                 <a href="profile.html" id="profileNavLink"
-                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none; margin-left: 8px;">
+                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
                   <img id="profileNavImg" src="" alt="Profile"
                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
                   <i id="profileNavIcon" class="ti-user" style="color: #d4af37; font-size: 18px;"></i>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a class="button button-header" href="category.html" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop Now</a>
               </li>
             </ul>
           </div>
@@ -97,219 +1254,389 @@
       </nav>
     </div>
   </header>
-	<!--================ End Header Menu Area =================-->
+  <!--================ End Header Menu Area =================-->
 
-	<!-- ================ start banner area ================= -->	
-	<section data-aos="fade-up" data-aos-duration="1000" class="blog-banner-area" id="category">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Shopping Cart</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+  <!-- ================ start banner area ================= -->
+  <section data-aos="fade-up" data-aos-duration="1000" class="blog-banner-area" id="category"
+    style="background: linear-gradient(120deg, #0d0d0d 0%, #1b1100 60%, #0d0d0d 100%); position: relative; overflow: hidden;">
+    <div
+      style="position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(212, 175, 55, 0.12) 0%, transparent 70%); pointer-events: none;">
+    </div>
+    <div class="container h-100">
+      <div class="blog-banner">
+        <div class="text-center">
+          <h1
+            style="font-family: 'Playfair Display', serif; color: #d4af37; letter-spacing: 3px; text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);">
+            Shopping Cart</h1>
+          <nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+              <li class="breadcrumb-item"><a href="index.html" style="color: #b8a97a;">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page" style="color: #d4af37;">Shopping Cart</li>
             </ol>
           </nav>
-				</div>
-			</div>
+        </div>
+      </div>
     </div>
-	</section>
-	<!-- ================ end banner area ================= -->
-  
-  
+  </section>
+  <!-- ================ end banner area ================= -->
 
   <!--================Cart Area =================-->
   <section data-aos="fade-up" data-aos-duration="1000" class="cart_area">
-      <div class="container">
-          <div class="cart_inner">
-              <div class="table-responsive">
-                  <table class="table">
-                      <thead>
-                          <tr>
-                              <th scope="col">Product</th>
-                              <th scope="col">Price</th>
-                              <th scope="col">Quantity</th>
-                              <th scope="col">Total</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td>
-                                  <div class="media">
-                                      <div class="d-flex">
-                                          <img src="img/cart/cart1.png" alt="">
-                                      </div>
-                                      <div class="media-body">
-                                          <p>Minimalistic shop for multipurpose use</p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>Rs. 360.00</h5>
-                              </td>
-                              <td>
-                                  <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                          class="input-text qty">
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>Rs. 720.00</h5>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="media">
-                                      <div class="d-flex">
-                                          <img src="img/cart/cart2.png" alt="">
-                                      </div>
-                                      <div class="media-body">
-                                          <p>Minimalistic shop for multipurpose use</p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>Rs. 360.00</h5>
-                              </td>
-                              <td>
-                                  <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                          class="input-text qty">
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>Rs. 720.00</h5>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="media">
-                                      <div class="d-flex">
-                                          <img src="img/cart/cart3.png" alt="">
-                                      </div>
-                                      <div class="media-body">
-                                          <p>Minimalistic shop for multipurpose use</p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>Rs. 360.00</h5>
-                              </td>
-                              <td>
-                                  <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                          class="input-text qty">
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>Rs. 720.00</h5>
-                              </td>
-                          </tr>
-                          <tr class="bottom_button">
-                              <td>
-                                  <a class="button" href="javascript:void(0);">Update Cart</a>
-                              </td>
-                              <td>
+    <div class="container">
+      <div class="cart_inner">
 
-                              </td>
-                              <td>
+        <!-- ============================================================
+             DESKTOP TABLE (hidden on mobile via CSS)
+             ============================================================ -->
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col" class="text-center">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="media" style="display:flex;align-items:center;gap:14px;">
+                    <img src="img/cart/cart1.png" alt="Savage Dior"
+                      style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;">
+                    <div class="media-body" style="min-width:0;">
+                      <p style="margin:0;font-size:14px;color:#e8dfc8;">Savage Dior - 100ml Premium Perfume</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5>Rs. 399.00</h5>
+                </td>
+                <td>
+                  <div class="product_count">
+                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                      class="input-text qty">
+                    <button
+                      onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                      class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                    <button
+                      onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                      class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                  </div>
+                </td>
+                <td>
+                  <h5>Rs. 720.00</h5>
+                </td>
+                <td class="text-center">
+                  <button class="desktop-remove-btn" title="Remove Item"><i class="fas fa-trash-alt"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="media" style="display:flex;align-items:center;gap:14px;">
+                    <img src="img/cart/cart2.png" alt="Gucci Flora"
+                      style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;">
+                    <div class="media-body" style="min-width:0;">
+                      <p style="margin:0;font-size:14px;color:#e8dfc8;">Gucci Flora - Luxury Women's Scent</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5>Rs. 399.00</h5>
+                </td>
+                <td>
+                  <div class="product_count">
+                    <input type="text" name="qty" id="sst2" maxlength="12" value="1" title="Quantity:"
+                      class="input-text qty">
+                    <button
+                      onclick="var result = document.getElementById('sst2'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                      class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                    <button
+                      onclick="var result = document.getElementById('sst2'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                      class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                  </div>
+                </td>
+                <td>
+                  <h5>Rs. 720.00</h5>
+                </td>
+                <td class="text-center">
+                  <button class="desktop-remove-btn" title="Remove Item"><i class="fas fa-trash-alt"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="media" style="display:flex;align-items:center;gap:14px;">
+                    <img src="img/cart/cart3.png" alt="Rasassi Hawas"
+                      style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;">
+                    <div class="media-body" style="min-width:0;">
+                      <p style="margin:0;font-size:14px;color:#e8dfc8;">Rasassi Hawas - Iconic Fragrance</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5>Rs. 399.00</h5>
+                </td>
+                <td>
+                  <div class="product_count">
+                    <input type="text" name="qty" id="sst3" maxlength="12" value="1" title="Quantity:"
+                      class="input-text qty">
+                    <button
+                      onclick="var result = document.getElementById('sst3'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                      class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                    <button
+                      onclick="var result = document.getElementById('sst3'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                      class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                  </div>
+                </td>
+                <td>
+                  <h5>Rs. 720.00</h5>
+                </td>
+                <td class="text-center">
+                  <button class="desktop-remove-btn" title="Remove Item"><i class="fas fa-trash-alt"></i></button>
+                </td>
+              </tr>
+              <tr class="bottom_button">
+                <td><a class="button" href="javascript:void(0);">Update Cart</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="cupon_text d-flex align-items-center justify-content-end">
+                    <input type="text" placeholder="Coupon Code">
+                    <a class="primary-btn" href="javascript:void(0);">Apply</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>Subtotal</h5>
+                </td>
+                <td>
+                  <h5 id="desktop-subtotal">Rs. 2160.00</h5>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>Total</h5>
+                </td>
+                <td>
+                  <h5 id="desktop-total">Rs. 2162.00</h5>
+                </td>
+              </tr>
+              <tr class="shipping_area">
+                <td class="d-none d-md-block"></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>Shipping</h5>
+                </td>
+                <td>
+                  <div class="shipping_box">
+                    <ul class="list" id="shippingOptions">
+                      <li data-value="5"><a href="javascript:void(0);">Flat Rate: Rs. 5.00</a></li>
+                      <li data-value="0"><a href="javascript:void(0);">Free Shipping</a></li>
+                      <li data-value="10"><a href="javascript:void(0);">Flat Rate: Rs. 10.00</a></li>
+                      <li class="active" data-value="2"><a href="javascript:void(0);">Local Delivery: Rs. 2.00</a></li>
+                    </ul>
+                    <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
+                    <select class="shipping_select country_select" id="desktopCountry">
+                      <option value="India">India</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Pakistan">Pakistan</option>
+                    </select>
+                    <select class="shipping_select state_select" id="desktopState">
+                      <option value="">Select a State</option>
+                    </select>
+                    <input type="text" placeholder="Postcode/Zipcode">
+                    <a class="gray_btn" href="javascript:void(0);">Update Details</a>
+                  </div>
+                </td>
+              </tr>
+              <tr class="out_button_area">
+                <td class="d-none-l"></td>
+                <td class=""></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="checkout_btn_inner d-flex align-items-center">
+                    <a class="gray_btn" href="javascript:void(0);">Continue Shopping</a>
+                    <a class="primary-btn ml-2" href="javascript:void(0);">Proceed to checkout</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END DESKTOP TABLE -->
 
-                              </td>
-                              <td>
-                                  <div class="cupon_text d-flex align-items-center">
-                                      <input type="text" placeholder="Coupon Code">
-                                      <a class="primary-btn" href="javascript:void(0);">Apply</a>
-                                      <a class="button" href="javascript:void(0);">Have a Coupon?</a>
-                                  </div>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                  <h5>Subtotal</h5>
-                              </td>
-                              <td>
-                                  <h5>Rs. 2160.00</h5>
-                              </td>
-                          </tr>
-                          <tr class="shipping_area">
-                              <td class="d-none d-md-block">
-
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                  <h5>Shipping</h5>
-                              </td>
-                              <td>
-                                  <div class="shipping_box">
-                                      <ul class="list">
-                                          <li><a href="javascript:void(0);">Flat Rate: Rs. 5.00</a></li>
-                                          <li><a href="javascript:void(0);">Free Shipping</a></li>
-                                          <li><a href="javascript:void(0);">Flat Rate: Rs. 10.00</a></li>
-                                          <li class="active"><a href="javascript:void(0);">Local Delivery: Rs. 2.00</a></li>
-                                      </ul>
-                                      <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-                                      <select class="shipping_select">
-                                          <option value="1">Bangladesh</option>
-                                          <option value="2">India</option>
-                                          <option value="4">Pakistan</option>
-                                      </select>
-                                      <select class="shipping_select">
-                                          <option value="1">Select a State</option>
-                                          <option value="2">Select a State</option>
-                                          <option value="4">Select a State</option>
-                                      </select>
-                                      <input type="text" placeholder="Postcode/Zipcode">
-                                      <a class="gray_btn" href="javascript:void(0);">Update Details</a>
-                                  </div>
-                              </td>
-                          </tr>
-                          <tr class="out_button_area">
-                              <td class="d-none-l">
-
-                              </td>
-                              <td class="">
-
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                  <div class="checkout_btn_inner d-flex align-items-center">
-                                      <a class="gray_btn" href="javascript:void(0);">Continue Shopping</a>
-                                      <a class="primary-btn ml-2" href="javascript:void(0);">Proceed to checkout</a>
-                                  </div>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
       </div>
+    </div>
   </section>
+
+  <!-- ============================================================
+       MOBILE CART LAYOUT (shown only on mobile via CSS)
+       ============================================================ -->
+  <div class="mobile-cart-container">
+
+    <div class="mobile-section-label">3 Items in your cart</div>
+
+    <!-- CART ITEM 1 -->
+    <div class="mobile-cart-card">
+      <div class="mobile-cart-img">
+        <img src="img/cart/cart1.png" alt="Savage Dior">
+      </div>
+      <div class="mobile-cart-info">
+        <div class="mobile-cart-name">Savage Dior - 100ml Premium Perfume</div>
+        <div class="mobile-cart-meta">Men's Fragrance · 100ml</div>
+        <div class="mobile-cart-bottom">
+          <div class="mobile-cart-price">Rs. 399.00</div>
+          <div class="mobile-qty-wrap">
+            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, -1)"
+              aria-label="Decrease quantity">&#8722;</button>
+            <input class="qty-num" type="text" value="1" readonly>
+            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, 1)"
+              aria-label="Increase quantity">&#43;</button>
+          </div>
+        </div>
+        <div class="mobile-cart-total">Total: <span>Rs. 399.00</span></div>
+      </div>
+      <button class="mobile-remove-btn" type="button" aria-label="Remove item">&times;</button>
+    </div>
+
+    <!-- CART ITEM 2 -->
+    <div class="mobile-cart-card">
+      <div class="mobile-cart-img">
+        <img src="img/cart/cart2.png" alt="Gucci Flora">
+      </div>
+      <div class="mobile-cart-info">
+        <div class="mobile-cart-name">Gucci Flora - Luxury Women's Scent</div>
+        <div class="mobile-cart-meta">Women's Fragrance · 75ml</div>
+        <div class="mobile-cart-bottom">
+          <div class="mobile-cart-price">Rs. 399.00</div>
+          <div class="mobile-qty-wrap">
+            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, -1)"
+              aria-label="Decrease quantity">&#8722;</button>
+            <input class="qty-num" type="text" value="1" readonly>
+            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, 1)"
+              aria-label="Increase quantity">&#43;</button>
+          </div>
+        </div>
+        <div class="mobile-cart-total">Total: <span>Rs. 399.00</span></div>
+      </div>
+      <button class="mobile-remove-btn" type="button" aria-label="Remove item">&times;</button>
+    </div>
+
+    <!-- CART ITEM 3 -->
+    <div class="mobile-cart-card">
+      <div class="mobile-cart-img">
+        <img src="img/cart/cart3.png" alt="Rasassi Hawas">
+      </div>
+      <div class="mobile-cart-info">
+        <div class="mobile-cart-name">Rasassi Hawas - Iconic Fragrance</div>
+        <div class="mobile-cart-meta">Unisex Fragrance · 100ml</div>
+        <div class="mobile-cart-bottom">
+          <div class="mobile-cart-price">Rs. 399.00</div>
+          <div class="mobile-qty-wrap">
+            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, -1)"
+              aria-label="Decrease quantity">&#8722;</button>
+            <input class="qty-num" type="text" value="1" readonly>
+            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, 1)"
+              aria-label="Increase quantity">&#43;</button>
+          </div>
+        </div>
+        <div class="mobile-cart-total">Total: <span>Rs. 399.00</span></div>
+      </div>
+      <button class="mobile-remove-btn" type="button" aria-label="Remove item">&times;</button>
+    </div>
+
+    <!-- UPDATE CART -->
+    <div class="mobile-update-row">
+      <a class="button" href="javascript:void(0);">Update Cart</a>
+    </div>
+
+    <!-- COUPON -->
+    <div class="mobile-coupon-box">
+      <div class="mobile-coupon-row">
+        <input type="text" placeholder="Coupon Code">
+        <div class="mobile-coupon-actions">
+          <a class="primary-btn" href="javascript:void(0);">Apply</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <div class="mobile-summary-card">
+      <div class="mobile-summary-row">
+        <div class="mobile-summary-label">Subtotal (3 items)</div>
+        <div class="mobile-summary-val" id="mobile-subtotal">Rs. 1,197.00</div>
+      </div>
+      <div class="mobile-summary-row">
+        <div class="mobile-summary-label">Shipping</div>
+        <div class="mobile-summary-val" style="color:#4caf50">Free</div>
+      </div>
+      <div class="mobile-summary-row">
+        <div class="mobile-summary-label">Coupon Discount</div>
+        <div class="mobile-summary-val" style="color:#e24b4a">— Rs. 0</div>
+      </div>
+      <div class="mobile-summary-total">
+        <div class="mobile-summary-total-label">Total Payable</div>
+        <div class="mobile-summary-total-val" id="mobile-total">Rs. 1,197.00</div>
+      </div>
+    </div>
+
+    <!-- SHIPPING ACCORDION -->
+    <div class="mobile-shipping-card">
+      <div class="mobile-shipping-header" onclick="toggleMobileShipping()">
+        <div class="mobile-shipping-title">
+          <i class="fas fa-truck"></i>
+          Shipping
+        </div>
+        <i class="fa fa-caret-down mobile-shipping-chevron" id="mobileShipChevron" aria-hidden="true"></i>
+      </div>
+      <div class="mobile-shipping-body" id="mobileShipBody">
+        <div class="shipping_box">
+          <ul class="list" id="mobileShippingOptions">
+            <li data-value="5"><a href="javascript:void(0);">Flat Rate: Rs. 5.00</a></li>
+            <li data-value="0"><a href="javascript:void(0);">Free Shipping</a></li>
+            <li data-value="10"><a href="javascript:void(0);">Flat Rate: Rs. 10.00</a></li>
+            <li class="active" data-value="2"><a href="javascript:void(0);">Local Delivery: Rs. 2.00</a></li>
+          </ul>
+          <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
+          <select class="shipping_select country_select" id="mobileCountry">
+            <option value="India">India</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="Pakistan">Pakistan</option>
+          </select>
+          <select class="shipping_select state_select" id="mobileState">
+            <option value="">Select a State</option>
+          </select>
+          <input type="text" placeholder="Postcode/Zipcode">
+          <a class="gray_btn" href="javascript:void(0);">Update Details</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- END MOBILE CART LAYOUT -->
+
+  <!-- STICKY CHECKOUT BAR (mobile only) -->
+  <div class="mobile-sticky-bar">
+    <div class="mobile-sticky-totals">
+      <div class="mini-label">Total</div>
+      <div class="mini-val" id="mobile-sticky-total">Rs. 1,197</div>
+    </div>
+    <a class="gray_btn" href="javascript:void(0);">Continue Shopping</a>
+    <a class="primary-btn" href="javascript:void(0);" onclick="AuthGuard.requireAuth(() => window.location.href='checkout.html')">Proceed to checkout</a>
+  </div>
+
   <!--================End Cart Area =================-->
-
-
 
   <!--================ Start footer Area  =================-->
   <footer class="footer">
@@ -348,12 +1675,18 @@
             <div class="single-footer-widget instafeed">
               <h4 class="footer_title">Our Gallery</h4>
               <ul class="list instafeed d-flex flex-wrap">
-                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r2.webp" alt="Signature Scent" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r5.avif" alt="Premium Attar" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r7.avif" alt="Bespoke Collection" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r8.avif" alt="I Rasa Perfumes" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r5.avif" alt="Premium Attar"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r7.avif" alt="Bespoke Collection"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
+                <li><img src="img/gallery/r8.avif" alt="I Rasa Perfumes"
+                    style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
               </ul>
             </div>
           </div>
@@ -366,7 +1699,6 @@
                   Nashik Warehouse
                 </p>
                 <p>Panchavati, Padbandh Lane, Saraf Bazar, Nashik-422001, Maharashtra</p>
-
                 <p class="sm-head">
                   <span><i class="fas fa-phone-alt"></i></span>
                   Help Line
@@ -375,7 +1707,6 @@
                   +91 9823833303 <br>
                   +91 9371833303
                 </p>
-
                 <p class="sm-head">
                   <span><i class="fas fa-envelope"></i></span>
                   Official Email
@@ -387,7 +1718,6 @@
         </div>
       </div>
     </div>
-
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
@@ -414,7 +1744,8 @@
               <img src="img/product/product1.png" class="img-fluid rounded" id="modal_img" alt="Perfume">
             </div>
             <div class="col-md-6">
-              <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme</h2>
+              <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
+              </h2>
               <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
               <div class="rating mb-3">
                 <i class="fas fa-star" style="color: #ffd700;"></i>
@@ -424,9 +1755,11 @@
                 <i class="fas fa-star" style="color: #ffd700;"></i>
                 <span class="ml-2">(120+ Reviews)</span>
               </div>
-              <p style="color: #b0a58a;">A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense.</p>
+              <p style="color: #b0a58a;">A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting
+                and intense.</p>
               <div class="d-flex mt-4">
-                <input type="number" class="form-control mr-2" value="1" style="width: 70px; background: #111; border: 1px solid #333; color: #fff;">
+                <input type="number" class="form-control mr-2" value="1"
+                  style="width: 70px; background: #111; border: 1px solid #333; color: #fff;">
                 <button class="button button--active" style="width: 100%;">Add to Cart</button>
               </div>
             </div>
@@ -436,7 +1769,6 @@
     </div>
   </div>
 
-  
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="vendors/skrollr.min.js"></script>
@@ -446,22 +1778,203 @@
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
   <script src="js/vendors/aos.js"></script>
-
   <script>AOS.init();</script>
 
-<script>
-  (function() {
-    var saved = localStorage.getItem('irasa_profile');
-    if (saved) {
-      var p = JSON.parse(saved);
-      if (p.img) {
-        var img = document.getElementById('profileNavImg');
-        var icon = document.getElementById('profileNavIcon');
-        if (img) { img.src = p.img; img.style.display = 'block'; }
-        if (icon) icon.style.display = 'none';
+  <script>
+    /* Profile nav image */
+    (function () {
+      var saved = localStorage.getItem('irasa_profile');
+      if (saved) {
+        var p = JSON.parse(saved);
+        if (p.img) {
+          var img = document.getElementById('profileNavImg');
+          var icon = document.getElementById('profileNavIcon');
+          if (img) { img.src = p.img; img.style.display = 'block'; }
+          if (icon) icon.style.display = 'none';
+        }
+      }
+    })();
+
+    /* ── Mobile: Quantity Change ── */
+    function mobileQtyChange(btn, dir) {
+      var wrap = btn.closest('.mobile-qty-wrap');
+      var input = wrap.querySelector('.qty-num');
+      var v = parseInt(input.value) || 1;
+      v = Math.max(1, v + dir);
+      input.value = v;
+
+      /* Update row total */
+      var card = btn.closest('.mobile-cart-card');
+      var priceStr = card.querySelector('.mobile-cart-price').textContent.replace(/[^\d.]/g, '');
+      var price = parseFloat(priceStr) || 0;
+      var rowTotal = price * v;
+      card.querySelector('.mobile-cart-total span').textContent = 'Rs. ' + rowTotal.toFixed(2);
+
+      mobileUpdateSummary();
+    }
+
+    /* ── Mobile: Recalculate Summary ── */
+    function mobileUpdateSummary() {
+      var cards = document.querySelectorAll('.mobile-cart-card');
+      var subtotal = 0;
+      cards.forEach(function (card) {
+        var t = card.querySelector('.mobile-cart-total span').textContent.replace(/[^\d.]/g, '');
+        subtotal += parseFloat(t) || 0;
+      });
+
+      // Get current shipping cost
+      var shippingEl = document.querySelector('#mobileShippingOptions li.active');
+      var shippingCost = shippingEl ? parseFloat(shippingEl.getAttribute('data-value')) : 0;
+      var total = subtotal + shippingCost;
+
+      var fmt = 'Rs. ' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var totalFmt = 'Rs. ' + total.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      var el1 = document.getElementById('mobile-subtotal');
+      var el2 = document.getElementById('mobile-total');
+      var el3 = document.getElementById('mobile-sticky-total');
+      if (el1) el1.textContent = fmt;
+      if (el2) el2.textContent = totalFmt;
+      if (el3) el3.textContent = 'Rs. ' + Math.round(total).toLocaleString('en-IN');
+
+      /* Update item count label */
+      var label = document.querySelector('.mobile-section-label');
+      if (label) label.textContent = cards.length + ' Item' + (cards.length !== 1 ? 's' : '') + ' in your cart';
+    }
+
+    /* ── Mobile: Remove Item ── */
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.mobile-remove-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var card = btn.closest('.mobile-cart-card');
+          card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+          card.style.opacity = '0';
+          card.style.transform = 'translateX(30px)';
+          setTimeout(function () {
+            card.remove();
+            mobileUpdateSummary();
+          }, 260);
+        });
+      });
+    });
+
+    /* ── Mobile: Shipping Accordion ── */
+    function toggleMobileShipping() {
+      var body = document.getElementById('mobileShipBody');
+      var chev = document.getElementById('mobileShipChevron');
+      if (!body || !chev) return;
+      var isOpen = body.classList.contains('open');
+      if (isOpen) {
+        body.classList.remove('open');
+        chev.classList.remove('open');
+      } else {
+        body.classList.add('open');
+        chev.classList.add('open');
       }
     }
-  })();
-</script>
+
+    /* ── Shipping: Dynamic Country/State Logic ── */
+    const shippingData = {
+      "India": [
+        "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh",
+        "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana",
+        "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep",
+        "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry",
+        "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+      ],
+      "Bangladesh": [
+        "Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet", "Barisal", "Rangpur", "Mymensingh"
+      ],
+      "Pakistan": [
+        "Punjab", "Sindh", "Khyber Pakhtunkhwa", "Balochistan", "Islamabad", "Gilgit-Baltistan", "Azad Kashmir"
+      ]
+    };
+
+    function initShippingSelectors() {
+      const countryDesktop = document.getElementById('desktopCountry');
+      const stateDesktop = document.getElementById('desktopState');
+      const countryMobile = document.getElementById('mobileCountry');
+      const stateMobile = document.getElementById('mobileState');
+
+      function updateStates(countryEl, stateEl) {
+        if (!countryEl || !stateEl) return;
+        const country = $(countryEl).val();
+        const states = shippingData[country] || [];
+
+        let html = '<option value="">Select a State</option>';
+        states.forEach(s => {
+          html += `<option value="${s}">${s}</option>`;
+        });
+        $(stateEl).html(html);
+
+        // Sync with nice-select UI
+        if ($.fn.niceSelect) {
+          $(stateEl).niceSelect('update');
+        }
+      }
+
+      if (countryDesktop) {
+        $(countryDesktop).on('change', function() {
+          updateStates(countryDesktop, stateDesktop);
+        });
+        updateStates(countryDesktop, stateDesktop);
+      }
+      if (countryMobile) {
+        $(countryMobile).on('change', function() {
+          updateStates(countryMobile, stateMobile);
+        });
+        updateStates(countryMobile, stateMobile);
+      }
+    }
+
+    // Initialize after DOM and nice-select are ready
+    $(document).ready(function () {
+      initShippingSelectors();
+
+      /* ── Desktop: Shipping Selection ── */
+      $('#shippingOptions li, #mobileShippingOptions li').on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        if ($(this).closest('#shippingOptions').length) {
+          updateDesktopSummary();
+        } else {
+          mobileUpdateSummary();
+        }
+      });
+
+      function updateDesktopSummary() {
+        var subtotal = 0;
+        $('.cart_inner .table tbody tr').each(function () {
+          // Identify product rows by checking for the quantity input
+          var qtyInput = $(this).find('input[name="qty"]');
+          if (qtyInput.length > 0) {
+            var rowTotalText = $(this).find('td:nth-child(4) h5').text().replace(/[^\d.]/g, '');
+            var rowTotal = parseFloat(rowTotalText) || 0;
+            subtotal += rowTotal;
+          }
+        });
+
+        var shippingEl = $('#shippingOptions li.active');
+        var shippingCost = shippingEl.length ? parseFloat(shippingEl.attr('data-value')) : 0;
+        var total = subtotal + shippingCost;
+
+        $('#desktop-subtotal').text('Rs. ' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+        $('#desktop-total').text('Rs. ' + total.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+      }
+
+      /* ── Desktop: Remove Item ── */
+      $('.desktop-remove-btn').on('click', function () {
+        var row = $(this).closest('tr');
+        row.fadeOut(300, function () {
+          row.remove();
+          updateDesktopSummary();
+        });
+      });
+
+      // Initial desktop calc
+      updateDesktopSummary();
+    });
+  </script>
+  <script src="js/auth-guard.js"></script>
 </body>
+
 </html>

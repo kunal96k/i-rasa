@@ -26,91 +26,81 @@
 </head>
 
 <body>
-	<!--================ Start Header Menu Area =================-->
-	<header class="header_area">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light">
-				<div class="container">
-					<a class="navbar-brand logo_h" href="index.html"
-						style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-						<span>i rasa</span>
-					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse"
-						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-						aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-							<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-							<li class="nav-item active submenu dropdown">
-								<a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown"
-									role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-product.html">Product
-											Details</a></li>
-									<li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a>
-									</li>
-									<li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a>
-									</li>
-									<li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown"
-									role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a>
-									</li>
-								</ul>
-							</li>
-							<li class="nav-item submenu dropdown">
-								<a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown"
-									role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-									<li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-									<li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a>
-									</li>
-								</ul>
-							</li>
-							              <li class="nav-item"><a class="nav-link" href="customize.html" style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;">✦ Customize</a></li>
+  <!--================ Start Header Menu Area =================-->
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand logo_h" href="index.html"
+            style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+            <span>i rasa</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item submenu dropdown">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Shop</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
+                  <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+                </ul>
+              </li>
+              <li class="nav-item submenu dropdown">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Blog</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item"><a class="nav-link" href="customize.html"
+                  style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;"><i class='fas fa-magic'></i>
+                  Customize</a></li>
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						</ul>
+            </ul>
 
-						<ul class="nav-shop">
-
-							<li class="nav-item">
-								<button data-toggle="modal" data-target="#product_modal"
-									style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease;">
-									<i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-									<span class="nav-shop__circle"
-										style="background: #d4af37; color: #000; font-weight: bold;">3</span>
-								</button>
-							</li>
-							<li class="nav-item">
+            <ul class="nav-shop">
+              <li class="nav-item">
+                <a href="cart.html"
+                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
+                  <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
+                  <span class="nav-shop__circle"
+                    style="background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="button button-header" href="category.html"
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
+                  Now</a>
+              </li>
+              <li class="nav-item">
                 <a href="profile.html" id="profileNavLink"
-                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none; margin-left: 8px;">
+                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
                   <img id="profileNavImg" src="" alt="Profile"
                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
                   <i id="profileNavIcon" class="ti-user" style="color: #d4af37; font-size: 18px;"></i>
                 </a>
               </li>
-              <li class="nav-item">
-								<a class="button button-header" href="category.html"
-									style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
-									Now</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</header>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!--================ End Header Menu Area =================-->
 	<!--================ End Header Menu Area =================-->
 
 	<!-- ================ start banner area ================= -->
@@ -151,10 +141,11 @@
 				</div>
 				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>Faded SkyBlu Denim Jeans</h3>
-						<h2>Rs. 149.99</h2>
+						<h3>Savage Dior</h3>
+						<h2>Rs. 399.00</h2>
 						<ul class="list">
-							<li><a class="active" href="javascript:void(0);"><span>Category</span> : Household</a></li>
+							<li><a class="active" href="javascript:void(0);"><span>Category</span> : Men's Scents</a>
+							</li>
 							<li><a href="javascript:void(0);"><span>Availibility</span> : In Stock</a></li>
 						</ul>
 						<p>Experience the essence of luxury with our signature collection. Crafted for those who
@@ -171,6 +162,7 @@
 								onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
 								class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
 							<a class="button primary-btn" href="javascript:void(0);">Add to Cart</a>
+							<a class="button" href="javascript:void(0);" onclick="AuthGuard.requireAuth(() => window.location.href='checkout.html')" style="margin-left:10px; background:linear-gradient(135deg, #d4af37, #aa8422); color:#000; border:none;">Buy Now</a>
 						</div>
 						<div data-aos="zoom-in" data-aos-duration="800" class="card_area d-flex align-items-center">
 							<a class="icon_btn" href="javascript:void(0);"><i class="lnr lnr lnr-diamond"></i></a>
@@ -529,22 +521,22 @@
 						<div class="single-search-product d-flex">
 							<a href="javascript:void(0);"><img src="img/product/product-sm-1.png" alt=""></a>
 							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+								<a href="javascript:void(0);" class="title">Savage Dior</a>
+								<div class="price">Rs. 399.00</div>
 							</div>
 						</div>
 						<div class="single-search-product d-flex">
 							<a href="javascript:void(0);"><img src="img/product/product-sm-2.png" alt=""></a>
 							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+								<a href="javascript:void(0);" class="title">Gucci Flora</a>
+								<div class="price">Rs. 399.00</div>
 							</div>
 						</div>
 						<div class="single-search-product d-flex">
 							<a href="javascript:void(0);"><img src="img/product/product-sm-3.png" alt=""></a>
 							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+								<a href="javascript:void(0);" class="title">Rasassi Hawas</a>
+								<div class="price">Rs. 399.00</div>
 							</div>
 						</div>
 					</div>
@@ -791,23 +783,23 @@
 	<script src="vendors/mail-script.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/vendors/aos.js"></script>
-
+	<script src="js/auth-guard.js"></script>
 	<script>AOS.init();</script>
 
-<script>
-  (function() {
-    var saved = localStorage.getItem('irasa_profile');
-    if (saved) {
-      var p = JSON.parse(saved);
-      if (p.img) {
-        var img = document.getElementById('profileNavImg');
-        var icon = document.getElementById('profileNavIcon');
-        if (img) { img.src = p.img; img.style.display = 'block'; }
-        if (icon) icon.style.display = 'none';
-      }
-    }
-  })();
-</script>
+	<script>
+		(function () {
+			var saved = localStorage.getItem('irasa_profile');
+			if (saved) {
+				var p = JSON.parse(saved);
+				if (p.img) {
+					var img = document.getElementById('profileNavImg');
+					var icon = document.getElementById('profileNavIcon');
+					if (img) { img.src = p.img; img.style.display = 'block'; }
+					if (icon) icon.style.display = 'none';
+				}
+			}
+		})();
+	</script>
 </body>
 
 </html>

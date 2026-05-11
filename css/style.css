@@ -506,26 +506,36 @@ a {
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s
 }
+
 .nav-shop li {
-    margin: 0 !important; /* ❌ remove old spacing */
+    margin: 0 !important;
+    /* ❌ remove old spacing */
 }
+
 .nav-shop {
     display: flex;
     align-items: center;
-    gap: 25px; 
-      margin-left: auto;/* 🔥 main spacing control */
+    gap: 25px;
+    margin-left: auto;
+    /* 🔥 main spacing control */
 }
+
 .header_area .navbar {
-  padding-left: 10px; /* reduce default padding */
+    padding-left: 10px;
+    /* reduce default padding */
 }
+
 .nav-shop li i,
 .nav-shop li span {
     font-size: 16px;
     color: #cccccc
 }
+
 .nav-shop li:last-child {
-  margin-right: 10px; /* adjust 0–15px as per design */
+    margin-right: 10px;
+    /* adjust 0–15px as per design */
 }
+
 .nav-shop li button {
     padding: 10px;
     border: 0;
@@ -639,7 +649,16 @@ a {
     }
 
     .header_area .navbar .nav-shop {
-        padding-bottom: 40px
+        padding: 25px 0;
+        margin: 15px auto 0;
+        border-top: 1px solid rgba(212, 175, 55, 0.15);
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .header_area .navbar .nav-shop .nav-item {
+        margin: 0 !important;
     }
 
     .header_area .navbar .search {
@@ -652,15 +671,19 @@ a {
         left: 0 !important;
         height: 100vh !important;
         width: 82vw !important;
-        max-width: 360px !important;
+        max-width: 300px !important;
         max-height: none !important;
         overflow-y: auto !important;
         z-index: 1050 !important;
         transform: translateX(-105%);
-        transition: transform 0.25s ease-in-out;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         border-right: 1px solid #d4af37 !important;
         border-top: none !important;
-        padding: 60px 14px 18px !important
+        padding: 70px 20px 40px !important;
+        background: #000 !important;
+        display: flex !important;
+        flex-direction: column;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8) !important;
     }
 
     .header_area .navbar-collapse.show {
@@ -738,7 +761,9 @@ a {
     }
 
     .header_area .navbar .nav .nav-item {
-        margin-right: 0px
+        margin-right: 0px;
+        width: 100%;
+        text-align: center;
     }
 
     .header_area+section,
@@ -912,7 +937,7 @@ a {
 
 @media (max-width: 480px) {
     .header_area .navbar-collapse {
-        max-height: 250px
+        width: 85vw !important;
     }
 
     .home_banner_area .banner_inner .banner_content {
@@ -1176,6 +1201,26 @@ a {
 
 .card-product:hover .card-product__title a {
     color: #d4af37
+}
+
+.stars {
+    color: #d4af37;
+    font-size: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.stars i {
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.stars span {
+    color: #999;
+    font-size: 13px;
+    margin-left: 6px;
 }
 
 .offer {
@@ -5055,9 +5100,12 @@ a {
 }
 
 .footer-area .footer_title {
-    color: #d4af37 !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    color: #fff !important;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 8px 15px;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
 }
 
 .footer-bottom {
@@ -5101,7 +5149,6 @@ body {
 }
 
 .card-product:hover {
-    transform: translateY(-5px) !important;
     box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2) !important;
     border-color: #d4af37 !important;
 }
@@ -5547,7 +5594,6 @@ h6,
 .footer-social a:hover i {
     background: #d4af37 !important;
     color: #000 !important;
-    transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
 }
 
@@ -5868,7 +5914,6 @@ footer a:hover {
 
 .blog_post:hover {
     border-color: #d4af37;
-    transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.15);
 }
 
@@ -6027,7 +6072,6 @@ footer a:hover {
 #product_modal .button--active:hover {
     background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%) !important;
     box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5) !important;
-    transform: translateY(-2px) !important;
 }
 
 /* Increase gaps between cards in the grid */
@@ -6553,4 +6597,55 @@ input[type=number] {
     transform: scale(1.2);
     background: #fff;
     color: #d4af37;
+}
+
+/* -- GLOBAL STAR RATING UI (Premium Glow) -- */
+.stars {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.stars i {
+    color: #ffa723 !important;
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(255, 167, 35, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.stars i:hover {
+    transform: scale(1.2);
+}
+
+.stars span,
+.stars small {
+    color: #999 !important;
+    font-size: 14px;
+    margin-left: 8px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Bestseller Badge (Standardized) */
+.badge-bestseller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    color: #fff !important;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 8px 15px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
 }

@@ -1,321 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta name="description" content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 299.">
-  <meta name="keywords" content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
-  <meta name="author" content="Technokraft services LLP">
-  <link rel="canonical" href="https://irasaperfumes.in/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>I Rasa Perfumes - Login</title>
-	<link rel="icon" href="img/favicon-irasa.png" type="image/png">
+  <title>I Rasa Perfumes - Register</title>
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="vendors/linericon/style.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
-
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="css/style.css">
   <link href="css/vendors/aos.css" rel="stylesheet">
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .auth-wrapper {
+      height: 100vh;
+      width: 100vw;
+      background: url('luxury_perfume_background_1778492071364.png') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .auth-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+    }
+
+    .auth-card {
+      position: relative;
+      width: 1000px;
+      max-width: 90%;
+      height: 700px;
+      /* Slightly taller for register */
+      background: #0d0d0d;
+      border: 1px solid #333;
+      border-radius: 20px;
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .auth-left {
+      flex: 1;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0) 100%),
+        url('img/gallery/r2.webp') center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 50px;
+      position: relative;
+    }
+
+    .auth-left::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #000 0%, transparent 100%);
+    }
+
+    .auth-left-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .auth-left h2 {
+      font-family: 'Playfair Display', serif;
+      color: #d4af37;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .auth-left p {
+      color: #bbb;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .auth-right {
+      flex: 1.2;
+      /* More space for form */
+      padding: 50px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+
+    .auth-right::-webkit-scrollbar {
+      display: none;
+    }
+
+    .auth-header {
+      margin-bottom: 30px;
+    }
+
+    .auth-header h3 {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .auth-header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .form-control {
+      background: #1a1a1a !important;
+      border: 1px solid #333 !important;
+      color: #fff !important;
+      height: 46px !important;
+      border-radius: 10px !important;
+      padding: 0 18px !important;
+      font-size: 13px !important;
+    }
+
+    .form-control:focus {
+      border-color: #d4af37 !important;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.2) !important;
+    }
+
+    .btn-auth {
+      background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+      color: #000 !important;
+      height: 48px;
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+
+    .btn-auth:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .auth-footer {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .auth-footer a {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-home {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      z-index: 20;
+      transition: all 0.3s;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 15px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .back-home:hover {
+      color: #d4af37;
+      border-color: #d4af37;
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    .otp-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #d4af37;
+      color: #000;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      z-index: 5;
+    }
+
+    @media (max-width: 991px) {
+      .auth-left {
+        display: none;
+      }
+
+      .auth-card {
+        max-width: 500px;
+        height: 90vh;
+      }
+
+      .back-home {
+        top: 20px;
+        left: 20px;
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .back-home span {
+        display: none;
+      }
+
+      .back-home {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        justify-content: center;
+        padding: 0;
+      }
+
+      .back-home i {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-	<!--================ Start Header Menu Area =================-->
-	<header class="header_area">
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-            <span>i rasa</span>
-            </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Shop</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.html">Blog Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                </ul>
-							</li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Blog</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                </ul>
-							</li>
-							<li class="nav-item active submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>									
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
-                </ul>
-              </li>
-                            <li class="nav-item"><a class="nav-link" href="customize.html" style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;">✦ Customize</a></li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
 
-            <ul class="nav-shop">
-              
-              <li class="nav-item">
-                <button data-toggle="modal" data-target="#product_modal" style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease;">
-                  <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="background: #d4af37; color: #000; font-weight: bold;">3</span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <a href="profile.html" id="profileNavLink"
-                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none; margin-left: 8px;">
-                  <img id="profileNavImg" src="" alt="Profile"
-                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
-                  <i id="profileNavIcon" class="ti-user" style="color: #d4af37; font-size: 18px;"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="button button-header" href="category.html" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop Now</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
-	<!--================ End Header Menu Area =================-->
-  
-  <!-- ================ start banner area ================= -->	
-	<section data-aos="fade-up" data-aos-duration="1000" class="blog-banner-area" id="category">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Register</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Register</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
-    </div>
-	</section>
-	<!-- ================ end banner area ================= -->
-  
-  <!--================Login Box Area =================-->
-	<section data-aos="fade-up" data-aos-duration="1000" class="login_box_area section-margin">
-		<div class="container">
-			<div class="row">
-				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-6">
-					<div class="login_box_img">
-						<div class="hover">
-							<h4>Welcome Back to Luxury</h4>
-							<p>Log in to your account to manage your collection, view your order history, and access member-only fragrance events.</p>
-							<a class="button button-account" href="login.html">Login Now</a>
-						</div>
-					</div>
-				</div>
-				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-6">
-					<div class="login_form_inner register_form_inner">
-						<h3>Create an account</h3>
-						<form class="row login_form" action="#/" id="register_form" >
-							<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
-							</div>
-							<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-								<input type="text" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
-              </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-								<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-              </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-								<input type="text" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
-							</div>
-							<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
-								</div>
-							</div>
-							<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-								<button type="submit" value="submit" class="button button-register w-100">Register</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================End Login Box Area =================-->
+  <div class="auth-wrapper">
+    <a href="index.html" class="back-home">
+      <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
+    </a>
 
-
-
-  <!--================ Start footer Area  =================-->
-  <footer class="footer">
-    <div class="footer-area">
-      <div class="container">
-        <div class="row section_gap">
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-3 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title large_title"
-                style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase;">i rasa</h4>
-              <p>
-                I Rasa Perfumes provides the finest fragrances across India. Our expertly crafted perfumes bring you a
-                touch of elegance and luxury every day. Starting at just Rs. 299.
-              </p>
-              <div class="footer-social mt-4">
-                <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/i_rasa_perfumes/"><i class="fab fa-instagram"></i></a>
-                <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
-                <a href="javascript:void(0);"><i class="fab fa-whatsapp"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title">Luxury Shop</h4>
-              <ul class="list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="category.html">Shop All</a></li>
-                <li><a href="category.html">Men's Scents</a></li>
-                <li><a href="category.html">Women's Scents</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget instafeed">
-              <h4 class="footer_title">Our Gallery</h4>
-              <ul class="list instafeed d-flex flex-wrap">
-                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r2.webp" alt="Signature Scent" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r5.avif" alt="Premium Attar" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r7.avif" alt="Bespoke Collection" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-                <li><img src="img/gallery/r8.avif" alt="I Rasa Perfumes" style="border: 1px solid #d4af37; width: 70px; height: 70px; object-fit: cover;"></li>
-              </ul>
-            </div>
-          </div>
-          <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-            <div class="single-footer-widget tp_widgets">
-              <h4 class="footer_title">Visit Boutique</h4>
-              <div class="ml-40">
-                <p class="sm-head">
-                  <span><i class="fas fa-map-marker-alt"></i></span>
-                  Nashik Warehouse
-                </p>
-                <p>Panchavati, Padbandh Lane, Saraf Bazar, Nashik-422001, Maharashtra</p>
-
-                <p class="sm-head">
-                  <span><i class="fas fa-phone-alt"></i></span>
-                  Help Line
-                </p>
-                <p>
-                  +91 9823833303 <br>
-                  +91 9371833303
-                </p>
-
-                <p class="sm-head">
-                  <span><i class="fas fa-envelope"></i></span>
-                  Official Email
-                </p>
-                <p>#</p>
-              </div>
-            </div>
-          </div>
+    <div class="auth-card">
+      <div class="auth-left">
+        <div class="auth-left-content">
+          <h2>Welcome Back to Luxury</h2>
+          <p>Already a member? Log in to your account to manage your collection and view your order history.</p>
+          <a href="login.html" class="btn btn-outline-light"
+            style="border-radius: 10px; padding: 10px 30px; border: 1px solid #d4af37; color: #d4af37;">Log In Now</a>
         </div>
       </div>
-    </div>
 
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="row">
-          <p class="col-lg-12 footer-text text-center" style="letter-spacing: 1px; font-size: 13px;">
-            &copy; 2026 I Rasa Perfumes | Crafted by Technokraft services LLP.</p>
+      <div class="auth-right">
+        <div class="auth-header">
+          <h3>Create an account</h3>
+          <p>Experience artisanal fragrances like never before.</p>
         </div>
-      </div>
-    </div>
-  </footer>
 
-  <!-- PRODUCT QUICK VIEW MODAL -->
-  <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff;">
-        <div class="modal-header" style="border-bottom: 1px solid #333;">
-          <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif;">Product Quick View</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <img src="img/product/product1.png" class="img-fluid rounded" id="modal_img" alt="Perfume">
-            </div>
-            <div class="col-md-6">
-              <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme</h2>
-              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
-              <div class="rating mb-3">
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <span class="ml-2">(120+ Reviews)</span>
-              </div>
-              <p style="color: #b0a58a;">A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense.</p>
-              <div class="d-flex mt-4">
-                <input type="number" class="form-control mr-2" value="1" style="width: 70px; background: #111; border: 1px solid #333; color: #fff;">
-                <button class="button button--active" style="width: 100%;">Add to Cart</button>
-              </div>
-            </div>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Full Name" required>
           </div>
+          <div class="form-group">
+            <input type="tel" class="form-control" placeholder="Phone Number" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" class="form-control" placeholder="Email Address" required>
+            <button type="button" onclick="sendOTP()" id="btnSendOtp" class="otp-btn">Send OTP</button>
+          </div>
+
+          <div id="otp_section" class="form-group" style="display: none;">
+            <input type="text" id="otp" class="form-control" placeholder="Enter 6-digit OTP">
+            <button type="button" onclick="verifyOTP()" class="otp-btn"
+              style="background: #28a745; color: #fff;">Verify</button>
+          </div>
+
+          <div class="form-group">
+            <input type="password" id="password" class="form-control" placeholder="Password" required>
+            <span onclick="togglePass('password', this)"
+              style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #666; z-index: 5;">
+              <i class="fas fa-eye"></i>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+          </div>
+
+          <div class="custom-control custom-checkbox mb-3">
+            <input type="checkbox" class="custom-control-input" id="terms" required>
+            <label class="custom-control-label" for="terms" style="color: #666; font-size: 11px;">I agree to the Terms &
+              Conditions</label>
+          </div>
+
+          <button type="submit" id="btnRegister" class="btn-auth" disabled style="opacity: 0.6;">Register
+            Account</button>
+        </form>
+
+        <div class="auth-footer">
+          Already have an account? <a href="login.html">Log in</a>
         </div>
       </div>
     </div>
   </div>
 
-  
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="vendors/skrollr.min.js"></script>
-  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="vendors/mail-script.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/vendors/aos.js"></script>
+  <script>
+    const AUTH_API = 'http://localhost:8080/api/auth';
 
-  <script>AOS.init();</script>
+    // If already logged in, redirect to home
+    (async () => {
+      try {
+        const res = await fetch(`${AUTH_API}/me`, { credentials: 'include' });
+        const data = await res.json();
+        if (data.success) window.location.href = 'index.html';
+      } catch(e) {}
+    })();
 
-<script>
-  (function() {
-    var saved = localStorage.getItem('irasa_profile');
-    if (saved) {
-      var p = JSON.parse(saved);
-      if (p.img) {
-        var img = document.getElementById('profileNavImg');
-        var icon = document.getElementById('profileNavIcon');
-        if (img) { img.src = p.img; img.style.display = 'block'; }
-        if (icon) icon.style.display = 'none';
+    function togglePass(inputId, icon) {
+      var x = document.getElementById(inputId);
+      var i = icon.querySelector('i');
+      if (x.type === 'password') {
+        x.type = 'text';
+        i.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        x.type = 'password';
+        i.classList.replace('fa-eye-slash', 'fa-eye');
       }
     }
-  })();
-</script>
+
+    // OTP state (visual only — real verification is done via email link)
+    function sendOTP() {
+      var email = $('#email').val().trim();
+      if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
+        showAlert('error', 'Please enter a valid email address first.');
+        return;
+      }
+      $('#btnSendOtp').text('Sent ✓').prop('disabled', true);
+      $('#otp_section').slideDown();
+      showAlert('info', 'A verification link will be sent to your email after registration.');
+    }
+
+    function verifyOTP() {
+      // Unlock the register button once user confirms they have access to the email
+      $('#otp_section').slideUp();
+      $('#btnSendOtp').text('Email Confirmed ✓').css('background', '#28a745').prop('disabled', true);
+      $('#btnRegister').prop('disabled', false).css('opacity', '1');
+      showAlert('success', 'Great! Complete the form and click Register Account.');
+    }
+
+    async function handleRegister(e) {
+      e.preventDefault();
+
+      const fullName = $('input[placeholder="Full Name"]').val().trim();
+      const phone    = $('input[placeholder="Phone Number"]').val().trim();
+      const email    = $('#email').val().trim();
+      const password = $('#password').val();
+      const confirm  = $('#confirmPassword').val();
+      const terms    = $('#terms').is(':checked');
+
+      if (!fullName || !phone || !email || !password || !confirm) {
+        showAlert('error', 'Please fill in all required fields.'); return;
+      }
+      if (password !== confirm) {
+        showAlert('error', 'Passwords do not match.'); return;
+      }
+      if (password.length < 8) {
+        showAlert('error', 'Password must be at least 8 characters.'); return;
+      }
+      if (!/^[6-9]\d{9}$/.test(phone)) {
+        showAlert('error', 'Please enter a valid 10-digit Indian mobile number.'); return;
+      }
+      if (!terms) {
+        showAlert('error', 'You must accept the Terms & Conditions.'); return;
+      }
+
+      const btn = document.getElementById('btnRegister');
+      btn.disabled = true;
+      btn.textContent = 'Creating Account...';
+
+      try {
+        const res  = await fetch(`${AUTH_API}/register`, {
+          method: 'POST', credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fullName, phone, email, password })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          // Show success state
+          $('.auth-right form').hide();
+          $('.auth-footer').hide();
+          $('.auth-header h3').text('Account Created! 🎉');
+          $('.auth-header p').text('Check your email to verify and activate your account.');
+          $('.auth-header').after(`
+            <div style="text-align:center;padding:30px 0;">
+              <div style="font-size:54px;margin-bottom:20px;">📬</div>
+              <p style="color:#ccc;line-height:1.8;font-size:14px;">
+                We've sent a verification link to <strong style="color:#d4af37;">${email}</strong>.<br>
+                Please verify your email to complete registration.
+              </p>
+              <a href="login.html" style="display:inline-block;margin-top:24px;background:linear-gradient(135deg,#d4af37,#aa8422);color:#000;padding:12px 30px;border-radius:10px;font-weight:700;text-decoration:none;">
+                → Go to Login
+              </a>
+            </div>
+          `);
+        } else {
+          showAlert('error', data.message || 'Registration failed. Please try again.');
+          btn.disabled = false;
+          btn.textContent = 'Register Account';
+        }
+      } catch(err) {
+        showAlert('error', 'Unable to connect to server. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Register Account';
+      }
+    }
+
+    function showAlert(type, msg) {
+      var el = document.getElementById('regAlert');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'regAlert';
+        el.style.cssText = 'padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:15px;';
+        $('.auth-right form').prepend(el);
+      }
+      el.style.background = type === 'success' ? 'rgba(212,175,55,0.12)'
+                          : type === 'info'    ? 'rgba(100,100,200,0.12)'
+                          : 'rgba(255,77,77,0.12)';
+      el.style.color  = type === 'success' ? '#d4af37' : type === 'info' ? '#8899ff' : '#ff6b6b';
+      el.style.border = type === 'success' ? '1px solid rgba(212,175,55,0.25)'
+                      : type === 'info'    ? '1px solid rgba(100,100,200,0.25)'
+                      : '1px solid rgba(255,77,77,0.2)';
+      el.textContent = msg;
+    }
+  </script>
 </body>
+
 </html>

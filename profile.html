@@ -9,52 +9,19 @@
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="css/style.css">
+  <link href="css/vendors/aos.css" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       background-color: #0d0d0d;
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
       min-height: 100vh;
-    }
-
-    /* ---- NAV (same as main site) ---- */
-    .profile-nav {
-      background: #111;
-      border-bottom: 1px solid #2a2a2a;
-      padding: 14px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .profile-nav .logo {
-      font-size: 24px;
-      color: #d4af37;
-      font-weight: bold;
-      text-decoration: none;
-      letter-spacing: 2px;
-    }
-    .profile-nav .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .profile-nav a {
-      color: #aaa;
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.2s;
-    }
-    .profile-nav a:hover { color: #d4af37; }
-    .back-btn {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: #d4af37 !important;
-      font-weight: 600;
-      font-size: 14px;
     }
 
     /* ---- HERO BANNER ---- */
@@ -66,21 +33,16 @@
       position: relative;
       overflow: hidden;
     }
+
     .profile-banner::before {
       content: '';
       position: absolute;
-      top: -60px; left: -60px;
-      width: 300px; height: 300px;
+      top: -60px;
+      left: -60px;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
-    }
-    .profile-banner::after {
-      content: '';
-      position: absolute;
-      bottom: -60px; right: -60px;
-      width: 250px; height: 250px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
     }
 
     /* ---- AVATAR ---- */
@@ -89,6 +51,7 @@
       display: inline-block;
       margin-bottom: 16px;
     }
+
     .avatar-circle {
       width: 120px;
       height: 120px;
@@ -100,35 +63,19 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(212,175,55,0.25);
-      transition: box-shadow 0.3s;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
     }
-    .avatar-circle:hover {
-      box-shadow: 0 0 30px rgba(212,175,55,0.45);
-    }
+
     .avatar-circle img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
+
     .avatar-circle .avatar-placeholder {
       font-size: 48px;
       color: #d4af37;
     }
-    .avatar-edit-btn {
-      position: absolute;
-      bottom: 4px;
-      right: 4px;
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: #d4af37;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      border: 2px solid #111;
-      transition: background 0.2s;
-    }
-    .avatar-edit-btn:hover { background: #b8962e; }
-    .avatar-edit-btn i { color: #000; font-size: 12px; }
 
     .profile-hero-name {
       font-size: 26px;
@@ -137,6 +84,7 @@
       letter-spacing: 2px;
       margin-bottom: 4px;
     }
+
     .profile-hero-email {
       color: #888;
       font-size: 14px;
@@ -149,15 +97,16 @@
       justify-content: center;
       gap: 0;
       border-bottom: 2px solid #222;
-      position: relative;
-      z-index: 1;
+      overflow-x: auto;
+      white-space: nowrap;
     }
+
     .tab-btn {
       background: none;
       border: none;
       color: #666;
-      padding: 14px 32px;
-      font-size: 13px;
+      padding: 14px 25px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -166,7 +115,7 @@
       margin-bottom: -2px;
       transition: all 0.2s;
     }
-    .tab-btn:hover { color: #d4af37; }
+
     .tab-btn.active {
       color: #d4af37;
       border-bottom-color: #d4af37;
@@ -174,19 +123,20 @@
 
     /* ---- MAIN CONTENT ---- */
     .profile-body {
-      max-width: 700px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 40px 20px 80px;
     }
 
-    /* ---- CARD ---- */
     .profile-card {
       background: #141414;
       border: 1px solid #2a2a2a;
       border-radius: 14px;
       padding: 32px;
       margin-bottom: 24px;
+      position: relative;
     }
+
     .card-title {
       color: #d4af37;
       font-size: 13px;
@@ -198,178 +148,341 @@
       align-items: center;
       gap: 8px;
     }
-    .card-title i { font-size: 15px; }
 
-    /* ---- FORM ---- */
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-bottom: 18px;
+    /* ---- ORDER CARD ---- */
+    .order-item {
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: border-color 0.3s;
     }
-    .form-row.full { grid-template-columns: 1fr; }
 
-    .form-group {
+    .order-item:hover {
+      border-color: #d4af37;
+    }
+
+    .order-header {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      justify-content: space-between;
+      border-bottom: 1px solid #222;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
     }
+
+    .order-id {
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    .order-status {
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: #1a1a00;
+      color: #d4af37;
+      font-weight: 700;
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      border-top: 1px solid #222;
+      padding-top: 15px;
+    }
+
+    .btn-action {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #fff;
+      font-size: 11px;
+      padding: 6px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: #222;
+      border-color: #d4af37;
+      color: #d4af37;
+    }
+
+    /* ---- ADDRESS BOX ---- */
+    .address-box {
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+      position: relative;
+      background: #0a0a0a;
+      transition: all 0.3s;
+    }
+
+    .address-box:hover {
+      border-color: #d4af37;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+    }
+
+    .address-tag {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #222;
+      color: #888;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .address-box.primary {
+      border-color: #d4af37;
+      border-width: 2px;
+    }
+
+    .address-box.primary .address-tag {
+      background: #d4af37;
+      color: #000;
+    }
+
+    /* ---- TRACKING STATUS ---- */
+    .tracking-wrap {
+      margin-top: 20px;
+    }
+
+    .tracking-steps {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .tracking-steps::after {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #222;
+      z-index: 1;
+    }
+
+    .step {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 25%;
+    }
+
+    .step-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #222;
+      margin: 0 auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      border: 2px solid #0d0d0d;
+    }
+
+    .step.active .step-icon {
+      background: #d4af37;
+      color: #000;
+    }
+
+    .step-label {
+      font-size: 10px;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    .step.active .step-label {
+      color: #d4af37;
+      font-weight: bold;
+    }
+
+    /* ---- TAB PANELS ---- */
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37, #aa8422);
+      color: #000 !important;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-gold:hover {
+      opacity: 0.9;
+    }
+
     .form-group label {
       font-size: 11px;
       color: #888;
       letter-spacing: 1px;
       text-transform: uppercase;
-      font-weight: 600;
+      margin-bottom: 5px;
+      display: block;
     }
+
     .form-group input,
     .form-group select,
     .form-group textarea {
       background: #1e1e1e;
       border: 1px solid #333;
       color: #fff;
-      padding: 11px 14px;
+      padding: 10px;
       border-radius: 8px;
       font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
       width: 100%;
+      outline: none;
     }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: #d4af37;
-      box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
-    }
-    .form-group textarea { resize: vertical; min-height: 80px; }
-    .form-group select option { background: #1e1e1e; }
 
-    /* ---- INFO DISPLAY (non-edit mode) ---- */
-    .info-row {
+    /* Support Card */
+    .support-item {
       display: flex;
       align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid #1e1e1e;
-      gap: 14px;
-    }
-    .info-row:last-child { border-bottom: none; }
-    .info-icon {
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      background: #1e1a00;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .info-icon i { color: #d4af37; font-size: 15px; }
-    .info-label { font-size: 11px; color: #666; letter-spacing: 1px; text-transform: uppercase; }
-    .info-value { font-size: 14px; color: #ddd; font-weight: 500; margin-top: 2px; }
-
-    /* ---- BUTTONS ---- */
-    .btn-gold {
-      background: linear-gradient(135deg, #d4af37, #aa8422);
-      color: #000;
-      border: none;
-      padding: 12px 32px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.1s;
-    }
-    .btn-gold:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-gold:active { transform: translateY(0); }
-
-    .btn-outline {
-      background: transparent;
-      color: #d4af37;
-      border: 1px solid #d4af37;
-      padding: 11px 28px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-outline:hover { background: rgba(212,175,55,0.08); }
-
-    .btn-group {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-
-    /* ---- SUCCESS TOAST ---- */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #1a2a1a;
-      border: 1px solid #4caf50;
-      color: #4caf50;
-      padding: 14px 22px;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
       border-radius: 10px;
-      font-size: 14px;
-      font-weight: 600;
+      background: #0a0a0a;
+      border: 1px solid #222;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .support-item:hover {
+      border-color: #d4af37;
+      background: #111;
+    }
+
+    .support-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #1e1a00;
+      color: #d4af37;
       display: flex;
       align-items: center;
-      gap: 9px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-      transform: translateY(80px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-      z-index: 9999;
+      justify-content: center;
+      font-size: 18px;
     }
-    .toast.show { transform: translateY(0); opacity: 1; }
 
-    /* ---- STATS ---- */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 24px;
+    /* Modal Styling Enhancements */
+    .modal-content {
+      background: #0a0a0a !important;
+      border: 1px solid #333 !important;
+      border-radius: 15px !important;
+      overflow: hidden;
     }
-    .stat-box {
-      background: #141414;
-      border: 1px solid #2a2a2a;
+
+    .modal-header {
+      border-bottom: 1px solid #222;
+      padding: 20px 30px;
+    }
+
+    .modal-footer {
+      border-top: 1px solid #222;
+      padding: 20px 30px;
+    }
+
+    .modal-body {
+      padding: 30px;
+    }
+
+    .close {
+      color: #fff !important;
+      text-shadow: none !important;
+      opacity: 0.8;
+    }
+
+    .close:hover {
+      opacity: 1;
+    }
+
+    /* Dangerous Actions */
+    .text-danger-gold {
+      color: #ff4d4d !important;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .text-danger-gold:hover {
+      text-decoration: underline;
+    }
+
+    /* Blends List */
+    .blend-card {
+      background: #0a0a0a;
+      border: 1px solid #222;
       border-radius: 12px;
-      padding: 20px;
-      text-align: center;
+      padding: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s;
     }
-    .stat-num {
-      font-size: 28px;
+
+    .blend-card:hover {
+      border-color: #d4af37;
+    }
+
+    .blend-icon-box {
+      width: 50px;
+      height: 50px;
+      background: #1a1a00;
+      color: #d4af37;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .blend-info {
+      flex: 1;
+    }
+
+    .blend-name {
       font-weight: 700;
       color: #d4af37;
-      line-height: 1;
+      font-size: 14px;
+      margin-bottom: 2px;
     }
-    .stat-label {
+
+    .blend-meta {
       font-size: 11px;
       color: #666;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 6px;
-    }
-
-    /* ---- TAB PANELS ---- */
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    /* ---- RESPONSIVE ---- */
-    @media (max-width: 600px) {
-      .form-row { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .profile-nav { padding: 14px 20px; }
-      .profile-card { padding: 22px 16px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
+  <!--================ Start Header Menu Area =================-->
   <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -386,12 +499,14 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
               <li class="nav-item submenu dropdown">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                   aria-haspopup="true" aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
+                  <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  </li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
                   <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                   <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
@@ -406,40 +521,28 @@
                   <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
                 </ul>
               </li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
-                </ul>
-              </li>
-                            <li class="nav-item"><a class="nav-link" href="customize.html" style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;">✦ Customize</a></li>
+
+              <li class="nav-item"><a class="nav-link" href="customize.html"
+                  style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;"><i class='fas fa-magic'></i>
+                  Customize</a></li>
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
 
             <ul class="nav-shop">
-
-              <!-- Cart -->
               <li class="nav-item">
-                <button data-toggle="modal" data-target="#product_modal"
-                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease;">
+                <a href="cart.html"
+                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
                   <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="background: #d4af37; color: #000; font-weight: bold;">3</span>
-                </button>
+                  <span class="nav-shop__circle"
+                    style="background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+                </a>
               </li>
-
-              <!-- Profile Icon -->
-             
-
-              <!-- Shop Now -->
               <li class="nav-item">
                 <a class="button button-header" href="category.html"
-                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop Now</a>
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
+                  Now</a>
               </li>
-              
-               <li class="nav-item">
+              <li class="nav-item active">
                 <a href="profile.html" id="profileNavLink"
                   style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
                   <img id="profileNavImg" src="" alt="Profile"
@@ -453,235 +556,604 @@
       </nav>
     </div>
   </header>
-  
-  <!-- BANNER + AVATAR -->
+  <!--================ End Header Menu Area =================-->
+
+  <!-- BANNER -->
   <div class="profile-banner">
     <div class="avatar-wrap">
-      <div class="avatar-circle" onclick="document.getElementById('avatarInput').click()" title="Click to change photo">
-        <img id="avatarImg" src="" alt="Profile Photo" style="display:none;" />
+      <div class="avatar-circle" onclick="document.getElementById('avatarInput').click()">
+        <img id="avatarImg" src="" style="display:none;">
         <i class="ti-user avatar-placeholder" id="avatarPlaceholder"></i>
       </div>
-      <div class="avatar-edit-btn" onclick="document.getElementById('avatarInput').click()">
-        <i class="ti-camera"></i>
-      </div>
+      <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
     </div>
-    <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="handleAvatarChange(event)" />
     <div class="profile-hero-name" id="heroName">Guest User</div>
-    <div class="profile-hero-email" id="heroEmail">Add your email below</div>
+    <div class="profile-hero-email" id="heroEmail">Manage your account details</div>
 
-    <!-- Tabs -->
     <div class="profile-tabs">
-      <button class="tab-btn active" onclick="switchTab('info', this)">
-        <i class="ti-user"></i>&nbsp; Profile Info
-      </button>
-      <button class="tab-btn" onclick="switchTab('orders', this)">
-        <i class="ti-package"></i>&nbsp; Orders
-      </button>
-      <button class="tab-btn" onclick="switchTab('address', this)">
-        <i class="ti-location-pin"></i>&nbsp; Address
-      </button>
+      <button class="tab-btn active" onclick="switchTab('info', this)">Account</button>
+      <button class="tab-btn" onclick="switchTab('orders', this)">Orders</button>
+      <button class="tab-btn" onclick="switchTab('addresses', this)">Addresses</button>
+      <button class="tab-btn" onclick="switchTab('blends', this)">My Blends</button>
+      <button class="tab-btn" onclick="switchTab('security', this)">Security</button>
+      <button class="tab-btn" onclick="switchTab('support', this)">Help</button>
+      <button class="tab-btn" onclick="switchTab('blogs', this)">Blogs</button>
     </div>
   </div>
 
   <!-- BODY -->
   <div class="profile-body">
 
-    <!-- ===== TAB: PROFILE INFO ===== -->
+    <!-- ACCOUNT INFO -->
     <div class="tab-panel active" id="panel-info">
-
-      <!-- Stats -->
-      <div class="stats-grid">
-        <div class="stat-box">
-          <div class="stat-num" id="statOrders">0</div>
-          <div class="stat-label">Orders</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num" id="statWishlist">0</div>
-          <div class="stat-label">Wishlist</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num" id="statReviews">0</div>
-          <div class="stat-label">Reviews</div>
+      <div class="profile-card">
+        <div class="card-title"><i class="ti-user"></i> Profile Information</div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" id="firstName" placeholder="First Name">
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" id="lastName" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="col-md-12 mb-3">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="emailInput" placeholder="email@example.com">
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="phoneInput" placeholder="+91 98XXX XXXXX">
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input type="date" id="dobInput">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button class="btn-gold" onclick="saveProfile()">Update Details</button>
+          </div>
         </div>
       </div>
 
-      <!-- Edit Card -->
       <div class="profile-card">
-        <div class="card-title"><i class="ti-pencil"></i> Edit Profile</div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            
-            <input type="text" id="firstName" placeholder="e.g. Rahul" />
+        <div class="card-title"><i class="ti-settings"></i> Preferences</div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <div style="font-weight:600; font-size:14px;">Newsletter Subscription</div>
+            <div style="font-size:12px; color:#666;">Receive updates on new collections and offers.</div>
           </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" id="lastName" placeholder="e.g. Sharma" />
-          </div>
+          <button class="btn-action" onclick="$('#prefs_modal').modal('show')">Manage</button>
         </div>
-
-        <div class="form-row full">
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="emailInput" placeholder="e.g. rahul@email.com" />
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" id="phoneInput" placeholder="+91 98765 43210" />
-          </div>
-          <div class="form-group">
-            <label>Date of Birth</label>
-            <input type="date" id="dobInput" />
-          </div>
-        </div>
-
-        <div class="form-row full">
-          <div class="form-group">
-            <label>Gender</label>
-            <select id="genderInput">
-              <option value="">Select gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-              <option value="Prefer not to say">Prefer not to say</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row full">
-          <div class="form-group">
-            <label>Bio / Note</label>
-            <textarea id="bioInput" placeholder="Tell us about your fragrance preferences..."></textarea>
-          </div>
-        </div>
-
-        <div class="btn-group">
-          <button class="btn-gold" onclick="saveProfile()">
-            <i class="ti-check"></i>&nbsp; Save Changes
-          </button>
-          <button class="btn-outline" onclick="resetForm()">
-            Reset
-          </button>
+        <div class="mt-4 pt-4 border-top border-dark">
+          <a href="javascript:void(0);" onclick="$('#delete_acc_modal').modal('show')" class="text-danger-gold">Delete
+            My Account</a>
         </div>
       </div>
     </div>
 
-    <!-- ===== TAB: ORDERS ===== -->
+    <!-- ORDERS -->
     <div class="tab-panel" id="panel-orders">
-      <div class="profile-card" style="text-align: center; padding: 60px 32px;">
-        <i class="ti-package" style="font-size: 50px; color: #2a2a2a; display: block; margin-bottom: 16px;"></i>
-        <div style="color: #555; font-size: 15px; margin-bottom: 20px;">No orders yet</div>
-        <a href="category.html" class="btn-gold" style="display: inline-block; text-decoration: none;">Shop Now</a>
-      </div>
-    </div>
-
-    <!-- ===== TAB: ADDRESS ===== -->
-    <div class="tab-panel" id="panel-address">
       <div class="profile-card">
-        <div class="card-title"><i class="ti-location-pin"></i> Delivery Address</div>
+        <div class="card-title"><i class="ti-package"></i> Order History</div>
 
-        <div class="form-row full">
-          <div class="form-group">
-            <label>Address Line 1</label>
-            <input type="text" id="addr1" placeholder="Flat / House No., Building Name" />
+        <div class="order-item">
+          <div class="order-header">
+            <div>
+              <div class="order-id">Order ID: #IRA-2026-9823</div>
+              <div style="font-size:12px; color:#666;">Placed on 10 May 2026</div>
+            </div>
+            <div class="order-status">In Transit</div>
           </div>
-        </div>
-        <div class="form-row full">
-          <div class="form-group">
-            <label>Address Line 2</label>
-            <input type="text" id="addr2" placeholder="Street, Area, Locality" />
+          <div class="d-flex align-items-center gap-3">
+            <img src="img/product/1 (1).jpg"
+              style="width:50px; height:50px; border-radius:4px; border:1px solid #333; background:#fff;">
+            <div style="flex-grow:1;">
+              <div style="font-weight:600; font-size:14px; color:#d4af37;">Savage Dior + 1 other</div>
+              <div style="font-size:13px; color:#888;">Total Amount: Rs. 798.00</div>
+            </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>City</label>
-            <input type="text" id="city" placeholder="e.g. Nashik" />
+
+          <div class="tracking-wrap">
+            <div class="tracking-steps">
+              <div class="step active">
+                <div class="step-icon"><i class="ti-check"></i></div>
+                <div class="step-label">Placed</div>
+              </div>
+              <div class="step active">
+                <div class="step-icon"><i class="ti-package"></i></div>
+                <div class="step-label">Packed</div>
+              </div>
+              <div class="step active">
+                <div class="step-icon"><i class="ti-truck"></i></div>
+                <div class="step-label">Shipped</div>
+              </div>
+              <div class="step">
+                <div class="step-icon"><i class="ti-home"></i></div>
+                <div class="step-label">Delivered</div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label>State</label>
-            <input type="text" id="state" placeholder="e.g. Maharashtra" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Pincode</label>
-            <input type="text" id="pincode" placeholder="e.g. 422001" />
-          </div>
-          <div class="form-group">
-            <label>Country</label>
-            <input type="text" id="country" value="India" />
+
+          <div class="order-actions">
+            <button class="btn-action" onclick="$('#order_modal').modal('show')"><i class="ti-eye"></i> Details</button>
+            <button class="btn-action" onclick="downloadInvoice('IRA-9823')"><i class="ti-download"></i>
+              Invoice</button>
+            <button class="btn-action"><i class="ti-headphone-alt"></i> Help</button>
           </div>
         </div>
 
-        <div class="btn-group">
-          <button class="btn-gold" onclick="saveAddress()">
-            <i class="ti-check"></i>&nbsp; Save Address
-          </button>
+        <!-- Order #2 (Delivered) -->
+        <div class="order-item">
+          <div class="order-header">
+            <div>
+              <div class="order-id">Order ID: #IRA-2026-8742</div>
+              <div style="font-size:12px; color:#666;">Placed on 25 April 2026</div>
+            </div>
+            <div class="order-status" style="background:#0a1a00; color:#25d366;">Delivered</div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <img src="img/product/2 (2).jpg"
+              style="width:50px; height:50px; border-radius:4px; border:1px solid #333; background:#fff;">
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#d4af37;">Gucci Bloom</div>
+              <div style="font-size:13px; color:#888;">Total Amount: Rs. 399.00</div>
+            </div>
+          </div>
+          <div class="order-actions">
+            <button class="btn-action" onclick="downloadInvoice('IRA-8742')"><i class="ti-download"></i> Download
+              Invoice</button>
+            <button class="btn-action">Reorder</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADDRESSES -->
+    <div class="tab-panel" id="panel-addresses">
+      <div class="profile-card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="card-title mb-0"><i class="ti-location-pin"></i> Saved Addresses</div>
+          <button class="btn-gold" style="padding:5px 15px; font-size:10px;"
+            onclick="$('#address_modal').modal('show')">+ Add New</button>
+        </div>
+
+        <div class="address-box primary">
+          <span class="address-tag">Home</span>
+          <div style="font-weight:700; color:#d4af37; margin-bottom:5px;">Rahul Sharma</div>
+          <div style="font-size:13px; color:#888; line-height:1.6;">
+            Flat No. 402, Elegant Residency,<br>
+            Saraf Bazar, Nashik, Maharashtra - 422001<br>
+            Phone: +91 98238 33303
+          </div>
+          <div class="mt-3">
+            <button class="btn-action" onclick="$('#edit_address_modal').modal('show')">Edit</button>
+            <button class="btn-action" onclick="$('#delete_confirm_modal').modal('show')">Delete</button>
+          </div>
+        </div>
+
+        <div class="address-box">
+          <span class="address-tag">Work</span>
+          <div style="font-weight:700; color:#d4af37; margin-bottom:5px;">Technokraft services LLP</div>
+          <div style="font-size:13px; color:#888; line-height:1.6;">
+            12, Business Park, Yeola Road,<br>
+            Nashik, Maharashtra - 422010
+          </div>
+          <div class="mt-3">
+            <button class="btn-action">Set Primary</button>
+            <button class="btn-action" onclick="$('#edit_address_modal').modal('show')">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MY BLENDS -->
+    <div class="tab-panel" id="panel-blends">
+      <div class="profile-card">
+        <div class="card-title"><i class="ti-magic"></i> My Custom Blends</div>
+        <p style="font-size:12px; color:#666; margin-bottom:20px;">Your saved signature fragrance recipes from our
+          Customization Lab.</p>
+        <div id="blendsList">
+          <!-- Dynamically loaded -->
+          <div style="text-align:center; padding:40px; color:#444;">
+            <i class="ti-package" style="font-size:30px; display:block; margin-bottom:10px;"></i>
+            No custom blends saved yet.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="tab-panel" id="panel-security">
+      <div class="profile-card">
+        <div class="card-title"><i class="ti-lock"></i> Account Security</div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <div class="form-group"><label>Current Password</label><input type="password" placeholder="••••••••"></div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="form-group"><label>New Password</label><input type="password" placeholder="Min 8 characters">
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="form-group"><label>Confirm New Password</label><input type="password"
+                placeholder="Repeat password"></div>
+          </div>
+          <div class="col-md-12 d-flex justify-content-between">
+            <button class="btn-gold">Update Password</button>
+            <a href="#" style="color:#d4af37; font-size:12px; padding-top:10px;">Reset via Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUPPORT / HELP -->
+    <div class="tab-panel" id="panel-support">
+      <div class="profile-card">
+        <div class="card-title"><i class="ti-headphone-alt"></i> Help & Support Center</div>
+        <p style="font-size:13px; color:#666; margin-bottom:25px;">Need help with an order or product? Choose a channel
+          below.</p>
+
+        <div class="support-item" onclick="window.open('https://wa.me/919823833303')">
+          <div class="support-icon"><i class="fab fa-whatsapp"></i></div>
+          <div style="flex-grow:1;">
+            <div style="font-weight:bold;">Chat on WhatsApp</div>
+            <div style="font-size:12px; color:#888;">Instant support from our concierge.</div>
+          </div>
+          <i class="ti-angle-right" style="color:#333;"></i>
+        </div>
+
+        <div class="support-item" onclick="$('#support_modal').modal('show')">
+          <div class="support-icon"><i class="ti-write"></i></div>
+          <div style="flex-grow:1;">
+            <div style="font-weight:bold;">Raise a Ticket</div>
+            <div style="font-size:12px; color:#888;">Email our support team directly.</div>
+          </div>
+          <i class="ti-angle-right" style="color:#333;"></i>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="support-item-wrap">
+          <div class="support-item" onclick="toggleAccordion('faq-content', this)"
+            style="margin-bottom:0; border-bottom-left-radius:0; border-bottom-right-radius:0;">
+            <div class="support-icon"><i class="ti-help-alt"></i></div>
+            <div style="flex-grow:1;">
+              <div style="font-weight:bold;">FAQs</div>
+              <div style="font-size:12px; color:#888;">Shipping, Returns & Refund policies.</div>
+            </div>
+            <i class="ti-angle-down accordion-arrow" style="color:#d4af37; transition: transform 0.3s;"></i>
+          </div>
+          <div id="faq-content"
+            style="display:none; padding:20px; background:#0a0a0a; border:1px solid #222; border-top:none; border-radius:0 0 10px 10px; font-size:13px; color:#bbb; line-height:1.6;">
+            <div class="mb-3 pb-3 border-bottom border-dark">
+              <strong style="color:#d4af37; display:block; margin-bottom:5px;">What is the typical shipping
+                duration?</strong>
+              Domestic orders are usually processed within 24 hours and delivered within 3-5 business days.
+            </div>
+            <div class="mb-3 pb-3 border-bottom border-dark">
+              <strong style="color:#d4af37; display:block; margin-bottom:5px;">Can I return a fragrance if I don't like
+                the scent?</strong>
+              Due to the nature of our products, we only accept returns for unopened and sealed packaging within 7 days
+              of delivery.
+            </div>
+            <div>
+              <strong style="color:#d4af37; display:block; margin-bottom:5px;">Are the perfumes long-lasting?</strong>
+              Yes, I Rasa fragrances are highly concentrated (Eau de Parfum / Extrait) and typically last 8-12 hours on
+              skin.
+            </div>
+          </div>
+        </div>
+    <!-- BLOGS -->
+    <div class="tab-panel" id="panel-blogs">
+      <div class="profile-card">
+        <div class="card-title"><i class="ti-layout-grid2"></i> Latest from Journal</div>
+        <p style="font-size:12px; color:#666; margin-bottom:20px;">Stay updated with our latest olfactory stories and
+          perfumery insights.</p>
+        
+        <div class="blend-card" onclick="location.href='blog.html'">
+          <img src="img/blog/main-blog/m-blog-1.jpg" style="width:60px; height:60px; border-radius:8px; object-fit:cover;">
+          <div class="blend-info">
+            <div class="blend-name">The Art of Layering Fragrances</div>
+            <div class="blend-meta">Published 05 May 2026 · 5 min read</div>
+          </div>
+          <i class="ti-angle-right" style="color:#d4af37;"></i>
+        </div>
+
+        <div class="blend-card" onclick="location.href='blog.html'">
+          <img src="img/blog/main-blog/m-blog-2.jpg" style="width:60px; height:60px; border-radius:8px; object-fit:cover;">
+          <div class="blend-info">
+            <div class="blend-name">Sourcing Rare Oud from Assam</div>
+            <div class="blend-meta">Published 02 May 2026 · 8 min read</div>
+          </div>
+          <i class="ti-angle-right" style="color:#d4af37;"></i>
+        </div>
+
+        <div class="mt-4 text-center">
+          <a href="blog.html" class="btn-gold" style="padding:8px 20px;">View All Stories</a>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast">
-    <i class="ti-check-box"></i>
-    <span id="toastMsg">Saved successfully!</span>
+  <!-- MODALS -->
+  <!-- Logout Modal -->
+  <div class="modal fade" id="logout_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border:1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8);">
+        <div class="modal-body text-center p-5">
+          <div
+            style="width:80px; height:80px; border-radius:50%; background:rgba(255,77,77,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 25px; border:1px solid rgba(255,77,77,0.2);">
+            <i class="ti-power-off" style="font-size:32px; color:#ff4d4d;"></i>
+          </div>
+          <h4
+            style="color:#fff; margin-bottom:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; font-size:18px;">
+            End Session?</h4>
+          <p style="color:#666; font-size:14px; margin-bottom:35px; line-height:1.6;">Are you sure you want to log out
+            of your I Rasa account? You can always sign back in anytime.</p>
+          <div class="d-flex gap-3 justify-content-center">
+            <button class="btn" data-dismiss="modal"
+              style="background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:30px; padding:12px 35px; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s;">Stay</button>
+            <button class="btn" onclick="location.href='index.html'"
+              style="margin-left: 10px; background:linear-gradient(135deg, #ff4d4d, #b30000); color:#fff; border:none; border-radius:30px; padding:12px 35px; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:1px; box-shadow: 0 4px 15px rgba(255,77,77,0.3); transition:all 0.3s;">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- Order Details Modal -->
+  <div class="modal fade" id="order_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background:#0a0a0a; border:1px solid #333; color:#fff;">
+        <div class="modal-header">
+          <h5 style="color:#d4af37;">Order #IRA-9823 Detailed View</h5><button type="button" class="close"
+            data-dismiss="modal" style="color:#fff;">&times;</button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row">
+            <div class="col-md-7">
+              <div style="border-bottom:1px solid #222; padding-bottom:10px; margin-bottom:15px;">
+                <div style="font-size:11px; color:#666; text-transform:uppercase;">Items List</div>
+                <div class="d-flex gap-3 mt-3">
+                  <img src="img/product/1 (1).jpg" style="width:40px; height:40px; border-radius:4px;">
+                  <div style="flex-grow:1;">
+                    <div>Savage Dior (100ml)</div>
+                    <div style="font-size:12px; color:#888;">Qty: 1</div>
+                  </div>
+                  <div style="color:#d4af37;">Rs. 399.00</div>
+                </div>
+                <div class="d-flex gap-3 mt-3">
+                  <img src="img/product/1 (2).jpg" style="width:40px; height:40px; border-radius:4px;">
+                  <div style="flex-grow:1;">
+                    <div>Oud Supreme (100ml)</div>
+                    <div style="font-size:12px; color:#888;">Qty: 1</div>
+                  </div>
+                  <div style="color:#d4af37;">Rs. 399.00</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5" style="border-left:1px solid #222;">
+              <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:15px;">Delivery Details
+              </div>
+              <div style="font-size:13px; margin-bottom:20px;">
+                <strong>Rahul Sharma</strong><br>
+                Elegant Residency, Nashik - 422001
+              </div>
+              <div style="border-top:1px solid #222; padding-top:15px;">
+                <div class="d-flex justify-content-between mb-1"><span>Subtotal</span><span>Rs. 798.00</span></div>
+                <div class="d-flex justify-content-between mb-1"><span>Shipping</span><span
+                    style="color:#25d366;">FREE</span></div>
+                <div class="d-flex justify-content-between mt-2"
+                  style="font-weight:bold; color:#d4af37; font-size:18px;"><span>Total</span><span>Rs. 798.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Address Modal -->
+  <div class="modal fade" id="edit_address_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 style="color:#d4af37;">Edit Address</h5><button type="button" class="close"
+            data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="form-group mb-3"><label>Label</label><select>
+              <option>Home</option>
+              <option>Work</option>
+              <option>Other</option>
+            </select></div>
+          <div class="form-group mb-3"><label>Full Name</label><input type="text" value="Rahul Sharma"></div>
+          <div class="form-group mb-3">
+            <label>Address</label><textarea>Flat No. 402, Elegant Residency, Saraf Bazar, Nashik - 422001</textarea>
+          </div>
+          <button class="btn-gold btn-block"
+            onclick="alert('Address updated!'); $('#edit_address_modal').modal('hide')">Update Address</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address Modal -->
+  <div class="modal fade" id="address_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background:#0a0a0a; border:1px solid #333; color:#fff;">
+        <div class="modal-header">
+          <h5 style="color:#d4af37;">Add New Address</h5><button type="button" class="close" data-dismiss="modal"
+            style="color:#fff;">&times;</button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="form-group mb-3"><label>Full Name</label><input type="text" placeholder="John Doe"></div>
+          <div class="form-group mb-3"><label>Address Line 1</label><input type="text" placeholder="Flat / House No.">
+          </div>
+          <div class="form-group mb-3"><label>Area / Locality</label><input type="text" placeholder="Street, Area">
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-group"><label>City</label><input type="text" placeholder="Nashik"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group"><label>Pincode</label><input type="text" placeholder="422XXX"></div>
+            </div>
+          </div>
+          <button class="btn-gold btn-block" onclick="alert('Address saved!'); $('#address_modal').modal('hide')">Save
+            Address</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Support Modal -->
+  <div class="modal fade" id="support_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background:#0a0a0a; border:2px solid #d4af37; color:#fff;">
+        <div class="modal-header">
+          <h5 style="color:#d4af37;">Submit a Help Request</h5><button type="button" class="close" data-dismiss="modal"
+            style="color:#fff;">&times;</button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="form-group mb-3"><label>Subject</label><select>
+              <option>Order Query</option>
+              <option>Product Information</option>
+              <option>Returns & Exchange</option>
+              <option>Other</option>
+            </select></div>
+          <div class="form-group mb-4"><label>How can we help?</label><textarea style="min-height:100px;"
+              placeholder="Describe your issue here..."></textarea></div>
+          <button class="btn-gold btn-block"
+            onclick="alert('Ticket submitted! We will contact you via email.'); $('#support_modal').modal('hide')">Submit
+            Ticket</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preferences Modal -->
+  <div class="modal fade" id="prefs_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 style="color:#d4af37;">Manage Preferences</h5><button type="button" class="close"
+            data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <span>Email Notifications</span>
+            <input type="checkbox" checked style="width:20px; height:20px;">
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <span>SMS Alerts</span>
+            <input type="checkbox" style="width:20px; height:20px;">
+          </div>
+          <button class="btn-gold btn-block" onclick="$('#prefs_modal').modal('hide')">Save Preferences</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div class="modal fade" id="delete_confirm_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center p-5">
+          <i class="ti-trash" style="font-size:50px; color:#ff4d4d; margin-bottom:20px; display:block;"></i>
+          <h5 style="color:#fff; margin-bottom:10px;">Confirm Delete</h5>
+          <p style="color:#888; font-size:14px; margin-bottom:30px;">This action cannot be undone. Are you sure?</p>
+          <div class="d-flex gap-2 justify-content-center">
+            <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-danger" onclick="alert('Item deleted!'); $('#delete_confirm_modal').modal('hide')"
+              style="background:#ff4d4d; border:none;">Yes, Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Account Modal -->
+  <div class="modal fade" id="delete_acc_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center p-5">
+          <h5 style="color:#ff4d4d; margin-bottom:15px;">Delete Account?</h5>
+          <p style="color:#888; font-size:13px; margin-bottom:25px;">All your order history and saved details will be
+            permanently removed. This cannot be reversed.</p>
+          <div class="form-group mb-4 text-left"><label>Type "DELETE" to confirm</label><input type="text"
+              id="confirmDelInput" placeholder="DELETE"></div>
+          <button class="btn btn-danger btn-block" style="background:#ff4d4d; border:none;"
+            onclick="if(document.getElementById('confirmDelInput').value==='DELETE'){alert('Account Deleted'); location.href='index.html'}else{alert('Please type DELETE')}">Permanently
+            Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
+  <script src="js/vendors/aos.js"></script>
+  <script src="js/auth-guard.js"></script>
   <script>
     const STORAGE_KEY = 'irasa_profile';
 
-    // ---- Load saved data on page open ----
     window.addEventListener('DOMContentLoaded', function () {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      var p = JSON.parse(raw);
-
-      // Avatar
-      if (p.img) {
-        document.getElementById('avatarImg').src = p.img;
-        document.getElementById('avatarImg').style.display = 'block';
-        document.getElementById('avatarPlaceholder').style.display = 'none';
+      // Use Session User for identity
+      const userRaw = sessionStorage.getItem('rasa_user');
+      if (userRaw) {
+        const user = JSON.parse(userRaw);
+        document.getElementById('heroName').textContent = user.fullName || 'Guest User';
+        document.getElementById('heroEmail').textContent = user.email || '';
+        
+        // Pre-fill form
+        document.getElementById('firstName').value = user.fullName.split(' ')[0] || '';
+        document.getElementById('lastName').value = user.fullName.split(' ').slice(1).join(' ') || '';
+        document.getElementById('emailInput').value = user.email || '';
+        document.getElementById('phoneInput').value = user.phone || '';
       }
 
-      // Hero
-      var fullName = ((p.firstName || '') + ' ' + (p.lastName || '')).trim() || 'Guest User';
-      document.getElementById('heroName').textContent = fullName;
-      document.getElementById('heroEmail').textContent = p.email || 'Add your email below';
-
-      // Form fields
-      setValue('firstName', p.firstName);
-      setValue('lastName', p.lastName);
-      setValue('emailInput', p.email);
-      setValue('phoneInput', p.phone);
-      setValue('dobInput', p.dob);
-      setValue('genderInput', p.gender);
-      setValue('bioInput', p.bio);
-
-      // Address
-      setValue('addr1', p.addr1);
-      setValue('addr2', p.addr2);
-      setValue('city', p.city);
-      setValue('state', p.state);
-      setValue('pincode', p.pincode);
-      setValue('country', p.country || 'India');
-
-      // Stats
-      if (p.orders  !== undefined) document.getElementById('statOrders').textContent  = p.orders;
-      if (p.wishlist !== undefined) document.getElementById('statWishlist').textContent = p.wishlist;
-      if (p.reviews  !== undefined) document.getElementById('statReviews').textContent  = p.reviews;
+      loadBlends();
     });
 
-    function setValue(id, val) {
-      if (val !== undefined && val !== null) document.getElementById(id).value = val;
+    function loadBlends() {
+      var p = getProfile();
+      var blends = p.blends || [];
+      var listEl = document.getElementById('blendsList');
+      if (blends.length === 0) return;
+
+      listEl.innerHTML = blends.map((b, idx) => `
+        <div class="blend-card">
+          <div class="blend-icon-box"><i class="fas fa-flask"></i></div>
+          <div class="blend-info">
+            <div class="blend-name">${b.name}</div>
+            <div class="blend-meta">Saved on ${b.date} · ${b.iconA && b.iconB ? 'Multi-scent mix' : 'Custom blend'}</div>
+          </div>
+          <button class="btn-action" style="color:#ff4d4d" onclick="deleteBlend(${idx})"><i class="ti-trash"></i></button>
+        </div>
+      `).join('');
     }
 
-    // ---- Avatar change ----
+    function deleteBlend(idx) {
+      if (!confirm('Remove this blend from your saved list?')) return;
+      var p = getProfile();
+      p.blends.splice(idx, 1);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+      loadBlends();
+    }
+
     function handleAvatarChange(event) {
       var file = event.target.files[0];
       if (!file) return;
@@ -691,7 +1163,6 @@
         document.getElementById('avatarImg').src = src;
         document.getElementById('avatarImg').style.display = 'block';
         document.getElementById('avatarPlaceholder').style.display = 'none';
-        // Save image to storage
         var p = getProfile();
         p.img = src;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
@@ -699,67 +1170,48 @@
       reader.readAsDataURL(file);
     }
 
-    // ---- Save profile info ----
     function saveProfile() {
       var p = getProfile();
       p.firstName = document.getElementById('firstName').value.trim();
-      p.lastName   = document.getElementById('lastName').value.trim();
-      p.email      = document.getElementById('emailInput').value.trim();
-      p.phone      = document.getElementById('phoneInput').value.trim();
-      p.dob        = document.getElementById('dobInput').value;
-      p.gender     = document.getElementById('genderInput').value;
-      p.bio        = document.getElementById('bioInput').value.trim();
+      p.lastName = document.getElementById('lastName').value.trim();
+      p.email = document.getElementById('emailInput').value.trim();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
-
-      // Update hero display
-      var fullName = (p.firstName + ' ' + p.lastName).trim() || 'Guest User';
-      document.getElementById('heroName').textContent = fullName;
-      document.getElementById('heroEmail').textContent = p.email || 'Add your email below';
-
-      showToast('Profile saved successfully!');
+      alert('Profile updated!');
+      location.reload();
     }
 
-    // ---- Save address ----
-    function saveAddress() {
-      var p = getProfile();
-      p.addr1   = document.getElementById('addr1').value.trim();
-      p.addr2   = document.getElementById('addr2').value.trim();
-      p.city    = document.getElementById('city').value.trim();
-      p.state   = document.getElementById('state').value.trim();
-      p.pincode = document.getElementById('pincode').value.trim();
-      p.country = document.getElementById('country').value.trim();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
-      showToast('Address saved successfully!');
+    function downloadInvoice(id) {
+      alert('Generating invoice for Order #' + id + '...\nDownload will start shortly.');
     }
 
-    // ---- Reset form ----
-    function resetForm() {
-      ['firstName','lastName','emailInput','phoneInput','dobInput','genderInput','bioInput']
-        .forEach(function(id){ document.getElementById(id).value = ''; });
+    function switchTab(n, b) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+      document.getElementById('panel-' + n).classList.add('active');
+      b.classList.add('active');
     }
 
-    // ---- Tab switching ----
-    function switchTab(name, btn) {
-      document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
-      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-      document.getElementById('panel-' + name).classList.add('active');
-      btn.classList.add('active');
+    function toggleAccordion(id, el) {
+      var content = document.getElementById(id);
+      var arrow = el.querySelector('.accordion-arrow');
+      if (content.style.display === 'none') {
+        $(content).slideDown(300);
+        arrow.style.transform = 'rotate(180deg)';
+      } else {
+        $(content).slideUp(300);
+        arrow.style.transform = 'rotate(0deg)';
+      }
     }
+    function getProfile() { var r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : {}; }
 
-    // ---- Toast ----
-    function showToast(msg) {
-      var t = document.getElementById('toast');
-      document.getElementById('toastMsg').textContent = msg;
-      t.classList.add('show');
-      setTimeout(function(){ t.classList.remove('show'); }, 3000);
-    }
+    // Init AOS
+    $(document).ready(function() {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({ once: true });
+      }
+    });
 
-    // ---- Helper ----
-    function getProfile() {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : {};
-    }
   </script>
-
 </body>
+
 </html>

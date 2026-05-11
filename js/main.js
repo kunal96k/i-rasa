@@ -2,11 +2,13 @@ $(function () {
   "use strict";
 
   //------- Parallax -------//
-  var s = skrollr.init({
-    forceHeight: false
-  });
-  if (s.isMobile()) {
-    s.destroy();
+  if (typeof skrollr !== 'undefined') {
+    var s = skrollr.init({
+      forceHeight: false
+    });
+    if (s.isMobile()) {
+      s.destroy();
+    }
   }
 
   //------- Active Nice Select --------//
@@ -77,23 +79,47 @@ $(function () {
 
   //------- mailchimp --------//  
   function mailChimp() {
-    $('#mc_embed_signup').find('form').ajaxChimp();
+    if ($.fn.ajaxChimp) {
+      $('#mc_embed_signup').find('form').ajaxChimp();
+    }
   }
   mailChimp();
 
-  //------- fixed navbar --------//  
+  //------- show toast --------//
+  window.showToast = function(msg) {
+    var toast = $('#cart-toast');
+    if (!toast.length) {
+      $('body').append('<div id="cart-toast" style="position:fixed; bottom:90px; right:28px; z-index:9999; background:#1a1200; color:#d4af37; border:1px solid #d4af37; padding:12px 24px; border-radius:50px; font-size:14px; font-weight:700; opacity:0; transform:translateY(15px); transition:all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events:none; box-shadow:0 10px 30px rgba(0,0,0,0.5); display:flex; align-items:center; gap:10px;"></div>');
+      toast = $('#cart-toast');
+    }
+    toast.html("<i class='fas fa-shopping-bag'></i> " + msg);
+    toast.css({'opacity': '1', 'transform': 'translateY(0)'});
+    
+    if (window.toastTimeout) clearTimeout(window.toastTimeout);
+    window.toastTimeout = setTimeout(function() {
+      toast.css({'opacity': '0', 'transform': 'translateY(15px)'});
+    }, 3000);
+  };
+
+  //------- fixed navbar with throttling --------//  
+  var isScrolling = false;
   $(window).scroll(function () {
-    var sticky = $('.header_area'),
-      scroll = $(window).scrollTop();
+    if (!isScrolling) {
+      window.requestAnimationFrame(function () {
+        var sticky = $('.header_area'),
+          scroll = $(window).scrollTop();
 
-    if (scroll >= 100) sticky.addClass('navbar_fixed');
-    else sticky.removeClass('navbar_fixed');
+        if (scroll >= 100) sticky.addClass('navbar_fixed');
+        else sticky.removeClass('navbar_fixed');
 
-    // Show/hide scroll-top button after hero section
-    if (scroll > window.innerHeight) {
-      $('#scroll-top').addClass('visible');
-    } else {
-      $('#scroll-top').removeClass('visible');
+        if (scroll > window.innerHeight) {
+          $('#scroll-top').addClass('visible');
+        } else {
+          $('#scroll-top').removeClass('visible');
+        }
+        isScrolling = false;
+      });
+      isScrolling = true;
     }
   });
 
