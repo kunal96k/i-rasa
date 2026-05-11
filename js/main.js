@@ -86,18 +86,18 @@ $(function () {
   mailChimp();
 
   //------- show toast --------//
-  window.showToast = function(msg) {
+  window.showToast = function (msg) {
     var toast = $('#cart-toast');
     if (!toast.length) {
       $('body').append('<div id="cart-toast" style="position:fixed; bottom:90px; right:28px; z-index:9999; background:#1a1200; color:#d4af37; border:1px solid #d4af37; padding:12px 24px; border-radius:50px; font-size:14px; font-weight:700; opacity:0; transform:translateY(15px); transition:all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events:none; box-shadow:0 10px 30px rgba(0,0,0,0.5); display:flex; align-items:center; gap:10px;"></div>');
       toast = $('#cart-toast');
     }
     toast.html("<i class='fas fa-shopping-bag'></i> " + msg);
-    toast.css({'opacity': '1', 'transform': 'translateY(0)'});
-    
+    toast.css({ 'opacity': '1', 'transform': 'translateY(0)' });
+
     if (window.toastTimeout) clearTimeout(window.toastTimeout);
-    window.toastTimeout = setTimeout(function() {
-      toast.css({'opacity': '0', 'transform': 'translateY(15px)'});
+    window.toastTimeout = setTimeout(function () {
+      toast.css({ 'opacity': '0', 'transform': 'translateY(15px)' });
     }, 3000);
   };
 
@@ -208,9 +208,18 @@ $(document).ready(function () {
     $('body').append('<div class="irasa-offcanvas-backdrop"></div>');
   }
 
+  // Inject Mobile Close Button
+  if ($('.navbar-toggler').is(':visible') && !$('.mobile-menu-close').length) {
+    $('.navbar-collapse').prepend('<button class="mobile-menu-close" aria-label="Close menu"><i class="ti-close"></i></button>');
+  }
+
   if (!$('.navbar-collapse .dropdown-toggle .irasa-submenu-indicator').length) {
     $('.navbar-collapse .dropdown-toggle').append('<span class="irasa-submenu-indicator" aria-hidden="true"></span>');
   }
+
+  $(document).on('click', '.mobile-menu-close', function () {
+    $('.navbar-collapse').collapse('hide');
+  });
 
   $(document).on('click', '.navbar-collapse .dropdown-toggle', function (e) {
     if ($('.navbar-toggler').is(':visible')) {
