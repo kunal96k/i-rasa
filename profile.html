@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - I Rasa Perfumes</title>
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ---- NAV (same as main site) ---- */
+    .profile-nav {
+      background: #111;
+      border-bottom: 1px solid #2a2a2a;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-nav .logo {
+      font-size: 24px;
+      color: #d4af37;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+    .profile-nav .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .profile-nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .profile-nav a:hover { color: #d4af37; }
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #d4af37 !important;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* ---- HERO BANNER ---- */
+    .profile-banner {
+      background: linear-gradient(135deg, #1a1200 0%, #0d0d0d 60%);
+      border-bottom: 1px solid #2a2000;
+      padding: 50px 0 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-banner::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+    }
+    .profile-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
+    }
+
+    /* ---- AVATAR ---- */
+    .avatar-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .avatar-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #d4af37;
+      background: #1e1e1e;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(212,175,55,0.25);
+      transition: box-shadow 0.3s;
+    }
+    .avatar-circle:hover {
+      box-shadow: 0 0 30px rgba(212,175,55,0.45);
+    }
+    .avatar-circle img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .avatar-circle .avatar-placeholder {
+      font-size: 48px;
+      color: #d4af37;
+    }
+    .avatar-edit-btn {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #d4af37;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      border: 2px solid #111;
+      transition: background 0.2s;
+    }
+    .avatar-edit-btn:hover { background: #b8962e; }
+    .avatar-edit-btn i { color: #000; font-size: 12px; }
+
+    .profile-hero-name {
+      font-size: 26px;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+    .profile-hero-email {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    /* ---- TABS ---- */
+    .profile-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-bottom: 2px solid #222;
+      position: relative;
+      z-index: 1;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: #666;
+      padding: 14px 32px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: #d4af37; }
+    .tab-btn.active {
+      color: #d4af37;
+      border-bottom-color: #d4af37;
+    }
+
+    /* ---- MAIN CONTENT ---- */
+    .profile-body {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* ---- CARD ---- */
+    .profile-card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .card-title {
+      color: #d4af37;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title i { font-size: 15px; }
+
+    /* ---- FORM ---- */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .form-row.full { grid-template-columns: 1fr; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 11px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-group select option { background: #1e1e1e; }
+
+    /* ---- INFO DISPLAY (non-edit mode) ---- */
+    .info-row {
+      display: flex;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #1e1e1e;
+      gap: 14px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: #1e1a00;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-icon i { color: #d4af37; font-size: 15px; }
+    .info-label { font-size: 11px; color: #666; letter-spacing: 1px; text-transform: uppercase; }
+    .info-value { font-size: 14px; color: #ddd; font-weight: 500; margin-top: 2px; }
+
+    /* ---- BUTTONS ---- */
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37, #aa8422);
+      color: #000;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-gold:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-gold:active { transform: translateY(0); }
+
+    .btn-outline {
+      background: transparent;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+      padding: 11px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: rgba(212,175,55,0.08); }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    /* ---- SUCCESS TOAST ---- */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1a2a1a;
+      border: 1px solid #4caf50;
+      color: #4caf50;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 9999;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ---- STATS ---- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .stat-box {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: #d4af37;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 6px;
+    }
+
+    /* ---- TAB PANELS ---- */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .profile-nav { padding: 14px 20px; }
+      .profile-card { padding: 22px 16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand logo_h" href="index.html"
+            style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+            <span>i rasa</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item submenu dropdown">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Shop</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+                  <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+                </ul>
+              </li>
+              <li class="nav-item submenu dropdown">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Blog</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                </ul>
+              </li>
+              <li class="nav-item submenu dropdown">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Pages</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
+                </ul>
+              </li>
+                            <li class="nav-item"><a class="nav-link" href="customize.html" style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;">✦ Customize</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+
+            <ul class="nav-shop">
+
+              <!-- Cart -->
+              <li class="nav-item">
+                <button data-toggle="modal" data-target="#product_modal"
+                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease;">
+                  <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
+                  <span class="nav-shop__circle" style="background: #d4af37; color: #000; font-weight: bold;">3</span>
+                </button>
+              </li>
+
+              <!-- Profile Icon -->
+             
+
+              <!-- Shop Now -->
+              <li class="nav-item">
+                <a class="button button-header" href="category.html"
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop Now</a>
+              </li>
+              
+               <li class="nav-item">
+                <a href="profile.html" id="profileNavLink"
+                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
+                  <img id="profileNavImg" src="" alt="Profile"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
+                  <i id="profileNavIcon" class="ti-user" style="color: #d4af37; font-size: 18px;"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- BANNER + AVATAR -->
+  <div class="profile-banner">
+    <div class="avatar-wrap">
+      <div class="avatar-circle" onclick="document.getElementById('avatarInput').click()" title="Click to change photo">
+        <img id="avatarImg" src="" alt="Profile Photo" style="display:none;" />
+        <i class="ti-user avatar-placeholder" id="avatarPlaceholder"></i>
+      </div>
+      <div class="avatar-edit-btn" onclick="document.getElementById('avatarInput').click()">
+        <i class="ti-camera"></i>
+      </div>
+    </div>
+    <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="handleAvatarChange(event)" />
+    <div class="profile-hero-name" id="heroName">Guest User</div>
+    <div class="profile-hero-email" id="heroEmail">Add your email below</div>
+
+    <!-- Tabs -->
+    <div class="profile-tabs">
+      <button class="tab-btn active" onclick="switchTab('info', this)">
+        <i class="ti-user"></i>&nbsp; Profile Info
+      </button>
+      <button class="tab-btn" onclick="switchTab('orders', this)">
+        <i class="ti-package"></i>&nbsp; Orders
+      </button>
+      <button class="tab-btn" onclick="switchTab('address', this)">
+        <i class="ti-location-pin"></i>&nbsp; Address
+      </button>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="profile-body">
+
+    <!-- ===== TAB: PROFILE INFO ===== -->
+    <div class="tab-panel active" id="panel-info">
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num" id="statOrders">0</div>
+          <div class="stat-label">Orders</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statWishlist">0</div>
+          <div class="stat-label">Wishlist</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statReviews">0</div>
+          <div class="stat-label">Reviews</div>
+        </div>
+      </div>
+
+      <!-- Edit Card -->
+      <div class="profile-card">
+        <div class="card-title"><i class="ti-pencil"></i> Edit Profile</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            
+            <input type="text" id="firstName" placeholder="e.g. Rahul" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="e.g. Sharma" />
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="emailInput" placeholder="e.g. rahul@email.com" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phoneInput" placeholder="+91 98765 43210" />
+          </div>
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" id="dobInput" />
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Gender</label>
+            <select id="genderInput">
+              <option value="">Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Bio / Note</label>
+            <textarea id="bioInput" placeholder="Tell us about your fragrance preferences..."></textarea>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn-gold" onclick="saveProfile()">
+            <i class="ti-check"></i>&nbsp; Save Changes
+          </button>
+          <button class="btn-outline" onclick="resetForm()">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: ORDERS ===== -->
+    <div class="tab-panel" id="panel-orders">
+      <div class="profile-card" style="text-align: center; padding: 60px 32px;">
+        <i class="ti-package" style="font-size: 50px; color: #2a2a2a; display: block; margin-bottom: 16px;"></i>
+        <div style="color: #555; font-size: 15px; margin-bottom: 20px;">No orders yet</div>
+        <a href="category.html" class="btn-gold" style="display: inline-block; text-decoration: none;">Shop Now</a>
+      </div>
+    </div>
+
+    <!-- ===== TAB: ADDRESS ===== -->
+    <div class="tab-panel" id="panel-address">
+      <div class="profile-card">
+        <div class="card-title"><i class="ti-location-pin"></i> Delivery Address</div>
+
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Address Line 1</label>
+            <input type="text" id="addr1" placeholder="Flat / House No., Building Name" />
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Address Line 2</label>
+            <input type="text" id="addr2" placeholder="Street, Area, Locality" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" id="city" placeholder="e.g. Nashik" />
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <input type="text" id="state" placeholder="e.g. Maharashtra" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pincode</label>
+            <input type="text" id="pincode" placeholder="e.g. 422001" />
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" id="country" value="India" />
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn-gold" onclick="saveAddress()">
+            <i class="ti-check"></i>&nbsp; Save Address
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="ti-check-box"></i>
+    <span id="toastMsg">Saved successfully!</span>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'irasa_profile';
+
+    // ---- Load saved data on page open ----
+    window.addEventListener('DOMContentLoaded', function () {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      var p = JSON.parse(raw);
+
+      // Avatar
+      if (p.img) {
+        document.getElementById('avatarImg').src = p.img;
+        document.getElementById('avatarImg').style.display = 'block';
+        document.getElementById('avatarPlaceholder').style.display = 'none';
+      }
+
+      // Hero
+      var fullName = ((p.firstName || '') + ' ' + (p.lastName || '')).trim() || 'Guest User';
+      document.getElementById('heroName').textContent = fullName;
+      document.getElementById('heroEmail').textContent = p.email || 'Add your email below';
+
+      // Form fields
+      setValue('firstName', p.firstName);
+      setValue('lastName', p.lastName);
+      setValue('emailInput', p.email);
+      setValue('phoneInput', p.phone);
+      setValue('dobInput', p.dob);
+      setValue('genderInput', p.gender);
+      setValue('bioInput', p.bio);
+
+      // Address
+      setValue('addr1', p.addr1);
+      setValue('addr2', p.addr2);
+      setValue('city', p.city);
+      setValue('state', p.state);
+      setValue('pincode', p.pincode);
+      setValue('country', p.country || 'India');
+
+      // Stats
+      if (p.orders  !== undefined) document.getElementById('statOrders').textContent  = p.orders;
+      if (p.wishlist !== undefined) document.getElementById('statWishlist').textContent = p.wishlist;
+      if (p.reviews  !== undefined) document.getElementById('statReviews').textContent  = p.reviews;
+    });
+
+    function setValue(id, val) {
+      if (val !== undefined && val !== null) document.getElementById(id).value = val;
+    }
+
+    // ---- Avatar change ----
+    function handleAvatarChange(event) {
+      var file = event.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var src = e.target.result;
+        document.getElementById('avatarImg').src = src;
+        document.getElementById('avatarImg').style.display = 'block';
+        document.getElementById('avatarPlaceholder').style.display = 'none';
+        // Save image to storage
+        var p = getProfile();
+        p.img = src;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ---- Save profile info ----
+    function saveProfile() {
+      var p = getProfile();
+      p.firstName = document.getElementById('firstName').value.trim();
+      p.lastName   = document.getElementById('lastName').value.trim();
+      p.email      = document.getElementById('emailInput').value.trim();
+      p.phone      = document.getElementById('phoneInput').value.trim();
+      p.dob        = document.getElementById('dobInput').value;
+      p.gender     = document.getElementById('genderInput').value;
+      p.bio        = document.getElementById('bioInput').value.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+
+      // Update hero display
+      var fullName = (p.firstName + ' ' + p.lastName).trim() || 'Guest User';
+      document.getElementById('heroName').textContent = fullName;
+      document.getElementById('heroEmail').textContent = p.email || 'Add your email below';
+
+      showToast('Profile saved successfully!');
+    }
+
+    // ---- Save address ----
+    function saveAddress() {
+      var p = getProfile();
+      p.addr1   = document.getElementById('addr1').value.trim();
+      p.addr2   = document.getElementById('addr2').value.trim();
+      p.city    = document.getElementById('city').value.trim();
+      p.state   = document.getElementById('state').value.trim();
+      p.pincode = document.getElementById('pincode').value.trim();
+      p.country = document.getElementById('country').value.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+      showToast('Address saved successfully!');
+    }
+
+    // ---- Reset form ----
+    function resetForm() {
+      ['firstName','lastName','emailInput','phoneInput','dobInput','genderInput','bioInput']
+        .forEach(function(id){ document.getElementById(id).value = ''; });
+    }
+
+    // ---- Tab switching ----
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.getElementById('panel-' + name).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // ---- Toast ----
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      t.classList.add('show');
+      setTimeout(function(){ t.classList.remove('show'); }, 3000);
+    }
+
+    // ---- Helper ----
+    function getProfile() {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    }
+  </script>
+
+</body>
+</html>
