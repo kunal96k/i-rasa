@@ -27,17 +27,19 @@
   <style>
     /* ── PAGE HERO ── */
     .mens-banner-area {
-      background: linear-gradient(120deg, #0d0d0d 0%, #1b1100 60%, #0d0d0d 100%);
+      background: url('img/home/light_banner_bg.png') no-repeat center center / cover !important;
       padding: 90px 0 60px;
       position: relative;
       overflow: hidden;
+      border-top: 4px solid #d4af37;
+      border-bottom: 5px solid #000000;
     }
 
     .mens-banner-area::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+      background: none;
       pointer-events: none;
     }
 
@@ -451,35 +453,42 @@
         padding: 7px 15px;
       }
     }
+
     /* Responsive Modal Fixes */
     @media (max-width: 768px) {
       .modal-dialog {
         margin: 10px;
         max-width: calc(100% - 20px) !important;
       }
+
       .modal-body {
         padding: 20px !important;
       }
+
       #modal_img {
         max-height: 250px;
         object-fit: contain;
         margin-bottom: 20px;
       }
+
       #modal_title {
         font-size: 22px !important;
         margin-top: 0 !important;
         text-align: center;
       }
+
       .price {
         font-size: 20px !important;
         margin-bottom: 10px !important;
         text-align: center;
       }
+
       .rating {
         margin-bottom: 15px !important;
         justify-content: center;
         display: flex;
       }
+
       .modal-body .button {
         margin-top: 10px;
       }
@@ -512,11 +521,9 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
                   <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a>
                   </li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -589,7 +596,7 @@
       <div class="row">
         <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
           <div class="stat-item">
-            <span class="number">30+</span>
+            <span class="number">50+</span>
             <span class="label">Men's Fragrances</span>
           </div>
         </div>
@@ -630,7 +637,7 @@
 
       <!-- Category Filter Tabs -->
       <div class="mens-tabs" data-aos="fade-up" data-aos-delay="100">
-        <button class="tab-btn active" onclick="filterCategory('all', this)">All (30+)</button>
+        <button class="tab-btn active" onclick="filterCategory('all', this)">All (50+)</button>
         <button class="tab-btn" onclick="filterCategory('best', this)">Best Collections</button>
         <button class="tab-btn" onclick="filterCategory('gift', this)">Perfect Gift</button>
         <button class="tab-btn" onclick="filterCategory('lovable', this)">Love-Worthy</button>
@@ -661,8 +668,14 @@
             <div class="card-body-area">
               <p class="scent-category">Men's Scents · Woody Aromatic</p>
               <h4 class="product-title">Savage Dior</h4>
-              <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star"></i> <span>(248)</span></div>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <span>(248)</span>
+              </div>
               <div class="price-row">
                 <span class="price">Rs. 399/-</span>
                 <button class="add-cart-btn" onclick="addToCart('Savage Dior')">Cart</button>
@@ -1809,8 +1822,9 @@
               <ul class="list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="category.html">Shop All</a></li>
-                <li><a href="mens-collection.html">Men's Scents</a></li>
-                <li><a href="category.html">Women's Scents</a></li>
+                <li><a href="category.html">Men's Scents</a></li>
+                <li><a href="categoryWomen.html">Women's Scents</a></li>
+                <li><a href="attar.html">Attar Collection</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
@@ -1869,6 +1883,7 @@
   <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
   <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
   <script src="vendors/skrollr.min.js"></script>
+  <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
   <script src="js/vendors/aos.js"></script>
   <script>AOS.init({ once: true });</script>
@@ -1893,14 +1908,99 @@
     }
 
     // ── Cart Toast ──
-    function addToCart(name) {
-      showToast('Added ' + name + ' to cart!');
+    async function addToCart(name) {
+      if (!AuthGuard.currentUser) {
+        await AuthGuard.init();
+      }
+
+      if (!AuthGuard.currentUser) {
+        CartEngine._showToast('✕ Please login first to add items to cart!');
+        setTimeout(() => {
+          window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
+        }, 1500);
+        return;
+      }
+
+      let img = 'img/product/product1.png';
+      let price = 399;
+
+      const cards = document.querySelectorAll('.mens-product-card');
+      for (const card of cards) {
+        const titleEl = card.querySelector('.product-title');
+        if (titleEl && titleEl.textContent.trim() === name) {
+          const imgEl = card.querySelector('.perfume-img');
+          if (imgEl) img = imgEl.getAttribute('src');
+          const priceEl = card.querySelector('.price');
+          if (priceEl) {
+            const txt = priceEl.textContent.replace(/[^\d]/g, '');
+            if (txt) price = parseInt(txt);
+          }
+          break;
+        }
+      }
+
+      // Check if this action is from the quick view modal
+      let qty = 1;
+      let finalPrice = price;
+      let size = '50ml';
+      let reuseBottle = false;
+      let bottlePrice = 60;
+      let bottlePriceDiscount = 0;
+
+      const modalOpen = $('#product_modal').hasClass('show');
+      if (modalOpen && document.getElementById('modal_title').textContent.trim() === name) {
+        qty = parseInt(document.getElementById('modal_qty').value) || 1;
+        finalPrice = modalPricingState.basePrice + (modalPricingState.reuseBottle ? 0 : modalPricingState.bottlePrice);
+        size = modalPricingState.selectedSize + 'ml';
+        reuseBottle = modalPricingState.reuseBottle;
+        bottlePrice = modalPricingState.bottlePrice;
+        bottlePriceDiscount = modalPricingState.reuseBottle ? modalPricingState.bottlePrice : 0;
+      } else {
+        // Standard shop card adds default 50ml + ₹60 bottle price
+        finalPrice = price + 60;
+      }
+
+      CartEngine.add({
+        id: name,
+        name: name,
+        img: img,
+        price: finalPrice,
+        size: size,
+        reuseBottle: reuseBottle,
+        bottlePrice: bottlePrice,
+        bottlePriceDiscount: bottlePriceDiscount
+      }, qty);
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.product-title').forEach(el => {
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', () => {
+          const name = el.textContent.trim();
+          window.location.href = 'single-product.html?name=' + encodeURIComponent(name);
+        });
+      });
+
+      document.querySelectorAll('.perfume-img').forEach(el => {
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', () => {
+          const card = el.closest('.mens-product-card');
+          if (card) {
+            const titleEl = card.querySelector('.product-title');
+            if (titleEl) {
+              const name = titleEl.textContent.trim();
+              window.location.href = 'single-product.html?name=' + encodeURIComponent(name);
+            }
+          }
+        });
+      });
+    });
   </script>
 
   <!-- PRODUCT QUICK VIEW MODAL -->
   <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document"
+      style="margin-top: 90px !important; margin-bottom: 50px !important;">
       <div class="modal-content"
         style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden;">
         <div class="modal-header" style="border-bottom: 1px solid #222; padding: 20px 30px;">
@@ -1928,32 +2028,78 @@
               <p id="modal_price" style="font-size: 24px; color: #ffd700; font-weight: bold; margin-bottom: 15px;">Rs.
                 299
               </p>
-              <div class="stars">
+              <div class="stars mb-3" style="display: flex; align-items: center; gap: 5px;">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
-                <span>(120+ Reviews)</span>
+                <span style="color: #999; margin-left: 8px;">(120+ Reviews)</span>
               </div>
               <p style="color: #bbb; line-height: 1.6; font-size: 14px; margin-bottom: 25px;">A deep, mysterious
                 fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for any occasion.</p>
 
-              <div class="d-flex align-items:center mb-4">
-                <div class="quantity-picker"
-                  style="display: flex; align-items: center; background: #111; border: 1px solid #333; border-radius: 25px; padding: 5px 15px; margin-right: 20px;">
-                  <button
-                    onclick="var v=parseInt(document.getElementById('modal_qty').value); if(v>1) document.getElementById('modal_qty').value=v-1"
-                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer;">-</button>
-                  <input type="number" id="modal_qty" value="1" readonly
-                    style="width: 40px; background: transparent; border: none; color: #fff; text-align: center; font-weight: bold; font-size: 16px; -moz-appearance: textfield;">
-                  <button
-                    onclick="var v=parseInt(document.getElementById('modal_qty').value); document.getElementById('modal_qty').value=v+1"
-                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer;">+</button>
+              <!-- Premium Longevity Detail -->
+              <div style="margin-top: -15px; margin-bottom: 20px; font-weight: bold; color: #d4af37; font-size: 13px;">
+                <i class="fas fa-history"></i> Longevity: Guaranteed 7-8 Hours Trail
+              </div>
+
+              <!-- Dynamic Bottle Sizing Selector -->
+              <div class="bottle-size-selector-wrap mb-4" style="margin-top: 15px;">
+                <span
+                  style="color: #d4af37; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Select
+                  Bottle Size:</span>
+                <div class="d-flex" style="gap: 10px; flex-wrap: wrap;">
+                  <button class="btn modal-size-btn active" onclick="selectModalSize(50, 60, this)"
+                    style="background: #111; color: #fff; border: 1px solid #d4af37; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 8px rgba(212,175,55,0.2);">50ml
+                    (+₹60)</button>
+                  <button class="btn modal-size-btn" onclick="selectModalSize(100, 120, this)"
+                    style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">100ml
+                    (+₹120)</button>
+                  <button class="btn modal-size-btn" onclick="selectModalSize(150, 180, this)"
+                    style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">150ml
+                    (+₹180)</button>
                 </div>
+              </div>
+
+              <!-- Eco-Friendly Return Checkbox -->
+              <div class="eco-offer-box p-3 mb-4"
+                style="background: rgba(212, 175, 55, 0.05); border: 1px dashed #d4af37; border-radius: 8px; margin-top: 10px;">
+                <div class="custom-control custom-checkbox"
+                  style="display: flex; align-items: center; gap: 8px; padding-left: 0;">
+                  <input type="checkbox" id="modalReuseBottleCheck" onchange="toggleReuseModalBottle()"
+                    style="accent-color: #d4af37; cursor: pointer; width: 16px; height: 16px; margin: 0;">
+                  <label for="modalReuseBottleCheck"
+                    style="color: #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin: 0; user-select: none;">
+                    ♻️ Return/Bring Same Bottle next time (Save Bottle Price!)
+                  </label>
+                </div>
+                <small style="color: #aaa; display: block; margin-top: 3px; font-size: 11px; margin-left: 24px;">
+                  Receive ₹<span id="modalBottleSavingsAmount">60</span> off when you bring or return a compatible
+                  bottle!
+                </small>
+              </div>
+
+              <!-- Dynamic Action Row (Qty Picker + Add to Cart + Wishlist) -->
+              <div class="d-flex align-items-center mb-4 flex-wrap" style="gap: 15px;">
+                <div class="quantity-picker"
+                  style="display: flex; align-items: center; background: #111; border: 1px solid #333; border-radius: 25px; padding: 5px 15px; margin-right: 0;">
+                  <button onclick="changeQty(-1)"
+                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">-</button>
+                  <input type="number" id="modal_qty" value="1" readonly
+                    style="width: 40px; background: transparent; border: none; color: #fff; text-align: center; font-weight: bold; font-size: 16px; -moz-appearance: textfield; margin: 0; outline: none;">
+                  <button onclick="changeQty(1)"
+                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">+</button>
+                </div>
+
                 <button onclick="addToCart($('#modal_title').text()); $('#product_modal').modal('hide')" class="button"
-                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 12px 30px; font-weight: bold; flex-grow: 1; transition: transform 0.3s;">
-                  <i class="fas fa-shopping-cart mr-2"></i> CART
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 12px 25px; font-weight: bold; flex-grow: 1; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; outline: none;">
+                  <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+
+                <button onclick="toggleWishlistFromModal()" id="modal_wishlist_btn" class="button"
+                  style="background: #111; color: #d4af37; border: 1px solid #333; border-radius: 50%; width: 48px; height: 48px; padding: 0; font-size: 18px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; outline: none;">
+                  <i class="far fa-heart"></i>
                 </button>
               </div>
             </div>
@@ -1984,15 +2130,97 @@
   </div>
 
   <script>
-    // Handle modal dynamic content
+    // Modal pricing state
+    var modalPricingState = {
+      basePrice: 399,
+      selectedSize: 50,
+      bottlePrice: 60,
+      reuseBottle: false
+    };
+
+    function selectModalSize(size, bPrice, el) {
+      modalPricingState.selectedSize = size;
+      modalPricingState.bottlePrice = bPrice;
+
+      // Highlight active button
+      document.querySelectorAll('.modal-size-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.color = '#aaa';
+        btn.style.border = '1px solid #333';
+        btn.style.boxShadow = 'none';
+      });
+      el.classList.add('active');
+      el.style.color = '#fff';
+      el.style.border = '1px solid #d4af37';
+      el.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+
+      // Update savings amount display
+      document.getElementById('modalBottleSavingsAmount').textContent = bPrice;
+
+      updateModalPriceDisplay();
+    }
+
+    function toggleReuseModalBottle() {
+      modalPricingState.reuseBottle = document.getElementById('modalReuseBottleCheck').checked;
+      updateModalPriceDisplay();
+    }
+
+    function updateModalPriceDisplay() {
+      var finalPrice = modalPricingState.basePrice + (modalPricingState.reuseBottle ? 0 : modalPricingState.bottlePrice);
+      $('#modal_price').text('Rs. ' + finalPrice.toFixed(2));
+    }
+
     $(document).ready(function () {
       $('[data-target="#product_modal"]').click(function () {
         var btn = $(this);
-        $('#modal_title').text(btn.data('title'));
-        $('#modal_price').text(btn.data('price'));
-        $('#modal_img').attr('src', btn.data('img'));
+        var title = btn.data('title');
+        var priceVal = btn.data('price') || "Rs. 399";
+        var img = btn.data('img');
+
+        $('#modal_title').text(title);
+        $('#modal_img').attr('src', img);
+        $('#modal_qty').val(1); // reset qty to 1
+
+        // Initialize modal pricing state
+        var basePrice = parseInt(priceVal.replace(/[^\d]/g, '')) || 399;
+        modalPricingState.basePrice = basePrice;
+        modalPricingState.selectedSize = 50;
+        modalPricingState.bottlePrice = 60;
+        modalPricingState.reuseBottle = false;
+
+        // Reset inputs
+        $('#modalReuseBottleCheck').prop('checked', false);
+        $('#modalBottleSavingsAmount').text('60');
+        document.querySelectorAll('.modal-size-btn').forEach((btn, idx) => {
+          if (idx === 0) {
+            btn.classList.add('active');
+            btn.style.color = '#fff';
+            btn.style.border = '1px solid #d4af37';
+            btn.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+          } else {
+            btn.classList.remove('active');
+            btn.style.color = '#aaa';
+            btn.style.border = '1px solid #333';
+            btn.style.boxShadow = 'none';
+          }
+        });
+
+        updateModalPriceDisplay();
       });
     });
+
+    window.changeQty = function (amount) {
+      const input = document.getElementById('modal_qty');
+      if (input) {
+        let val = parseInt(input.value) + amount;
+        if (val < 1) val = 1;
+        input.value = val;
+      }
+    };
+
+
+
+
 
     // Profile Nav Logic
     (function () {
@@ -2012,7 +2240,8 @@
   <!-- Logout Modal -->
   <div class="modal fade" id="logout_modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content" style="background:#0a0a0a; border:1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8);">
+      <div class="modal-content"
+        style="background:#0a0a0a; border:1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8);">
         <div class="modal-body text-center p-5">
           <div
             style="width:80px; height:80px; border-radius:50%; background:rgba(255,77,77,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 25px; border:1px solid rgba(255,77,77,0.2);">

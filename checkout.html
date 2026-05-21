@@ -25,6 +25,25 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link href="css/vendors/aos.css" rel="stylesheet">
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    .order_box .list li a, .order_box .list_2 li a {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      line-height: normal !important;
+      padding: 10px 0 !important;
+      height: auto !important;
+      float: none !important;
+      width: 100% !important;
+    }
+    .order_box .list li a span, .order_box .list_2 li a span {
+      float: none !important;
+      position: static !important;
+      display: inline-block !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -52,11 +71,9 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
                   <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a>
                   </li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -127,92 +144,105 @@
   <!--================Checkout Area =================-->
   <section data-aos="fade-up" data-aos-duration="1000" class="checkout_area section-margin--small">
     <div class="container">
-      <div class="returning_customer">
-        <div class="check_title">
-          <h2>Returning Customer? <a href="javascript:void(0);">Click here to login</a></h2>
+
+      <!-- COUPON AREA -->
+      <div class="cupon_area" id="couponArea" style="display:none; background:#0d0d0d; border:1px solid #2a2a2a; border-radius:10px; padding:20px; margin-bottom:20px;">
+        <div class="check_title" style="margin-bottom:15px;">
+          <h2 style="margin:0; background:transparent; border:none; padding:0; line-height:1.5 !important; color:#d4af37;">Have a coupon?</h2>
         </div>
-        <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
-          customer, please proceed to the Billing & Shipping section.</p>
-        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 form-group p_star">
-            <input type="text" class="form-control" placeholder="Username or Email*" onfocus="this.placeholder=''"
-              onblur="this.placeholder = 'Username or Email*'" id="name" name="name">
-            <!-- <span class="placeholder" data-placeholder="Username or Email"></span> -->
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap; margin-bottom:15px;">
+          <input type="text" id="couponInput" placeholder="Enter coupon code" style="flex:1;min-width:180px; margin:0; background:#000; border:1px solid #333; color:#fff; height:42px; border-radius:4px; padding:0 12px;">
+          <a class="button button-coupon" href="javascript:void(0);" onclick="applyCoupon()" style="height:42px; display:inline-flex; align-items:center; justify-content:center; padding:0 20px; border-radius:4px;">Apply Coupon</a>
+        </div>
+        <p id="couponMsg" style="margin:0 0 10px 0;font-size:13px;"></p>
+        
+        <!-- Available Coupons List -->
+        <div id="availableCouponsContainer" style="margin-top:15px; border-top:1px dashed #333; padding-top:15px;">
+          <h4 style="color:#d4af37; font-size:13px; font-weight:600; margin-bottom:10px;"><i class="fas fa-ticket-alt"></i> Available Coupons:</h4>
+          <div id="availableCouponsList" style="display:flex; gap:10px; flex-wrap:wrap;">
+            <!-- Rendered dynamically -->
           </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 form-group p_star">
-            <input type="password" class="form-control" placeholder="Password*" onfocus="this.placeholder=''"
-              onblur="this.placeholder = 'Password*'" id="password" name="password">
-            <!-- <span class="placeholder" data-placeholder="Password"></span> -->
-          </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-            <button type="submit" value="submit" class="button button-login">login</button>
-            <div class="creat_account">
-              <input type="checkbox" id="f-option" name="selector">
-              <label for="f-option">Remember me</label>
-            </div>
-            <a class="lost_pass" href="javascript:void(0);">Lost your password?</a>
-          </div>
-        </form>
+        </div>
       </div>
-      <div class="cupon_area">
-        <div class="check_title">
-          <h2>Have a coupon? <a href="javascript:void(0);">Click here to enter your code</a></h2>
-        </div>
-        <input type="text" placeholder="Enter coupon code">
-        <a class="button button-coupon" href="javascript:void(0);">Apply Coupon</a>
+      <div class="check_title" id="couponToggle">
+        <h2>Have a coupon? <a href="javascript:void(0);"
+            onclick="document.getElementById('couponArea').style.display='block';document.getElementById('couponToggle').style.display='none';">Click
+            here to enter your code</a></h2>
       </div>
       <div class="billing_details">
         <div class="row">
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-8">
             <h3>Billing Details</h3>
-            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+            <form class="row contact_form" action="#" method="post" novalidate="novalidate" id="billingForm">
+
+              <!-- Saved Address Dropdown Selector -->
+              <div class="col-md-12 form-group" id="savedAddressesContainer" style="display:none; margin-bottom:15px;">
+                <label style="color:#d4af37;font-size:12px;font-weight:600;margin-bottom:4px;display:block;"><i
+                    class="fas fa-address-book"></i> Select Saved Address</label>
+                <select id="savedAddresses" class="form-control ignore-nice-select"
+                  style="background:#0d0d0d;color:#e8dfc8;border:1px solid #2a2a2a;border-radius:4px;height:42px;"></select>
+              </div>
+
+              <!-- Map & Locate Me Section -->
+              <div class="col-md-12 form-group" style="margin-bottom:15px;">
+                <button type="button" class="button" id="locateBtn"
+                  style="background:#d4af37; color:#111; border:none; padding:10px 16px; border-radius:4px; font-weight:bold; width: 100%; display:flex; align-items:center; justify-content:center; gap:8px;">
+                  <i class="fas fa-map-marker-alt"></i> Locate Me & Prefill Address
+                </button>
+                <div id="map-container"
+                  style="margin-top: 12px; border-radius: 6px; border: 1px solid #2a2a2a; overflow: hidden; display: none;">
+                  <div id="checkout-map" style="width: 100%; height: 220px;"></div>
+                </div>
+              </div>
+
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name">
-                <span class="placeholder" data-placeholder="First name"></span>
+                <input type="text" class="form-control" id="first" name="name" placeholder="First name*">
               </div>
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last" name="name">
-                <span class="placeholder" data-placeholder="Last name"></span>
-              </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-                <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+                <input type="text" class="form-control" id="last" name="name" placeholder="Last name*">
               </div>
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number">
-                <span class="placeholder" data-placeholder="Phone number"></span>
+                <input type="text" class="form-control" id="number" name="number" placeholder="Phone number*">
               </div>
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="compemailany">
-                <span class="placeholder" data-placeholder="Email Address"></span>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Email Address*">
               </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group p_star">
-                <select class="country_select">
-                  <option value="1">Country</option>
-                  <option value="2">Country</option>
-                  <option value="4">Country</option>
+
+              <!-- Country Selection -->
+              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 form-group">
+                <label style="color:#aaa;font-size:12px;margin-bottom:4px;display:block;">Country*</label>
+                <select class="form-control ignore-nice-select" id="country"
+                  style="background:#0d0d0d;color:#e8dfc8;border:1px solid #2a2a2a;height:42px;border-radius:3px;">
+                  <option value="India" selected>India</option>
+                  <option value="Bangladesh">Bangladesh</option>
+                  <option value="Pakistan">Pakistan</option>
                 </select>
               </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add1">
-                <span class="placeholder" data-placeholder="Address line 01"></span>
-              </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add2" name="add2">
-                <span class="placeholder" data-placeholder="Address line 02"></span>
-              </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="city" name="city">
-                <span class="placeholder" data-placeholder="Town/City"></span>
-              </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group p_star">
-                <select class="country_select">
-                  <option value="1">District</option>
-                  <option value="2">District</option>
-                  <option value="4">District</option>
+
+              <!-- State Selection -->
+              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 form-group">
+                <label style="color:#aaa;font-size:12px;margin-bottom:4px;display:block;">State*</label>
+                <select class="form-control ignore-nice-select" id="state"
+                  style="background:#0d0d0d;color:#e8dfc8;border:1px solid #2a2a2a;height:42px;border-radius:3px;">
+                  <option value="Maharashtra" selected>Maharashtra</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Karnataka">Karnataka</option>
                 </select>
               </div>
+
+              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add1" name="add1" placeholder="Address Line 1*">
+              </div>
+              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add2" name="add2"
+                  placeholder="Address Line 2 (Area/Locality)">
+              </div>
+              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="city" name="city" placeholder="Town/City*">
+              </div>
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP*">
               </div>
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
                 <div class="creat_account">
@@ -232,50 +262,91 @@
             </form>
           </div>
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-4">
-            <div class="order_box">
-              <h2>Your Order</h2>
-              <ul class="list">
-                <li><a href="javascript:void(0);">
-                    <h4>Product <span>Total</span></h4>
-                  </a></li>
-                <li><a href="javascript:void(0);">Savage Dior <span class="middle">x 01</span> <span class="last">Rs.
-                      399.00</span></a></li>
-                <li><a href="javascript:void(0);">Gucci Flora <span class="middle">x 01</span> <span class="last">Rs.
-                      399.00</span></a></li>
-                <li><a href="javascript:void(0);">Rasassi Hawas <span class="middle">x 01</span> <span class="last">Rs.
-                      399.00</span></a></li>
-              </ul>
-              <ul class="list list_2">
-                <li><a href="javascript:void(0);">Subtotal <span>Rs. 1197.00</span></a></li>
-                <li><a href="javascript:void(0);">Shipping <span>Flat rate: Rs. 50.00</span></a></li>
-                <li><a href="javascript:void(0);">Total <span>Rs. 1247.00</span></a></li>
-              </ul>
-              <div class="payment_item">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option5" name="selector">
-                  <label for="f-option5">Check payments</label>
-                  <div class="check"></div>
+            <div class="order_box" style="background:#0a0a0a;border:1px solid #222;border-radius:14px;padding:28px;">
+              <h2 style="color:#d4af37;font-family:'Cinzel',serif;font-size:20px;margin-bottom:20px;">Your Order</h2>
+
+              <!-- Dynamic Cart Items -->
+              <ul class="list" id="checkout-items-list" style="margin-bottom:0;"></ul>
+
+              <!-- Totals -->
+              <ul class="list list_2" id="checkout-totals" style="margin-top:0;"></ul>
+
+              <!-- ── PAYMENT METHOD ─────────────────── -->
+              <h4 style="color:#d4af37;font-size:13px;letter-spacing:1px;text-transform:uppercase;margin:20px 0 12px;">
+                Payment Method</h4>
+
+              <!-- UPI / QR -->
+              <div class="payment_item" id="pay-upi"
+                style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:10px;padding:16px;margin-bottom:10px;cursor:pointer;"
+                onclick="selectPayment('upi')">
+                <div class="radion_btn" style="display:flex;align-items:center;gap:10px;">
+                  <input type="radio" id="pay-upi-radio" name="paymentMethod" value="UPI" style="accent-color:#d4af37;">
+                  <label for="pay-upi-radio" style="cursor:pointer;font-weight:600;color:#fff;margin:0;"><i
+                      class="fas fa-qrcode" style="color:#d4af37;margin-right:6px;"></i> UPI / QR Payment</label>
                 </div>
-                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
-                  Store Postcode.</p>
-              </div>
-              <div class="payment_item active">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option6" name="selector">
-                  <label for="f-option6">Paypal </label>
-                  <img src="img/product/card.jpg" alt="">
-                  <div class="check"></div>
+                <!-- UPI Details Panel -->
+                <div id="upi-details" style="display:none;margin-top:16px;">
+                  <div style="text-align:center;margin-bottom:14px;">
+                    <img src="img/cart/UPI_qrcode.jfif" alt="UPI QR Code"
+                      style="width:170px;height:170px;border:2px solid #d4af37;border-radius:10px;object-fit:contain;background:#fff;padding:6px;cursor:pointer;"
+                      data-toggle="modal" data-target="#qr_modal">
+                    <p style="color:#d4af37;font-weight:700;font-size:14px;margin:8px 0 2px;">UPI ID: paytmqr6cr29g@ptys</p>
+                    <p style="color:#eee;font-weight:600;font-size:13px;margin:2px 0 8px;">UPI / Phone: 9371833303</p>
+                    <p style="color:#888;font-size:12px;">Scan using any UPI App (GPay, PhonePe, Paytm)</p>
+                  </div>
+                  <div
+                    style="background:#111;border:1px solid #1e1e1e;border-radius:8px;padding:12px;font-size:12px;color:#bbb;line-height:2;">
+                    <div><span style="color:#888;">Account Name:</span> <strong style="color:#fff;">I Rasa
+                        Perfumes</strong></div>
+                    <div><span style="color:#888;">Bank:</span> <strong style="color:#fff;">HDFC Bank</strong></div>
+                    <div><span style="color:#888;">Account No:</span> <strong style="color:#fff;">XXXX XXXX
+                        3303</strong></div>
+                    <div><span style="color:#888;">IFSC:</span> <strong style="color:#fff;">HDFC0001234</strong></div>
+                  </div>
+                  <div style="margin-top:14px;">
+                    <label style="font-size:12px;color:#888;display:block;margin-bottom:6px;">Upload Payment Screenshot
+                      *</label>
+                    <input type="file" id="paymentScreenshot" accept="image/*"
+                      style="width:100%;background:#111;border:1px dashed #d4af37;border-radius:8px;padding:10px;color:#ccc;font-size:12px;cursor:pointer;">
+                    <div id="screenshotPreview" style="display:none;margin-top:10px;text-align:center;"><img
+                        id="screenshotImg" src="" style="max-width:100%;border-radius:8px;border:1px solid #333;"></div>
+                  </div>
+                  <div style="margin-top:10px;">
+                    <label style="font-size:12px;color:#888;display:block;margin-bottom:6px;">Transaction / UTR ID
+                      *</label>
+                    <input type="text" id="transactionId" placeholder="e.g. 4357892031"
+                      style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:10px;color:#fff;font-size:13px;">
+                  </div>
                 </div>
-                <p>Pay via PayPal; you can pay with your credit card if you don�t have a PayPal
-                  account.</p>
               </div>
-              <div class="creat_account">
-                <input type="checkbox" id="f-option4" name="selector">
-                <label for="f-option4">I�ve read and accept the </label>
-                <a href="javascript:void(0);">terms & conditions*</a>
+
+              <!-- Cash on Delivery -->
+              <div class="payment_item" id="pay-cod"
+                style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:10px;padding:16px;margin-bottom:18px;cursor:pointer;"
+                onclick="selectPayment('cod')">
+                <div class="radion_btn" style="display:flex;align-items:center;gap:10px;">
+                  <input type="radio" id="pay-cod-radio" name="paymentMethod" value="COD" style="accent-color:#d4af37;">
+                  <label for="pay-cod-radio" style="cursor:pointer;font-weight:600;color:#fff;margin:0;"><i
+                      class="fas fa-money-bill-wave" style="color:#25d366;margin-right:6px;"></i> Cash on
+                    Delivery</label>
+                </div>
+                <div id="cod-details" style="display:none;margin-top:10px;">
+                  <p style="color:#888;font-size:12px;margin:0;">Pay in cash when your order is delivered. COD available
+                    for orders up to Rs. 2000.</p>
+                </div>
+              </div>
+
+              <!-- T&C + Place Order -->
+              <div class="creat_account" style="margin-bottom:14px;">
+                <input type="checkbox" id="termsCheck" name="selector">
+                <label for="termsCheck" style="font-size:12px;">I've read and accept the </label>
+                <a href="javascript:void(0);" style="color:#d4af37;font-size:12px;">terms &amp; conditions*</a>
               </div>
               <div class="text-center">
-                <a class="button button-paypal" href="javascript:void(0);">Proceed to Paypal</a>
+                <button id="placeOrderBtn" onclick="placeOrder()"
+                  style="width:100%;background:linear-gradient(135deg,#d4af37,#aa8422);color:#000;border:none;padding:14px;border-radius:30px;font-weight:700;font-size:15px;letter-spacing:1px;cursor:pointer;transition:all 0.3s;">Place
+                  Order <i class="fas fa-arrow-right"></i></button>
+                <p id="orderError" style="color:#ff4d4d;font-size:12px;margin-top:8px;display:none;"></p>
               </div>
             </div>
           </div>
@@ -315,7 +386,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="category.html">Shop All</a></li>
                 <li><a href="category.html">Men's Scents</a></li>
-                <li><a href="category.html">Women's Scents</a></li>
+                <li><a href="categoryWomen.html">Women's Scents</a></li>
+                <li><a href="attar.html">Attar Collection</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
@@ -421,6 +493,25 @@
     </div>
   </div>
 
+  <!-- QR CODE QUICK VIEW MODAL -->
+  <div class="modal fade" id="qr_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff;">
+        <div class="modal-header" style="border-bottom: 1px solid #333;">
+          <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif;">UPI QR Code</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center" style="padding:24px;">
+          <img src="img/cart/UPI_qrcode.jfif" alt="UPI QR Code" style="max-width: 250px; height: auto; border: 2px solid #d4af37; border-radius: 10px; background: #fff; padding: 10px; margin-bottom:15px;">
+          <p style="color: #d4af37; font-weight: 700; font-size: 16px; margin: 5px 0;">UPI ID: paytmqr6cr29g@ptys</p>
+          <p style="color: #bbb; font-size: 14px; margin: 5px 0;">UPI / Phone: <strong>9371833303</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
@@ -429,12 +520,501 @@
   <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
   <script src="js/vendors/aos.js"></script>
-
   <script>AOS.init();</script>
-
   <script src="js/auth-guard.js"></script>
+
+  <script>
+    const BASE_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? `http://${window.location.hostname}:8080` : '';
+    const ORDER_API = `${BASE_API}/api/orders`;
+    const COUPON_API = `${BASE_API}/api/coupons`;
+
+    let appliedDiscount = 0;
+    let appliedCouponCode = '';
+    let currentShippingCost = 50;
+    const HANDLING_CHARGE = 7;
+    const PLATFORM_FEE = 5;
+
+    let savedAddressesList = [];
+    let mapInstance = null;
+    let markerInstance = null;
+
+    /* ── Render cart in checkout sidebar ── */
+    /* ── Re-validate coupon on cart updates ── */
+    async function revalidateCoupon() {
+      if (!appliedCouponCode) return;
+      try {
+        const res = await fetch(`${COUPON_API}/validate`, {
+          method: 'POST', credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: appliedCouponCode, cartTotal: CartEngine.getTotal() })
+        });
+        const data = await res.json();
+        if (data.success) {
+          appliedDiscount = data.data.discountAmount || 0;
+        } else {
+          appliedDiscount = 0;
+          appliedCouponCode = '';
+          const msg = document.getElementById('couponMsg');
+          if (msg) {
+            msg.style.color = '#ff4d4d';
+            msg.textContent = `Coupon removed: ${data.message || 'Criteria no longer met.'}`;
+          }
+        }
+      } catch (e) {
+        console.error('Failed to re-validate coupon on cart update', e);
+      }
+    }
+
+    /* ── Load active coupons from database ── */
+    async function loadAvailableCoupons() {
+      const listEl = document.getElementById('availableCouponsList');
+      if (!listEl) return;
+
+      try {
+        const res = await fetch(COUPON_API, { credentials: 'include' });
+        const data = await res.json();
+        if (data.success && data.data && data.data.length > 0) {
+          listEl.innerHTML = data.data.map(c => {
+            const desc = c.discountPercentage 
+              ? `${c.discountPercentage}% OFF` 
+              : `Rs. ${c.discountAmount} OFF`;
+            const minVal = parseFloat(c.minCartValue || 0);
+            const minText = minVal > 0 ? ` (Min. Order: Rs. ${minVal})` : '';
+            return `
+              <div class="coupon-badge" style="background:#000; border:1px solid #d4af37; border-radius:6px; padding:6px 12px; cursor:pointer; transition: transform 0.2s;" onclick="selectCouponCode('${c.code}')" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <strong style="color:#d4af37; font-size:12px;">${c.code}</strong>
+                <div style="font-size:10px; color:#aaa; margin-top:2px;">${desc}${minText}</div>
+              </div>
+            `;
+          }).join('');
+        } else {
+          listEl.innerHTML = '<p style="color:#888; font-size:12px; margin:0;">No coupons available at this moment.</p>';
+        }
+      } catch (e) {
+        console.error('Failed to load coupons:', e);
+        listEl.innerHTML = '<p style="color:#888; font-size:12px; margin:0;">No coupons available at this moment.</p>';
+      }
+    }
+
+    function selectCouponCode(code) {
+      const input = document.getElementById('couponInput');
+      if (input) {
+        input.value = code;
+        applyCoupon();
+      }
+    }
+
+    /* ── Render cart in checkout sidebar ── */
+    function renderCheckoutCart() {
+      const items = CartEngine.getItems();
+      const listEl = document.getElementById('checkout-items-list');
+      const totalEl = document.getElementById('checkout-totals');
+      if (!listEl || !totalEl) return;
+
+      if (items.length === 0) {
+        listEl.innerHTML = '<li style="color:#888;font-size:13px;padding:10px 0;">Your cart is empty. <a href="category.html" style="color:#d4af37;">Shop Now</a></li>';
+        totalEl.innerHTML = '';
+        return;
+      }
+
+      listEl.innerHTML = '<li style="border-bottom:1px solid #333; padding-bottom:8px; margin-bottom:8px;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#d4af37; font-weight:600;"><span>Product</span> <span>Total</span></a></li>' +
+        items.map(i => `<li style="border-bottom:1px solid #111; padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; align-items:center; width:100%; color:#eee;">
+          <div style="display:flex; align-items:center; flex:1; min-width:0; padding-right:10px;">
+            <img src="${i.img || 'img/product/product1.png'}" style="width:40px; height:40px; border-radius:6px; object-fit:cover; margin-right:10px; flex-shrink:0; border:1px solid #d4af37;">
+            <span style="text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#eee;">${i.name}${i.size ? ' (' + i.size + ')' : ''}</span>
+          </div>
+          <span style="color:#888; margin-right:15px; font-size:13px; flex-shrink:0;">x ${i.qty}</span>
+          <span style="color:#eee; font-size:14px; font-weight:500; flex-shrink:0;">Rs. ${(i.price * i.qty).toFixed(2)}</span>
+        </a></li>`).join('');
+
+      // Check Nashik free delivery
+      const cityVal = (document.getElementById('city')?.value || '').trim().toLowerCase();
+      const zipVal = (document.getElementById('zip')?.value || '').trim().toLowerCase();
+      if (cityVal.includes('nashik') || zipVal.includes('42200') || zipVal.includes('42201') || zipVal.includes('42202')) {
+        currentShippingCost = 0;
+      } else {
+        currentShippingCost = 50;
+      }
+
+      const sub = CartEngine.getTotal();
+      const disc = appliedDiscount;
+      const total = Math.max(0, sub - disc) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE;
+
+      totalEl.innerHTML =
+        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Subtotal</span> <span>Rs. ${sub.toFixed(2)}</span></a></li>` +
+        (disc > 0 ? `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#4caf50;"><span>Coupon (${appliedCouponCode})</span> <span>- Rs. ${disc.toFixed(2)}</span></a></li>` : '') +
+        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Shipping</span> <span>${currentShippingCost === 0 ? '<span style="color:#4caf50; font-weight:600;"><i class="fas fa-shipping-fast"></i> Free Nashik Delivery</span>' : 'Rs. ' + currentShippingCost.toFixed(2)}</span></a></li>` +
+        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Handling Charge</span> <span>Rs. ${HANDLING_CHARGE.toFixed(2)}</span></a></li>` +
+        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Platform Fee</span> <span>Rs. ${PLATFORM_FEE.toFixed(2)}</span></a></li>` +
+        `<li style="border-top:1px solid #333; margin-top:8px; padding-top:8px;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#fff; font-size:16px;"><strong>Total</strong> <span style="color:#d4af37; font-size:18px;"><strong>Rs. ${total.toFixed(2)}</strong></span></a></li>`;
+    }
+
+    /* ── Coupon ── */
+    async function applyCoupon() {
+      const code = document.getElementById('couponInput').value.trim();
+      const msg = document.getElementById('couponMsg');
+      if (!code) { msg.style.color = '#ff4d4d'; msg.textContent = 'Please enter a coupon code.'; return; }
+
+      if (appliedCouponCode) {
+        if (appliedCouponCode.toUpperCase() === code.toUpperCase()) {
+          msg.style.color = '#ffd700';
+          msg.innerHTML = `Warning: Coupon "${code.toUpperCase()}" is already applied! <a href="javascript:void(0);" onclick="removeCoupon()" style="color:#ff4d4d; margin-left:10px; text-decoration:underline;">[Remove]</a>`;
+        } else {
+          msg.style.color = '#ff9800';
+          msg.innerHTML = `Warning: Coupon "${appliedCouponCode.toUpperCase()}" is already active. <a href="javascript:void(0);" onclick="removeCoupon()" style="color:#ff4d4d; margin-left:10px; text-decoration:underline;">[Remove]</a>`;
+        }
+        return;
+      }
+
+      try {
+        const res = await fetch(`${COUPON_API}/validate`, {
+          method: 'POST', credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code, cartTotal: CartEngine.getTotal() })
+        });
+        const data = await res.json();
+        if (data.success) {
+          appliedDiscount = data.data.discountAmount || 0;
+          appliedCouponCode = code;
+          sessionStorage.setItem('appliedCouponCode', code);
+          msg.style.color = '#4caf50';
+          msg.innerHTML = `✓ Coupon <strong>${code.toUpperCase()}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <a href="javascript:void(0);" onclick="removeCoupon()" style="color:#ff4d4d; margin-left:10px; text-decoration:underline;">[Remove]</a>`;
+          renderCheckoutCart();
+        } else {
+          msg.style.color = '#ff4d4d';
+          msg.textContent = data.message || 'Invalid coupon code.';
+        }
+      } catch (e) {
+        msg.style.color = '#ff4d4d';
+        msg.textContent = 'Could not validate coupon. Try again.';
+      }
+    }
+
+    function removeCoupon() {
+      appliedDiscount = 0;
+      appliedCouponCode = '';
+      sessionStorage.removeItem('appliedCouponCode');
+      const msg = document.getElementById('couponMsg');
+      if (msg) {
+        msg.style.color = '#fff';
+        msg.textContent = '';
+      }
+      const input = document.getElementById('couponInput');
+      if (input) {
+        input.value = '';
+      }
+      renderCheckoutCart();
+    }
+
+    /* ── Payment selection ── */
+    function selectPayment(method) {
+      document.getElementById('upi-details').style.display = method === 'upi' ? 'block' : 'none';
+      document.getElementById('cod-details').style.display = method === 'cod' ? 'block' : 'none';
+      document.getElementById('pay-upi-radio').checked = method === 'upi';
+      document.getElementById('pay-cod-radio').checked = method === 'cod';
+      document.getElementById('pay-upi').style.borderColor = method === 'upi' ? '#d4af37' : '#2a2a2a';
+      document.getElementById('pay-cod').style.borderColor = method === 'cod' ? '#d4af37' : '#2a2a2a';
+    }
+
+    /* ── Leaflet Geolocation Map Setup ── */
+    function initGeolocatorMap() {
+      const locateBtn = document.getElementById('locateBtn');
+      const mapContainer = document.getElementById('map-container');
+      if (!locateBtn) return;
+
+      locateBtn.addEventListener('click', function () {
+        if (!navigator.geolocation) {
+          alert('Geolocation is not supported by your browser.');
+          return;
+        }
+
+        locateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Getting your location...';
+        navigator.geolocation.getCurrentPosition(
+          async function (position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            mapContainer.style.display = 'block';
+            locateBtn.innerHTML = '<i class="fas fa-check-circle"></i> Geolocated Successfully!';
+
+            // Initialize Leaflet Map
+            if (!mapInstance) {
+              mapInstance = L.map('checkout-map').setView([lat, lon], 15);
+              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+              }).addTo(mapInstance);
+
+              markerInstance = L.marker([lat, lon], { draggable: true }).addTo(mapInstance);
+              markerInstance.on('dragend', function () {
+                const newPos = markerInstance.getLatLng();
+                reverseGeocode(newPos.lat, newPos.lng);
+              });
+            } else {
+              mapInstance.setView([lat, lon], 15);
+              markerInstance.setLatLng([lat, lon]);
+            }
+
+            // Trigger reverse geocoding
+            await reverseGeocode(lat, lon);
+          },
+          function (error) {
+            locateBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Location Access Denied';
+            alert('Could not access your location. Please type your address manually.');
+          },
+          { enableHighAccuracy: true, timeout: 8000 }
+        );
+      });
+    }
+
+    async function reverseGeocode(lat, lon) {
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+        const data = await res.json();
+        if (data && data.address) {
+          const addr = data.address;
+
+          // Autofill Address 1 & 2
+          document.getElementById('add1').value = addr.road || addr.suburb || addr.neighbourhood || data.display_name.split(',')[0];
+          document.getElementById('add2').value = addr.suburb || addr.subdivision || addr.county || '';
+
+          // Town/City
+          const cityField = document.getElementById('city');
+          cityField.value = addr.city || addr.town || addr.village || addr.suburb || '';
+
+          // ZIP Code
+          document.getElementById('zip').value = addr.postcode || '';
+
+          // Country & State (Default to Maharashtra/India if not matching)
+          document.getElementById('country').value = 'India';
+          document.getElementById('state').value = 'Maharashtra';
+
+          // Refresh the checkout cart calculations
+          renderCheckoutCart();
+        }
+      } catch (e) {
+        console.error('Error reverse geocoding address', e);
+      }
+    }
+
+    /* ── DOMContentLoaded Listener ── */
+    document.addEventListener('DOMContentLoaded', async function () {
+      renderCheckoutCart();
+
+      // Load available coupons
+      await loadAvailableCoupons();
+
+      document.addEventListener('cart:updated', async () => {
+        if (appliedCouponCode) {
+          await revalidateCoupon();
+        }
+        renderCheckoutCart();
+      });
+
+      // Listen to city and zip input fields to trigger real-time shipping adjustments
+      document.getElementById('city')?.addEventListener('input', renderCheckoutCart);
+      document.getElementById('zip')?.addEventListener('input', renderCheckoutCart);
+
+      // Initialize dynamic geolocator map
+      initGeolocatorMap();
+
+      // Check for pre-applied coupon
+      const cachedCoupon = sessionStorage.getItem('appliedCouponCode');
+      if (cachedCoupon) {
+        const inputEl = document.getElementById('couponInput');
+        if (inputEl) {
+          inputEl.value = cachedCoupon;
+          await applyCoupon();
+        }
+      }
+
+      // Autofill Profile Info (Name, Email, Phone) and Saved Addresses
+      try {
+        const authRes = await fetch(`${BASE_API}/api/auth/me`, { credentials: 'include' });
+        const authData = await authRes.json();
+        if (authData.success && authData.data) {
+          const user = authData.data;
+          const nameParts = (user.fullName || '').trim().split(' ');
+
+          if (document.getElementById('first')) document.getElementById('first').value = nameParts[0] || '';
+          if (document.getElementById('last')) document.getElementById('last').value = nameParts.slice(1).join(' ') || '';
+          if (document.getElementById('email')) document.getElementById('email').value = user.email || '';
+          if (document.getElementById('number')) document.getElementById('number').value = user.phone || '';
+
+          // Fetch Saved Addresses
+          const addrRes = await fetch(`${BASE_API}/api/profile/addresses`, { credentials: 'include' });
+          const addrData = await addrRes.json();
+          if (addrData.success && addrData.data && addrData.data.length > 0) {
+            savedAddressesList = addrData.data;
+            const container = document.getElementById('savedAddressesContainer');
+            const selectEl = document.getElementById('savedAddresses');
+
+            if (container && selectEl) {
+              container.style.display = 'block';
+              selectEl.innerHTML = '<option value="">-- Choose a Saved Address --</option>' +
+                savedAddressesList.map(a => `<option value="${a.id}">${a.label || 'Address'} (${a.city}): ${a.addressLine1}</option>`).join('');
+
+              selectEl.addEventListener('change', function () {
+                const selectedId = this.value;
+                const address = savedAddressesList.find(a => a.id == selectedId);
+                if (address) {
+                  const firstPart = (address.fullName || '').split(' ')[0] || '';
+                  const lastPart = (address.fullName || '').split(' ').slice(1).join(' ') || '';
+
+                  document.getElementById('first').value = firstPart;
+                  document.getElementById('last').value = lastPart;
+                  document.getElementById('add1').value = address.addressLine1 || '';
+                  document.getElementById('add2').value = address.areaLocality || '';
+                  document.getElementById('city').value = address.city || '';
+                  document.getElementById('zip').value = address.pincode || '';
+                  document.getElementById('country').value = 'India';
+                  document.getElementById('state').value = 'Maharashtra';
+
+                  renderCheckoutCart();
+                }
+              });
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Error fetching user info/saved addresses', e);
+      }
+
+      // Handle custom file upload screenshot preview
+      const fileInput = document.getElementById('paymentScreenshot');
+      if (fileInput) {
+        fileInput.addEventListener('change', function () {
+          const file = this.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = e => {
+            document.getElementById('screenshotImg').src = e.target.result;
+            document.getElementById('screenshotPreview').style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+    });
+
+    /* ── Place Order ── */
+    async function placeOrder() {
+      const errEl = document.getElementById('orderError');
+      errEl.style.display = 'none';
+
+      if (!document.getElementById('termsCheck').checked) {
+        errEl.textContent = 'Please accept the terms & conditions.'; errEl.style.display = 'block'; return;
+      }
+
+      const payMethod = document.querySelector('input[name="paymentMethod"]:checked');
+      if (!payMethod) { errEl.textContent = 'Please select a payment method.'; errEl.style.display = 'block'; return; }
+
+      const items = CartEngine.getItems();
+      if (items.length === 0) { errEl.textContent = 'Your cart is empty.'; errEl.style.display = 'block'; return; }
+
+      const billing = {
+        firstName: document.getElementById('first').value.trim(),
+        lastName: document.getElementById('last').value.trim(),
+        phone: document.getElementById('number').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        address1: document.getElementById('add1').value.trim(),
+        address2: document.getElementById('add2').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        zip: document.getElementById('zip').value.trim()
+      };
+
+      if (!billing.firstName || !billing.phone || !billing.email || !billing.address1 || !billing.city || !billing.zip) {
+        errEl.textContent = 'Please fill all required billing fields.'; errEl.style.display = 'block'; return;
+      }
+
+      const btn = document.getElementById('placeOrderBtn');
+      btn.disabled = true; btn.textContent = 'Placing Order...';
+
+      try {
+        let paymentProofUrl = null;
+
+        /* Upload screenshot if UPI */
+        if (payMethod.value === 'UPI') {
+          const txnId = document.getElementById('transactionId').value.trim();
+          const file = document.getElementById('paymentScreenshot').files[0];
+          if (!file || !txnId) {
+            errEl.textContent = 'Please upload payment screenshot and enter Transaction ID for UPI payment.';
+            errEl.style.display = 'block'; btn.disabled = false; btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; return;
+          }
+          const fd = new FormData();
+          fd.append('file', file);
+          fd.append('transactionId', txnId);
+          const upRes = await fetch(`${ORDER_API}/payment-proof`, { method: 'POST', credentials: 'include', body: fd });
+          const upData = await upRes.json();
+          if (!upData.success) throw new Error(upData.message || 'Upload failed');
+          paymentProofUrl = upData.data.url;
+        }
+
+        const total = Math.max(0, CartEngine.getTotal() - appliedDiscount) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE;
+
+        const orderPayload = {
+          items: items.map(i => ({ productId: i.id, name: i.name, price: i.price, qty: i.qty, size: i.size || null })),
+          billing,
+          paymentMethod: payMethod.value,
+          paymentProofUrl,
+          transactionId: payMethod.value === 'UPI' ? document.getElementById('transactionId').value.trim() : null,
+          couponCode: appliedCouponCode || null,
+          discount: appliedDiscount,
+          shipping: currentShippingCost,
+          total: total
+        };
+
+        const res = await fetch(ORDER_API, {
+          method: 'POST', credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          // If logged in, automatically save address to the address book if it isn't already saved
+          try {
+            const isAlreadySaved = savedAddressesList.some(a =>
+              a.addressLine1 === billing.address1 &&
+              a.city === billing.city &&
+              a.pincode === billing.zip
+            );
+            if (!isAlreadySaved) {
+              await fetch(`${BASE_API}/api/profile/addresses`, {
+                method: 'POST', credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  label: 'Home',
+                  fullName: billing.firstName + ' ' + billing.lastName,
+                  addressLine1: billing.address1,
+                  areaLocality: billing.address2 || '',
+                  city: billing.city,
+                  pincode: billing.zip
+                })
+              });
+            }
+          } catch (errAddr) {
+            console.error('Failed to auto-save address to user profile:', errAddr);
+          }
+
+           CartEngine.clear();
+          sessionStorage.removeItem('appliedCouponCode');
+          window.location.href = `confirmation.html?orderId=${data.data.orderId}`;
+        } else {
+          throw new Error(data.message || 'Order placement failed');
+        }
+      } catch (e) {
+        errEl.textContent = e.message || 'Something went wrong. Please try again.';
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>';
+      }
+    }
+  </script>
 </body>
 
 </html>

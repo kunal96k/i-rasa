@@ -23,6 +23,145 @@
 
 	<link rel="stylesheet" href="css/style.css">
 	<link href="css/vendors/aos.css" rel="stylesheet">
+	<style>
+		/* Custom Premium Product Cards Styling */
+		.mens-product-card {
+			background: #111;
+			border: 1.5px solid #d4af37;
+			border-radius: 12px;
+			overflow: hidden;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			margin-bottom: 30px;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+
+		.mens-product-card:hover {
+			box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+		}
+
+		.mens-product-card .card-img-area {
+			background: #fff;
+			height: 250px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.mens-product-card .card-img-area img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.5s;
+		}
+
+		.mens-product-card:hover .card-img-area img {
+			transform: scale(1.1);
+		}
+
+		.mens-product-card .overlay-actions {
+			position: absolute;
+			inset: 0;
+			background: rgba(255, 255, 255, 0.1);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 15px;
+			opacity: 0;
+			transition: all 0.3s ease;
+			backdrop-filter: blur(2px);
+		}
+
+		.mens-product-card:hover .overlay-actions {
+			opacity: 1;
+		}
+
+		.mens-product-card .overlay-actions button {
+			width: 45px;
+			height: 45px;
+			border-radius: 4px;
+			border: none;
+			background: rgba(184, 184, 255, 0.8);
+			color: #fff;
+			font-size: 18px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease;
+		}
+
+		.mens-product-card .overlay-actions button:hover {
+			background: #d4af37;
+			color: #000;
+		}
+
+		.mens-product-card .card-body-area {
+			padding: 25px 20px;
+			background: #111;
+			text-align: center;
+			flex-grow: 1;
+		}
+
+		.mens-product-card .scent-category {
+			font-size: 13px;
+			color: #888;
+			margin-bottom: 8px;
+			text-transform: capitalize;
+		}
+
+		.mens-product-card .product-title {
+			font-family: 'Cinzel', serif;
+			font-size: 20px;
+			font-weight: 800;
+			color: #d4af37;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			margin-bottom: 20px;
+		}
+
+		.mens-product-card .price-row {
+			display: block;
+			margin-top: 10px;
+		}
+
+		.mens-product-card .price {
+			font-size: 24px;
+			font-weight: 700;
+			color: #eee;
+			display: block;
+		}
+
+		.badge-bestseller {
+			position: absolute;
+			top: 12px;
+			left: 12px;
+			background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%) !important;
+			color: #000 !important;
+			font-weight: 800;
+			font-size: 10px;
+			padding: 6px 14px;
+			border-radius: 20px;
+			z-index: 10;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+		}
+
+		.stars {
+			color: #d4af37;
+			margin-bottom: 12px;
+			font-size: 14px;
+		}
+	</style>
 </head>
 
 <body>
@@ -50,11 +189,9 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
                   <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a>
                   </li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -129,7 +266,7 @@
 				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-6">
 					<div class="owl-carousel owl-theme s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.avif" alt="">
+							<img id="mainProductImg" class="img-fluid" src="img/category/s-p1.avif" alt="">
 						</div>
 						<!-- <div class="single-prd-item">
 							<img class="img-fluid" src="img/category/s-p1.avif" alt="">
@@ -140,33 +277,57 @@
 					</div>
 				</div>
 				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-5 offset-lg-1">
-					<div class="s_product_text">
-						<h3>Savage Dior</h3>
-						<h2>Rs. 399.00</h2>
+						<div class="s_product_text">
+						<h3 id="productTitle">Savage Dior</h3>
+						<h2 id="productPrice">Rs. 399.00</h2>
 						<ul class="list">
-							<li><a class="active" href="javascript:void(0);"><span>Category</span> : Men's Scents</a>
+							<li><a class="active" href="javascript:void(0);"><span>Category</span> : <span id="productCategory">Men's Scents</span></a>
 							</li>
-							<li><a href="javascript:void(0);"><span>Availibility</span> : In Stock</a></li>
+							<li><a href="javascript:void(0);"><span>Availibility</span> : <span id="productAvailability">In Stock</span></a></li>
+							<li><a href="javascript:void(0);"><span style="color: #d4af37;"><i class="fas fa-history"></i> Longevity</span> : <span style="font-weight:bold; color:#fff;">Guaranteed 7-8 Hours (Long Lasting)</span></a></li>
 						</ul>
-						<p>Experience the essence of luxury with our signature collection. Crafted for those who
+						<p id="productDesc">Experience the essence of luxury with our signature collection. Crafted for those who
 							appreciate the finer things in life, our fragrances blend modern innovation with traditional
 							heritage to create scents that are truly unforgettable.</p>
-						<div class="product_count">
-							<label for="qty">Quantity:</label>
-							<button
-								onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-								class="increase items-count" type="button"><i class="ti-angle-left"></i></button>
-							<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:"
-								class="input-text qty">
-							<button
-								onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-								class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
-							<a class="button primary-btn" href="javascript:void(0);">Add to Cart</a>
-							<a class="button" href="javascript:void(0);" onclick="AuthGuard.requireAuth(() => window.location.href='checkout.html')" style="margin-left:10px; background:linear-gradient(135deg, #d4af37, #aa8422); color:#000; border:none;">Buy Now</a>
+
+						<!-- Dynamic Bottle Sizing Selector -->
+						<div class="bottle-size-selector-wrap mb-4" style="margin-top: 20px;">
+							<span style="color: #d4af37; font-size: 14px; font-weight: 700; display: block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Select Bottle Size:</span>
+							<div class="d-flex" style="gap: 12px; flex-wrap: wrap;">
+								<button class="btn size-btn-select active" onclick="selectSingleSize(50, 60, this)" style="background: #111; color: #fff; border: 1px solid #d4af37; border-radius: 25px; padding: 8px 20px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 10px rgba(212,175,55,0.2);">50ml (+₹60)</button>
+								<button class="btn size-btn-select" onclick="selectSingleSize(100, 120, this)" style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 25px; padding: 8px 20px; font-weight: bold; transition: all 0.3s; outline: none;">100ml (+₹120)</button>
+								<button class="btn size-btn-select" onclick="selectSingleSize(150, 180, this)" style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 25px; padding: 8px 20px; font-weight: bold; transition: all 0.3s; outline: none;">150ml (+₹180)</button>
+							</div>
+						</div>
+
+						<!-- Eco-Friendly Return Checkbox -->
+						<div class="eco-offer-box p-3 mb-4" style="background: rgba(212, 175, 55, 0.05); border: 1px dashed #d4af37; border-radius: 8px; margin-top: 15px; max-width: 450px;">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="reuseBottleCheck" onchange="toggleReuseSingleBottle()">
+								<label class="custom-control-label" for="reuseBottleCheck" style="color: #fff; font-weight: bold; cursor: pointer; font-size: 13px;">
+									♻️ Return/Bring Same Bottle? (Save Bottle Price!)
+								</label>
+							</div>
+							<small style="color: #aaa; display: block; margin-top: 5px; margin-left: 20px;">
+								Check this to receive ₹<span id="bottleSavingsAmount">60</span> off your order when you bring or return a compatible bottle!
+							</small>
+						</div>
+
+						<div class="d-flex align-items-center flex-wrap" style="gap: 15px; margin-top: 25px; margin-bottom: 25px;">
+							<div class="d-flex align-items-center" style="gap: 12px;">
+								<span style="color: #888; font-size: 14px; font-weight: 500;">Quantity:</span>
+								<div class="product_count" style="margin-right: 0 !important; margin-bottom: 0 !important;">
+									<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+									<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="ti-angle-left"></i></button>
+									<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
+								</div>
+							</div>
+							<a class="button primary-btn" href="javascript:void(0);" onclick="addToCartFromSingle()" style="height: 40px; line-height: 40px; padding: 0 30px; border-radius: 4px; background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; display: inline-block; border: none; text-decoration: none;">Add to Cart</a>
+							<a class="button" href="javascript:void(0);" onclick="buyNowFromSingle()" style="height: 40px; line-height: 40px; padding: 0 30px; border-radius: 4px; background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; display: inline-block; border: none; text-decoration: none;">Buy Now</a>
 						</div>
 						<div data-aos="zoom-in" data-aos-duration="800" class="card_area d-flex align-items-center">
 							<a class="icon_btn" href="javascript:void(0);"><i class="lnr lnr lnr-diamond"></i></a>
-							<a class="icon_btn" href="javascript:void(0);"><i class="lnr lnr lnr-heart"></i></a>
+							<a class="icon_btn" id="main_wishlist_btn" href="javascript:void(0);" onclick="WishlistEngine.toggle({ id: document.getElementById('productTitle').textContent.trim(), name: document.getElementById('productTitle').textContent.trim(), img: document.getElementById('mainProductImg')?.getAttribute('src') || 'img/product/product1.png', price: parseInt(document.getElementById('productPrice')?.textContent.replace(/[^\d]/g, '')) || 399 })"><i class="ti-heart"></i></a>
 						</div>
 					</div>
 				</div>
@@ -388,9 +549,7 @@
 									<div class="rating_list">
 										<h3>Based on 3 Reviews</h3>
 										<ul class="list">
-											<li><a href="javascript:void(0);">5 Star <i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i><i
-														class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+											<li><a href="javascript:void(0);">5 Star <div class="stars d-inline-flex"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div> 01</a></li>
 											<li><a href="javascript:void(0);">4 Star <i class="fa fa-star"></i><i
 														class="fa fa-star"></i><i class="fa fa-star"></i><i
 														class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
@@ -415,11 +574,13 @@
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+											<div class="stars">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+											</div>
 										</div>
 									</div>
 									<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
@@ -433,11 +594,13 @@
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+											<div class="stars">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+											</div>
 										</div>
 									</div>
 									<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
@@ -451,11 +614,13 @@
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+											<div class="stars">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+											</div>
 										</div>
 									</div>
 									<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
@@ -468,13 +633,18 @@
 							<div class="review_box">
 								<h4>Add a Review</h4>
 								<p>Your Rating:</p>
-								<ul class="list">
-									<li><a href="javascript:void(0);"><i class="fa fa-star"></i></a></li>
-									<li><a href="javascript:void(0);"><i class="fa fa-star"></i></a></li>
-									<li><a href="javascript:void(0);"><i class="fa fa-star"></i></a></li>
-									<li><a href="javascript:void(0);"><i class="fa fa-star"></i></a></li>
-									<li><a href="javascript:void(0);"><i class="fa fa-star"></i></a></li>
-								</ul>
+								<div class="rating">
+									<input type="radio" id="star5" name="rate" value="5" />
+									<label for="star5" title="5 stars"></label>
+									<input type="radio" id="star4" name="rate" value="4" />
+									<label for="star4" title="4 stars"></label>
+									<input type="radio" id="star3" name="rate" value="3" />
+									<label for="star3" title="3 stars"></label>
+									<input type="radio" id="star2" name="rate" value="2" />
+									<label for="star2" title="2 stars"></label>
+									<input type="radio" id="star1" name="rate" value="1" checked />
+									<label for="star1" title="1 star"></label>
+								</div>
 								<p>Outstanding</p>
 								<form action="#/" class="form-contact form-review mt-3">
 									<div class="form-group">
@@ -511,113 +681,157 @@
 	<section data-aos="fade-up" data-aos-duration="1000" class="related-product-area section-margin--small mt-0">
 		<div class="container">
 			<div class="section-intro pb-60px">
-				<p>Popular Item in the market</p>
-				<h2>Top <span class="section-intro__style">Product</span></h2>
+				<p>Popular Items in Nasik</p>
+				<h2>Top <span class="section-intro__style">Products</span></h2>
 			</div>
 			<div class="row mt-30">
-				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
-					class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-					<div class="single-search-product-wrapper">
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-1.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Savage Dior</a>
-								<div class="price">Rs. 399.00</div>
+				<!-- Dior Savage -->
+				<div class="col-sm-6 col-lg-4 col-xl-3 mb-4 mb-xl-0" data-aos="zoom-in" data-aos-delay="100">
+					<div class="mens-product-card">
+						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
+						<div class="card-img-area" style="background:#fff;">
+							<img src="img/product/product1.png" alt="Dior Savage" class="perfume-img">
+							<div class="overlay-actions">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Dior Savage" data-price="Rs. 399" data-img="img/product/product1.png">
+									<i class="ti-search"></i>
+								</button>
+								<button title="Add to Cart" onclick="addToCart('Dior Savage')">
+									<i class="ti-shopping-cart"></i>
+								</button>
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Dior Savage', 'img/product/product1.png', 399)">
+									<i class="ti-heart"></i>
+								</button>
 							</div>
 						</div>
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-2.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gucci Flora</a>
-								<div class="price">Rs. 399.00</div>
+						<div class="card-body-area">
+							<div>
+								<p class="scent-category">Men's Perfume · Luxury</p>
+								<h4 class="product-title">Dior Savage</h4>
+								<div class="stars">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<span>(120+)</span>
+								</div>
 							</div>
-						</div>
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-3.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Rasassi Hawas</a>
-								<div class="price">Rs. 399.00</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
-					class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-					<div class="single-search-product-wrapper">
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-4.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
-							</div>
-						</div>
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-5.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
-							</div>
-						</div>
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-6.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+							<div class="price-row">
+								<span class="price">Rs. 399/-</span>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
-					class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-					<div class="single-search-product-wrapper">
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-7.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+				<!-- Gucci Flora -->
+				<div class="col-sm-6 col-lg-4 col-xl-3 mb-4 mb-xl-0" data-aos="zoom-in" data-aos-delay="200">
+					<div class="mens-product-card">
+						<span class="badge-bestseller" style="background: linear-gradient(135deg, #ff4d94 0%, #ff0066 100%) !important;"><i class="fas fa-gem"></i> Premium</span>
+						<div class="card-img-area" style="background:#fff;">
+							<img src="img/product/product2.png" alt="Gucci Flora" class="perfume-img">
+							<div class="overlay-actions">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Gucci Flora" data-price="Rs. 399" data-img="img/product/product2.png">
+									<i class="ti-search"></i>
+								</button>
+								<button title="Add to Cart" onclick="addToCart('Gucci Flora')">
+									<i class="ti-shopping-cart"></i>
+								</button>
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Gucci Flora', 'img/product/product2.png', 399)">
+									<i class="ti-heart"></i>
+								</button>
 							</div>
 						</div>
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-8.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+						<div class="card-body-area">
+							<div>
+								<p class="scent-category">Women's Perfume · Floral</p>
+								<h4 class="product-title">Gucci Flora</h4>
+								<div class="stars">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<span>(148+)</span>
+								</div>
 							</div>
-						</div>
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-9.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+							<div class="price-row">
+								<span class="price">Rs. 399/-</span>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
-					class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-					<div class="single-search-product-wrapper">
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-1.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+				<!-- Creed Avantes -->
+				<div class="col-sm-6 col-lg-4 col-xl-3 mb-4 mb-xl-0" data-aos="zoom-in" data-aos-delay="300">
+					<div class="mens-product-card">
+						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
+						<div class="card-img-area" style="background:#fff;">
+							<img src="img/product/product3.png" alt="Creed Avantes" class="perfume-img">
+							<div class="overlay-actions">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes" data-price="Rs. 399" data-img="img/product/product3.png">
+									<i class="ti-search"></i>
+								</button>
+								<button title="Add to Cart" onclick="addToCart('Creed Avantes')">
+									<i class="ti-shopping-cart"></i>
+								</button>
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Creed Avantes', 'img/product/product3.png', 399)">
+									<i class="ti-heart"></i>
+								</button>
 							</div>
 						</div>
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-2.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+						<div class="card-body-area">
+							<div>
+								<p class="scent-category">Men's Perfume · Rich Woody</p>
+								<h4 class="product-title">Creed Avantes</h4>
+								<div class="stars">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<span>(156+)</span>
+								</div>
+							</div>
+							<div class="price-row">
+								<span class="price">Rs. 399/-</span>
 							</div>
 						</div>
-						<div class="single-search-product d-flex">
-							<a href="javascript:void(0);"><img src="img/product/product-sm-3.png" alt=""></a>
-							<div class="desc">
-								<a href="javascript:void(0);" class="title">Gray Coffee Cup</a>
-								<div class="price">Rs. 170.00</div>
+					</div>
+				</div>
+
+				<!-- Rasassi Hawas -->
+				<div class="col-sm-6 col-lg-4 col-xl-3 mb-4 mb-xl-0" data-aos="zoom-in" data-aos-delay="400">
+					<div class="mens-product-card">
+						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
+						<div class="card-img-area" style="background:#fff;">
+							<img src="img/product/product4.png" alt="Rasassi Hawas" class="perfume-img">
+							<div class="overlay-actions">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas" data-price="Rs. 399" data-img="img/product/product4.png">
+									<i class="ti-search"></i>
+								</button>
+								<button title="Add to Cart" onclick="addToCart('Rasassi Hawas')">
+									<i class="ti-shopping-cart"></i>
+								</button>
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Rasassi Hawas', 'img/product/product4.png', 399)">
+									<i class="ti-heart"></i>
+								</button>
+							</div>
+						</div>
+						<div class="card-body-area">
+							<div>
+								<p class="scent-category">Men's Perfume · Marine Fresh</p>
+								<h4 class="product-title">Rasassi Hawas</h4>
+								<div class="stars">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<span>(210+)</span>
+								</div>
+							</div>
+							<div class="price-row">
+								<span class="price">Rs. 399/-</span>
 							</div>
 						</div>
 					</div>
@@ -659,7 +873,8 @@
 								<li><a href="index.html">Home</a></li>
 								<li><a href="category.html">Shop All</a></li>
 								<li><a href="category.html">Men's Scents</a></li>
-								<li><a href="category.html">Women's Scents</a></li>
+								<li><a href="categoryWomen.html">Women's Scents</a></li>
+								<li><a href="attar.html">Attar Collection</a></li>
 								<li><a href="contact.html">Contact Us</a></li>
 							</ul>
 						</div>
@@ -733,38 +948,87 @@
 
 	<!-- PRODUCT QUICK VIEW MODAL -->
 	<div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-			<div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff;">
-				<div class="modal-header" style="border-bottom: 1px solid #333;">
-					<h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif;">Product Quick View
-					</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
-						<span aria-hidden="true">&times;</span>
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="margin-top: 90px !important; margin-bottom: 50px !important;">
+			<div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden;">
+				<div class="modal-header" style="border-bottom: 1px solid #333; padding: 20px 30px;">
+					<h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px;">Product Quick View</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; opacity: 1; outline: none;">
+						<span aria-hidden="true" style="font-size: 28px;">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" style="padding: 40px 30px;">
 					<div class="row">
 						<div class="col-md-6">
-							<img src="img/product/product1.png" class="img-fluid rounded" id="modal_img" alt="Perfume">
+							<div class="modal-img-wrap"
+								style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
+								<img src="img/product/product1.png" class="img-fluid" id="modal_img" alt="Perfume"
+									style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
+							</div>
 						</div>
 						<div class="col-md-6">
-							<h2 id="modal_title"
-								style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme</h2>
-							<p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
+							<h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px; font-weight: 700;">Oud Supreme</h2>
+							<p class="price" id="modal_price" style="font-size: 24px; color: #ffd700; font-weight: bold; margin-bottom: 15px;">Rs. 299</p>
 							<div class="rating mb-3">
-								<i class="fas fa-star" style="color: #ffd700;"></i>
-								<i class="fas fa-star" style="color: #ffd700;"></i>
-								<i class="fas fa-star" style="color: #ffd700;"></i>
-								<i class="fas fa-star" style="color: #ffd700;"></i>
-								<i class="fas fa-star" style="color: #ffd700;"></i>
-								<span class="ml-2">(120+ Reviews)</span>
+								<div class="stars">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<span>(120+ Reviews)</span>
+								</div>
 							</div>
-							<p style="color: #b0a58a;">A deep, mysterious fragrance crafted from the finest ingredients.
-								Long-lasting and intense.</p>
-							<div class="d-flex mt-4">
-								<input type="number" class="form-control mr-2" value="1"
-									style="width: 70px; background: #111; border: 1px solid #333; color: #fff;">
-								<button class="button button--active" style="width: 100%;">Add to Cart</button>
+							<p style="color: #b0a58a; line-height: 1.6; font-size: 14px; margin-bottom: 25px;">A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for evening elegance.</p>
+							
+							<!-- Premium Longevity Detail -->
+							<div style="margin-top: -15px; margin-bottom: 20px; font-weight: bold; color: #d4af37; font-size: 13px;">
+								<i class="fas fa-history"></i> Longevity: Guaranteed 7-8 Hours Trail
+							</div>
+
+							<!-- Dynamic Bottle Sizing Selector -->
+							<div class="bottle-size-selector-wrap mb-4" style="margin-top: 15px;">
+								<span style="color: #d4af37; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Select Bottle Size:</span>
+								<div class="d-flex" style="gap: 10px; flex-wrap: wrap;">
+									<button class="btn modal-size-btn active" onclick="selectModalSize(50, 60, this)" style="background: #111; color: #fff; border: 1px solid #d4af37; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 8px rgba(212,175,55,0.2);">50ml (+₹60)</button>
+									<button class="btn modal-size-btn" onclick="selectModalSize(100, 120, this)" style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">100ml (+₹120)</button>
+									<button class="btn modal-size-btn" onclick="selectModalSize(150, 180, this)" style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">150ml (+₹180)</button>
+								</div>
+							</div>
+
+							<!-- Eco-Friendly Return Checkbox -->
+							<div class="eco-offer-box p-3 mb-4" style="background: rgba(212, 175, 55, 0.05); border: 1px dashed #d4af37; border-radius: 8px; margin-top: 10px;">
+								<div class="custom-control custom-checkbox" style="display: flex; align-items: center; gap: 8px; padding-left: 0;">
+									<input type="checkbox" id="modalReuseBottleCheck" onchange="toggleReuseModalBottle()" style="accent-color: #d4af37; cursor: pointer; width: 16px; height: 16px; margin: 0;">
+									<label for="modalReuseBottleCheck" style="color: #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin: 0; user-select: none;">
+										♻️ Return/Bring Same Bottle next time (Save Bottle Price!)
+									</label>
+								</div>
+								<small style="color: #aaa; display: block; margin-top: 3px; font-size: 11px; margin-left: 24px;">
+									Receive ₹<span id="modalBottleSavingsAmount">60</span> off when you bring or return a compatible bottle!
+								</small>
+							</div>
+
+							<!-- Dynamic Action Row (Qty Picker + Add to Cart + Wishlist) -->
+							<div class="d-flex align-items-center mb-4 flex-wrap" style="gap: 15px;">
+								<div class="quantity-picker"
+									style="display: flex; align-items: center; background: #111; border: 1px solid #333; border-radius: 25px; padding: 5px 15px; margin-right: 0;">
+									<button onclick="changeQty(-1)"
+										style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">-</button>
+									<input type="number" id="modal_qty" value="1" readonly
+										style="width: 40px; background: transparent; border: none; color: #fff; text-align: center; font-weight: bold; font-size: 16px; -moz-appearance: textfield; margin: 0; outline: none;">
+									<button onclick="changeQty(1)"
+										style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">+</button>
+								</div>
+								
+								<button onclick="addToCartModal()" class="button button--active"
+									style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 12px 25px; font-weight: bold; flex-grow: 1; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; outline: none; text-transform: uppercase;">
+									<i class="fas fa-shopping-cart"></i> Add to Cart
+								</button>
+								
+								<button onclick="toggleWishlistFromModal()" id="modal_wishlist_btn" class="button"
+									style="background: #111; color: #d4af37; border: 1px solid #333; border-radius: 50%; width: 48px; height: 48px; padding: 0; font-size: 18px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; outline: none;">
+									<i class="far fa-heart"></i>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -783,10 +1047,45 @@
 	<script src="vendors/mail-script.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/vendors/aos.js"></script>
+	<script src="js/cart.js"></script>
 	<script src="js/auth-guard.js"></script>
 	<script>AOS.init();</script>
 
 	<script>
+		// Unified Product Catalog (Men, Women, Attars)
+		const ProductCatalog = [
+			// Men
+			{ name: "Savage Dior", category: "Men's Scents", price: 399, img: "img/product/1 (1).jpg", desc: "A raw and noble composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot." },
+			{ name: "Dev. Cool Water", category: "Men's Scents", price: 399, img: "img/product/1 (2).jpg", desc: "A fresh and sharp, simple and very masculine fragrance. Top notes include mint and green nuances, lavender, coriander and rosemary." },
+			{ name: "Rasassi Hawas", category: "Men's Scents", price: 399, img: "img/product/1 (3).jpg", desc: "Blends cinnamon, bergamot, orange blossom, grey amber and sandalwood to create an aquatic scent designed to embody masculine strength." },
+			{ name: "Donhill Red", category: "Men's Scents", price: 399, img: "img/product/1 (4).jpg", desc: "A warm, woody and spicy fragrance that captures the essence of classic sophistication and modern style." },
+			{ name: "Donhill Icon", category: "Men's Scents", price: 399, img: "img/product/1 (5).jpg", desc: "The perfect expression of natural refinement, a translation of the luxurious and classic heritage of the house." },
+			{ name: "C R 7", category: "Men's Scents", price: 399, img: "img/product/1 (6).jpg", desc: "An active fragrance for men who want to live life with passion and confidence, inspired by Cristiano Ronaldo." },
+			{ name: "Creed Avantes", category: "Men's Scents", price: 399, img: "img/product/1 (7).jpg", desc: "The exceptional Aventus was inspired by the dramatic life of a historic emperor, celebrating strength, power and success." },
+			{ name: "Creed Silver Mountain Water", category: "Men's Scents", price: 399, img: "img/product/1 (8).jpg", desc: "Captures the purity and freshness of the Swiss Alps, crisp and sparkling with green tea and blackcurrants." },
+			{ name: "Rasassi Hawas Ice", category: "Men's Scents", price: 399, img: "img/product/1 (9).jpg", desc: "An icy, fresh aquatic masterpiece that is highly invigorating and keeps you smelling crisp all day." },
+			{ name: "Hugo Boss", category: "Men's Scents", price: 399, img: "img/product/1 (10).jpg", desc: "Sharp and confident woody fragrance with fresh green notes and rich base tones for the modern leader." },
+			{ name: "Rasassi Royal Blue", category: "Men's Scents", price: 399, img: "img/product/1 (11).jpg", desc: "A premium floral woody fragrance for men that expresses dynamic energy, masculine strength, and lasting confidence." },
+			{ name: "Arabic Tonka", category: "Men's Scents", price: 399, img: "img/product/1 (12).jpg", desc: "An exceptionally rich, sweet woody fragrance capturing traditional Arabic essence with a modern luxury twist." },
+
+			// Women
+			{ name: "GUCCI FLORA", category: "Women's Scents", price: 399, img: "img/product/2 (1).jpg", desc: "An elegant, feminine fragrance designed for the modern woman who embraces her beauty and grace." },
+			{ name: "GUCCI BLOOM", category: "Women's Scents", price: 399, img: "img/product/2 (2).jpg", desc: "Designed to celebrate the authenticity, vitality and diversity of women—flourishing in a natural, expressive and individual way." },
+			{ name: "WHITE LONDON", category: "Women's Scents", price: 399, img: "img/product/2 (3).jpg", desc: "A light, clean and sophisticated fragrance inspired by the fresh spring mornings of London." },
+			{ name: "RASASSI HAWAS", category: "Women's Scents", price: 399, img: "img/product/2 (4).jpg", desc: "An elegant and refreshing floral-fruity scent designed to capture the vibrant spirit of modern women." },
+			{ name: "DEV. COOL WATER", category: "Women's Scents", price: 399, img: "img/product/2 (5).jpg", desc: "A beautiful, fresh aquatic fragrance that brings peace, calm and ocean freshness to your day." },
+			{ name: "SHANYA", category: "Women's Scents", price: 399, img: "img/product/2 (6).jpg", desc: "An exclusive sweet and sensual blend that leaves a memorable trail of premium luxury." },
+
+			// Attars
+			{ name: "Musk a tahara", category: "Attar · Musk", price: 200, img: "img/product/2 (13).jpg", desc: "A thick, white concentrated oil with a clean, powdery, soapy, and long-lasting fresh aroma." },
+			{ name: "Whtie sandel", category: "Attar · Traditional", price: 200, img: "img/product/2 (14).jpg", desc: "Pure white sandalwood concentrated attar. Rich, creamy, warm, and deeply traditional." },
+			{ name: "Mhaisur sandal", category: "Attar · Traditional", price: 200, img: "img/product/2 (15).jpg", desc: "Premium Mysore Sandalwood concentrated oil. Known for its ultra-luxurious, woody, and meditative aroma." },
+			{ name: "Kevd", category: "Attar · Traditional", price: 150, img: "img/product/2 (16).jpg", desc: "Distilled from the flowers of the screw pine, delivering a sweet, floral, and deeply cooling traditional scent." },
+			{ name: "Kesharchandan", category: "Attar · Traditional", price: 200, img: "img/product/2 (17).jpg", desc: "A magnificent blend of pure saffron (keshar) and rich sandalwood oil. Royal, warm, and highly aromatic." },
+			{ name: "Musk rose", category: "Attar · Musk", price: 150, img: "img/product/2 (18).jpg", desc: "A soft, beautiful combination of pure deer musk undercurrents with sweet fresh garden rose oils." },
+			{ name: "Black ROSE", category: "Attar · Traditional", price: 150, img: "img/product/2 (19).jpg", desc: "Deep, intense, spicy dark rose attar oil, conveying the ultimate fragrance of traditional Orient." }
+		];
+
 		(function () {
 			var saved = localStorage.getItem('irasa_profile');
 			if (saved) {
@@ -799,6 +1098,444 @@
 				}
 			}
 		})();
+
+		// Dynamic Loader
+		document.addEventListener('DOMContentLoaded', () => {
+			const params = new URLSearchParams(window.location.search);
+			const nameParam = params.get('name');
+			
+			if (nameParam) {
+				const decodedName = decodeURIComponent(nameParam);
+				let prod = ProductCatalog.find(p => p.name.toLowerCase() === decodedName.toLowerCase());
+				
+				if (!prod) {
+					// Dynamic Fallback Generator for new or dynamic items
+					const nameLower = decodedName.toLowerCase();
+					const isAttar = nameLower.includes('musk') || 
+					                nameLower.includes('sandel') || 
+					                nameLower.includes('sandal') || 
+					                nameLower.includes('oud') || 
+					                nameLower.includes('rose') || 
+					                nameLower.includes('heena') || 
+					                nameLower.includes('lemon') || 
+					                nameLower.includes('cigar') || 
+					                nameLower.includes('coffee') || 
+					                nameLower.includes('jasmine') || 
+					                nameLower.includes('lavender') || 
+					                nameLower.includes('ajmeri') || 
+					                nameLower.includes('kevd') || 
+					                nameLower.includes('belpaan') || 
+					                nameLower.includes('tahara') ||
+					                nameLower.includes('555');
+
+					const isWomen = nameLower.includes('flora') || 
+					                nameLower.includes('bloom') || 
+					                nameLower.includes('white') || 
+					                nameLower.includes('shanya') || 
+					                nameLower.includes('light');
+					
+					let category = "Men's Premium Scents";
+					let price = 399;
+					let img = "img/product/product1.png";
+					
+					if (isAttar) {
+						category = "Attar · Concentrated";
+						price = nameLower.includes('premium') || nameLower.includes('tahara') || nameLower.includes('sandel') || nameLower.includes('sandal') ? 200 : 150;
+						// Deterministic image index for fallback
+						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+						const imgIdx = (hash % 10) + 1;
+						img = `img/product/1 (${imgIdx}).jpg`;
+					} else if (isWomen) {
+						category = "Women's Premium Scents";
+						price = 399;
+						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+						const imgIdx = (hash % 6) + 1;
+						img = `img/product/2 (${imgIdx}).jpg`;
+					} else {
+						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+						const imgIdx = (hash % 12) + 1;
+						img = `img/product/1 (${imgIdx}).jpg`;
+					}
+					
+					prod = {
+						name: decodedName,
+						category: category,
+						price: price,
+						img: img,
+						desc: "An exclusive, high-grade fragrance masterpiece meticulously blended from our premium collections for an exceptionally long-lasting trail."
+					};
+				}
+				
+				// Update DOM elements dynamically
+				document.getElementById('productTitle').textContent = prod.name;
+				document.getElementById('productCategory').textContent = prod.category;
+				document.getElementById('productDesc').textContent = prod.desc;
+				
+				const imgEl = document.getElementById('mainProductImg');
+				if (imgEl) {
+					imgEl.src = prod.img;
+					imgEl.alt = prod.name;
+				}
+				
+				// Update breadcrumb
+				const breadcrumb = document.querySelector('.banner-breadcrumb .active');
+				if (breadcrumb) {
+					breadcrumb.textContent = prod.name;
+				}
+
+				// Initialize dynamic pricing engine state
+				singleProductState.basePrice = prod.price;
+				singleProductState.img = prod.img;
+				updateSingleProductPriceDisplay();
+			}
+		});
+
+		// Pricing engine state for single-product
+		var singleProductState = {
+			basePrice: 399,
+			selectedSize: 50,
+			bottlePrice: 60,
+			reuseBottle: false,
+			img: 'img/product/1 (1).jpg'
+		};
+
+		function selectSingleSize(size, bPrice, el) {
+			singleProductState.selectedSize = size;
+			singleProductState.bottlePrice = bPrice;
+
+			// Highlight active button
+			document.querySelectorAll('.size-btn-select').forEach(btn => {
+				btn.classList.remove('active');
+				btn.style.color = '#aaa';
+				btn.style.border = '1px solid #333';
+				btn.style.boxShadow = 'none';
+			});
+			el.classList.add('active');
+			el.style.color = '#fff';
+			el.style.border = '1px solid #d4af37';
+			el.style.boxShadow = '0 0 10px rgba(212,175,55,0.2)';
+
+			// Update bottle savings amount display
+			document.getElementById('bottleSavingsAmount').textContent = bPrice;
+
+			updateSingleProductPriceDisplay();
+		}
+
+		function toggleReuseSingleBottle() {
+			singleProductState.reuseBottle = document.getElementById('reuseBottleCheck').checked;
+			updateSingleProductPriceDisplay();
+		}
+
+		function updateSingleProductPriceDisplay() {
+			var finalPrice = singleProductState.basePrice + (singleProductState.reuseBottle ? 0 : singleProductState.bottlePrice);
+			document.getElementById('productPrice').textContent = 'Rs. ' + finalPrice.toFixed(2);
+		}
+
+		async function addToCartFromSingle() {
+			if (!AuthGuard.currentUser) {
+				await AuthGuard.init();
+			}
+			if (!AuthGuard.currentUser) {
+				CartEngine._showToast('✕ Please login first to add items to cart!');
+				setTimeout(() => {
+					window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
+				}, 1500);
+				return;
+			}
+
+			const name = document.querySelector('.s_product_text h3').textContent.trim();
+			const qty = parseInt(document.getElementById('sst').value) || 1;
+			const finalPrice = singleProductState.basePrice + (singleProductState.reuseBottle ? 0 : singleProductState.bottlePrice);
+
+			CartEngine.add({
+				id: name,
+				name: name,
+				img: singleProductState.img,
+				price: finalPrice,
+				size: singleProductState.selectedSize + 'ml',
+				reuseBottle: singleProductState.reuseBottle,
+				bottlePrice: singleProductState.bottlePrice,
+				bottlePriceDiscount: singleProductState.reuseBottle ? singleProductState.bottlePrice : 0
+			}, qty);
+		}
+
+		function buyNowFromSingle() {
+			AuthGuard.requireAuth(() => {
+				const name = document.querySelector('.s_product_text h3').textContent.trim();
+				const qty = parseInt(document.getElementById('sst').value) || 1;
+				const finalPrice = singleProductState.basePrice + (singleProductState.reuseBottle ? 0 : singleProductState.bottlePrice);
+
+				CartEngine.add({
+					id: name,
+					name: name,
+					img: singleProductState.img,
+					price: finalPrice,
+					size: singleProductState.selectedSize + 'ml',
+					reuseBottle: singleProductState.reuseBottle,
+					bottlePrice: singleProductState.bottlePrice,
+					bottlePriceDiscount: singleProductState.reuseBottle ? singleProductState.bottlePrice : 0
+				}, qty);
+				
+				window.location.href = 'checkout.html';
+			});
+		}
+
+		// ----------------------------------------------------
+		// Related Cards & Unified Modal Scripts
+		// ----------------------------------------------------
+		var modalPricingState = {
+			basePrice: 399,
+			selectedSize: 50,
+			bottlePrice: 60,
+			reuseBottle: false
+		};
+
+		function selectModalSize(size, bPrice, el) {
+			modalPricingState.selectedSize = size;
+			modalPricingState.bottlePrice = bPrice;
+
+			// Highlight active button
+			document.querySelectorAll('.modal-size-btn').forEach(btn => {
+				btn.classList.remove('active');
+				btn.style.color = '#aaa';
+				btn.style.border = '1px solid #333';
+				btn.style.boxShadow = 'none';
+			});
+			el.classList.add('active');
+			el.style.color = '#fff';
+			el.style.border = '1px solid #d4af37';
+			el.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+
+			// Update savings amount display
+			document.getElementById('modalBottleSavingsAmount').textContent = bPrice;
+
+			updateModalPriceDisplay();
+		}
+
+		function toggleReuseModalBottle() {
+			modalPricingState.reuseBottle = document.getElementById('modalReuseBottleCheck').checked;
+			updateModalPriceDisplay();
+		}
+
+		function updateModalPriceDisplay() {
+			var finalPrice = modalPricingState.basePrice + (modalPricingState.reuseBottle ? 0 : modalPricingState.bottlePrice);
+			$('#modal_price').text('Rs. ' + finalPrice.toFixed(2));
+		}
+
+		$(document).ready(function () {
+			$('[data-target="#product_modal"]').click(function () {
+				var btn = $(this);
+				var title = btn.data('title');
+				var priceVal = btn.data('price') || "Rs. 399";
+				var img = btn.data('img');
+				var desc = btn.data('desc') || "A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for evening elegance.";
+				
+				$('#modal_title').text(title);
+				$('#modal_img').attr('src', img);
+				$('#modal_qty').val(1); // reset qty to 1
+				$('.modal-body p:not(.price):not(.eco-offer-box p)').text(desc);
+
+				// Initialize modal pricing state
+				var basePrice = parseInt(priceVal.replace(/[^\d]/g, '')) || 399;
+				modalPricingState.basePrice = basePrice;
+				modalPricingState.selectedSize = 50;
+				modalPricingState.bottlePrice = 60;
+				modalPricingState.reuseBottle = false;
+
+				// Reset inputs
+				$('#modalReuseBottleCheck').prop('checked', false);
+				$('#modalBottleSavingsAmount').text('60');
+				document.querySelectorAll('.modal-size-btn').forEach((btn, idx) => {
+					if (idx === 0) {
+						btn.classList.add('active');
+						btn.style.color = '#fff';
+						btn.style.border = '1px solid #d4af37';
+						btn.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+					} else {
+						btn.classList.remove('active');
+						btn.style.color = '#aaa';
+						btn.style.border = '1px solid #333';
+						btn.style.boxShadow = 'none';
+					}
+				});
+
+				updateModalPriceDisplay();
+				updateModalWishlistBtn();
+			});
+		});
+
+		window.changeQty = function(amount) {
+			const input = document.getElementById('modal_qty');
+			if (input) {
+				let val = parseInt(input.value) + amount;
+				if (val < 1) val = 1;
+				input.value = val;
+			}
+		};
+
+		window.updateModalWishlistBtn = function() {
+			const name = document.getElementById('modal_title').textContent.trim();
+			const btn = document.getElementById('modal_wishlist_btn');
+			if (!btn) return;
+			
+			const inWishlist = WishlistEngine.has(name);
+			if (inWishlist) {
+				btn.style.background = 'rgba(255, 77, 77, 0.15)';
+				btn.style.color = '#ff4d4d';
+				btn.style.border = '1px solid rgba(255, 77, 77, 0.3)';
+				btn.innerHTML = '<i class="fas fa-heart"></i>';
+			} else {
+				btn.style.background = '#111';
+				btn.style.color = '#d4af37';
+				btn.style.border = '1px solid #333';
+				btn.innerHTML = '<i class="far fa-heart"></i>';
+			}
+		};
+
+		window.toggleWishlistFromModal = function() {
+			const name = document.getElementById('modal_title').textContent.trim();
+			const img = document.getElementById('modal_img').getAttribute('src') || 'img/product/product1.png';
+			const priceText = document.getElementById('modal_price').textContent;
+			const price = parseInt(priceText.replace(/[^\d]/g, '')) || 399;
+			
+			WishlistEngine.toggle({
+				id: name,
+				name: name,
+				img: img,
+				price: price
+			});
+			
+			updateModalWishlistBtn();
+		};
+
+		async function addToCartModal() {
+			if (!AuthGuard.currentUser) {
+				await AuthGuard.init();
+			}
+			
+			if (!AuthGuard.currentUser) {
+				CartEngine._showToast('✕ Please login first to add items to cart!');
+				setTimeout(() => {
+					window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
+				}, 1500);
+				return;
+			}
+
+			var name = document.getElementById('modal_title').innerText.trim();
+			var qty = parseInt(document.getElementById('modal_qty').value) || 1;
+			var img = document.getElementById('modal_img').getAttribute('src') || 'img/product/product1.png';
+			
+			var finalPrice = modalPricingState.basePrice + (modalPricingState.reuseBottle ? 0 : modalPricingState.bottlePrice);
+			var size = modalPricingState.selectedSize + 'ml';
+			var reuseBottle = modalPricingState.reuseBottle;
+			var bottlePrice = modalPricingState.bottlePrice;
+			var bottlePriceDiscount = modalPricingState.reuseBottle ? modalPricingState.bottlePrice : 0;
+
+			CartEngine.add({
+				id: name,
+				name: name,
+				img: img,
+				price: finalPrice,
+				size: size,
+				reuseBottle: reuseBottle,
+				bottlePrice: bottlePrice,
+				bottlePriceDiscount: bottlePriceDiscount
+			}, qty);
+
+			$('#product_modal').modal('hide');
+		}
+
+		async function addToCart(name) {
+			if (!AuthGuard.currentUser) {
+				await AuthGuard.init();
+			}
+			if (!AuthGuard.currentUser) {
+				CartEngine._showToast('✕ Please login first to add items to cart!');
+				setTimeout(() => {
+					window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
+				}, 1500);
+				return;
+			}
+			// Default 50ml perfume + ₹60 bottle price
+			const finalPrice = 399 + 60;
+			let img = 'img/product/product1.png';
+			if (name === 'Gucci Flora') img = 'img/product/product2.png';
+			if (name === 'Creed Avantes') img = 'img/product/product3.png';
+			if (name === 'Rasassi Hawas') img = 'img/product/product4.png';
+
+			CartEngine.add({
+				id: name,
+				name: name,
+				img: img,
+				price: finalPrice,
+				size: '50ml',
+				reuseBottle: false,
+				bottlePrice: 60,
+				bottlePriceDiscount: 0
+			}, 1);
+		}
+
+		window.toggleWishlistCard = function(name, img, price) {
+			WishlistEngine.toggle({
+				id: name,
+				name: name,
+				img: img,
+				price: price
+			});
+		};
+
+		// --- Programmatic Wishlist Highlights & Sync ---
+		function updateWishlistHighlights() {
+			if (typeof WishlistEngine === 'undefined') return;
+
+			// 1. Update Main Product Wishlist Button
+			const mainTitleEl = document.getElementById('productTitle');
+			const mainBtn = document.getElementById('main_wishlist_btn');
+			if (mainTitleEl && mainBtn) {
+				const mainTitle = mainTitleEl.textContent.trim();
+				const mainIcon = mainBtn.querySelector('i');
+				if (mainIcon) {
+					if (WishlistEngine.has(mainTitle)) {
+						mainIcon.className = 'fas fa-heart';
+						mainBtn.style.color = '#ff6b6b';
+					} else {
+						mainIcon.className = 'ti-heart';
+						mainBtn.style.color = '';
+					}
+				}
+			}
+
+			// 2. Update Related Products Hearts
+			document.querySelectorAll('.mens-product-card').forEach(card => {
+				const searchBtn = card.querySelector('button[data-target="#product_modal"]');
+				if (!searchBtn) return;
+				const title = searchBtn.getAttribute('data-title');
+				if (!title) return;
+
+				const buttons = card.querySelectorAll('.overlay-actions button');
+				if (buttons.length >= 3) {
+					const heartBtn = buttons[2];
+					const icon = heartBtn.querySelector('i');
+					if (icon) {
+						if (WishlistEngine.has(title)) {
+							icon.className = 'fas fa-heart';
+							heartBtn.style.color = '#ff6b6b';
+						} else {
+							icon.className = 'ti-heart';
+							heartBtn.style.color = '';
+						}
+					}
+				}
+			});
+
+			// 3. Update Modal Wishlist Button
+			if (typeof updateModalWishlistBtn === 'function') {
+				updateModalWishlistBtn();
+			}
+		}
+
+		document.addEventListener('wishlist:updated', updateWishlistHighlights);
+		document.addEventListener('DOMContentLoaded', updateWishlistHighlights);
 	</script>
 </body>
 

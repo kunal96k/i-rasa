@@ -3,7 +3,9 @@
  * Handles real-time authentication checks and UI updates across all pages.
  */
 
-const AUTH_API_BASE = 'http://localhost:8080/api/auth';
+const AUTH_API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? `http://${window.location.hostname}:8080/api/auth` 
+      : '/api/auth';
 const STORAGE_KEY_USER = 'rasa_user';
 
 const AuthGuard = {
@@ -16,6 +18,12 @@ const AuthGuard = {
         const path = window.location.pathname;
         const page = path.split("/").pop();
 
+        // Guest optimization: skip redundant fetch to prevent 401 console warnings
+        if (localStorage.getItem('irasa_logged_in') !== 'true') {
+            this.handleUnauthenticated(page);
+            return;
+        }
+
         try {
             const res = await fetch(`${AUTH_API_BASE}/me`, { credentials: 'include' });
             if (res.ok) {
@@ -23,11 +31,24 @@ const AuthGuard = {
                 if (data.success) {
                     this.currentUser = data.data;
                     sessionStorage.setItem(STORAGE_KEY_USER, JSON.stringify(this.currentUser));
+                    localStorage.setItem('irasa_logged_in', 'true');
+                    // Scope the cart to this specific user
+                    if (typeof CartEngine !== 'undefined') {
+                        CartEngine.setUser(this.currentUser.id || this.currentUser.email);
+                    }
+                    if (typeof WishlistEngine !== 'undefined') {
+                        await WishlistEngine.syncGuestWishlist();
+                        await WishlistEngine.loadFromDatabase();
+                    }
                     this.updateNav(true);
                 } else {
+                    localStorage.setItem('irasa_logged_in', 'false');
+                    if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
                     this.handleUnauthenticated(page);
                 }
             } else {
+                localStorage.setItem('irasa_logged_in', 'false');
+                if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
                 this.handleUnauthenticated(page);
             }
         } catch (error) {
@@ -36,8 +57,17 @@ const AuthGuard = {
             const cached = sessionStorage.getItem(STORAGE_KEY_USER);
             if (cached) {
                 this.currentUser = JSON.parse(cached);
+                if (typeof CartEngine !== 'undefined') {
+                    CartEngine.setUser(this.currentUser.id || this.currentUser.email);
+                }
+                if (typeof WishlistEngine !== 'undefined') {
+                    await WishlistEngine.syncGuestWishlist();
+                    await WishlistEngine.loadFromDatabase();
+                }
                 this.updateNav(true);
             } else {
+                localStorage.setItem('irasa_logged_in', 'false');
+                if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
                 this.handleUnauthenticated(page);
             }
         }
@@ -49,6 +79,7 @@ const AuthGuard = {
     handleUnauthenticated(page) {
         this.currentUser = null;
         sessionStorage.removeItem(STORAGE_KEY_USER);
+        localStorage.setItem('irasa_logged_in', 'false');
         this.updateNav(false);
 
         const protectedPages = ['profile.html', 'checkout.html', 'confirmation.html', 'cart.html'];
@@ -80,16 +111,24 @@ const AuthGuard = {
         if (isAuthenticated && this.currentUser) {
             // User is logged in
             if (navImg && navIcon) {
-                const profileData = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
-                if (profileData.img) {
-                    navImg.src = profileData.img;
+                // Check if currentUser has the profile image from API
+                if (this.currentUser.profileImageUrl) {
+                    navImg.src = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:8080` : '') + this.currentUser.profileImageUrl;
                     navImg.style.display = 'block';
                     navIcon.style.display = 'none';
                 } else {
-                    navImg.style.display = 'none';
-                    navIcon.style.display = 'block';
-                    navIcon.className = 'ti-user';
-                    navIcon.style.color = '#d4af37';
+                    // Try fallback to irasa_profile if not in session yet
+                    const profileData = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
+                    if (profileData.img) {
+                        navImg.src = profileData.img;
+                        navImg.style.display = 'block';
+                        navIcon.style.display = 'none';
+                    } else {
+                        navImg.style.display = 'none';
+                        navIcon.style.display = 'block';
+                        navIcon.className = 'ti-user';
+                        navIcon.style.color = '#d4af37';
+                    }
                 }
             }
             navLink.href = 'profile.html';
@@ -129,7 +168,10 @@ const AuthGuard = {
         try {
             await fetch(`${AUTH_API_BASE}/logout`, { method: 'POST', credentials: 'include' });
         } catch (e) {}
+        // Reset cart to guest scope before clearing session
+        if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
         sessionStorage.removeItem(STORAGE_KEY_USER);
+        localStorage.setItem('irasa_logged_in', 'false');
         window.location.href = 'index.html';
     }
 };

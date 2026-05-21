@@ -115,12 +115,10 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
                   <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a>
 
                   </li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -456,8 +454,6 @@
       </div>
     </section>
     <!-- ================ trending product section end ================= -->
-
-
 
     <!-- ================ footer section start ================= -->
     <section data-aos="fade-up" data-aos-duration="1000" class="offer" id="parallax-1" data-anchor-target="#parallax-1"
@@ -804,7 +800,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="category.html">Shop All</a></li>
                 <li><a href="category.html">Men's Scents</a></li>
-                <li><a href="category.html">Women's Scents</a></li>
+                <li><a href="categoryWomen.html">Women's Scents</a></li>
+                <li><a href="attar.html">Attar Collection</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
@@ -871,15 +868,15 @@
 
   <!-- PRODUCT QUICK VIEW MODAL -->
   <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff;">
-        <div class="modal-header" style="border-bottom: 1px solid #333;">
-          <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif;">Product Quick View</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
-            <span aria-hidden="true">&times;</span>
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="margin-top: 90px !important; margin-bottom: 50px !important;">
+      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden;">
+        <div class="modal-header" style="border-bottom: 1px solid #333; padding: 20px 30px;">
+          <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px;">Product Quick View</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; opacity: 1; outline: none;">
+            <span aria-hidden="true" style="font-size: 28px;">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="padding: 40px 30px;">
           <div class="row">
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
               <div class="modal-img-wrap"
@@ -889,9 +886,8 @@
               </div>
             </div>
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
-              <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
-              </h2>
-              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
+              <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px; font-weight: 700;">Oud Supreme</h2>
+              <p class="price" id="modal_price" style="font-size: 24px; color: #ffd700; font-weight: bold; margin-bottom: 15px;">Rs. 299</p>
               <div class="rating mb-3">
                 <div class="stars">
                   <i class="fas fa-star"></i>
@@ -902,23 +898,57 @@
                   <span>(120+ Reviews)</span>
                 </div>
               </div>
-              <p style="color: #b0a58a;">A deep, mysterious fragrance crafted from the finest agarwood. Long-lasting and
-                intense, perfect for evening elegance.</p>
-              <div class="d-flex mt-4 align-items-center">
-                <div class="quantity-picker"
-                  style="display: flex; align-items: center; background: #111; border: 1px solid #333; border-radius: 30px; margin-right: 15px; padding: 2px 10px;">
-                  <button onclick="changeQty(-1)"
-                    style="background: transparent; border: none; color: #d4af37; padding: 8px; cursor: pointer; outline: none;"><i
-                      class="fas fa-minus"></i></button>
-                  <input type="number" id="modal_qty" value="1" min="1"
-                    style="width: 45px; text-align: center; background: transparent; border: none; color: #fff; font-weight: bold; -moz-appearance: textfield;">
-                  <button onclick="changeQty(1)"
-                    style="background: transparent; border: none; color: #d4af37; padding: 8px; cursor: pointer; outline: none;"><i
-                      class="fas fa-plus"></i></button>
+              <p style="color: #b0a58a; line-height: 1.6; font-size: 14px; margin-bottom: 25px;">A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for evening elegance.</p>
+              
+              <!-- Premium Longevity Detail -->
+              <div style="margin-top: -15px; margin-bottom: 20px; font-weight: bold; color: #d4af37; font-size: 13px;">
+                <i class="fas fa-history"></i> Longevity: Guaranteed 7-8 Hours Trail
+              </div>
+
+              <!-- Dynamic Bottle Sizing Selector -->
+              <div class="bottle-size-selector-wrap mb-4" style="margin-top: 15px;">
+                <span style="color: #d4af37; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Select Bottle Size:</span>
+                <div class="d-flex" style="gap: 10px; flex-wrap: wrap;">
+                  <button class="btn modal-size-btn active" onclick="selectModalSize(50, 60, this)" style="background: #111; color: #fff; border: 1px solid #d4af37; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 8px rgba(212,175,55,0.2);">50ml (+₹60)</button>
+                  <button class="btn modal-size-btn" onclick="selectModalSize(100, 120, this)" style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">100ml (+₹120)</button>
+                  <button class="btn modal-size-btn" onclick="selectModalSize(150, 180, this)" style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">150ml (+₹180)</button>
                 </div>
-                <button class="button button--active"
-                  style="flex-grow: 1; border-radius: 30px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;"
-                  onclick="addToCartModal()">Add to Cart</button>
+              </div>
+
+              <!-- Eco-Friendly Return Checkbox -->
+              <div class="eco-offer-box p-3 mb-4" style="background: rgba(212, 175, 55, 0.05); border: 1px dashed #d4af37; border-radius: 8px; margin-top: 10px;">
+                <div class="custom-control custom-checkbox" style="display: flex; align-items: center; gap: 8px; padding-left: 0;">
+                  <input type="checkbox" id="modalReuseBottleCheck" onchange="toggleReuseModalBottle()" style="accent-color: #d4af37; cursor: pointer; width: 16px; height: 16px; margin: 0;">
+                  <label for="modalReuseBottleCheck" style="color: #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin: 0; user-select: none;">
+                    ♻️ Return/Bring Same Bottle next time (Save Bottle Price!)
+                  </label>
+                </div>
+                <small style="color: #aaa; display: block; margin-top: 3px; font-size: 11px; margin-left: 24px;">
+                  Receive ₹<span id="modalBottleSavingsAmount">60</span> off when you bring or return a compatible bottle!
+                </small>
+              </div>
+
+              <!-- Dynamic Action Row (Qty Picker + Add to Cart + Wishlist) -->
+              <div class="d-flex align-items-center mb-4 flex-wrap" style="gap: 15px;">
+                <div class="quantity-picker"
+                  style="display: flex; align-items: center; background: #111; border: 1px solid #333; border-radius: 25px; padding: 5px 15px; margin-right: 0;">
+                  <button onclick="changeQty(-1)"
+                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">-</button>
+                  <input type="number" id="modal_qty" value="1" readonly
+                    style="width: 40px; background: transparent; border: none; color: #fff; text-align: center; font-weight: bold; font-size: 16px; -moz-appearance: textfield; margin: 0; outline: none;">
+                  <button onclick="changeQty(1)"
+                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">+</button>
+                </div>
+                
+                <button onclick="addToCartModal()" class="button button--active"
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 12px 25px; font-weight: bold; flex-grow: 1; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; outline: none; text-transform: uppercase;">
+                  <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+                
+                <button onclick="toggleWishlistFromModal()" id="modal_wishlist_btn" class="button"
+                  style="background: #111; color: #d4af37; border: 1px solid #333; border-radius: 50%; width: 48px; height: 48px; padding: 0; font-size: 18px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; outline: none;">
+                  <i class="far fa-heart"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -926,87 +956,189 @@
       </div>
     </div>
   </div>
-
-  <button id="scroll-top" title="Go to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- ================ product_modal start ================= -->
-  <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content" style="background:#0a0a0a; border:1px solid #d4af37; color:#fff; border-radius:15px;">
-        <div class="modal-header" style="border-bottom:1px solid #222;">
-          <h5 class="modal-title" style="color:#d4af37;">Product Preview</h5>
-          <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>
-        </div>
-        <div class="modal-body p-4">
-          <div class="row">
-            <div class="col-md-6">
-              <img id="modal_img" src="" class="img-fluid rounded" alt="Product">
-            </div>
-            <div class="col-md-6">
-              <h2 id="modal_title" style="color:#d4af37; font-family:'Cinzel', serif;"></h2>
-              <p id="modal_price" style="font-size:24px; color:#ffd700;"></p>
-              <div class="stars mb-3">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star"></i>
-                <span>(120+ Reviews)</span>
-              </div>
-              <p style="color:#bbb;">Premium fragrance with long-lasting effect. Handcrafted for a luxury experience.
-              </p>
-              <button
-                onclick="if(window.addToCart) addToCart($('#modal_title').text()); $('#product_modal').modal('hide')"
-                class="btn btn-block"
-                style="background:linear-gradient(135deg,#d4af37,#aa8422); color:#000; font-weight:700; border-radius:30px; padding:12px;">
-                ADD TO CART
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ================ product_modal end ================= -->
 
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
   <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
+  <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
   <script src="js/vendors/aos.js"></script>
   <script>AOS.init({ once: true });</script>
 
   <script>
+    // Modal pricing state
+    var modalPricingState = {
+      basePrice: 399,
+      selectedSize: 50,
+      bottlePrice: 60,
+      reuseBottle: false
+    };
+
+    function selectModalSize(size, bPrice, el) {
+      modalPricingState.selectedSize = size;
+      modalPricingState.bottlePrice = bPrice;
+
+      // Highlight active button
+      document.querySelectorAll('.modal-size-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.color = '#aaa';
+        btn.style.border = '1px solid #333';
+        btn.style.boxShadow = 'none';
+      });
+      el.classList.add('active');
+      el.style.color = '#fff';
+      el.style.border = '1px solid #d4af37';
+      el.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+
+      // Update savings amount display
+      document.getElementById('modalBottleSavingsAmount').textContent = bPrice;
+
+      updateModalPriceDisplay();
+    }
+
+    function toggleReuseModalBottle() {
+      modalPricingState.reuseBottle = document.getElementById('modalReuseBottleCheck').checked;
+      updateModalPriceDisplay();
+    }
+
+    function updateModalPriceDisplay() {
+      var finalPrice = modalPricingState.basePrice + (modalPricingState.reuseBottle ? 0 : modalPricingState.bottlePrice);
+      $('#modal_price').text('Rs. ' + finalPrice.toFixed(2));
+    }
+
     $(document).ready(function () {
-      // Modal Population
       $('[data-target="#product_modal"]').click(function () {
         var btn = $(this);
+        var title = btn.data('title');
+        var priceVal = btn.data('price') || "Rs. 399";
         var img = btn.data('img');
-        var desc = btn.data('desc') || "A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for any occasion.";
+        var desc = btn.data('desc') || "A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for evening elegance.";
+        
+        $('#modal_title').text(title);
+        $('#modal_img').attr('src', img);
+        $('#modal_qty').val(1); // reset qty to 1
+        $('.modal-body p:not(.price)').text(desc);
 
-        if (title) $('#modal_title').text(title);
-        if (price) $('#product_modal .price').text(price);
-        if (img) $('#modal_img').attr('src', img);
-        if (desc) $('#product_modal .modal-body p:not(.price)').text(desc);
+        // Initialize modal pricing state
+        var basePrice = parseInt(priceVal.replace(/[^\d]/g, '')) || 399;
+        modalPricingState.basePrice = basePrice;
+        modalPricingState.selectedSize = 50;
+        modalPricingState.bottlePrice = 60;
+        modalPricingState.reuseBottle = false;
 
-        // Reset quantity when modal opens
-        $('#modal_qty').val(1);
+        // Reset inputs
+        $('#modalReuseBottleCheck').prop('checked', false);
+        $('#modalBottleSavingsAmount').text('60');
+        document.querySelectorAll('.modal-size-btn').forEach((btn, idx) => {
+          if (idx === 0) {
+            btn.classList.add('active');
+            btn.style.color = '#fff';
+            btn.style.border = '1px solid #d4af37';
+            btn.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+          } else {
+            btn.classList.remove('active');
+            btn.style.color = '#aaa';
+            btn.style.border = '1px solid #333';
+            btn.style.boxShadow = 'none';
+          }
+        });
+
+        updateModalPriceDisplay();
       });
     });
 
-    function changeQty(amt) {
-      var el = document.getElementById('modal_qty');
-      var val = parseInt(el.value) + amt;
-      if (val < 1) val = 1;
-      el.value = val;
-    }
+    window.changeQty = function(amount) {
+      const input = document.getElementById('modal_qty');
+      if (input) {
+        let val = parseInt(input.value) + amount;
+        if (val < 1) val = 1;
+        input.value = val;
+      }
+    };
 
-    function addToCartModal() {
-      var title = document.getElementById('modal_title').innerText;
-      var qty = document.getElementById('modal_qty').value;
-      showToast('Added ' + qty + ' x ' + title + ' to cart!');
+
+
+    async function addToCartModal() {
+      if (!AuthGuard.currentUser) {
+        await AuthGuard.init();
+      }
+      
+      if (!AuthGuard.currentUser) {
+        CartEngine._showToast('✕ Please login first to add items to cart!');
+        setTimeout(() => {
+          window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
+        }, 1500);
+        return;
+      }
+
+      var name = document.getElementById('modal_title').innerText.trim();
+      var qty = parseInt(document.getElementById('modal_qty').value) || 1;
+      var img = document.getElementById('modal_img').getAttribute('src') || 'img/product/product1.png';
+      
+      var finalPrice = modalPricingState.basePrice + (modalPricingState.reuseBottle ? 0 : modalPricingState.bottlePrice);
+      var size = modalPricingState.selectedSize + 'ml';
+      var reuseBottle = modalPricingState.reuseBottle;
+      var bottlePrice = modalPricingState.bottlePrice;
+      var bottlePriceDiscount = modalPricingState.reuseBottle ? modalPricingState.bottlePrice : 0;
+
+      CartEngine.add({
+        id: name,
+        name: name,
+        img: img,
+        price: finalPrice,
+        size: size,
+        reuseBottle: reuseBottle,
+        bottlePrice: bottlePrice,
+        bottlePriceDiscount: bottlePriceDiscount
+      }, qty);
+
       $('#product_modal').modal('hide');
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wire up grid buttons
+      document.querySelectorAll('.card-product').forEach(card => {
+        const searchBtn = card.querySelector('button[data-target="#product_modal"]');
+        if (!searchBtn) return;
+        const title = searchBtn.getAttribute('data-title');
+        const priceText = searchBtn.getAttribute('data-price') || "Rs. 399";
+        const img = searchBtn.getAttribute('data-img') || "img/product/product1.png";
+        const basePrice = parseInt(priceText.replace(/[^\d]/g, '')) || 399;
+
+        const buttons = card.querySelectorAll('.card-product__imgOverlay button');
+        if (buttons.length >= 3) {
+          const cartBtn = buttons[1];
+
+          // Cart click handler
+          cartBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (!AuthGuard.currentUser) {
+              await AuthGuard.init();
+            }
+            if (!AuthGuard.currentUser) {
+              CartEngine._showToast('✕ Please login first to add items to cart!');
+              setTimeout(() => {
+                window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
+              }, 1500);
+              return;
+            }
+            // Base price + Rs. 60 bottle price for default 50ml
+            const finalPrice = basePrice + 60;
+            CartEngine.add({
+              id: title,
+              name: title,
+              img: img,
+              price: finalPrice,
+              size: '50ml',
+              reuseBottle: false,
+              bottlePrice: 60,
+              bottlePriceDiscount: 0
+            }, 1);
+          });
+        }
+      });
+    });
   </script>
   <script src="js/vendors/aos.js"></script>
   <script>AOS.init();</script>

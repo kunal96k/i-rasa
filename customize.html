@@ -1264,11 +1264,9 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
                   <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a>
                   </li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -1665,7 +1663,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="category.html">Shop All</a></li>
                 <li><a href="category.html">Men's Scents</a></li>
-                <li><a href="category.html">Women's Scents</a></li>
+                <li><a href="categoryWomen.html">Women's Scents</a></li>
+                <li><a href="attar.html">Attar Collection</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
@@ -1975,7 +1974,27 @@
         showToast('Please select 2 perfumes first!', false);
         return;
       }
-      showToast('Order placed! We will contact you soon. <i class="fas fa-gift"></i>', true);
+      var a = state.selectedCards[0];
+      var b = state.selectedCards[1];
+      var base = (a ? parseInt(a.dataset.price) : 0) + (b ? parseInt(b.dataset.price) : 0);
+      var total = base + state.bottlePrice + 99;
+      var name = document.getElementById('previewName').textContent;
+      
+      if (typeof CartEngine !== 'undefined') {
+        CartEngine.add({
+          id: 'custom-' + (a ? a.dataset.id : '') + '-' + (b ? b.dataset.id : ''),
+          name: 'Blend: ' + name,
+          img: 'img/gallery/r1.webp',
+          price: total,
+          size: state.bottleSize + 'ml',
+          reuseBottle: false,
+          bottlePrice: state.bottlePrice,
+          bottlePriceDiscount: 0
+        }, 1);
+        showToast('Blend added to cart! <i class="fas fa-shopping-cart"></i>', true);
+      } else {
+        showToast('Order placed! We will contact you soon. <i class="fas fa-gift"></i>', true);
+      }
     }
 
     // ======== SAVE ========
@@ -1986,13 +2005,17 @@
       }
       var profile = JSON.parse(localStorage.getItem('irasa_profile') || '{}');
       var blends = profile.blends || [];
+      if (blends.length >= 10) {
+        showToast('Maximum limit of 10 custom blends reached. Please delete a blend from profile page.', false);
+        return;
+      }
       blends.unshift({
         name: document.getElementById('previewName').textContent,
         iconA: state.selectedCards[0].dataset.icon,
         iconB: state.selectedCards[1].dataset.icon,
         date: new Date().toLocaleDateString('en-IN')
       });
-      profile.blends = blends.slice(0, 5);
+      profile.blends = blends;
       localStorage.setItem('irasa_profile', JSON.stringify(profile));
       loadPastBlends();
       showToast('Blend saved to your profile! ✓', true);
@@ -2012,7 +2035,7 @@
     // ======== TOAST ========
     function showToast(msg, success) {
       var t = document.getElementById('toast');
-      document.getElementById('toastText').textContent = msg;
+      document.getElementById('toastText').innerHTML = msg;
       t.style.borderColor = success ? '#4caf50' : '#e57373';
       t.style.color = success ? '#4caf50' : '#e57373';
       t.style.background = success ? '#1a2a1a' : '#2a1a1a';

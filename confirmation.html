@@ -51,11 +51,9 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
                   <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
+                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a>
                   </li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -125,159 +123,52 @@
   <!--================Order Details Area =================-->
   <section data-aos="fade-up" data-aos-duration="1000" class="order_details section-margin--small">
     <div class="container">
-      <p class="text-center billing-alert">Thank you. Your order has been received.</p>
-      <div class="row mb-5">
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Order Info</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Order number</td>
-                <td>: 60235</td>
-              </tr>
-              <tr>
-                <td>Date</td>
-                <td>: 25 Apr, 2026</td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td>: Rs. 1247</td>
-              </tr>
-              <tr>
-                <td>Payment method</td>
-                <td>: Check payments</td>
-              </tr>
+      <p class="text-center billing-alert" id="confirmMsg">Thank you. Your order has been received.</p>
+      <div id="order-loading" style="text-align:center;padding:60px;color:#888;"><i class="fas fa-spinner fa-spin" style="font-size:30px;color:#d4af37;"></i><p style="margin-top:12px;">Loading your order...</p></div>
+      <div id="order-content" style="display:none;">
+        <div class="row mb-5">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+            <div class="confirmation-card">
+              <h3 class="billing-title">Order Info</h3>
+              <table class="order-rable" id="order-info-table"></table>
+            </div>
+          </div>
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+            <div class="confirmation-card">
+              <h3 class="billing-title">Billing Address</h3>
+              <table class="order-rable" id="billing-table"></table>
+            </div>
+          </div>
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+            <div class="confirmation-card">
+              <h3 class="billing-title">Shipping Address</h3>
+              <table class="order-rable" id="shipping-table"></table>
+            </div>
+          </div>
+        </div>
+        <div class="order_details_table">
+          <h2>Order Details</h2>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody id="order-items-body"></tbody>
             </table>
           </div>
         </div>
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Billing Address</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Street</td>
-                <td>: 56/8 panthapath</td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>: Hyderabad</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>: India</td>
-              </tr>
-              <tr>
-                <td>Postcode</td>
-                <td>: 1205</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Shipping Address</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Street</td>
-                <td>: 56/8 panthapath</td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>: Dhaka</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>: India</td>
-              </tr>
-              <tr>
-                <td>Postcode</td>
-                <td>: 1205</td>
-              </tr>
-            </table>
-          </div>
+        <div class="text-center mt-5">
+          <a href="tracking-order.html" class="button button--active" style="margin-right:12px;"><i class="fas fa-truck" style="margin-right:6px;"></i>Track My Order</a>
+          <a href="category.html" class="button">Continue Shopping</a>
         </div>
       </div>
-      <div class="order_details_table">
-        <h2>Order Details</h2>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <p>Savage Dior - Premium Men's Scent</p>
-                </td>
-                <td>
-                  <h5>x 01</h5>
-                </td>
-                <td>
-                  <p>Rs. 399.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Gucci Flora - Iconic Women's Fragrance</p>
-                </td>
-                <td>
-                  <h5>x 02</h5>
-                </td>
-                <td>
-                  <p>Rs. 399.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Rasassi Hawas - Best Collection</p>
-                </td>
-                <td>
-                  <h5>x 02</h5>
-                </td>
-                <td>
-                  <p>Rs. 399.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Subtotal</h4>
-                </td>
-                <td>
-                  <h5></h5>
-                </td>
-                <td>
-                  <p>Rs. 1197.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Shipping</h4>
-                </td>
-                <td>
-                  <h5></h5>
-                </td>
-                <td>
-                  <p>Flat rate: Rs. 50.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Total</h4>
-                </td>
-                <td>
-                  <h5></h5>
-                </td>
-                <td>
-                  <h4>Rs. 1247.00</h4>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div id="order-error" style="display:none;text-align:center;padding:60px;">
+        <i class="fas fa-exclamation-circle" style="font-size:40px;color:#ff4d4d;"></i>
+        <p style="color:#888;margin-top:12px;">Could not load order details. <a href="profile.html" style="color:#d4af37;">View in Profile</a></p>
       </div>
     </div>
   </section>
@@ -313,7 +204,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="category.html">Shop All</a></li>
                 <li><a href="category.html">Men's Scents</a></li>
-                <li><a href="category.html">Women's Scents</a></li>
+                <li><a href="categoryWomen.html">Women's Scents</a></li>
+                <li><a href="attar.html">Attar Collection</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
@@ -397,12 +289,12 @@
               <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
               </h2>
               <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
-              <div class="rating mb-3">
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
+              <div class="stars mb-3">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
                 <span class="ml-2">(120+ Reviews)</span>
               </div>
               <p style="color: #b0a58a;">A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting
@@ -427,12 +319,84 @@
   <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
+  <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
   <script src="js/vendors/aos.js"></script>
-
   <script>AOS.init();</script>
-
   <script src="js/auth-guard.js"></script>
+
+  <script>
+    const ORDER_API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? `http://${window.location.hostname}:8080/api/orders` : '/api/orders';
+
+    function row(label, val) {
+      return `<tr><td>${label}</td><td>: ${val || '—'}</td></tr>`;
+    }
+
+    document.addEventListener('DOMContentLoaded', async function () {
+      const params  = new URLSearchParams(window.location.search);
+      const orderId = params.get('orderId');
+      if (!orderId) { showError(); return; }
+
+      try {
+        const res  = await fetch(`${ORDER_API_BASE}/${orderId}`, { credentials: 'include' });
+        const data = await res.json();
+        if (!res.ok || !data.success) { showError(); return; }
+
+        const o = data.data;
+        const b = o.billing || {};
+
+        document.getElementById('confirmMsg').textContent =
+          `Thank you, ${b.firstName || ''}! Your order #${o.orderId} has been received.`;
+
+        /* Order Info */
+        document.getElementById('order-info-table').innerHTML =
+          row('Order number', '#' + o.orderId) +
+          row('Date', new Date(o.createdAt).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'})) +
+          row('Total', 'Rs. ' + parseFloat(o.total).toFixed(2)) +
+          row('Payment', o.paymentMethod) +
+          row('Status', `<span style="color:#d4af37;font-weight:700;">${o.status || 'Pending'}</span>`);
+
+        /* Billing */
+        document.getElementById('billing-table').innerHTML =
+          row('Name',    `${b.firstName} ${b.lastName}`) +
+          row('Phone',   b.phone) +
+          row('Email',   b.email) +
+          row('Address', b.address1 + (b.address2 ? ', ' + b.address2 : '')) +
+          row('City',    b.city) +
+          row('ZIP',     b.zip);
+
+        /* Shipping = same as billing (or separate if returned) */
+        const s = o.shipping || b;
+        document.getElementById('shipping-table').innerHTML =
+          row('Address', s.address1 || b.address1) +
+          row('City',    s.city    || b.city) +
+          row('ZIP',     s.zip     || b.zip) +
+          row('Country', 'India');
+
+        /* Items */
+        const items = o.items || [];
+        const tbody = document.getElementById('order-items-body');
+        tbody.innerHTML = items.map(i =>
+          `<tr><td><p>${i.name}${i.size ? ' ('+i.size+')' : ''}</p></td><td><h5>x ${i.qty}</h5></td><td><p>Rs. ${(i.price * i.qty).toFixed(2)}</p></td></tr>`
+        ).join('') +
+          `<tr><td><h4>Subtotal</h4></td><td></td><td><p>Rs. ${parseFloat(o.subtotal||0).toFixed(2)}</p></td></tr>` +
+          (o.discount > 0 ? `<tr><td><h4 style="color:#4caf50;">Coupon</h4></td><td></td><td><p style="color:#4caf50;">- Rs. ${parseFloat(o.discount).toFixed(2)}</p></td></tr>` : '') +
+          `<tr><td><h4>Shipping</h4></td><td></td><td><p>Rs. ${parseFloat(o.shipping||50).toFixed(2)}</p></td></tr>` +
+          `<tr><td><h4>Total</h4></td><td></td><td><h4>Rs. ${parseFloat(o.total).toFixed(2)}</h4></td></tr>`;
+
+        document.getElementById('order-loading').style.display = 'none';
+        document.getElementById('order-content').style.display = 'block';
+      } catch (e) {
+        showError();
+      }
+    });
+
+    function showError() {
+      document.getElementById('order-loading').style.display = 'none';
+      document.getElementById('order-error').style.display   = 'block';
+    }
+  </script>
 </body>
 
 </html>

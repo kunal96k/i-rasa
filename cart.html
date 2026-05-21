@@ -1180,7 +1180,6 @@
       }
     }
   </style>
-  <script src="js/auth-guard.js"></script>
 </head>
 
 <body>
@@ -1208,10 +1207,8 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a></li>
                   <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a></li>
+                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a></li>
                   <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                  <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                  <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
@@ -1299,178 +1296,109 @@
                 <th scope="col" class="text-center">Remove</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div class="media" style="display:flex;align-items:center;gap:14px;">
-                    <img src="img/cart/cart1.png" alt="Savage Dior"
-                      style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;">
-                    <div class="media-body" style="min-width:0;">
-                      <p style="margin:0;font-size:14px;color:#e8dfc8;">Savage Dior - 100ml Premium Perfume</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>Rs. 399.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                      class="input-text qty">
-                    <button
-                      onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                      class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                    <button
-                      onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                      class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                  </div>
-                </td>
-                <td>
-                  <h5>Rs. 720.00</h5>
-                </td>
-                <td class="text-center">
-                  <button class="desktop-remove-btn" title="Remove Item"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="media" style="display:flex;align-items:center;gap:14px;">
-                    <img src="img/cart/cart2.png" alt="Gucci Flora"
-                      style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;">
-                    <div class="media-body" style="min-width:0;">
-                      <p style="margin:0;font-size:14px;color:#e8dfc8;">Gucci Flora - Luxury Women's Scent</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>Rs. 399.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                    <input type="text" name="qty" id="sst2" maxlength="12" value="1" title="Quantity:"
-                      class="input-text qty">
-                    <button
-                      onclick="var result = document.getElementById('sst2'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                      class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                    <button
-                      onclick="var result = document.getElementById('sst2'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                      class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                  </div>
-                </td>
-                <td>
-                  <h5>Rs. 720.00</h5>
-                </td>
-                <td class="text-center">
-                  <button class="desktop-remove-btn" title="Remove Item"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="media" style="display:flex;align-items:center;gap:14px;">
-                    <img src="img/cart/cart3.png" alt="Rasassi Hawas"
-                      style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;">
-                    <div class="media-body" style="min-width:0;">
-                      <p style="margin:0;font-size:14px;color:#e8dfc8;">Rasassi Hawas - Iconic Fragrance</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>Rs. 399.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                    <input type="text" name="qty" id="sst3" maxlength="12" value="1" title="Quantity:"
-                      class="input-text qty">
-                    <button
-                      onclick="var result = document.getElementById('sst3'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                      class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                    <button
-                      onclick="var result = document.getElementById('sst3'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                      class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                  </div>
-                </td>
-                <td>
-                  <h5>Rs. 720.00</h5>
-                </td>
-                <td class="text-center">
-                  <button class="desktop-remove-btn" title="Remove Item"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-              <tr class="bottom_button">
-                <td><a class="button" href="javascript:void(0);">Update Cart</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <div class="cupon_text d-flex align-items-center justify-content-end">
-                    <input type="text" placeholder="Coupon Code">
-                    <a class="primary-btn" href="javascript:void(0);">Apply</a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <h5>Subtotal</h5>
-                </td>
-                <td>
-                  <h5 id="desktop-subtotal">Rs. 2160.00</h5>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <h5>Total</h5>
-                </td>
-                <td>
-                  <h5 id="desktop-total">Rs. 2162.00</h5>
-                </td>
-              </tr>
-              <tr class="shipping_area">
-                <td class="d-none d-md-block"></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <h5>Shipping</h5>
-                </td>
-                <td>
-                  <div class="shipping_box">
-                    <ul class="list" id="shippingOptions">
-                      <li data-value="5"><a href="javascript:void(0);">Flat Rate: Rs. 5.00</a></li>
-                      <li data-value="0"><a href="javascript:void(0);">Free Shipping</a></li>
-                      <li data-value="10"><a href="javascript:void(0);">Flat Rate: Rs. 10.00</a></li>
-                      <li class="active" data-value="2"><a href="javascript:void(0);">Local Delivery: Rs. 2.00</a></li>
-                    </ul>
-                    <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-                    <select class="shipping_select country_select" id="desktopCountry">
-                      <option value="India">India</option>
-                      <option value="Bangladesh">Bangladesh</option>
-                      <option value="Pakistan">Pakistan</option>
-                    </select>
-                    <select class="shipping_select state_select" id="desktopState">
-                      <option value="">Select a State</option>
-                    </select>
-                    <input type="text" placeholder="Postcode/Zipcode">
-                    <a class="gray_btn" href="javascript:void(0);">Update Details</a>
-                  </div>
-                </td>
-              </tr>
-              <tr class="out_button_area">
-                <td class="d-none-l"></td>
-                <td class=""></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <div class="checkout_btn_inner d-flex align-items-center">
-                    <a class="gray_btn" href="javascript:void(0);">Continue Shopping</a>
-                    <a class="primary-btn ml-2" href="javascript:void(0);">Proceed to checkout</a>
-                  </div>
-                </td>
-              </tr>
+            <tbody id="cart-tbody">
+              <!-- Dynamically rendered by CartEngine -->
+            </tbody>
+            <tr class="bottom_button">
+              <td><a class="button" href="javascript:void(0);"
+                  onclick="CartEngine._showToast('Cart is up-to-date!')">Update Cart</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="cupon_text d-flex align-items-center justify-content-end"
+                  style="flex-wrap: wrap; gap: 8px;">
+                  <input type="text" id="cartCouponInput" placeholder="Coupon Code">
+                  <a class="primary-btn" href="javascript:void(0);" onclick="applyCartCoupon('desktop')">Apply</a>
+                  <div id="cartCouponMsg"
+                    style="font-size: 13px; font-weight: bold; width: 100%; text-align: right; margin-top: 5px;"></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Subtotal</h5>
+              </td>
+              <td>
+                <h5 id="desktop-subtotal">Rs. 2160.00</h5>
+              </td>
+            </tr>
+            <!-- Coupon Discount Row -->
+            <tr id="desktop-coupon-row" style="display:none;">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h5 style="color:#4caf50;">Coupon Discount</h5>
+              </td>
+              <td>
+                <h5 id="desktop-discount-val" style="color:#4caf50;">- Rs. 0.00</h5>
+              </td>
+            </tr>
+            <!-- Handling Charge Row -->
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Handling Charge</h5>
+              </td>
+              <td>
+                <h5>Rs. 7.00</h5>
+              </td>
+            </tr>
+            <!-- Platform Fee Row -->
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Platform Fee</h5>
+              </td>
+              <td>
+                <h5>Rs. 5.00</h5>
+              </td>
+            </tr>
+            <!-- Shipping Row -->
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Shipping</h5>
+              </td>
+              <td>
+                <h5 style="font-size:13px; color:#aaa; font-style:italic;">Calculated at checkout</h5>
+              </td>
+            </tr>
+            <!-- Total Payable Row -->
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Total Payable</h5>
+              </td>
+              <td>
+                <h5 id="desktop-total" style="color:#d4af37; font-weight:700;">Rs. 2,172.00</h5>
+              </td>
+            </tr>
+            <tr class="out_button_area">
+              <td class="d-none-l"></td>
+              <td class=""></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="checkout_btn_inner d-flex align-items-center">
+                  <a class="gray_btn" href="category.html">Continue Shopping</a>
+                  <a class="primary-btn ml-2" href="javascript:void(0);"
+                    onclick="AuthGuard.requireAuth(() => window.location.href='checkout.html')">Proceed to checkout</a>
+                </div>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>
@@ -1487,139 +1415,53 @@
 
     <div class="mobile-section-label">3 Items in your cart</div>
 
-    <!-- CART ITEM 1 -->
-    <div class="mobile-cart-card">
-      <div class="mobile-cart-img">
-        <img src="img/cart/cart1.png" alt="Savage Dior">
-      </div>
-      <div class="mobile-cart-info">
-        <div class="mobile-cart-name">Savage Dior - 100ml Premium Perfume</div>
-        <div class="mobile-cart-meta">Men's Fragrance · 100ml</div>
-        <div class="mobile-cart-bottom">
-          <div class="mobile-cart-price">Rs. 399.00</div>
-          <div class="mobile-qty-wrap">
-            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, -1)"
-              aria-label="Decrease quantity">&#8722;</button>
-            <input class="qty-num" type="text" value="1" readonly>
-            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, 1)"
-              aria-label="Increase quantity">&#43;</button>
-          </div>
-        </div>
-        <div class="mobile-cart-total">Total: <span>Rs. 399.00</span></div>
-      </div>
-      <button class="mobile-remove-btn" type="button" aria-label="Remove item">&times;</button>
-    </div>
-
-    <!-- CART ITEM 2 -->
-    <div class="mobile-cart-card">
-      <div class="mobile-cart-img">
-        <img src="img/cart/cart2.png" alt="Gucci Flora">
-      </div>
-      <div class="mobile-cart-info">
-        <div class="mobile-cart-name">Gucci Flora - Luxury Women's Scent</div>
-        <div class="mobile-cart-meta">Women's Fragrance · 75ml</div>
-        <div class="mobile-cart-bottom">
-          <div class="mobile-cart-price">Rs. 399.00</div>
-          <div class="mobile-qty-wrap">
-            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, -1)"
-              aria-label="Decrease quantity">&#8722;</button>
-            <input class="qty-num" type="text" value="1" readonly>
-            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, 1)"
-              aria-label="Increase quantity">&#43;</button>
-          </div>
-        </div>
-        <div class="mobile-cart-total">Total: <span>Rs. 399.00</span></div>
-      </div>
-      <button class="mobile-remove-btn" type="button" aria-label="Remove item">&times;</button>
-    </div>
-
-    <!-- CART ITEM 3 -->
-    <div class="mobile-cart-card">
-      <div class="mobile-cart-img">
-        <img src="img/cart/cart3.png" alt="Rasassi Hawas">
-      </div>
-      <div class="mobile-cart-info">
-        <div class="mobile-cart-name">Rasassi Hawas - Iconic Fragrance</div>
-        <div class="mobile-cart-meta">Unisex Fragrance · 100ml</div>
-        <div class="mobile-cart-bottom">
-          <div class="mobile-cart-price">Rs. 399.00</div>
-          <div class="mobile-qty-wrap">
-            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, -1)"
-              aria-label="Decrease quantity">&#8722;</button>
-            <input class="qty-num" type="text" value="1" readonly>
-            <button class="qty-btn" type="button" onclick="mobileQtyChange(this, 1)"
-              aria-label="Increase quantity">&#43;</button>
-          </div>
-        </div>
-        <div class="mobile-cart-total">Total: <span>Rs. 399.00</span></div>
-      </div>
-      <button class="mobile-remove-btn" type="button" aria-label="Remove item">&times;</button>
-    </div>
+    <!-- Dynamic cart cards rendered by CartEngine -->
+    <div id="mobile-cart-list"></div>
 
     <!-- UPDATE CART -->
     <div class="mobile-update-row">
-      <a class="button" href="javascript:void(0);">Update Cart</a>
+      <a class="button" href="javascript:void(0);" onclick="CartEngine._showToast('Cart is up-to-date!')">Update
+        Cart</a>
     </div>
 
     <!-- COUPON -->
-    <div class="mobile-coupon-box">
+    <div class="mobile-coupon-box" style="flex-wrap: wrap;">
       <div class="mobile-coupon-row">
-        <input type="text" placeholder="Coupon Code">
+        <input type="text" id="mobileCartCouponInput" placeholder="Coupon Code">
         <div class="mobile-coupon-actions">
-          <a class="primary-btn" href="javascript:void(0);">Apply</a>
+          <a class="primary-btn" href="javascript:void(0);" onclick="applyCartCoupon('mobile')">Apply</a>
         </div>
+      </div>
+      <div id="mobileCartCouponMsg"
+        style="font-size: 13px; font-weight: bold; width: 100%; text-align: left; margin-top: 5px; padding-left: 15px;">
       </div>
     </div>
 
     <!-- ORDER SUMMARY -->
     <div class="mobile-summary-card">
       <div class="mobile-summary-row">
-        <div class="mobile-summary-label">Subtotal (3 items)</div>
-        <div class="mobile-summary-val" id="mobile-subtotal">Rs. 1,197.00</div>
+        <div class="mobile-summary-label">Subtotal</div>
+        <div class="mobile-summary-val" id="mobile-subtotal">Rs. 0.00</div>
+      </div>
+      <div class="mobile-summary-row">
+        <div class="mobile-summary-label">Handling Charge</div>
+        <div class="mobile-summary-val">Rs. 7.00</div>
+      </div>
+      <div class="mobile-summary-row">
+        <div class="mobile-summary-label">Platform Fee</div>
+        <div class="mobile-summary-val">Rs. 5.00</div>
       </div>
       <div class="mobile-summary-row">
         <div class="mobile-summary-label">Shipping</div>
-        <div class="mobile-summary-val" style="color:#4caf50">Free</div>
+        <div class="mobile-summary-val" style="color:#aaa; font-style:italic;">Calculated at checkout</div>
       </div>
-      <div class="mobile-summary-row">
-        <div class="mobile-summary-label">Coupon Discount</div>
-        <div class="mobile-summary-val" style="color:#e24b4a">— Rs. 0</div>
+      <div class="mobile-summary-row" id="mobile-coupon-row" style="display:none;">
+        <div class="mobile-summary-label" style="color:#4caf50;">Coupon Discount</div>
+        <div class="mobile-summary-val" id="mobile-discount" style="color:#4caf50;">— Rs. 0.00</div>
       </div>
       <div class="mobile-summary-total">
         <div class="mobile-summary-total-label">Total Payable</div>
-        <div class="mobile-summary-total-val" id="mobile-total">Rs. 1,197.00</div>
-      </div>
-    </div>
-
-    <!-- SHIPPING ACCORDION -->
-    <div class="mobile-shipping-card">
-      <div class="mobile-shipping-header" onclick="toggleMobileShipping()">
-        <div class="mobile-shipping-title">
-          <i class="fas fa-truck"></i>
-          Shipping
-        </div>
-        <i class="fa fa-caret-down mobile-shipping-chevron" id="mobileShipChevron" aria-hidden="true"></i>
-      </div>
-      <div class="mobile-shipping-body" id="mobileShipBody">
-        <div class="shipping_box">
-          <ul class="list" id="mobileShippingOptions">
-            <li data-value="5"><a href="javascript:void(0);">Flat Rate: Rs. 5.00</a></li>
-            <li data-value="0"><a href="javascript:void(0);">Free Shipping</a></li>
-            <li data-value="10"><a href="javascript:void(0);">Flat Rate: Rs. 10.00</a></li>
-            <li class="active" data-value="2"><a href="javascript:void(0);">Local Delivery: Rs. 2.00</a></li>
-          </ul>
-          <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-          <select class="shipping_select country_select" id="mobileCountry">
-            <option value="India">India</option>
-            <option value="Bangladesh">Bangladesh</option>
-            <option value="Pakistan">Pakistan</option>
-          </select>
-          <select class="shipping_select state_select" id="mobileState">
-            <option value="">Select a State</option>
-          </select>
-          <input type="text" placeholder="Postcode/Zipcode">
-          <a class="gray_btn" href="javascript:void(0);">Update Details</a>
-        </div>
+        <div class="mobile-summary-total-val" id="mobile-total">Rs. 0.00</div>
       </div>
     </div>
 
@@ -1633,7 +1475,8 @@
       <div class="mini-val" id="mobile-sticky-total">Rs. 1,197</div>
     </div>
     <a class="gray_btn" href="javascript:void(0);">Continue Shopping</a>
-    <a class="primary-btn" href="javascript:void(0);" onclick="AuthGuard.requireAuth(() => window.location.href='checkout.html')">Proceed to checkout</a>
+    <a class="primary-btn" href="javascript:void(0);"
+      onclick="AuthGuard.requireAuth(() => window.location.href='checkout.html')">Proceed to checkout</a>
   </div>
 
   <!--================End Cart Area =================-->
@@ -1666,7 +1509,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="category.html">Shop All</a></li>
                 <li><a href="category.html">Men's Scents</a></li>
-                <li><a href="category.html">Women's Scents</a></li>
+                <li><a href="categoryWomen.html">Women's Scents</a></li>
+                <li><a href="attar.html">Attar Collection</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
@@ -1776,6 +1620,7 @@
   <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
+  <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
   <script src="js/vendors/aos.js"></script>
   <script>AOS.init();</script>
@@ -1822,20 +1667,31 @@
         subtotal += parseFloat(t) || 0;
       });
 
-      // Get current shipping cost
-      var shippingEl = document.querySelector('#mobileShippingOptions li.active');
-      var shippingCost = shippingEl ? parseFloat(shippingEl.getAttribute('data-value')) : 0;
-      var total = subtotal + shippingCost;
+      var disc = appliedDiscount || 0;
+      var total = Math.max(0, subtotal - disc) + 7 + 5; // 7 handling + 5 platform fee
 
       var fmt = 'Rs. ' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       var totalFmt = 'Rs. ' + total.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var discFmt = '— Rs. ' + disc.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
       var el1 = document.getElementById('mobile-subtotal');
       var el2 = document.getElementById('mobile-total');
       var el3 = document.getElementById('mobile-sticky-total');
+      var elDisc = document.getElementById('mobile-discount');
+      var rowDisc = document.getElementById('mobile-coupon-row');
+
       if (el1) el1.textContent = fmt;
       if (el2) el2.textContent = totalFmt;
       if (el3) el3.textContent = 'Rs. ' + Math.round(total).toLocaleString('en-IN');
+
+      if (rowDisc) {
+        if (disc > 0) {
+          rowDisc.style.display = 'flex';
+          if (elDisc) elDisc.textContent = discFmt;
+        } else {
+          rowDisc.style.display = 'none';
+        }
+      }
 
       /* Update item count label */
       var label = document.querySelector('.mobile-section-label');
@@ -1843,20 +1699,7 @@
     }
 
     /* ── Mobile: Remove Item ── */
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.mobile-remove-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var card = btn.closest('.mobile-cart-card');
-          card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-          card.style.opacity = '0';
-          card.style.transform = 'translateX(30px)';
-          setTimeout(function () {
-            card.remove();
-            mobileUpdateSummary();
-          }, 260);
-        });
-      });
-    });
+    /* Removed buggy mobile-remove-btn static listener since items are rendered dynamically */
 
     /* ── Mobile: Shipping Accordion ── */
     function toggleMobileShipping() {
@@ -1914,13 +1757,13 @@
       }
 
       if (countryDesktop) {
-        $(countryDesktop).on('change', function() {
+        $(countryDesktop).on('change', function () {
           updateStates(countryDesktop, stateDesktop);
         });
         updateStates(countryDesktop, stateDesktop);
       }
       if (countryMobile) {
-        $(countryMobile).on('change', function() {
+        $(countryMobile).on('change', function () {
           updateStates(countryMobile, stateMobile);
         });
         updateStates(countryMobile, stateMobile);
@@ -1929,50 +1772,227 @@
 
     // Initialize after DOM and nice-select are ready
     $(document).ready(function () {
+      renderCartDesktop();
+      renderCartMobile();
       initShippingSelectors();
 
-      /* ── Desktop: Shipping Selection ── */
+      // Check for pre-applied coupon from sessionStorage
+      var cachedCoupon = sessionStorage.getItem('appliedCouponCode');
+      if (cachedCoupon) {
+        var desktopInput = document.getElementById('cartCouponInput');
+        var mobileInput = document.getElementById('mobileCartCouponInput');
+        if (desktopInput) desktopInput.value = cachedCoupon;
+        if (mobileInput) mobileInput.value = cachedCoupon;
+
+        // Retrieve cached discount
+        var cachedDiscount = parseFloat(sessionStorage.getItem('appliedDiscount')) || 0;
+        if (cachedDiscount > 0) {
+          appliedDiscount = cachedDiscount;
+          appliedCouponCode = cachedCoupon;
+
+          var desktopMsg = document.getElementById('cartCouponMsg');
+          var mobileMsg = document.getElementById('mobileCartCouponMsg');
+          if (desktopMsg) {
+            desktopMsg.style.color = '#4caf50';
+            desktopMsg.textContent = `✓ Coupon applied! You saved Rs. ${cachedDiscount.toFixed(2)}`;
+          }
+          if (mobileMsg) {
+            mobileMsg.style.color = '#4caf50';
+            mobileMsg.textContent = `✓ Coupon applied! You saved Rs. ${cachedDiscount.toFixed(2)}`;
+          }
+
+          syncDesktopSummary();
+          mobileUpdateSummary();
+        }
+      }
+
+      document.addEventListener('cart:updated', function () {
+        renderCartDesktop();
+        renderCartMobile();
+      });
+
       $('#shippingOptions li, #mobileShippingOptions li').on('click', function () {
         $(this).addClass('active').siblings().removeClass('active');
         if ($(this).closest('#shippingOptions').length) {
-          updateDesktopSummary();
+          syncDesktopSummary();
         } else {
           mobileUpdateSummary();
         }
       });
+    });
 
-      function updateDesktopSummary() {
-        var subtotal = 0;
-        $('.cart_inner .table tbody tr').each(function () {
-          // Identify product rows by checking for the quantity input
-          var qtyInput = $(this).find('input[name="qty"]');
-          if (qtyInput.length > 0) {
-            var rowTotalText = $(this).find('td:nth-child(4) h5').text().replace(/[^\d.]/g, '');
-            var rowTotal = parseFloat(rowTotalText) || 0;
-            subtotal += rowTotal;
-          }
-        });
+    /* ── Render Desktop Cart from CartEngine ── */
+    function renderCartDesktop() {
+      var items = CartEngine.getItems();
+      var tbody = document.getElementById('cart-tbody');
+      var countEl = document.querySelector('.mobile-section-label');
+      if (!tbody) return;
 
-        var shippingEl = $('#shippingOptions li.active');
-        var shippingCost = shippingEl.length ? parseFloat(shippingEl.attr('data-value')) : 0;
-        var total = subtotal + shippingCost;
-
-        $('#desktop-subtotal').text('Rs. ' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
-        $('#desktop-total').text('Rs. ' + total.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+      if (items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:40px;color:#888;">
+          <i class="fas fa-shopping-cart" style="font-size:36px;color:#333;margin-bottom:14px;display:block;"></i>
+          Your cart is empty. <a href="category.html" style="color:#d4af37;">Shop Now</a></td></tr>`;
+        document.getElementById('desktop-subtotal').textContent = 'Rs. 0.00';
+        document.getElementById('desktop-total').textContent = 'Rs. 0.00';
+        return;
       }
 
-      /* ── Desktop: Remove Item ── */
-      $('.desktop-remove-btn').on('click', function () {
-        var row = $(this).closest('tr');
-        row.fadeOut(300, function () {
-          row.remove();
-          updateDesktopSummary();
-        });
-      });
+      if (countEl) countEl.textContent = items.length + ' Item' + (items.length > 1 ? 's' : '') + ' in your cart';
 
-      // Initial desktop calc
-      updateDesktopSummary();
-    });
+      tbody.innerHTML = items.map(function (item) {
+        var offerText = ``; // Bottle Return offer is for offline store visits only — not shown in online cart
+        return `<tr data-key="${item._key}">
+          <td>
+            <div class="media" style="display:flex;align-items:center;gap:14px;">
+              <img src="${item.img || 'img/product/product1.png'}" alt="${item.name}"
+                style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;">
+              <div class="media-body" style="min-width:0;">
+                <p style="margin:0;font-size:14px;color:#e8dfc8;">${item.name}${item.size ? ' · ' + item.size : ''}${offerText}</p>
+              </div>
+            </div>
+          </td>
+          <td><h5>Rs. ${parseFloat(item.price).toFixed(2)}</h5></td>
+          <td>
+            <div class="product_count">
+              <input type="text" class="input-text qty" value="${item.qty}" readonly style="width:46px;">
+              <button class="increase items-count" type="button" onclick="cartQtyChange('${item._key}', 1)"><i class="lnr lnr-chevron-up"></i></button>
+              <button class="reduced items-count" type="button" onclick="cartQtyChange('${item._key}', -1)"><i class="lnr lnr-chevron-down"></i></button>
+            </div>
+          </td>
+          <td><h5>Rs. ${(item.price * item.qty).toFixed(2)}</h5></td>
+          <td class="text-center">
+            <button class="desktop-remove-btn" title="Remove" onclick="CartEngine.remove('${item._key}')"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr>`;
+      }).join('');
+
+      syncDesktopSummary();
+    }
+
+    function cartQtyChange(key, delta) {
+      var items = CartEngine.getItems();
+      var item = items.find(function (i) { return i._key === key; });
+      if (item) CartEngine.updateQty(key, item.qty + delta);
+    }
+
+    var appliedDiscount = 0;
+    var appliedCouponCode = '';
+
+    async function applyCartCoupon(device) {
+      var inputId = device === 'desktop' ? 'cartCouponInput' : 'mobileCartCouponInput';
+      var msgId = device === 'desktop' ? 'cartCouponMsg' : 'mobileCartCouponMsg';
+
+      var inputEl = document.getElementById(inputId);
+      var msgEl = document.getElementById(msgId);
+      if (!inputEl || !msgEl) return;
+
+      var code = inputEl.value.trim();
+      if (!code) {
+        msgEl.style.color = '#ff4d4d';
+        msgEl.textContent = 'Please enter a coupon code.';
+        return;
+      }
+
+      // Check if already applied
+      if (appliedCouponCode) {
+        if (appliedCouponCode.toUpperCase() === code.toUpperCase()) {
+          msgEl.style.color = '#ffd700';
+          msgEl.textContent = `Warning: Coupon "${code.toUpperCase()}" is already applied!`;
+        } else {
+          msgEl.style.color = '#ff9800';
+          msgEl.textContent = `Warning: Coupon "${appliedCouponCode.toUpperCase()}" is already active.`;
+        }
+        return;
+      }
+
+      var COUPON_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? `http://${window.location.hostname}:8080/api/coupons` : '/api/coupons';
+
+      try {
+        var res = await fetch(`${COUPON_API}/validate`, {
+          method: 'POST', credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: code, cartTotal: CartEngine.getTotal() })
+        });
+        var data = await res.json();
+        if (data.success) {
+          appliedDiscount = data.data.discountAmount || 0;
+          appliedCouponCode = code;
+
+          sessionStorage.setItem('appliedCouponCode', code);
+          sessionStorage.setItem('appliedDiscount', appliedDiscount);
+
+          msgEl.style.color = '#4caf50';
+          msgEl.textContent = `✓ Coupon applied! You saved Rs. ${appliedDiscount.toFixed(2)}`;
+
+          // Recalculate summary
+          syncDesktopSummary();
+          mobileUpdateSummary();
+        } else {
+          msgEl.style.color = '#ff4d4d';
+          msgEl.textContent = data.message || 'Invalid coupon code.';
+        }
+      } catch (e) {
+        msgEl.style.color = '#ff4d4d';
+        msgEl.textContent = 'Could not validate coupon. Try again.';
+      }
+    }
+
+    function syncDesktopSummary() {
+      var sub = CartEngine.getTotal();
+      var disc = appliedDiscount || 0;
+      var total = Math.max(0, sub - disc) + 7 + 5; // 7 handling + 5 platform fee
+
+      $('#desktop-subtotal').text('Rs. ' + sub.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+
+      if (disc > 0) {
+        $('#desktop-coupon-row').show();
+        $('#desktop-discount-val').text('- Rs. ' + disc.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+      } else {
+        $('#desktop-coupon-row').hide();
+      }
+
+      $('#desktop-total').text('Rs. ' + total.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+    }
+
+    /* ── Render Mobile Cart from CartEngine ── */
+    function renderCartMobile() {
+      var items = CartEngine.getItems();
+      var listEl = document.getElementById('mobile-cart-list');
+      if (!listEl) return;
+
+      if (items.length === 0) {
+        listEl.innerHTML = '<div style="text-align:center;padding:40px;color:#666;"><i class="fas fa-shopping-cart" style="font-size:36px;color:#333;margin-bottom:12px;display:block;"></i>Cart is empty. <a href="category.html" style="color:#d4af37;">Shop Now</a></div>';
+        mobileUpdateSummary();
+        return;
+      }
+
+      listEl.innerHTML = items.map(function (item) {
+        var offerText = ``; // Bottle Return offer is for offline store visits only — not shown in online cart
+        return `<div class="mobile-cart-card" data-key="${item._key}">
+          <div class="mobile-cart-img">
+            <img src="${item.img || 'img/product/product1.png'}" alt="${item.name}">
+          </div>
+          <div class="mobile-cart-info">
+            <div class="mobile-cart-name">${item.name}${item.size ? ' · ' + item.size : ''}</div>
+            ${offerText}
+            <div class="mobile-cart-meta">Quantity: ${item.qty}</div>
+            <div class="mobile-cart-bottom">
+              <div class="mobile-cart-price">Rs. ${parseFloat(item.price).toFixed(2)}</div>
+              <div class="mobile-qty-wrap">
+                <button class="qty-btn" type="button" onclick="cartQtyChange('${item._key}', -1)" aria-label="Decrease">&#8722;</button>
+                <input class="qty-num" type="text" value="${item.qty}" readonly>
+                <button class="qty-btn" type="button" onclick="cartQtyChange('${item._key}', 1)" aria-label="Increase">&#43;</button>
+              </div>
+            </div>
+            <div class="mobile-cart-total">Total: <span>Rs. ${(item.price * item.qty).toFixed(2)}</span></div>
+          </div>
+          <button class="mobile-remove-btn" type="button" aria-label="Remove" onclick="CartEngine.remove('${item._key}')">&times;</button>
+        </div>`;
+      }).join('');
+
+      mobileUpdateSummary();
+    }
   </script>
   <script src="js/auth-guard.js"></script>
 </body>

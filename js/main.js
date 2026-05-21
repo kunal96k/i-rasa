@@ -12,34 +12,36 @@ $(function () {
   }
 
   //------- Active Nice Select --------//
-  $('select').niceSelect();
+  $('select:not(.ignore-nice-select)').niceSelect();
 
   //------- hero carousel -------//
-  $(".hero-carousel").owlCarousel({
-    items: 3,
-    margin: 10,
-    autoplay: true,
-    autoplayTimeout: 4000,
-    autoplayHoverPause: true,
-    loop: true,
-    nav: true,
-    navText: ["<i class='ti-angle-left'></i>", "<i class='ti-angle-right'></i>"],
-    dots: false,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      810: {
-        items: 3
+  if (typeof $.fn.owlCarousel === 'function') {
+    $(".hero-carousel").owlCarousel({
+      items: 3,
+      margin: 10,
+      autoplay: true,
+      autoplayTimeout: 4000,
+      autoplayHoverPause: true,
+      loop: true,
+      nav: true,
+      navText: ["<i class='ti-angle-left'></i>", "<i class='ti-angle-right'></i>"],
+      dots: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 2
+        },
+        810: {
+          items: 3
+        }
       }
-    }
-  });
+    });
+  }
 
   //------- Best Seller Carousel -------//
-  if ($('.owl-carousel').length > 0) {
+  if (typeof $.fn.owlCarousel === 'function' && $('.owl-carousel').length > 0) {
     $('#bestSellerCarousel').owlCarousel({
       loop: true,
       margin: 30,
@@ -63,19 +65,21 @@ $(function () {
           items: 4
         }
       }
-    })
+    });
   }
 
   //------- single product area carousel -------//
-  $(".s_Product_carousel").owlCarousel({
-    items: 1,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    autoplayHoverPause: true,
-    loop: true,
-    nav: false,
-    dots: false
-  });
+  if (typeof $.fn.owlCarousel === 'function') {
+    $(".s_Product_carousel").owlCarousel({
+      items: 1,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplayHoverPause: true,
+      loop: true,
+      nav: false,
+      dots: false
+    });
+  }
 
   //------- mailchimp --------//  
   function mailChimp() {
@@ -169,31 +173,52 @@ $(function () {
 $(document).ready(function () {
   // Add modal click events to all product buttons
   $('.card-product__imgOverlay button').on('click', function (e) {
-    e.preventDefault();
     var iconClass = $(this).find('i').attr('class');
+    if (iconClass && iconClass.includes('ti-heart')) {
+      // Let the global wishlist handler take care of it
+      return;
+    }
+    
+    e.preventDefault();
     var card = $(this).closest('.card-product');
     var title = card.find('.card-product__title').text().trim();
-    var price = card.find('.card-product__price').text().trim();
+    var priceText = card.find('.card-product__price').text().trim() || "Rs. 399";
     var imgSrc = card.find('.card-img').attr('src');
+    
+    // Fallback price logic from sibling button if needed
+    var siblingSearch = card.find('button[data-target="#product_modal"]');
+    if (siblingSearch.length && siblingSearch.data('price')) {
+      priceText = siblingSearch.data('price');
+    }
 
-    if (iconClass.includes('ti-search') || iconClass.includes('ti-shopping-cart') || iconClass.includes('ti-heart')) {
-      // Check if modal exists
+    if (iconClass && iconClass.includes('ti-shopping-cart')) {
+      if (typeof AuthGuard !== 'undefined' && !AuthGuard.currentUser) {
+        if (typeof CartEngine !== 'undefined') CartEngine._showToast('✕ Please login first to add items to cart!');
+        setTimeout(() => {
+          window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
+        }, 1500);
+        return;
+      }
+      var parsedPrice = parseInt(String(priceText).replace(/[^\d]/g, '')) || 399;
+      if (typeof CartEngine !== 'undefined') {
+        CartEngine.add({
+          id: title,
+          name: title,
+          img: imgSrc,
+          price: parsedPrice,
+          size: '50ml', // default
+          reuseBottle: false,
+          bottlePrice: 0,
+          bottlePriceDiscount: 0
+        }, 1);
+      }
+    } else if (iconClass && iconClass.includes('ti-search')) {
       if ($('#product_modal').length) {
         $('#product_modal #modal_title').text(title);
-        $('#product_modal .price').text(price);
+        $('#product_modal .price').text(priceText);
         $('#product_modal #modal_img').attr('src', imgSrc);
-
-        if (iconClass.includes('ti-shopping-cart')) {
-          $('#product_modal .button--active').text('Add to Cart');
-        } else if (iconClass.includes('ti-heart')) {
-          $('#product_modal .button--active').text('Add to Wishlist');
-        } else {
-          $('#product_modal .button--active').text('View Details');
-        }
-
+        $('#product_modal .button--active').html('<i class="fas fa-shopping-cart"></i> Add to Cart');
         $('#product_modal').modal('show');
-      } else {
-        alert('Action triggered for ' + title);
       }
     }
   });
@@ -256,4 +281,161 @@ $(document).ready(function () {
       $('.navbar-collapse').collapse('hide');
     }
   });
+
+  // Global Wishlist Event Delegation for Grid Cards (Matches buttons with heart icons)
+  $(document).on('click', '.mens-product-card button, .card-product button', async function(e) {
+    if (this.hasAttribute('onclick')) {
+      return; // Skip delegation if the button has an inline handler (e.g. attar.html)
+    }
+    var btn = $(this);
+    if (!btn.find('.ti-heart, .fa-heart, .far.fa-heart, .fas.fa-heart').length && btn.attr('title') !== 'Wishlist') {
+      return; // Not a wishlist button
+    }
+    
+    e.preventDefault();
+    e.stopPropagation();
+    if (typeof WishlistEngine === 'undefined') return;
+
+    var container = btn.closest('.overlay-actions, .card-product__imgOverlay, .card-product__img, .card-img-area, .mens-product-card, .card-product');
+    var siblingSearch = container.find('button[data-target="#product_modal"], button[data-toggle="modal"]');
+    
+    if (siblingSearch.length) {
+      var name = siblingSearch.data('title');
+      var priceText = siblingSearch.data('price') || "Rs. 399";
+      var img = siblingSearch.data('img') || "img/product/product1.png";
+      var price = parseInt(priceText.replace(/[^\d]/g, '')) || 399;
+      
+      await WishlistEngine.toggle({
+        id: name,
+        name: name,
+        img: img,
+        price: price
+      });
+      
+      // Sync immediately after toggle completes to keep styles consistent
+      syncWishlistButtons();
+    }
+  });
+
+  // Global definition of toggleWishlistFromModal to manage quick views globally
+  window.toggleWishlistFromModal = function() {
+    if (typeof WishlistEngine === 'undefined') return;
+    var modalTitleEl = document.getElementById('modal_title');
+    var modalImgEl = document.getElementById('modal_img');
+    var modalPriceEl = document.getElementById('modal_price');
+    if (!modalTitleEl) return;
+
+    var name = modalTitleEl.textContent.trim();
+    var img = modalImgEl ? modalImgEl.getAttribute('src') : 'img/product/product1.png';
+    var priceText = modalPriceEl ? modalPriceEl.textContent : '399';
+    var price = parseInt(priceText.replace(/[^\d]/g, '')) || 399;
+
+    WishlistEngine.toggle({
+      id: name,
+      name: name,
+      img: img,
+      price: price
+    });
+  };
+
+  // Color code initialized hearts and synchronize across the page dynamically
+  function syncWishlistButtons() {
+    if (typeof WishlistEngine === 'undefined') return;
+    
+    // Update grid card buttons
+    $('.mens-product-card button, .card-product button, .product_sidebar_area button, .single-search-product-wrapper button').each(function() {
+      var btn = $(this);
+      if (this.hasAttribute('onclick')) {
+        return; // Skip sync if button has an inline handler (keeps attar.html specific styling untouched!)
+      }
+      if (!btn.find('.ti-heart, .fa-heart, .far.fa-heart, .fas.fa-heart').length && btn.attr('title') !== 'Wishlist') {
+        return;
+      }
+      var container = btn.closest('.overlay-actions, .card-product__imgOverlay, .card-product__img, .card-img-area, .mens-product-card, .card-product, .single-search-product-wrapper');
+      var siblingSearch = container.find('button[data-target="#product_modal"], button[data-toggle="modal"], a[data-target="#product_modal"]');
+      
+      if (siblingSearch.length) {
+        var name = siblingSearch.data('title');
+        var icon = btn.find('i');
+        if (WishlistEngine.has(name)) {
+          btn.attr('style', 'background: rgba(255, 77, 77, 0.15) !important; color: #ff4d4d !important; border: 1px solid rgba(255, 77, 77, 0.3) !important;');
+          icon.removeClass('ti-heart far').addClass('fas fa-heart');
+        } else {
+          btn.removeAttr('style');
+          icon.removeClass('fas fa-heart').addClass('ti-heart');
+        }
+      }
+    });
+
+    // Also update detail/quick view modal wishlist button if present on page
+    var modalTitleEl = document.getElementById('modal_title');
+    var modalBtn = document.getElementById('modal_wishlist_btn');
+    if (modalTitleEl && modalBtn) {
+      var modalName = modalTitleEl.textContent.trim();
+      if (WishlistEngine.has(modalName)) {
+        modalBtn.style.background = 'rgba(255, 77, 77, 0.15)';
+        modalBtn.style.color = '#ff4d4d';
+        modalBtn.style.border = '1px solid rgba(255, 77, 77, 0.3)';
+        modalBtn.innerHTML = '<i class="fas fa-heart"></i>';
+      } else {
+        modalBtn.style.background = '#111';
+        modalBtn.style.color = '#d4af37';
+        modalBtn.style.border = '1px solid #333';
+        modalBtn.innerHTML = '<i class="far fa-heart"></i>';
+      }
+    }
+    
+    // For single product detail page wishlist buttons
+    var detailHeartBtn = document.querySelector('.s_product_text .card_area .icon_btn[onclick*="WishlistEngine"]');
+    if (detailHeartBtn) {
+      var productNameEl = document.querySelector('.s_product_text h3');
+      if (productNameEl) {
+        var prodName = productNameEl.textContent.trim();
+        var icon = detailHeartBtn.querySelector('i');
+        if (WishlistEngine.has(prodName)) {
+          detailHeartBtn.style.background = 'rgba(255, 77, 77, 0.15)';
+          detailHeartBtn.style.color = '#ff4d4d';
+          detailHeartBtn.style.border = '1px solid rgba(255, 77, 77, 0.3)';
+          if (icon) icon.className = 'fas fa-heart';
+        } else {
+          detailHeartBtn.removeAttribute('style');
+          if (icon) icon.className = 'ti-heart';
+        }
+      }
+    }
+  }
+
+  // Bind to wishlist update event and modal open events
+  document.addEventListener('wishlist:updated', syncWishlistButtons);
+  $(document).on('shown.bs.modal', '#product_modal', syncWishlistButtons);
+  
+  // Call initially
+  setTimeout(syncWishlistButtons, 400);
+
+  // Dynamic CSS Injection for forcing high-contrast visibility on bottle size select buttons in all modals
+  $('<style>')
+    .prop('type', 'text/css')
+    .html('\
+      .modal-size-btn {\
+        background: #111 !important;\
+        color: #aaa !important;\
+        border: 1px solid #333 !important;\
+        border-radius: 20px !important;\
+        padding: 6px 15px !important;\
+        font-size: 12px !important;\
+        font-weight: bold !important;\
+        transition: all 0.3s !important;\
+        outline: none !important;\
+      }\
+      .modal-size-btn.active {\
+        color: #fff !important;\
+        border: 1px solid #d4af37 !important;\
+        box-shadow: 0 0 8px rgba(212,175,55,0.2) !important;\
+      }\
+      .modal-size-btn:hover {\
+        color: #fff !important;\
+        border-color: #d4af37 !important;\
+      }\
+    ')
+    .appendTo('head');
 });

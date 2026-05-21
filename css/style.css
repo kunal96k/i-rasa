@@ -338,8 +338,8 @@ a {
 }
 
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
-    background: #d4af37;
-    color: #fff
+    color: #d4af37;
+    background: transparent;
 }
 
 @media (min-width: 992px) {
@@ -663,7 +663,6 @@ a {
     .header_area .navbar .nav .nav-item.active .nav-link {
         color: #d4af37;
         background: rgba(212, 175, 55, 0.05);
-        padding-left: 25px;
     }
 
     .header_area .navbar .nav-shop {
@@ -1719,38 +1718,45 @@ a {
 }
 
 .blog-banner h4,
-.blog-banner h1,
-.blog-banner a {
+.blog-banner h1 {
     text-transform: capitalize;
-    color: #fff
 }
 
 .blog-banner h4 {
     font-size: 18px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    color: #888888;
 }
 
 .blog-banner h1 {
+    font-family: 'Cinzel', 'Playfair Display', 'Georgia', serif;
     font-size: 30px;
-    margin-bottom: 10px;
-    color: #cccccc
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase !important;
+    color: #d4af37 !important;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-shadow: none !important;
 }
 
 @media (min-width: 992px) {
     .blog-banner h1 {
-        font-size: 36px
+        font-size: 38px !important;
     }
 }
 
 .blog-banner-area {
-    height: 280px;
+    height: 200px;
     position: relative;
-    z-index: 1
+    z-index: 1;
+    border-top: 4px solid #d4af37;
+    border-bottom: 5px solid #000000;
 }
 
 @media (min-width: 1000px) {
     .blog-banner-area {
-        height: 410px
+        height: 250px;
     }
 }
 
@@ -1770,8 +1776,38 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #f1f6f7;
+    background: url('../img/home/light_banner_bg.png') no-repeat center center / cover;
     z-index: -1
+}
+
+/* Premium Light Theme Breadcrumbs */
+.blog-banner-area .breadcrumb {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    justify-content: center;
+}
+
+.blog-banner-area .breadcrumb-item {
+    font-size: 14px;
+    color: #777777 !important;
+    text-transform: none !important;
+}
+
+.blog-banner-area .breadcrumb-item a {
+    color: #777777 !important;
+    text-transform: none !important;
+    font-weight: 400;
+}
+
+.blog-banner-area .breadcrumb-item.active {
+    color: #777777 !important;
+}
+
+.blog-banner-area .breadcrumb-item+.breadcrumb-item::before {
+    content: "-" !important;
+    color: #777777 !important;
+    padding: 0 8px !important;
 }
 
 .blog-banner-btn {
@@ -3464,13 +3500,17 @@ a {
 }
 
 .check_title h2 {
-    font-size: 15px;
-    font-weight: normal;
-    font-family: "Roboto", sans-serif;
-    background: #f1f6f7;
-    line-height: 40px !important;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Oswald", sans-serif;
+    background: #111111;
+    color: #ffffff;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    line-height: 50px !important;
     padding-left: 30px;
-    margin-bottom: 0px
+    margin-bottom: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .check_title h2 a {
@@ -3694,16 +3734,20 @@ a {
 }
 
 .order_box {
-    background: #e8f0f2;
-    padding: 30px
+    background: #111111;
+    padding: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    color: #ffffff;
 }
 
 .order_box h2 {
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     font-size: 18px;
-    font-weight: 500;
-    color: #cccccc;
-    padding-bottom: 15px
+    font-weight: 600;
+    color: #d4af37;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    font-family: "Oswald", sans-serif;
 }
 
 .order_box .list li a {
@@ -3811,8 +3855,9 @@ a {
 
 .order_box .creat_account label {
     padding-left: 10px;
-    font-size: 12px;
-    color: #cccccc
+    font-size: 13px;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 .order_box .creat_account a {
@@ -5462,12 +5507,10 @@ textarea {
 }
 
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
-    background: #111 !important;
-    color: #ffd700 !important;
-    border: 1px solid #d4af37 !important;
-    /* Apply border on links box on hover */
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15) !important;
-    padding-left: 25px !important;
+    color: #d4af37 !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
 
 /* Glow effect for dropdown text */
@@ -5905,8 +5948,8 @@ footer a:hover {
 }
 
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
-    background: #d4af37 !important;
-    color: #000 !important;
+    color: #d4af37 !important;
+    background: transparent !important;
 }
 
 /* Light gray text  (make them white/gold) */
@@ -5969,7 +6012,6 @@ footer a:hover {
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
     background: transparent !important;
     color: #d4af37 !important;
-    padding-left: 35px !important;
 }
 
 /* ---- LAYOUT & VISIBILITY ES ---- */
@@ -6359,7 +6401,7 @@ input[type=number] {
 }
 
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
-    padding-left: 40px !important;
+    color: #d4af37 !important;
     background: transparent !important;
 }
 
@@ -6614,6 +6656,7 @@ input[type=number] {
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link,
 .nav-link:hover {
     border-radius: 0 !important;
+    color: #d4af37 !important;
 }
 
 /* ---- PREMIUM SCROLL TO TOP BUTTON ---- */
@@ -6706,10 +6749,6 @@ input[type=number] {
     transition: transform 0.3s ease;
 }
 
-.stars i:hover {
-    transform: scale(1.2);
-}
-
 .stars span,
 .stars small {
     color: #999 !important;
@@ -6740,3 +6779,68 @@ input[type=number] {
     text-transform: capitalize;
     letter-spacing: 0.5px;
 }
+
+/* Fix footer contact info icons visibility inside gold circles */
+.single-footer-widget .sm-head span i {
+    color: #000000 !important;
+}
+
+.single-footer-widget .sm-head:hover span i {
+    color: #d4af37 !important;
+}
+
+/* Ensure modals and backdrops are always on top of fixed headers and navbars */
+.modal {
+
+    z-index: 2000000000 !important;
+}
+
+.modal-backdrop {
+    z-index: 1999999999 !important;
+}
+
+/* Force high-contrast black color for the cart icon inside the main modal Add to Cart button */
+#product_modal .button--active i {
+    color: #000 !important;
+    font-size: 16px !important;
+    margin-right: 8px !important;
+}
+
+/* Enforce premium circular layout and custom colors for the modal wishlist button */
+#modal_wishlist_btn {
+    background: #111 !important;
+    color: #d4af37 !important;
+    border: 1px solid #333 !important;
+    border-radius: 50% !important;
+    width: 48px !important;
+    height: 48px !important;
+    padding: 0 !important;
+    font-size: 18px !important;
+    transition: all 0.3s !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    outline: none !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+}
+
+#modal_wishlist_btn:hover {
+    background: #222 !important;
+    border-color: #d4af37 !important;
+    color: #ffd700 !important;
+}
+
+#modal_wishlist_btn i {
+    color: inherit !important;
+    font-size: 18px !important;
+}
+
+#modal_wishlist_btn.wishlisted {
+    background: rgba(255, 77, 77, 0.15) !important;
+    color: #ff4d4d !important;
+    border: 1px solid rgba(255, 77, 77, 0.3) !important;
+}
+/* Hide Bottle Return Offer for Online Shopping */
+.eco-offer-box { display: none !important; }
+

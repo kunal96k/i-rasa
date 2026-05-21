@@ -3,13 +3,19 @@
  * Handles session-based auth state across all pages
  * API Base: http://localhost:8080
  */
-const AUTH_API = 'http://localhost:8080/api/auth';
+const AUTH_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? `http://${window.location.hostname}:8080/api/auth` 
+      : '/api/auth';
 
 const RasaAuth = {
   user: null,
 
   /** Check if user is logged in (call on every page load) */
   async checkSession() {
+    if (localStorage.getItem('irasa_logged_in') !== 'true') {
+      this._updateProfileIcon(false);
+      return false;
+    }
     try {
       const res = await fetch(`${AUTH_API}/me`, {
         method: 'GET',
@@ -19,6 +25,7 @@ const RasaAuth = {
         const data = await res.json();
         if (data.success) {
           this.user = data.data;
+          localStorage.setItem('irasa_logged_in', 'true');
           this._updateProfileIcon(true);
           return true;
         }
@@ -26,6 +33,7 @@ const RasaAuth = {
     } catch (e) {
       // silently fail — user is not logged in
     }
+    localStorage.setItem('irasa_logged_in', 'false');
     this._updateProfileIcon(false);
     return false;
   },
@@ -41,9 +49,14 @@ const RasaAuth = {
     const data = await res.json();
     if (data.success) {
       this.user = data.data;
+      localStorage.setItem('irasa_logged_in', 'true');
       this._updateProfileIcon(true);
       // Save basic info to sessionStorage for quick access
       sessionStorage.setItem('rasa_user', JSON.stringify(this.user));
+      // Scope the cart to this specific user
+      if (typeof CartEngine !== 'undefined') {
+        CartEngine.setUser(this.user.id || this.user.email);
+      }
     }
     return data;
   },
@@ -66,7 +79,10 @@ const RasaAuth = {
       credentials: 'include'
     });
     this.user = null;
+    // Reset cart to guest scope before clearing session
+    if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
     sessionStorage.removeItem('rasa_user');
+    localStorage.setItem('irasa_logged_in', 'false');
     this._updateProfileIcon(false);
     window.location.href = '/login.html';
   },

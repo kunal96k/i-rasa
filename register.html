@@ -340,7 +340,9 @@
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script>
-    const AUTH_API = 'http://localhost:8080/api/auth';
+    const AUTH_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:8080/api/auth'
+      : '/api/auth';
 
     // If already logged in, redirect to home
     (async () => {
@@ -348,7 +350,7 @@
         const res = await fetch(`${AUTH_API}/me`, { credentials: 'include' });
         const data = await res.json();
         if (data.success) window.location.href = 'index.html';
-      } catch(e) {}
+      } catch (e) { }
     })();
 
     function togglePass(inputId, icon) {
@@ -364,34 +366,80 @@
     }
 
     // OTP state (visual only — real verification is done via email link)
-    function sendOTP() {
-      var email = $('#email').val().trim();
+    async function sendOTP() {
+      const email = $('#email').val().trim();
       if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
         showAlert('error', 'Please enter a valid email address first.');
         return;
       }
-      $('#btnSendOtp').text('Sent ✓').prop('disabled', true);
-      $('#otp_section').slideDown();
-      showAlert('info', 'A verification link will be sent to your email after registration.');
+
+      const btn = $('#btnSendOtp');
+      btn.prop('disabled', true).text('Sending...');
+
+      try {
+        const res = await fetch(`${AUTH_API}/send-otp`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          $('#otp_section').slideDown();
+          btn.text('Resend OTP').prop('disabled', false);
+          showAlert('success', data.message);
+        } else {
+          showAlert('error', data.message);
+          btn.text('Send OTP').prop('disabled', false);
+        }
+      } catch (err) {
+        showAlert('error', 'Failed to send OTP. Please try again.');
+        btn.text('Send OTP').prop('disabled', false);
+      }
     }
 
-    function verifyOTP() {
-      // Unlock the register button once user confirms they have access to the email
-      $('#otp_section').slideUp();
-      $('#btnSendOtp').text('Email Confirmed ✓').css('background', '#28a745').prop('disabled', true);
-      $('#btnRegister').prop('disabled', false).css('opacity', '1');
-      showAlert('success', 'Great! Complete the form and click Register Account.');
+    async function verifyOTP() {
+      const email = $('#email').val().trim();
+      const otp = $('#otp').val().trim();
+
+      if (!otp || otp.length !== 6) {
+        showAlert('error', 'Please enter the 6-digit code.');
+        return;
+      }
+
+      try {
+        const res = await fetch(`${AUTH_API}/verify-otp`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, otp })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          $('#otp_section').slideUp();
+          $('#btnSendOtp').html('<i class="fas fa-check mr-1"></i> Email Verified').css('background', '#28a745').prop('disabled', true);
+          $('#email').prop('readonly', true);
+          $('#btnRegister').prop('disabled', false).css('opacity', '1');
+          showAlert('success', 'Email verified! You can now register.');
+        } else {
+          showAlert('error', data.message);
+        }
+      } catch (err) {
+        showAlert('error', 'Verification failed. Please try again.');
+      }
     }
 
     async function handleRegister(e) {
       e.preventDefault();
 
       const fullName = $('input[placeholder="Full Name"]').val().trim();
-      const phone    = $('input[placeholder="Phone Number"]').val().trim();
-      const email    = $('#email').val().trim();
+      const phone = $('input[placeholder="Phone Number"]').val().trim();
+      const email = $('#email').val().trim();
       const password = $('#password').val();
-      const confirm  = $('#confirmPassword').val();
-      const terms    = $('#terms').is(':checked');
+      const confirm = $('#confirmPassword').val();
+      const terms = $('#terms').is(':checked');
 
       if (!fullName || !phone || !email || !password || !confirm) {
         showAlert('error', 'Please fill in all required fields.'); return;
@@ -414,7 +462,7 @@
       btn.textContent = 'Creating Account...';
 
       try {
-        const res  = await fetch(`${AUTH_API}/register`, {
+        const res = await fetch(`${AUTH_API}/register`, {
           method: 'POST', credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ fullName, phone, email, password })
@@ -425,17 +473,17 @@
           // Show success state
           $('.auth-right form').hide();
           $('.auth-footer').hide();
-          $('.auth-header h3').text('Account Created! 🎉');
+          $('.auth-header h3').text('Account Created..!!!');
           $('.auth-header p').text('Check your email to verify and activate your account.');
           $('.auth-header').after(`
             <div style="text-align:center;padding:30px 0;">
-              <div style="font-size:54px;margin-bottom:20px;">📬</div>
+              <div style="font-size:64px;margin-bottom:20px;color:#d4af37;"><i class="fas fa-envelope-open-text"></i></div>
               <p style="color:#ccc;line-height:1.8;font-size:14px;">
                 We've sent a verification link to <strong style="color:#d4af37;">${email}</strong>.<br>
                 Please verify your email to complete registration.
               </p>
               <a href="login.html" style="display:inline-block;margin-top:24px;background:linear-gradient(135deg,#d4af37,#aa8422);color:#000;padding:12px 30px;border-radius:10px;font-weight:700;text-decoration:none;">
-                → Go to Login
+                Go to Login <i class="fas fa-chevron-right ml-1"></i>
               </a>
             </div>
           `);
@@ -444,7 +492,7 @@
           btn.disabled = false;
           btn.textContent = 'Register Account';
         }
-      } catch(err) {
+      } catch (err) {
         showAlert('error', 'Unable to connect to server. Please try again.');
         btn.disabled = false;
         btn.textContent = 'Register Account';
@@ -456,17 +504,28 @@
       if (!el) {
         el = document.createElement('div');
         el.id = 'regAlert';
-        el.style.cssText = 'padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:15px;';
+        el.style.cssText = 'padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:20px;line-height:1.6;';
         $('.auth-right form').prepend(el);
       }
+
+      // If message contains multiple errors (separated by comma), format as list
+      if (msg.includes(', ')) {
+        const errors = msg.split(', ');
+        msg = '<ul style="margin:0;padding-left:20px;">' +
+          errors.map(err => `<li>${err}</li>`).join('') +
+          '</ul>';
+        el.innerHTML = msg;
+      } else {
+        el.innerHTML = msg;
+      }
+
       el.style.background = type === 'success' ? 'rgba(212,175,55,0.12)'
-                          : type === 'info'    ? 'rgba(100,100,200,0.12)'
-                          : 'rgba(255,77,77,0.12)';
-      el.style.color  = type === 'success' ? '#d4af37' : type === 'info' ? '#8899ff' : '#ff6b6b';
+        : type === 'info' ? 'rgba(100,100,200,0.12)'
+          : 'rgba(255,77,77,0.12)';
+      el.style.color = type === 'success' ? '#d4af37' : type === 'info' ? '#8899ff' : '#ff6b6b';
       el.style.border = type === 'success' ? '1px solid rgba(212,175,55,0.25)'
-                      : type === 'info'    ? '1px solid rgba(100,100,200,0.25)'
-                      : '1px solid rgba(255,77,77,0.2)';
-      el.textContent = msg;
+        : type === 'info' ? '1px solid rgba(100,100,200,0.25)'
+          : '1px solid rgba(255,77,77,0.2)';
     }
   </script>
 </body>

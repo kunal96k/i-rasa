@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&family=Reem+Kufi:wght@400;700&display=swap');
 
 
-@font-face { font-family: 'Samarkan'; src: url('../fonts/SAMARN__.TTF') format('truetype'); }
+@font-face { font-family: 'Samarkan'; src: url('../../fonts/SAMARN__.TTF') format('truetype'); }
 @font-face {
 	font-family: 'Linearicons-Free';
 	src:url('fonts/Linearicons-Free.eot?w118d');
@@ -741,12 +741,11 @@ input, textarea {
 }
 
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover {
-    background: #151515 !important;
+    background: transparent !important;
 }
 
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
     color: #ffd700 !important; /* Brighter gold on hover */
-    padding-left: 35px !important;
 }
 
 /* Nav Shop / Search Icons */
@@ -820,11 +819,10 @@ input, textarea {
 }
 
 .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
-    background: #111 !important;
     color: #ffd700 !important;
-    border: 1px solid #d4af37 !important; /* Apply border on links box on hover */
-    box-shadow: 0 4px 15px rgba(212,175,55,0.15) !important;
-    padding-left: 25px !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
 
 /* Glow effect for dropdown text */
@@ -899,3 +897,133 @@ h1, h2, h3, h4, h5, h6, .footer_title {
 .logo_h span:first-child {
     font-family: 'Samarkan', sans-serif !important;
 }
+
+/* ── LUXURY STAR RATING SYSTEM ── */
+/* Interactive Rating (Radio based) */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 5px;
+}
+
+.rating:not(:checked) > input {
+    position: absolute;
+    appearance: none;
+    opacity: 0;
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    cursor: pointer;
+    font-size: 32px;
+    color: #444; /* Darker gray for inactive */
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.rating:not(:checked) > label:before {
+    content: "★";
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #e58e09;
+    text-shadow: 0 0 15px rgba(229, 142, 9, 0.4);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ff9e0b;
+    text-shadow: 0 0 15px rgba(255, 158, 11, 0.4);
+    transform: scale(1.1);
+}
+
+.rating > input:checked ~ label {
+    color: #ffa723;
+    text-shadow: 0 0 10px rgba(255, 167, 35, 0.5);
+}
+
+/* Static Stars (Global Display) */
+.stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: center; /* Center by default for cards */
+    margin-bottom: 12px;
+}
+
+.stars i {
+    color: #ffa723 !important; /* Bright Gold */
+    font-size: 15px !important;
+    text-shadow: 0 0 10px rgba(255, 167, 35, 0.6), 0 0 20px rgba(255, 167, 35, 0.2);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+}
+
+.stars i:hover {
+    transform: scale(1.25) rotate(5deg);
+    color: #ff9e0b !important;
+}
+
+.stars span {
+    color: #888;
+    font-size: 12px;
+    margin-left: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+}
+
+/* Interactive Rating (Radio based) */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.rating:not(:checked) > input {
+    position: absolute;
+    appearance: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    cursor: pointer;
+    font-size: 36px; /* Larger for interaction */
+    color: #333; 
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+.rating:not(:checked) > label:before {
+    content: "★";
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ff9e0b;
+    text-shadow: 0 0 20px rgba(255, 158, 11, 0.6);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ffa723;
+    text-shadow: 0 0 20px rgba(255, 167, 35, 0.5);
+    transform: scale(1.15);
+}
+
+.rating > input:checked ~ label {
+    color: #ffa723;
+    text-shadow: 0 0 15px rgba(255, 167, 35, 0.6);
+}
+
