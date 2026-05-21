@@ -244,20 +244,36 @@
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
                 <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP*">
               </div>
-              <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group">
-                <div class="creat_account">
-                  <input type="checkbox" id="f-option2" name="selector">
-                  <label for="f-option2">Create an account?</label>
-                </div>
-              </div>
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-12 form-group mb-0">
-                <div class="creat_account">
-                  <h3>Shipping Details</h3>
-                  <input type="checkbox" id="f-option3" name="selector">
-                  <label for="f-option3">Ship to a different address?</label>
-                </div>
                 <textarea class="form-control" name="message" id="message" rows="1"
                   placeholder="Order Notes"></textarea>
+              </div>
+              <div class="col-md-12 form-group" style="margin-top:22px;">
+                <label class="d-flex align-items-center" style="gap:10px; color:#d4af37; font-size:13px;">
+                  <input type="checkbox" id="shipDifferentCheckbox" style="width:auto; accent-color:#d4af37;">
+                  Ship to a different address
+                </label>
+              </div>
+              <div id="shippingAddressSection" style="display:none; padding-top:18px; border-top:1px dashed #333; margin-top:16px;">
+                <h4 style="color:#d4af37;font-size:16px;margin-bottom:14px;">Shipping Address</h4>
+                <div class="col-md-6 form-group p_star">
+                  <input type="text" class="form-control" id="shippingFirst" placeholder="Shipping First name">
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <input type="text" class="form-control" id="shippingLast" placeholder="Shipping Last name">
+                </div>
+                <div class="col-md-12 form-group p_star">
+                  <input type="text" class="form-control" id="shippingAdd1" placeholder="Shipping Address Line 1">
+                </div>
+                <div class="col-md-12 form-group p_star">
+                  <input type="text" class="form-control" id="shippingAdd2" placeholder="Shipping Address Line 2 (Area/Locality)">
+                </div>
+                <div class="col-md-6 form-group p_star">
+                  <input type="text" class="form-control" id="shippingCity" placeholder="Shipping Town/City">
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="text" class="form-control" id="shippingZip" placeholder="Shipping Postcode/ZIP">
+                </div>
               </div>
             </form>
           </div>
@@ -343,7 +359,7 @@
                 <a href="javascript:void(0);" style="color:#d4af37;font-size:12px;">terms &amp; conditions*</a>
               </div>
               <div class="text-center">
-                <button id="placeOrderBtn" onclick="placeOrder()"
+                <button type="button" id="placeOrderBtn" onclick="placeOrder()"
                   style="width:100%;background:linear-gradient(135deg,#d4af37,#aa8422);color:#000;border:none;padding:14px;border-radius:30px;font-weight:700;font-size:15px;letter-spacing:1px;cursor:pointer;transition:all 0.3s;">Place
                   Order <i class="fas fa-arrow-right"></i></button>
                 <p id="orderError" style="color:#ff4d4d;font-size:12px;margin-top:8px;display:none;"></p>
@@ -634,8 +650,8 @@
         </a></li>`).join('');
 
       // Check Nashik free delivery
-      const cityVal = (document.getElementById('city')?.value || '').trim().toLowerCase();
-      const zipVal = (document.getElementById('zip')?.value || '').trim().toLowerCase();
+      const cityVal = getShippingCityValue();
+      const zipVal = getShippingZipValue();
       if (cityVal.includes('nashik') || zipVal.includes('42200') || zipVal.includes('42201') || zipVal.includes('42202')) {
         currentShippingCost = 0;
       } else {
@@ -720,6 +736,31 @@
       document.getElementById('pay-cod-radio').checked = method === 'cod';
       document.getElementById('pay-upi').style.borderColor = method === 'upi' ? '#d4af37' : '#2a2a2a';
       document.getElementById('pay-cod').style.borderColor = method === 'cod' ? '#d4af37' : '#2a2a2a';
+    }
+
+    function shouldUseShippingAddress() {
+      return document.getElementById('shipDifferentCheckbox')?.checked;
+    }
+
+    function getShippingCityValue() {
+      if (shouldUseShippingAddress()) {
+        return (document.getElementById('shippingCity')?.value || '').trim().toLowerCase();
+      }
+      return (document.getElementById('city')?.value || '').trim().toLowerCase();
+    }
+
+    function getShippingZipValue() {
+      if (shouldUseShippingAddress()) {
+        return (document.getElementById('shippingZip')?.value || '').trim().toLowerCase();
+      }
+      return (document.getElementById('zip')?.value || '').trim().toLowerCase();
+    }
+
+    function toggleShippingAddressSection() {
+      const section = document.getElementById('shippingAddressSection');
+      if (!section) return;
+      section.style.display = shouldUseShippingAddress() ? 'block' : 'none';
+      renderCheckoutCart();
     }
 
     /* ── Leaflet Geolocation Map Setup ── */
@@ -819,6 +860,9 @@
       // Listen to city and zip input fields to trigger real-time shipping adjustments
       document.getElementById('city')?.addEventListener('input', renderCheckoutCart);
       document.getElementById('zip')?.addEventListener('input', renderCheckoutCart);
+      document.getElementById('shippingCity')?.addEventListener('input', renderCheckoutCart);
+      document.getElementById('shippingZip')?.addEventListener('input', renderCheckoutCart);
+      document.getElementById('shipDifferentCheckbox')?.addEventListener('change', toggleShippingAddressSection);
 
       // Initialize dynamic geolocator map
       initGeolocatorMap();
@@ -927,8 +971,22 @@
         zip: document.getElementById('zip').value.trim()
       };
 
+      const shippingDifferent = document.getElementById('shipDifferentCheckbox')?.checked;
+      const shipping = shippingDifferent ? {
+        firstName: document.getElementById('shippingFirst').value.trim(),
+        lastName: document.getElementById('shippingLast').value.trim(),
+        address1: document.getElementById('shippingAdd1').value.trim(),
+        address2: document.getElementById('shippingAdd2').value.trim(),
+        city: document.getElementById('shippingCity').value.trim(),
+        zip: document.getElementById('shippingZip').value.trim()
+      } : null;
+
       if (!billing.firstName || !billing.phone || !billing.email || !billing.address1 || !billing.city || !billing.zip) {
         errEl.textContent = 'Please fill all required billing fields.'; errEl.style.display = 'block'; return;
+      }
+
+      if (shippingDifferent && (!shipping.firstName || !shipping.address1 || !shipping.city || !shipping.zip)) {
+        errEl.textContent = 'Please fill all required shipping fields.'; errEl.style.display = 'block'; return;
       }
 
       const btn = document.getElementById('placeOrderBtn');
@@ -965,8 +1023,13 @@
           couponCode: appliedCouponCode || null,
           discount: appliedDiscount,
           shipping: currentShippingCost,
+          handlingCharge: HANDLING_CHARGE,
+          platformFee: PLATFORM_FEE,
           total: total
         };
+        if (shipping) {
+          orderPayload.shippingAddress = shipping;
+        }
 
         const res = await fetch(ORDER_API, {
           method: 'POST', credentials: 'include',

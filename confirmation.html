@@ -123,7 +123,7 @@
   <!--================Order Details Area =================-->
   <section data-aos="fade-up" data-aos-duration="1000" class="order_details section-margin--small">
     <div class="container">
-      <p class="text-center billing-alert" id="confirmMsg">Thank you. Your order has been received.</p>
+      <p class="text-center billing-alert" id="confirmMsg" style="display:none;"></p>
       <div id="order-loading" style="text-align:center;padding:60px;color:#888;"><i class="fas fa-spinner fa-spin" style="font-size:30px;color:#d4af37;"></i><p style="margin-top:12px;">Loading your order...</p></div>
       <div id="order-content" style="display:none;">
         <div class="row mb-5">
@@ -187,7 +187,7 @@
                 style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase;">i rasa</h4>
               <p>
                 I Rasa Perfumes provides the finest fragrances across India. Our expertly crafted perfumes bring you a
-                touch of elegance and luxury every day. Starting at just Rs. 299.
+                touch of elegance and luxury every day. Starting at just ₹ 299.
               </p>
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
@@ -288,7 +288,7 @@
             <div class="col-md-6">
               <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
               </h2>
-              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
+              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">₹ 299</p>
               <div class="stars mb-3">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -318,9 +318,10 @@
   <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
   <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="vendors/mail-script.js"></script>
+  <script src="vendors/contact-handler.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/invoice-modal.js"></script>
   <script src="js/vendors/aos.js"></script>
   <script>AOS.init();</script>
   <script src="js/auth-guard.js"></script>
@@ -329,8 +330,18 @@
     const ORDER_API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
       ? `http://${window.location.hostname}:8080/api/orders` : '/api/orders';
 
+    const INR_FORMATTER = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 2,
+    });
+
     function row(label, val) {
       return `<tr><td>${label}</td><td>: ${val || '—'}</td></tr>`;
+    }
+
+    function formatINR(value) {
+      return INR_FORMATTER.format(parseFloat(value) || 0);
     }
 
     document.addEventListener('DOMContentLoaded', async function () {
@@ -346,44 +357,47 @@
         const o = data.data;
         const b = o.billing || {};
 
-        document.getElementById('confirmMsg').textContent =
-          `Thank you, ${b.firstName || ''}! Your order #${o.orderId} has been received.`;
+        const confirmMsg = document.getElementById('confirmMsg');
+        confirmMsg.textContent = `Thank you, ${b.firstName || 'Customer'}! Your order #${o.orderId} has been placed successfully.`;
+        confirmMsg.style.display = 'block';
 
         /* Order Info */
         document.getElementById('order-info-table').innerHTML =
           row('Order number', '#' + o.orderId) +
           row('Date', new Date(o.createdAt).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'})) +
-          row('Total', 'Rs. ' + parseFloat(o.total).toFixed(2)) +
+          row('Total', formatINR(o.total)) +
           row('Payment', o.paymentMethod) +
           row('Status', `<span style="color:#d4af37;font-weight:700;">${o.status || 'Pending'}</span>`);
 
         /* Billing */
         document.getElementById('billing-table').innerHTML =
-          row('Name',    `${b.firstName} ${b.lastName}`) +
+          row('Name',    `${b.firstName || ''} ${b.lastName || ''}`.trim()) +
           row('Phone',   b.phone) +
           row('Email',   b.email) +
-          row('Address', b.address1 + (b.address2 ? ', ' + b.address2 : '')) +
+          row('Address', (b.address1 || '') + (b.address2 ? ', ' + b.address2 : '')) +
           row('City',    b.city) +
           row('ZIP',     b.zip);
 
         /* Shipping = same as billing (or separate if returned) */
-        const s = o.shipping || b;
+        const s = (o.shippingAddress && o.shippingAddress.address1) ? o.shippingAddress : b;
         document.getElementById('shipping-table').innerHTML =
-          row('Address', s.address1 || b.address1) +
-          row('City',    s.city    || b.city) +
-          row('ZIP',     s.zip     || b.zip) +
+          row('Name',    `${s.firstName || ''} ${s.lastName || ''}`.trim()) +
+          row('Phone',   s.phone || b.phone || '—') +
+          row('Address', (s.address1 || b.address1 || '') + ((s.address2 || b.address2) ? ', ' + (s.address2 || b.address2) : '')) +
+          row('City',    s.city    || b.city || '—') +
+          row('ZIP',     s.zip     || b.zip || '—') +
           row('Country', 'India');
 
         /* Items */
         const items = o.items || [];
         const tbody = document.getElementById('order-items-body');
         tbody.innerHTML = items.map(i =>
-          `<tr><td><p>${i.name}${i.size ? ' ('+i.size+')' : ''}</p></td><td><h5>x ${i.qty}</h5></td><td><p>Rs. ${(i.price * i.qty).toFixed(2)}</p></td></tr>`
+          `<tr><td><p>${i.name}${i.size ? ' (' + i.size + ')' : ''}</p></td><td><h5>x ${i.qty}</h5></td><td><p>${formatINR(i.price * i.qty)}</p></td></tr>`
         ).join('') +
-          `<tr><td><h4>Subtotal</h4></td><td></td><td><p>Rs. ${parseFloat(o.subtotal||0).toFixed(2)}</p></td></tr>` +
-          (o.discount > 0 ? `<tr><td><h4 style="color:#4caf50;">Coupon</h4></td><td></td><td><p style="color:#4caf50;">- Rs. ${parseFloat(o.discount).toFixed(2)}</p></td></tr>` : '') +
-          `<tr><td><h4>Shipping</h4></td><td></td><td><p>Rs. ${parseFloat(o.shipping||50).toFixed(2)}</p></td></tr>` +
-          `<tr><td><h4>Total</h4></td><td></td><td><h4>Rs. ${parseFloat(o.total).toFixed(2)}</h4></td></tr>`;
+          `<tr><td><h4>Subtotal</h4></td><td></td><td><p>${formatINR(o.subtotal || 0)}</p></td></tr>` +
+          (o.discount > 0 ? `<tr><td><h4 style="color:#4caf50;">Coupon</h4></td><td></td><td><p style="color:#4caf50;">- ${formatINR(o.discount)}</p></td></tr>` : '') +
+          `<tr><td><h4>Shipping</h4></td><td></td><td><p>${formatINR(o.shipping || 50)}</p></td></tr>` +
+          `<tr><td><h4>Total</h4></td><td></td><td><h4>${formatINR(o.total)}</h4></td></tr>`;
 
         document.getElementById('order-loading').style.display = 'none';
         document.getElementById('order-content').style.display = 'block';
@@ -393,7 +407,9 @@
     });
 
     function showError() {
+      document.getElementById('confirmMsg').style.display = 'none';
       document.getElementById('order-loading').style.display = 'none';
+      document.getElementById('order-content').style.display = 'none';
       document.getElementById('order-error').style.display   = 'block';
     }
   </script>
