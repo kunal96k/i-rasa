@@ -603,7 +603,6 @@ body {
     background: linear-gradient(135deg, #ffd700, #b8860b, #ffd700) !important;
     color: #000 !important;
     box-shadow: 0 4px 20px rgba(255,215,0,0.6) !important;
-    transform: scale(1.05) !important;
 }
 .section-intro p {
     color: #ffd700 !important;

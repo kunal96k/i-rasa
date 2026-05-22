@@ -42,12 +42,23 @@
       max-width: 100% !important;
     }
 
-    /* 3. .table-responsive — main cause of X scrollbar on desktop */
+    /* 3. .table-responsive — clip horizontal only, NEVER clip rows vertically */
     .table-responsive {
       overflow-x: auto;
-      overflow: hidden;
+      overflow-y: visible;
       -webkit-overflow-scrolling: touch;
       max-width: 100% !important;
+    }
+
+    /* Cart table rows must ALWAYS be visible — highest-priority override */
+    .cart_inner .table-responsive,
+    .cart_inner .table-responsive table,
+    .cart_inner .table-responsive tbody,
+    #cart-tbody {
+      overflow: visible !important;
+      display: revert !important;
+      height: auto !important;
+      visibility: visible !important;
     }
 
     /* 4. coupon row negative-margin bleed */
@@ -77,10 +88,14 @@
       }
     }
 
-    /* 6. Hide scrollbars on .table-responsive on desktop */
+    /* 6. On desktop: allow horizontal scroll if needed, NEVER hide rows */
     @media (min-width: 768px) {
       .table-responsive {
-        overflow-x: hidden !important;
+        overflow-x: auto;
+        overflow-y: visible !important;
+      }
+      .cart_inner .table-responsive {
+        overflow: visible !important;
       }
     }
 
@@ -220,6 +235,205 @@
     .nice-select .current {
       color: #ccc !important;
     }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /* COUPON SECTION STYLING */
+    /* ═══════════════════════════════════════════════════════════════ */
+    
+    .coupon-offers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+      width: 100%;
+    }
+
+    .coupon-card {
+      background: linear-gradient(135deg, #1a1500 0%, #0d0d0d 100%);
+      border: 1px solid #d4af37;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coupon-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d4af37, #ffd700);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .coupon-card:hover {
+      border-color: #ffd700;
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+    }
+
+    .coupon-card:hover::before {
+      opacity: 1;
+    }
+
+    .coupon-card.active {
+      border-color: #4caf50;
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+      box-shadow: 0 8px 24px rgba(76, 175, 80, 0.2);
+    }
+
+    .coupon-card.active::before {
+      background: linear-gradient(90deg, #4caf50, #66bb6a);
+      opacity: 1;
+    }
+
+    .coupon-code {
+      font-size: 16px;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: 1px;
+      font-family: 'Courier New', monospace;
+      word-break: break-all;
+    }
+
+    .coupon-tag {
+      display: inline-block;
+      background: #d4af37;
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      width: fit-content;
+    }
+
+    .coupon-meta {
+      font-size: 12px;
+      color: #999;
+      line-height: 1.4;
+    }
+
+    .coupon-actions {
+      margin-top: auto;
+    }
+
+    .coupon-apply-btn {
+      width: 100%;
+      padding: 8px 16px;
+      background: #d4af37;
+      color: #1a1200;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .coupon-apply-btn:disabled {
+      background: #555;
+      color: #999;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .coupon-apply-btn[disabled] {
+      background: #555 !important;
+      color: #999 !important;
+      cursor: not-allowed !important;
+      opacity: 0.6 !important;
+    }
+
+    .coupon-input-block {
+      padding: 12px 16px !important;
+      background: transparent;
+      border-radius: 8px;
+    }
+
+    .coupon-input-row {
+      background: #0d0d0d;
+      border: 1px solid #2a2000;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .coupon-input-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #d4af37;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .coupon-input-inner input {
+      background: #1a1500 !important;
+      border: 1px solid #2a2000 !important;
+      color: #e8dfc8 !important;
+      padding: 10px 12px !important;
+      border-radius: 6px !important;
+      font-size: 13px !important;
+    }
+
+    .coupon-input-inner input::placeholder {
+      color: #666 !important;
+    }
+
+    .coupon-input-inner input:focus {
+      border-color: #d4af37 !important;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.2) !important;
+      outline: none !important;
+    }
+
+    .coupon-message {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .remove-coupon {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 4px 8px;
+      background: rgba(255, 77, 77, 0.2);
+      color: #ff4d4d;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      transition: none;
+    }
+
+    @media (max-width: 767px) {
+      .coupon-offers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .coupon-input-row {
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+
+      .coupon-card {
+        padding: 12px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /* END COUPON SECTION STYLING */
+    /* ═══════════════════════════════════════════════════════════════ */
 
     /* === CART SECTION — MOBILE CARD LAYOUT === */
     @media (max-width: 767px) {
@@ -472,6 +686,151 @@
         align-items: center;
         justify-content: center;
         min-height: 44px;
+      }
+
+      .coupon-input-label,
+      .mobile-coupon-label {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 1px;
+        font-weight: 700;
+        color: #aaa;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      .coupon-input-inner input,
+      .mobile-coupon-input-wrap input {
+        flex: 1;
+        background: #0d0d0d;
+        border: 1px solid #2a2a2a;
+        border-radius: 12px;
+        padding: 12px 16px;
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+        width: 100%;
+      }
+
+      .coupon-input-inner input:focus,
+      .mobile-coupon-input-wrap input:focus {
+        border-color: #d4af37;
+      }
+
+      .coupon-apply-btn {
+        min-width: 120px;
+        padding: 12px 20px !important;
+        border-radius: 12px !important;
+        background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+        color: #000 !important;
+        font-weight: 700 !important;
+      }
+
+      .coupon-message {
+        color: #e8dfc8;
+        min-height: 18px;
+      }
+
+      .selected-coupon-panel {
+        width: 320px;
+        min-width: 240px;
+        background: linear-gradient(180deg, rgba(14, 14, 14, 0.96), rgba(16, 16, 16, 0.96));
+        border: 1px solid #2a2a2a;
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.08);
+      }
+
+      .selected-coupon-panel.mobile {
+        width: 100%;
+      }
+
+      .selected-coupon-panel h5 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        color: #d4af37;
+        letter-spacing: 0.5px;
+      }
+
+      .selected-coupon-panel p {
+        margin: 6px 0;
+        line-height: 1.4;
+        color: #ddd;
+        font-size: 13px;
+      }
+
+      .selected-coupon-panel .coupon-detail {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        color: #aaa;
+        font-size: 12px;
+      }
+
+      .selected-coupon-panel .remove-coupon {
+        display: inline-flex;
+        margin-top: 12px;
+        padding: 8px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 77, 77, 0.3);
+        color: #ff4d4d;
+        background: rgba(255, 77, 77, 0.06);
+        cursor: pointer;
+      }
+
+      .coupon-offers-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .coupon-card {
+        background: #111;
+        border: 1px solid #2a2a2a;
+        border-radius: 16px;
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 140px;
+      }
+
+      .coupon-card.active {
+        border-color: #d4af37;
+        background: rgba(212, 175, 55, 0.08);
+      }
+
+      .coupon-card .coupon-code {
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 1px;
+      }
+
+      .coupon-card .coupon-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #d4af37;
+        font-size: 12px;
+      }
+
+      .coupon-card .coupon-actions {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .coupon-card .coupon-actions .coupon-apply-btn {
+        flex: 1;
+      }
+
+      .coupon-card .coupon-meta {
+        color: #aaa;
+        font-size: 12px;
+        line-height: 1.4;
       }
 
       /* ─── ORDER SUMMARY CARD ─── */
@@ -779,7 +1138,6 @@
       .desktop-remove-btn:hover {
         color: #fff;
 
-        transform: scale(1.1);
       }
 
       /* DESKTOP TABLE — Resolve horizontal overflow and large images */
@@ -1171,14 +1529,7 @@
       }
     }
 
-    /* Redundant block removed */
-
-    /* 6. Hide scrollbars on .table-responsive on desktop */
-    @media (min-width: 768px) {
-      .table-responsive {
-        overflow-x: hidden !important;
-      }
-    }
+    /* NOTE: overflow-x hidden removed — was hiding all cart product rows */
   </style>
 </head>
 
@@ -1229,8 +1580,7 @@
                 <a href="cart.html"
                   style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
                   <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle"
-                    style="background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+                  <span class="nav-shop__circle" style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -1238,7 +1588,7 @@
                   style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Checkout</a>
               </li>
               <li class="nav-item">
-                <a href="profile.html" id="profileNavLink"
+                <a href="login.html" id="profileNavLink"
                   style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
                   <img id="profileNavImg" src="" alt="Profile"
                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
@@ -1283,10 +1633,11 @@
       <div class="cart_inner">
 
         <!-- ============================================================
-             DESKTOP TABLE (hidden on mobile via CSS)
+             DESKTOP PRODUCT TABLE (hidden on mobile via CSS)
+             The coupon section is OUTSIDE this table — cannot overlap rows
              ============================================================ -->
-        <div class="table-responsive">
-          <table class="table">
+        <div class="table-responsive" style="overflow:visible !important;">
+          <table class="table" style="width:100%; table-layout:auto;">
             <thead>
               <tr>
                 <th scope="col">Product</th>
@@ -1296,110 +1647,52 @@
                 <th scope="col" class="text-center">Remove</th>
               </tr>
             </thead>
-            <tbody id="cart-tbody">
-              <!-- Dynamically rendered by CartEngine -->
+            <tbody id="cart-tbody" style="display:table-row-group !important; visibility:visible !important;">
+              <!-- Dynamically rendered by CartEngine + /api/cart DB -->
             </tbody>
-            <tr class="bottom_button">
-              <td><a class="button" href="javascript:void(0);"
-                  onclick="CartEngine._showToast('Cart is up-to-date!')">Update Cart</a></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="cupon_text d-flex align-items-center justify-content-end"
-                  style="flex-wrap: wrap; gap: 8px;">
-                  <input type="text" id="cartCouponInput" placeholder="Coupon Code">
-                  <a class="primary-btn" href="javascript:void(0);" onclick="applyCartCoupon('desktop')">Apply</a>
-                  <div id="cartCouponMsg"
-                    style="font-size: 13px; font-weight: bold; width: 100%; text-align: right; margin-top: 5px;"></div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <h5>Subtotal</h5>
-              </td>
-              <td>
-                <h5 id="desktop-subtotal">Rs. 2160.00</h5>
-              </td>
-            </tr>
-            <!-- Coupon Discount Row -->
-            <tr id="desktop-coupon-row" style="display:none;">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <h5 style="color:#4caf50;">Coupon Discount</h5>
-              </td>
-              <td>
-                <h5 id="desktop-discount-val" style="color:#4caf50;">- Rs. 0.00</h5>
-              </td>
-            </tr>
-            <!-- Handling Charge Row -->
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <h5>Handling Charge</h5>
-              </td>
-              <td>
-                <h5>Rs. 7.00</h5>
-              </td>
-            </tr>
-            <!-- Platform Fee Row -->
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <h5>Platform Fee</h5>
-              </td>
-              <td>
-                <h5>Rs. 5.00</h5>
-              </td>
-            </tr>
-            <!-- Shipping Row -->
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <h5>Shipping</h5>
-              </td>
-              <td>
-                <h5 style="font-size:13px; color:#aaa; font-style:italic;">Calculated at checkout</h5>
-              </td>
-            </tr>
-            <!-- Total Payable Row -->
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <h5>Total Payable</h5>
-              </td>
-              <td>
-                <h5 id="desktop-total" style="color:#d4af37; font-weight:700;">Rs. 2,172.00</h5>
-              </td>
-            </tr>
-            <tr class="out_button_area">
-              <td class="d-none-l"></td>
-              <td class=""></td>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="checkout_btn_inner d-flex align-items-center">
-                  <a class="gray_btn" href="category.html">Continue Shopping</a>
-                  <a class="primary-btn ml-2" href="javascript:void(0);"
-                    onclick="AuthGuard.requireAuth(() => window.location.href='checkout.html')">Proceed to checkout</a>
-                </div>
-              </td>
-            </tr>
-            </tbody>
+            <tfoot>
+              <!-- Summary rows only — NO coupon here to avoid overlap -->
+              <tr>
+                <td></td><td></td><td></td>
+                <td><h5>Subtotal</h5></td>
+                <td><h5 id="desktop-subtotal">Rs. 0.00</h5></td>
+              </tr>
+              <tr id="desktop-coupon-row" style="display:none;">
+                <td></td><td></td><td></td>
+                <td><h5 style="color:#4caf50;">Coupon Discount</h5></td>
+                <td><h5 id="desktop-discount-val" style="color:#4caf50;">- Rs. 0.00</h5></td>
+              </tr>
+              <tr>
+                <td></td><td></td><td></td>
+                <td><h5>Handling Charge</h5></td>
+                <td><h5>Rs. 7.00</h5></td>
+              </tr>
+              <tr>
+                <td></td><td></td><td></td>
+                <td><h5>Platform Fee</h5></td>
+                <td><h5>Rs. 5.00</h5></td>
+              </tr>
+              <tr>
+                <td></td><td></td><td></td>
+                <td><h5>Shipping</h5></td>
+                <td><h5 style="font-size:13px; color:#aaa; font-style:italic;">Calculated at checkout</h5></td>
+              </tr>
+              <tr>
+                <td></td><td></td><td></td>
+                <td><h5>Total Payable</h5></td>
+                <td><h5 id="desktop-total" style="color:#d4af37; font-weight:700;">Rs. 0.00</h5></td>
+              </tr>
+              <tr class="out_button_area">
+                <td class="d-none-l"></td><td></td><td></td><td></td>
+                <td>
+                  <div class="checkout_btn_inner d-flex align-items-center">
+                    <a class="gray_btn" href="category.html">Continue Shopping</a>
+                    <a class="primary-btn ml-2" href="javascript:void(0);"
+                      onclick="AuthGuard.requireAuth(function(){ window.location.href='checkout.html'; })">Proceed to checkout</a>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
         <!-- END DESKTOP TABLE -->
@@ -1418,23 +1711,20 @@
     <!-- Dynamic cart cards rendered by CartEngine -->
     <div id="mobile-cart-list"></div>
 
-    <!-- UPDATE CART -->
-    <div class="mobile-update-row">
-      <a class="button" href="javascript:void(0);" onclick="CartEngine._showToast('Cart is up-to-date!')">Update
-        Cart</a>
-    </div>
-
     <!-- COUPON -->
-    <div class="mobile-coupon-box" style="flex-wrap: wrap;">
+    <div class="mobile-coupon-box">
       <div class="mobile-coupon-row">
-        <input type="text" id="mobileCartCouponInput" placeholder="Coupon Code">
-        <div class="mobile-coupon-actions">
-          <a class="primary-btn" href="javascript:void(0);" onclick="applyCartCoupon('mobile')">Apply</a>
+        <div class="mobile-coupon-input-block" style="width:100%;">
+          <label class="mobile-coupon-label">Apply coupon</label>
+          <div class="mobile-coupon-input-wrap" style="display:flex; gap:10px; align-items:center; width:100%; flex-wrap:wrap;">
+            <input type="text" id="mobileCartCouponInput" placeholder="Enter coupon code" style="flex:1; min-width:0;">
+            <a class="primary-btn coupon-apply-btn" href="javascript:void(0);" onclick="applyCartCoupon('mobile')">Apply</a>
+          </div>
         </div>
       </div>
-      <div id="mobileCartCouponMsg"
-        style="font-size: 13px; font-weight: bold; width: 100%; text-align: left; margin-top: 5px; padding-left: 15px;">
-      </div>
+      <div id="mobileCartCouponMsg" class="coupon-message" style="margin-top:10px; font-size:13px; font-weight:600; text-align:left; padding-left:0;"></div>
+      <div id="mobileCartCouponState" class="selected-coupon-panel mobile"></div>
+      <div id="mobileCartCouponOffers" class="coupon-offers-grid mobile" style="margin-top:12px;"></div>
     </div>
 
     <!-- ORDER SUMMARY -->
@@ -1456,7 +1746,7 @@
         <div class="mobile-summary-val" style="color:#aaa; font-style:italic;">Calculated at checkout</div>
       </div>
       <div class="mobile-summary-row" id="mobile-coupon-row" style="display:none;">
-        <div class="mobile-summary-label" style="color:#4caf50;">Coupon Discount</div>
+        <div class="mobile-summary-label" id="mobile-coupon-label" style="color:#4caf50;">Coupon Discount</div>
         <div class="mobile-summary-val" id="mobile-discount" style="color:#4caf50;">— Rs. 0.00</div>
       </div>
       <div class="mobile-summary-total">
@@ -1679,10 +1969,12 @@
       var el3 = document.getElementById('mobile-sticky-total');
       var elDisc = document.getElementById('mobile-discount');
       var rowDisc = document.getElementById('mobile-coupon-row');
+      var labelDisc = document.getElementById('mobile-coupon-label');
 
       if (el1) el1.textContent = fmt;
       if (el2) el2.textContent = totalFmt;
       if (el3) el3.textContent = 'Rs. ' + Math.round(total).toLocaleString('en-IN');
+      if (labelDisc) labelDisc.textContent = disc > 0 && appliedCouponCode ? 'Coupon (' + appliedCouponCode + ')' : 'Coupon Discount';
 
       if (rowDisc) {
         if (disc > 0) {
@@ -1771,13 +2063,34 @@
     }
 
     // Initialize after DOM and nice-select are ready
-    $(document).ready(function () {
-      renderCartDesktop();
-      renderCartMobile();
+    $(document).ready(async function () {
+      // Show a loading state immediately — actual render happens after cart:updated fires from DB
+      var tbody = document.getElementById('cart-tbody');
+      if (tbody) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:40px;color:#888;">' +
+          '<i class="fas fa-spinner fa-spin" style="font-size:28px;color:#d4af37;display:block;margin-bottom:12px;"></i>' +
+          'Loading your cart...</td></tr>';
+      }
+
+      // Spinner shown above — actual render happens via cart:updated event
+      // which fires from CartEngine.setUser() → loadFromDatabase() after auth resolves.
+      // Do NOT call renderCartDesktop() here; it would hide tfoot and show "empty" prematurely.
       initShippingSelectors();
+
 
       // Check for pre-applied coupon from sessionStorage
       var cachedCoupon = sessionStorage.getItem('appliedCouponCode');
+      var cachedCouponInfo = sessionStorage.getItem('appliedCouponInfo');
+      if (cachedCouponInfo) {
+        try {
+          appliedCouponInfo = JSON.parse(cachedCouponInfo);
+          if (appliedCouponInfo && appliedCouponInfo.code) {
+            appliedCouponCode = appliedCouponInfo.code;
+          }
+        } catch (e) {
+          appliedCouponInfo = null;
+        }
+      }
       if (cachedCoupon) {
         var desktopInput = document.getElementById('cartCouponInput');
         var mobileInput = document.getElementById('mobileCartCouponInput');
@@ -1788,17 +2101,20 @@
         var cachedDiscount = parseFloat(sessionStorage.getItem('appliedDiscount')) || 0;
         if (cachedDiscount > 0) {
           appliedDiscount = cachedDiscount;
-          appliedCouponCode = cachedCoupon;
+          appliedCouponCode = appliedCouponCode || cachedCoupon;
+          if (!appliedCouponInfo) {
+            appliedCouponInfo = { code: appliedCouponCode, discountAmount: appliedDiscount };
+          }
 
           var desktopMsg = document.getElementById('cartCouponMsg');
           var mobileMsg = document.getElementById('mobileCartCouponMsg');
           if (desktopMsg) {
             desktopMsg.style.color = '#4caf50';
-            desktopMsg.textContent = `✓ Coupon applied! You saved Rs. ${cachedDiscount.toFixed(2)}`;
+            desktopMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
           }
           if (mobileMsg) {
             mobileMsg.style.color = '#4caf50';
-            mobileMsg.textContent = `✓ Coupon applied! You saved Rs. ${cachedDiscount.toFixed(2)}`;
+            mobileMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
           }
 
           syncDesktopSummary();
@@ -1806,9 +2122,22 @@
         }
       }
 
+      // Load coupons from backend
+      try {
+        await loadCartCoupons();
+        console.log('Available coupons loaded:', availableCoupons.length);
+      } catch (e) {
+        console.error('Error loading coupons:', e);
+      }
+      renderCartCouponState();
+
+      // Listen for cart updates
       document.addEventListener('cart:updated', function () {
+        console.log('Cart updated event triggered');
         renderCartDesktop();
         renderCartMobile();
+        renderCartCouponState();
+        renderCartCouponOffers();
       });
 
       $('#shippingOptions li, #mobileShippingOptions li').on('click', function () {
@@ -1826,45 +2155,80 @@
       var items = CartEngine.getItems();
       var tbody = document.getElementById('cart-tbody');
       var countEl = document.querySelector('.mobile-section-label');
-      if (!tbody) return;
-
-      if (items.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:40px;color:#888;">
-          <i class="fas fa-shopping-cart" style="font-size:36px;color:#333;margin-bottom:14px;display:block;"></i>
-          Your cart is empty. <a href="category.html" style="color:#d4af37;">Shop Now</a></td></tr>`;
-        document.getElementById('desktop-subtotal').textContent = 'Rs. 0.00';
-        document.getElementById('desktop-total').textContent = 'Rs. 0.00';
+      if (!tbody) {
+        console.warn('cart-tbody element not found!');
         return;
       }
 
+      console.log('Rendering desktop cart with items:', items);
+
+      if (items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:60px 20px;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+            <i class="ti-shopping-cart" style="font-size:56px;color:#2a2000;"></i>
+            <h4 style="color:#888;font-size:20px;margin:0;font-family:'Playfair Display',serif;">Your cart is empty</h4>
+            <p style="color:#555;font-size:14px;margin:0;">Looks like you haven't added any fragrances yet.</p>
+            <a href="category.html" class="primary-btn" style="margin-top:8px;padding:12px 32px;font-size:14px;letter-spacing:1px;">
+              <i class="fas fa-shopping-bag" style="margin-right:8px;"></i>Shop Now
+            </a>
+          </div>
+        </td></tr>`;
+        // Hide summary tfoot rows when cart is empty
+        var tfoot = document.querySelector('#cart-tbody').closest('table').querySelector('tfoot');
+        if (tfoot) tfoot.style.display = 'none';
+        if (countEl) countEl.textContent = '0 Items in your cart';
+        return;
+      }
+
+      // Show tfoot when items exist
+      var tfoot = document.querySelector('#cart-tbody').closest('table').querySelector('tfoot');
+      if (tfoot) tfoot.style.display = '';
+
+
       if (countEl) countEl.textContent = items.length + ' Item' + (items.length > 1 ? 's' : '') + ' in your cart';
 
-      tbody.innerHTML = items.map(function (item) {
-        var offerText = ``; // Bottle Return offer is for offline store visits only — not shown in online cart
-        return `<tr data-key="${item._key}">
-          <td>
-            <div class="media" style="display:flex;align-items:center;gap:14px;">
-              <img src="${item.img || 'img/product/product1.png'}" alt="${item.name}"
-                style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;">
-              <div class="media-body" style="min-width:0;">
-                <p style="margin:0;font-size:14px;color:#e8dfc8;">${item.name}${item.size ? ' · ' + item.size : ''}${offerText}</p>
+      try {
+        tbody.innerHTML = items.map(function (item, idx) {
+          if (!item) return '';
+          var imgSrc = (item.img && typeof item.img === 'string') ? item.img.trim() : 'img/product/product1.png';
+          var offerText = ``; // Bottle Return offer is for offline store visits only — not shown in online cart
+          var price = parseFloat(item.price) || 0;
+          var qty = parseInt(item.qty) || 1;
+          var key = item._key || item.id || Math.random().toString();
+          var name = item.name || 'Unknown Product';
+          
+          return `<tr data-key="${key}" style="border-bottom:1px solid #2a2000;">
+            <td style="padding:16px; text-align:left;">
+              <div class="media" style="display:flex;align-items:center;gap:14px;">
+                <img src="${imgSrc}" alt="${name}"
+                  style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #2a2000;flex-shrink:0;display:block;background:#1a1500;"
+                  onerror="this.src='img/product/product1.png';"
+                  loading="lazy">
+                <div class="media-body" style="min-width:0;">
+                  <p style="margin:0;font-size:14px;color:#e8dfc8;line-height:1.4;">${name}${item.size ? ' <span style="color:#999;">·</span> <span style="color:#b0a58a;">' + item.size + '</span>' : ''}${offerText}</p>
+                </div>
               </div>
-            </div>
-          </td>
-          <td><h5>Rs. ${parseFloat(item.price).toFixed(2)}</h5></td>
-          <td>
-            <div class="product_count">
-              <input type="text" class="input-text qty" value="${item.qty}" readonly style="width:46px;">
-              <button class="increase items-count" type="button" onclick="cartQtyChange('${item._key}', 1)"><i class="lnr lnr-chevron-up"></i></button>
-              <button class="reduced items-count" type="button" onclick="cartQtyChange('${item._key}', -1)"><i class="lnr lnr-chevron-down"></i></button>
-            </div>
-          </td>
-          <td><h5>Rs. ${(item.price * item.qty).toFixed(2)}</h5></td>
-          <td class="text-center">
-            <button class="desktop-remove-btn" title="Remove" onclick="CartEngine.remove('${item._key}')"><i class="fas fa-trash-alt"></i></button>
-          </td>
-        </tr>`;
-      }).join('');
+            </td>
+            <td style="padding:16px; text-align:center;"><h5 style="margin:0; color:#d4af37;">Rs. ${price.toFixed(2)}</h5></td>
+            <td style="padding:16px; text-align:center;">
+              <div class="product_count" style="display:flex;align-items:center;justify-content:center;gap:4px;">
+                <input type="text" class="input-text qty" value="${qty}" readonly style="width:46px; text-align:center; background:#1a1500; border:1px solid #2a2000; color:#d4af37; padding:6px; border-radius:4px;">
+                <button class="increase items-count" type="button" onclick="cartQtyChange('${key}', 1)" style="background:#d4af37; color:#000; border:none; width:30px; height:30px; border-radius:4px; cursor:pointer; font-weight:700;"><i class="lnr lnr-chevron-up"></i></button>
+                <button class="reduced items-count" type="button" onclick="cartQtyChange('${key}', -1)" style="background:#d4af37; color:#000; border:none; width:30px; height:30px; border-radius:4px; cursor:pointer; font-weight:700;"><i class="lnr lnr-chevron-down"></i></button>
+              </div>
+            </td>
+            <td style="padding:16px; text-align:center;"><h5 style="margin:0; color:#ffd700;">Rs. ${(price * qty).toFixed(2)}</h5></td>
+            <td style="padding:16px; text-align:center;">
+              <button class="desktop-remove-btn" title="Remove item" onclick="CartEngine.remove('${key}')" style="background:#ff4d4d; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:600; transition:all 0.2s ease;">
+                <i class="fas fa-trash-alt"></i> Remove
+              </button>
+            </td>
+          </tr>`;
+        }).join('');
+      } catch (err) {
+        console.error("Error rendering desktop cart:", err);
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#ff4d4d;">Failed to display products. Please clear your cart and try again.</td></tr>`;
+      }
 
       syncDesktopSummary();
     }
@@ -1877,8 +2241,143 @@
 
     var appliedDiscount = 0;
     var appliedCouponCode = '';
+    var appliedCouponInfo = null;
+    var availableCoupons = [];
 
-    async function applyCartCoupon(device) {
+    function formatCouponMoney(value) {
+      return 'Rs. ' + Number(value || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatCouponOffer(coupon) {
+      if (!coupon) return 'Coupon offer';
+      if (coupon.discountPercentage != null && coupon.discountPercentage !== '') {
+        return coupon.discountPercentage + '% OFF';
+      }
+      if (coupon.discountAmount != null && coupon.discountAmount !== '') {
+        return 'Rs. ' + Number(coupon.discountAmount).toLocaleString('en-IN', { minimumFractionDigits: 2 });
+      }
+      return 'Special offer';
+    }
+
+    function getCouponDetailsByCode(code) {
+      if (!code) return null;
+      return availableCoupons.find(function (coupon) {
+        return coupon.code && coupon.code.toUpperCase() === code.toUpperCase();
+      }) || null;
+    }
+
+    function renderCartCouponState() {
+      var desktopState = document.getElementById('cartCouponState');
+      var mobileState = document.getElementById('mobileCartCouponState');
+      var html = '';
+      if (appliedCouponCode) {
+        var couponLabel = appliedCouponInfo && appliedCouponInfo.code ? appliedCouponInfo.code : appliedCouponCode;
+        var discountText = formatCouponMoney(appliedDiscount);
+        var minOrder = appliedCouponInfo && appliedCouponInfo.minCartValue ? formatCouponMoney(appliedCouponInfo.minCartValue) : null;
+        var expiry = appliedCouponInfo && appliedCouponInfo.expiryDate ? new Date(appliedCouponInfo.expiryDate).toLocaleDateString('en-IN') : null;
+        html = `
+          <h5>Coupon selected</h5>
+          <p class="coupon-code">${couponLabel}</p>
+          <div class="coupon-detail"><span>Saved</span><strong>${discountText}</strong></div>
+          ${minOrder ? `<div class="coupon-detail"><span>Min Order</span><strong>${minOrder}</strong></div>` : ''}
+          ${expiry ? `<div class="coupon-detail"><span>Expiry</span><strong>${expiry}</strong></div>` : ''}
+          <div class="remove-coupon" onclick="removeCartCoupon()">Remove coupon</div>
+        `;
+      } else {
+        html = '<p style="margin:0;color:#ddd;font-size:13px;line-height:1.5;">Apply a coupon from available offers below or enter one above.</p>';
+      }
+      if (desktopState) desktopState.innerHTML = html;
+      if (mobileState) mobileState.innerHTML = html;
+    }
+
+    function renderCartCouponOffers() {
+      var offersEl = document.getElementById('cartCouponOffers');
+      var mobileOffersEl = document.getElementById('mobileCartCouponOffers');
+      var cartTotal = CartEngine.getTotal();
+      var couponHtml = '';
+      if (!availableCoupons || availableCoupons.length === 0) {
+        couponHtml = '<div class="coupon-card" style="border-style:dashed; color:#888;">No active coupons available right now.</div>';
+      } else {
+        couponHtml = availableCoupons.map(function (coupon) {
+          var isSelected = appliedCouponCode && coupon.code && coupon.code.toUpperCase() === appliedCouponCode.toUpperCase();
+          var discountLabel = formatCouponOffer(coupon);
+          var minOrderLabel = coupon.minCartValue ? formatCouponMoney(coupon.minCartValue) : 'No minimum';
+          var expiryLabel = coupon.expiryDate ? new Date(coupon.expiryDate).toLocaleDateString('en-IN') : 'No expiry';
+          var disabled = coupon.minCartValue && cartTotal < Number(coupon.minCartValue);
+          var buttonText = isSelected ? 'Selected' : (disabled ? 'Not eligible' : 'Apply');
+          var buttonClass = isSelected ? 'coupon-apply-btn' : 'coupon-apply-btn';
+          return `<div class="coupon-card${isSelected ? ' active' : ''}">
+              <div class="coupon-code">${coupon.code}</div>
+              <div class="coupon-tag">${discountLabel}</div>
+              <div class="coupon-meta">Minimum order: ${minOrderLabel}</div>
+              <div class="coupon-meta">Expiry: ${expiryLabel}</div>
+              <div class="coupon-actions">
+                <button type="button" class="coupon-apply-btn" ${disabled || isSelected ? 'disabled' : ''} onclick="applyCartCoupon('desktop', '${coupon.code}')">${buttonText}</button>
+              </div>
+            </div>`;
+        }).join('');
+      }
+      if (offersEl) offersEl.innerHTML = couponHtml;
+      if (mobileOffersEl) mobileOffersEl.innerHTML = couponHtml;
+    }
+
+    function saveAppliedCouponState() {
+      sessionStorage.setItem('appliedCouponCode', appliedCouponCode || '');
+      sessionStorage.setItem('appliedDiscount', Number(appliedDiscount || 0));
+      if (appliedCouponInfo) {
+        sessionStorage.setItem('appliedCouponInfo', JSON.stringify(appliedCouponInfo));
+      } else {
+        sessionStorage.removeItem('appliedCouponInfo');
+      }
+    }
+
+    function removeCartCoupon() {
+      appliedDiscount = 0;
+      appliedCouponCode = '';
+      appliedCouponInfo = null;
+      saveAppliedCouponState();
+      var desktopMsg = document.getElementById('cartCouponMsg');
+      var mobileMsg = document.getElementById('mobileCartCouponMsg');
+      if (desktopMsg) {
+        desktopMsg.style.color = '#ddd';
+        desktopMsg.textContent = 'Coupon removed. You can apply another one.';
+      }
+      if (mobileMsg) {
+        mobileMsg.style.color = '#ddd';
+        mobileMsg.textContent = 'Coupon removed. You can apply another one.';
+      }
+      renderCartCouponState();
+      renderCartCouponOffers();
+      syncDesktopSummary();
+      mobileUpdateSummary();
+    }
+
+    function getCouponApiBase() {
+      if (window.location.protocol === 'file:' || window.location.hostname === '') {
+        return 'http://localhost:8080/api/coupons';
+      }
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return `http://${window.location.hostname}:8080/api/coupons`;
+      }
+      return '/api/coupons';
+    }
+
+    async function loadCartCoupons() {
+      var COUPON_API = getCouponApiBase();
+      try {
+        var res = await fetch(COUPON_API, { credentials: 'include' });
+        var data = await res.json();
+        if (data.success && Array.isArray(data.data)) {
+          availableCoupons = data.data;
+        }
+      } catch (e) {
+        console.error('Failed to load coupons:', e);
+      }
+      renderCartCouponOffers();
+      renderCartCouponState();
+    }
+
+    async function applyCartCoupon(device, couponCode) {
       var inputId = device === 'desktop' ? 'cartCouponInput' : 'mobileCartCouponInput';
       var msgId = device === 'desktop' ? 'cartCouponMsg' : 'mobileCartCouponMsg';
 
@@ -1886,27 +2385,20 @@
       var msgEl = document.getElementById(msgId);
       if (!inputEl || !msgEl) return;
 
-      var code = inputEl.value.trim();
+      var code = couponCode || inputEl.value.trim();
       if (!code) {
         msgEl.style.color = '#ff4d4d';
         msgEl.textContent = 'Please enter a coupon code.';
         return;
       }
 
-      // Check if already applied
-      if (appliedCouponCode) {
-        if (appliedCouponCode.toUpperCase() === code.toUpperCase()) {
-          msgEl.style.color = '#ffd700';
-          msgEl.textContent = `Warning: Coupon "${code.toUpperCase()}" is already applied!`;
-        } else {
-          msgEl.style.color = '#ff9800';
-          msgEl.textContent = `Warning: Coupon "${appliedCouponCode.toUpperCase()}" is already active.`;
-        }
+      if (appliedCouponCode && appliedCouponCode.toUpperCase() === code.toUpperCase()) {
+        msgEl.style.color = '#ffd700';
+        msgEl.innerHTML = `Warning: Coupon "${code.toUpperCase()}" is already applied! <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
         return;
       }
 
-      var COUPON_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? `http://${window.location.hostname}:8080/api/coupons` : '/api/coupons';
+      var COUPON_API = getCouponApiBase();
 
       try {
         var res = await fetch(`${COUPON_API}/validate`, {
@@ -1916,16 +2408,18 @@
         });
         var data = await res.json();
         if (data.success) {
-          appliedDiscount = data.data.discountAmount || 0;
-          appliedCouponCode = code;
+          appliedDiscount = Number(data.data.discountAmount || 0);
+          appliedCouponCode = code.toUpperCase();
+          appliedCouponInfo = getCouponDetailsByCode(code) || { code: appliedCouponCode, discountAmount: appliedDiscount };
+          appliedCouponInfo.discountAmount = appliedDiscount;
 
-          sessionStorage.setItem('appliedCouponCode', code);
-          sessionStorage.setItem('appliedDiscount', appliedDiscount);
+          saveAppliedCouponState();
 
           msgEl.style.color = '#4caf50';
-          msgEl.textContent = `✓ Coupon applied! You saved Rs. ${appliedDiscount.toFixed(2)}`;
+          msgEl.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
 
-          // Recalculate summary
+          renderCartCouponState();
+          renderCartCouponOffers();
           syncDesktopSummary();
           mobileUpdateSummary();
         } else {
@@ -1959,7 +2453,12 @@
     function renderCartMobile() {
       var items = CartEngine.getItems();
       var listEl = document.getElementById('mobile-cart-list');
-      if (!listEl) return;
+      if (!listEl) {
+        console.warn('mobile-cart-list element not found!');
+        return;
+      }
+
+      console.log('Rendering mobile cart with items:', items);
 
       if (items.length === 0) {
         listEl.innerHTML = '<div style="text-align:center;padding:40px;color:#666;"><i class="fas fa-shopping-cart" style="font-size:36px;color:#333;margin-bottom:12px;display:block;"></i>Cart is empty. <a href="category.html" style="color:#d4af37;">Shop Now</a></div>';
@@ -1967,29 +2466,41 @@
         return;
       }
 
-      listEl.innerHTML = items.map(function (item) {
-        var offerText = ``; // Bottle Return offer is for offline store visits only — not shown in online cart
-        return `<div class="mobile-cart-card" data-key="${item._key}">
-          <div class="mobile-cart-img">
-            <img src="${item.img || 'img/product/product1.png'}" alt="${item.name}">
-          </div>
-          <div class="mobile-cart-info">
-            <div class="mobile-cart-name">${item.name}${item.size ? ' · ' + item.size : ''}</div>
-            ${offerText}
-            <div class="mobile-cart-meta">Quantity: ${item.qty}</div>
-            <div class="mobile-cart-bottom">
-              <div class="mobile-cart-price">Rs. ${parseFloat(item.price).toFixed(2)}</div>
-              <div class="mobile-qty-wrap">
-                <button class="qty-btn" type="button" onclick="cartQtyChange('${item._key}', -1)" aria-label="Decrease">&#8722;</button>
-                <input class="qty-num" type="text" value="${item.qty}" readonly>
-                <button class="qty-btn" type="button" onclick="cartQtyChange('${item._key}', 1)" aria-label="Increase">&#43;</button>
-              </div>
+      try {
+        listEl.innerHTML = items.map(function (item) {
+          if (!item) return '';
+          var imgSrc = (item.img && typeof item.img === 'string') ? item.img.trim() : 'img/product/product1.png';
+          var offerText = ``; // Bottle Return offer is for offline store visits only — not shown in online cart
+          var price = parseFloat(item.price) || 0;
+          var qty = parseInt(item.qty) || 1;
+          var key = item._key || item.id || Math.random().toString();
+          var name = item.name || 'Unknown Product';
+          
+          return `<div class="mobile-cart-card" data-key="${key}">
+            <div class="mobile-cart-img">
+              <img src="${imgSrc}" alt="${name}" loading="lazy" onerror="this.src='img/product/product1.png';">
             </div>
-            <div class="mobile-cart-total">Total: <span>Rs. ${(item.price * item.qty).toFixed(2)}</span></div>
-          </div>
-          <button class="mobile-remove-btn" type="button" aria-label="Remove" onclick="CartEngine.remove('${item._key}')">&times;</button>
-        </div>`;
-      }).join('');
+            <div class="mobile-cart-info">
+              <div class="mobile-cart-name">${name}${item.size ? ' <span style="color:#999;">·</span> <span style="color:#b0a58a;">' + item.size + '</span>' : ''}</div>
+              ${offerText}
+              <div class="mobile-cart-meta">Quantity: <span style="color:#d4af37; font-weight:600;">${qty}</span></div>
+              <div class="mobile-cart-bottom">
+                <div class="mobile-cart-price">Rs. ${price.toFixed(2)}</div>
+                <div class="mobile-qty-wrap">
+                  <button class="qty-btn" type="button" onclick="cartQtyChange('${key}', -1)" aria-label="Decrease">&#8722;</button>
+                  <input class="qty-num" type="text" value="${qty}" readonly>
+                  <button class="qty-btn" type="button" onclick="cartQtyChange('${key}', 1)" aria-label="Increase">&#43;</button>
+                </div>
+              </div>
+              <div class="mobile-cart-total">Total: <span style="color:#ffd700; font-weight:600;">Rs. ${(price * qty).toFixed(2)}</span></div>
+            </div>
+            <button class="mobile-remove-btn" type="button" aria-label="Remove" onclick="CartEngine.remove('${key}')" title="Remove item">&times;</button>
+          </div>`;
+        }).join('');
+      } catch (err) {
+        console.error("Error rendering mobile cart:", err);
+        listEl.innerHTML = '<div style="text-align:center;padding:20px;color:#ff4d4d;">Failed to load cart. Please clear and try again.</div>';
+      }
 
       mobileUpdateSummary();
     }

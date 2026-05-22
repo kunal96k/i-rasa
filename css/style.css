@@ -5323,7 +5323,6 @@ body {
     background: linear-gradient(135deg, #ffd700, #b8860b, #ffd700) !important;
     color: #000 !important;
     box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6) !important;
-    transform: scale(1.05) !important;
 }
 
 .section-intro p {
@@ -6683,9 +6682,9 @@ input[type=number] {
 }
 
 #scroll-top:hover {
-    background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+    transform: none;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
 }
 
 #scroll-top.visible {

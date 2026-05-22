@@ -329,19 +329,37 @@
       ? `http://${window.location.hostname}:8080/api/auth`
       : '/api/auth';
 
-    // Check session on load
+    // Auto-redirect only when auth-guard sent the user here with ?redirect=
+    // If user manually typed login.html or clicked a login link (no redirect param),
+    // ALWAYS show the form — never auto-redirect even if JSESSIONID cookie is still alive.
     (async () => {
-      try {
-        const res = await fetch(`${AUTH_API}/me`, { credentials: 'include' });
-        const data = await res.json();
-        if (data.success) { window.location.href = 'index.html'; return; }
-      } catch (e) { }
-      // URL params feedback
       const p = new URLSearchParams(location.search);
+      const redirectTarget = p.get('redirect');  // e.g. 'cart.html', 'profile.html'
+      const skipFlags = p.get('logout') || p.get('expired') || p.get('error') || p.get('verify-error');
+
+      // Only bother checking the session if auth-guard redirected us here
+      if (redirectTarget && !skipFlags) {
+        try {
+          const res = await fetch(`${AUTH_API}/me`, { credentials: 'include' });
+          const data = await res.json();
+          if (data.success) {
+            // Session still valid — skip login and go straight to destination
+            window.location.href = redirectTarget;
+            return;
+          }
+        } catch (e) { /* network error — show form */ }
+      }
+
+      // Always clear stale local flags so badge and auth state start clean
+      localStorage.setItem('irasa_logged_in', 'false');
+      sessionStorage.removeItem('rasa_user');
+
+      // Show URL param feedback messages
       if (p.get('verified') === 'true') showAlert('success', '<i class="fas fa-check-circle mr-2"></i> Email verified! You can now log in.');
       if (p.get('verify-error')) showAlert('error', '<i class="fas fa-exclamation-circle mr-2"></i> ' + p.get('verify-error'));
-      if (p.get('expired')) showAlert('error', '<i class="fas fa-history mr-2"></i> Session expired. Please log in again.');
-      if (p.get('error')) showAlert('error', '<i class="fas fa-times-circle mr-2"></i> Invalid email or password.');
+      if (p.get('expired'))   showAlert('error',   '<i class="fas fa-history mr-2"></i> Session expired. Please log in again.');
+      if (p.get('error'))     showAlert('error',   '<i class="fas fa-times-circle mr-2"></i> Invalid email or password.');
+      if (p.get('logout'))    showAlert('success', '<i class="fas fa-check-circle mr-2"></i> You have been logged out successfully.');
     })();
 
     document.getElementById('loginForm').addEventListener('submit', async (e) => {

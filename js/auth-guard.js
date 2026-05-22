@@ -18,12 +18,6 @@ const AuthGuard = {
         const path = window.location.pathname;
         const page = path.split("/").pop();
 
-        // Guest optimization: skip redundant fetch to prevent 401 console warnings
-        if (localStorage.getItem('irasa_logged_in') !== 'true') {
-            this.handleUnauthenticated(page);
-            return;
-        }
-
         try {
             const res = await fetch(`${AUTH_API_BASE}/me`, { credentials: 'include' });
             if (res.ok) {
@@ -32,9 +26,8 @@ const AuthGuard = {
                     this.currentUser = data.data;
                     sessionStorage.setItem(STORAGE_KEY_USER, JSON.stringify(this.currentUser));
                     localStorage.setItem('irasa_logged_in', 'true');
-                    // Scope the cart to this specific user
                     if (typeof CartEngine !== 'undefined') {
-                        CartEngine.setUser(this.currentUser.id || this.currentUser.email);
+                        await CartEngine.setUser(this.currentUser.id || this.currentUser.email);
                     }
                     if (typeof WishlistEngine !== 'undefined') {
                         await WishlistEngine.syncGuestWishlist();
@@ -43,22 +36,22 @@ const AuthGuard = {
                     this.updateNav(true);
                 } else {
                     localStorage.setItem('irasa_logged_in', 'false');
-                    if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
+                    if (typeof CartEngine !== 'undefined') await CartEngine.setUser(null);
                     this.handleUnauthenticated(page);
                 }
             } else {
+                // 401 / 403 — not logged in
                 localStorage.setItem('irasa_logged_in', 'false');
-                if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
+                if (typeof CartEngine !== 'undefined') await CartEngine.setUser(null);
                 this.handleUnauthenticated(page);
             }
         } catch (error) {
-            console.error('Auth Check Failed:', error);
-            // Fallback to session storage if API is down (optional)
+            // Network error — fall back to sessionStorage cache
             const cached = sessionStorage.getItem(STORAGE_KEY_USER);
             if (cached) {
                 this.currentUser = JSON.parse(cached);
                 if (typeof CartEngine !== 'undefined') {
-                    CartEngine.setUser(this.currentUser.id || this.currentUser.email);
+                    await CartEngine.setUser(this.currentUser.id || this.currentUser.email);
                 }
                 if (typeof WishlistEngine !== 'undefined') {
                     await WishlistEngine.syncGuestWishlist();
@@ -67,7 +60,7 @@ const AuthGuard = {
                 this.updateNav(true);
             } else {
                 localStorage.setItem('irasa_logged_in', 'false');
-                if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
+                if (typeof CartEngine !== 'undefined') await CartEngine.setUser(null);
                 this.handleUnauthenticated(page);
             }
         }
@@ -80,6 +73,11 @@ const AuthGuard = {
         this.currentUser = null;
         sessionStorage.removeItem(STORAGE_KEY_USER);
         localStorage.setItem('irasa_logged_in', 'false');
+        // Clear cart immediately so badge goes to 0 and no stale data shows
+        if (typeof CartEngine !== 'undefined') {
+            CartEngine._userId = null;
+            document.dispatchEvent(new CustomEvent('cart:updated', { detail: [] }));
+        }
         this.updateNav(false);
 
         const protectedPages = ['profile.html', 'checkout.html', 'confirmation.html', 'cart.html'];
@@ -87,6 +85,7 @@ const AuthGuard = {
             window.location.href = `login.html?redirect=${page}`;
         }
     },
+
 
     /**
      * Updates the Navigation Bar based on auth state.
@@ -169,10 +168,13 @@ const AuthGuard = {
             await fetch(`${AUTH_API_BASE}/logout`, { method: 'POST', credentials: 'include' });
         } catch (e) {}
         // Reset cart to guest scope before clearing session
-        if (typeof CartEngine !== 'undefined') CartEngine.setUser(null);
+        if (typeof CartEngine !== 'undefined') {
+            CartEngine._userId = null;
+            document.dispatchEvent(new CustomEvent('cart:updated', { detail: [] }));
+        }
         sessionStorage.removeItem(STORAGE_KEY_USER);
         localStorage.setItem('irasa_logged_in', 'false');
-        window.location.href = 'index.html';
+        window.location.href = 'login.html?logout=true';
     }
 };
 
