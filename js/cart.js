@@ -132,6 +132,11 @@ const CartEngine = {
   add(product, qty) {
     if (qty === undefined) qty = 1;
     var items = this._read();
+    var currentTotalQty = items.reduce(function(s, i) { return s + (parseInt(i.qty) || 1); }, 0);
+    if (currentTotalQty + qty > 15) {
+      CartEngine._showToast('⚠️ Cannot add item. Cart limit is 15 products maximum.');
+      return;
+    }
     var key   = String(product.id) + (product.size ? '_' + product.size : '');
     var idx   = -1;
     for (var k = 0; k < items.length; k++) {
@@ -178,10 +183,20 @@ const CartEngine = {
 
   updateQty(key, qty) {
     if (qty < 1) return this.remove(key);
-    var items = this._read().map(function(i) {
+    var items = this._read();
+    var item = items.find(function(i) { return i._key === key; });
+    if (!item) return;
+    var currentTotalQty = items.reduce(function(s, i) { return s + (parseInt(i.qty) || 1); }, 0);
+    var projectedTotal = currentTotalQty - (parseInt(item.qty) || 1) + qty;
+    if (projectedTotal > 15) {
+      CartEngine._showToast('⚠️ Cannot update quantity. Cart limit is 15 products maximum.');
+      document.dispatchEvent(new CustomEvent('cart:updated', { detail: items }));
+      return;
+    }
+    var updatedItems = items.map(function(i) {
       return i._key === key ? Object.assign({}, i, { qty: qty }) : i;
     });
-    this._write(items);
+    this._write(updatedItems);
     if (this._userId) {
       this._updateQtyInDb(key, qty).catch(function() {});
     }

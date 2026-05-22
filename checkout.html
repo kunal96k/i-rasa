@@ -679,7 +679,7 @@
 
       const sub = CartEngine.getTotal();
       const disc = appliedDiscount;
-      const total = Math.max(0, sub - disc) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE;
+      const total = sub > 0 ? (Math.max(0, sub - disc) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE) : 0;
 
       totalEl.innerHTML =
         `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Subtotal</span> <span>Rs. ${sub.toFixed(2)}</span></a></li>` +
@@ -865,19 +865,20 @@
       }
     }
 
+    // Listen for cart updates synchronously to avoid async race condition
+    document.addEventListener('cart:updated', async () => {
+      if (appliedCouponCode) {
+        await revalidateCoupon();
+      }
+      renderCheckoutCart();
+    });
+
     /* ── DOMContentLoaded Listener ── */
     document.addEventListener('DOMContentLoaded', async function () {
       renderCheckoutCart();
 
       // Load available coupons
       await loadAvailableCoupons();
-
-      document.addEventListener('cart:updated', async () => {
-        if (appliedCouponCode) {
-          await revalidateCoupon();
-        }
-        renderCheckoutCart();
-      });
 
       // Listen to city and zip input fields to trigger real-time shipping adjustments
       document.getElementById('city')?.addEventListener('input', renderCheckoutCart);
@@ -1008,12 +1009,29 @@
         zip: document.getElementById('shippingZip').value.trim()
       } : null;
 
-      if (!billing.firstName || !billing.phone || !billing.email || !billing.address1 || !billing.city || !billing.zip) {
-        errEl.textContent = 'Please fill all required billing fields.'; errEl.style.display = 'block'; return;
+      const missingFields = [];
+      if (!billing.firstName) missingFields.push('First Name');
+      if (!billing.phone) missingFields.push('Phone Number');
+      if (!billing.email) missingFields.push('Email');
+      if (!billing.address1) missingFields.push('Address Line 1');
+      if (!billing.city) missingFields.push('City');
+      if (!billing.zip) missingFields.push('ZIP Code');
+
+      if (shippingDifferent) {
+        if (!shipping.firstName) missingFields.push('Shipping First Name');
+        if (!shipping.address1) missingFields.push('Shipping Address Line 1');
+        if (!shipping.city) missingFields.push('Shipping City');
+        if (!shipping.zip) missingFields.push('Shipping ZIP Code');
       }
 
-      if (shippingDifferent && (!shipping.firstName || !shipping.address1 || !shipping.city || !shipping.zip)) {
-        errEl.textContent = 'Please fill all required shipping fields.'; errEl.style.display = 'block'; return;
+      if (missingFields.length > 0) {
+        const msg = '⚠️ Missing required fields: ' + missingFields.join(', ');
+        errEl.textContent = msg;
+        errEl.style.display = 'block';
+        if (typeof CartEngine !== 'undefined' && CartEngine._showToast) {
+          CartEngine._showToast(msg);
+        }
+        return;
       }
 
       const btn = document.getElementById('placeOrderBtn');
