@@ -94,6 +94,7 @@
         overflow-x: auto;
         overflow-y: visible !important;
       }
+
       .cart_inner .table-responsive {
         overflow: visible !important;
       }
@@ -239,7 +240,7 @@
     /* ═══════════════════════════════════════════════════════════════ */
     /* COUPON SECTION STYLING */
     /* ═══════════════════════════════════════════════════════════════ */
-    
+
     .coupon-offers-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -1538,6 +1539,7 @@
       .desktop-cart-layout {
         display: none !important;
       }
+
       #desktop-empty-view {
         display: none !important;
       }
@@ -1549,9 +1551,11 @@
         margin-top: 20px;
         margin-bottom: 50px;
       }
+
       #desktop-empty-view {
         display: none;
       }
+
       /* Hide mobile elements on desktop */
       .mobile-cart-container,
       .mobile-sticky-bar {
@@ -1768,7 +1772,8 @@
                 <a href="cart.html"
                   style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
                   <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+                  <span class="nav-shop__circle"
+                    style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -1824,9 +1829,11 @@
         <div id="desktop-empty-view" style="display:none; text-align:center; padding:60px 20px;">
           <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
             <i class="ti-shopping-cart" style="font-size:56px; color:#2a2000;"></i>
-            <h4 style="color:#888; font-size:20px; margin:0; font-family:'Playfair Display',serif;">Your cart is empty</h4>
+            <h4 style="color:#888; font-size:20px; margin:0; font-family:'Playfair Display',serif;">Your cart is empty
+            </h4>
             <p style="color:#555; font-size:14px; margin:0;">Looks like you haven't added any fragrances yet.</p>
-            <a href="category.html" class="primary-btn" style="margin-top:8px; padding:12px 32px; font-size:14px; letter-spacing:1px;">
+            <a href="category.html" class="primary-btn"
+              style="margin-top:8px; padding:12px 32px; font-size:14px; letter-spacing:1px;">
               <i class="fas fa-shopping-bag" style="margin-right:8px;"></i>Shop Now
             </a>
           </div>
@@ -1839,9 +1846,10 @@
             <div id="desktop-cart-items">
               <!-- Dynamically populated list of premium flexbox cards -->
             </div>
-            
+
             <div class="cart-action-buttons mt-4">
-              <a class="gray_btn" href="category.html" style="background:#1e1e1e; border:1px solid #333; color:#aaa; padding:12px 24px; border-radius:8px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
+              <a class="gray_btn" href="category.html"
+                style="background:#1e1e1e; border:1px solid #333; color:#aaa; padding:12px 24px; border-radius:8px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px;">
                 <i class="fas fa-arrow-left"></i> Continue Shopping
               </a>
             </div>
@@ -1855,14 +1863,19 @@
                 <h4 class="sidebar-title">Apply Promo Code</h4>
                 <div class="coupon-input-row">
                   <div class="coupon-input-inner" style="display:flex; flex-direction:column; gap:10px; width:100%;">
-                    <input type="text" id="cartCouponInput" placeholder="Enter coupon code" style="width:100%; height:44px; padding:10px 14px; box-sizing:border-box;">
-                    <button class="primary-btn coupon-apply-btn" type="button" onclick="applyCartCoupon('desktop')" style="width:100%; height:44px; margin:0; padding:10px !important; display:flex; align-items:center; justify-content:center; text-transform:uppercase; font-weight:700;">Apply Coupon</button>
+                    <input type="text" id="cartCouponInput" placeholder="Enter coupon code"
+                      style="width:100%; height:44px; padding:10px 14px; box-sizing:border-box;">
+                    <button class="primary-btn coupon-apply-btn" type="button" onclick="applyCartCoupon('desktop')"
+                      style="width:100%; height:44px; margin:0; padding:10px !important; display:flex; align-items:center; justify-content:center; text-transform:uppercase; font-weight:700;">Apply
+                      Coupon</button>
                   </div>
-                  <div id="cartCouponMsg" class="coupon-message" style="margin-top:10px; font-size:13px; font-weight:600;"></div>
+                  <div id="cartCouponMsg" class="coupon-message"
+                    style="margin-top:10px; font-size:13px; font-weight:600;"></div>
                 </div>
                 <div id="cartCouponState" class="selected-coupon-panel mb-3" style="width:100%;"></div>
                 <h5 class="sidebar-subtitle mt-3">Available Offers</h5>
-                <div id="cartCouponOffers" class="coupon-offers-grid" style="display:flex; flex-direction:column; gap:12px;"></div>
+                <div id="cartCouponOffers" class="coupon-offers-grid"
+                  style="display:flex; flex-direction:column; gap:12px;"></div>
               </div>
 
               <!-- Price Summary Card -->
@@ -1895,8 +1908,8 @@
                   </div>
                 </div>
                 <a class="primary-btn w-100 mt-4 text-center checkout-btn" href="javascript:void(0);"
-                   onclick="AuthGuard.requireAuth(function(){ window.location.href='checkout.html'; })"
-                   style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; font-weight: 800; border-radius: 10px; padding: 14px; text-transform: uppercase; letter-spacing: 1px; display: block; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);">
+                  onclick="AuthGuard.requireAuth(function(){ window.location.href='checkout.html'; })"
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; font-weight: 800; border-radius: 10px; padding: 14px; text-transform: uppercase; letter-spacing: 1px; display: block; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);">
                   Proceed to checkout
                 </a>
               </div>
@@ -1924,12 +1937,16 @@
         <div class="mobile-coupon-input-block" style="width:100%;">
           <label class="mobile-coupon-label">Apply coupon</label>
           <div class="mobile-coupon-input-wrap" style="display:flex; flex-direction:column; gap:10px; width:100%;">
-            <input type="text" id="mobileCartCouponInput" placeholder="Enter coupon code" style="width:100%; height:44px; padding:10px 14px; box-sizing:border-box;">
-            <button class="primary-btn coupon-apply-btn" type="button" onclick="applyCartCoupon('mobile')" style="width:100%; height:44px; margin:0; padding:10px !important; display:flex; align-items:center; justify-content:center; text-transform:uppercase; font-weight:700;">Apply Coupon</button>
+            <input type="text" id="mobileCartCouponInput" placeholder="Enter coupon code"
+              style="width:100%; height:44px; padding:10px 14px; box-sizing:border-box;">
+            <button class="primary-btn coupon-apply-btn" type="button" onclick="applyCartCoupon('mobile')"
+              style="width:100%; height:44px; margin:0; padding:10px !important; display:flex; align-items:center; justify-content:center; text-transform:uppercase; font-weight:700;">Apply
+              Coupon</button>
           </div>
         </div>
       </div>
-      <div id="mobileCartCouponMsg" class="coupon-message" style="margin-top:10px; font-size:13px; font-weight:600; text-align:left; padding-left:0;"></div>
+      <div id="mobileCartCouponMsg" class="coupon-message"
+        style="margin-top:10px; font-size:13px; font-weight:600; text-align:left; padding-left:0;"></div>
       <div id="mobileCartCouponState" class="selected-coupon-panel mobile"></div>
       <div id="mobileCartCouponOffers" class="coupon-offers-grid mobile" style="margin-top:12px;"></div>
     </div>
@@ -2364,7 +2381,7 @@
       var emptyEl = document.getElementById('desktop-empty-view');
       var layoutEl = document.querySelector('.desktop-cart-layout');
       var countEl = document.querySelector('.mobile-section-label');
-      
+
       if (!listEl) {
         console.warn('desktop-cart-items element not found!');
         return;
@@ -2392,7 +2409,7 @@
           var qty = parseInt(item.qty) || 1;
           var key = item._key || item.id || Math.random().toString();
           var name = item.name || 'Unknown Product';
-          
+
           return `<div class="desktop-cart-card" data-key="${key}">
             <div class="desktop-cart-card-img">
               <img src="${imgSrc}" alt="${name}" onerror="this.src='img/product/product1.png';" loading="lazy">
@@ -2507,7 +2524,11 @@
           </div>`;
       }
 
-      if (!availableCoupons || availableCoupons.length === 0) {
+      if (window.couponLoadError) {
+        var errHtml = '<div class="coupon-card" style="border-style:dashed; color:#ff4d4d; text-align:center;">Error: ' + window.couponLoadError + '</div>';
+        if (offersEl) offersEl.innerHTML = errHtml;
+        if (mobileOffersEl) mobileOffersEl.innerHTML = errHtml;
+      } else if (!availableCoupons || availableCoupons.length === 0) {
         var emptyHtml = '<div class="coupon-card" style="border-style:dashed; color:#888; display:flex; align-items:center; justify-content:center; text-align:center;">No active coupons available right now.</div>';
         if (offersEl) offersEl.innerHTML = emptyHtml;
         if (mobileOffersEl) mobileOffersEl.innerHTML = emptyHtml;
@@ -2556,22 +2577,23 @@
       if (window.location.protocol === 'file:' || window.location.hostname === '') {
         return 'http://localhost:8080/api/coupons';
       }
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        return `http://${window.location.hostname}:8080/api/coupons`;
+      if (window.location.port === '8080' || window.location.port === '8081') {
+        return '/api/coupons';
       }
-      return '/api/coupons';
+      return `http://${window.location.hostname}:8080/api/coupons`;
     }
 
     async function loadCartCoupons() {
       var COUPON_API = getCouponApiBase();
       try {
-        var res = await fetch(COUPON_API, { credentials: 'include' });
+        var res = await fetch(COUPON_API);
         var data = await res.json();
         if (data.success && Array.isArray(data.data)) {
           availableCoupons = data.data;
         }
       } catch (e) {
         console.error('Failed to load coupons:', e);
+        window.couponLoadError = e.message + ' (URL: ' + COUPON_API + ')';
       }
       renderCartCouponOffers();
       renderCartCouponState();
@@ -2602,7 +2624,7 @@
 
       try {
         var res = await fetch(`${COUPON_API}/validate`, {
-          method: 'POST', credentials: 'include',
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code: code, cartTotal: CartEngine.getTotal() })
         });
@@ -2687,7 +2709,7 @@
           var qty = parseInt(item.qty) || 1;
           var key = item._key || item.id || Math.random().toString();
           var name = item.name || 'Unknown Product';
-          
+
           return `<div class="mobile-cart-card" data-key="${key}">
             <div class="mobile-cart-img">
               <img src="${imgSrc}" alt="${name}" loading="lazy" onerror="this.src='img/product/product1.png';">

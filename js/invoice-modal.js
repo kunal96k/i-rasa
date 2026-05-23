@@ -7,6 +7,9 @@ class InvoiceModal {
     constructor() {
         this.currentOrderId = null;
         this.currentInvoice = null;
+        this.baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? `http://${window.location.hostname}:8080`
+            : '';
         this.init();
     }
 
@@ -118,7 +121,11 @@ class InvoiceModal {
      */
     async loadInvoiceData(orderId) {
         try {
-            const response = await fetch(`/api/orders/${orderId}/invoice`, {
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get('token');
+            const url = token ? `${this.baseUrl}/api/orders/${orderId}/invoice?token=${encodeURIComponent(token)}` : `${this.baseUrl}/api/orders/${orderId}/invoice`;
+
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -198,7 +205,7 @@ class InvoiceModal {
                     <p class="invoice-subtitle">Premium invoice • ${currencyLabel} • ${currencySymbol.trim()}</p>
                 </div>
                 <div class="invoice-meta">
-                    <div><strong>Invoice #</strong> #${invoice.orderId}</div>
+                    <div><strong>Invoice #</strong> INV-RASA-${invoice.orderId}</div>
                     <div><strong>Date</strong> ${this.formatDate(invoice.createdAt)}</div>
                     <div><strong>Status</strong> <span class="status-badge" style="background: ${statusColor}; color: ${statusColor === '#d4af37' ? '#000' : '#fff'};">${invoice.status || 'N/A'}</span></div>
                 </div>
@@ -320,7 +327,7 @@ class InvoiceModal {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `invoice_${orderId}.pdf`;
+            a.download = `invoice_INV-RASA-${orderId}.pdf`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -346,7 +353,11 @@ class InvoiceModal {
      * Fetch invoice PDF blob from the server
      */
     async fetchInvoiceBlob(orderId) {
-        const response = await fetch(`/api/orders/${orderId}/invoice/download`, {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        const url = token ? `${this.baseUrl}/api/orders/${orderId}/invoice/download?token=${encodeURIComponent(token)}` : `${this.baseUrl}/api/orders/${orderId}/invoice/download`;
+
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Accept': 'application/pdf'

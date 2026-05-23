@@ -13,13 +13,13 @@
 const WISHLIST_KEY_PREFIX = 'irasa_wishlist_';
 const CART_KEY_PREFIX     = 'irasa_cart_';
 
-const WISHLIST_API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? 'http://' + window.location.hostname + ':8080/api/profile/wishlist'
-      : '/api/profile/wishlist';
+const WISHLIST_API_BASE = window.location.port === '8080' || window.location.port === '8081'
+      ? '/api/profile/wishlist'
+      : (window.location.protocol === 'file:' || window.location.hostname === '' ? 'http://localhost:8080/api/profile/wishlist' : `http://${window.location.hostname}:8080/api/profile/wishlist`);
 
-const CART_API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? 'http://' + window.location.hostname + ':8080/api/cart'
-      : '/api/cart';
+const CART_API_BASE = window.location.port === '8080' || window.location.port === '8081'
+      ? '/api/cart'
+      : (window.location.protocol === 'file:' || window.location.hostname === '' ? 'http://localhost:8080/api/cart' : `http://${window.location.hostname}:8080/api/cart`);
 
 /* -----------------------------------------
    CART ENGINE
@@ -205,8 +205,9 @@ const CartEngine = {
   clear() {
     this._write([]);
     if (this._userId) {
-      fetch(CART_API_BASE, { method: 'DELETE', credentials: 'include' }).catch(function() {});
+      return fetch(CART_API_BASE, { method: 'DELETE', credentials: 'include' }).catch(function() {});
     }
+    return Promise.resolve();
   },
 
   async _pushToDb(item) {

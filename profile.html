@@ -434,6 +434,116 @@
       text-decoration: underline;
     }
 
+    /* Visual Order status progress bar / timeline */
+    .tracking-timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin: 30px 0 20px;
+      padding: 0 10px;
+    }
+    .tracking-timeline::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 10px;
+      right: 10px;
+      height: 3px;
+      background: #222;
+      z-index: 1;
+    }
+    .tracking-timeline-progress {
+      position: absolute;
+      top: 15px;
+      left: 10px;
+      height: 3px;
+      background: #d4af37;
+      z-index: 2;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+    .timeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+      cursor: default;
+    }
+    .timeline-step-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #111;
+      border: 2px solid #333;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      transition: all 0.4s ease;
+    }
+    .timeline-step.active .timeline-step-icon {
+      background: #d4af37;
+      border-color: #d4af37;
+      color: #000;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+    .timeline-step-label {
+      font-size: 9px;
+      color: #666;
+      margin-top: 8px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+    .timeline-step.active .timeline-step-label {
+      color: #d4af37;
+    }
+
+    /* Ticket event vertical timeline */
+    .ticket-events-timeline {
+      position: relative;
+      margin-top: 15px;
+      padding-left: 20px;
+      border-left: 2px solid #222;
+    }
+    .ticket-event-item {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    .ticket-event-item:last-child {
+      margin-bottom: 0;
+    }
+    .ticket-event-circle {
+      position: absolute;
+      left: -27px;
+      top: 3px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #222;
+      border: 2px solid #111;
+      transition: all 0.3s;
+    }
+    .ticket-event-item.active .ticket-event-circle {
+      background: #d4af37;
+      border-color: #d4af37;
+      box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+    }
+    .ticket-event-meta {
+      font-size: 11px;
+      color: #666;
+      margin-bottom: 2px;
+    }
+    .ticket-event-note {
+      font-size: 12px;
+      color: #ddd;
+      line-height: 1.4;
+    }
+
     /* Blends List */
     .blend-card {
       background: #0a0a0a;
@@ -793,13 +903,21 @@
           <i class="ti-angle-right" style="color:#333;"></i>
         </div>
 
-        <div class="support-item" onclick="$('#support_modal').modal('show')">
+        <div class="support-item" onclick="openSupportModal()">
           <div class="support-icon"><i class="ti-write"></i></div>
           <div style="flex-grow:1;">
             <div style="font-weight:bold;">Raise a Ticket</div>
             <div style="font-size:12px; color:#888;">Email our support team directly.</div>
           </div>
           <i class="ti-angle-right" style="color:#333;"></i>
+        </div>
+
+        <!-- Support Tickets List (Timeline) -->
+        <div style="margin-top:25px; margin-bottom:25px;">
+          <div style="font-weight:bold; color:#d4af37; font-size:15px; margin-bottom:15px;"><i class="ti-list"></i> Your Support Tickets</div>
+          <div id="ticketsListContainer">
+            <div style="text-align:center; padding:20px; color:#888;">No tickets submitted yet.</div>
+          </div>
         </div>
 
         <!-- FAQ Accordion -->
@@ -906,6 +1024,34 @@
               data-dismiss="modal" style="color:#fff;">&times;</button>
           </div>
           <div class="modal-body p-4">
+            <!-- Order Tracking Progress Timeline -->
+            <div id="modalOrderTimelineBlock" style="margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 20px;">
+              <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Order Tracking Progress</div>
+              <div class="tracking-timeline">
+                <div class="tracking-timeline-progress" id="modalOrderProgress"></div>
+                <div class="timeline-step" id="step-placed">
+                  <div class="timeline-step-icon"><i class="fas fa-shopping-bag"></i></div>
+                  <div class="timeline-step-label">Placed</div>
+                </div>
+                <div class="timeline-step" id="step-confirmed">
+                  <div class="timeline-step-icon"><i class="fas fa-check"></i></div>
+                  <div class="timeline-step-label">Confirmed</div>
+                </div>
+                <div class="timeline-step" id="step-processing">
+                  <div class="timeline-step-icon"><i class="fas fa-cog"></i></div>
+                  <div class="timeline-step-label">Processing</div>
+                </div>
+                <div class="timeline-step" id="step-shipped">
+                  <div class="timeline-step-icon"><i class="fas fa-truck"></i></div>
+                  <div class="timeline-step-label">Shipped</div>
+                </div>
+                <div class="timeline-step" id="step-delivered">
+                  <div class="timeline-step-icon"><i class="fas fa-home"></i></div>
+                  <div class="timeline-step-label">Delivered</div>
+                </div>
+              </div>
+            </div>
+
             <div class="row">
               <div class="col-md-7">
                 <div style="border-bottom:1px solid #222; padding-bottom:10px; margin-bottom:15px;">
@@ -914,14 +1060,38 @@
                 </div>
               </div>
               <div class="col-md-5" style="border-left:1px solid #222;">
-                <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:15px;">Delivery Details
-                </div>
+                <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Delivery Details</div>
                 <div style="font-size:13px; margin-bottom:20px;" id="modalOrderAddress"></div>
+
+                <div style="border-top:1px solid #222; padding-top:15px; margin-bottom:20px;">
+                  <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Order Details</div>
+                  <div class="d-flex justify-content-between align-items-center mb-1" style="font-size:13px;">
+                    <span>Status</span>
+                    <span id="modalOrderStatusBadge" style="font-size:10px; font-weight:bold; padding:3px 8px; border-radius:10px; text-transform:uppercase;">PENDING</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-1" style="font-size:13px;">
+                    <span>Payment Method</span>
+                    <span id="modalOrderPaymentMethod" style="color:#bbb;">N/A</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-1" id="modalOrderTxnRow" style="font-size:13px;">
+                    <span>Transaction ID</span>
+                    <span id="modalOrderTransactionId" style="color:#bbb; word-break:break-all; max-width:140px; text-align:right;">N/A</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-1" style="font-size:13px;">
+                    <span>Expected Delivery</span>
+                    <span id="modalOrderDeliveryDate" style="color:#bbb;">Pending</span>
+                  </div>
+                </div>
+
                 <div style="border-top:1px solid #222; padding-top:15px;">
                   <div class="d-flex justify-content-between mb-1"><span>Subtotal</span><span
                       id="modalOrderSubtotal">Rs. 0.00</span></div>
                   <div class="d-flex justify-content-between mb-1"><span>Shipping</span><span
                       id="modalOrderShipping">FREE</span></div>
+                  <div id="modalOrderHandlingRow" class="d-flex justify-content-between mb-1"><span>Handling Charge</span><span
+                      id="modalOrderHandling">Rs. 0.00</span></div>
+                  <div id="modalOrderPlatformRow" class="d-flex justify-content-between mb-1"><span>Platform Fee</span><span
+                      id="modalOrderPlatform">Rs. 0.00</span></div>
                   <div class="d-flex justify-content-between mb-1"><span>Discount</span><span
                       id="modalOrderDiscount">Rs. 0.00</span></div>
                   <div class="d-flex justify-content-between mt-2"
@@ -931,6 +1101,10 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="modal-footer" style="border-top:1px solid #222; display:flex; justify-content:space-between; align-items:center; padding:15px 30px;">
+            <button type="button" class="btn-action" id="modalOrderHelpBtn" style="color:#d4af37; border-color:#d4af37; margin:0;"><i class="ti-headphone-alt"></i> Get Help / Raise Ticket</button>
+            <button type="button" class="btn-gold" data-dismiss="modal" style="padding: 8px 24px; margin:0;">Close</button>
           </div>
         </div>
       </div>
@@ -1019,16 +1193,59 @@
               data-dismiss="modal" style="color:#fff;">&times;</button>
           </div>
           <div class="modal-body p-4">
-            <div class="form-group mb-3"><label>Subject</label><select>
-                <option>Order Query</option>
-                <option>Product Information</option>
-                <option>Returns & Exchange</option>
-                <option>Other</option>
+            <input type="hidden" id="supportOrderId">
+            <div class="form-group mb-3"><label>Subject</label><select id="supportSubject">
+                <option value="Order Query">Order Query</option>
+                <option value="Product Information">Product Information</option>
+                <option value="Returns & Exchange">Returns & Exchange</option>
+                <option value="Other">Other</option>
               </select></div>
-            <div class="form-group mb-4"><label>How can we help?</label><textarea style="min-height:100px;"
+            <div class="form-group mb-4"><label>How can we help?</label><textarea id="supportMessage" style="min-height:100px;"
                 placeholder="Describe your issue here..."></textarea></div>
-            <button class="btn-gold btn-block" data-dismiss="modal"
-              onclick="alert('Ticket submitted! We will contact you via email.');">Submit Ticket</button>
+            <button class="btn-gold btn-block" onclick="submitSupportTicket()">Submit Ticket</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Action Modal (Cancel / Refund / Exchange) -->
+    <div class="modal fade" id="order_action_modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background:#111; border:1px solid #2a2000; border-radius:12px;">
+          <div class="modal-header" style="border-bottom:1px solid #222; padding:20px 24px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span id="orderActionIcon" style="font-size:28px;">&#9888;</span>
+              <h5 id="orderActionTitle" style="color:#d4af37; margin:0; font-size:18px;">Cancel Order</h5>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" style="color:#888; font-size:22px;">&times;</button>
+          </div>
+          <div class="modal-body" style="padding:24px;">
+            <p id="orderActionDesc" style="color:#aaa; font-size:13px; margin-bottom:20px; line-height:1.7;"></p>
+            <input type="hidden" id="orderActionId">
+            <input type="hidden" id="orderActionType">
+            <div class="form-group mb-4">
+              <label style="font-size:12px; color:#d4af37; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block;">Reason <span style="color:#888;">(optional but helps us improve)</span></label>
+              <select id="orderActionReasonSelect" style="background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px; padding:10px; width:100%; margin-bottom:10px; font-size:13px;">
+                <option value="">Select a reason...</option>
+                <option>Changed my mind</option>
+                <option>Ordered by mistake</option>
+                <option>Found a better price</option>
+                <option>Product not as expected</option>
+                <option>Defective / Damaged item</option>
+                <option>Wrong item delivered</option>
+                <option>Delivery too late</option>
+                <option>Other</option>
+              </select>
+              <textarea id="orderActionReason" rows="3" placeholder="Add any additional details..." style="background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px; padding:12px; width:100%; resize:vertical; font-size:13px;"></textarea>
+            </div>
+            <div style="background:#1a1000; border:1px solid #3a2800; border-radius:8px; padding:12px; margin-bottom:20px;">
+              <div style="font-size:12px; color:#d4af37; font-weight:600; margin-bottom:4px;">&#9888; Please note</div>
+              <div id="orderActionNote" style="font-size:12px; color:#888; line-height:1.6;"></div>
+            </div>
+            <div style="display:flex; gap:12px;">
+              <button class="btn btn-secondary" data-dismiss="modal" style="flex:1; border-radius:8px; background:#222; border:1px solid #333; color:#aaa;">Go Back</button>
+              <button id="orderActionSubmitBtn" onclick="submitOrderAction()" style="flex:2; border-radius:8px; padding:12px; font-weight:700; font-size:13px; border:none; cursor:pointer; transition:all 0.3s;">Confirm</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1534,8 +1751,9 @@
                   <div class="order-item">
                     <div class="order-header">
                       <div>
-                        <div class="order-id">Order ID: #IRA-${order.orderId}</div>
+                        <div class="order-id">Order ID: RASA-${order.orderId}</div>
                         <div style="font-size:12px; color:#666;">Placed on ${date}</div>
+                        ${order.expectedDeliveryDate ? `<div style="font-size:12px; color:#4caf50; margin-top:4px;"><i class="fas fa-calendar-check"></i> Expected Delivery: ${new Date(order.expectedDeliveryDate).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</div>` : ''}
                       </div>
                       <div class="order-status" style="${statusStyle}">${order.status}</div>
                     </div>
@@ -1552,7 +1770,9 @@
                     <div class="order-actions" style="margin-top: 15px;">
                       <button class="btn-action" onclick="showOrderDetails(${order.orderId})"><i class="ti-eye"></i> Details</button>
                       <button class="btn-action" onclick="downloadInvoice(${order.orderId})"><i class="ti-download"></i> Invoice</button>
-                      <button class="btn-action" onclick="$('#support_modal').modal('show')"><i class="ti-headphone-alt"></i> Help</button>
+                      <button class="btn-action" onclick="openSupportModal(${order.orderId})"><i class="ti-headphone-alt"></i> Help</button>
+                      ${(order.status === 'PENDING' || order.status === 'CONFIRMED') ? `<button class="btn-action" style="color:#ff7070; border-color:#ff7070;" onclick="openOrderAction('cancel',${order.orderId})"><i class="ti-close"></i> Cancel</button>` : ''}
+                      ${order.status === 'DELIVERED' ? `<button class="btn-action" style="color:#c49cfc; border-color:#c49cfc;" onclick="openOrderAction('refund',${order.orderId})"><i class="ti-money"></i> Refund</button><button class="btn-action" style="color:#3be0e0; border-color:#3be0e0;" onclick="openOrderAction('exchange',${order.orderId})"><i class="ti-exchange-vertical"></i> Exchange</button>` : ''}
                     </div>
                   </div>
                 `;
@@ -1620,7 +1840,7 @@
         const order = window.userOrders.find(o => o.orderId === orderId);
         if (!order) return;
 
-        document.getElementById('modalOrderTitle').textContent = `Order #IRA-${order.orderId} Detailed View`;
+        document.getElementById('modalOrderTitle').textContent = `Order RASA-${order.orderId} Detailed View`;
 
         // Render items
         const itemsEl = document.getElementById('modalOrderItems');
@@ -1651,60 +1871,257 @@
           addrEl.innerHTML = 'No address details.';
         }
 
+        // Set status badge style & value
+        const status = (order.status || 'PENDING').toUpperCase();
+        const badgeEl = document.getElementById('modalOrderStatusBadge');
+        badgeEl.textContent = status;
+        badgeEl.style.color = '#fff';
+        if (status === 'DELIVERED' || status === 'COMPLETED') {
+          badgeEl.style.background = '#0a1a00';
+          badgeEl.style.color = '#25d366';
+          badgeEl.style.border = '1px solid #1c3d11';
+        } else if (status === 'CANCELLED' || status === 'REFUNDED') {
+          badgeEl.style.background = '#1a0000';
+          badgeEl.style.color = '#ff4d4d';
+          badgeEl.style.border = '1px solid #4a1111';
+        } else if (status === 'EXCHANGED' || status === 'IN_PROGRESS' || status === 'PROCESSING') {
+          badgeEl.style.background = '#001a1a';
+          badgeEl.style.color = '#3be0e0';
+          badgeEl.style.border = '1px solid #113d3d';
+        } else if (status === 'CONFIRMED') {
+          badgeEl.style.background = '#1a1a00';
+          badgeEl.style.color = '#d4af37';
+          badgeEl.style.border = '1px solid #3d3d11';
+        } else {
+          badgeEl.style.background = '#222';
+          badgeEl.style.color = '#fff';
+          badgeEl.style.border = '1px solid #333';
+        }
+
+        // Populate details fields
+        document.getElementById('modalOrderPaymentMethod').textContent = order.paymentMethod || 'N/A';
+        document.getElementById('modalOrderTransactionId').textContent = order.transactionId || 'N/A';
+        if (order.transactionId) {
+          document.getElementById('modalOrderTxnRow').style.display = 'flex';
+        } else {
+          document.getElementById('modalOrderTxnRow').style.display = 'flex'; // show N/A as standard
+        }
+
+        const deliveryDate = order.expectedDeliveryDate 
+          ? new Date(order.expectedDeliveryDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+          : 'Pending';
+        document.getElementById('modalOrderDeliveryDate').textContent = deliveryDate;
+
+        // Render Tracking Timeline
+        document.querySelectorAll('#modalOrderTimelineBlock .timeline-step').forEach(el => el.classList.remove('active'));
+        const progressEl = document.getElementById('modalOrderProgress');
+        progressEl.style.width = '0%';
+        progressEl.style.background = '#d4af37';
+
+        if (status === 'CANCELLED') {
+          document.getElementById('step-placed').classList.add('active');
+          progressEl.style.width = '0%';
+          progressEl.style.background = '#ff4d4d';
+        } else {
+          const steps = ['PENDING', 'CONFIRMED', 'PROCESSING', 'SHIPPED', 'DELIVERED'];
+          const stepIds = ['step-placed', 'step-confirmed', 'step-processing', 'step-shipped', 'step-delivered'];
+          
+          let currentIdx = steps.indexOf(status);
+          if (currentIdx === -1 && status === 'COMPLETED') {
+            currentIdx = 4; // Delivered
+          }
+          if (currentIdx === -1) {
+            currentIdx = 0; // Default to placed
+          }
+          
+          for (let i = 0; i <= currentIdx; i++) {
+            const stepEl = document.getElementById(stepIds[i]);
+            if (stepEl) stepEl.classList.add('active');
+          }
+          
+          const percent = currentIdx * 25;
+          progressEl.style.width = `${percent}%`;
+        }
+
         // Pricing details
         document.getElementById('modalOrderSubtotal').textContent = `Rs. ${parseFloat(order.subtotal).toFixed(2)}`;
         document.getElementById('modalOrderShipping').textContent = order.shipping > 0 ? `Rs. ${parseFloat(order.shipping).toFixed(2)}` : 'FREE';
+        
+        const handling = parseFloat(order.handlingCharge || 0);
+        if (handling > 0) {
+          document.getElementById('modalOrderHandlingRow').style.display = 'flex';
+          document.getElementById('modalOrderHandling').textContent = `Rs. ${handling.toFixed(2)}`;
+        } else {
+          document.getElementById('modalOrderHandlingRow').style.display = 'none';
+        }
+
+        const platform = parseFloat(order.platformFee || 0);
+        if (platform > 0) {
+          document.getElementById('modalOrderPlatformRow').style.display = 'flex';
+          document.getElementById('modalOrderPlatform').textContent = `Rs. ${platform.toFixed(2)}`;
+        } else {
+          document.getElementById('modalOrderPlatformRow').style.display = 'none';
+        }
+
         document.getElementById('modalOrderDiscount').textContent = `Rs. ${parseFloat(order.discount).toFixed(2)}`;
         document.getElementById('modalOrderTotal').textContent = `Rs. ${parseFloat(order.total).toFixed(2)}`;
+
+        // Help button handler
+        document.getElementById('modalOrderHelpBtn').onclick = function() {
+          $('#order_modal').modal('hide');
+          setTimeout(() => {
+            openSupportModal(order.orderId);
+            document.getElementById('supportMessage').value = `I need assistance regarding Order RASA-${order.orderId}.\n\n`;
+          }, 400);
+        };
 
         $('#order_modal').modal('show');
       };
 
-      window.downloadInvoice = function (orderId) {
-        if (!window.userOrders) return;
-        const order = window.userOrders.find(o => o.orderId === orderId);
-        if (!order) return;
-
-        let invoiceText = `========================================\n`;
-        invoiceText += `            I RASA PERFUMES             \n`;
-        invoiceText += `            INVOICE OF ORDER            \n`;
-        invoiceText += `========================================\n`;
-        invoiceText += `Order ID:   #IRA-${order.orderId}\n`;
-        invoiceText += `Date:       ${new Date(order.createdAt).toLocaleString()}\n`;
-        invoiceText += `Status:     ${order.status}\n`;
-        invoiceText += `----------------------------------------\n`;
-        invoiceText += `Billing Details:\n`;
-        if (order.billing) {
-          invoiceText += `${order.billing.firstName} ${order.billing.lastName || ''}\n`;
-          invoiceText += `${order.billing.address1}\n`;
-          if (order.billing.address2) invoiceText += `${order.billing.address2}\n`;
-          invoiceText += `${order.billing.city} - ${order.billing.zip}\n`;
+      window.downloadInvoice = async function (orderId) {
+        // Find button to show loading state
+        const btn = document.querySelector(`button[onclick="downloadInvoice(${orderId})"]`);
+        const originalHtml = btn ? btn.innerHTML : '';
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
         }
-        invoiceText += `----------------------------------------\n`;
-        invoiceText += `Items:\n`;
-        if (order.items) {
-          order.items.forEach(item => {
-            invoiceText += `- ${item.name} (${item.size || '100ml'}) x ${item.qty} : Rs. ${parseFloat(item.price * item.qty).toFixed(2)}\n`;
+
+        try {
+          const response = await fetch(`${BASE_URL}/api/orders/${orderId}/invoice/download`, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/pdf'
+            },
+            credentials: 'include'
           });
-        }
-        invoiceText += `----------------------------------------\n`;
-        invoiceText += `Subtotal:  Rs. ${parseFloat(order.subtotal).toFixed(2)}\n`;
-        invoiceText += `Discount:  Rs. ${parseFloat(order.discount).toFixed(2)}\n`;
-        invoiceText += `Shipping:  ${order.shipping > 0 ? `Rs. ${parseFloat(order.shipping).toFixed(2)}` : 'FREE'}\n`;
-        invoiceText += `Total:     Rs. ${parseFloat(order.total).toFixed(2)}\n`;
-        invoiceText += `========================================\n`;
-        invoiceText += `Thank you for shopping with I Rasa Perfumes!\n`;
 
-        const blob = new Blob([invoiceText], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `Invoice_IRA-${order.orderId}.txt`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `invoice_INV-RASA-${orderId}.pdf`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+        } catch (error) {
+          console.error('Error downloading PDF:', error);
+          alert('Failed to download invoice. Please try again.');
+        } finally {
+          if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = originalHtml;
+          }
+        }
       };
+
+      window.openOrderAction = function(type, orderId) {
+        document.getElementById('orderActionId').value = orderId;
+        document.getElementById('orderActionType').value = type;
+        document.getElementById('orderActionReasonSelect').value = '';
+        document.getElementById('orderActionReason').value = '';
+        const icon = document.getElementById('orderActionIcon');
+        const title = document.getElementById('orderActionTitle');
+        const desc = document.getElementById('orderActionDesc');
+        const note = document.getElementById('orderActionNote');
+        const btn = document.getElementById('orderActionSubmitBtn');
+
+        if (type === 'cancel') {
+          icon.textContent = '✕';
+          icon.style.color = '#ff7070';
+          title.textContent = 'Cancel Order #RASA-' + orderId;
+          desc.textContent = 'Are you sure you want to cancel this order? This action cannot be undone once confirmed.';
+          note.textContent = 'If you paid online, a refund will be initiated within 5–7 business days. Cash orders will be marked as cancelled.';
+          btn.style.background = 'linear-gradient(135deg, #c0392b, #e74c3c)';
+          btn.style.color = '#fff';
+          btn.textContent = '✕ Cancel My Order';
+        } else if (type === 'refund') {
+          icon.textContent = '₹';
+          icon.style.color = '#c49cfc';
+          title.textContent = 'Request Refund — Order #RASA-' + orderId;
+          desc.textContent = 'Tell us why you would like a refund for this order. Our team will review and process your request.';
+          note.textContent = 'Refunds are processed within 5–7 business days after approval. Applicable for orders delivered within 7 days.';
+          btn.style.background = 'linear-gradient(135deg, #6a3d9a, #c49cfc)';
+          btn.style.color = '#fff';
+          btn.textContent = '₹ Submit Refund Request';
+        } else if (type === 'exchange') {
+          icon.textContent = '⇄';
+          icon.style.color = '#3be0e0';
+          title.textContent = 'Request Exchange — Order #RASA-' + orderId;
+          desc.textContent = 'Tell us why you would like to exchange an item from this order. Our team will contact you within 24–48 hours.';
+          note.textContent = 'Exchange is available within 7 days of delivery. Please ensure the product is unused and in original packaging.';
+          btn.style.background = 'linear-gradient(135deg, #0a6060, #3be0e0)';
+          btn.style.color = '#000';
+          btn.textContent = '⇄ Submit Exchange Request';
+        }
+
+        $('#order_action_modal').modal('show');
+      };
+
+      window.submitOrderAction = async function() {
+        const orderId = document.getElementById('orderActionId').value;
+        const type = document.getElementById('orderActionType').value;
+        const selectReason = document.getElementById('orderActionReasonSelect').value;
+        const textReason = document.getElementById('orderActionReason').value.trim();
+        const reason = [selectReason, textReason].filter(Boolean).join(' — ');
+
+        const btn = document.getElementById('orderActionSubmitBtn');
+        const originalHtml = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Processing...';
+
+        const endpointMap = {
+          cancel: 'cancel',
+          refund: 'refund-request',
+          exchange: 'exchange-request'
+        };
+
+        try {
+          const res = await fetch(`${BASE_URL}/api/orders/${orderId}/${endpointMap[type]}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ reason })
+          });
+          const data = await res.json();
+          $('#order_action_modal').modal('hide');
+          if (res.ok && data.success) {
+            showActionSuccessToast(type, orderId);
+            setTimeout(() => loadOrders(currentOrdersPage), 600);
+          } else {
+            alert('Error: ' + (data.message || 'Request failed. Please try again.'));
+          }
+        } catch(e) {
+          alert('Network error. Please check your connection and try again.');
+          console.error(e);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = originalHtml;
+        }
+      };
+
+      function showActionSuccessToast(type, orderId) {
+        const msgMap = {
+          cancel: `Order #RASA-${orderId} has been cancelled.`,
+          refund: `Refund request submitted for Order #RASA-${orderId}. We'll process it within 5–7 days.`,
+          exchange: `Exchange request submitted for Order #RASA-${orderId}. Our team will contact you soon.`
+        };
+        const colorMap = {
+          cancel: '#ff7070',
+          refund: '#c49cfc',
+          exchange: '#3be0e0'
+        };
+        const toast = document.createElement('div');
+        toast.style.cssText = `position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#1a1a1a; border:1px solid ${colorMap[type]}; color:#fff; padding:14px 24px; border-radius:10px; font-size:13px; z-index:9999; max-width:400px; text-align:center; box-shadow:0 4px 24px rgba(0,0,0,0.5); transition: opacity 0.5s;`;
+        toast.innerHTML = `<span style="color:${colorMap[type]}; font-weight:700; display:block; margin-bottom:4px;">✓ ${type.charAt(0).toUpperCase() + type.slice(1)} Request Submitted</span>${msgMap[type]}`;
+        document.body.appendChild(toast);
+        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 4000);
+      }
 
       function switchTab(n, b) {
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -1721,6 +2138,168 @@
           loadAddresses();
         } else if (n === 'blends') {
           loadBlends();
+        } else if (n === 'support') {
+          loadSupportTickets();
+        }
+      }
+
+      window.openSupportModal = function(orderId) {
+        document.getElementById('supportOrderId').value = orderId || '';
+        document.getElementById('supportMessage').value = '';
+        if (orderId) {
+          document.getElementById('supportSubject').value = 'Order Query';
+        } else {
+          document.getElementById('supportSubject').value = 'Order Query';
+        }
+        $('#support_modal').modal('show');
+      };
+
+      window.submitSupportTicket = async function() {
+        const subject = document.getElementById('supportSubject').value;
+        const message = document.getElementById('supportMessage').value;
+        const orderId = document.getElementById('supportOrderId').value;
+
+        if (!message.trim()) {
+          alert('Please describe your issue');
+          return;
+        }
+
+        const submitBtn = document.querySelector('#support_modal .btn-gold');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        try {
+          const payload = {
+            subject: subject,
+            message: message
+          };
+          if (orderId) {
+            payload.orderId = orderId;
+          }
+
+          const res = await fetch(`${BASE_URL}/api/contact/submit-ticket`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+            credentials: 'include'
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            alert(data.message || 'Ticket submitted successfully! We will contact you via email.');
+            $('#support_modal').modal('hide');
+            if (document.getElementById('panel-support').classList.contains('active')) {
+              loadSupportTickets();
+            }
+          } else {
+            alert(data.message || 'Failed to submit ticket. Please try again.');
+          }
+        } catch (e) {
+          console.error(e);
+          alert('An error occurred. Please try again.');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      };
+
+      async function loadSupportTickets() {
+        const container = document.getElementById('ticketsListContainer');
+        if (!container) return;
+
+        container.innerHTML = `
+          <div style="text-align:center; padding:30px; color:#888;">
+            <i class="fas fa-spinner fa-spin" style="font-size:24px; color:#d4af37; margin-bottom:10px;"></i>
+            <div>Loading tickets...</div>
+          </div>
+        `;
+
+        try {
+          const res = await fetch(`${BASE_URL}/api/contact/my-tickets`, { credentials: 'include' });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.data && data.data.length > 0) {
+              container.innerHTML = data.data.map(tkt => {
+                const date = new Date(tkt.createdAt).toLocaleDateString('en-IN', {
+                  day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                });
+                let badgeStyle = 'background: #1a1a00; color: #d4af37; border: 1px solid #3d3d11;';
+                if (tkt.status === 'RESOLVED') {
+                  badgeStyle = 'background: #0a1a00; color: #25d366; border: 1px solid #1c3d11;';
+                } else if (tkt.status === 'IN_PROGRESS') {
+                  badgeStyle = 'background: #001a1a; color: #3be0e0; border: 1px solid #113d3d;';
+                }
+
+                // Render nested status events timeline
+                let eventsHtml = '';
+                if (tkt.events && tkt.events.length > 0) {
+                  eventsHtml = `
+                    <div style="margin-top: 15px; border-top: 1px solid #1a1a1a; padding-top: 12px;">
+                      <div style="font-size: 11px; color: #666; text-transform: uppercase; margin-bottom: 10px; font-weight: bold; letter-spacing: 0.5px;"><i class="ti-time"></i> Ticket History Timeline</div>
+                      <div class="ticket-events-timeline">
+                        ${tkt.events.map((evt, idx) => {
+                          const evtDate = new Date(evt.createdAt).toLocaleDateString('en-IN', {
+                            day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+                          });
+                          const isLast = idx === tkt.events.length - 1;
+                          return `
+                            <div class="ticket-event-item ${isLast ? 'active' : ''}">
+                              <div class="ticket-event-circle"></div>
+                              <div class="ticket-event-meta">
+                                <span style="color: #d4af37; font-weight: bold; text-transform: uppercase; font-size: 10px;">${evt.status}</span>
+                                <span style="margin-left: 8px; color: #555;">${evtDate}</span>
+                              </div>
+                              <div class="ticket-event-note">${evt.note || ''}</div>
+                            </div>
+                          `;
+                        }).join('')}
+                      </div>
+                    </div>
+                  `;
+                } else {
+                  eventsHtml = `
+                    <div style="margin-top: 15px; border-top: 1px solid #1a1a1a; padding-top: 12px;">
+                      <div style="font-size: 11px; color: #666; text-transform: uppercase; margin-bottom: 10px; font-weight: bold; letter-spacing: 0.5px;"><i class="ti-time"></i> Ticket History Timeline</div>
+                      <div class="ticket-events-timeline">
+                        <div class="ticket-event-item active">
+                          <div class="ticket-event-circle"></div>
+                          <div class="ticket-event-meta">
+                            <span style="color: #d4af37; font-weight: bold; text-transform: uppercase; font-size: 10px;">OPEN</span>
+                            <span style="margin-left: 8px; color: #555;">${date}</span>
+                          </div>
+                          <div class="ticket-event-note">Support ticket created successfully. Our team will review it shortly.</div>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }
+
+                return `
+                  <div style="background:#0d0d0d; border:1px solid #222; border-radius:10px; padding:15px; margin-bottom:15px;">
+                    <div class="d-flex justify-content-between align-items-center mb-2" style="border-bottom: 1px solid #1a1a1a; padding-bottom: 8px;">
+                      <div>
+                        <strong style="color:#d4af37; font-size:14px;">${tkt.ticketId}</strong>
+                        <span style="font-size:12px; color:#666; margin-left:10px;">${date}</span>
+                      </div>
+                      <span style="font-size:10px; font-weight:bold; padding:3px 8px; border-radius:15px; text-transform:uppercase; ${badgeStyle}">${tkt.status}</span>
+                    </div>
+                    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:5px;">Subject: ${tkt.subject}</div>
+                    <div style="font-size:13px; color:#bbb; white-space: pre-line; margin-bottom:10px;">${tkt.message}</div>
+                    ${tkt.orderId ? `<div style="font-size:11px; color:#888; margin-top:8px; margin-bottom:4px;"><i class="fas fa-receipt"></i> Linked to Order ID: RASA-${tkt.orderId}</div>` : ''}
+                    ${eventsHtml}
+                  </div>
+                `;
+              }).join('');
+              return;
+            }
+          }
+          container.innerHTML = `<div style="text-align:center; padding:20px; color:#888;">No tickets submitted yet.</div>`;
+        } catch (e) {
+          console.error('Failed to load tickets', e);
+          container.innerHTML = `<div style="text-align:center; padding:20px; color:#ff4d4d;">Failed to load tickets.</div>`;
         }
       }
 

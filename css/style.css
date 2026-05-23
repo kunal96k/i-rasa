@@ -6530,14 +6530,17 @@ input[type=number] {
 .confirmation-card,
 .confirmation-card p,
 .confirmation-card td,
-.confirmation-card span,
+.confirmation-card span {
+    color: #333 !important;
+}
+
 .order_details_table,
 .order_details_table p,
 .order_details_table h4,
 .order_details_table h5,
 .order_details_table td,
 .order_details_table th {
-    color: #333 !important;
+    color: #fff !important;
 }
 
 .single_sidebar_widget p,

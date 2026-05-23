@@ -80,7 +80,7 @@ const AuthGuard = {
         }
         this.updateNav(false);
 
-        const protectedPages = ['profile.html', 'checkout.html'];
+        const protectedPages = ['profile.html'];
         if (protectedPages.includes(page)) {
             window.location.href = `login.html?redirect=${page}`;
         }

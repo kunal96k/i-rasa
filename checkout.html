@@ -146,10 +146,10 @@
 
       <!-- Coupon handled in Cart only; removed input from checkout to avoid duplicate entry -->
       <div class="billing_details">
-        <div class="row">
+        <form class="row contact_form" action="#" method="post" novalidate="novalidate" id="billingForm">
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-8">
             <h3>Billing Details</h3>
-            <form class="row contact_form" action="#" method="post" novalidate="novalidate" id="billingForm">
+            <div class="row">
 
               <!-- Saved Address Dropdown Selector -->
               <div class="col-md-12 form-group" id="savedAddressesContainer" style="display:none; margin-bottom:15px;">
@@ -251,7 +251,7 @@
                   <input type="text" class="form-control" id="shippingZip" placeholder="Shipping Postcode/ZIP">
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-4">
             <div class="order_box" style="background:#0a0a0a;border:1px solid #222;border-radius:14px;padding:28px;">
@@ -335,14 +335,14 @@
                 <a href="javascript:void(0);" style="color:#d4af37;font-size:12px;">terms &amp; conditions*</a>
               </div>
               <div class="text-center">
-                <button type="button" id="placeOrderBtn" onclick="placeOrder()"
+                <button type="submit" id="placeOrderBtn"
                   style="width:100%;background:linear-gradient(135deg,#d4af37,#aa8422);color:#000;border:none;padding:14px;border-radius:30px;font-weight:700;font-size:15px;letter-spacing:1px;cursor:pointer;transition:all 0.3s;">Place
                   Order <i class="fas fa-arrow-right"></i></button>
                 <p id="orderError" style="color:#ff4d4d;font-size:12px;margin-top:8px;display:none;"></p>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
@@ -526,11 +526,12 @@
     const ORDER_API = `${BASE_API}/api/orders`;
     const COUPON_API = `${BASE_API}/api/coupons`;
 
-    // Prevent the billing form from performing a native submit (which can reload the page)
+    // Prevent the billing form from performing a native submit (which can reload the page) and place the order
     const billingFormEl = document.getElementById('billingForm');
     if (billingFormEl) {
       billingFormEl.addEventListener('submit', function (e) {
         e.preventDefault();
+        placeOrder();
       });
     }
 
@@ -1044,17 +1045,59 @@
         if (payMethod.value === 'UPI') {
           const txnId = document.getElementById('transactionId').value.trim();
           const file = document.getElementById('paymentScreenshot').files[0];
-          if (!file || !txnId) {
-            errEl.textContent = 'Please upload payment screenshot and enter Transaction ID for UPI payment.';
-            errEl.style.display = 'block'; btn.disabled = false; btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; return;
+          if (!file) {
+            errEl.textContent = '❌ UPI Payment: Please upload your payment screenshot.';
+            errEl.style.display = 'block'; 
+            btn.disabled = false; 
+            btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; 
+            console.error('UPI validation failed: No file uploaded');
+            return;
           }
-          const fd = new FormData();
-          fd.append('file', file);
-          fd.append('transactionId', txnId);
-          const upRes = await fetch(`${ORDER_API}/payment-proof`, { method: 'POST', credentials: 'include', body: fd });
-          const upData = await upRes.json();
-          if (!upData.success) throw new Error(upData.message || 'Upload failed');
-          paymentProofUrl = upData.data.url;
+          if (!txnId) {
+            errEl.textContent = '❌ UPI Payment: Please enter the Transaction/UTR ID from your UPI app.';
+            errEl.style.display = 'block'; 
+            btn.disabled = false; 
+            btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; 
+            console.error('UPI validation failed: No transaction ID');
+            return;
+          }
+          if (file.size > 5242880) {
+            errEl.textContent = '❌ File too large. Maximum size is 5MB.';
+            errEl.style.display = 'block'; 
+            btn.disabled = false; 
+            btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; 
+            return;
+          }
+          try {
+            btn.textContent = 'Uploading payment proof...';
+            const fd = new FormData();
+            fd.append('file', file);
+            fd.append('transactionId', txnId);
+            const upRes = await fetch(`${ORDER_API}/payment-proof`, { 
+              method: 'POST', 
+              credentials: 'include', 
+              body: fd,
+              timeout: 30000
+            });
+            if (!upRes.ok) {
+              const errData = await upRes.json().catch(() => ({ message: 'Upload failed' }));
+              throw new Error(errData.message || `Upload failed (${upRes.status})`);
+            }
+            const upData = await upRes.json();
+            if (!upData.success) {
+              throw new Error(upData.message || 'Payment proof upload failed');
+            }
+            paymentProofUrl = upData.data.url;
+            btn.textContent = 'Placing Order...';
+            console.log('UPI payment proof uploaded successfully:', paymentProofUrl);
+          } catch (uploadError) {
+            errEl.textContent = '❌ Payment proof upload failed: ' + (uploadError.message || 'Please check your internet connection and try again.');
+            errEl.style.display = 'block'; 
+            btn.disabled = false; 
+            btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; 
+            console.error('UPI file upload error:', uploadError);
+            return;
+          }
         }
 
         const total = Math.max(0, CartEngine.getTotal() - appliedDiscount) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE;
@@ -1083,7 +1126,11 @@
         });
         const data = await res.json();
 
-        if (data.success) {
+        if (!res.ok || !data.success) {
+          throw new Error(data.message || `Order placement failed (${res.status})`);
+        }
+
+        if (data.success && data.data && data.data.orderId) {
           // If logged in, automatically save address to the address book if it isn't already saved
           try {
             const isAlreadySaved = savedAddressesList.some(a =>
@@ -1108,20 +1155,36 @@
           } catch (errAddr) {
             console.error('Failed to auto-save address to user profile:', errAddr);
           }
-
-           CartEngine.clear();
+          
+          await CartEngine.clear();
           sessionStorage.removeItem('appliedCouponCode');
+          
           const accessToken = data.data.accessToken;
           const tokenParam = accessToken ? `&token=${encodeURIComponent(accessToken)}` : '';
-          window.location.href = `confirmation.html?orderId=${data.data.orderId}${tokenParam}`;
+          const confirmationUrl = `confirmation.html?orderId=${data.data.orderId}${tokenParam}`;
+          
+          console.log('✅ Order placed successfully:', data.data.orderId);
+          console.log('Redirecting to:', confirmationUrl);
+          
+          // Use small delay to ensure logs are flushed before redirect
+          setTimeout(() => {
+            window.location.href = confirmationUrl;
+          }, 100);
         } else {
-          throw new Error(data.message || 'Order placement failed');
+          throw new Error(data.message || 'Order placement failed - Invalid response');
         }
       } catch (e) {
-        errEl.textContent = e.message || 'Something went wrong. Please try again.';
+        const errorMsg = e.message || 'Something went wrong. Please try again.';
+        errEl.textContent = '❌ Error: ' + errorMsg;
         errEl.style.display = 'block';
         btn.disabled = false;
         btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>';
+        console.error('❌ Order placement error:', e);
+        
+        // Show toast notification for better visibility
+        if (typeof CartEngine !== 'undefined' && CartEngine._showToast) {
+          CartEngine._showToast('Order placement failed: ' + errorMsg);
+        }
       }
     }
   </script>

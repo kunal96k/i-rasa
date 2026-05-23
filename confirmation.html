@@ -148,12 +148,12 @@
         <div class="order_details_table">
           <h2>Order Details</h2>
           <div class="table-responsive">
-            <table class="table">
-              <thead>
+            <table class="table" style="background: #0a0a0a; border: 1px solid #d4af37; border-radius: 8px; overflow: hidden;">
+              <thead style="background: #111; border-bottom: 2px solid #d4af37;">
                 <tr>
-                  <th scope="col">Product</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total</th>
+                  <th scope="col" style="color: #d4af37; font-weight: 700; padding: 16px; text-align: left;">Product</th>
+                  <th scope="col" style="color: #d4af37; font-weight: 700; padding: 16px; text-align: center;">Quantity</th>
+                  <th scope="col" style="color: #d4af37; font-weight: 700; padding: 16px; text-align: right;">Total</th>
                 </tr>
               </thead>
               <tbody id="order-items-body"></tbody>
@@ -359,16 +359,17 @@
         const b = o.billing || {};
 
         const confirmMsg = document.getElementById('confirmMsg');
-        confirmMsg.textContent = `Thank you, ${b.firstName || 'Customer'}! Your order #${o.orderId} has been placed successfully.`;
+        confirmMsg.innerHTML = `Thank you, ${b.firstName || 'Customer'}! Your order RASA-${o.orderId} has been placed successfully.<br><small style="font-size: 15px; display: block; margin-top: 10px; color: #d4af37; font-weight: 600;"><i class="fas fa-info-circle"></i> Once your payment is verified successfully, your order will be dispatched to you.</small>`;
         confirmMsg.style.display = 'block';
 
         /* Order Info */
         document.getElementById('order-info-table').innerHTML =
-          row('Order number', '#' + o.orderId) +
+          row('Order number', 'RASA-' + o.orderId) +
           row('Date', new Date(o.createdAt).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'})) +
           row('Total', formatINR(o.total)) +
           row('Payment', o.paymentMethod) +
-          row('Status', `<span style="color:#d4af37;font-weight:700;">${o.status || 'Pending'}</span>`);
+          row('Status', `<span style="color:#d4af37;font-weight:700;">${o.status || 'Pending'}</span>`) +
+          (o.expectedDeliveryDate ? row('Expected Delivery', `<span style="color:#4caf50;font-weight:700;"><i class="fas fa-calendar-check"></i> ${new Date(o.expectedDeliveryDate).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'})}</span>`) : '');
 
         /* Billing */
         document.getElementById('billing-table').innerHTML =
@@ -392,13 +393,54 @@
         /* Items */
         const items = o.items || [];
         const tbody = document.getElementById('order-items-body');
+        const deliveryDate = o.expectedDeliveryDate 
+          ? new Date(o.expectedDeliveryDate).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'})
+          : 'N/A';
         tbody.innerHTML = items.map(i =>
-          `<tr><td><p>${i.name}${i.size ? ' (' + i.size + ')' : ''}</p></td><td><h5>x ${i.qty}</h5></td><td><p>${formatINR(i.price * i.qty)}</p></td></tr>`
+          `<tr style="border-bottom: 1px solid #222;">
+            <td style="padding: 14px 16px; color: #eee;"><p style="margin: 0; font-weight: 500;">${i.name}${i.size ? ' <span style="color: #999;">(' + i.size + ')</span>' : ''}</p></td>
+            <td style="padding: 14px 16px; color: #d4af37; text-align: center; font-weight: 600;">x ${i.qty}</td>
+            <td style="padding: 14px 16px; color: #ffd700; text-align: right; font-weight: 600;">${formatINR(i.price * i.qty)}</td>
+          </tr>`
         ).join('') +
-          `<tr><td><h4>Subtotal</h4></td><td></td><td><p>${formatINR(o.subtotal || 0)}</p></td></tr>` +
-          (o.discount > 0 ? `<tr><td><h4 style="color:#4caf50;">Coupon</h4></td><td></td><td><p style="color:#4caf50;">- ${formatINR(o.discount)}</p></td></tr>` : '') +
-          `<tr><td><h4>Shipping</h4></td><td></td><td><p>${formatINR(o.shipping || 50)}</p></td></tr>` +
-          `<tr><td><h4>Total</h4></td><td></td><td><h4>${formatINR(o.total)}</h4></td></tr>`;
+          `<tr style="background: #111; border-bottom: 1px solid #222;">
+            <td style="padding: 12px 16px;"><h5 style="color: #bbb; margin: 0; font-weight: 600;">Subtotal</h5></td>
+            <td style="padding: 12px 16px;"></td>
+            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${formatINR(o.subtotal || 0)}</p></td>
+          </tr>` +
+          (o.discount > 0 ? `<tr style="background: #0d3d0d; border-bottom: 1px solid #222;">
+            <td style="padding: 12px 16px;"><h5 style="color: #4caf50; margin: 0; font-weight: 600;"><i class="fas fa-tag"></i> Coupon Discount</h5></td>
+            <td style="padding: 12px 16px;"></td>
+            <td style="padding: 12px 16px; text-align: right; color: #4caf50;"><p style="margin: 0; font-weight: 600;">- ${formatINR(o.discount)}</p></td>
+          </tr>` : '') +
+          `<tr style="background: #111; border-bottom: 1px solid #222;">
+            <td style="padding: 12px 16px;"><h5 style="color: #bbb; margin: 0; font-weight: 600;">Shipping</h5></td>
+            <td style="padding: 12px 16px;"></td>
+            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${o.shipping === 0 || o.shipping === undefined ? '<span style="color:#4caf50; font-weight:600;"><i class="fas fa-shipping-fast"></i> Free Nashik Delivery</span>' : formatINR(o.shipping || 50)}</p></td>
+          </tr>` +
+          `<tr style="background: #111; border-bottom: 1px solid #222;">
+            <td style="padding: 12px 16px;"><h5 style="color: #bbb; margin: 0; font-weight: 600;">Handling Charge</h5></td>
+            <td style="padding: 12px 16px;"></td>
+            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${formatINR(o.handlingCharge || 7)}</p></td>
+          </tr>` +
+          `<tr style="background: #111; border-bottom: 1px solid #222;">
+            <td style="padding: 12px 16px;"><h5 style="color: #bbb; margin: 0; font-weight: 600;">Platform Fee</h5></td>
+            <td style="padding: 12px 16px;"></td>
+            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${formatINR(o.platformFee || 5)}</p></td>
+          </tr>` +
+          `<tr style="background: #1a1a1a; border-top: 2px solid #d4af37; border-bottom: 2px solid #d4af37;">
+            <td style="padding: 16px;"><h4 style="color: #ffd700; margin: 0; font-weight: 700; font-size: 18px;">Total Amount</h4></td>
+            <td style="padding: 16px;"></td>
+            <td style="padding: 16px; text-align: right;"><h3 style="color: #ffd700; margin: 0; font-weight: 700; font-size: 20px;">${formatINR(o.total)}</h3></td>
+          </tr>` +
+          `<tr style="background: #0d3d3d; border-bottom: 1px solid #222;">
+            <td colspan="3" style="padding: 14px 16px; text-align: center;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <span style="color: #4caf50; font-weight: 600; font-size: 13px;"><i class="fas fa-calendar-check"></i> Expected Delivery: <strong style="color: #ffd700;">${deliveryDate}</strong></span>
+                <span style="color: #888; font-size: 12px;">Order will be dispatched after payment verification</span>
+              </div>
+            </td>
+          </tr>`;
 
         document.getElementById('order-loading').style.display = 'none';
         document.getElementById('order-content').style.display = 'block';
