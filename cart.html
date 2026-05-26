@@ -1508,6 +1508,226 @@
       }
     }
 
+    /* ═══════════════════════════════════════════════════════════════ */
+    /* OFFERS MODAL STYLING */
+    /* ═══════════════════════════════════════════════════════════════ */
+
+    #offersModal .modal-content {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(212, 175, 55, 0.1);
+    }
+
+    #offersModal .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #offersModal .modal-title {
+      font-size: 24px !important;
+      font-weight: 700 !important;
+      letter-spacing: 1px !important;
+    }
+
+    #offersModalContent {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      align-content: start;
+    }
+
+    #offersModal .offers-card {
+      background: linear-gradient(135deg, #1a1500 0%, #0d0d0d 100%);
+      border: 1px solid #d4af37;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    #offersModal .offers-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d4af37, #ffd700);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #offersModal .offers-card:hover {
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+    }
+
+    #offersModal .offers-card:hover::before {
+      opacity: 1;
+    }
+
+    #offersModal .offers-card.applied {
+      border-color: #4caf50;
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+      box-shadow: 0 8px 24px rgba(76, 175, 80, 0.2);
+    }
+
+    #offersModal .offers-card.applied::before {
+      background: linear-gradient(90deg, #4caf50, #66bb6a);
+      opacity: 1;
+    }
+
+    #offersModal .offer-code {
+      font-size: 16px;
+      font-weight: 700;
+      color: #d4af37;
+      letter-spacing: 1px;
+      font-family: 'Courier New', monospace;
+      word-break: break-all;
+    }
+
+    #offersModal .offer-badge {
+      display: inline-block;
+      background: #d4af37;
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      width: fit-content;
+    }
+
+    #offersModal .offer-description {
+      font-size: 13px;
+      color: #b0a58a;
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    #offersModal .offer-meta {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    #offersModal .offer-meta-item {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    #offersModal .offer-meta-item i {
+      color: #d4af37;
+      font-size: 12px;
+    }
+
+    #offersModal .offer-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    #offersModal .offer-apply-btn {
+      flex: 1;
+      padding: 10px 16px;
+      background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    #offersModal .offer-apply-btn:hover {
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    #offersModal .offer-apply-btn.applied {
+      background: #4caf50;
+      color: #fff;
+      cursor: default;
+    }
+
+    #offersModal .offer-apply-btn.applied:hover {
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+
+    #offersModal .copy-code-btn {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      background: transparent;
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-size: 12px;
+    }
+
+    #offersModal .copy-code-btn:hover {
+      background: rgba(212, 175, 55, 0.1);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Mobile responsive for offers modal */
+    @media (max-width: 767px) {
+      #offersModalContent {
+        grid-template-columns: 1fr;
+      }
+
+      #offersModal .modal-dialog {
+        margin: 10px;
+        max-width: calc(100% - 20px) !important;
+      }
+
+      #offersModal .modal-header {
+        padding: 16px !important;
+      }
+
+      #offersModal .modal-body {
+        padding: 16px !important;
+      }
+
+      #offersModal .modal-footer {
+        padding: 12px 16px !important;
+      }
+
+      #offersModal .offers-card {
+        padding: 14px;
+      }
+
+      #offersModal .offer-code {
+        font-size: 14px;
+      }
+
+      #offersModal .offer-description {
+        font-size: 12px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /* END OFFERS MODAL STYLING */
+    /* ═══════════════════════════════════════════════════════════════ */
+
     /* === TOUCH TARGETS — ensure all interactive elements are 44px min === */
     @media (max-width: 767px) {
 
@@ -1874,8 +2094,9 @@
                 </div>
                 <div id="cartCouponState" class="selected-coupon-panel mb-3" style="width:100%;"></div>
                 <h5 class="sidebar-subtitle mt-3">Available Offers</h5>
-                <div id="cartCouponOffers" class="coupon-offers-grid"
-                  style="display:flex; flex-direction:column; gap:12px;"></div>
+                <button type="button" class="primary-btn" onclick="$('#offersModal').modal('show')" style="width:100%; margin-bottom:12px; padding:12px !important; background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; font-weight:700; border:none; border-radius:8px; text-transform:uppercase; font-size:13px; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:8px;">
+                  <i class="fas fa-gift" style="font-size:14px;"></i>View All Offers
+                </button>
               </div>
 
               <!-- Price Summary Card -->
@@ -1948,7 +2169,6 @@
       <div id="mobileCartCouponMsg" class="coupon-message"
         style="margin-top:10px; font-size:13px; font-weight:600; text-align:left; padding-left:0;"></div>
       <div id="mobileCartCouponState" class="selected-coupon-panel mobile"></div>
-      <div id="mobileCartCouponOffers" class="coupon-offers-grid mobile" style="margin-top:12px;"></div>
     </div>
 
     <!-- ORDER SUMMARY -->
@@ -2127,6 +2347,34 @@
     </div>
   </div>
 
+  <!-- AVAILABLE OFFERS MODAL (Cart Page Only) -->
+  <div class="modal fade" id="offersModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content" style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1500 100%); border: 2px solid #d4af37; color: #fff; border-radius: 16px; max-height: 90vh; display: flex; flex-direction: column;">
+        <div class="modal-header" style="border-bottom: 1px solid #2a2000; padding: 24px; background: rgba(212, 175, 55, 0.05);">
+          <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
+            <i class="fas fa-gift" style="font-size: 24px; color: #d4af37;"></i>
+            <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif; margin: 0; font-size: 22px; letter-spacing: 1px;">Available Offers</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #d4af37; font-size: 24px;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 24px; overflow-y: auto; flex: 1;">
+          <div id="offersModalContent" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px;">
+            <!-- Offers will be dynamically populated here -->
+            <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: #888;">
+              <p style="font-size: 14px; margin: 0;">Loading offers...</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #2a2000; padding: 16px 24px; background: rgba(0, 0, 0, 0.3);">
+          <button type="button" class="gray_btn" data-dismiss="modal" style="background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 10px 24px; border-radius: 8px; cursor: pointer;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="vendors/skrollr.min.js"></script>
@@ -2291,8 +2539,21 @@
       console.log('Cart updated event triggered');
       renderCartDesktop();
       renderCartMobile();
-      renderCartCouponState();
-      renderCartCouponOffers();
+      
+      // Auto load coupons if not loaded yet
+      loadCartCoupons();
+
+      if (appliedCouponCode) {
+        revalidateCartCoupon();
+      } else {
+        renderCartCouponState();
+        renderCartCouponOffers();
+      }
+    });
+
+    // Ensure coupons are loaded as soon as DOM is ready
+    document.addEventListener('DOMContentLoaded', function () {
+      loadCartCoupons();
     });
 
     // Initialize after DOM and nice-select are ready
@@ -2452,6 +2713,7 @@
     var appliedCouponCode = '';
     var appliedCouponInfo = null;
     var availableCoupons = [];
+    var couponsLoaded = false;
 
     function formatCouponMoney(value) {
       return 'Rs. ' + Number(value || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -2500,46 +2762,8 @@
     }
 
     function renderCartCouponOffers() {
-      var offersEl = document.getElementById('cartCouponOffers');
-      var mobileOffersEl = document.getElementById('mobileCartCouponOffers');
-      var cartTotal = CartEngine.getTotal();
-
-      function getCouponCardHtml(coupon, device) {
-        var isSelected = appliedCouponCode && coupon.code && coupon.code.toUpperCase() === appliedCouponCode.toUpperCase();
-        var discountLabel = coupon.discount || formatCouponOffer(coupon);
-        var minOrderLabel = coupon.minCartValue ? formatCouponMoney(coupon.minCartValue) : 'No minimum';
-        var expiryLabel = coupon.expiryDate ? new Date(coupon.expiryDate).toLocaleDateString('en-IN') : 'No expiry';
-        var disabled = coupon.minCartValue && cartTotal < Number(coupon.minCartValue);
-        var buttonText = isSelected ? 'Selected' : (disabled ? 'Not eligible' : 'Apply');
-
-        return `<div class="coupon-card${isSelected ? ' active' : ''}">
-            <div class="coupon-code">${coupon.code}</div>
-            <div class="coupon-tag">${discountLabel}</div>
-            ${coupon.description ? `<div class="coupon-meta" style="color:#e8dfc8; font-weight:500; margin: 4px 0;">${coupon.description}</div>` : ''}
-            <div class="coupon-meta">Minimum order: ${minOrderLabel}</div>
-            <div class="coupon-meta">${coupon.validity ? `Validity: ${coupon.validity}` : `Expiry: ${expiryLabel}`}</div>
-            <div class="coupon-actions">
-              <button type="button" class="coupon-apply-btn" ${disabled || isSelected ? 'disabled' : ''} onclick="applyCartCoupon('${device}', '${coupon.code}')">${buttonText}</button>
-            </div>
-          </div>`;
-      }
-
-      if (window.couponLoadError) {
-        var errHtml = '<div class="coupon-card" style="border-style:dashed; color:#ff4d4d; text-align:center;">Error: ' + window.couponLoadError + '</div>';
-        if (offersEl) offersEl.innerHTML = errHtml;
-        if (mobileOffersEl) mobileOffersEl.innerHTML = errHtml;
-      } else if (!availableCoupons || availableCoupons.length === 0) {
-        var emptyHtml = '<div class="coupon-card" style="border-style:dashed; color:#888; display:flex; align-items:center; justify-content:center; text-align:center;">No active coupons available right now.</div>';
-        if (offersEl) offersEl.innerHTML = emptyHtml;
-        if (mobileOffersEl) mobileOffersEl.innerHTML = emptyHtml;
-      } else {
-        if (offersEl) {
-          offersEl.innerHTML = availableCoupons.map(function (c) { return getCouponCardHtml(c, 'desktop'); }).join('');
-        }
-        if (mobileOffersEl) {
-          mobileOffersEl.innerHTML = availableCoupons.map(function (c) { return getCouponCardHtml(c, 'mobile'); }).join('');
-        }
-      }
+      // Outside coupons display removed - only renders in modal now
+      // This function is kept for compatibility but no longer populates outside elements
     }
 
     function saveAppliedCouponState() {
@@ -2574,26 +2798,37 @@
     }
 
     function getCouponApiBase() {
-      if (window.location.protocol === 'file:' || window.location.hostname === '') {
+      var hostname = window.location.hostname;
+      var port = window.location.port;
+      if (window.location.protocol === 'file:' || hostname === '') {
         return 'http://localhost:8080/api/coupons';
       }
-      if (window.location.port === '8080' || window.location.port === '8081') {
+      if (port === '8080' || port === '8081') {
         return '/api/coupons';
       }
-      return `http://${window.location.hostname}:8080/api/coupons`;
+      return `http://${hostname || 'localhost'}:8080/api/coupons`;
     }
 
     async function loadCartCoupons() {
+      if (couponsLoaded) return;
+      couponsLoaded = true;
       var COUPON_API = getCouponApiBase();
       try {
-        var res = await fetch(COUPON_API);
+        var urlWithCacheBuster = COUPON_API + (COUPON_API.indexOf('?') >= 0 ? '&' : '?') + '_=' + new Date().getTime();
+        var res = await fetch(urlWithCacheBuster, { credentials: 'include' });
+        if (!res.ok) {
+          throw new Error('HTTP error! Status: ' + res.status);
+        }
         var data = await res.json();
         if (data.success && Array.isArray(data.data)) {
           availableCoupons = data.data;
+        } else {
+          throw new Error(data.message || 'Failed to fetch active coupons');
         }
       } catch (e) {
         console.error('Failed to load coupons:', e);
         window.couponLoadError = e.message + ' (URL: ' + COUPON_API + ')';
+        couponsLoaded = false; // allow retry on failure
       }
       renderCartCouponOffers();
       renderCartCouponState();
@@ -2625,6 +2860,7 @@
       try {
         var res = await fetch(`${COUPON_API}/validate`, {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code: code, cartTotal: CartEngine.getTotal() })
         });
@@ -2652,6 +2888,63 @@
         msgEl.style.color = '#ff4d4d';
         msgEl.textContent = 'Could not validate coupon. Try again.';
       }
+    }
+
+    async function revalidateCartCoupon() {
+      if (!appliedCouponCode) return;
+      var COUPON_API = getCouponApiBase();
+      try {
+        var res = await fetch(`${COUPON_API}/validate`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: appliedCouponCode, cartTotal: CartEngine.getTotal() })
+        });
+        var data = await res.json();
+        if (data.success) {
+          appliedDiscount = Number(data.data.discountAmount || 0);
+          if (appliedCouponInfo) {
+            appliedCouponInfo.discountAmount = appliedDiscount;
+          }
+          saveAppliedCouponState();
+
+          // Update the success message text with the new discount amount if elements exist and already show a success status
+          var desktopMsg = document.getElementById('cartCouponMsg');
+          var mobileMsg = document.getElementById('mobileCartCouponMsg');
+          if (desktopMsg && (desktopMsg.textContent.includes('applied!') || desktopMsg.textContent.includes('✓'))) {
+            desktopMsg.style.color = '#4caf50';
+            desktopMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+          }
+          if (mobileMsg && (mobileMsg.textContent.includes('applied!') || mobileMsg.textContent.includes('✓'))) {
+            mobileMsg.style.color = '#4caf50';
+            mobileMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+          }
+        } else {
+          // Coupon no longer valid (e.g. minimum cart value criteria no longer met)
+          appliedDiscount = 0;
+          appliedCouponCode = '';
+          appliedCouponInfo = null;
+          saveAppliedCouponState();
+
+          var desktopMsg = document.getElementById('cartCouponMsg');
+          var mobileMsg = document.getElementById('mobileCartCouponMsg');
+          var warningText = `Coupon removed: ${data.message || 'Criteria no longer met.'}`;
+          if (desktopMsg) {
+            desktopMsg.style.color = '#ff4d4d';
+            desktopMsg.textContent = warningText;
+          }
+          if (mobileMsg) {
+            mobileMsg.style.color = '#ff4d4d';
+            mobileMsg.textContent = warningText;
+          }
+        }
+      } catch (e) {
+        console.error('Failed to re-validate coupon on cart update:', e);
+      }
+      renderCartCouponState();
+      renderCartCouponOffers();
+      syncDesktopSummary();
+      mobileUpdateSummary();
     }
 
     function syncDesktopSummary() {
@@ -2738,6 +3031,89 @@
 
       mobileUpdateSummary();
     }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /* OFFERS MODAL FUNCTIONALITY */
+    /* ═══════════════════════════════════════════════════════════════ */
+
+    function renderOffersModal() {
+      var modalContent = document.getElementById('offersModalContent');
+      if (!modalContent) return;
+
+      var cartTotal = CartEngine.getTotal();
+
+      if (!availableCoupons || availableCoupons.length === 0) {
+        modalContent.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #888;"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5; display: block;"></i><p style="font-size: 14px; margin: 0;">No active offers available at the moment.</p></div>';
+        return;
+      }
+
+      modalContent.innerHTML = availableCoupons.map(function(coupon) {
+        var isSelected = appliedCouponCode && coupon.code && coupon.code.toUpperCase() === appliedCouponCode.toUpperCase();
+        var discountLabel = coupon.discount || formatCouponOffer(coupon);
+        var minOrderLabel = coupon.minCartValue ? formatCouponMoney(coupon.minCartValue) : 'No minimum';
+        var expiryLabel = coupon.expiryDate ? new Date(coupon.expiryDate).toLocaleDateString('en-IN') : 'No expiry';
+        var disabled = coupon.minCartValue && cartTotal < Number(coupon.minCartValue);
+        var buttonText = isSelected ? 'Applied' : (disabled ? 'Not Eligible' : 'Apply Offer');
+
+        var html = `<div class="offers-card${isSelected ? ' applied' : ''}">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+            <div style="flex: 1;">
+              <div class="offer-code">${coupon.code}</div>
+              <div class="offer-badge">${discountLabel}</div>
+            </div>
+            <button type="button" class="copy-code-btn" title="Copy code" onclick="copyOfferCode('${coupon.code}')">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+          ${coupon.description ? `<div class="offer-description">${coupon.description}</div>` : ''}
+          <div class="offer-meta">
+            <div class="offer-meta-item">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Min Order: ${minOrderLabel}</span>
+            </div>
+            <div class="offer-meta-item">
+              <i class="fas fa-calendar"></i>
+              <span>${coupon.validity ? 'Valid: ' + coupon.validity : 'Expiry: ' + expiryLabel}</span>
+            </div>
+          </div>
+          <div class="offer-actions">
+            <button type="button" class="offer-apply-btn${isSelected ? ' applied' : ''}" 
+              ${disabled || isSelected ? 'disabled' : ''} 
+              onclick="applyOfferFromModal('${coupon.code}')">
+              <i class="fas fa-${isSelected ? 'check' : 'gift'}"></i>
+              ${buttonText}
+            </button>
+          </div>
+        </div>`;
+        return html;
+      }).join('');
+    }
+
+    function copyOfferCode(code) {
+      navigator.clipboard.writeText(code).then(function() {
+        CartEngine._showToast('✓ Code copied: ' + code);
+      }).catch(function(err) {
+        console.error('Failed to copy code:', err);
+      });
+    }
+
+    function applyOfferFromModal(couponCode) {
+      $('#offersModal').modal('hide');
+      setTimeout(function() {
+        applyCartCoupon('desktop', couponCode);
+      }, 300);
+    }
+
+    // Initialize offers modal on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      $('#offersModal').on('show.bs.modal', function() {
+        renderOffersModal();
+      });
+    });
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /* END OFFERS MODAL FUNCTIONALITY */
+    /* ═══════════════════════════════════════════════════════════════ */
   </script>
   <script src="js/auth-guard.js"></script>
 </body>

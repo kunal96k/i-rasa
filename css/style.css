@@ -6843,6 +6843,33 @@ input[type=number] {
     color: #ff4d4d !important;
     border: 1px solid rgba(255, 77, 77, 0.3) !important;
 }
+
+/* Global custom scrollbar for the whole system */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #e2dfd6;
+    border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #b58c1e;
+    border-radius: 8px;
+    border: 1px solid #d8d5cc;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #d4af37;
+}
+
+html {
+    scrollbar-color: #b58c1e #e2dfd6;
+    scrollbar-width: thin;
+}
+
 /* Hide Bottle Return Offer for Online Shopping */
 .eco-offer-box { display: none !important; }
 

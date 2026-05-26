@@ -28,7 +28,8 @@
   <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <style>
-    .order_box .list li a, .order_box .list_2 li a {
+    .order_box .list li a,
+    .order_box .list_2 li a {
       display: flex !important;
       justify-content: space-between !important;
       align-items: center !important;
@@ -38,7 +39,9 @@
       float: none !important;
       width: 100% !important;
     }
-    .order_box .list li a span, .order_box .list_2 li a span {
+
+    .order_box .list li a span,
+    .order_box .list_2 li a span {
       float: none !important;
       position: static !important;
       display: inline-block !important;
@@ -96,7 +99,8 @@
                 <a href="cart.html"
                   style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
                   <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+                  <span class="nav-shop__circle"
+                    style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -146,7 +150,8 @@
 
       <!-- Coupon handled in Cart only; removed input from checkout to avoid duplicate entry -->
       <div class="billing_details">
-        <form class="row contact_form" action="#" method="post" novalidate="novalidate" id="billingForm">
+        <form class="row contact_form" action="javascript:void(0);" method="post" novalidate="novalidate"
+          id="billingForm" onsubmit="return false;">
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-8">
             <h3>Billing Details</h3>
             <div class="row">
@@ -230,7 +235,8 @@
                   Ship to a different address
                 </label>
               </div>
-              <div id="shippingAddressSection" style="display:none; padding-top:18px; border-top:1px dashed #333; margin-top:16px;">
+              <div id="shippingAddressSection"
+                style="display:none; padding-top:18px; border-top:1px dashed #333; margin-top:16px;">
                 <h4 style="color:#d4af37;font-size:16px;margin-bottom:14px;">Shipping Address</h4>
                 <div class="col-md-6 form-group p_star">
                   <input type="text" class="form-control" id="shippingFirst" placeholder="Shipping First name">
@@ -242,7 +248,8 @@
                   <input type="text" class="form-control" id="shippingAdd1" placeholder="Shipping Address Line 1">
                 </div>
                 <div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control" id="shippingAdd2" placeholder="Shipping Address Line 2 (Area/Locality)">
+                  <input type="text" class="form-control" id="shippingAdd2"
+                    placeholder="Shipping Address Line 2 (Area/Locality)">
                 </div>
                 <div class="col-md-6 form-group p_star">
                   <input type="text" class="form-control" id="shippingCity" placeholder="Shipping Town/City">
@@ -267,65 +274,67 @@
               <h4 style="color:#d4af37;font-size:13px;letter-spacing:1px;text-transform:uppercase;margin:20px 0 12px;">
                 Payment Method</h4>
 
-              <!-- UPI / QR -->
+              <!-- UPI / QR Option -->
               <div class="payment_item" id="pay-upi"
-                style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:10px;padding:16px;margin-bottom:10px;cursor:pointer;"
-                onclick="selectPayment('upi')">
+                style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:10px;padding:16px;margin-bottom:10px;cursor:pointer;">
                 <div class="radion_btn" style="display:flex;align-items:center;gap:10px;">
-                  <input type="radio" id="pay-upi-radio" name="paymentMethod" value="UPI" style="accent-color:#d4af37;">
+                  <input type="radio" id="pay-upi-radio" name="paymentMethod" value="UPI" style="accent-color:#d4af37; cursor:pointer;">
                   <label for="pay-upi-radio" style="cursor:pointer;font-weight:600;color:#fff;margin:0;"><i
                       class="fas fa-qrcode" style="color:#d4af37;margin-right:6px;"></i> UPI / QR Payment</label>
                 </div>
-                <!-- UPI Details Panel -->
-                <div id="upi-details" style="display:none;margin-top:16px;">
-                  <div style="text-align:center;margin-bottom:14px;">
-                    <img src="img/cart/UPI_qrcode.jfif" alt="UPI QR Code"
-                      style="width:170px;height:170px;border:2px solid #d4af37;border-radius:10px;object-fit:contain;background:#fff;padding:6px;cursor:pointer;"
-                      data-toggle="modal" data-target="#qr_modal">
-                    <p style="color:#d4af37;font-weight:700;font-size:14px;margin:8px 0 2px;">UPI ID: paytmqr6cr29g@ptys</p>
-                    <p style="color:#eee;font-weight:600;font-size:13px;margin:2px 0 8px;">UPI / Phone: 9371833303</p>
-                    <p style="color:#888;font-size:12px;">Scan using any UPI App (GPay, PhonePe, Paytm)</p>
-                  </div>
-                  <div
-                    style="background:#111;border:1px solid #1e1e1e;border-radius:8px;padding:12px;font-size:12px;color:#bbb;line-height:2;">
-                    <div><span style="color:#888;">Account Name:</span> <strong style="color:#fff;">I Rasa
-                        Perfumes</strong></div>
-                    <div><span style="color:#888;">Bank:</span> <strong style="color:#fff;">HDFC Bank</strong></div>
-                    <div><span style="color:#888;">Account No:</span> <strong style="color:#fff;">XXXX XXXX
-                        3303</strong></div>
-                    <div><span style="color:#888;">IFSC:</span> <strong style="color:#fff;">HDFC0001234</strong></div>
-                  </div>
-                  <div style="margin-top:14px;">
-                    <label style="font-size:12px;color:#888;display:block;margin-bottom:6px;">Upload Payment Screenshot
-                      *</label>
-                    <input type="file" id="paymentScreenshot" accept="image/*"
-                      style="width:100%;background:#111;border:1px dashed #d4af37;border-radius:8px;padding:10px;color:#ccc;font-size:12px;cursor:pointer;">
-                    <div id="screenshotPreview" style="display:none;margin-top:10px;text-align:center;"><img
-                        id="screenshotImg" src="" style="max-width:100%;border-radius:8px;border:1px solid #333;"></div>
-                  </div>
-                  <div style="margin-top:10px;">
-                    <label style="font-size:12px;color:#888;display:block;margin-bottom:6px;">Transaction / UTR ID
-                      *</label>
-                    <input type="text" id="transactionId" placeholder="e.g. 4357892031"
-                      style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:10px;color:#fff;font-size:13px;">
-                  </div>
+              </div>
+              
+              <!-- UPI Details (Sibling) -->
+              <div id="upi-details" style="display:none;margin-top:5px;margin-bottom:15px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:10px;padding:16px;">
+                <div style="text-align:center;margin-bottom:14px;">
+                  <img src="img/cart/UPI_qrcode.jfif" alt="UPI QR Code"
+                    style="width:170px;height:170px;border:2px solid #d4af37;border-radius:10px;object-fit:contain;background:#fff;padding:6px;cursor:pointer;"
+                    data-toggle="modal" data-target="#qr_modal">
+                  <p style="color:#d4af37;font-weight:700;font-size:14px;margin:8px 0 2px;">UPI ID: paytmqr6cr29g@ptys
+                  </p>
+                  <p style="color:#eee;font-weight:600;font-size:13px;margin:2px 0 8px;">UPI / Phone: 9371833303</p>
+                  <p style="color:#888;font-size:12px;">Scan using any UPI App (GPay, PhonePe, Paytm)</p>
+                </div>
+                <div
+                  style="background:#111;border:1px solid #1e1e1e;border-radius:8px;padding:12px;font-size:12px;color:#bbb;line-height:2;">
+                  <div><span style="color:#888;">Account Name:</span> <strong style="color:#fff;">I Rasa
+                      Perfumes</strong></div>
+                  <div><span style="color:#888;">Bank:</span> <strong style="color:#fff;">HDFC Bank</strong></div>
+                  <div><span style="color:#888;">Account No:</span> <strong style="color:#fff;">XXXX XXXX
+                      3303</strong></div>
+                  <div><span style="color:#888;">IFSC:</span> <strong style="color:#fff;">HDFC0001234</strong></div>
+                </div>
+                <div style="margin-top:14px;">
+                  <label style="font-size:12px;color:#888;display:block;margin-bottom:6px;">Upload Payment Screenshot
+                    *</label>
+                  <input type="file" id="paymentScreenshot" accept="image/*"
+                    style="width:100%;background:#111;border:1px dashed #d4af37;border-radius:8px;padding:10px;color:#ccc;font-size:12px;cursor:pointer;">
+                  <div id="screenshotPreview" style="display:none;margin-top:10px;text-align:center;"><img
+                      id="screenshotImg" src="" style="max-width:100%;border-radius:8px;border:1px solid #333;"></div>
+                </div>
+                <div style="margin-top:10px;">
+                  <label style="font-size:12px;color:#888;display:block;margin-bottom:6px;">Transaction / UTR ID
+                    *</label>
+                  <input type="text" id="transactionId" placeholder="e.g. 4357892031"
+                    style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:10px;color:#fff;font-size:13px;">
                 </div>
               </div>
 
-              <!-- Cash on Delivery -->
+              <!-- Cash on Delivery Option -->
               <div class="payment_item" id="pay-cod"
-                style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:10px;padding:16px;margin-bottom:18px;cursor:pointer;"
-                onclick="selectPayment('cod')">
+                style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:10px;padding:16px;margin-bottom:10px;cursor:pointer;">
                 <div class="radion_btn" style="display:flex;align-items:center;gap:10px;">
-                  <input type="radio" id="pay-cod-radio" name="paymentMethod" value="COD" style="accent-color:#d4af37;">
+                  <input type="radio" id="pay-cod-radio" name="paymentMethod" value="COD" style="accent-color:#d4af37; cursor:pointer;">
                   <label for="pay-cod-radio" style="cursor:pointer;font-weight:600;color:#fff;margin:0;"><i
                       class="fas fa-money-bill-wave" style="color:#25d366;margin-right:6px;"></i> Cash on
                     Delivery</label>
                 </div>
-                <div id="cod-details" style="display:none;margin-top:10px;">
-                  <p style="color:#888;font-size:12px;margin:0;">Pay in cash when your order is delivered. COD available
-                    for orders up to Rs. 2000.</p>
-                </div>
+              </div>
+              
+              <!-- COD Details (Sibling) -->
+              <div id="cod-details" style="display:none;margin-top:5px;margin-bottom:18px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:10px;padding:16px;">
+                <p style="color:#888;font-size:12px;margin:0;">Pay in cash when your order is delivered. COD available
+                  for orders up to Rs. 2000.</p>
               </div>
 
               <!-- T&C + Place Order -->
@@ -335,7 +344,7 @@
                 <a href="javascript:void(0);" style="color:#d4af37;font-size:12px;">terms &amp; conditions*</a>
               </div>
               <div class="text-center">
-                <button type="submit" id="placeOrderBtn"
+                <button type="button" id="placeOrderBtn"
                   style="width:100%;background:linear-gradient(135deg,#d4af37,#aa8422);color:#000;border:none;padding:14px;border-radius:30px;font-weight:700;font-size:15px;letter-spacing:1px;cursor:pointer;transition:all 0.3s;">Place
                   Order <i class="fas fa-arrow-right"></i></button>
                 <p id="orderError" style="color:#ff4d4d;font-size:12px;margin-top:8px;display:none;"></p>
@@ -496,7 +505,8 @@
           </button>
         </div>
         <div class="modal-body text-center" style="padding:24px;">
-          <img src="img/cart/UPI_qrcode.jfif" alt="UPI QR Code" style="max-width: 250px; height: auto; border: 2px solid #d4af37; border-radius: 10px; background: #fff; padding: 10px; margin-bottom:15px;">
+          <img src="img/cart/UPI_qrcode.jfif" alt="UPI QR Code"
+            style="max-width: 250px; height: auto; border: 2px solid #d4af37; border-radius: 10px; background: #fff; padding: 10px; margin-bottom:15px;">
           <p style="color: #d4af37; font-weight: 700; font-size: 16px; margin: 5px 0;">UPI ID: paytmqr6cr29g@ptys</p>
           <p style="color: #bbb; font-size: 14px; margin: 5px 0;">UPI / Phone: <strong>9371833303</strong></p>
         </div>
@@ -522,18 +532,13 @@
 
   <script>
     const BASE_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? `http://${window.location.hostname}:8080` : '';
+      ? `http://${window.location.hostname}:8080` : window.location.origin;
     const ORDER_API = `${BASE_API}/api/orders`;
     const COUPON_API = `${BASE_API}/api/coupons`;
+    const UPI_UPLOAD_TIMEOUT_MS = 60000;
+    const ORDER_SUBMIT_TIMEOUT_MS = 45000;
 
-    // Prevent the billing form from performing a native submit (which can reload the page) and place the order
-    const billingFormEl = document.getElementById('billingForm');
-    if (billingFormEl) {
-      billingFormEl.addEventListener('submit', function (e) {
-        e.preventDefault();
-        placeOrder();
-      });
-    }
+    // Form submit listener removed because placeOrderBtn is now type="button"
 
     let appliedDiscount = 0;
     let appliedCouponCode = '';
@@ -544,6 +549,68 @@
     let savedAddressesList = [];
     let mapInstance = null;
     let markerInstance = null;
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const billingFormEl = document.getElementById('billingForm');
+      if (billingFormEl) {
+        billingFormEl.addEventListener('submit', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        });
+      }
+
+      const placeOrderBtnEl = document.getElementById('placeOrderBtn');
+      if (placeOrderBtnEl) {
+        placeOrderBtnEl.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          placeOrder();
+        });
+      }
+
+      // Listen for payment method changes
+      document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+          selectPayment(this.value.toLowerCase());
+        });
+      });
+
+      // Handle container div clicks (delegation helper)
+      document.getElementById('pay-upi')?.addEventListener('click', function (e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL' || e.target.closest('label')) {
+          return;
+        }
+        const radio = document.getElementById('pay-upi-radio');
+        if (radio && !radio.checked) {
+          radio.checked = true;
+          selectPayment('upi');
+        }
+      });
+
+      document.getElementById('pay-cod')?.addEventListener('click', function (e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL' || e.target.closest('label')) {
+          return;
+        }
+        const radio = document.getElementById('pay-cod-radio');
+        if (radio && !radio.checked) {
+          radio.checked = true;
+          selectPayment('cod');
+        }
+      });
+
+      // Initialize payment method selection on load
+      const checkedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+      if (checkedMethod) {
+        selectPayment(checkedMethod.value.toLowerCase());
+      } else {
+        const codRadio = document.getElementById('pay-cod-radio');
+        if (codRadio) {
+          codRadio.checked = true;
+          selectPayment('cod');
+        }
+      }
+    });
 
     /* ── Render cart in checkout sidebar ── */
     /* ── Re-validate coupon on cart updates ── */
@@ -581,12 +648,13 @@
       if (!listEl) return;
 
       try {
-        const res = await fetch(COUPON_API, { credentials: 'include' });
+        const urlWithCacheBuster = COUPON_API + (COUPON_API.indexOf('?') >= 0 ? '&' : '?') + '_=' + new Date().getTime();
+        const res = await fetch(urlWithCacheBuster, { credentials: 'include' });
         const data = await res.json();
         if (data.success && data.data && data.data.length > 0) {
           listEl.innerHTML = data.data.map(c => {
-            const desc = c.discountPercentage 
-              ? `${c.discountPercentage}% OFF` 
+            const desc = c.discountPercentage
+              ? `${c.discountPercentage}% OFF`
               : `Rs. ${c.discountAmount} OFF`;
             const minVal = parseFloat(c.minCartValue || 0);
             const minText = minVal > 0 ? ` (Min. Order: Rs. ${minVal})` : '';
@@ -753,12 +821,37 @@
 
     /* ── Payment selection ── */
     function selectPayment(method) {
-      document.getElementById('upi-details').style.display = method === 'upi' ? 'block' : 'none';
-      document.getElementById('cod-details').style.display = method === 'cod' ? 'block' : 'none';
-      document.getElementById('pay-upi-radio').checked = method === 'upi';
-      document.getElementById('pay-cod-radio').checked = method === 'cod';
-      document.getElementById('pay-upi').style.borderColor = method === 'upi' ? '#d4af37' : '#2a2a2a';
-      document.getElementById('pay-cod').style.borderColor = method === 'cod' ? '#d4af37' : '#2a2a2a';
+      if (!method) return;
+      const isUpi = method.toLowerCase() === 'upi';
+      const isCod = method.toLowerCase() === 'cod';
+      
+      const upiRadio = document.getElementById('pay-upi-radio');
+      const codRadio = document.getElementById('pay-cod-radio');
+      if (upiRadio) upiRadio.checked = isUpi;
+      if (codRadio) codRadio.checked = isCod;
+      
+      const upiDetails = document.getElementById('upi-details');
+      const codDetails = document.getElementById('cod-details');
+      if (upiDetails) upiDetails.style.display = isUpi ? 'block' : 'none';
+      if (codDetails) codDetails.style.display = isCod ? 'block' : 'none';
+      const screenshotInput = document.getElementById('paymentScreenshot');
+      const txnInput = document.getElementById('transactionId');
+      if (screenshotInput) screenshotInput.required = isUpi;
+      if (txnInput) txnInput.required = isUpi;
+      
+      const payUpi = document.getElementById('pay-upi');
+      const payCod = document.getElementById('pay-cod');
+      if (payUpi) payUpi.style.borderColor = isUpi ? '#d4af37' : '#2a2a2a';
+      if (payCod) payCod.style.borderColor = isCod ? '#d4af37' : '#2a2a2a';
+    }
+
+    function resetPlaceOrderState() {
+      const btn = document.getElementById('placeOrderBtn');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>';
+      }
+      sessionStorage.removeItem('order_in_progress');
     }
 
     function shouldUseShippingAddress() {
@@ -978,16 +1071,34 @@
     async function placeOrder() {
       const errEl = document.getElementById('orderError');
       errEl.style.display = 'none';
+      const btn = document.getElementById('placeOrderBtn');
+      if (!btn) {
+        console.error('Place order button not found.');
+        return;
+      }
 
       if (!document.getElementById('termsCheck').checked) {
-        errEl.textContent = 'Please accept the terms & conditions.'; errEl.style.display = 'block'; return;
+        errEl.textContent = 'Please accept the terms & conditions.';
+        errEl.style.display = 'block';
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
       }
 
       const payMethod = document.querySelector('input[name="paymentMethod"]:checked');
-      if (!payMethod) { errEl.textContent = 'Please select a payment method.'; errEl.style.display = 'block'; return; }
+      if (!payMethod) {
+        errEl.textContent = 'Please select a payment method.';
+        errEl.style.display = 'block';
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
 
       const items = CartEngine.getItems();
-      if (items.length === 0) { errEl.textContent = 'Your cart is empty.'; errEl.style.display = 'block'; return; }
+      if (items.length === 0) {
+        errEl.textContent = 'Your cart is empty.';
+        errEl.style.display = 'block';
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
 
       const billing = {
         firstName: document.getElementById('first').value.trim(),
@@ -1029,14 +1140,34 @@
         const msg = '⚠️ Missing required fields: ' + missingFields.join(', ');
         errEl.textContent = msg;
         errEl.style.display = 'block';
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         if (typeof CartEngine !== 'undefined' && CartEngine._showToast) {
           CartEngine._showToast(msg);
         }
         return;
       }
 
-      const btn = document.getElementById('placeOrderBtn');
-      btn.disabled = true; btn.textContent = 'Placing Order...';
+      if (payMethod.value === 'COD') {
+        const codTotal = Math.max(0, CartEngine.getTotal() - appliedDiscount)
+          + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE;
+        if (codTotal > 2000) {
+          errEl.textContent = '❌ COD is only available for orders up to Rs. 2000. Please use UPI.';
+          errEl.style.display = 'block';
+          errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+      }
+
+      if (sessionStorage.getItem('order_in_progress') === 'true') {
+        errEl.textContent = 'Order is already being placed. Please wait.';
+        errEl.style.display = 'block';
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      sessionStorage.setItem('order_in_progress', 'true');
+
+      btn.disabled = true;
+      btn.textContent = 'Placing Order...';
 
       try {
         let paymentProofUrl = null;
@@ -1047,25 +1178,25 @@
           const file = document.getElementById('paymentScreenshot').files[0];
           if (!file) {
             errEl.textContent = '❌ UPI Payment: Please upload your payment screenshot.';
-            errEl.style.display = 'block'; 
-            btn.disabled = false; 
-            btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; 
+            errEl.style.display = 'block';
+            errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            resetPlaceOrderState();
             console.error('UPI validation failed: No file uploaded');
             return;
           }
           if (!txnId) {
             errEl.textContent = '❌ UPI Payment: Please enter the Transaction/UTR ID from your UPI app.';
-            errEl.style.display = 'block'; 
-            btn.disabled = false; 
-            btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; 
+            errEl.style.display = 'block';
+            errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            resetPlaceOrderState();
             console.error('UPI validation failed: No transaction ID');
             return;
           }
           if (file.size > 5242880) {
             errEl.textContent = '❌ File too large. Maximum size is 5MB.';
-            errEl.style.display = 'block'; 
-            btn.disabled = false; 
-            btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; 
+            errEl.style.display = 'block';
+            errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            resetPlaceOrderState();
             return;
           }
           try {
@@ -1073,28 +1204,40 @@
             const fd = new FormData();
             fd.append('file', file);
             fd.append('transactionId', txnId);
-            const upRes = await fetch(`${ORDER_API}/payment-proof`, { 
-              method: 'POST', 
-              credentials: 'include', 
-              body: fd,
-              timeout: 30000
-            });
+
+            const uploadController = new AbortController();
+            const uploadTimeout = setTimeout(() => uploadController.abort(), UPI_UPLOAD_TIMEOUT_MS);
+
+            let upRes;
+            try {
+              upRes = await fetch(`${ORDER_API}/payment-proof`, {
+                method: 'POST',
+                credentials: 'include',
+                body: fd,
+                signal: uploadController.signal
+              });
+            } finally {
+              clearTimeout(uploadTimeout);
+            }
             if (!upRes.ok) {
               const errData = await upRes.json().catch(() => ({ message: 'Upload failed' }));
               throw new Error(errData.message || `Upload failed (${upRes.status})`);
             }
             const upData = await upRes.json();
-            if (!upData.success) {
+            if (!upData.success || !upData?.data?.url) {
               throw new Error(upData.message || 'Payment proof upload failed');
             }
-            paymentProofUrl = upData.data.url;
+            paymentProofUrl = String(upData.data.url);
             btn.textContent = 'Placing Order...';
             console.log('UPI payment proof uploaded successfully:', paymentProofUrl);
           } catch (uploadError) {
-            errEl.textContent = '❌ Payment proof upload failed: ' + (uploadError.message || 'Please check your internet connection and try again.');
-            errEl.style.display = 'block'; 
-            btn.disabled = false; 
-            btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>'; 
+            resetPlaceOrderState();
+            const msg = uploadError.name === 'AbortError'
+              ? '❌ Upload timed out. Please check your connection and try again.'
+              : '❌ Payment proof upload failed: ' + (uploadError.message || 'Please try again.');
+            errEl.textContent = msg;
+            errEl.style.display = 'block';
+            errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             console.error('UPI file upload error:', uploadError);
             return;
           }
@@ -1119,11 +1262,20 @@
           orderPayload.shippingAddress = shipping;
         }
 
-        const res = await fetch(ORDER_API, {
-          method: 'POST', credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderPayload)
-        });
+        const orderController = new AbortController();
+        const orderTimeout = setTimeout(() => orderController.abort(), ORDER_SUBMIT_TIMEOUT_MS);
+
+        let res;
+        try {
+          res = await fetch(ORDER_API, {
+            method: 'POST', credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderPayload),
+            signal: orderController.signal
+          });
+        } finally {
+          clearTimeout(orderTimeout);
+        }
         const data = await res.json();
 
         if (!res.ok || !data.success) {
@@ -1131,7 +1283,7 @@
         }
 
         if (data.success && data.data && data.data.orderId) {
-          // If logged in, automatically save address to the address book if it isn't already saved
+          // fire-and-forget address save
           try {
             const isAlreadySaved = savedAddressesList.some(a =>
               a.addressLine1 === billing.address1 &&
@@ -1139,7 +1291,7 @@
               a.pincode === billing.zip
             );
             if (!isAlreadySaved) {
-              await fetch(`${BASE_API}/api/profile/addresses`, {
+              fetch(`${BASE_API}/api/profile/addresses`, {
                 method: 'POST', credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -1150,37 +1302,48 @@
                   city: billing.city,
                   pincode: billing.zip
                 })
-              });
+              }).catch(() => { });
             }
-          } catch (errAddr) {
-            console.error('Failed to auto-save address to user profile:', errAddr);
-          }
-          
-          await CartEngine.clear();
-          sessionStorage.removeItem('appliedCouponCode');
-          
+          } catch (errAddr) { /* ignore */ }
+
+          // Store confirmation URL BEFORE any cart/session operations
           const accessToken = data.data.accessToken;
           const tokenParam = accessToken ? `&token=${encodeURIComponent(accessToken)}` : '';
           const confirmationUrl = `confirmation.html?orderId=${data.data.orderId}${tokenParam}`;
-          
+
+          // Clean session storage
+          sessionStorage.removeItem('appliedCouponCode');
+          sessionStorage.removeItem('appliedDiscount');
+          sessionStorage.removeItem('order_in_progress');
+
+          // Temporarily remove the cart:updated listener so CartEngine.clear()
+          // does NOT trigger renderCheckoutCart or any re-render during redirect
+          const cartUpdateHandler = async () => { };
+          document.removeEventListener('cart:updated', cartUpdateHandler);
+
+          // Clear cart local state directly without firing events
+          try {
+            const cartKey = 'irasa_cart_' + (CartEngine._userId || 'guest');
+            localStorage.removeItem(cartKey);
+            // Fire delete to backend silently
+            fetch(`${BASE_API}/api/cart`, { method: 'DELETE', credentials: 'include' }).catch(() => { });
+          } catch (_) { }
+
           console.log('✅ Order placed successfully:', data.data.orderId);
-          console.log('Redirecting to:', confirmationUrl);
-          
-          // Use small delay to ensure logs are flushed before redirect
-          setTimeout(() => {
-            window.location.href = confirmationUrl;
-          }, 100);
+
+          // Navigate immediately - page is leaving, nothing else should run
+          window.location.replace(confirmationUrl);
         } else {
           throw new Error(data.message || 'Order placement failed - Invalid response');
         }
       } catch (e) {
-        const errorMsg = e.message || 'Something went wrong. Please try again.';
+        resetPlaceOrderState();
+        const errorMsg = e.name === 'AbortError' ? 'Request timed out. Please try again.' : (e.message || 'Something went wrong. Please try again.');
         errEl.textContent = '❌ Error: ' + errorMsg;
         errEl.style.display = 'block';
-        btn.disabled = false;
-        btn.innerHTML = 'Place Order <i class="fas fa-arrow-right"></i>';
+        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         console.error('❌ Order placement error:', e);
-        
+
         // Show toast notification for better visibility
         if (typeof CartEngine !== 'undefined' && CartEngine._showToast) {
           CartEngine._showToast('Order placement failed: ' + errorMsg);
