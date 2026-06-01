@@ -228,24 +228,116 @@ const CartEngine = {
     });
   },
 
-  _showToast(msg) {
-    var t = document.getElementById('_cart_toast');
-    if (!t) {
-      t = document.createElement('div');
-      t.id = '_cart_toast';
-      t.style.cssText = [
-        'position:fixed', 'bottom:24px', 'left:50%', 'transform:translateX(-50%)',
-        'background:#1a1200', 'border:1px solid #d4af37', 'color:#d4af37',
-        'padding:12px 24px', 'border-radius:30px', 'font-weight:600',
-        'font-size:13px', 'z-index:99999', 'box-shadow:0 4px 20px rgba(0,0,0,0.6)',
-        'transition:opacity .3s', 'pointer-events:none'
-      ].join(';');
-      document.body.appendChild(t);
+  _showToast(msg, type) {
+    // Determine type from message content if not provided
+    if (!type) {
+      if (/✓|✔|added|saved|success|downloaded|copied/i.test(msg)) type = 'success';
+      else if (/✕|✗|×|error|fail|cannot|invalid|network/i.test(msg)) type = 'error';
+      else if (/⚠|warn|limit/i.test(msg)) type = 'warning';
+      else if (/♥|❤|wishlist/i.test(msg)) type = 'wishlist';
+      else type = 'info';
     }
-    t.textContent = msg;
-    t.style.opacity = '1';
-    clearTimeout(t._timer);
-    t._timer = setTimeout(function() { t.style.opacity = '0'; }, 2800);
+
+    // Inject styles once
+    if (!document.getElementById('_irasa_toast_styles')) {
+      var style = document.createElement('style');
+      style.id = '_irasa_toast_styles';
+      style.textContent = `
+        #_irasa_toast_container {
+          position: fixed; bottom: 24px; right: 24px; z-index: 999999;
+          display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+          pointer-events: none;
+        }
+        ._irasa_toast {
+          display: flex; align-items: center; gap: 12px;
+          min-width: 280px; max-width: 360px;
+          padding: 14px 18px 14px 16px;
+          border-radius: 14px;
+          font-family: 'Outfit', 'Inter', sans-serif;
+          font-size: 13.5px; font-weight: 600;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+          backdrop-filter: blur(12px);
+          border-left: 4px solid transparent;
+          position: relative; overflow: hidden;
+          opacity: 0; transform: translateX(60px);
+          transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
+          pointer-events: auto;
+        }
+        ._irasa_toast.show { opacity: 1; transform: translateX(0); }
+        ._irasa_toast.hide { opacity: 0; transform: translateX(60px); }
+        ._irasa_toast--success { background: #0d1f0f; color: #6ee88a; border-color: #4caf50; }
+        ._irasa_toast--error   { background: #1f0d0d; color: #f87171; border-color: #ef4444; }
+        ._irasa_toast--warning { background: #1f1700; color: #fbbf24; border-color: #f59e0b; }
+        ._irasa_toast--wishlist{ background: #1f0d15; color: #f472b6; border-color: #ec4899; }
+        ._irasa_toast--info    { background: #0a1220; color: #d4af37; border-color: #d4af37; }
+        ._irasa_toast__icon { font-size: 16px; flex-shrink: 0; }
+        ._irasa_toast__msg { flex: 1; line-height: 1.4; }
+        ._irasa_toast__bar {
+          position: absolute; bottom: 0; left: 0; height: 3px;
+          border-radius: 0 0 0 10px;
+          animation: _irasa_bar 3s linear forwards;
+        }
+        ._irasa_toast--success ._irasa_toast__bar { background: #4caf50; }
+        ._irasa_toast--error   ._irasa_toast__bar { background: #ef4444; }
+        ._irasa_toast--warning ._irasa_toast__bar { background: #f59e0b; }
+        ._irasa_toast--wishlist._irasa_toast__bar { background: #ec4899; }
+        ._irasa_toast--info    ._irasa_toast__bar { background: #d4af37; }
+        @keyframes _irasa_bar { from { width: 100%; } to { width: 0%; } }
+        @media (max-width: 480px) {
+          #_irasa_toast_container { bottom: 12px; right: 12px; left: 12px; align-items: stretch; }
+          ._irasa_toast { min-width: 0; max-width: 100%; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Container
+    var container = document.getElementById('_irasa_toast_container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = '_irasa_toast_container';
+      document.body.appendChild(container);
+    }
+
+    // Icon map
+    var icons = {
+      success: '<i class="fas fa-check-circle"></i>',
+      error:   '<i class="fas fa-times-circle"></i>',
+      warning: '<i class="fas fa-exclamation-triangle"></i>',
+      wishlist:'<i class="fas fa-heart"></i>',
+      info:    '<i class="fas fa-shopping-bag"></i>'
+    };
+
+    // Clean the message of leading emoji/icons
+    var cleanMsg = msg.replace(/^[✓✔✕✗×⚠️❌✅♥❤💵👁📥⏳]+\s*/u, '').trim();
+
+    var toast = document.createElement('div');
+    toast.className = '_irasa_toast _irasa_toast--' + type;
+    toast.innerHTML = '<span class="_irasa_toast__icon">' + (icons[type] || icons.info) + '</span>'
+      + '<span class="_irasa_toast__msg">' + cleanMsg + '</span>'
+      + '<div class="_irasa_toast__bar"></div>';
+
+    container.appendChild(toast);
+
+    // Animate in
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() { toast.classList.add('show'); });
+    });
+
+    // Dismiss after 3s
+    var timer = setTimeout(function() {
+      toast.classList.remove('show');
+      toast.classList.add('hide');
+      setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
+    }, 3000);
+
+    // Click to dismiss early
+    toast.addEventListener('click', function() {
+      clearTimeout(timer);
+      toast.classList.remove('show');
+      toast.classList.add('hide');
+      setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
+    });
   }
 };
 

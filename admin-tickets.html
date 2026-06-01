@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I-Rasa Perfumes - Admin Tickets</title>
+  
+  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    :root {
+      --admin-bg: #0a0a0a;
+      --admin-surface: #111111;
+      --admin-surface-light: #1a1a1a;
+      --admin-text: #e0e0e0;
+      --admin-gold: #d4af37;
+      --admin-gold-hover: #e5c158;
+      --admin-border: #333333;
+    }
+
+    body {
+      background-color: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--admin-bg); }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--admin-gold); }
+    body.modal-open { padding-right: 0 !important; }
+
+    h1, h2, h3, h4, h5, h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
+
+    /* Sidebar */
+    .admin-sidebar { width: 260px; background-color: var(--admin-surface); border-right: 1px solid var(--admin-border); display: flex; flex-direction: column; flex-shrink: 0; }
+    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); }
+    .admin-nav { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
+    .admin-nav-item { padding: 12px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
+    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212, 175, 55, 0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); }
+    .admin-nav-item i { margin-right: 15px; font-size: 1.2rem; width: 24px; text-align: center; }
+
+    /* Main Content */
+    .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .admin-header { height: 70px; background-color: var(--admin-surface); border-bottom: 1px solid var(--admin-border); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; flex-shrink: 0; }
+    .admin-content { flex-grow: 1; padding: 30px; overflow-y: auto; }
+
+    /* Cards & Tables */
+    .admin-card { background-color: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    .admin-table { width: 100%; color: var(--admin-text); border-collapse: collapse; }
+    .admin-table th { text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--admin-border); color: var(--admin-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .admin-table td { padding: 15px; border-bottom: 1px solid var(--admin-border); vertical-align: middle; font-size: 0.95rem; }
+    .admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+
+    /* Badges */
+    .badge-status { padding: 5px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+    .badge-success { background: rgba(37, 211, 102, 0.1); color: #25d366; border: 1px solid #1a5c31; }
+    .badge-warning { background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid #735d1e; }
+    .badge-danger { background: rgba(255, 77, 77, 0.1); color: #ff4d4d; border: 1px solid #8a2a2a; }
+    .badge-info { background: rgba(59, 224, 224, 0.1); color: #3be0e0; border: 1px solid #1d6e6e; }
+
+    /* Forms & Buttons */
+    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; margin: 5px; }
+    .admin-btn:hover { background-color: var(--admin-gold-hover); }
+    .admin-btn-outline { background-color: transparent; color: var(--admin-gold); border: 1px solid var(--admin-gold); }
+    .admin-btn-outline:hover { background-color: rgba(212, 175, 55, 0.1); }
+    .admin-btn-sm { padding: 4px 10px; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="admin-logo">
+      <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
+        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
+    </div>
+    
+    <nav class="admin-nav">
+      <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
+      <a href="admin-tickets.html" class="admin-nav-item active"><i class="ti-headphone-alt"></i> Support Tickets</a>
+      <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
+      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
+      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
+      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
+      <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
+    </nav>
+    
+    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="logoutAdmin()">
+        <i class="ti-power-off"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <h4 style="margin: 0;">Support Tickets</h4>
+      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
+          <i class="ti-user" style="color: #fff;"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      
+      <div class="admin-card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 style="margin: 0;">Support Tickets</h5>
+          <div>
+            <select class="form-control"
+              style="background: #111; border: 1px solid #333; color: #fff; display: inline-block; width: auto;"
+              id="ticketFilter">
+              <option value="ALL">All Tickets</option>
+              <option value="OPEN">Open</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="RESOLVED">Resolved</option>
+            </select>
+          </div>
+        </div>
+        
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Customer</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminTicketsBody">
+              <tr>
+                <td colspan="6" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading tickets...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="adminTicketsPagination" class="mt-3"></div>
+      </div>
+
+    </div>
+  </main>
+
+
+
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/admin-alert.js"></script>
+
+  <script>
+    // Fetch Admin Tickets
+    async function loadAdminTickets(page = 0) {
+      const tbody = document.getElementById('adminTicketsBody');
+      const filter = document.getElementById('ticketFilter').value;
+      const paginationContainer = document.getElementById('adminTicketsPagination');
+
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading...</td></tr>';
+
+      try {
+        const res = await fetch(`/api/admin/tickets?page=${page}&size=10&status=${filter}`, { credentials: 'include' });
+        const data = await res.json();
+
+        if (res.ok && data.success && data.data.content && data.data.content.length > 0) {
+          const content = data.data.content;
+          tbody.innerHTML = content.map(tkt => {
+            const date = new Date(tkt.createdAt).toLocaleDateString('en-IN', {
+              day: 'numeric', month: 'short', year: 'numeric'
+            });
+            let badgeClass = 'badge-info';
+            if (tkt.status === 'RESOLVED') badgeClass = 'badge-success';
+            if (tkt.status === 'OPEN') badgeClass = 'badge-warning';
+
+            return `
+              <tr>
+                <td style="color:#d4af37; font-weight:bold;">${tkt.ticketId}</td>
+                <td>
+                  <div>${tkt.name}</div>
+                  <div style="font-size:11px; color:#888;">${tkt.email}</div>
+                </td>
+                <td>${tkt.subject}</td>
+                <td>${date}</td>
+                <td><span class="badge-status ${badgeClass}">${tkt.status}</span></td>
+                <td>
+                  <button class="admin-btn admin-btn-sm" onclick="alert('View details for ${tkt.ticketId}')"><i class="ti-eye"></i></button>
+                  <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="updateAdminTicketStatus('${tkt.ticketId}', 'RESOLVED')" title="Mark Resolved" style="margin-left:5px;"><i class="ti-check"></i></button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+
+          // Render Pagination
+          const totalPages = data.data.totalPages;
+          let pagHtml = '';
+          if (totalPages > 1) {
+            pagHtml += `<div class="d-flex justify-content-center mt-3" style="gap: 5px;">`;
+            if (page > 0) {
+              pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="loadAdminTickets(${page - 1})">Prev</button>`;
+            }
+            for (let i = 0; i < totalPages; i++) {
+              const active = i === page ? 'background: #d4af37; color: #000;' : '';
+              pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" style="${active}" onclick="loadAdminTickets(${i})">${i + 1}</button>`;
+            }
+            if (page < totalPages - 1) {
+              pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="loadAdminTickets(${page + 1})">Next</button>`;
+            }
+            pagHtml += `</div>`;
+          }
+          paginationContainer.innerHTML = pagHtml;
+
+        } else {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888;">No tickets found.</td></tr>';
+          paginationContainer.innerHTML = '';
+        }
+      } catch (err) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#ff4d4d;">Failed to load tickets. Please check permissions.</td></tr>';
+        console.error(err);
+      }
+    }
+
+    async function updateAdminTicketStatus(ticketId, newStatus) {
+      if (!(await showConfirm(`Change status to ${newStatus}?`))) return;
+      try {
+        const res = await fetch(`/api/admin/tickets/${ticketId}/status?status=${newStatus}`, {
+          method: 'PUT',
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          alert('Status updated successfully');
+          loadAdminTickets();
+        } else {
+          alert(data.message || 'Error updating status');
+        }
+      } catch (err) {
+        alert('Network error');
+      }
+    }
+
+    document.getElementById('ticketFilter').addEventListener('change', () => loadAdminTickets(0));
+
+
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadAdminTickets(0);
+    });
+    
+    function logoutAdmin() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

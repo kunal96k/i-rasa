@@ -3,7 +3,7 @@
 
 <head>
   <meta name="description"
-    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 299.">
+    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 399.">
   <meta name="keywords"
     content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
   <meta name="author" content="Technokraft services LLP">
@@ -370,7 +370,7 @@
                 style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase;">i rasa</h4>
               <p>
                 I Rasa Perfumes provides the finest fragrances across India. Our expertly crafted perfumes bring you a
-                touch of elegance and luxury every day. Starting at just Rs. 299.
+                touch of elegance and luxury every day. Starting at just Rs. 399.
               </p>
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
@@ -471,7 +471,7 @@
             <div class="col-md-6">
               <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
               </h2>
-              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 399</p>
+              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 499</p>
               <div class="rating mb-3">
                 <i class="fas fa-star" style="color: #ffd700;"></i>
                 <i class="fas fa-star" style="color: #ffd700;"></i>
@@ -543,8 +543,9 @@
     let appliedDiscount = 0;
     let appliedCouponCode = '';
     let currentShippingCost = 50;
-    const HANDLING_CHARGE = 7;
-    const PLATFORM_FEE = 5;
+    const HANDLING_CHARGE = 10;
+    const PLATFORM_FEE = 35;
+    const PLATFORM_SERVICES_FEE = 5;
 
     let savedAddressesList = [];
     let mapInstance = null;
@@ -748,14 +749,15 @@
 
       const sub = CartEngine.getTotal();
       const disc = appliedDiscount;
-      const total = sub > 0 ? (Math.max(0, sub - disc) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE) : 0;
+      const total = sub > 0 ? (Math.max(0, sub - disc) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE + PLATFORM_SERVICES_FEE) : 0;
 
       totalEl.innerHTML =
         `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Subtotal</span> <span>Rs. ${sub.toFixed(2)}</span></a></li>` +
         (disc > 0 ? `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#4caf50;"><span>Coupon (${appliedCouponCode})</span> <span>- Rs. ${disc.toFixed(2)}</span></a></li>` : '') +
         `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Shipping</span> <span>${currentShippingCost === 0 ? '<span style="color:#4caf50; font-weight:600;"><i class="fas fa-shipping-fast"></i> Free Nashik Delivery</span>' : 'Rs. ' + currentShippingCost.toFixed(2)}</span></a></li>` +
         `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Handling Charge</span> <span>Rs. ${HANDLING_CHARGE.toFixed(2)}</span></a></li>` +
-        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Platform Fee</span> <span>Rs. ${PLATFORM_FEE.toFixed(2)}</span></a></li>` +
+        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Packing Fees</span> <span>Rs. ${PLATFORM_FEE.toFixed(2)}</span></a></li>` +
+        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Platform Services Fees</span> <span>Rs. ${PLATFORM_SERVICES_FEE.toFixed(2)}</span></a></li>` +
         `<li style="border-top:1px solid #333; margin-top:8px; padding-top:8px;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#fff; font-size:16px;"><strong>Total</strong> <span style="color:#d4af37; font-size:18px;"><strong>Rs. ${total.toFixed(2)}</strong></span></a></li>`;
     }
 
@@ -1243,7 +1245,7 @@
           }
         }
 
-        const total = Math.max(0, CartEngine.getTotal() - appliedDiscount) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE;
+        const total = Math.max(0, CartEngine.getTotal() - appliedDiscount) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE + PLATFORM_SERVICES_FEE;
 
         const orderPayload = {
           items: items.map(i => ({ productId: i.id, name: i.name, price: i.price, qty: i.qty, size: i.size || null })),
@@ -1256,6 +1258,7 @@
           shipping: currentShippingCost,
           handlingCharge: HANDLING_CHARGE,
           platformFee: PLATFORM_FEE,
+          platformServicesFee: PLATFORM_SERVICES_FEE,
           total: total
         };
         if (shipping) {
@@ -1351,6 +1354,7 @@
       }
     }
   </script>
+  <script src="js/form-validator.js"></script>
 </body>
 
 </html>

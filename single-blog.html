@@ -152,7 +152,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="javascript:void(0);">12 Dec, 2017
+										<a href="javascript:void(0);">12 Dec, 2026
 											<i class="lnr lnr-calendar-full"></i>
 										</a>
 									</li>
@@ -178,11 +178,7 @@
 											<i class="fab fa-twitter"></i>
 										</a>
 									</li>
-									<li>
-										<a href="javascript:void(0);">
-											<i class="fab fa-github"></i>
-										</a>
-									</li>
+
 									<li>
 										<a href="javascript:void(0);">
 											<i class="fab fa-behance"></i>
@@ -298,7 +294,7 @@
 										<h5>
 											<a href="javascript:void(0);">Nikita Patil</a>
 										</h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
+										<p class="date">December 4, 2026 at 3:12 pm </p>
 										<p class="comment">
 											Never say goodbye to your favorite scent! This guide on layering is so
 											helpful for making fragrances last longer.
@@ -320,7 +316,7 @@
 										<h5>
 											<a href="javascript:void(0);">Sagar Deshmukh</a>
 										</h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
+										<p class="date">December 4, 2026 at 3:12 pm </p>
 										<p class="comment">
 											This guide on layering is so helpful! I tried the Jasmine Bloom over the
 											Sandalwood base today and it smells incredible. Thank you for the tips!
@@ -342,7 +338,7 @@
 										<h5>
 											<a href="javascript:void(0);">Snehal Patil</a>
 										</h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
+										<p class="date">December 4, 2026 at 3:12 pm </p>
 										<p class="comment">
 											This guide on layering is so helpful! I tried the Jasmine Bloom over the
 											Sandalwood base today and it smells incredible. Thank you for the tips!
@@ -364,7 +360,7 @@
 										<h5>
 											<a href="javascript:void(0);">Maria Patil</a>
 										</h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
+										<p class="date">December 4, 2026 at 3:12 pm </p>
 										<p class="comment">
 											This guide on layering is so helpful! I tried the Jasmine Bloom over the
 											Sandalwood base today and it smells incredible. Thank you for the tips!
@@ -386,7 +382,7 @@
 										<h5>
 											<a href="javascript:void(0);">Kunal Patil</a>
 										</h5>
-										<p class="date">December 4, 2017 at 3:12 pm </p>
+										<p class="date">December 4, 2026 at 3:12 pm </p>
 										<p class="comment">
 											This guide on layering is so helpful! I tried the Jasmine Bloom over the
 											Sandalwood base today and it smells incredible. Thank you for the tips!
@@ -401,7 +397,7 @@
 					</div>
 					<div class="comment-form">
 						<h4>Leave a Reply</h4>
-						<form>
+						<form action="#" onsubmit="showSuccessToast(event)">
 							<div class="form-group form-inline">
 								<div class="form-group col-lg-6 col-md-6 name">
 									<input type="text" class="form-control" id="name" placeholder="Enter Name"
@@ -422,8 +418,8 @@
 									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"
 									required=""></textarea>
 							</div>
-							<a href="javascript:void(0);" class="button button-postComment button--active">Post
-								Comment</a>
+							<button type="submit" class="button button-postComment button--active" style="border: none; cursor: pointer;">Post
+								Comment</button>
 						</form>
 					</div>
 				</div>
@@ -452,9 +448,7 @@
 								<a href="javascript:void(0);">
 									<i class="fab fa-twitter"></i>
 								</a>
-								<a href="javascript:void(0);">
-									<i class="fab fa-github"></i>
-								</a>
+
 								<a href="javascript:void(0);">
 									<i class="fab fa-behance"></i>
 								</a>
@@ -643,7 +637,7 @@
 							<p>
 								I Rasa Perfumes provides the finest fragrances across India. Our expertly crafted
 								perfumes bring you a
-								touch of elegance and luxury every day. Starting at just Rs. 299.
+								touch of elegance and luxury every day. Starting at just Rs. 399.
 							</p>
 							<div class="footer-social mt-4">
 								<a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
@@ -753,7 +747,7 @@
 						<div class="col-md-6">
 							<h2 id="modal_title"
 								style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme</h2>
-							<p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
+							<p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 399</p>
 							<div class="stars mb-3">
 								<i class="fas fa-star"></i>
 								<i class="fas fa-star"></i>
@@ -791,6 +785,46 @@
 	<script>AOS.init();</script>
 
 	<script src="js/auth-guard.js"></script>
+	<script>
+		// Toast Notification System
+		function showSuccessToast(e) {
+			e.preventDefault(); // Prevent page reload
+			
+			// Create toast container if it doesn't exist
+			let toastContainer = document.getElementById('toast-container');
+			if (!toastContainer) {
+				toastContainer = document.createElement('div');
+				toastContainer.id = 'toast-container';
+				toastContainer.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;';
+				document.body.appendChild(toastContainer);
+			}
+
+			// Create toast element
+			const toast = document.createElement('div');
+			toast.style.cssText = 'background: #111; border-left: 4px solid #d4af37; color: #fff; padding: 15px 25px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); font-weight: bold; opacity: 0; transform: translateX(100%); transition: all 0.3s ease; display: flex; align-items: center; gap: 10px; font-family: "Michroma", sans-serif; font-size: 12px;';
+			toast.innerHTML = '<i class="fas fa-check-circle" style="color: #d4af37; font-size: 16px;"></i> Message Sent Successfully!';
+			
+			toastContainer.appendChild(toast);
+
+			// Animate in
+			setTimeout(() => {
+				toast.style.opacity = '1';
+				toast.style.transform = 'translateX(0)';
+			}, 10);
+
+			// Animate out and remove after 3 seconds
+			setTimeout(() => {
+				toast.style.opacity = '0';
+				toast.style.transform = 'translateX(100%)';
+				setTimeout(() => toast.remove(), 300);
+			}, 3000);
+
+			// Clear form
+			if (e.target.tagName === 'FORM') {
+				e.target.reset();
+			}
+		}
+	</script>
 </body>
 
 </html>

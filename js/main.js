@@ -90,19 +90,37 @@ $(function () {
   mailChimp();
 
   //------- show toast --------//
-  window.showToast = function (msg) {
-    var toast = $('#cart-toast');
-    if (!toast.length) {
-      $('body').append('<div id="cart-toast" style="position:fixed; bottom:90px; right:28px; z-index:9999; background:#1a1200; color:#d4af37; border:1px solid #d4af37; padding:12px 24px; border-radius:50px; font-size:14px; font-weight:700; opacity:0; transform:translateY(15px); transition:all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events:none; box-shadow:0 10px 30px rgba(0,0,0,0.5); display:flex; align-items:center; gap:10px;"></div>');
-      toast = $('#cart-toast');
+  window.showToast = function (msg, type) {
+    // Delegate to CartEngine's rich toast if available
+    if (typeof CartEngine !== 'undefined' && CartEngine._showToast) {
+      CartEngine._showToast(msg, type);
+      return;
     }
-    toast.html("<i class='fas fa-shopping-bag'></i> " + msg);
-    toast.css({ 'opacity': '1', 'transform': 'translateY(0)' });
-
-    if (window.toastTimeout) clearTimeout(window.toastTimeout);
-    window.toastTimeout = setTimeout(function () {
-      toast.css({ 'opacity': '0', 'transform': 'translateY(15px)' });
-    }, 3000);
+    // Fallback: standalone version (same logic, same styles)
+    if (!type) {
+      if (/success|✅|✓/i.test(msg)) type = 'success';
+      else if (/error|fail|❌|✕/i.test(msg)) type = 'error';
+      else type = 'info';
+    }
+    var container = document.getElementById('_irasa_toast_container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = '_irasa_toast_container';
+      container.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:999999;display:flex;flex-direction:column;gap:10px;align-items:flex-end;pointer-events:none;';
+      document.body.appendChild(container);
+    }
+    var colors = { success:'#0d1f0f', error:'#1f0d0d', info:'#0a1220', warning:'#1f1700' };
+    var borders = { success:'#4caf50', error:'#ef4444', info:'#d4af37', warning:'#f59e0b' };
+    var textCols = { success:'#6ee88a', error:'#f87171', info:'#d4af37', warning:'#fbbf24' };
+    var iconMap = { success:'fas fa-check-circle', error:'fas fa-times-circle', info:'fas fa-shopping-bag', warning:'fas fa-exclamation-triangle' };
+    var cleanMsg = msg.replace(/^[✓✔✕✗×⚠️❌✅♥❤💵👁📥⏳]+\s*/u, '').trim();
+    var t = document.createElement('div');
+    t.style.cssText = 'display:flex;align-items:center;gap:12px;min-width:280px;max-width:360px;padding:14px 18px 14px 16px;border-radius:14px;font-family:Outfit,Inter,sans-serif;font-size:13.5px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.55);border-left:4px solid ' + (borders[type]||'#d4af37') + ';background:' + (colors[type]||'#0a1220') + ';color:' + (textCols[type]||'#d4af37') + ';opacity:0;transform:translateX(60px);transition:opacity .35s,transform .35s;pointer-events:auto;cursor:pointer;position:relative;overflow:hidden;';
+    t.innerHTML = '<i class="' + (iconMap[type]||'fas fa-info-circle') + '" style="font-size:16px;flex-shrink:0;"></i><span style="flex:1;line-height:1.4;">' + cleanMsg + '</span>';
+    container.appendChild(t);
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ t.style.opacity='1'; t.style.transform='translateX(0)'; }); });
+    var timer = setTimeout(function(){ t.style.opacity='0'; t.style.transform='translateX(60px)'; setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 400); }, 3000);
+    t.addEventListener('click', function(){ clearTimeout(timer); t.style.opacity='0'; t.style.transform='translateX(60px)'; setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 400); });
   };
 
   //------- fixed navbar with throttling --------//  
@@ -182,7 +200,7 @@ $(document).ready(function () {
     e.preventDefault();
     var card = $(this).closest('.card-product');
     var title = card.find('.card-product__title').text().trim();
-    var priceText = card.find('.card-product__price').text().trim() || "Rs. 399";
+    var priceText = card.find('.card-product__price').text().trim() || "Rs. 499";
     var imgSrc = card.find('.card-img').attr('src');
     
     // Fallback price logic from sibling button if needed
@@ -192,26 +210,29 @@ $(document).ready(function () {
     }
 
     if (iconClass && iconClass.includes('ti-shopping-cart')) {
-      if (typeof AuthGuard !== 'undefined' && !AuthGuard.currentUser) {
-        if (typeof CartEngine !== 'undefined') CartEngine._showToast('✕ Please login first to add items to cart!');
-        setTimeout(() => {
-          window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
-        }, 1500);
+      var card = $(this).closest('.card-product');
+      var modalTrigger = card.find('button[data-target="#product_modal"]');
+
+      if (modalTrigger.length && $('#product_modal').length) {
+        modalTrigger.click();
         return;
       }
-      var parsedPrice = parseInt(String(priceText).replace(/[^\d]/g, '')) || 399;
+
+      // Fallback if modal is unavailable: add default 60ml product to cart.
+      var parsedPrice = parseInt(String(priceText).replace(/[^\d]/g, '')) || 499;
       if (typeof CartEngine !== 'undefined') {
         CartEngine.add({
           id: title,
           name: title,
           img: imgSrc,
           price: parsedPrice,
-          size: '50ml', // default
+          size: '60ml',
           reuseBottle: false,
           bottlePrice: 0,
           bottlePriceDiscount: 0
         }, 1);
       }
+      return;
     } else if (iconClass && iconClass.includes('ti-search')) {
       if ($('#product_modal').length) {
         $('#product_modal #modal_title').text(title);
@@ -301,9 +322,9 @@ $(document).ready(function () {
     
     if (siblingSearch.length) {
       var name = siblingSearch.data('title');
-      var priceText = siblingSearch.data('price') || "Rs. 399";
+      var priceText = siblingSearch.data('price') || "Rs. 499";
       var img = siblingSearch.data('img') || "img/product/product1.png";
-      var price = parseInt(priceText.replace(/[^\d]/g, '')) || 399;
+      var price = parseInt(priceText.replace(/[^\d]/g, '')) || 499;
       
       await WishlistEngine.toggle({
         id: name,
@@ -327,8 +348,8 @@ $(document).ready(function () {
 
     var name = modalTitleEl.textContent.trim();
     var img = modalImgEl ? modalImgEl.getAttribute('src') : 'img/product/product1.png';
-    var priceText = modalPriceEl ? modalPriceEl.textContent : '399';
-    var price = parseInt(priceText.replace(/[^\d]/g, '')) || 399;
+    var priceText = modalPriceEl ? modalPriceEl.textContent : '499';
+    var price = parseInt(priceText.replace(/[^\d]/g, '')) || 499;
 
     WishlistEngine.toggle({
       id: name,
@@ -438,4 +459,11 @@ $(document).ready(function () {
       }\
     ')
     .appendTo('head');
+});
+
+// Fix missing footer FontAwesome icons by replacing with Themify icons
+$(document).ready(function() {
+  $('.sm-head .fa-map-marker-alt').removeClass('fas fa-map-marker-alt').addClass('ti-location-pin');
+  $('.sm-head .fa-phone-alt').removeClass('fas fa-phone-alt').addClass('ti-headphone-alt');
+  $('.sm-head .fa-envelope').removeClass('fas fa-envelope').addClass('ti-email');
 });

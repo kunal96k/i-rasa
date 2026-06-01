@@ -256,6 +256,12 @@ class InvoiceModal {
                     <span style="color: #4caf50;">-${currencySymbol}${this.formatPrice(invoice.discount)}</span>
                 </div>
                 ` : ''}
+                ${invoice.couponCode || invoice.coupon ? `
+                <div class="summary-row" style="border-bottom: 1px dashed #333;">
+                    <span>Coupon Applied</span>
+                    <span style="color: #d4af37;">${invoice.couponCode || invoice.coupon}</span>
+                </div>
+                ` : ''}
                 ${invoice.shipping > 0 ? `
                 <div class="summary-row">
                     <span>Shipping</span>
@@ -270,8 +276,14 @@ class InvoiceModal {
                 ` : ''}
                 ${invoice.platformFee > 0 ? `
                 <div class="summary-row">
-                    <span>Platform fee</span>
+                    <span>Packing fees</span>
                     <span>${currencySymbol}${this.formatPrice(invoice.platformFee)}</span>
+                </div>
+                ` : ''}
+                ${invoice.platformServicesFee > 0 ? `
+                <div class="summary-row">
+                    <span>Platform Services fees</span>
+                    <span>${currencySymbol}${this.formatPrice(invoice.platformServicesFee)}</span>
                 </div>
                 ` : ''}
                 <div class="summary-row total">

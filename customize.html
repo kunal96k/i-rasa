@@ -154,6 +154,19 @@
     }
 
     /* ========== STEP INDICATOR ========== */
+    .steps-bar-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      background: #111;
+      border-bottom: 1px solid #1e1e1e;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+    }
+
+    .steps-bar-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+
     .steps-bar {
       display: flex;
       align-items: center;
@@ -161,13 +174,60 @@
       gap: 0;
       padding: 24px 40px;
       background: #111;
-      border-bottom: 1px solid #1e1e1e;
+      width: max-content;
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 575.98px) {
+      .steps-bar-wrapper {
+        overflow-x: hidden;
+      }
+
+      .steps-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        padding: 20px 12px;
+      }
+
+      .step-item {
+        flex: 1 1 calc(50% - 12px);
+        max-width: calc(50% - 12px);
+        min-width: 140px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+      }
+
+      .step-num {
+        margin: 0 auto;
+      }
+
+      .step-label {
+        font-size: 12px;
+        white-space: normal;
+        line-height: 1.3;
+      }
+
+      .step-divider {
+        display: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .step-item {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
     }
 
     .step-item {
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-shrink: 0;
     }
 
     .step-num {
@@ -183,6 +243,7 @@
       font-weight: 700;
       color: #555;
       transition: all 0.3s;
+      flex-shrink: 0;
     }
 
     .step-num.active {
@@ -202,6 +263,8 @@
       color: #555;
       letter-spacing: 0.5px;
       transition: color 0.3s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .step-label.active {
@@ -212,7 +275,8 @@
       width: 40px;
       height: 1px;
       background: #2a2a2a;
-      margin: 0 8px;
+      margin: 0 16px;
+      flex-shrink: 0;
     }
 
     /* ========== MAIN LAYOUT ========== */
@@ -911,16 +975,13 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .steps-bar {
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 15px 10px;
-        scrollbar-width: none;
-        gap: 15px;
+      .steps-bar-wrapper {
+        border-bottom: 1px solid #1e1e1e;
       }
 
-      .steps-bar::-webkit-scrollbar {
-        display: none;
+      .steps-bar {
+        justify-content: flex-start;
+        padding: 15px 20px;
       }
 
       .step-item {
@@ -933,12 +994,14 @@
       .step-label {
         font-size: 10px;
         white-space: nowrap;
+        flex-shrink: 0;
       }
 
       .step-divider {
-        width: 15px;
-        min-width: 15px;
+        width: 25px;
+        min-width: 25px;
         height: 1px;
+        flex-shrink: 0;
       }
 
       .hero h1 {
@@ -969,7 +1032,8 @@
       }
 
       .step-divider {
-        width: 20px;
+        width: 15px;
+        min-width: 15px;
       }
 
       .blend-labels {
@@ -1327,30 +1391,32 @@
   </div>
 
   <!-- STEP INDICATOR -->
-  <div class="steps-bar">
-    <div class="step-item">
-      <div class="step-num active" id="sn1">1</div>
-      <div class="step-label active" id="sl1">Choose Perfumes</div>
-    </div>
-    <div class="step-divider"></div>
-    <div class="step-item">
-      <div class="step-num" id="sn2">2</div>
-      <div class="step-label" id="sl2">Blend Ratio</div>
-    </div>
-    <div class="step-divider"></div>
-    <div class="step-item">
-      <div class="step-num" id="sn3">3</div>
-      <div class="step-label" id="sl3">Intensity</div>
-    </div>
-    <div class="step-divider"></div>
-    <div class="step-item">
-      <div class="step-num" id="sn4">4</div>
-      <div class="step-label" id="sl4">Your Vision</div>
-    </div>
-    <div class="step-divider"></div>
-    <div class="step-item">
-      <div class="step-num" id="sn5">5</div>
-      <div class="step-label" id="sl5">Bottle & Order</div>
+  <div class="steps-bar-wrapper">
+    <div class="steps-bar">
+      <div class="step-item">
+        <div class="step-num active" id="sn1">1</div>
+        <div class="step-label active" id="sl1">Choose Perfumes</div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item">
+        <div class="step-num" id="sn2">2</div>
+        <div class="step-label" id="sl2">Blend Ratio</div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item">
+        <div class="step-num" id="sn3">3</div>
+        <div class="step-label" id="sl3">Intensity</div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item">
+        <div class="step-num" id="sn4">4</div>
+        <div class="step-label" id="sl4">Your Vision</div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item">
+        <div class="step-num" id="sn5">5</div>
+        <div class="step-label" id="sl5">Bottle & Order</div>
+      </div>
     </div>
   </div>
 
@@ -1367,93 +1433,93 @@
         <div class="perfume-grid" id="perfumeGrid">
 
           <div class="p-card" data-id="gucciflora" data-name="Gucci Flora" data-icon="fas fa-seedling"
-            data-notes="Iconic · Floral · Sweet" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Iconic · Floral · Sweet" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge" id="badge-gucciflora"></div>
             <span class="p-icon"><i class='fas fa-seedling'></i></span>
             <div class="p-name">Gucci Flora</div>
             <div class="p-notes">Iconic · Floral · Sweet</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
           <div class="p-card" data-id="hawas" data-name="Rasassi Hawas" data-icon="fas fa-tint"
-            data-notes="Oriental · Fresh · Aqua" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Oriental · Fresh · Aqua" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge"></div>
             <span class="p-icon"><i class='fas fa-tint'></i></span>
             <div class="p-name">Rasassi Hawas</div>
             <div class="p-notes">Oriental · Fresh · Aqua</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
           <div class="p-card" data-id="bluechannel" data-name="Blue De Channel" data-icon="fas fa-gem"
-            data-notes="Aromatic · Sharp · Modern" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Aromatic · Sharp · Modern" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge"></div>
             <span class="p-icon"><i class='fas fa-gem'></i></span>
             <div class="p-name">Blue De Channel</div>
             <div class="p-notes">Aromatic · Sharp · Modern</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
           <div class="p-card" data-id="guccibloom" data-name="Gucci Bloom" data-icon="fas fa-spa"
-            data-notes="Floral · Rich · Elegant" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Floral · Rich · Elegant" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge"></div>
             <span class="p-icon"><i class='fas fa-spa'></i></span>
             <div class="p-name">Gucci Bloom</div>
             <div class="p-notes">Floral · Rich · Elegant</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
           <div class="p-card" data-id="aventus" data-name="Creed Aventus" data-icon="fas fa-crown"
-            data-notes="Premium · Woody · Smoky" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Premium · Woody · Smoky" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge"></div>
             <span class="p-icon"><i class='fas fa-crown'></i></span>
             <div class="p-name">Creed Aventus</div>
             <div class="p-notes">Premium · Woody · Smoky</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
           <div class="p-card" data-id="whitemusk" data-name="White Musk" data-icon="fas fa-feather"
-            data-notes="Soft · Musky · Pure" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Soft · Musky · Pure" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge"></div>
             <span class="p-icon"><i class='fas fa-feather'></i></span>
             <div class="p-name">White Musk</div>
             <div class="p-notes">Soft · Musky · Pure</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
           <div class="p-card" data-id="savage" data-name="Savage Dior" data-icon="fas fa-bolt"
-            data-notes="Sharp · Spicy · Bold" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Sharp · Spicy · Bold" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge"></div>
             <span class="p-icon"><i class='fas fa-bolt'></i></span>
             <div class="p-name">Savage Dior</div>
             <div class="p-notes">Sharp · Spicy · Bold</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
           <div class="p-card" data-id="eternity" data-name="Eternity" data-icon="fas fa-infinity"
-            data-notes="Fresh · Classic · Crisp" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Fresh · Classic · Crisp" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge"></div>
             <span class="p-icon"><i class='fas fa-infinity'></i></span>
             <div class="p-name">Eternity</div>
             <div class="p-notes">Fresh · Classic · Crisp</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
           <div class="p-card" data-id="blackrose" data-name="Black Rose" data-icon="fas fa-rose"
-            data-notes="Dark · Floral · Exotic" data-price="399" onclick="selectPerfume(this)">
+            data-notes="Dark · Floral · Exotic" data-price="499" onclick="selectPerfume(this)">
             <div class="badge-check"><i class="ti-check"></i></div>
             <div class="blend-badge"></div>
             <span class="p-icon"><i class='fas fa-rose'></i></span>
             <div class="p-name">Black Rose</div>
             <div class="p-notes">Dark · Floral · Exotic</div>
-            <div class="p-price">₹399</div>
+            <div class="p-price">₹499</div>
           </div>
 
         </div>
@@ -1541,22 +1607,24 @@
         <div class="sec-title"><span class="num">5</span> Choose bottle size</div>
         <div class="bottle-options">
 
-          <div class="bottle-opt active" onclick="selectBottle(this, 30, 199)">
-            <span class="b-icon"><i class='fas fa-flask'></i></span>
-            <div class="b-name">Mini</div>
-            <div class="b-size">30ml</div>
-          </div>
-
-          <div class="bottle-opt" onclick="selectBottle(this, 50, 299)">
+          <div class="bottle-opt active" onclick="selectBottle(this, 50, 60)">
             <span class="b-icon"><i class='fas fa-flask'></i></span>
             <div class="b-name">Classic</div>
-            <div class="b-size">50ml</div>
+            <div class="b-size">60ml</div>
+            <div class="b-price">+₹60</div>
           </div>
 
-          <div class="bottle-opt" onclick="selectBottle(this, 100, 499)">
+          <div class="bottle-opt" onclick="selectBottle(this, 100, 120)">
             <span class="b-icon"><i class='fas fa-flask'></i></span>
             <div class="b-name">Premium</div>
             <div class="b-size">100ml</div>
+            <div class="b-price">+₹120</div>
+          </div>
+
+          <div class="bottle-opt" onclick="selectBottle(this, 150, 180)">
+            <span class="b-icon"><i class='fas fa-flask'></i></span>
+            <div class="b-name">Luxury</div>
+            <div class="b-price">+₹180</div>
           </div>
 
         </div>
@@ -1606,12 +1674,12 @@
       </div>
 
       <div class="price-block" id="priceBlock">
-        <div class="price-row-item"><span>Base perfumes (Premium Mix)</span><span id="priceBase">₹798</span></div>
-        <div class="price-row-item"><span>Custom Glass Bottle</span><span id="priceBottle">₹299</span></div>
+        <div class="price-row-item"><span>Base perfumes (Premium Mix)</span><span id="priceBase">₹998</span></div>
+        <div class="price-row-item"><span>Custom Glass Bottle</span><span id="priceBottle">₹60</span></div>
         <div class="price-row-item"><span>Artisan Blending Fee</span><span>₹99</span></div>
         <div class="price-total">
           <span>Final Amount</span>
-          <span id="priceTotal">₹1,196</span>
+          <span id="priceTotal">₹1,157</span>
         </div>
       </div>
 
@@ -1646,7 +1714,7 @@
                 style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase;">i rasa</h4>
               <p>
                 I Rasa Perfumes provides the finest fragrances across India. Our expertly crafted perfumes bring you a
-                touch of elegance and luxury every day. Starting at just Rs. 299.
+                touch of elegance and luxury every day. Starting at just Rs. 399.
               </p>
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
@@ -1738,7 +1806,7 @@
       blendRatio: 60,
       intensity: 'Medium',
       intensityDots: 3,
-      bottlePrice: 299,
+      bottlePrice: 99,
       bottleSize: 50,
       prompt: ''
     };
@@ -2013,7 +2081,15 @@
         name: document.getElementById('previewName').textContent,
         iconA: state.selectedCards[0].dataset.icon,
         iconB: state.selectedCards[1].dataset.icon,
-        date: new Date().toLocaleDateString('en-IN')
+        date: new Date().toLocaleDateString('en-IN'),
+        perfumeA: state.selectedCards[0].dataset.id,
+        perfumeB: state.selectedCards[1].dataset.id,
+        ratio: state.blendRatio,
+        intensity: state.intensity,
+        intensityDots: state.intensityDots,
+        prompt: document.getElementById('userPrompt').value,
+        bottleSize: state.bottleSize,
+        bottlePrice: state.bottlePrice
       });
       profile.blends = blends;
       localStorage.setItem('irasa_profile', JSON.stringify(profile));
@@ -2052,6 +2128,36 @@
         document.getElementById('profileNavImg').style.display = 'block';
         document.getElementById('profileNavIcon').style.display = 'none';
       }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const blendIdx = urlParams.get('blend');
+      if (blendIdx !== null && p.blends && p.blends[blendIdx]) {
+        var b = p.blends[blendIdx];
+        if (b.perfumeA && b.perfumeB) {
+            var cardA = document.querySelector(`.p-card[data-id="${b.perfumeA}"]`);
+            var cardB = document.querySelector(`.p-card[data-id="${b.perfumeB}"]`);
+            if (cardA) selectPerfume(cardA);
+            if (cardB) selectPerfume(cardB);
+        }
+        if (b.ratio) {
+            document.getElementById('blendSlider').value = b.ratio;
+            updateBlend(b.ratio);
+        }
+        if (b.intensity && b.intensityDots) {
+            document.querySelectorAll('.int-btn').forEach(btn => {
+                if(btn.getAttribute('onclick').includes(b.intensityDots)) selectIntensity(btn, b.intensity, b.intensityDots);
+            });
+        }
+        if (b.prompt) {
+            document.getElementById('userPrompt').value = b.prompt;
+        }
+        if (b.bottleSize && b.bottlePrice) {
+            document.querySelectorAll('.bottle-opt').forEach(btn => {
+                if(btn.getAttribute('onclick').includes(b.bottleSize)) selectBottle(btn, b.bottleSize, b.bottlePrice);
+            });
+        }
+      }
+
       loadPastBlends();
       updatePrice();
     });

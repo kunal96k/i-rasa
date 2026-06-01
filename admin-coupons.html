@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I-Rasa Perfumes - Admin Coupons</title>
+  
+  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    :root {
+      --admin-bg: #0a0a0a;
+      --admin-surface: #111111;
+      --admin-surface-light: #1a1a1a;
+      --admin-text: #e0e0e0;
+      --admin-gold: #d4af37;
+      --admin-gold-hover: #e5c158;
+      --admin-border: #333333;
+    }
+
+    body { background-color: var(--admin-bg); color: var(--admin-text); font-family: 'Inter', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--admin-bg); }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--admin-gold); }
+    body.modal-open { padding-right: 0 !important; }
+
+    h1, h2, h3, h4, h5, h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
+
+    /* Sidebar */
+    .admin-sidebar { width: 260px; background-color: var(--admin-surface); border-right: 1px solid var(--admin-border); display: flex; flex-direction: column; flex-shrink: 0; }
+    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); }
+    .admin-logo img { max-width: 150px; }
+    .admin-nav { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
+    .admin-nav-item { padding: 12px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
+    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212, 175, 55, 0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); }
+    .admin-nav-item i { margin-right: 15px; font-size: 1.2rem; width: 24px; text-align: center; }
+
+    /* Main Content */
+    .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .admin-header { height: 70px; background-color: var(--admin-surface); border-bottom: 1px solid var(--admin-border); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; flex-shrink: 0; }
+    .admin-content { flex-grow: 1; padding: 30px; overflow-y: auto; }
+
+    /* Cards & Tables */
+    .admin-card { background-color: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    .admin-table { width: 100%; color: var(--admin-text); border-collapse: collapse; }
+    .admin-table th { text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--admin-border); color: var(--admin-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .admin-table td { padding: 15px; border-bottom: 1px solid var(--admin-border); vertical-align: middle; font-size: 0.95rem; }
+    .admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+
+    /* Badges */
+    .badge-status { padding: 5px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+    .badge-success { background: rgba(37, 211, 102, 0.1); color: #25d366; border: 1px solid #1a5c31; }
+    .badge-danger { background: rgba(255, 77, 77, 0.1); color: #ff4d4d; border: 1px solid #8a2a2a; }
+
+    /* Forms & Buttons */
+    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; margin: 5px; }
+    .admin-btn:hover { background-color: var(--admin-gold-hover); }
+    .admin-btn-outline { background-color: transparent; color: var(--admin-gold); border: 1px solid var(--admin-gold); }
+    .admin-btn-outline:hover { background-color: rgba(212, 175, 55, 0.1); }
+    .admin-btn-sm { padding: 4px 10px; font-size: 0.8rem; }
+    .form-control-admin { background: #111; border: 1px solid #333; color: #fff; width: 100%; padding: 8px 12px; border-radius: 4px; }
+    .form-control-admin:focus { outline: none; border-color: var(--admin-gold); }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="admin-logo">
+      <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
+        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
+    </div>
+    
+    <nav class="admin-nav">
+      <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
+      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
+      <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
+      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
+      <a href="admin-coupons.html" class="admin-nav-item active"><i class="ti-gift"></i> Coupons & Offers</a>
+      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
+      <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
+    </nav>
+    
+    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="logoutAdmin()">
+        <i class="ti-power-off"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <h4 style="margin: 0;">Coupons & Offers</h4>
+      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
+          <i class="ti-user" style="color: #fff;"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      
+      <div class="admin-card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 style="margin: 0;">Manage Coupons</h5>
+          <button class="admin-btn" data-toggle="modal" data-target="#addCouponModal"><i class="ti-plus"></i> Create Coupon</button>
+        </div>
+        
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Discount</th>
+                <th>Min Cart Value</th>
+                <th>Validity</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminCouponsBody">
+              <tr><td colspan="6" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="adminCouponsPagination" class="mt-3"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Add Coupon Modal -->
+  <div class="modal fade" id="addCouponModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background:#0a0a0a; border: 1px solid #d4af37;">
+        <div class="modal-header" style="border-bottom: 1px solid #333;">
+          <h5 style="color:#d4af37; margin-bottom:0;">Create New Offer</h5>
+          <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="addCouponForm">
+            <div class="form-group mb-3">
+              <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Coupon Code</label>
+              <input type="text" class="form-control-admin" id="couponCode" required placeholder="e.g. SUMMER50">
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Discount Amount (₹)</label>
+                <input type="number" step="0.01" class="form-control-admin" id="discountAmount">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Discount Percentage (%)</label>
+                <input type="number" step="0.01" class="form-control-admin" id="discountPercentage">
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Minimum Cart Value (₹)</label>
+              <input type="number" step="0.01" class="form-control-admin" id="minCartValue" required>
+            </div>
+            <div class="form-group mb-3">
+              <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Description / Tagline</label>
+              <input type="text" class="form-control-admin" id="description" placeholder="e.g. Get 50% off on all items">
+            </div>
+            <div class="form-group mb-3">
+              <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Expiry Date</label>
+              <input type="datetime-local" class="form-control-admin" id="expiryDate">
+            </div>
+            <button type="submit" class="admin-btn" style="width:100%; margin-top:10px;">Save Coupon</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/admin-alert.js"></script>
+
+  <script>
+    async function loadAdminCoupons(page = 0) {
+      const tbody = document.getElementById('adminCouponsBody');
+      const pagContainer = document.getElementById('adminCouponsPagination');
+      
+      try {
+        const res = await fetch(`/api/admin/coupons?page=${page}&size=10`, { credentials: 'include' });
+        const data = await res.json();
+        
+        if (res.ok && data.success && data.data.content && data.data.content.length > 0) {
+          tbody.innerHTML = data.data.content.map(c => {
+            const statusBadge = c.active 
+              ? '<span class="badge-status badge-success">Active</span>' 
+              : '<span class="badge-status badge-danger">Inactive</span>';
+              
+            let discountStr = '';
+            if(c.discountAmount && c.discountAmount > 0) discountStr = `₹${c.discountAmount} OFF`;
+            else if(c.discountPercentage && c.discountPercentage > 0) discountStr = `${c.discountPercentage}% OFF`;
+            
+            return `
+              <tr>
+                <td style="color:#d4af37; font-weight:bold;">${c.code}</td>
+                <td>${discountStr}</td>
+                <td>₹${c.minCartValue || 0}</td>
+                <td>${c.expiryDate ? new Date(c.expiryDate).toLocaleDateString() : 'Never'}</td>
+                <td>${statusBadge}</td>
+                <td>
+                  <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="toggleCoupon(${c.id}, ${!c.active})" title="Toggle Active Status"><i class="ti-reload"></i></button>
+                  <button class="admin-btn admin-btn-sm" style="background:#ff4d4d; border-color:#ff4d4d;" onclick="deleteCoupon(${c.id})" title="Delete"><i class="ti-trash"></i></button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+
+          // Pagination
+          let pagHtml = '';
+          if (data.data.totalPages > 1) {
+            pagHtml += `<div class="d-flex justify-content-center mt-3" style="gap: 5px;">`;
+            for (let i = 0; i < data.data.totalPages; i++) {
+               const active = i === page ? 'background: #d4af37; color: #000;' : '';
+               pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" style="${active}" onclick="loadAdminCoupons(${i})">${i + 1}</button>`;
+            }
+            pagHtml += `</div>`;
+          }
+          pagContainer.innerHTML = pagHtml;
+        } else {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888;">No coupons found.</td></tr>';
+          pagContainer.innerHTML = '';
+        }
+      } catch(err) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#ff4d4d;">Failed to load coupons.</td></tr>';
+      }
+    }
+
+    async function toggleCoupon(id, active) {
+      if(!(await showConfirm(`Are you sure you want to ${active ? 'activate' : 'deactivate'} this coupon?`))) return;
+      try {
+        const res = await fetch(`/api/admin/coupons/${id}/status?active=${active}`, { method: 'PUT', credentials: 'include' });
+        const data = await res.json();
+        if(res.ok && data.success) loadAdminCoupons();
+        else alert(data.message || 'Error updating status');
+      } catch(e) { alert('Network Error'); }
+    }
+
+    async function deleteCoupon(id) {
+      if(!(await showConfirm(`Are you sure you want to permanently delete this coupon?`))) return;
+      try {
+        const res = await fetch(`/api/admin/coupons/${id}`, { method: 'DELETE', credentials: 'include' });
+        const data = await res.json();
+        if(res.ok && data.success) loadAdminCoupons();
+        else alert(data.message || 'Error deleting coupon');
+      } catch(e) { alert('Network Error'); }
+    }
+
+    document.getElementById('addCouponForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const payload = {
+        code: document.getElementById('couponCode').value,
+        discountAmount: document.getElementById('discountAmount').value || null,
+        discountPercentage: document.getElementById('discountPercentage').value || null,
+        minCartValue: document.getElementById('minCartValue').value || 0,
+        description: document.getElementById('description').value,
+        expiryDate: document.getElementById('expiryDate').value || null,
+        active: true
+      };
+
+      try {
+        const res = await fetch('/api/admin/coupons', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if(res.ok && data.success) {
+          alert('Coupon created successfully!');
+          $('#addCouponModal').modal('hide');
+          document.getElementById('addCouponForm').reset();
+          loadAdminCoupons();
+        } else {
+          alert(data.message || 'Failed to create coupon');
+        }
+      } catch(err) {
+        alert('Network Error');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => loadAdminCoupons(0));
+    
+    function logoutAdmin() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

@@ -1090,8 +1090,10 @@
                       id="modalOrderShipping">FREE</span></div>
                   <div id="modalOrderHandlingRow" class="d-flex justify-content-between mb-1"><span>Handling Charge</span><span
                       id="modalOrderHandling">Rs. 0.00</span></div>
-                  <div id="modalOrderPlatformRow" class="d-flex justify-content-between mb-1"><span>Platform Fee</span><span
+                  <div id="modalOrderPlatformRow" class="d-flex justify-content-between mb-1"><span>Packing Fees</span><span
                       id="modalOrderPlatform">Rs. 0.00</span></div>
+                  <div id="modalOrderPlatformServicesRow" class="d-flex justify-content-between mb-1" style="display:none!important;"><span>Platform Services Fees</span><span
+                      id="modalOrderPlatformServices">Rs. 0.00</span></div>
                   <div class="d-flex justify-content-between mb-1"><span>Discount</span><span
                       id="modalOrderDiscount">Rs. 0.00</span></div>
                   <div class="d-flex justify-content-between mt-2"
@@ -1246,6 +1248,21 @@
               <button class="btn btn-secondary" data-dismiss="modal" style="flex:1; border-radius:8px; background:#222; border:1px solid #333; color:#aaa;">Go Back</button>
               <button id="orderActionSubmitBtn" onclick="submitOrderAction()" style="flex:2; border-radius:8px; padding:12px; font-weight:700; font-size:13px; border:none; cursor:pointer; transition:all 0.3s;">Confirm</button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Ticket Modal -->
+    <div class="modal fade" id="view_ticket_modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" style="background:#0a0a0a; border: 1px solid #d4af37;">
+          <div class="modal-header" style="border-bottom: 1px solid #333;">
+            <h5 style="color:#d4af37; margin-bottom: 0;" id="vt_title">Ticket Details</h5>
+            <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>
+          </div>
+          <div class="modal-body p-4" id="vt_body">
+            <!-- Populated via JS -->
           </div>
         </div>
       </div>
@@ -1446,13 +1463,13 @@
         }
 
         listEl.innerHTML = blends.map((b, idx) => `
-        <div class="blend-card">
+        <div class="blend-card" style="cursor: pointer;" onclick="window.location.href='customize.html?blend=${idx}'">
           <div class="blend-icon-box"><i class="fas fa-flask"></i></div>
           <div class="blend-info">
             <div class="blend-name">${b.name}</div>
             <div class="blend-meta">Saved on ${b.date} · ${b.iconA && b.iconB ? 'Multi-scent mix' : 'Custom blend'}</div>
           </div>
-          <button class="btn-action" style="color:#ff4d4d" onclick="deleteBlend(${idx})"><i class="ti-trash"></i></button>
+          <button class="btn-action" style="color:#ff4d4d; position: relative; z-index: 2;" onclick="event.stopPropagation(); deleteBlend(${idx})"><i class="ti-trash"></i></button>
         </div>
       `).join('');
       }
@@ -1963,6 +1980,14 @@
           document.getElementById('modalOrderPlatformRow').style.display = 'none';
         }
 
+        const platformServices = parseFloat(order.platformServicesFee || 0);
+        if (platformServices > 0) {
+          document.getElementById('modalOrderPlatformServicesRow').style.display = 'flex';
+          document.getElementById('modalOrderPlatformServices').textContent = `Rs. ${platformServices.toFixed(2)}`;
+        } else {
+          document.getElementById('modalOrderPlatformServicesRow').style.display = 'none';
+        }
+
         document.getElementById('modalOrderDiscount').textContent = `Rs. ${parseFloat(order.discount).toFixed(2)}`;
         document.getElementById('modalOrderTotal').textContent = `Rs. ${parseFloat(order.total).toFixed(2)}`;
 
@@ -2170,20 +2195,22 @@
         submitBtn.textContent = 'Submitting...';
 
         try {
-          const payload = {
-            subject: subject,
-            message: message
-          };
-          if (orderId) {
-            payload.orderId = orderId;
-          }
+          const formData = new FormData();
+          formData.append('subject', subject);
+          formData.append('message', message);
+          
+          let pName = (document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value).trim();
+          let pEmail = document.getElementById('emailInput').value;
+          let pPhone = document.getElementById('phoneInput').value;
+          
+          if (pName) formData.append('name', pName);
+          if (pEmail) formData.append('email', pEmail);
+          if (pPhone) formData.append('mobileNo', pPhone);
+          if (orderId) formData.append('orderId', orderId);
 
           const res = await fetch(`${BASE_URL}/api/contact/submit-ticket`, {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload),
+            body: formData,
             credentials: 'include'
           });
 
@@ -2206,7 +2233,7 @@
         }
       };
 
-      async function loadSupportTickets() {
+      async function loadSupportTickets(page = 0) {
         const container = document.getElementById('ticketsListContainer');
         if (!container) return;
 
@@ -2218,11 +2245,17 @@
         `;
 
         try {
-          const res = await fetch(`${BASE_URL}/api/contact/my-tickets`, { credentials: 'include' });
+          const res = await fetch(`${BASE_URL}/api/contact/my-tickets?page=${page}&size=5`, { credentials: 'include' });
           if (res.ok) {
             const data = await res.json();
-            if (data.success && data.data && data.data.length > 0) {
-              container.innerHTML = data.data.map(tkt => {
+            
+            // For backward compatibility if not paginated or paginated response
+            const tickets = data.data && data.data.content ? data.data.content : (Array.isArray(data.data) ? data.data : []);
+            const totalPages = data.data && data.data.totalPages ? data.data.totalPages : 1;
+
+            if (tickets.length > 0) {
+              const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+              const ticketsHtml = tickets.map(tkt => {
                 const date = new Date(tkt.createdAt).toLocaleDateString('en-IN', {
                   day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
                 });
@@ -2233,66 +2266,45 @@
                   badgeStyle = 'background: #001a1a; color: #3be0e0; border: 1px solid #113d3d;';
                 }
 
-                // Render nested status events timeline
-                let eventsHtml = '';
-                if (tkt.events && tkt.events.length > 0) {
-                  eventsHtml = `
-                    <div style="margin-top: 15px; border-top: 1px solid #1a1a1a; padding-top: 12px;">
-                      <div style="font-size: 11px; color: #666; text-transform: uppercase; margin-bottom: 10px; font-weight: bold; letter-spacing: 0.5px;"><i class="ti-time"></i> Ticket History Timeline</div>
-                      <div class="ticket-events-timeline">
-                        ${tkt.events.map((evt, idx) => {
-                          const evtDate = new Date(evt.createdAt).toLocaleDateString('en-IN', {
-                            day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
-                          });
-                          const isLast = idx === tkt.events.length - 1;
-                          return `
-                            <div class="ticket-event-item ${isLast ? 'active' : ''}">
-                              <div class="ticket-event-circle"></div>
-                              <div class="ticket-event-meta">
-                                <span style="color: #d4af37; font-weight: bold; text-transform: uppercase; font-size: 10px;">${evt.status}</span>
-                                <span style="margin-left: 8px; color: #555;">${evtDate}</span>
-                              </div>
-                              <div class="ticket-event-note">${evt.note || ''}</div>
-                            </div>
-                          `;
-                        }).join('')}
-                      </div>
-                    </div>
-                  `;
-                } else {
-                  eventsHtml = `
-                    <div style="margin-top: 15px; border-top: 1px solid #1a1a1a; padding-top: 12px;">
-                      <div style="font-size: 11px; color: #666; text-transform: uppercase; margin-bottom: 10px; font-weight: bold; letter-spacing: 0.5px;"><i class="ti-time"></i> Ticket History Timeline</div>
-                      <div class="ticket-events-timeline">
-                        <div class="ticket-event-item active">
-                          <div class="ticket-event-circle"></div>
-                          <div class="ticket-event-meta">
-                            <span style="color: #d4af37; font-weight: bold; text-transform: uppercase; font-size: 10px;">OPEN</span>
-                            <span style="margin-left: 8px; color: #555;">${date}</span>
-                          </div>
-                          <div class="ticket-event-note">Support ticket created successfully. Our team will review it shortly.</div>
-                        </div>
-                      </div>
-                    </div>
-                  `;
-                }
+                // Stringify the ticket object to pass it to the onclick handler
+                const tktJson = JSON.stringify(tkt).replace(/"/g, '&quot;');
+                const deleteBtnHtml = isDev ? `<button class="btn btn-sm btn-danger" style="margin-left:8px; padding: 6px 12px; font-size: 11px;" onclick="deleteTicket('${tkt.ticketId}')" title="Delete Ticket (Dev)"><i class="ti-trash"></i></button>` : '';
 
                 return `
-                  <div style="background:#0d0d0d; border:1px solid #222; border-radius:10px; padding:15px; margin-bottom:15px;">
-                    <div class="d-flex justify-content-between align-items-center mb-2" style="border-bottom: 1px solid #1a1a1a; padding-bottom: 8px;">
-                      <div>
+                  <div style="background:#0d0d0d; border:1px solid #222; border-radius:10px; padding:15px; margin-bottom:15px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                      <div class="mb-2">
                         <strong style="color:#d4af37; font-size:14px;">${tkt.ticketId}</strong>
                         <span style="font-size:12px; color:#666; margin-left:10px;">${date}</span>
+                        <span style="font-size:10px; font-weight:bold; padding:3px 8px; border-radius:15px; text-transform:uppercase; margin-left:10px; ${badgeStyle}">${tkt.status}</span>
                       </div>
-                      <span style="font-size:10px; font-weight:bold; padding:3px 8px; border-radius:15px; text-transform:uppercase; ${badgeStyle}">${tkt.status}</span>
+                      <div style="font-size:14px; font-weight:600; color:#fff;">${tkt.subject}</div>
                     </div>
-                    <div style="font-size:13px; font-weight:600; color:#fff; margin-bottom:5px;">Subject: ${tkt.subject}</div>
-                    <div style="font-size:13px; color:#bbb; white-space: pre-line; margin-bottom:10px;">${tkt.message}</div>
-                    ${tkt.orderId ? `<div style="font-size:11px; color:#888; margin-top:8px; margin-bottom:4px;"><i class="fas fa-receipt"></i> Linked to Order ID: RASA-${tkt.orderId}</div>` : ''}
-                    ${eventsHtml}
+                    <div class="d-flex align-items-center">
+                      <button class="btn-gold" style="padding: 8px 16px; font-size: 11px;" onclick="openTicketModal(${tktJson})">View Details</button>
+                      ${deleteBtnHtml}
+                    </div>
                   </div>
                 `;
               }).join('');
+
+              let paginationHtml = '';
+              if (totalPages > 1) {
+                paginationHtml = `<div class="d-flex justify-content-center mt-3" style="gap: 5px;">`;
+                if (page > 0) {
+                  paginationHtml += `<button class="btn btn-sm btn-outline-gold" style="color: #d4af37; border: 1px solid #d4af37; background: transparent;" onclick="loadSupportTickets(${page - 1})">Prev</button>`;
+                }
+                for (let i = 0; i < totalPages; i++) {
+                  const activeStyle = i === page ? 'background: #d4af37; color: #000; border: 1px solid #d4af37;' : 'color: #d4af37; border: 1px solid #d4af37; background: transparent;';
+                  paginationHtml += `<button class="btn btn-sm" style="${activeStyle}" onclick="loadSupportTickets(${i})">${i + 1}</button>`;
+                }
+                if (page < totalPages - 1) {
+                  paginationHtml += `<button class="btn btn-sm btn-outline-gold" style="color: #d4af37; border: 1px solid #d4af37; background: transparent;" onclick="loadSupportTickets(${page + 1})">Next</button>`;
+                }
+                paginationHtml += `</div>`;
+              }
+
+              container.innerHTML = ticketsHtml + paginationHtml;
               return;
             }
           }
@@ -2301,6 +2313,95 @@
           console.error('Failed to load tickets', e);
           container.innerHTML = `<div style="text-align:center; padding:20px; color:#ff4d4d;">Failed to load tickets.</div>`;
         }
+      }
+
+      window.deleteTicket = async function(ticketId) {
+        if (!confirm('Are you sure you want to permanently delete this ticket? (Dev mode only)')) return;
+        try {
+          const res = await fetch(`${BASE_URL}/api/contact/ticket/${ticketId}`, {
+            method: 'DELETE',
+            credentials: 'include'
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            alert('Ticket deleted permanently');
+            loadSupportTickets(0); // reload first page
+          } else {
+            alert(data.message || 'Failed to delete ticket');
+          }
+        } catch(e) {
+          console.error(e);
+          alert('Network error while deleting ticket');
+        }
+      };
+
+      function openTicketModal(tkt) {
+        const date = new Date(tkt.createdAt).toLocaleDateString('en-IN', {
+          day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+        let badgeStyle = 'background: #1a1a00; color: #d4af37; border: 1px solid #3d3d11;';
+        if (tkt.status === 'RESOLVED') badgeStyle = 'background: #0a1a00; color: #25d366; border: 1px solid #1c3d11;';
+        else if (tkt.status === 'IN_PROGRESS') badgeStyle = 'background: #001a1a; color: #3be0e0; border: 1px solid #113d3d;';
+        
+        let eventsHtml = '';
+        if (tkt.events && tkt.events.length > 0) {
+          eventsHtml = `
+            <div style="margin-top: 20px; border-top: 1px solid #222; padding-top: 20px;">
+              <div style="font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 15px; font-weight: bold; letter-spacing: 0.5px;"><i class="ti-time"></i> Ticket History Timeline</div>
+              <div class="ticket-events-timeline">
+                ${tkt.events.map((evt, idx) => {
+                  const evtDate = new Date(evt.createdAt).toLocaleDateString('en-IN', {
+                    day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+                  });
+                  const isLast = idx === tkt.events.length - 1;
+                  return `
+                    <div class="ticket-event-item ${isLast ? 'active' : ''}">
+                      <div class="ticket-event-circle"></div>
+                      <div class="ticket-event-meta">
+                        <span style="color: #d4af37; font-weight: bold; text-transform: uppercase; font-size: 11px;">${evt.status}</span>
+                        <span style="margin-left: 8px; color: #555;">${evtDate}</span>
+                      </div>
+                      <div class="ticket-event-note" style="color: #bbb; font-size: 13px;">${evt.note || ''}</div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        } else {
+          eventsHtml = `
+            <div style="margin-top: 20px; border-top: 1px solid #222; padding-top: 20px;">
+              <div style="font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 15px; font-weight: bold; letter-spacing: 0.5px;"><i class="ti-time"></i> Ticket History Timeline</div>
+              <div class="ticket-events-timeline">
+                <div class="ticket-event-item active">
+                  <div class="ticket-event-circle"></div>
+                  <div class="ticket-event-meta">
+                    <span style="color: #d4af37; font-weight: bold; text-transform: uppercase; font-size: 11px;">OPEN</span>
+                    <span style="margin-left: 8px; color: #555;">${date}</span>
+                  </div>
+                  <div class="ticket-event-note" style="color: #bbb; font-size: 13px;">Support ticket created successfully. Our team will review it shortly.</div>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        document.getElementById('vt_title').textContent = 'Ticket: ' + tkt.ticketId;
+        document.getElementById('vt_body').innerHTML = `
+          <div class="d-flex justify-content-between align-items-center mb-3 pb-3" style="border-bottom: 1px solid #222;">
+            <div>
+              <span style="font-size:13px; color:#888;">Submitted on ${date}</span>
+            </div>
+            <span style="font-size:11px; font-weight:bold; padding:4px 10px; border-radius:15px; text-transform:uppercase; ${badgeStyle}">${tkt.status}</span>
+          </div>
+          <div style="font-size:15px; font-weight:600; color:#fff; margin-bottom:10px;">Subject: ${tkt.subject}</div>
+          <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #222;">
+            <div style="font-size:14px; color:#ddd; white-space: pre-line;">${tkt.message}</div>
+          </div>
+          ${tkt.orderId ? `<div style="font-size:13px; color:#d4af37; margin-top:15px;"><i class="fas fa-receipt"></i> Linked to Order ID: RASA-${tkt.orderId}</div>` : ''}
+          ${eventsHtml}
+        `;
+        $('#view_ticket_modal').modal('show');
       }
 
       function toggleAccordion(id, el) {

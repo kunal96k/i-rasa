@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I-Rasa Perfumes - Admin Payments</title>
+  
+  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    :root { --admin-bg: #0a0a0a; --admin-surface: #111111; --admin-text: #e0e0e0; --admin-gold: #d4af37; --admin-gold-hover: #e5c158; --admin-border: #333333; }
+    body { background-color: var(--admin-bg); color: var(--admin-text); font-family: 'Inter', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--admin-bg); }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--admin-gold); }
+    body.modal-open { padding-right: 0 !important; }
+    h1, h2, h3, h4, h5, h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
+    .admin-sidebar { width: 260px; background-color: var(--admin-surface); border-right: 1px solid var(--admin-border); display: flex; flex-direction: column; flex-shrink: 0; }
+    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); }
+    .admin-nav { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
+    .admin-nav-item { padding: 12px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
+    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212, 175, 55, 0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); }
+    .admin-nav-item i { margin-right: 15px; font-size: 1.2rem; width: 24px; text-align: center; }
+    .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .admin-header { height: 70px; background-color: var(--admin-surface); border-bottom: 1px solid var(--admin-border); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; flex-shrink: 0; }
+    .admin-content { flex-grow: 1; padding: 30px; overflow-y: auto; }
+    .admin-card { background-color: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    .admin-table { width: 100%; color: var(--admin-text); border-collapse: collapse; }
+    .admin-table th { text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--admin-border); color: var(--admin-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .admin-table td { padding: 15px; border-bottom: 1px solid var(--admin-border); vertical-align: middle; font-size: 0.95rem; }
+    .admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; margin: 5px; }
+    .admin-btn-outline { background-color: transparent; color: var(--admin-gold); border: 1px solid var(--admin-gold); }
+  </style>
+</head>
+<body>
+
+  <aside class="admin-sidebar">
+    <div class="admin-logo">
+      <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
+        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
+    </div>
+    
+    <nav class="admin-nav">
+      <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
+      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
+      <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
+      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
+      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
+      <a href="admin-payments.html" class="admin-nav-item active"><i class="ti-credit-card"></i> Payments</a>
+      <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
+    </nav>
+    
+    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="window.location.href='index.html'">
+        <i class="ti-power-off"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-header">
+      <h4 style="margin: 0;">Payment Transactions</h4>
+      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;"><i class="ti-user" style="color: #fff;"></i></div>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      <div class="admin-card">
+        <h5 style="margin-bottom: 20px;">Transactions</h5>
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Order ID</th>
+                <th>Method</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="6" style="text-align:center;">Module Coming Soon...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/admin-alert.js"></script>
+</body>
+</html>

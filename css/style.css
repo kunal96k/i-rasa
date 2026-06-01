@@ -710,6 +710,56 @@ a {
         box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25) !important;
     }
 
+    .header_topbar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        background: rgba(212, 175, 55, 0.06);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+    }
+
+    .header_topbar .topbar-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        background: rgba(255, 255, 255, 0.95);
+        color: #111;
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        transition: all 0.25s ease;
+    }
+
+    .header_topbar .topbar-btn:hover {
+        transform: translateY(-1px);
+        background: rgba(212, 175, 55, 0.15);
+        color: #000;
+        border-color: #d4af37;
+    }
+
+    .header_topbar .topbar-btn-whatsapp {
+        background: #25d366;
+        color: #fff;
+        border-color: #25d366;
+    }
+
+    .header_topbar .topbar-btn-whatsapp:hover {
+        background: #1ebc5a;
+        border-color: #1ebc5a;
+    }
+
+    @media (max-width: 991px) {
+        .header_topbar {
+            display: none !important;
+        }
+    }
+
     .header_area .navbar-collapse {
         position: fixed !important;
         top: 0 !important;
@@ -6463,9 +6513,22 @@ input[type=number] {
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
     }
 
+    @media (max-width: 575.98px) {
+      .header_area .navbar-collapse,
+      .header_area .navbar-collapse.offset.collapsing,
+      .header_area .navbar-collapse.offset.show,
+      .header_area .navbar-collapse.show,
+      .header_area .navbar-collapse.collapsing {
+          max-height: calc(100vh - 90px) !important;
+          overflow-y: auto !important;
+          overflow-x: hidden !important;
+          -webkit-overflow-scrolling: touch !important;
+      }
+    }
+
     .header_area .navbar-nav {
         padding: 20px 20px 0 20px !important;
-    }
+    
 
     .header_area .nav-shop {
         padding: 10px 20px 20px 20px !important;
@@ -6873,3 +6936,380 @@ html {
 /* Hide Bottle Return Offer for Online Shopping */
 .eco-offer-box { display: none !important; }
 
+/* ============================================
+   I RASA — PREMIUM OFFER SECTION
+   ============================================ */
+
+.irasa-offer-section {
+    background: linear-gradient(160deg, #080808 0%, #111 50%, #080808 100%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.irasa-offer-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
+}
+
+.irasa-offer-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
+}
+
+.irasa-offer-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Section Header --- */
+.irasa-offer-header {
+    margin-bottom: 56px;
+}
+
+.irasa-offer-eyebrow {
+    display: inline-block;
+    font-family: "Michroma", sans-serif !important;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    padding: 6px 20px;
+    border-radius: 30px;
+    margin-bottom: 18px;
+}
+
+.irasa-offer-title {
+    font-family: "Cormorant Garamond", serif !important;
+    font-size: 48px;
+    font-style: italic;
+    color: #fff;
+    margin-bottom: 14px;
+    line-height: 1.15;
+}
+
+.irasa-offer-title--accent {
+    color: #d4af37;
+}
+
+.irasa-offer-subtitle {
+    color: #aaa;
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* --- Cards Grid: 2 equal columns, no gap issues --- */
+.irasa-offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* --- Individual Card --- */
+.irasa-offer-card {
+    position: relative;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 16px;
+    padding: 44px 36px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.irasa-offer-card:hover {
+    transform: translateY(-6px);
+    border-color: #d4af37;
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.18);
+}
+
+/* Glow blob */
+.irasa-offer-card__glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+    top: -60px; right: -60px;
+    pointer-events: none;
+    border-radius: 50%;
+    transition: opacity 0.4s;
+}
+
+.irasa-offer-card:hover .irasa-offer-card__glow {
+    opacity: 1.5;
+}
+
+.irasa-offer-card__glow--featured {
+    background: radial-gradient(circle, rgba(255,215,0,0.18) 0%, transparent 70%);
+}
+
+/* Featured card — slightly elevated style */
+.irasa-offer-card--featured {
+    border-color: #d4af37;
+    background: linear-gradient(160deg, #0f0f0f 0%, #181408 100%);
+    box-shadow: 0 8px 40px rgba(212, 175, 55, 0.1);
+}
+
+/* Ribbon */
+.irasa-offer-card__ribbon {
+    position: absolute;
+    top: 18px; right: -28px;
+    background: linear-gradient(135deg, #d4af37, #aa8422);
+    color: #000;
+    font-family: "Michroma", sans-serif !important;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 40px;
+    transform: rotate(40deg);
+    box-shadow: 0 2px 10px rgba(212,175,55,0.4);
+}
+
+/* Icon circle */
+.irasa-offer-card__icon-wrap {
+    margin-bottom: 18px;
+}
+
+.irasa-offer-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #d4af37;
+    font-size: 24px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.irasa-offer-card:hover .irasa-offer-card__icon {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(1.1);
+}
+
+/* Badge pill */
+.irasa-offer-card__badge {
+    display: inline-block;
+    background: #d4af37;
+    color: #000;
+    font-family: "Michroma", sans-serif !important;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+/* Title */
+.irasa-offer-card__title {
+    font-family: "Cormorant Garamond", serif !important;
+    font-size: 36px !important;
+    font-style: italic;
+    color: #fff !important;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+/* Sub-heading */
+.irasa-offer-card__sub {
+    font-family: "Playfair Display", serif !important;
+    font-size: 17px !important;
+    color: #ffd700 !important;
+    font-weight: 300;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.irasa-offer-card__sub strong {
+    font-weight: 700;
+    color: #d4af37;
+}
+
+/* Divider */
+.irasa-offer-card__divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    margin: 22px auto;
+}
+
+/* Body text */
+.irasa-offer-card__text {
+    font-size: 15px;
+    color: #bbb;
+    line-height: 1.75;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+/* CTA Button */
+.irasa-offer-card__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #d4af37 !important;
+    border: 1.5px solid #d4af37;
+    font-family: "Michroma", sans-serif !important;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 13px 32px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+.irasa-offer-card__btn:hover {
+    background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+    color: #000 !important;
+    border-color: transparent;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    transform: translateY(-2px);
+}
+
+.irasa-offer-card__btn--featured {
+    background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+    color: #000 !important;
+    border-color: transparent;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
+}
+
+.irasa-offer-card__btn--featured:hover {
+    background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+    color: #000 !important;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.55);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .irasa-offer-section {
+        padding: 60px 0;
+    }
+
+    .irasa-offer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .irasa-offer-title {
+        font-size: 36px;
+    }
+
+    .irasa-offer-card {
+        padding: 36px 24px 32px;
+    }
+
+    .irasa-offer-card__title {
+        font-size: 28px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .irasa-offer-title {
+        font-size: 28px;
+    }
+
+    .irasa-offer-card__title {
+        font-size: 24px !important;
+    }
+
+    .irasa-offer-card__sub {
+        font-size: 15px !important;
+    }
+
+    .irasa-offer-wrap {
+        padding: 0 15px;
+    }
+}
+
+/* ============================================
+   BLOG CARDS — EQUAL HEIGHT & POLISH
+   ============================================ */
+
+/* Row equal height: stretch all flex children */
+.row.row-eq-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Push Read More link to the very bottom of each card */
+.card-blog .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-blog .card-body p {
+    flex-grow: 1;
+}
+
+.card-blog__link {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: "Michroma", sans-serif !important;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #d4af37 !important;
+    transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.card-blog__link i {
+    transition: transform 0.3s ease;
+}
+
+.card-blog:hover .card-blog__link i {
+    transform: translateX(5px);
+}
+
+/* Blog card dark theme match */
+.card-blog {
+    background: #0e0e0e !important;
+    border: 1px solid rgba(212, 175, 55, 0.15) !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-blog:hover {
+    border-color: rgba(212, 175, 55, 0.5) !important;
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.1);
+    transform: translateY(-4px);
+}
+
+.card-blog__img img {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-blog:hover .card-blog__img img {
+    transform: scale(1.04);
+}

@@ -3,7 +3,7 @@
 
 <head>
   <meta name="description"
-    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 299.">
+    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 399.">
   <meta name="keywords"
     content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
   <meta name="author" content="Technokraft services LLP">
@@ -186,7 +186,7 @@
                 style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase;">i rasa</h4>
               <p>
                 I Rasa Perfumes provides the finest fragrances across India. Our expertly crafted perfumes bring you a
-                touch of elegance and luxury every day. Starting at just ₹ 299.
+                touch of elegance and luxury every day. Starting at just ₹ 399.
               </p>
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
@@ -287,7 +287,7 @@
             <div class="col-md-6">
               <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
               </h2>
-              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">₹ 299</p>
+              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">₹ 399</p>
               <div class="stars mb-3">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -421,12 +421,17 @@
           `<tr style="background: #111; border-bottom: 1px solid #222;">
             <td style="padding: 12px 16px;"><h5 style="color: #bbb; margin: 0; font-weight: 600;">Handling Charge</h5></td>
             <td style="padding: 12px 16px;"></td>
-            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${formatINR(o.handlingCharge || 7)}</p></td>
+            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${formatINR(o.handlingCharge || 10)}</p></td>
           </tr>` +
           `<tr style="background: #111; border-bottom: 1px solid #222;">
-            <td style="padding: 12px 16px;"><h5 style="color: #bbb; margin: 0; font-weight: 600;">Platform Fee</h5></td>
+            <td style="padding: 12px 16px;"><h5 style="color: #bbb; margin: 0; font-weight: 600;">Packing Fees</h5></td>
             <td style="padding: 12px 16px;"></td>
-            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${formatINR(o.platformFee || 5)}</p></td>
+            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${formatINR(o.platformFee || 35)}</p></td>
+          </tr>` +
+          `<tr style="background: #111; border-bottom: 1px solid #222;">
+            <td style="padding: 12px 16px;"><h5 style="color: #bbb; margin: 0; font-weight: 600;">Platform Services Fees</h5></td>
+            <td style="padding: 12px 16px;"></td>
+            <td style="padding: 12px 16px; text-align: right; color: #eee;"><p style="margin: 0;">${formatINR(o.platformServicesFee || 5)}</p></td>
           </tr>` +
           `<tr style="background: #1a1a1a; border-top: 2px solid #d4af37; border-bottom: 2px solid #d4af37;">
             <td style="padding: 16px;"><h4 style="color: #ffd700; margin: 0; font-weight: 700; font-size: 18px;">Total Amount</h4></td>

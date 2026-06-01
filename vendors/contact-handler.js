@@ -1,4 +1,6 @@
 // Contact form handler with API integration and toast notifications
+const API_BASE_CONTACT = window.location.hostname ? `http://${window.location.hostname}:8080` : 'http://localhost:8080';
+
 document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contactForm');
     
@@ -9,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Get form data
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
+            const mobileNo = document.getElementById('mobileNo') ? document.getElementById('mobileNo').value.trim() : '';
             const subject = document.getElementById('subject').value.trim();
             const message = document.getElementById('message').value.trim();
 
@@ -31,18 +34,17 @@ document.addEventListener('DOMContentLoaded', function () {
             submitBtn.textContent = '⏳ Submitting...';
 
             try {
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('email', email);
+                if (mobileNo) formData.append('mobileNo', mobileNo);
+                formData.append('subject', subject);
+                formData.append('message', message);
+
                 // Submit to backend API
-                const response = await fetch('/api/contact/submit-ticket', {
+                const response = await fetch(`${API_BASE_CONTACT}/api/contact/submit-enquiry`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        subject: subject,
-                        message: message
-                    })
+                    body: formData
                 });
 
                 const data = await response.json();

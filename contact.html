@@ -3,7 +3,7 @@
 
 <head>
   <meta name="description"
-    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 299.">
+    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 399.">
   <meta name="keywords"
     content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
   <meta name="author" content="Technokraft services LLP">
@@ -27,6 +27,10 @@
 <body>
   <!--================ Start Header Menu Area =================-->
   <header class="header_area">
+    <div class="header_topbar d-none d-lg-flex align-items-center justify-content-end">
+      <a class="topbar-btn topbar-btn-shop" href="category.html"><i class="fas fa-shopping-bag"></i> Shop</a>
+      <a class="topbar-btn topbar-btn-whatsapp" href="https://wa.me/919823833303?text=Hello%20I%27m%20interested%20in%20ordering%20from%20I%20Rasa%20Perfumes." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -152,7 +156,7 @@
           </div>
         </div>
         <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-8 col-lg-9">
-          <form action="#/" class="form-contact contact_form" id="contactForm" novalidate="novalidate">
+          <form action="#" onsubmit="showSuccessToast(event)" class="form-contact contact_form" id="contactForm" novalidate="novalidate">
             <div class="row">
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-5">
                 <div class="form-group">
@@ -162,13 +166,16 @@
                   <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address">
                 </div>
                 <div class="form-group">
-                  <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject">
+                  <input class="form-control" name="mobileNo" id="mobileNo" type="tel" placeholder="Enter mobile number" pattern="[0-9]{10,15}">
+                </div>
+                <div class="form-group">
+                  <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject" minlength="2" maxlength="100" required>
                 </div>
               </div>
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-7">
                 <div class="form-group">
                   <textarea class="form-control different-control w-100" name="message" id="message" cols="30" rows="5"
-                    placeholder="Enter Message"></textarea>
+                    placeholder="Enter Message" minlength="10" maxlength="1000" required></textarea>
                 </div>
               </div>
             </div>
@@ -192,7 +199,7 @@
                 style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase;">i rasa</h4>
               <p>
                 I Rasa Perfumes provides the finest fragrances across India. Our expertly crafted perfumes bring you a
-                touch of elegance and luxury every day. Starting at just Rs. 299.
+                touch of elegance and luxury every day. Starting at just Rs. 399.
               </p>
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
@@ -293,7 +300,7 @@
             <div class="col-md-6">
               <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
               </h2>
-              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
+              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 399</p>
               <div class="rating mb-3">
                 <i class="fas fa-star" style="color: #ffd700;"></i>
                 <i class="fas fa-star" style="color: #ffd700;"></i>
@@ -331,6 +338,47 @@
   <script>AOS.init();</script>
 
   <script src="js/auth-guard.js"></script>
+	<script>
+		// Toast Notification System
+		function showSuccessToast(e) {
+			e.preventDefault(); // Prevent page reload
+			
+			// Create toast container if it doesn't exist
+			let toastContainer = document.getElementById('toast-container');
+			if (!toastContainer) {
+				toastContainer = document.createElement('div');
+				toastContainer.id = 'toast-container';
+				toastContainer.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;';
+				document.body.appendChild(toastContainer);
+			}
+
+			// Create toast element
+			const toast = document.createElement('div');
+			toast.style.cssText = 'background: #111; border-left: 4px solid #d4af37; color: #fff; padding: 15px 25px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); font-weight: bold; opacity: 0; transform: translateX(100%); transition: all 0.3s ease; display: flex; align-items: center; gap: 10px; font-family: "Michroma", sans-serif; font-size: 12px;';
+			toast.innerHTML = '<i class="fas fa-check-circle" style="color: #d4af37; font-size: 16px;"></i> Message Sent Successfully!';
+			
+			toastContainer.appendChild(toast);
+
+			// Animate in
+			setTimeout(() => {
+				toast.style.opacity = '1';
+				toast.style.transform = 'translateX(0)';
+			}, 10);
+
+			// Animate out and remove after 3 seconds
+			setTimeout(() => {
+				toast.style.opacity = '0';
+				toast.style.transform = 'translateX(100%)';
+				setTimeout(() => toast.remove(), 300);
+			}, 3000);
+
+			// Clear form
+			if (e.target.tagName === 'FORM') {
+				e.target.reset();
+			}
+		}
+	</script>
+  <script src="js/form-validator.js"></script>
 </body>
 
 </html>

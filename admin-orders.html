@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I-Rasa Perfumes - Admin Orders</title>
+  
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- SheetJS for Excel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <!-- html2pdf for PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    :root { --admin-bg: #0a0a0a; --admin-surface: #111111; --admin-text: #e0e0e0; --admin-gold: #d4af37; --admin-gold-hover: #e5c158; --admin-border: #333333; }
+    body { background-color: var(--admin-bg); color: var(--admin-text); font-family: 'Inter', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #f0f0f0; }
+    ::-webkit-scrollbar-thumb { background: #cccccc; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #aaaaaa; }
+    body.modal-open { padding-right: 0 !important; }
+    h1, h2, h3, h4, h5, h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
+    .admin-sidebar { width: 260px; background-color: var(--admin-surface); border-right: 1px solid var(--admin-border); display: flex; flex-direction: column; flex-shrink: 0; }
+    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); }
+    .admin-nav { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
+    .admin-nav-item { padding: 12px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
+    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212, 175, 55, 0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); }
+    .admin-nav-item i { margin-right: 15px; font-size: 1.2rem; width: 24px; text-align: center; }
+    .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .admin-header { height: 70px; background-color: var(--admin-surface); border-bottom: 1px solid var(--admin-border); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; flex-shrink: 0; }
+    .admin-content { flex-grow: 1; padding: 30px; overflow-y: auto; }
+    .admin-card { background-color: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    .admin-table { width: 100%; color: var(--admin-text); border-collapse: collapse; }
+    .admin-table th { text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--admin-border); color: var(--admin-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .admin-table td { padding: 15px; border-bottom: 1px solid var(--admin-border); vertical-align: middle; font-size: 0.95rem; }
+    .admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; margin: 5px; }
+    .admin-btn-outline { background-color: transparent; color: var(--admin-gold); border: 1px solid var(--admin-gold); }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="admin-logo">
+      <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
+        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i rasa</span>
+      </a>
+    </div>
+    
+    <nav class="admin-nav">
+      <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
+      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
+      <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
+      <a href="admin-orders.html" class="admin-nav-item active"><i class="ti-shopping-cart-full"></i> Orders</a>
+      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
+      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
+      <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
+    </nav>
+    
+    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="window.location.href='index.html'">
+        <i class="ti-power-off"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <h4 style="margin: 0;">Order Management</h4>
+      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;"><i class="ti-user" style="color: #fff;"></i></div>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      <div class="admin-card">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4" style="gap: 15px;">
+          <h5 style="margin: 0; min-width: 150px;">All Orders</h5>
+          <div class="d-flex flex-wrap align-items-center" style="gap: 10px;">
+            <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Excel</button>
+            <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="exportToPDF()"><i class="fas fa-file-pdf"></i> PDF</button>
+            <button class="admin-btn admin-btn-sm admin-btn-outline mr-2" onclick="printTable()"><i class="fas fa-print"></i> Print</button>
+            
+            <input type="date" id="orderStartDate" class="form-control" style="background: #111; border: 1px solid #333; color: #fff; width: auto; font-size: 0.85rem;" title="Start Date">
+            <span style="color: #666;">to</span>
+            <input type="date" id="orderEndDate" class="form-control" style="background: #111; border: 1px solid #333; color: #fff; width: auto; font-size: 0.85rem;" title="End Date">
+            
+            <input type="text" id="orderSearch" class="form-control" placeholder="Search ID or name..." style="background: #111; border: 1px solid #333; color: #fff; width: 180px;">
+            <select class="form-control" style="background: #111; border: 1px solid #333; color: #fff; width: auto;" id="orderPageSize">
+              <option value="25" selected>25 / Page</option>
+              <option value="50">50 / Page</option>
+              <option value="100">100 / Page</option>
+            </select>
+            <select class="form-control" style="background: #111; border: 1px solid #333; color: #fff; width: auto;" id="orderFilter">
+              <option value="ALL">All Status</option>
+              <option value="PENDING">Pending</option>
+              <option value="CONFIRMED">Confirmed</option>
+              <option value="PROCESSING">Processing</option>
+              <option value="SHIPPED">Shipped</option>
+              <option value="DELIVERED">Delivered</option>
+              <option value="CANCELLED">Cancelled</option>
+              <option value="REFUNDED">Refunded</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto;" id="tableContainer">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th style="min-width:130px;">Status</th>
+                <th style="min-width:140px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminOrdersBody">
+              <tr>
+                <td colspan="7" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading orders...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="adminOrdersPagination" class="mt-3"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- View Order Modal -->
+  <div class="modal fade" id="viewOrderModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background:#0a0a0a; border: 1px solid #d4af37;">
+        <div class="modal-header" style="border-bottom: 1px solid #333; background: linear-gradient(135deg, #111 0%, #1a1500 100%);">
+          <h5 style="color:#d4af37; margin-bottom:0;"><i class="ti-shopping-cart" style="margin-right:8px;"></i>Order Details</h5>
+          <button type="button" class="close" data-dismiss="modal" style="color:#fff; font-size:1.5rem;">&times;</button>
+        </div>
+        <div class="modal-body p-4" id="viewOrderBody" style="color: #eee;">
+        </div>
+        <div class="modal-footer" style="border-top:1px solid #333; background:#111;">
+          <a id="downloadInvoiceBtn" class="admin-btn admin-btn-sm" style="display:none; background: #27ae60; color: #fff; text-decoration: none;" target="_blank"><i class="ti-download"></i> Download Invoice</a>
+          <button class="admin-btn admin-btn-sm admin-btn-outline" data-dismiss="modal"><i class="ti-close"></i> Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/admin-alert.js"></script>
+
+  <script>
+    let currentOrders = [];
+    const API_BASE = window.location.hostname ? `http://${window.location.hostname}:8080/api/admin` : 'http://localhost:8080/api/admin';
+
+    async function loadAdminOrders(page = 0) {
+      const tbody = document.getElementById('adminOrdersBody');
+      const filter = document.getElementById('orderFilter').value;
+      const size = document.getElementById('orderPageSize').value;
+      const search = document.getElementById('orderSearch').value;
+      const startDate = document.getElementById('orderStartDate').value;
+      const endDate = document.getElementById('orderEndDate').value;
+      const paginationContainer = document.getElementById('adminOrdersPagination');
+
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading...</td></tr>';
+
+      try {
+        let url = `${API_BASE}/orders?page=${page}&size=${size}&status=${filter}&search=${encodeURIComponent(search)}`;
+        if (startDate) url += `&startDate=${startDate}`;
+        if (endDate) url += `&endDate=${endDate}`;
+        
+        const res = await fetch(url, { credentials: 'include' });
+        const data = await res.json();
+
+        if (!res.ok) {
+          if (res.status === 401 || res.status === 403) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#d4af37;"><i class="ti-lock"></i> Session expired or not logged in as Admin. <a href="login.html" style="color:#d4af37; text-decoration:underline;">Click here to login</a></td></tr>';
+          } else {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#ff4d4d;">Error: ' + (data.message || 'Unknown error') + '</td></tr>';
+          }
+          paginationContainer.innerHTML = '';
+          return;
+        }
+
+        const content = data.data && data.data.content ? data.data.content : [];
+        currentOrders = content;
+
+        if (content.length > 0) {
+          tbody.innerHTML = content.map(order => {
+            const date = new Date(order.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+            
+            let statusColor = '#aaa', statusBg = 'rgba(170,170,170,0.15)';
+            if (order.status === 'PENDING') { statusColor = '#f39c12'; statusBg = 'rgba(243,156,18,0.15)'; }
+            if (order.status === 'CONFIRMED') { statusColor = '#3498db'; statusBg = 'rgba(52,152,219,0.15)'; }
+            if (order.status === 'PROCESSING') { statusColor = '#9b59b6'; statusBg = 'rgba(155,89,182,0.15)'; }
+            if (order.status === 'SHIPPED') { statusColor = '#1abc9c'; statusBg = 'rgba(26,188,156,0.15)'; }
+            if (order.status === 'DELIVERED') { statusColor = '#27ae60'; statusBg = 'rgba(39,174,96,0.15)'; }
+            if (order.status === 'CANCELLED' || order.status === 'REFUNDED') { statusColor = '#e74c3c'; statusBg = 'rgba(231,76,60,0.15)'; }
+
+            const customerName = order.billing ? (order.billing.firstName + ' ' + (order.billing.lastName || '')).trim() : 'Guest';
+            const email = order.userEmail || (order.billing ? order.billing.email : '');
+
+            return `
+              <tr style="transition: background 0.2s;" onmouseover="this.style.background='rgba(212,175,55,0.04)'" onmouseout="this.style.background=''">
+                <td style="color:#d4af37; font-weight:700; font-size:12px;">#${order.orderId}</td>
+                <td style="font-size:12px; color:#aaa; white-space:nowrap;">${date}</td>
+                <td>
+                  <div style="font-weight:600;">${customerName}</div>
+                  <div style="font-size:11px; color:#888;">${email}</div>
+                </td>
+                <td style="font-weight:700; color:#fff;">₹${order.total.toFixed(2)}</td>
+                <td style="font-size:11px; text-transform:uppercase;">${order.paymentMethod}</td>
+                <td>
+                  <select style="background:${statusBg}; color:${statusColor}; border:1px solid ${statusColor}; border-radius:20px; padding:3px 8px; font-size:11px; font-weight:600; cursor:pointer; outline:none;"
+                    onchange="updateOrderStatus('${order.orderId}', this.value)">
+                    <option value="PENDING" ${order.status==='PENDING'?'selected':''} style="background:#1a1a1a;color:#f39c12;">PENDING</option>
+                    <option value="CONFIRMED" ${order.status==='CONFIRMED'?'selected':''} style="background:#1a1a1a;color:#3498db;">CONFIRMED</option>
+                    <option value="PROCESSING" ${order.status==='PROCESSING'?'selected':''} style="background:#1a1a1a;color:#9b59b6;">PROCESSING</option>
+                    <option value="SHIPPED" ${order.status==='SHIPPED'?'selected':''} style="background:#1a1a1a;color:#1abc9c;">SHIPPED</option>
+                    <option value="DELIVERED" ${order.status==='DELIVERED'?'selected':''} style="background:#1a1a1a;color:#27ae60;">DELIVERED</option>
+                    <option value="CANCELLED" ${order.status==='CANCELLED'?'selected':''} style="background:#1a1a1a;color:#e74c3c;">CANCELLED</option>
+                    <option value="REFUNDED" ${order.status==='REFUNDED'?'selected':''} style="background:#1a1a1a;color:#e74c3c;">REFUNDED</option>
+                  </select>
+                </td>
+                <td style="white-space:nowrap;">
+                  <button class="admin-btn admin-btn-sm" onclick="viewOrder('${order.orderId}')" title="View Details" style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37; margin-right:4px;">
+                    <i class="ti-eye"></i> View
+                  </button>
+                </td>
+              </tr>`;
+          }).join('');
+
+          const totalPages = data.data.totalPages || 1;
+          let pagHtml = '';
+          if (totalPages > 1) {
+            pagHtml += `<div class="d-flex justify-content-center mt-3" style="gap:5px;">`;
+            if (page > 0) pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="loadAdminOrders(${page-1})">Prev</button>`;
+            for (let i = 0; i < totalPages; i++) {
+              const active = i === page ? 'background:#d4af37; color:#000;' : '';
+              pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" style="${active}" onclick="loadAdminOrders(${i})">${i+1}</button>`;
+            }
+            if (page < totalPages-1) pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="loadAdminOrders(${page+1})">Next</button>`;
+            pagHtml += `</div>`;
+          }
+          paginationContainer.innerHTML = pagHtml;
+        } else {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#888; padding:40px;">No orders found.</td></tr>';
+          paginationContainer.innerHTML = '';
+        }
+      } catch (err) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#ff4d4d; padding:30px;">⚠️ Cannot reach server. Make sure the backend is running on port 8080.</td></tr>';
+        console.error(err);
+      }
+    }
+
+    async function updateOrderStatus(orderId, newStatus) {
+      if(!(await showConfirm(`Are you sure you want to update Order #${orderId} to ${newStatus}?`))) {
+        loadAdminOrders(); // reload to revert select
+        return;
+      }
+      try {
+        const res = await fetch(`${API_BASE}/orders/${orderId}/status`, {
+          method: 'PUT', 
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus }),
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          loadAdminOrders();
+        } else {
+          alert(data.message || 'Error updating status');
+        }
+      } catch (err) {
+        alert('Network error');
+      }
+    }
+
+    function viewOrder(orderId) {
+      const order = currentOrders.find(o => o.orderId == orderId);
+      if (!order) return;
+
+      const date = new Date(order.createdAt).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      
+      let statusColor = '#aaa', statusBg = 'rgba(170,170,170,0.15)';
+      if (order.status === 'PENDING') { statusColor = '#f39c12'; statusBg = 'rgba(243,156,18,0.15)'; }
+      if (order.status === 'CONFIRMED') { statusColor = '#3498db'; statusBg = 'rgba(52,152,219,0.15)'; }
+      if (order.status === 'PROCESSING') { statusColor = '#9b59b6'; statusBg = 'rgba(155,89,182,0.15)'; }
+      if (order.status === 'SHIPPED') { statusColor = '#1abc9c'; statusBg = 'rgba(26,188,156,0.15)'; }
+      if (order.status === 'DELIVERED') { statusColor = '#27ae60'; statusBg = 'rgba(39,174,96,0.15)'; }
+      if (order.status === 'CANCELLED' || order.status === 'REFUNDED') { statusColor = '#e74c3c'; statusBg = 'rgba(231,76,60,0.15)'; }
+
+      const bill = order.billing || {};
+      const ship = order.shippingAddress || {};
+
+      let itemsHtml = '';
+      if(order.items && order.items.length > 0) {
+        itemsHtml = order.items.map(item => `
+          <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #222;">
+            <div>
+              <div style="font-weight:600; color:#fff;">${item.name}</div>
+              <div style="font-size:11px; color:#888;">Qty: ${item.qty} | Size: ${item.size}</div>
+            </div>
+            <div style="font-weight:600;">₹${(item.price * item.qty).toFixed(2)}</div>
+          </div>
+        `).join('');
+      }
+
+      const html = `
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div style="background:#111; border:1px solid #222; border-radius:8px; padding:14px;">
+            <div style="color:#d4af37; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;"><i class="ti-receipt"></i> Order Info</div>
+            <div style="font-weight:700; color:#fff; font-size:16px;">Order #${order.orderId}</div>
+            <div style="font-size:12px; color:#aaa; margin-top:4px;">${date}</div>
+            <div style="margin-top:10px;">
+              <span style="background:${statusBg}; color:${statusColor}; border:1px solid ${statusColor}; border-radius:20px; padding:3px 12px; font-size:11px; font-weight:700;">${order.status}</span>
+            </div>
+          </div>
+          
+          <div style="background:#111; border:1px solid #222; border-radius:8px; padding:14px;">
+            <div style="color:#d4af37; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;"><i class="ti-credit-card"></i> Payment Summary</div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Subtotal:</span> <span>₹${order.subtotal.toFixed(2)}</span></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Shipping:</span> <span>₹${order.shipping.toFixed(2)}</span></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Discount:</span> <span>-₹${order.discount.toFixed(2)}</span></div>
+            <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:6px; border-top:1px solid #333; font-weight:700; font-size:15px; color:#d4af37;"><span>Total:</span> <span>₹${order.total.toFixed(2)}</span></div>
+            <div style="font-size:11px; color:#888; margin-top:6px; text-transform:uppercase;">Method: ${order.paymentMethod}</div>
+          </div>
+          
+          <div style="background:#111; border:1px solid #222; border-radius:8px; padding:14px;">
+            <div style="color:#d4af37; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;"><i class="ti-location-pin"></i> Shipping Address</div>
+            <div style="font-weight:600; font-size:14px; margin-bottom:4px;">${ship.firstName || ''} ${ship.lastName || ''}</div>
+            <div style="font-size:13px; color:#aaa; line-height:1.5;">
+              ${ship.address1 || ''}<br>
+              ${ship.address2 ? ship.address2 + '<br>' : ''}
+              ${ship.city || ''} - ${ship.zip || ''}<br>
+              Phone: ${ship.phone || 'N/A'}<br>
+              Email: ${ship.email || 'N/A'}
+            </div>
+          </div>
+
+          <div style="background:#111; border:1px solid #222; border-radius:8px; padding:14px;">
+            <div style="color:#d4af37; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;"><i class="ti-home"></i> Billing Address</div>
+            <div style="font-weight:600; font-size:14px; margin-bottom:4px;">${bill.firstName || ''} ${bill.lastName || ''}</div>
+            <div style="font-size:13px; color:#aaa; line-height:1.5;">
+              ${bill.address1 || ''}<br>
+              ${bill.address2 ? bill.address2 + '<br>' : ''}
+              ${bill.city || ''} - ${bill.zip || ''}<br>
+              Phone: ${bill.phone || 'N/A'}<br>
+              Email: ${bill.email || 'N/A'}
+            </div>
+          </div>
+        </div>
+        
+        <div style="background:#111; border:1px solid #222; border-radius:8px; padding:14px;">
+          <div style="color:#d4af37; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;"><i class="ti-package"></i> Order Items</div>
+          ${itemsHtml}
+        </div>`;
+        
+      document.getElementById('viewOrderBody').innerHTML = html;
+      
+      const invoiceBtn = document.getElementById('downloadInvoiceBtn');
+      if(order.status === 'CONFIRMED' || order.status === 'PROCESSING' || order.status === 'SHIPPED' || order.status === 'DELIVERED') {
+        const HOST = window.location.hostname ? `http://${window.location.hostname}:8080` : 'http://localhost:8080';
+        invoiceBtn.href = `${HOST}/api/orders/${order.orderId}/invoice/download`;
+        invoiceBtn.style.display = 'inline-block';
+      } else {
+        invoiceBtn.style.display = 'none';
+      }
+
+      $('#viewOrderModal').modal('show');
+    }
+
+    document.getElementById('orderFilter').addEventListener('change', () => loadAdminOrders(0));
+    document.getElementById('orderPageSize').addEventListener('change', () => loadAdminOrders(0));
+    document.getElementById('orderStartDate').addEventListener('change', () => loadAdminOrders(0));
+    document.getElementById('orderEndDate').addEventListener('change', () => loadAdminOrders(0));
+    document.getElementById('orderSearch').addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') loadAdminOrders(0);
+    });
+
+    // --- Export Functions ---
+    function exportToExcel() {
+      if (!currentOrders || currentOrders.length === 0) {
+        alert('No orders to export.');
+        return;
+      }
+      const rows = currentOrders.map(order => {
+        const date = new Date(order.createdAt).toLocaleString('en-IN');
+        const customerName = order.billing ? (order.billing.firstName + ' ' + (order.billing.lastName || '')).trim() : 'Guest';
+        return {
+          'Order ID': order.orderId || '',
+          'Date': date,
+          'Customer': customerName,
+          'Email': order.userEmail || (order.billing ? order.billing.email : ''),
+          'Phone': order.billing ? order.billing.phone : '',
+          'Amount': order.total.toFixed(2),
+          'Payment Method': order.paymentMethod || '',
+          'Status': order.status || ''
+        };
+      });
+      const ws = XLSX.utils.json_to_sheet(rows);
+      ws['!cols'] = [{wch:10},{wch:20},{wch:20},{wch:25},{wch:15},{wch:12},{wch:15},{wch:15}];
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Orders');
+      XLSX.writeFile(wb, `IRasa_Orders_${new Date().toISOString().slice(0,10)}.xlsx`);
+    }
+
+    function exportToPDF() {
+      if (!currentOrders || currentOrders.length === 0) {
+        alert('No orders to export.');
+        return;
+      }
+      const rows = currentOrders.map(order => {
+        const date = new Date(order.createdAt).toLocaleDateString('en-IN');
+        const customerName = order.billing ? (order.billing.firstName + ' ' + (order.billing.lastName || '')).trim() : 'Guest';
+        return `
+        <tr>
+          <td>${order.orderId||''}</td>
+          <td>${date}</td>
+          <td>${customerName}<br><small>${order.userEmail || (order.billing ? order.billing.email : '')}</small></td>
+          <td>${order.billing ? (order.billing.phone || '—') : '—'}</td>
+          <td>₹${order.total.toFixed(2)}</td>
+          <td>${order.paymentMethod||''}</td>
+          <td>${order.status||''}</td>
+        </tr>`;
+      }).join('');
+      const element = document.createElement('div');
+      element.innerHTML = `
+        <style>
+          body { font-family: Arial, sans-serif; font-size: 11px; }
+          h2 { color: #333; margin-bottom: 4px; }
+          p { color: #888; font-size: 10px; margin-bottom: 12px; }
+          table { width: 100%; border-collapse: collapse; }
+          th { background: #222; color: #fff; padding: 8px 6px; text-align: left; font-size: 10px; }
+          td { padding: 6px; border-bottom: 1px solid #eee; font-size: 10px; vertical-align:top; }
+          tr:nth-child(even) td { background: #f9f9f9; }
+        </style>
+        <h2>I Rasa Perfumes — Orders Report</h2>
+        <p>Exported on ${new Date().toLocaleString('en-IN')} &nbsp;|&nbsp; Total: ${currentOrders.length} orders</p>
+        <table>
+          <thead><tr><th>Order ID</th><th>Date</th><th>Customer</th><th>Phone</th><th>Total Amount</th><th>Payment</th><th>Status</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+      const opt = {
+        margin: [0.4, 0.4, 0.4, 0.4],
+        filename: `IRasa_Orders_${new Date().toISOString().slice(0,10)}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+
+    function printTable() {
+      if (!currentOrders || currentOrders.length === 0) {
+        alert('No orders to print.');
+        return;
+      }
+      const rows = currentOrders.map(order => {
+        const date = new Date(order.createdAt).toLocaleDateString('en-IN');
+        const customerName = order.billing ? (order.billing.firstName + ' ' + (order.billing.lastName || '')).trim() : 'Guest';
+        return `
+        <tr>
+          <td>${order.orderId||''}</td>
+          <td>${date}</td>
+          <td><strong>${customerName}</strong><br>${order.userEmail || (order.billing ? order.billing.email : '')}</td>
+          <td>${order.billing ? (order.billing.phone || '—') : '—'}</td>
+          <td>₹${order.total.toFixed(2)}</td>
+          <td>${order.paymentMethod||''}</td>
+          <td>${order.status||''}</td>
+        </tr>`;
+      }).join('');
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <!DOCTYPE html><html><head>
+        <title>I Rasa — Orders</title>
+        <style>
+          * { margin:0; padding:0; box-sizing:border-box; }
+          body { font-family: Arial, sans-serif; font-size: 11px; color: #222; padding: 24px; }
+          .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; border-bottom: 2px solid #d4af37; padding-bottom: 12px; }
+          .brand { font-size: 24px; font-weight: bold; color: #d4af37; letter-spacing: 2px; }
+          .meta { font-size: 10px; color: #666; text-align: right; }
+          table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+          th { background: #222; color: #fff; padding: 8px 6px; text-align: left; font-size: 10px; letter-spacing: 0.5px; }
+          td { padding: 7px 6px; border-bottom: 1px solid #e5e5e5; vertical-align: top; font-size: 10px; }
+          tr:nth-child(even) td { background: #fafafa; }
+          .footer { margin-top: 20px; font-size: 9px; color: #aaa; text-align: center; }
+          @media print { body { padding: 12px; } }
+        </style>
+        <` + `/head><body>
+        <div class="header">
+          <div>
+            <div class="brand">i rasa</div>
+            <div style="font-size:12px; color:#555; margin-top:2px;">Orders Management Report</div>
+          </div>
+          <div class="meta">
+            Printed: ${new Date().toLocaleString('en-IN')}<br>
+            Total Records: ${currentOrders.length}
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>Order ID</th><th>Date</th><th>Customer</th><th>Phone</th><th>Total Amount</th><th>Payment</th><th>Status</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        <div class="footer">i rasa Perfumes — Confidential Internal Report — Generated ${new Date().toLocaleString('en-IN')}</div>
+        <` + `/body><` + `/html>`);
+      win.document.close();
+      win.focus();
+      setTimeout(() => { win.print(); }, 500);
+    }
+
+    // Load orders on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadAdminOrders(0);
+    });
+  </script>
+</body>
+</html>

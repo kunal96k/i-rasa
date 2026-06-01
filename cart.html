@@ -3,7 +3,7 @@
 
 <head>
   <meta name="description"
-    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 299.">
+    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 399.">
   <meta name="keywords"
     content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
   <meta name="author" content="Technokraft services LLP">
@@ -2113,10 +2113,14 @@
                   </div>
                   <div class="summary-line">
                     <span>Handling Charge</span>
-                    <span>Rs. 7.00</span>
+                    <span>Rs. 10.00</span>
                   </div>
                   <div class="summary-line">
-                    <span>Platform Fee</span>
+                    <span>Packing Fees</span>
+                    <span>Rs. 35.00</span>
+                  </div>
+                  <div class="summary-line">
+                    <span>Platform Services Fees</span>
                     <span>Rs. 5.00</span>
                   </div>
                   <div class="summary-line">
@@ -2179,10 +2183,14 @@
       </div>
       <div class="mobile-summary-row">
         <div class="mobile-summary-label">Handling Charge</div>
-        <div class="mobile-summary-val">Rs. 7.00</div>
+        <div class="mobile-summary-val">Rs. 10.00</div>
       </div>
       <div class="mobile-summary-row">
-        <div class="mobile-summary-label">Platform Fee</div>
+        <div class="mobile-summary-label">Packing Fees</div>
+        <div class="mobile-summary-val">Rs. 35.00</div>
+      </div>
+      <div class="mobile-summary-row">
+        <div class="mobile-summary-label">Platform Services Fees</div>
         <div class="mobile-summary-val">Rs. 5.00</div>
       </div>
       <div class="mobile-summary-row">
@@ -2226,7 +2234,7 @@
                 style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase;">i rasa</h4>
               <p>
                 I Rasa Perfumes provides the finest fragrances across India. Our expertly crafted perfumes bring you a
-                touch of elegance and luxury every day. Starting at just Rs. 299.
+                touch of elegance and luxury every day. Starting at just Rs. 399.
               </p>
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
@@ -2324,7 +2332,7 @@
             <div class="col-md-6">
               <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
               </h2>
-              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 299</p>
+              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 399</p>
               <div class="rating mb-3">
                 <i class="fas fa-star" style="color: #ffd700;"></i>
                 <i class="fas fa-star" style="color: #ffd700;"></i>
@@ -2430,7 +2438,7 @@
       });
 
       var disc = appliedDiscount || 0;
-      var total = subtotal > 0 ? (Math.max(0, subtotal - disc) + 7 + 5) : 0; // 7 handling + 5 platform fee
+      var total = subtotal > 0 ? (Math.max(0, subtotal - disc) + 10 + 35 + 5) : 0; // 10 handling + 35 packing + 5 platform services fee
 
       var fmt = 'Rs. ' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       var totalFmt = 'Rs. ' + total.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -2593,8 +2601,9 @@
 
         // Retrieve cached discount
         var cachedDiscount = parseFloat(sessionStorage.getItem('appliedDiscount')) || 0;
-        if (cachedDiscount > 0) {
-          appliedDiscount = cachedDiscount;
+        var isCachedRefil = (appliedCouponCode || cachedCoupon || '').toUpperCase() === 'REFIL100';
+        if (cachedDiscount > 0 || isCachedRefil) {
+          appliedDiscount = isCachedRefil ? 0 : cachedDiscount;
           appliedCouponCode = appliedCouponCode || cachedCoupon;
           if (!appliedCouponInfo) {
             appliedCouponInfo = { code: appliedCouponCode, discountAmount: appliedDiscount };
@@ -2602,13 +2611,24 @@
 
           var desktopMsg = document.getElementById('cartCouponMsg');
           var mobileMsg = document.getElementById('mobileCartCouponMsg');
-          if (desktopMsg) {
-            desktopMsg.style.color = '#4caf50';
-            desktopMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
-          }
-          if (mobileMsg) {
-            mobileMsg.style.color = '#4caf50';
-            mobileMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+          if (isCachedRefil) {
+            if (desktopMsg) {
+              desktopMsg.style.color = '#d4af37';
+              desktopMsg.innerHTML = `♻️ Coupon <strong>${appliedCouponCode}</strong> applied! Bring your empty bottle to our store for ₹100 off on your next refill. <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+            }
+            if (mobileMsg) {
+              mobileMsg.style.color = '#d4af37';
+              mobileMsg.innerHTML = `♻️ Coupon <strong>${appliedCouponCode}</strong> applied! Bring your empty bottle to our store for ₹100 off on your next refill. <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+            }
+          } else {
+            if (desktopMsg) {
+              desktopMsg.style.color = '#4caf50';
+              desktopMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+            }
+            if (mobileMsg) {
+              mobileMsg.style.color = '#4caf50';
+              mobileMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+            }
           }
 
           syncDesktopSummary();
@@ -2743,17 +2763,25 @@
       var html = '';
       if (appliedCouponCode) {
         var couponLabel = appliedCouponInfo && appliedCouponInfo.code ? appliedCouponInfo.code : appliedCouponCode;
-        var discountText = formatCouponMoney(appliedDiscount);
-        var minOrder = appliedCouponInfo && appliedCouponInfo.minCartValue ? formatCouponMoney(appliedCouponInfo.minCartValue) : null;
-        var expiry = appliedCouponInfo && appliedCouponInfo.expiryDate ? new Date(appliedCouponInfo.expiryDate).toLocaleDateString('en-IN') : null;
-        html = `
-          <h5>Coupon selected</h5>
-          <p class="coupon-code">${couponLabel}</p>
-          <div class="coupon-detail"><span>Saved</span><strong>${discountText}</strong></div>
-          ${minOrder ? `<div class="coupon-detail"><span>Min Order</span><strong>${minOrder}</strong></div>` : ''}
-          ${expiry ? `<div class="coupon-detail"><span>Expiry</span><strong>${expiry}</strong></div>` : ''}
-          <div class="remove-coupon" onclick="removeCartCoupon()">Remove coupon</div>
-        `;
+        var isRefil = couponLabel.toUpperCase() === 'REFIL100';
+        if (isRefil) {
+          // REFIL100 is a store-visit reference code - no price change, shown for invoice only
+          html = `
+            <h5>Coupon Applied</h5>
+            <p class="coupon-code">${couponLabel}</p>
+            <div class="coupon-detail" style="color:#d4af37;"><span>♻️ Bottle Refill Offer</span></div>
+            <div class="coupon-detail" style="color:#aaa; font-size:11px; margin-top:4px;"><span>This coupon is noted on your invoice. Bring your empty bottle to our store to avail ₹100 off on your next refill.</span></div>
+            <div class="remove-coupon" onclick="removeCartCoupon()">Remove coupon</div>
+          `;
+        } else {
+          var discountText = formatCouponMoney(appliedDiscount);
+          html = `
+            <h5>Coupon selected</h5>
+            <p class="coupon-code">${couponLabel}</p>
+            <div class="coupon-detail"><span>Saved</span><strong>${discountText}</strong></div>
+            <div class="remove-coupon" onclick="removeCartCoupon()">Remove coupon</div>
+          `;
+        }
       } else {
         html = '<p style="margin:0;color:#ddd;font-size:13px;line-height:1.5;">Apply a coupon from available offers below or enter one above.</p>';
       }
@@ -2866,15 +2894,22 @@
         });
         var data = await res.json();
         if (data.success) {
-          appliedDiscount = Number(data.data.discountAmount || 0);
+          var isRefil = code.toUpperCase() === 'REFIL100';
+          // REFIL100 is a reference-only coupon — no price deduction
+          appliedDiscount = isRefil ? 0 : Number(data.data.discountAmount || 0);
           appliedCouponCode = code.toUpperCase();
           appliedCouponInfo = getCouponDetailsByCode(code) || { code: appliedCouponCode, discountAmount: appliedDiscount };
           appliedCouponInfo.discountAmount = appliedDiscount;
 
           saveAppliedCouponState();
 
-          msgEl.style.color = '#4caf50';
-          msgEl.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+          if (isRefil) {
+            msgEl.style.color = '#d4af37';
+            msgEl.innerHTML = `♻️ Coupon <strong>${appliedCouponCode}</strong> applied! Bring your empty bottle to our store for ₹100 off on your next refill. <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+          } else {
+            msgEl.style.color = '#4caf50';
+            msgEl.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+          }
 
           renderCartCouponState();
           renderCartCouponOffers();
@@ -2902,22 +2937,35 @@
         });
         var data = await res.json();
         if (data.success) {
-          appliedDiscount = Number(data.data.discountAmount || 0);
+          var isRevalidRefil = appliedCouponCode.toUpperCase() === 'REFIL100';
+          // REFIL100 is always 0 discount — reference only
+          appliedDiscount = isRevalidRefil ? 0 : Number(data.data.discountAmount || 0);
           if (appliedCouponInfo) {
             appliedCouponInfo.discountAmount = appliedDiscount;
           }
           saveAppliedCouponState();
 
-          // Update the success message text with the new discount amount if elements exist and already show a success status
           var desktopMsg = document.getElementById('cartCouponMsg');
           var mobileMsg = document.getElementById('mobileCartCouponMsg');
-          if (desktopMsg && (desktopMsg.textContent.includes('applied!') || desktopMsg.textContent.includes('✓'))) {
-            desktopMsg.style.color = '#4caf50';
-            desktopMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
-          }
-          if (mobileMsg && (mobileMsg.textContent.includes('applied!') || mobileMsg.textContent.includes('✓'))) {
-            mobileMsg.style.color = '#4caf50';
-            mobileMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+          if (isRevalidRefil) {
+            if (desktopMsg) {
+              desktopMsg.style.color = '#d4af37';
+              desktopMsg.innerHTML = `♻️ Coupon <strong>${appliedCouponCode}</strong> applied! Bring your empty bottle to our store for ₹100 off on your next refill. <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+            }
+            if (mobileMsg) {
+              mobileMsg.style.color = '#d4af37';
+              mobileMsg.innerHTML = `♻️ Coupon <strong>${appliedCouponCode}</strong> applied! Bring your empty bottle to our store for ₹100 off on your next refill. <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+            }
+          } else {
+            // Update the success message text with the new discount amount if elements exist and already show a success status
+            if (desktopMsg && (desktopMsg.textContent.includes('applied!') || desktopMsg.textContent.includes('✓'))) {
+              desktopMsg.style.color = '#4caf50';
+              desktopMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+            }
+            if (mobileMsg && (mobileMsg.textContent.includes('applied!') || mobileMsg.textContent.includes('✓'))) {
+              mobileMsg.style.color = '#4caf50';
+              mobileMsg.innerHTML = `✓ Coupon <strong>${appliedCouponCode}</strong> applied! You saved ${formatCouponMoney(appliedDiscount)} <span class="remove-coupon" onclick="removeCartCoupon()">Remove</span>`;
+            }
           }
         } else {
           // Coupon no longer valid (e.g. minimum cart value criteria no longer met)
@@ -3049,11 +3097,14 @@
 
       modalContent.innerHTML = availableCoupons.map(function(coupon) {
         var isSelected = appliedCouponCode && coupon.code && coupon.code.toUpperCase() === appliedCouponCode.toUpperCase();
-        var discountLabel = coupon.discount || formatCouponOffer(coupon);
-        var minOrderLabel = coupon.minCartValue ? formatCouponMoney(coupon.minCartValue) : 'No minimum';
-        var expiryLabel = coupon.expiryDate ? new Date(coupon.expiryDate).toLocaleDateString('en-IN') : 'No expiry';
-        var disabled = coupon.minCartValue && cartTotal < Number(coupon.minCartValue);
+        var isRefil = coupon.code && coupon.code.toUpperCase() === 'REFIL100';
+        var discountLabel = isRefil ? '♻️ Bottle Refill Offer' : (coupon.discount || formatCouponOffer(coupon));
+        var disabled = coupon.minCartValue && CartEngine.getTotal() < Number(coupon.minCartValue);
         var buttonText = isSelected ? 'Applied' : (disabled ? 'Not Eligible' : 'Apply Offer');
+
+        var descriptionText = isRefil
+          ? 'Bring your empty bottle to our store to get ₹100 off on your next refill. Noted on invoice.'
+          : (coupon.description || '');
 
         var html = `<div class="offers-card${isSelected ? ' applied' : ''}">
           <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
@@ -3065,17 +3116,7 @@
               <i class="fas fa-copy"></i>
             </button>
           </div>
-          ${coupon.description ? `<div class="offer-description">${coupon.description}</div>` : ''}
-          <div class="offer-meta">
-            <div class="offer-meta-item">
-              <i class="fas fa-shopping-cart"></i>
-              <span>Min Order: ${minOrderLabel}</span>
-            </div>
-            <div class="offer-meta-item">
-              <i class="fas fa-calendar"></i>
-              <span>${coupon.validity ? 'Valid: ' + coupon.validity : 'Expiry: ' + expiryLabel}</span>
-            </div>
-          </div>
+          ${descriptionText ? `<div class="offer-description">${descriptionText}</div>` : ''}
           <div class="offer-actions">
             <button type="button" class="offer-apply-btn${isSelected ? ' applied' : ''}" 
               ${disabled || isSelected ? 'disabled' : ''} 
