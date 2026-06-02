@@ -6528,7 +6528,7 @@ input[type=number] {
 
     .header_area .navbar-nav {
         padding: 20px 20px 0 20px !important;
-    
+    }
 
     .header_area .nav-shop {
         padding: 10px 20px 20px 20px !important;
@@ -7312,4 +7312,279 @@ html {
 
 .card-blog:hover .card-blog__img img {
     transform: scale(1.04);
+}
+
+/* ==========================================================================
+   PREMIUM FLOATING TOGGLERS (index, contact, and shop pages)
+   ========================================================================== */
+
+/* Hide header topbar globally since their position has changed */
+.header_topbar {
+    display: none !important;
+}
+
+/* Base class for all floating togglers */
+.floating-toggler {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 9999;
+    display: none; /* Controlled by media query and JS visibility */
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Scroll-to-Top Toggler (Index Page) */
+#scroll-top.floating-toggler {
+    background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+    color: #000 !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+#scroll-top.floating-toggler i {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+#scroll-top.floating-toggler:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+}
+
+/* WhatsApp Toggler (Contact Page) */
+.whatsapp-float {
+    background: linear-gradient(135deg, #25d366 0%, #1ebc5a 100%);
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    animation: whatsapp-pulse 2s infinite;
+}
+
+.whatsapp-float i {
+    font-size: 28px;
+}
+
+.whatsapp-float:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+    background: linear-gradient(135deg, #1ebc5a 0%, #128c7e 100%);
+}
+
+/* Shop Now Toggler (Other Pages) */
+.shop-now-float {
+    background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+    color: #000 !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.shop-now-float i {
+    font-size: 22px;
+}
+
+.shop-now-float:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+}
+
+/* Animations */
+@keyframes whatsapp-pulse {
+    0% {
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(37, 211, 102, 0.8), 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+}
+
+@keyframes fadeInUpScroll {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Rules: Display only on large screens (lg) */
+@media (min-width: 992px) {
+    /* If it is scroll-top, it is shown only when JS adds class .visible */
+    #scroll-top.floating-toggler.visible {
+        display: flex !important;
+        animation: fadeInUpScroll 0.4s ease-out;
+    }
+    
+    /* WhatsApp and Shop Now show automatically on lg screens */
+    .whatsapp-float, .shop-now-float {
+        display: flex !important;
+    }
+}
+
+/* Hide on medium and small screens */
+@media (max-width: 991px) {
+    .floating-toggler, #scroll-top.floating-toggler, .whatsapp-float, .shop-now-float {
+        display: none !important;
+    }
+}
+
+/* ==========================================
+   Premium Dark Theme overrides for Comments
+   ========================================== */
+.comments-area {
+    background: #0d0d0d !important;
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
+}
+
+.comments-area h4 {
+    color: #d4af37 !important;
+}
+
+.comments-area .comment-list .desc h5 a {
+    color: #d4af37 !important;
+    transition: color 0.2s ease-in-out;
+}
+
+.comments-area .comment-list .desc h5 a:hover {
+    color: #ffffff !important;
+}
+
+.comments-area .comment-list .desc .date {
+    color: #999999 !important;
+}
+
+.comments-area .comment-list .desc .comment {
+    color: #dddddd !important;
+}
+
+.comments-area .btn-reply {
+    background-color: #1a1a1a !important;
+    color: #d4af37 !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.comments-area .btn-reply:hover {
+    background-color: #d4af37 !important;
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+.comment-form {
+    background: #0d0d0d !important;
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
+}
+
+.comment-form h4 {
+    color: #d4af37 !important;
+}
+
+.comment-form .form-control {
+    background: #050505 !important;
+    border: 1px solid #333333 !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+    transition: all 0.3s ease;
+}
+
+.comment-form .form-control:focus {
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.4) !important;
+    outline: none !important;
+}
+
+.comment-form .form-control::placeholder {
+    color: #666666 !important;
+}
+
+.comment-form ::-webkit-input-placeholder {
+    color: #666666 !important;
+}
+
+.comment-form ::-moz-placeholder {
+    color: #666666 !important;
+}
+
+/* Fix FontAwesome Brand Icons font-family overrides */
+.fab {
+    font-family: 'Font Awesome 5 Brands' !important;
+}
+
+/* Footer Gallery Single Row responsive layout */
+.single-footer-widget .instafeed {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    padding: 0 !important;
+    margin: 0 -3px !important;
+}
+
+.single-footer-widget .instafeed li {
+    margin: 3px !important;
+    flex: 1 1 0px !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+}
+
+.single-footer-widget .instafeed li img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+    border: 1px solid #d4af37 !important;
+}
+
+/* ==========================================
+   Comments Pagination
+   ========================================== */
+.comments-pagination-nav {
+    margin-top: 30px;
+}
+
+.comments-pagination-nav .pagination {
+    margin-bottom: 0;
+    gap: 8px;
+}
+
+.comments-pagination-nav .page-item .page-link {
+    background-color: #0d0d0d !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    color: #d4af37 !important;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-family: "Michroma", sans-serif !important;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.comments-pagination-nav .page-item.active .page-link {
+    background-color: #d4af37 !important;
+    border-color: #d4af37 !important;
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+.comments-pagination-nav .page-item .page-link:hover {
+    background-color: #d4af37 !important;
+    border-color: #d4af37 !important;
+    color: #000000 !important;
+}
+
+.comments-pagination-nav .page-item.disabled .page-link {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
 }

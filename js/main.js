@@ -145,7 +145,7 @@ $(function () {
     }
   });
 
-  $('#scroll-top').on('click', function () {
+  $(document).on('click', '#scroll-top', function () {
     $('html, body').animate({
       scrollTop: 0
     }, 600);
@@ -466,4 +466,23 @@ $(document).ready(function() {
   $('.sm-head .fa-map-marker-alt').removeClass('fas fa-map-marker-alt').addClass('ti-location-pin');
   $('.sm-head .fa-phone-alt').removeClass('fas fa-phone-alt').addClass('ti-headphone-alt');
   $('.sm-head .fa-envelope').removeClass('fas fa-envelope').addClass('ti-email');
+
+  // Dynamic injection of premium page-specific floating togglers
+  var path = window.location.pathname.toLowerCase();
+  var isIndex = path.indexOf('index') !== -1 || path.endsWith('/') || path.split('/').pop() === '';
+  var isContact = path.indexOf('contact') !== -1;
+
+  if (isIndex) {
+    if ($('#scroll-top').length === 0) {
+      $('body').append('<button id="scroll-top" class="floating-toggler" title="Go to top"><i class="fas fa-arrow-up"></i></button>');
+    }
+  } else if (isContact) {
+    if ($('#whatsapp-float').length === 0) {
+      $('body').append('<a href="https://wa.me/919823833303?text=Hello%20I%27m%20interested%20in%20ordering%20from%20I%20Rasa%20Perfumes." id="whatsapp-float" class="floating-toggler whatsapp-float" target="_blank" rel="noopener" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>');
+    }
+  } else {
+    if ($('#shop-now-float').length === 0) {
+      $('body').append('<a href="category.html" id="shop-now-float" class="floating-toggler shop-now-float" title="Shop Now"><i class="fas fa-shopping-bag"></i></a>');
+    }
+  }
 });

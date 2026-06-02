@@ -58,6 +58,7 @@
       <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
       <a href="admin-orders.html" class="admin-nav-item active"><i class="ti-shopping-cart-full"></i> Orders</a>
+      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
       <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
       <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
@@ -175,10 +176,8 @@
       tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading...</td></tr>';
 
       try {
-        let url = `${API_BASE}/orders?page=${page}&size=${size}&status=${filter}&search=${encodeURIComponent(search)}`;
-        if (startDate) url += `&startDate=${startDate}`;
-        if (endDate) url += `&endDate=${endDate}`;
-        
+        const params = getOrderQueryParams(page, size);
+        const url = `${API_BASE}/orders?${params.toString()}`;
         const res = await fetch(url, { credentials: 'include' });
         const data = await res.json();
 
@@ -261,6 +260,41 @@
         tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#ff4d4d; padding:30px;">⚠️ Cannot reach server. Make sure the backend is running on port 8080.</td></tr>';
         console.error(err);
       }
+    }
+
+    function getOrderQueryParams(page, size) {
+      const filter = document.getElementById('orderFilter').value;
+      const search = document.getElementById('orderSearch').value.trim();
+      const startDate = document.getElementById('orderStartDate').value;
+      const endDate = document.getElementById('orderEndDate').value;
+      const params = new URLSearchParams();
+      params.set('page', String(page));
+      params.set('size', String(size));
+      params.set('status', filter || 'ALL');
+      if (search) params.set('search', search);
+      if (startDate) params.set('startDate', startDate);
+      if (endDate) params.set('endDate', endDate);
+      return params;
+    }
+
+    async function fetchAllOrders() {
+      const pageSize = 100;
+      let page = 0;
+      let allOrders = [];
+      while (true) {
+        const params = getOrderQueryParams(page, pageSize);
+        const res = await fetch(`${API_BASE}/orders?${params.toString()}`, { credentials: 'include' });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.message || 'Failed to load orders for export');
+        }
+        const pageContent = data.data && data.data.content ? data.data.content : [];
+        allOrders = allOrders.concat(pageContent);
+        const totalPages = Number.isFinite(data.data.totalPages) ? data.data.totalPages : 0;
+        if (page >= totalPages - 1) break;
+        page += 1;
+      }
+      return allOrders;
     }
 
     async function updateOrderStatus(orderId, newStatus) {
@@ -389,12 +423,20 @@
     });
 
     // --- Export Functions ---
-    function exportToExcel() {
-      if (!currentOrders || currentOrders.length === 0) {
+    // Export helpers use the full filtered result set, not only the currently visible page.
+    async function exportToExcel() {
+      let orders;
+      try {
+        orders = await fetchAllOrders();
+      } catch (err) {
+        alert(err.message || 'Unable to load orders for export.');
+        return;
+      }
+      if (!orders || orders.length === 0) {
         alert('No orders to export.');
         return;
       }
-      const rows = currentOrders.map(order => {
+      const rows = orders.map(order => {
         const date = new Date(order.createdAt).toLocaleString('en-IN');
         const customerName = order.billing ? (order.billing.firstName + ' ' + (order.billing.lastName || '')).trim() : 'Guest';
         return {
@@ -415,12 +457,19 @@
       XLSX.writeFile(wb, `IRasa_Orders_${new Date().toISOString().slice(0,10)}.xlsx`);
     }
 
-    function exportToPDF() {
-      if (!currentOrders || currentOrders.length === 0) {
+    async function exportToPDF() {
+      let orders;
+      try {
+        orders = await fetchAllOrders();
+      } catch (err) {
+        alert(err.message || 'Unable to load orders for export.');
+        return;
+      }
+      if (!orders || orders.length === 0) {
         alert('No orders to export.');
         return;
       }
-      const rows = currentOrders.map(order => {
+      const rows = orders.map(order => {
         const date = new Date(order.createdAt).toLocaleDateString('en-IN');
         const customerName = order.billing ? (order.billing.firstName + ' ' + (order.billing.lastName || '')).trim() : 'Guest';
         return `
@@ -461,12 +510,19 @@
       html2pdf().set(opt).from(element).save();
     }
 
-    function printTable() {
-      if (!currentOrders || currentOrders.length === 0) {
+    async function printTable() {
+      let orders;
+      try {
+        orders = await fetchAllOrders();
+      } catch (err) {
+        alert(err.message || 'Unable to load orders for printing.');
+        return;
+      }
+      if (!orders || orders.length === 0) {
         alert('No orders to print.');
         return;
       }
-      const rows = currentOrders.map(order => {
+      const rows = orders.map(order => {
         const date = new Date(order.createdAt).toLocaleDateString('en-IN');
         const customerName = order.billing ? (order.billing.firstName + ' ' + (order.billing.lastName || '')).trim() : 'Guest';
         return `

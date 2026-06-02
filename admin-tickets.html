@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I-Rasa Perfumes - Admin Tickets</title>
-  
-  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <title>I Rasa Admin — Support Tickets</title>
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="css/style.css">
-
   <style>
     :root {
       --admin-bg: #0a0a0a;
@@ -21,60 +19,125 @@
       --admin-gold-hover: #e5c158;
       --admin-border: #333333;
     }
-
+    * { box-sizing: border-box; }
     body {
       background-color: var(--admin-bg);
       color: var(--admin-text);
       font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
+      margin: 0; padding: 0;
+      display: flex; height: 100vh; overflow: hidden;
     }
-
-    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: var(--admin-bg); }
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--admin-gold); }
     body.modal-open { padding-right: 0 !important; }
-
-    h1, h2, h3, h4, h5, h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
+    h1,h2,h3,h4,h5,h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
 
     /* Sidebar */
     .admin-sidebar { width: 260px; background-color: var(--admin-surface); border-right: 1px solid var(--admin-border); display: flex; flex-direction: column; flex-shrink: 0; }
-    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); }
+    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); padding: 16px 0 12px; }
     .admin-nav { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
     .admin-nav-item { padding: 12px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
-    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212, 175, 55, 0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); }
+    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212,175,55,0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); text-decoration: none; }
     .admin-nav-item i { margin-right: 15px; font-size: 1.2rem; width: 24px; text-align: center; }
 
-    /* Main Content */
+    /* Main */
     .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
     .admin-header { height: 70px; background-color: var(--admin-surface); border-bottom: 1px solid var(--admin-border); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; flex-shrink: 0; }
-    .admin-content { flex-grow: 1; padding: 30px; overflow-y: auto; }
+    .admin-content { flex-grow: 1; padding: 24px 30px; overflow-y: auto; }
 
-    /* Cards & Tables */
-    .admin-card { background-color: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+    /* Stats Cards */
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 16px; transition: all 0.3s ease; }
+    .stat-card:hover { border-color: var(--admin-gold); transform: translateY(-2px); }
+    .stat-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .stat-icon.gold { background: rgba(212,175,55,0.15); color: var(--admin-gold); }
+    .stat-icon.warning { background: rgba(255,165,0,0.15); color: #ffa500; }
+    .stat-icon.blue { background: rgba(59,224,224,0.15); color: #3be0e0; }
+    .stat-icon.green { background: rgba(37,211,102,0.15); color: #25d366; }
+    .stat-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-value { font-size: 26px; font-weight: 700; color: #fff; line-height: 1.2; }
+
+    /* Card */
+    .admin-card { background: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 10px; padding: 20px; }
+
+    /* Table */
     .admin-table { width: 100%; color: var(--admin-text); border-collapse: collapse; }
-    .admin-table th { text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--admin-border); color: var(--admin-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
-    .admin-table td { padding: 15px; border-bottom: 1px solid var(--admin-border); vertical-align: middle; font-size: 0.95rem; }
-    .admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+    .admin-table th { text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--admin-border); color: var(--admin-gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+    .admin-table td { padding: 14px 15px; border-bottom: 1px solid var(--admin-border); vertical-align: middle; font-size: 0.9rem; }
+    .admin-table tbody tr:hover { background-color: rgba(212,175,55,0.03); }
 
     /* Badges */
-    .badge-status { padding: 5px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
-    .badge-success { background: rgba(37, 211, 102, 0.1); color: #25d366; border: 1px solid #1a5c31; }
-    .badge-warning { background: rgba(212, 175, 55, 0.1); color: #d4af37; border: 1px solid #735d1e; }
-    .badge-danger { background: rgba(255, 77, 77, 0.1); color: #ff4d4d; border: 1px solid #8a2a2a; }
-    .badge-info { background: rgba(59, 224, 224, 0.1); color: #3be0e0; border: 1px solid #1d6e6e; }
+    .badge-status { padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }
+    .badge-open { background: rgba(212,175,55,0.15); color: #d4af37; border: 1px solid rgba(212,175,55,0.3); }
+    .badge-in-progress { background: rgba(59,224,224,0.15); color: #3be0e0; border: 1px solid rgba(59,224,224,0.3); }
+    .badge-resolved { background: rgba(37,211,102,0.15); color: #25d366; border: 1px solid rgba(37,211,102,0.3); }
 
-    /* Forms & Buttons */
-    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; margin: 5px; }
-    .admin-btn:hover { background-color: var(--admin-gold-hover); }
+    /* Buttons */
+    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; }
+    .admin-btn:hover { background-color: var(--admin-gold-hover); transform: translateY(-1px); }
     .admin-btn-outline { background-color: transparent; color: var(--admin-gold); border: 1px solid var(--admin-gold); }
-    .admin-btn-outline:hover { background-color: rgba(212, 175, 55, 0.1); }
-    .admin-btn-sm { padding: 4px 10px; font-size: 0.8rem; }
+    .admin-btn-outline:hover { background-color: rgba(212,175,55,0.1); transform: translateY(-1px); }
+    .admin-btn-sm { padding: 5px 12px; font-size: 0.78rem; }
+    .admin-btn-danger { background: rgba(255,77,77,0.1); color: #ff4d4d; border: 1px solid rgba(255,77,77,0.3); }
+    .admin-btn-danger:hover { background: rgba(255,77,77,0.2); transform: translateY(-1px); }
+
+    /* Search & Filter Bar */
+    .ticket-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+    .search-input-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-input-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #555; }
+    .search-input-wrap input { width: 100%; background: #0a0a0a; border: 1px solid #333; color: #fff; padding: 9px 12px 9px 36px; border-radius: 6px; font-size: 0.85rem; transition: border-color 0.3s; outline: none; }
+    .search-input-wrap input:focus { border-color: var(--admin-gold); }
+    .admin-select { background: #0a0a0a; border: 1px solid #333; color: #fff; padding: 9px 14px; border-radius: 6px; font-size: 0.85rem; outline: none; cursor: pointer; transition: border-color 0.3s; }
+    .admin-select:focus { border-color: var(--admin-gold); }
+
+    /* Modal */
+    .modal-content { background: #111; border: 1px solid #333; color: #e0e0e0; border-radius: 10px; }
+    .modal-header { border-bottom: 1px solid #333; padding: 18px 24px; }
+    .modal-footer { border-top: 1px solid #333; padding: 14px 24px; }
+    .modal-body { padding: 24px; }
+    .modal-title { color: var(--admin-gold); font-family: 'Cinzel', serif; }
+    .btn-close { filter: invert(1); }
+
+    /* Info rows */
+    .info-row { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
+    .info-label { color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; width: 90px; flex-shrink: 0; padding-top: 2px; }
+    .info-value { color: #e0e0e0; font-size: 14px; flex: 1; }
+
+    /* Timeline */
+    .ticket-timeline { margin-top: 20px; }
+    .timeline-item { display: flex; gap: 14px; margin-bottom: 16px; position: relative; }
+    .timeline-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+    .timeline-icon.status { background: rgba(212,175,55,0.15); color: var(--admin-gold); }
+    .timeline-icon.reply { background: rgba(59,224,224,0.15); color: #3be0e0; }
+    .timeline-icon.created { background: rgba(37,211,102,0.15); color: #25d366; }
+    .timeline-body { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 16px; flex: 1; }
+    .timeline-body .tl-type { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; }
+    .timeline-body .tl-note { font-size: 13px; color: #ccc; margin-top: 4px; }
+    .timeline-body .tl-time { font-size: 11px; color: #555; margin-top: 6px; }
+
+    /* Reply form */
+    .reply-textarea { width: 100%; background: #0a0a0a; border: 1px solid #333; color: #e0e0e0; padding: 12px; border-radius: 6px; resize: vertical; min-height: 100px; font-size: 14px; outline: none; transition: border-color 0.3s; }
+    .reply-textarea:focus { border-color: var(--admin-gold); }
+
+    /* Pagination */
+    .pagination-wrap { display: flex; justify-content: center; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
+    .page-btn { background: transparent; border: 1px solid #333; color: #aaa; padding: 6px 13px; border-radius: 5px; cursor: pointer; font-size: 13px; transition: all 0.3s; }
+    .page-btn:hover { border-color: var(--admin-gold); color: var(--admin-gold); }
+    .page-btn.active { background: var(--admin-gold); color: #000; border-color: var(--admin-gold); font-weight: 700; }
+    .page-btn:disabled { opacity: 0.4; cursor: default; }
+
+    /* Empty / Loading state */
+    .table-state { text-align: center; padding: 40px; color: #555; }
+    .table-state i { font-size: 32px; margin-bottom: 12px; display: block; }
+
+    /* Ticket ID link */
+    .tkt-id-link { color: var(--admin-gold); font-weight: 700; cursor: pointer; text-decoration: none; }
+    .tkt-id-link:hover { color: var(--admin-gold-hover); text-decoration: underline; }
+
+    /* Customer message preview */
+    .msg-preview { color: #888; font-size: 12px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   </style>
 </head>
 <body>
@@ -82,190 +145,733 @@
   <!-- Sidebar -->
   <aside class="admin-sidebar">
     <div class="admin-logo">
-      <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
-        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
-          rasa</span>
+      <a href="index.html" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;">
+        <span style="font-family:'Samarkan',sans-serif!important;text-transform:lowercase;font-size:32px;color:#d4af37;letter-spacing:2px;">i rasa</span>
       </a>
     </div>
-    
     <nav class="admin-nav">
       <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
       <a href="admin-tickets.html" class="admin-nav-item active"><i class="ti-headphone-alt"></i> Support Tickets</a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
       <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
-      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
+      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
+      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons &amp; Offers</a>
       <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
       <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
-    
-    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
-      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="logoutAdmin()">
+    <div style="padding:20px;border-top:1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline" style="width:100%;" onclick="logoutAdmin()">
         <i class="ti-power-off"></i> Logout
       </button>
     </div>
   </aside>
 
-  <!-- Main Content Area -->
+  <!-- Main -->
   <main class="admin-main">
     <header class="admin-header">
-      <h4 style="margin: 0;">Support Tickets</h4>
-      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
-        <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
-          <i class="ti-user" style="color: #fff;"></i>
+      <h4 style="margin:0;"><i class="ti-headphone-alt" style="margin-right:10px;font-size:18px;"></i> Support Tickets</h4>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span id="headerAdminEmail" style="color:#888;font-size:13px;"></span>
+        <div style="width:40px;height:40px;border-radius:50%;background:#222;border:2px solid #333;display:flex;align-items:center;justify-content:center;">
+          <i class="ti-user" style="color:#d4af37;"></i>
         </div>
       </div>
     </header>
 
     <div class="admin-content">
-      
-      <div class="admin-card">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h5 style="margin: 0;">Support Tickets</h5>
-          <div>
-            <select class="form-control"
-              style="background: #111; border: 1px solid #333; color: #fff; display: inline-block; width: auto;"
-              id="ticketFilter">
-              <option value="ALL">All Tickets</option>
-              <option value="OPEN">Open</option>
-              <option value="IN_PROGRESS">In Progress</option>
-              <option value="RESOLVED">Resolved</option>
-            </select>
-          </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-icon gold"><i class="ti-headphone-alt"></i></div>
+          <div><div class="stat-label">Total Tickets</div><div class="stat-value" id="statTotal">—</div></div>
         </div>
-        
-        <div style="overflow-x: auto;">
+        <div class="stat-card">
+          <div class="stat-icon warning"><i class="ti-alert"></i></div>
+          <div><div class="stat-label">Open</div><div class="stat-value" id="statOpen">—</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="ti-reload"></i></div>
+          <div><div class="stat-label">In Progress</div><div class="stat-value" id="statInProgress">—</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="ti-check"></i></div>
+          <div><div class="stat-label">Resolved</div><div class="stat-value" id="statResolved">—</div></div>
+        </div>
+      </div>
+
+      <!-- Table Card -->
+      <div class="admin-card">
+        <div class="ticket-toolbar">
+          <div class="search-input-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search by ticket ID, name, email, subject..." oninput="debounceSearch()">
+          </div>
+          <select class="admin-select" id="statusFilter" onchange="loadTickets(0)">
+            <option value="ALL">All Status</option>
+            <option value="OPEN">Open</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="RESOLVED">Resolved</option>
+          </select>
+          <select class="admin-select" id="sortBySelect" onchange="loadTickets(0)">
+            <option value="createdAt">Sort by Date</option>
+            <option value="ticketId">Ticket ID</option>
+            <option value="name">Customer</option>
+            <option value="status">Status</option>
+          </select>
+          <select class="admin-select" id="sortOrderSelect" onchange="loadTickets(0)">
+            <option value="DESC">Newest</option>
+            <option value="ASC">Oldest</option>
+          </select>
+          <input type="date" class="admin-select" id="fromDate" onchange="loadTickets(0)" title="From Date" style="max-width:160px;">
+          <input type="date" class="admin-select" id="toDate" onchange="loadTickets(0)" title="To Date" style="max-width:160px;">
+          <button class="admin-btn" onclick="loadTickets(0)" title="Refresh">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="exportTicketsToExcel()" title="Export filtered tickets to Excel">
+            <i class="fas fa-file-excel"></i> Excel
+          </button>
+          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="exportTicketsToPDF()" title="Export filtered tickets to PDF">
+            <i class="fas fa-file-pdf"></i> PDF
+          </button>
+          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="printTickets()" title="Print filtered tickets">
+            <i class="fas fa-print"></i> Print
+          </button>
+        </div>
+
+        <div style="overflow-x:auto;">
           <table class="admin-table">
             <thead>
               <tr>
                 <th>Ticket ID</th>
                 <th>Customer</th>
-                <th>Subject</th>
+                <th>Subject / Message</th>
+                <th>Order Ref.</th>
                 <th>Date</th>
                 <th>Status</th>
-                <th>Actions</th>
+                <th style="text-align:center;">Actions</th>
               </tr>
             </thead>
-            <tbody id="adminTicketsBody">
-              <tr>
-                <td colspan="6" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading tickets...</td>
-              </tr>
+            <tbody id="ticketsBody">
+              <tr><td colspan="7" class="table-state"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i><br>Loading tickets...</td></tr>
             </tbody>
           </table>
         </div>
-        <div id="adminTicketsPagination" class="mt-3"></div>
+        <div class="pagination-wrap" id="paginationWrap"></div>
       </div>
 
     </div>
   </main>
 
+  <!-- =================== TICKET DETAIL MODAL =================== -->
+  <div class="modal fade" id="ticketModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="ti-headphone-alt" style="margin-right:8px;"></i> <span id="modalTicketId">—</span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Customer Info -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 20px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
+            <div class="info-row"><span class="info-label">Name</span><span class="info-value" id="modalName">—</span></div>
+            <div class="info-row"><span class="info-label">Email</span><span class="info-value" id="modalEmail">—</span></div>
+            <div class="info-row"><span class="info-label">Mobile</span><span class="info-value" id="modalMobile">—</span></div>
+            <div class="info-row"><span class="info-label">Order Ref.</span><span class="info-value" id="modalOrderId">—</span></div>
+            <div class="info-row"><span class="info-label">Submitted</span><span class="info-value" id="modalDate">—</span></div>
+            <div class="info-row"><span class="info-label">Status</span><span class="info-value" id="modalStatusBadge">—</span></div>
+          </div>
 
+          <!-- Subject & Message -->
+          <div style="margin-bottom:20px;">
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Subject</div>
+            <div id="modalSubject" style="font-size:15px;font-weight:600;color:#e0e0e0;margin-bottom:12px;"></div>
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Message</div>
+            <div id="modalMessage" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:14px;font-size:14px;color:#ccc;line-height:1.7;white-space:pre-wrap;"></div>
+          </div>
+
+          <!-- Image (if present) -->
+          <div id="modalImageWrap" style="display:none;margin-bottom:20px;">
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Attached Image</div>
+            <img id="modalImage" src="" alt="Ticket Attachment" style="max-width:100%;max-height:260px;border-radius:6px;border:1px solid #333;">
+          </div>
+
+          <!-- Status Update -->
+          <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;"><i class="fas fa-edit" style="margin-right:6px;"></i>Update Status</div>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+              <select class="admin-select" id="modalStatusSelect" style="flex:1;min-width:160px;">
+                <option value="OPEN">Open</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="RESOLVED">Resolved</option>
+              </select>
+              <input type="text" id="modalStatusNote" class="reply-textarea" style="flex:2;min-width:200px;min-height:40px;resize:none;padding:8px 12px;" placeholder="Optional note for status change...">
+              <button class="admin-btn admin-btn-sm" onclick="submitStatusUpdate()" id="statusUpdateBtn">
+                <i class="fas fa-check"></i> Update
+              </button>
+            </div>
+          </div>
+
+          <!-- Admin Reply -->
+          <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;"><i class="fas fa-reply" style="margin-right:6px;"></i>Send Reply to Customer</div>
+            <textarea class="reply-textarea" id="replyMessage" placeholder="Type your reply here... Customer will be notified."></textarea>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
+              <small style="color:#555;">Reply is saved as event in ticket history</small>
+              <button class="admin-btn" onclick="submitAdminReply()" id="replyBtn">
+                <i class="fas fa-paper-plane"></i> Send Reply
+              </button>
+            </div>
+          </div>
+
+          <!-- Timeline / Events -->
+          <div>
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;"><i class="fas fa-history" style="margin-right:6px;"></i>Ticket Timeline</div>
+            <div id="ticketTimeline" class="ticket-timeline"></div>
+          </div>
+        </div>
+        <div class="modal-footer" style="justify-content:space-between;">
+          <button id="deleteTicketBtn" class="admin-btn admin-btn-danger admin-btn-sm" onclick="deleteTicketFromModal()"><i class="fas fa-trash"></i> Delete Ticket</button>
+          <button class="admin-btn admin-btn-outline admin-btn-sm" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="js/admin-alert.js"></script>
-
   <script>
-    // Fetch Admin Tickets
-    async function loadAdminTickets(page = 0) {
-      const tbody = document.getElementById('adminTicketsBody');
-      const filter = document.getElementById('ticketFilter').value;
-      const paginationContainer = document.getElementById('adminTicketsPagination');
+    const API = '/api/admin/tickets';
+    let currentPage = 0;
+    let currentTicketId = null;
+    let searchTimer = null;
+    let currentTickets = [];
 
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading...</td></tr>';
+    // --- Load stats ---
+    async function loadStats() {
+      try {
+        const res = await fetch(`${API}/stats`, { credentials: 'include' });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          document.getElementById('statTotal').textContent = data.data.total ?? '—';
+          document.getElementById('statOpen').textContent = data.data.open ?? '—';
+          document.getElementById('statInProgress').textContent = data.data.inProgress ?? '—';
+          document.getElementById('statResolved').textContent = data.data.resolved ?? '—';
+        }
+      } catch (e) { console.error('Stats load failed', e); }
+    }
+
+    function getTicketQueryParams(page, size) {
+      const status = document.getElementById('statusFilter').value;
+      const search = document.getElementById('searchInput').value.trim();
+      const sortBy = document.getElementById('sortBySelect').value;
+      const sortOrder = document.getElementById('sortOrderSelect').value;
+      const fromDate = document.getElementById('fromDate').value;
+      const toDate = document.getElementById('toDate').value;
+      const params = new URLSearchParams({
+        page: String(page),
+        size: String(size),
+        status,
+        sortBy,
+        sortOrder
+      });
+      if (search) params.set('search', search);
+      if (fromDate) params.set('fromDate', fromDate);
+      if (toDate) params.set('toDate', toDate);
+      return params;
+    }
+
+    // --- Load tickets ---
+    async function loadTickets(page = 0) {
+      currentPage = page;
+      const tbody = document.getElementById('ticketsBody');
+      const pagWrap = document.getElementById('paginationWrap');
+      const pageSize = 10;
+
+      tbody.innerHTML = `<tr><td colspan="7" class="table-state"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i><br>Loading...</td></tr>`;
+      pagWrap.innerHTML = '';
 
       try {
-        const res = await fetch(`/api/admin/tickets?page=${page}&size=10&status=${filter}`, { credentials: 'include' });
+        const params = getTicketQueryParams(page, pageSize);
+        const url = `${API}?${params.toString()}`;
+        const res = await fetch(url, { credentials: 'include' });
         const data = await res.json();
 
-        if (res.ok && data.success && data.data.content && data.data.content.length > 0) {
-          const content = data.data.content;
-          tbody.innerHTML = content.map(tkt => {
-            const date = new Date(tkt.createdAt).toLocaleDateString('en-IN', {
-              day: 'numeric', month: 'short', year: 'numeric'
-            });
-            let badgeClass = 'badge-info';
-            if (tkt.status === 'RESOLVED') badgeClass = 'badge-success';
-            if (tkt.status === 'OPEN') badgeClass = 'badge-warning';
-
-            return `
-              <tr>
-                <td style="color:#d4af37; font-weight:bold;">${tkt.ticketId}</td>
-                <td>
-                  <div>${tkt.name}</div>
-                  <div style="font-size:11px; color:#888;">${tkt.email}</div>
-                </td>
-                <td>${tkt.subject}</td>
-                <td>${date}</td>
-                <td><span class="badge-status ${badgeClass}">${tkt.status}</span></td>
-                <td>
-                  <button class="admin-btn admin-btn-sm" onclick="alert('View details for ${tkt.ticketId}')"><i class="ti-eye"></i></button>
-                  <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="updateAdminTicketStatus('${tkt.ticketId}', 'RESOLVED')" title="Mark Resolved" style="margin-left:5px;"><i class="ti-check"></i></button>
-                </td>
-              </tr>
-            `;
-          }).join('');
-
-          // Render Pagination
-          const totalPages = data.data.totalPages;
-          let pagHtml = '';
-          if (totalPages > 1) {
-            pagHtml += `<div class="d-flex justify-content-center mt-3" style="gap: 5px;">`;
-            if (page > 0) {
-              pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="loadAdminTickets(${page - 1})">Prev</button>`;
-            }
-            for (let i = 0; i < totalPages; i++) {
-              const active = i === page ? 'background: #d4af37; color: #000;' : '';
-              pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" style="${active}" onclick="loadAdminTickets(${i})">${i + 1}</button>`;
-            }
-            if (page < totalPages - 1) {
-              pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="loadAdminTickets(${page + 1})">Next</button>`;
-            }
-            pagHtml += `</div>`;
-          }
-          paginationContainer.innerHTML = pagHtml;
-
-        } else {
-          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888;">No tickets found.</td></tr>';
-          paginationContainer.innerHTML = '';
+        if (!res.ok || !data.success) {
+          tbody.innerHTML = `<tr><td colspan="7" class="table-state"><i class="fas fa-exclamation-circle" style="color:#ff4d4d;"></i><br>Failed to load tickets.</td></tr>`;
+          return;
         }
+
+        const content = data.data.content || [];
+        currentTickets = content;
+
+        if (content.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" class="table-state"><i class="fas fa-ticket-alt" style="color:#555;"></i><br>No tickets found.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = content.map(t => {
+          const badgeClass = t.status === 'RESOLVED' ? 'badge-resolved' : t.status === 'IN_PROGRESS' ? 'badge-in-progress' : 'badge-open';
+          const statusLabel = t.status === 'IN_PROGRESS' ? 'In Progress' : (t.status || '').charAt(0) + (t.status || '').slice(1).toLowerCase();
+          const date = t.createdAt ? new Date(t.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+          const msgPreview = (t.message || '').replace(/\n/g, ' ').substring(0, 80) + ((t.message || '').length > 80 ? '…' : '');
+          return `
+            <tr>
+              <td><a class="tkt-id-link" onclick="openTicketModal('${t.ticketId}')">${t.ticketId || '—'}</a></td>
+              <td>
+                <div style="font-weight:600;">${escHtml(t.name || '—')}</div>
+                <div style="font-size:11px;color:#888;">${escHtml(t.email || '')}</div>
+                ${t.mobileNo ? `<div style="font-size:11px;color:#666;">${escHtml(t.mobileNo)}</div>` : ''}
+              </td>
+              <td>
+                <div style="font-weight:500;">${escHtml(t.subject || '—')}</div>
+                <div class="msg-preview">${escHtml(msgPreview)}</div>
+              </td>
+              <td>${t.orderId ? `<span style="color:#d4af37;font-weight:600;">RASA-${t.orderId}</span>` : '<span style="color:#555;">—</span>'}</td>
+              <td style="white-space:nowrap;">${date}</td>
+              <td><span class="badge-status ${badgeClass}">${statusLabel}</span></td>
+              <td style="text-align:center;white-space:nowrap;">
+                <button class="admin-btn admin-btn-sm" onclick="openTicketModal('${t.ticketId}')" title="View &amp; Reply"><i class="ti-eye"></i></button>
+                ${t.status !== 'RESOLVED' ? `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="quickResolve('${t.ticketId}')" title="Mark Resolved" style="margin-left:4px;"><i class="ti-check"></i></button>` : ''}
+              </td>
+            </tr>`;
+        }).join('');
+
+        // Pagination
+        const totalPages = data.data.totalPages;
+        if (totalPages > 1) {
+          let pHtml = '';
+          pHtml += `<button class="page-btn" onclick="loadTickets(${page - 1})" ${page === 0 ? 'disabled' : ''}>&laquo;</button>`;
+          for (let i = 0; i < totalPages; i++) {
+            pHtml += `<button class="page-btn ${i === page ? 'active' : ''}" onclick="loadTickets(${i})">${i + 1}</button>`;
+          }
+          pHtml += `<button class="page-btn" onclick="loadTickets(${page + 1})" ${page >= totalPages - 1 ? 'disabled' : ''}>&raquo;</button>`;
+          pagWrap.innerHTML = pHtml;
+        }
+
       } catch (err) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#ff4d4d;">Failed to load tickets. Please check permissions.</td></tr>';
+        tbody.innerHTML = `<tr><td colspan="7" class="table-state"><i class="fas fa-wifi" style="color:#ff4d4d;"></i><br>Network error. Please refresh.</td></tr>`;
         console.error(err);
       }
     }
 
-    async function updateAdminTicketStatus(ticketId, newStatus) {
-      if (!(await showConfirm(`Change status to ${newStatus}?`))) return;
+    async function fetchAllTickets() {
+      const pageSize = 100;
+      let page = 0;
+      const allTickets = [];
+      while (true) {
+        const params = getTicketQueryParams(page, pageSize);
+        const res = await fetch(`${API}?${params.toString()}`, { credentials: 'include' });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.message || 'Failed to load tickets for export');
+        }
+        const content = data.data.content || [];
+        allTickets.push(...content);
+        const totalPages = Number.isFinite(data.data.totalPages) ? data.data.totalPages : 0;
+        if (page >= totalPages - 1) break;
+        page += 1;
+      }
+      return allTickets;
+    }
+
+    // Export helpers use the full filtered ticket result set, not only the visible page.
+    async function exportTicketsToExcel() {
+      let tickets;
       try {
-        const res = await fetch(`/api/admin/tickets/${ticketId}/status?status=${newStatus}`, {
-          method: 'PUT',
+        tickets = await fetchAllTickets();
+      } catch (err) {
+        showAdminToast(err.message || 'Unable to load tickets for export', 'error');
+        return;
+      }
+      if (!tickets || tickets.length === 0) {
+        showAdminToast('No tickets available for export', 'error');
+        return;
+      }
+      const rows = tickets.map(ticket => ({
+        'Ticket ID': ticket.ticketId || '',
+        'Customer Name': ticket.name || '',
+        'Email': ticket.email || '',
+        'Phone': ticket.mobileNo || '',
+        'Subject': ticket.subject || '',
+        'Message': (ticket.message || '').replace(/\r?\n/g, ' '),
+        'Order Ref': ticket.orderId ? `RASA-${ticket.orderId}` : '',
+        'Status': ticket.status || '',
+        'Created At': ticket.createdAt ? new Date(ticket.createdAt).toLocaleString('en-IN') : ''
+      }));
+      const ws = XLSX.utils.json_to_sheet(rows);
+      ws['!cols'] = [{wch:16},{wch:20},{wch:24},{wch:16},{wch:30},{wch:50},{wch:14},{wch:14},{wch:20}];
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Tickets');
+      XLSX.writeFile(wb, `IRasa_Tickets_${new Date().toISOString().slice(0,10)}.xlsx`);
+    }
+
+    async function exportTicketsToPDF() {
+      let tickets;
+      try {
+        tickets = await fetchAllTickets();
+      } catch (err) {
+        showAdminToast(err.message || 'Unable to load tickets for PDF export', 'error');
+        return;
+      }
+      if (!tickets || tickets.length === 0) {
+        showAdminToast('No tickets available for export', 'error');
+        return;
+      }
+      const rows = tickets.map(ticket => {
+        const messageText = (ticket.message || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, ' ');
+        return `
+          <tr>
+            <td style="padding:8px;border:1px solid #ddd;font-weight:bold;">${ticket.ticketId || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.name || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.email || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.mobileNo || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.subject || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;max-width:220px;word-break:break-word;">${messageText}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.orderId ? `RASA-${ticket.orderId}` : '—'}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.status || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.createdAt ? new Date(ticket.createdAt).toLocaleString('en-IN') : ''}</td>
+          </tr>`;
+      }).join('');
+
+      const element = document.createElement('div');
+      element.innerHTML = `
+        <style>
+          body { font-family: Arial, sans-serif; color: #111; background: #fff; }
+          h2 { margin:0 0 6px; font-size:20px; text-transform:uppercase; letter-spacing:1px; }
+          .subtitle { margin-bottom:18px; font-size:11px; color:#555; }
+          table { width:100%; border-collapse:collapse; font-size:10px; }
+          th, td { border:1px solid #ddd; padding:8px; vertical-align:top; }
+          th { background:#111; color:#d4af37; text-align:left; }
+          tr:nth-child(even) td { background:#f9f9f9; }
+        </style>
+        <h2>i rasa Support Tickets</h2>
+        <div class="subtitle">Exported: ${new Date().toLocaleDateString('en-IN')} | Records: ${tickets.length}</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Ticket ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Order Ref</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+      const opt = {
+        margin: [0.3, 0.3, 0.3, 0.3],
+        filename: `IRasa_Tickets_${new Date().toISOString().slice(0,10)}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+
+    async function printTickets() {
+      let tickets;
+      try {
+        tickets = await fetchAllTickets();
+      } catch (err) {
+        showAdminToast(err.message || 'Unable to load tickets for printing', 'error');
+        return;
+      }
+      if (!tickets || tickets.length === 0) {
+        showAdminToast('No tickets available for printing', 'error');
+        return;
+      }
+      const rows = tickets.map(ticket => {
+        const messageText = (ticket.message || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, '<br>');
+        return `
+          <tr>
+            <td style="padding:8px;border:1px solid #ddd;font-weight:bold;">${ticket.ticketId || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.name || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.email || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.mobileNo || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.subject || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;max-width:220px;word-break:break-word;">${messageText}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.orderId ? `RASA-${ticket.orderId}` : '—'}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.status || ''}</td>
+            <td style="padding:8px;border:1px solid #ddd;">${ticket.createdAt ? new Date(ticket.createdAt).toLocaleString('en-IN') : ''}</td>
+          </tr>`;
+      }).join('');
+
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <!DOCTYPE html><html><head><title>I Rasa Tickets Report</title><style>
+          * { margin:0; padding:0; box-sizing:border-box; }
+          body { font-family: Arial, sans-serif; padding: 22px; color:#111; }
+          h1 { font-size:22px; margin-bottom:6px; }
+          .meta { margin-bottom:18px; font-size:12px; color:#555; }
+          table { width:100%; border-collapse:collapse; font-size:10px; }
+          th, td { border:1px solid #ddd; padding:8px; vertical-align:top; }
+          th { background:#111; color:#d4af37; text-align:left; }
+          tr:nth-child(even) td { background:#f7f7f7; }
+          .footer { margin-top:24px; font-size:10px; color:#555; }
+        </style></head><body>
+        <h1>i rasa Support Tickets</h1>
+        <div class="meta">Printed: ${new Date().toLocaleString('en-IN')} | Total records: ${tickets.length}</div>
+        <table><thead><tr>
+          <th>Ticket ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Subject</th><th>Message</th><th>Order Ref</th><th>Status</th><th>Date</th>
+        </tr></thead><tbody>${rows}</tbody></table>
+        <div class="footer">Generated by i rasa admin panel</div>
+        </body></html>`);
+      win.document.close();
+      win.focus();
+      setTimeout(() => win.print(), 500);
+    }
+
+    // --- Open ticket detail modal ---
+    async function openTicketModal(ticketId) {
+      currentTicketId = ticketId;
+      document.getElementById('modalTicketId').textContent = ticketId;
+      document.getElementById('modalName').textContent = '…';
+      document.getElementById('modalEmail').textContent = '…';
+      document.getElementById('modalMobile').textContent = '…';
+      document.getElementById('modalOrderId').textContent = '…';
+      document.getElementById('modalDate').textContent = '…';
+      document.getElementById('modalSubject').textContent = '…';
+      document.getElementById('modalMessage').textContent = '…';
+      document.getElementById('modalStatusBadge').innerHTML = '…';
+      document.getElementById('ticketTimeline').innerHTML = '<div style="color:#555;text-align:center;padding:20px;"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
+      document.getElementById('replyMessage').value = '';
+
+      const modal = new bootstrap.Modal(document.getElementById('ticketModal'));
+      modal.show();
+
+      try {
+        const res = await fetch(`${API}/${ticketId}`, { credentials: 'include' });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          document.getElementById('ticketTimeline').innerHTML = '<div style="color:#ff4d4d;text-align:center;">Failed to load ticket details.</div>';
+          return;
+        }
+        const t = data.data;
+
+        document.getElementById('modalName').textContent = t.name || '—';
+        document.getElementById('modalEmail').innerHTML = t.email ? `<a href="mailto:${t.email}" style="color:#d4af37;">${t.email}</a>` : '—';
+        document.getElementById('modalMobile').textContent = t.mobileNo || '—';
+        document.getElementById('modalOrderId').innerHTML = t.orderId ? `<span style="color:#d4af37;font-weight:600;">RASA-${t.orderId}</span>` : '—';
+        document.getElementById('modalDate').textContent = t.createdAt ? new Date(t.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) : '—';
+        document.getElementById('modalSubject').textContent = t.subject || '—';
+        document.getElementById('modalMessage').textContent = t.message || '—';
+
+        const badgeClass = t.status === 'RESOLVED' ? 'badge-resolved' : t.status === 'IN_PROGRESS' ? 'badge-in-progress' : 'badge-open';
+        const statusLabel = t.status === 'IN_PROGRESS' ? 'In Progress' : (t.status || '').charAt(0) + (t.status || '').slice(1).toLowerCase();
+        document.getElementById('modalStatusBadge').innerHTML = `<span class="badge-status ${badgeClass}">${statusLabel}</span>`;
+        document.getElementById('modalStatusSelect').value = t.status || 'OPEN';
+
+        // Image
+        if (t.imageUrl) {
+          document.getElementById('modalImage').src = t.imageUrl;
+          document.getElementById('modalImageWrap').style.display = 'block';
+        } else {
+          document.getElementById('modalImageWrap').style.display = 'none';
+        }
+
+        // Timeline
+        const events = t.events || [];
+        if (events.length === 0) {
+          document.getElementById('ticketTimeline').innerHTML = '<div style="color:#555;font-size:13px;">No activity yet.</div>';
+        } else {
+          document.getElementById('ticketTimeline').innerHTML = events.map(ev => {
+            const iconCls = ev.eventType === 'SUPPORT_REPLY' ? 'reply' : ev.eventType === 'CREATED' ? 'created' : 'status';
+            const iconI = ev.eventType === 'SUPPORT_REPLY' ? 'fas fa-reply' : ev.eventType === 'CREATED' ? 'fas fa-plus' : 'fas fa-exchange-alt';
+            const typeLabel = ev.eventType === 'SUPPORT_REPLY' ? 'Admin Reply' : ev.eventType === 'STATUS_UPDATE' ? `Status → ${ev.status}` : 'Ticket Created';
+            const evTime = ev.createdAt ? new Date(ev.createdAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) : '';
+            return `
+              <div class="timeline-item">
+                <div class="timeline-icon ${iconCls}"><i class="${iconI}"></i></div>
+                <div class="timeline-body">
+                  <div class="tl-type">${typeLabel}</div>
+                  <div class="tl-note">${escHtml(ev.note || '')}</div>
+                  <div class="tl-time">${evTime}</div>
+                </div>
+              </div>`;
+          }).join('');
+        }
+
+      } catch (err) {
+        document.getElementById('ticketTimeline').innerHTML = `<div style="color:#ff4d4d;text-align:center;">Network error loading details.</div>`;
+        console.error(err);
+      }
+    }
+
+    // --- Submit status update ---
+    async function submitStatusUpdate() {
+      const btn = document.getElementById('statusUpdateBtn');
+      const status = document.getElementById('modalStatusSelect').value;
+      const note = document.getElementById('modalStatusNote').value.trim();
+      if (!currentTicketId) return;
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating…';
+      try {
+        const params = new URLSearchParams({ status });
+        if (note) params.append('note', note);
+        const res = await fetch(`${API}/${currentTicketId}/status?${params}`, {
+          method: 'PUT', credentials: 'include'
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showAdminToast('Status updated successfully!', 'success');
+          document.getElementById('modalStatusNote').value = '';
+          await openTicketModal(currentTicketId);
+          loadTickets(currentPage);
+          loadStats();
+        } else {
+          showAdminToast(data.message || 'Failed to update status', 'error');
+        }
+      } catch (e) {
+        showAdminToast('Network error', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-check"></i> Update';
+      }
+    }
+
+    // --- Submit admin reply ---
+    async function submitAdminReply() {
+      const btn = document.getElementById('replyBtn');
+      const msg = document.getElementById('replyMessage').value.trim();
+      if (!currentTicketId || !msg) {
+        showAdminToast('Please enter a reply message', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+      try {
+        const status = document.getElementById('modalStatusSelect').value;
+        const params = new URLSearchParams({ replyMessage: msg, status });
+        const res = await fetch(`${API}/${currentTicketId}/reply?${params}`, {
+          method: 'POST', credentials: 'include'
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showAdminToast('Reply sent & saved to timeline!', 'success');
+          document.getElementById('replyMessage').value = '';
+          await openTicketModal(currentTicketId);
+          loadTickets(currentPage);
+          loadStats();
+        } else {
+          showAdminToast(data.message || 'Failed to send reply', 'error');
+        }
+      } catch (e) {
+        showAdminToast('Network error', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Reply';
+      }
+    }
+
+    // --- Quick resolve ---
+    async function quickResolve(ticketId) {
+      if (!confirm(`Mark ticket ${ticketId} as RESOLVED?`)) return;
+      try {
+        const res = await fetch(`${API}/${ticketId}/status?status=RESOLVED&note=Resolved by Admin`, {
+          method: 'PUT', credentials: 'include'
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showAdminToast('Ticket marked as Resolved!', 'success');
+          loadTickets(currentPage);
+          loadStats();
+        } else {
+          showAdminToast(data.message || 'Failed', 'error');
+        }
+      } catch (e) {
+        showAdminToast('Network error', 'error');
+      }
+    }
+
+    // --- Delete ticket from modal ---
+    async function deleteTicketFromModal() {
+      if (!currentTicketId) return;
+      if (!confirm(`Delete ticket ${currentTicketId} permanently? This cannot be undone.`)) return;
+
+      const btn = document.getElementById('deleteTicketBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+      }
+
+      try {
+        const res = await fetch(`${API}/${currentTicketId}`, {
+          method: 'DELETE',
           credentials: 'include'
         });
         const data = await res.json();
         if (res.ok && data.success) {
-          alert('Status updated successfully');
-          loadAdminTickets();
+          showAdminToast('Ticket deleted permanently.', 'success');
+          const modalEl = document.getElementById('ticketModal');
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          if (modalInstance) modalInstance.hide();
+          currentTicketId = null;
+          loadTickets(currentPage);
+          loadStats();
         } else {
-          alert(data.message || 'Error updating status');
+          showAdminToast(data.message || 'Failed to delete ticket', 'error');
         }
-      } catch (err) {
-        alert('Network error');
+      } catch (e) {
+        showAdminToast('Network error while deleting ticket', 'error');
+        console.error(e);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-trash"></i> Delete Ticket';
+        }
       }
     }
 
-    document.getElementById('ticketFilter').addEventListener('change', () => loadAdminTickets(0));
-
-
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      loadAdminTickets(0);
-    });
-    
-    function logoutAdmin() {
-      window.location.href = "index.html";
+    // --- Debounced search ---
+    function debounceSearch() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => loadTickets(0), 400);
     }
+
+    // --- Logout ---
+    function logoutAdmin() { window.location.href = 'index.html'; }
+
+    // --- Toast ---
+    function showAdminToast(msg, type) {
+      let tc = document.getElementById('toast-container');
+      if (!tc) {
+        tc = document.createElement('div');
+        tc.id = 'toast-container';
+        tc.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;';
+        document.body.appendChild(tc);
+      }
+      const t = document.createElement('div');
+      const borderColor = type === 'success' ? '#25d366' : '#ff4d4d';
+      const icon = type === 'success' ? 'fa-check-circle' : 'fa-times-circle';
+      t.style.cssText = `background:#1a1a1a;border-left:4px solid ${borderColor};color:#fff;padding:14px 20px;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,0.6);font-size:13px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateX(100%);transition:all .3s ease;min-width:240px;`;
+      t.innerHTML = `<i class="fas ${icon}" style="color:${borderColor};"></i> ${msg}`;
+      tc.appendChild(t);
+      setTimeout(() => { t.style.opacity = '1'; t.style.transform = 'translateX(0)'; }, 10);
+      setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(100%)'; setTimeout(() => t.remove(), 300); }, 3500);
+    }
+
+    // --- Escape HTML ---
+    function escHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // --- Init ---
+    document.addEventListener('DOMContentLoaded', () => {
+      loadStats();
+      loadTickets(0);
+    });
   </script>
 </body>
 </html>

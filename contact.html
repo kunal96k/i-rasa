@@ -150,23 +150,31 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-email"></i></span>
             <div class="media-body">
-              <h3><a href="javascript:void(0);">#</a></h3>
+              <h3><a href="mailto:irasaperfumes@gmail.com" style="color:#d4af37;">irasaperfumes@gmail.com</a></h3>
               <p>Send us your query anytime!</p>
             </div>
           </div>
         </div>
         <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-8 col-lg-9">
-          <form action="#" onsubmit="showSuccessToast(event)" class="form-contact contact_form" id="contactForm" novalidate="novalidate">
+
+          <!-- Support Ticket Notice -->
+          <div id="ticketNotice" style="display:none;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.25);border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:13px;color:#d4af37;">
+            <i class="fas fa-headset" style="margin-right:8px;"></i>
+            <strong>Logged-in users:</strong> For order-related issues or detailed support, you can submit a tracked
+            <a href="profile.html#support-tickets" style="color:#fff;font-weight:bold;text-decoration:underline;">Support Ticket</a> from your Profile page.
+          </div>
+
+          <form class="form-contact contact_form" id="contactForm" novalidate="novalidate">
             <div class="row">
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-5">
                 <div class="form-group">
-                  <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name">
+                  <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address">
+                  <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" name="mobileNo" id="mobileNo" type="tel" placeholder="Enter mobile number" pattern="[0-9]{10,15}">
+                  <input class="form-control" name="mobileNo" id="mobileNo" type="tel" placeholder="Enter mobile number (optional)" pattern="[0-9]{10,15}">
                 </div>
                 <div class="form-group">
                   <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject" minlength="2" maxlength="100" required>
@@ -175,12 +183,12 @@
               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-7">
                 <div class="form-group">
                   <textarea class="form-control different-control w-100" name="message" id="message" cols="30" rows="5"
-                    placeholder="Enter Message" minlength="10" maxlength="1000" required></textarea>
+                    placeholder="Enter your message (10–1000 characters)" minlength="10" maxlength="1000" required></textarea>
                 </div>
               </div>
             </div>
             <div class="form-group text-center text-md-right mt-3">
-              <button type="submit" class="button-contactForm">Send Message</button>
+              <button type="submit" class="button-contactForm" id="contactSubmitBtn">Send Message</button>
             </div>
           </form>
         </div>
@@ -264,7 +272,7 @@
                   <span><i class="fas fa-envelope"></i></span>
                   Official Email
                 </p>
-                <p>#</p>
+                <p>irasaperfumes@gmail.com</p>
               </div>
             </div>
           </div>
@@ -336,49 +344,89 @@
   <script src="js/vendors/aos.js"></script>
 
   <script>AOS.init();</script>
-
   <script src="js/auth-guard.js"></script>
-	<script>
-		// Toast Notification System
-		function showSuccessToast(e) {
-			e.preventDefault(); // Prevent page reload
-			
-			// Create toast container if it doesn't exist
-			let toastContainer = document.getElementById('toast-container');
-			if (!toastContainer) {
-				toastContainer = document.createElement('div');
-				toastContainer.id = 'toast-container';
-				toastContainer.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;';
-				document.body.appendChild(toastContainer);
-			}
 
-			// Create toast element
-			const toast = document.createElement('div');
-			toast.style.cssText = 'background: #111; border-left: 4px solid #d4af37; color: #fff; padding: 15px 25px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); font-weight: bold; opacity: 0; transform: translateX(100%); transition: all 0.3s ease; display: flex; align-items: center; gap: 10px; font-family: "Michroma", sans-serif; font-size: 12px;';
-			toast.innerHTML = '<i class="fas fa-check-circle" style="color: #d4af37; font-size: 16px;"></i> Message Sent Successfully!';
-			
-			toastContainer.appendChild(toast);
+  <script>
+    // Show ticket notice if user is logged in
+    document.addEventListener('DOMContentLoaded', function() {
+      const userData = JSON.parse(localStorage.getItem('irasa_user') || '{}');
+      if (userData && userData.email) {
+        document.getElementById('ticketNotice').style.display = 'block';
+      }
+    });
 
-			// Animate in
-			setTimeout(() => {
-				toast.style.opacity = '1';
-				toast.style.transform = 'translateX(0)';
-			}, 10);
+    // Contact Form - POST to /api/contact/submit-enquiry
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
 
-			// Animate out and remove after 3 seconds
-			setTimeout(() => {
-				toast.style.opacity = '0';
-				toast.style.transform = 'translateX(100%)';
-				setTimeout(() => toast.remove(), 300);
-			}, 3000);
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mobileNo = document.getElementById('mobileNo').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const btn = document.getElementById('contactSubmitBtn');
 
-			// Clear form
-			if (e.target.tagName === 'FORM') {
-				e.target.reset();
-			}
-		}
-	</script>
-  <script src="js/form-validator.js"></script>
+      // Validation
+      if (!name || !email || !subject || !message) {
+        showContactToast('Please fill in all required fields.', 'error');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showContactToast('Please enter a valid email address.', 'error');
+        return;
+      }
+      if (message.length < 10) {
+        showContactToast('Message must be at least 10 characters.', 'error');
+        return;
+      }
+
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const params = new URLSearchParams({ name, email, subject, message });
+        if (mobileNo) params.append('mobileNo', mobileNo);
+
+        const res = await fetch('/api/contact/submit-enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString()
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showContactToast('Message sent successfully! We will contact you soon.', 'success');
+          e.target.reset();
+        } else {
+          showContactToast(data.message || 'Failed to send message. Please try again.', 'error');
+        }
+      } catch (err) {
+        showContactToast('Network error. Please check your connection.', 'error');
+        console.error(err);
+      } finally {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+      }
+    });
+
+    function showContactToast(msg, type) {
+      let tc = document.getElementById('toast-container');
+      if (!tc) {
+        tc = document.createElement('div');
+        tc.id = 'toast-container';
+        tc.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;';
+        document.body.appendChild(tc);
+      }
+      const t = document.createElement('div');
+      const borderColor = type === 'success' ? '#d4af37' : '#ff4d4d';
+      const icon = type === 'success' ? 'fa-check-circle' : 'fa-times-circle';
+      t.style.cssText = `background:#111;border-left:4px solid ${borderColor};color:#fff;padding:15px 25px;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,0.5);font-weight:bold;opacity:0;transform:translateX(100%);transition:all .3s ease;display:flex;align-items:center;gap:10px;font-family:"Michroma",sans-serif;font-size:12px;`;
+      t.innerHTML = `<i class="fas ${icon}" style="color:${borderColor};font-size:16px;"></i> ${msg}`;
+      tc.appendChild(t);
+      setTimeout(() => { t.style.opacity='1'; t.style.transform='translateX(0)'; }, 10);
+      setTimeout(() => { t.style.opacity='0'; t.style.transform='translateX(100%)'; setTimeout(() => t.remove(), 300); }, 4000);
+    }
+  </script>
 </body>
 
 </html>

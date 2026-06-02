@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I-Rasa Perfumes - Admin Subscribers</title>
+
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    :root {
+      --admin-bg: #0a0a0a;
+      --admin-surface: #111111;
+      --admin-surface-light: #1a1a1a;
+      --admin-text: #e0e0e0;
+      --admin-gold: #d4af37;
+      --admin-gold-hover: #e5c158;
+      --admin-border: #333333;
+    }
+
+    body {
+      background-color: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--admin-gold);
+    }
+
+    body.modal-open {
+      padding-right: 0 !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--admin-gold);
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Sidebar */
+    .admin-sidebar {
+      width: 260px;
+      background-color: var(--admin-surface);
+      border-right: 1px solid var(--admin-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .admin-logo {
+      text-align: center;
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .admin-nav {
+      flex-grow: 1;
+      padding: 20px 0;
+      overflow-y: auto;
+    }
+
+    .admin-nav-item {
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      color: var(--admin-text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .admin-nav-item:hover,
+    .admin-nav-item.active {
+      background-color: rgba(212, 175, 55, 0.1);
+      color: var(--admin-gold);
+      border-left-color: var(--admin-gold);
+    }
+
+    .admin-nav-item i {
+      margin-right: 15px;
+      font-size: 1.2rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* Main Content */
+    .admin-main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .admin-header {
+      height: 70px;
+      background-color: var(--admin-surface);
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      flex-shrink: 0;
+    }
+
+    .admin-content {
+      flex-grow: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    /* Cards & Tables */
+    .admin-card {
+      background-color: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .admin-table {
+      width: 100%;
+      color: var(--admin-text);
+      border-collapse: collapse;
+    }
+
+    .admin-table th {
+      text-align: left;
+      padding: 12px 15px;
+      border-bottom: 2px solid var(--admin-border);
+      color: var(--admin-gold);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-table td {
+      padding: 15px;
+      border-bottom: 1px solid var(--admin-border);
+      vertical-align: middle;
+      font-size: 0.95rem;
+    }
+
+    .admin-table tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Toggle Switch Style */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #222;
+      transition: .4s;
+      border-radius: 24px;
+      border: 1px solid #444;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #888;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: rgba(212, 175, 55, 0.2);
+      border-color: var(--admin-gold);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+      background-color: var(--admin-gold);
+    }
+
+    /* Buttons */
+    .admin-btn {
+      background-color: var(--admin-gold);
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px;
+    }
+
+    .admin-btn:hover {
+      background-color: var(--admin-gold-hover);
+    }
+
+    .admin-btn-outline {
+      background-color: transparent;
+      color: var(--admin-gold);
+      border: 1px solid var(--admin-gold);
+    }
+
+    .admin-btn-outline:hover {
+      background-color: rgba(212, 175, 55, 0.1);
+    }
+
+    .admin-btn-sm {
+      padding: 4px 10px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <aside class="admin-sidebar">
+    <div class="admin-logo">
+      <a class="navbar-brand logo_h" href="index.html"
+        style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
+        <span
+          style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
+      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
+      <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
+      <a href="admin-subscribers.html" class="admin-nav-item active"><i class="ti-bell"></i> Subscribers</a>
+      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
+      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
+      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
+      <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
+    </nav>
+
+    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="window.location.href='index.html'">
+        <i class="ti-power-off"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-header">
+      <h4 style="margin: 0;">Newsletter Subscribers</h4>
+      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
+        <div
+          style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
+          <i class="ti-user" style="color: #fff;"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      <div class="admin-card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 style="margin: 0;">Subscribed Readers</h5>
+          <div>
+            <button class="admin-btn admin-btn-sm" data-toggle="modal" data-target="#sendNewsletterModal"><i
+                class="ti-email"></i> Send Newsletter</button>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Subscriber ID</th>
+                <th>Email Address</th>
+                <th>Signup Date</th>
+                <th>Status (ON/OFF)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="subscribersBody">
+              <tr>
+                <td colspan="5" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i>
+                  Loading subscribers...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Send Newsletter Modal -->
+  <div class="modal fade" id="sendNewsletterModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background:#0a0a0a; border: 1px solid var(--admin-gold);">
+        <div class="modal-header" style="border-bottom: 1px solid #333;">
+          <h5 style="color:var(--admin-gold); margin-bottom:0;"><i class="ti-email"></i> Broadcast Newsletter / Promo Message</h5>
+          <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="sendNewsletterForm">
+            <div class="form-group mb-3">
+              <label style="color:#aaa; font-size:12px; text-transform:uppercase; letter-spacing: 0.5px;">Email Subject</label>
+              <input type="text" class="form-control" style="background: #111; border: 1px solid #333; color: #fff;"
+                id="newsletterSubject" placeholder="Enter subject lines (e.g. Exclusive Weekend Sale - 20% OFF!)" required>
+            </div>
+            <div class="form-group mb-3">
+              <label style="color:#aaa; font-size:12px; text-transform:uppercase; letter-spacing: 0.5px;">Email Message Body</label>
+              <textarea class="form-control" style="background: #111; border: 1px solid #333; color: #fff;"
+                id="newsletterMessage" rows="8" placeholder="Type your promotion or offer message here..." required></textarea>
+            </div>
+            <button type="submit" class="admin-btn" style="width:100%; margin-top:10px;" id="dispatchBtn">
+              <i class="ti-arrow-up"></i> Send to All Active Subscribers
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/admin-alert.js"></script>
+
+  <script>
+    const API_BASE = window.location.hostname ? `http://${window.location.hostname}:8080/api/subscribe` : 'http://localhost:8080/api/subscribe';
+
+    async function loadSubscribers() {
+      const tbody = document.getElementById('subscribersBody');
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading subscribers...</td></tr>';
+
+      try {
+        const res = await fetch(`${API_BASE}/list`, { credentials: 'include' });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          const list = data.data || [];
+          if (list.length > 0) {
+            tbody.innerHTML = list.map(sub => {
+              const date = new Date(sub.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+              return `
+                <tr style="transition: background 0.2s;" onmouseover="this.style.background='rgba(212, 175, 55, 0.04)'" onmouseout="this.style.background=''">
+                  <td style="color:#d4af37; font-weight:700; font-size:12px;">SUB-${sub.id}</td>
+                  <td style="font-weight:600;">${sub.email}</td>
+                  <td style="font-size:12px; color:#aaa;">${date}</td>
+                  <td>
+                    <label class="switch">
+                      <input type="checkbox" ${sub.status ? 'checked' : ''} onchange="toggleStatus(${sub.id})">
+                      <span class="slider"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <button class="admin-btn admin-btn-sm" onclick="deleteSubscriber(${sub.id})" title="Delete" style="background:rgba(255,77,77,0.15); color:#ff4d4d; border:1px solid #ff4d4d;">
+                      <i class="ti-trash"></i> Delete
+                    </button>
+                  </td>
+                </tr>`;
+            }).join('');
+          } else {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#888; padding:40px;">No newsletter subscribers found.</td></tr>';
+          }
+        } else {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#ff4d4d;">Error: ${data.message || 'Failed to fetch'}</td></tr>`;
+        }
+      } catch (err) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#ff4d4d; padding:30px;">⚠️ Connection error. Check if backend server is active on port 8080.</td></tr>';
+        console.error(err);
+      }
+    }
+
+    async function toggleStatus(id) {
+      try {
+        const res = await fetch(`${API_BASE}/${id}/toggle`, {
+          method: 'PUT',
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          alert(data.message || 'Failed to update subscriber status');
+          loadSubscribers();
+        }
+      } catch (err) {
+        alert('Network error during status change.');
+        loadSubscribers();
+      }
+    }
+
+    async function deleteSubscriber(id) {
+      if (!confirm('Are you sure you want to permanently delete this subscriber?')) return;
+      try {
+        const res = await fetch(`${API_BASE}/${id}`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          loadSubscribers();
+        } else {
+          alert(data.message || 'Failed to delete subscriber');
+        }
+      } catch (err) {
+        alert('Network error');
+      }
+    }
+
+    document.getElementById('sendNewsletterForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const subject = document.getElementById('newsletterSubject').value;
+      const message = document.getElementById('newsletterMessage').value;
+      const dispatchBtn = document.getElementById('dispatchBtn');
+
+      dispatchBtn.disabled = true;
+      dispatchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Dispatched started...';
+
+      try {
+        const res = await fetch(`${API_BASE}/send-newsletter`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ subject, message }),
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          alert('Newsletter broadcast started successfully! Dispatches are sent in the background.');
+          $('#sendNewsletterModal').modal('hide');
+          document.getElementById('sendNewsletterForm').reset();
+        } else {
+          alert(data.message || 'Failed to initiate dispatch');
+        }
+      } catch (err) {
+        alert('Network error');
+      } finally {
+        dispatchBtn.disabled = false;
+        dispatchBtn.innerHTML = '<i class="ti-arrow-up"></i> Send to All Active Subscribers';
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', loadSubscribers);
+  </script>
+</body>
+
+</html>
