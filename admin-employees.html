@@ -33,11 +33,27 @@
     }
 
     /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--admin-bg); }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--admin-gold); }
-    body.modal-open { padding-right: 0 !important; }
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--admin-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--admin-gold);
+    }
+
+    body.modal-open {
+      padding-right: 0 !important;
+    }
 
     h1,
     h2,
@@ -165,10 +181,152 @@
       margin: 5px;
     }
 
+    .admin-btn:hover {
+      background-color: var(--admin-gold-hover);
+    }
+
     .admin-btn-outline {
       background-color: transparent;
       color: var(--admin-gold);
       border: 1px solid var(--admin-gold);
+    }
+
+    .admin-btn-outline:hover {
+      background-color: rgba(212, 175, 55, 0.1);
+    }
+
+    .form-control {
+      background: #1a1a1a !important;
+      border: 1px solid #333 !important;
+      color: #fff !important;
+      height: 45px !important;
+      border-radius: 8px !important;
+      padding: 0 15px !important;
+      font-size: 14px !important;
+    }
+
+    .form-control:focus {
+      border-color: #d4af37 !important;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.2) !important;
+    }
+
+    .modal-content label {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* Toolbar, Search & Filter styles */
+    .ticket-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .search-input-wrap i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #555;
+    }
+
+    .search-input-wrap input {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 9px 12px 9px 36px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+
+    .search-input-wrap input:focus {
+      border-color: var(--admin-gold);
+    }
+
+    .admin-select {
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 9px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.3s;
+      height: 38px;
+    }
+
+    .admin-select:focus {
+      border-color: var(--admin-gold);
+    }
+
+    /* Pagination */
+    .pagination-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      background: transparent;
+      border: 1px solid #333;
+      color: #aaa;
+      padding: 6px 13px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.3s;
+    }
+
+    .page-btn:hover {
+      border-color: var(--admin-gold);
+      color: var(--admin-gold);
+    }
+
+    .page-btn.active {
+      background: var(--admin-gold);
+      color: #000;
+      border-color: var(--admin-gold);
+      font-weight: 700;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    /* Badges */
+    .badge-success {
+      background: rgba(37, 211, 102, 0.1);
+      color: #25d366;
+      border: 1px solid #1a5c31;
+    }
+
+    .badge-danger {
+      background: rgba(255, 77, 77, 0.1);
+      color: #ff4d4d;
+      border: 1px solid #8a2a2a;
+    }
+
+    .badge-info {
+      background: rgba(59, 224, 224, 0.1);
+      color: #3be0e0;
+      border: 1px solid #1d6e6e;
     }
   </style>
 </head>
@@ -190,15 +348,15 @@
       <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
       <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
-      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
       <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
       <a href="admin-employees.html" class="admin-nav-item active"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
 
     <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
-      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="window.location.href='index.html'">
+      <button class="admin-btn admin-btn-outline" style="width: 100%;">
         <i class="ti-power-off"></i> Logout
       </button>
     </div>
@@ -210,7 +368,8 @@
       <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
         <div
           style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
-          <i class="ti-user" style="color: #fff;"></i></div>
+          <i class="ti-user" style="color: #fff;"></i>
+        </div>
       </div>
     </header>
 
@@ -218,32 +377,467 @@
       <div class="admin-card">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h5 style="margin: 0;">Manage Employees</h5>
-          <button class="admin-btn"><i class="ti-plus"></i> Add Employee</button>
+          <button class="admin-btn" onclick="openAddModal()"><i class="ti-plus"></i> Add Employee</button>
         </div>
+
+        <!-- Search, Sort & Filter Toolbar -->
+        <div class="ticket-toolbar mb-4">
+          <div class="search-input-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search by ID, name, email, department, designation..."
+              oninput="debounceSearch()">
+          </div>
+          <select class="admin-select" id="deptFilter" onchange="fetchEmployees(0)">
+            <option value="ALL">All Departments</option>
+            <option value="Sales">Sales</option>
+            <option value="Inventory">Inventory</option>
+            <option value="HR">HR</option>
+            <option value="Operations">Operations</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Support">Support</option>
+            <option value="Logistics">Logistics</option>
+            <option value="Management">Management</option>
+          </select>
+          <select class="admin-select" id="roleFilter" onchange="fetchEmployees(0)">
+            <option value="ALL">All Roles</option>
+            <option value="EMPLOYEE">Employee</option>
+            <option value="ADMIN">Admin</option>
+            <option value="SUPERADMIN">Superadmin</option>
+          </select>
+          <select class="admin-select" id="sortBySelect" onchange="fetchEmployees(0)">
+            <option value="id">Sort by Date Added</option>
+            <option value="employeeId">Employee ID</option>
+            <option value="department">Department</option>
+            <option value="salary">Salary</option>
+          </select>
+          <select class="admin-select" id="sortOrderSelect" onchange="fetchEmployees(0)">
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+          </select>
+        </div>
+
         <div style="overflow-x: auto;">
           <table class="admin-table">
             <thead>
               <tr>
+                <th>Emp Code</th>
                 <th>Employee Name</th>
-                <th>Email Address</th>
-                <th>Role</th>
+                <th>Contact Details</th>
+                <th>Designation / Dept</th>
+                <th>Salary</th>
+                <th>System Role</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="employeeTableBody">
               <tr>
-                <td colspan="5" style="text-align:center;">Module Coming Soon...</td>
+                <td colspan="8" style="text-align:center; color: #888;">
+                  <i class="ti-settings"
+                    style="font-size:24px; display:block; margin-bottom:10px; animation: spin 2s linear infinite;"></i>
+                  Loading employee records...
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
+        <div id="paginationWrap" class="pagination-wrap"></div>
       </div>
     </div>
   </main>
+
+  <!-- Employee Modal -->
+  <div class="modal fade" id="employeeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background:#0a0a0a; border:2px solid #d4af37; color:#fff; border-radius:12px;">
+        <div class="modal-header" style="border-bottom: 1px solid #222;">
+          <h5 class="modal-title" style="color: #d4af37;" id="employeeModalTitle">Add New Employee</h5>
+          <button type="button" class="close" data-dismiss="modal" style="color:#fff;"><span>&times;</span></button>
+        </div>
+        <div class="modal-body" style="padding:30px;">
+          <form id="employeeForm">
+            <input type="hidden" id="editEmployeeId">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Employee ID *</label>
+                  <input type="text" id="empCode" class="form-control" placeholder="e.g. EMP001" required>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Full Name *</label>
+                  <input type="text" id="empName" class="form-control" placeholder="Full Name" required>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Email Address *</label>
+                  <input type="email" id="empEmail" class="form-control" placeholder="email@rasa.com" required>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Phone Number *</label>
+                  <input type="tel" id="empPhone" class="form-control" placeholder="10-digit Indian Number" required>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Password <span id="pwdRequiredStar">*</span></label>
+                  <input type="password" id="empPassword" class="form-control" placeholder="Minimum 8 characters">
+                  <small class="form-text text-muted" id="pwdHelpText" style="display:none; color: #888;">Leave blank to
+                    keep existing password.</small>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>System Role *</label>
+                  <select id="empRole" class="form-control" style="background:#1a1a1a; color:#fff;" required>
+                    <option value="EMPLOYEE">Employee (Standard Access)</option>
+                    <option value="ADMIN">Admin (Full Control)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Department</label>
+                  <input type="text" id="empDept" class="form-control" placeholder="e.g. Sales, Inventory">
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Designation</label>
+                  <input type="text" id="empDesg" class="form-control" placeholder="e.g. Manager">
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Salary (Rs.)</label>
+                  <input type="number" step="0.01" id="empSalary" class="form-control" placeholder="Monthly Salary">
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label>Date of Joining</label>
+                  <input type="date" id="empDoj" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="text-right mt-4">
+              <button type="button" class="admin-btn admin-btn-outline" data-dismiss="modal"
+                style="min-width: 100px;">Cancel</button>
+              <button type="submit" class="admin-btn" style="min-width: 120px;">Save Employee</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="js/admin-alert.js"></script>
+  <script src="js/auth-guard.js"></script>
+
+  <script>
+    const EMP_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? `http://${window.location.hostname}:8080/api/admin/employees`
+      : '/api/admin/employees';
+
+    let editMode = false;
+    let currentPage = 0;
+    let searchTimer = null;
+
+    $(document).ready(function () {
+      fetchEmployees();
+
+      $('#employeeForm').on('submit', function (e) {
+        e.preventDefault();
+        saveEmployee();
+      });
+    });
+
+    function debounceSearch() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        fetchEmployees(0);
+      }, 300);
+    }
+
+    async function fetchEmployees(page = 0) {
+      currentPage = page;
+      const search = $('#searchInput').val().trim();
+      const dept = $('#deptFilter').val();
+      const role = $('#roleFilter').val();
+      const sortBy = $('#sortBySelect').val();
+      const sortOrder = $('#sortOrderSelect').val();
+
+      const params = new URLSearchParams({
+        page: page,
+        size: 10,
+        sortBy: sortBy,
+        sortOrder: sortOrder
+      });
+
+      if (search) params.append('search', search);
+      if (dept && dept !== 'ALL') params.append('department', dept);
+      if (role && role !== 'ALL') params.append('role', role);
+
+      try {
+        const res = await fetch(`${EMP_API}?${params.toString()}`, { credentials: 'include' });
+        const data = await res.json();
+        if (data.success) {
+          renderEmployees(data.data.content);
+          renderPagination(data.data.currentPage, data.data.totalPages);
+        } else {
+          showAlert('error', data.message || 'Failed to load employees.');
+        }
+      } catch (err) {
+        console.error(err);
+        showAlert('error', 'Error connecting to server.');
+      }
+    }
+
+    function renderEmployees(employees) {
+      const tbody = $('#employeeTableBody');
+      tbody.empty();
+
+      if (!employees || employees.length === 0) {
+        tbody.append('<tr><td colspan="8" style="text-align:center; color: #888;">No employee records found.</td></tr>');
+        return;
+      }
+
+      employees.forEach(emp => {
+        const salaryFormatted = parseFloat(emp.salary).toLocaleString('en-IN', {
+          style: 'currency',
+          currency: 'INR'
+        });
+
+        const statusBadge = emp.locked
+          ? `<span class="badge badge-danger" style="padding: 6px 12px; font-size: 11px;">LOCKED</span>`
+          : `<span class="badge badge-success" style="padding: 6px 12px; font-size: 11px; background: rgba(37, 211, 102, 0.1); color: #25d366; border: 1px solid #1a5c31;">ACTIVE</span>`;
+
+        const lockIcon = emp.locked ? 'ti-unlock' : 'ti-lock';
+        const lockColor = emp.locked ? '#25d366' : '#ff4d4d';
+        const lockTitle = emp.locked ? 'Unlock Account' : 'Lock Account';
+
+        // Prevent locking/resetting password for superadmin (role = SUPERADMIN)
+        const isSuper = emp.role === 'SUPERADMIN';
+        const lockButton = isSuper
+          ? `<button class="admin-btn admin-btn-outline btn-sm" disabled style="padding:4px 10px; font-size:12px; margin: 2px; opacity:0.4;"><i class="ti-lock"></i></button>`
+          : `<button class="admin-btn admin-btn-outline btn-sm" onclick="toggleLock(${emp.id})" title="${lockTitle}" style="padding:4px 10px; font-size:12px; margin: 2px; color:${lockColor}; border-color:${lockColor}; background:transparent;"><i class="${lockIcon}"></i></button>`;
+
+        const resetPasswordButton = isSuper
+          ? `<button class="admin-btn admin-btn-outline btn-sm" disabled style="padding:4px 10px; font-size:12px; margin: 2px; opacity:0.4;"><i class="ti-key"></i></button>`
+          : `<button class="admin-btn admin-btn-outline btn-sm" onclick="promptResetPassword(${emp.id}, '${emp.fullName}')" title="Reset Password" style="padding:4px 10px; font-size:12px; margin: 2px; color:#d4af37; border-color:#d4af37; background:transparent;"><i class="ti-key"></i></button>`;
+
+        const deleteButton = isSuper
+          ? `<button class="admin-btn btn-sm" disabled style="padding:4px 10px; font-size:12px; margin: 2px; opacity:0.4;"><i class="ti-trash"></i></button>`
+          : `<button class="admin-btn btn-sm" onclick="confirmDelete(${emp.id}, '${emp.fullName}')" style="padding:4px 10px; font-size:12px; background:#ff4d4d; color:#fff; margin: 2px;"><i class="ti-trash"></i></button>`;
+
+        tbody.append(`
+          <tr>
+            <td style="font-weight:600; color:#d4af37;">${emp.employeeId}</td>
+            <td>
+              <div style="font-weight:600;">${emp.fullName}</div>
+              <div style="font-size:11px; color:#888;">Joined: ${emp.dateOfJoining}</div>
+            </td>
+            <td>
+              <div>${emp.email}</div>
+              <div style="font-size:11px; color:#888;">${emp.phone}</div>
+            </td>
+            <td>
+              <div>${emp.designation}</div>
+              <div style="font-size:11px; color:#888;">${emp.department}</div>
+            </td>
+            <td style="font-weight:600; color:#a2822a;">${salaryFormatted}</td>
+            <td>
+              <span class="badge ${emp.role === 'SUPERADMIN' ? 'badge-danger' : (emp.role === 'ADMIN' ? 'badge-warning' : 'badge-info')}" style="padding: 6px 12px; font-size: 11px;">
+                ${emp.role}
+              </span>
+            </td>
+            <td>${statusBadge}</td>
+            <td>
+              <button class="admin-btn admin-btn-outline btn-sm" onclick="openEditModal(${emp.id})" title="Edit Employee" style="padding:4px 10px; font-size:12px; margin: 2px;"><i class="ti-pencil"></i></button>
+              ${lockButton}
+              ${resetPasswordButton}
+              ${deleteButton}
+            </td>
+          </tr>
+        `);
+      });
+    }
+
+    function renderPagination(page, totalPages) {
+      const pagWrap = $('#paginationWrap');
+      pagWrap.empty();
+      if (totalPages <= 1) return;
+
+      let pHtml = '';
+      pHtml += `<button class="page-btn" onclick="fetchEmployees(${page - 1})" ${page === 0 ? 'disabled' : ''}>&laquo;</button>`;
+      for (let i = 0; i < totalPages; i++) {
+        pHtml += `<button class="page-btn ${i === page ? 'active' : ''}" onclick="fetchEmployees(${i})">${i + 1}</button>`;
+      }
+      pHtml += `<button class="page-btn" onclick="fetchEmployees(${page + 1})" ${page >= totalPages - 1 ? 'disabled' : ''}>&raquo;</button>`;
+      pagWrap.html(pHtml);
+    }
+
+    function openAddModal() {
+      editMode = false;
+      $('#employeeForm')[0].reset();
+      $('#editEmployeeId').val('');
+      $('#employeeModalTitle').text('Add New Employee');
+      $('#pwdRequiredStar').show();
+      $('#empPassword').attr('required', true);
+      $('#pwdHelpText').hide();
+      $('#employeeModal').modal('show');
+    }
+
+    async function openEditModal(id) {
+      editMode = true;
+      $('#employeeForm')[0].reset();
+      $('#employeeModalTitle').text('Edit Employee');
+      $('#pwdRequiredStar').hide();
+      $('#empPassword').removeAttr('required');
+      $('#pwdHelpText').show();
+
+      try {
+        const res = await fetch(`${EMP_API}/${id}`, { credentials: 'include' });
+        const data = await res.json();
+        if (data.success) {
+          const emp = data.data;
+          $('#editEmployeeId').val(emp.id);
+          $('#empCode').val(emp.employeeId);
+          $('#empName').val(emp.fullName);
+          $('#empEmail').val(emp.email);
+          $('#empPhone').val(emp.phone);
+          $('#empRole').val(emp.role);
+          $('#empDept').val(emp.department);
+          $('#empDesg').val(emp.designation);
+          $('#empSalary').val(emp.salary);
+          $('#empDoj').val(emp.dateOfJoining);
+
+          $('#employeeModal').modal('show');
+        } else {
+          showAlert('error', data.message || 'Failed to load employee.');
+        }
+      } catch (err) {
+        console.error(err);
+        showAlert('error', 'Error connecting to server.');
+      }
+    }
+
+    async function saveEmployee() {
+      const id = $('#editEmployeeId').val();
+      const payload = {
+        employeeId: $('#empCode').val().trim(),
+        fullName: $('#empName').val().trim(),
+        email: $('#empEmail').val().trim(),
+        phone: $('#empPhone').val().trim(),
+        password: $('#empPassword').val(),
+        role: $('#empRole').val(),
+        department: $('#empDept').val().trim() || null,
+        designation: $('#empDesg').val().trim() || null,
+        salary: $('#empSalary').val() ? parseFloat($('#empSalary').val()) : null,
+        dateOfJoining: $('#empDoj').val() || null
+      };
+
+      const url = editMode ? `${EMP_API}/${id}` : EMP_API;
+      const method = editMode ? 'PUT' : 'POST';
+
+      try {
+        const res = await fetch(url, {
+          method: method,
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAlert('success', editMode ? 'Employee updated successfully.' : 'Employee created successfully.');
+          $('#employeeModal').modal('hide');
+          fetchEmployees(currentPage);
+        } else {
+          showAlert('error', data.message || 'Failed to save employee.');
+        }
+      } catch (err) {
+        console.error(err);
+        showAlert('error', 'Error connecting to server.');
+      }
+    }
+
+    async function toggleLock(id) {
+      try {
+        const res = await fetch(`${EMP_API}/${id}/lock`, {
+          method: 'PUT',
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAlert('success', 'Employee lock status updated successfully.');
+          fetchEmployees(currentPage);
+        } else {
+          showAlert('error', data.message || 'Failed to update lock status.');
+        }
+      } catch (err) {
+        console.error(err);
+        showAlert('error', 'Error connecting to server.');
+      }
+    }
+
+    async function promptResetPassword(id, name) {
+      const newPassword = prompt(`Enter new password for employee "${name}" (minimum 8 characters):`);
+      if (newPassword === null) return; // cancelled
+      if (newPassword.trim().length < 8) {
+        showAlert('error', 'Password must be at least 8 characters long.');
+        return;
+      }
+
+      try {
+        const res = await fetch(`${EMP_API}/${id}/reset-password`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ newPassword: newPassword.trim() })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAlert('success', `Password for "${name}" reset successfully.`);
+        } else {
+          showAlert('error', data.message || 'Failed to reset password.');
+        }
+      } catch (err) {
+        console.error(err);
+        showAlert('error', 'Error connecting to server.');
+      }
+    }
+
+    async function confirmDelete(id, name) {
+      if (await showConfirm(`Are you sure you want to delete employee "${name}"? This will permanently delete their record and user login.`, 'Confirm Delete')) {
+        deleteEmployee(id);
+      }
+    }
+
+    async function deleteEmployee(id) {
+      try {
+        const res = await fetch(`${EMP_API}/${id}`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAlert('success', 'Employee deleted successfully.');
+          fetchEmployees(currentPage);
+        } else {
+          showAlert('error', data.message || 'Failed to delete employee.');
+        }
+      } catch (err) {
+        console.error(err);
+        showAlert('error', 'Error connecting to server.');
+      }
+    }
+  </script>
 </body>
 
 </html>

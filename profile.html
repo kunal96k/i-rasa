@@ -185,6 +185,7 @@
       background: #1a1a00;
       color: #d4af37;
       font-weight: 700;
+      height: fit-content !important;
     }
 
     .order-actions {
@@ -443,6 +444,7 @@
       margin: 30px 0 20px;
       padding: 0 10px;
     }
+
     .tracking-timeline::before {
       content: '';
       position: absolute;
@@ -453,6 +455,7 @@
       background: #222;
       z-index: 1;
     }
+
     .tracking-timeline-progress {
       position: absolute;
       top: 15px;
@@ -463,6 +466,7 @@
       transition: width 0.4s ease;
       width: 0%;
     }
+
     .timeline-step {
       display: flex;
       flex-direction: column;
@@ -471,6 +475,7 @@
       z-index: 3;
       cursor: default;
     }
+
     .timeline-step-icon {
       width: 32px;
       height: 32px;
@@ -484,12 +489,14 @@
       font-size: 11px;
       transition: all 0.4s ease;
     }
+
     .timeline-step.active .timeline-step-icon {
       background: #d4af37;
       border-color: #d4af37;
       color: #000;
       box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     }
+
     .timeline-step-label {
       font-size: 9px;
       color: #666;
@@ -499,6 +506,7 @@
       letter-spacing: 0.5px;
       text-align: center;
     }
+
     .timeline-step.active .timeline-step-label {
       color: #d4af37;
     }
@@ -510,13 +518,16 @@
       padding-left: 20px;
       border-left: 2px solid #222;
     }
+
     .ticket-event-item {
       position: relative;
       margin-bottom: 15px;
     }
+
     .ticket-event-item:last-child {
       margin-bottom: 0;
     }
+
     .ticket-event-circle {
       position: absolute;
       left: -27px;
@@ -528,16 +539,19 @@
       border: 2px solid #111;
       transition: all 0.3s;
     }
+
     .ticket-event-item.active .ticket-event-circle {
       background: #d4af37;
       border-color: #d4af37;
       box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
     }
+
     .ticket-event-meta {
       font-size: 11px;
       color: #666;
       margin-bottom: 2px;
     }
+
     .ticket-event-note {
       font-size: 12px;
       color: #ddd;
@@ -642,7 +656,8 @@
                 <a href="cart.html"
                   style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
                   <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+                  <span class="nav-shop__circle"
+                    style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -733,6 +748,8 @@
         </div>
       </div>
 
+      <div id="employeeDetailsContainer"></div>
+
       <div class="profile-card">
         <div class="card-title"><i class="ti-settings"></i> Preferences</div>
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -762,8 +779,11 @@
           <div class="row g-3">
             <div class="col-md-3">
               <div class="form-group mb-0">
-                <label for="filterStatus" style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block;">Order Status</label>
-                <select id="filterStatus" class="ignore-nice-select" style="background: #1e1e1e; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px; height: 38px; width: 100%; padding: 0 10px; outline: none;">
+                <label for="filterStatus"
+                  style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block;">Order
+                  Status</label>
+                <select id="filterStatus" class="ignore-nice-select"
+                  style="background: #1e1e1e; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px; height: 38px; width: 100%; padding: 0 10px; outline: none;">
                   <option value="">All Statuses</option>
                   <option value="PENDING">Pending</option>
                   <option value="DELIVERED">Delivered</option>
@@ -775,22 +795,33 @@
             </div>
             <div class="col-md-3">
               <div class="form-group mb-0">
-                <label for="filterStartDate" style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block;">From Date</label>
-                <input type="date" id="filterStartDate" style="background: #1e1e1e; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px; height: 38px; width: 100%; padding: 0 10px; outline: none;">
+                <label for="filterStartDate"
+                  style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block;">From
+                  Date</label>
+                <input type="date" id="filterStartDate"
+                  style="background: #1e1e1e; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px; height: 38px; width: 100%; padding: 0 10px; outline: none;">
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group mb-0">
-                <label for="filterEndDate" style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block;">To Date</label>
-                <input type="date" id="filterEndDate" style="background: #1e1e1e; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px; height: 38px; width: 100%; padding: 0 10px; outline: none;">
+                <label for="filterEndDate"
+                  style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block;">To
+                  Date</label>
+                <input type="date" id="filterEndDate"
+                  style="background: #1e1e1e; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px; height: 38px; width: 100%; padding: 0 10px; outline: none;">
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group mb-0">
-                <label for="filterSearch" style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block;">Search Order</label>
+                <label for="filterSearch"
+                  style="font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block;">Search
+                  Order</label>
                 <div class="d-flex">
-                  <input type="text" id="filterSearch" placeholder="ID, name, item..." style="background: #1e1e1e; border: 1px solid #333; color: #fff; border-radius: 8px 0 0 8px; font-size: 13px; height: 38px; width: 100%; padding: 0 10px; outline: none; border-right: none;">
-                  <button class="btn" id="btnSearchOrders" style="border: 1px solid #333; border-left: none; background: #1a1a1a; color: #d4af37; border-radius: 0 8px 8px 0; padding: 0 15px; font-size: 14px; height: 38px; margin: 0; display: inline-flex; align-items: center; justify-content: center; box-shadow: none; outline: none;" onclick="loadOrders(0)">
+                  <input type="text" id="filterSearch" placeholder="ID, name, item..."
+                    style="background: #1e1e1e; border: 1px solid #333; color: #fff; border-radius: 8px 0 0 8px; font-size: 13px; height: 38px; width: 100%; padding: 0 10px; outline: none; border-right: none;">
+                  <button class="btn" id="btnSearchOrders"
+                    style="border: 1px solid #333; border-left: none; background: #1a1a1a; color: #d4af37; border-radius: 0 8px 8px 0; padding: 0 15px; font-size: 14px; height: 38px; margin: 0; display: inline-flex; align-items: center; justify-content: center; box-shadow: none; outline: none;"
+                    onclick="loadOrders(0)">
                     <i class="ti-search"></i>
                   </button>
                 </div>
@@ -798,8 +829,10 @@
             </div>
           </div>
           <div class="d-flex justify-content-end mt-3" style="gap: 15px;">
-            <button class="btn-action" style="padding: 6px 12px; font-size: 11px;" onclick="resetFilters()">Reset Filters</button>
-            <button class="btn-gold" style="padding: 6px 16px; font-size: 11px; font-weight: 600;" onclick="loadOrders(0)">Apply Filters</button>
+            <button class="btn-action" style="padding: 6px 12px; font-size: 11px;" onclick="resetFilters()">Reset
+              Filters</button>
+            <button class="btn-gold" style="padding: 6px 16px; font-size: 11px; font-weight: 600;"
+              onclick="loadOrders(0)">Apply Filters</button>
           </div>
         </div>
 
@@ -914,7 +947,8 @@
 
         <!-- Support Tickets List (Timeline) -->
         <div style="margin-top:25px; margin-bottom:25px;">
-          <div style="font-weight:bold; color:#d4af37; font-size:15px; margin-bottom:15px;"><i class="ti-list"></i> Your Support Tickets</div>
+          <div style="font-weight:bold; color:#d4af37; font-size:15px; margin-bottom:15px;"><i class="ti-list"></i> Your
+            Support Tickets</div>
           <div id="ticketsListContainer">
             <div style="text-align:center; padding:20px; color:#888;">No tickets submitted yet.</div>
           </div>
@@ -1025,29 +1059,41 @@
           </div>
           <div class="modal-body p-4">
             <!-- Order Tracking Progress Timeline -->
-            <div id="modalOrderTimelineBlock" style="margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 20px;">
-              <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Order Tracking Progress</div>
+            <div id="modalOrderTimelineBlock"
+              style="margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 20px;">
+              <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Order Tracking
+                Progress</div>
               <div class="tracking-timeline">
                 <div class="tracking-timeline-progress" id="modalOrderProgress"></div>
                 <div class="timeline-step" id="step-placed">
                   <div class="timeline-step-icon"><i class="fas fa-shopping-bag"></i></div>
                   <div class="timeline-step-label">Placed</div>
+                  <div class="timeline-step-time" id="time-placed" style="font-size:10px; color:#888; margin-top:4px;">
+                  </div>
                 </div>
                 <div class="timeline-step" id="step-confirmed">
                   <div class="timeline-step-icon"><i class="fas fa-check"></i></div>
                   <div class="timeline-step-label">Confirmed</div>
+                  <div class="timeline-step-time" id="time-confirmed"
+                    style="font-size:10px; color:#888; margin-top:4px;"></div>
                 </div>
                 <div class="timeline-step" id="step-processing">
                   <div class="timeline-step-icon"><i class="fas fa-cog"></i></div>
                   <div class="timeline-step-label">Processing</div>
+                  <div class="timeline-step-time" id="time-processing"
+                    style="font-size:10px; color:#888; margin-top:4px;"></div>
                 </div>
                 <div class="timeline-step" id="step-shipped">
                   <div class="timeline-step-icon"><i class="fas fa-truck"></i></div>
                   <div class="timeline-step-label">Shipped</div>
+                  <div class="timeline-step-time" id="time-shipped" style="font-size:10px; color:#888; margin-top:4px;">
+                  </div>
                 </div>
                 <div class="timeline-step" id="step-delivered">
                   <div class="timeline-step-icon"><i class="fas fa-home"></i></div>
                   <div class="timeline-step-label">Delivered</div>
+                  <div class="timeline-step-time" id="time-delivered"
+                    style="font-size:10px; color:#888; margin-top:4px;"></div>
                 </div>
               </div>
             </div>
@@ -1060,14 +1106,17 @@
                 </div>
               </div>
               <div class="col-md-5" style="border-left:1px solid #222;">
-                <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Delivery Details</div>
+                <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Delivery Details
+                </div>
                 <div style="font-size:13px; margin-bottom:20px;" id="modalOrderAddress"></div>
 
                 <div style="border-top:1px solid #222; padding-top:15px; margin-bottom:20px;">
-                  <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Order Details</div>
+                  <div style="font-size:11px; color:#666; text-transform:uppercase; margin-bottom:10px;">Order Details
+                  </div>
                   <div class="d-flex justify-content-between align-items-center mb-1" style="font-size:13px;">
                     <span>Status</span>
-                    <span id="modalOrderStatusBadge" style="font-size:10px; font-weight:bold; padding:3px 8px; border-radius:10px; text-transform:uppercase;">PENDING</span>
+                    <span id="modalOrderStatusBadge"
+                      style="font-size:10px; font-weight:bold; padding:3px 8px; border-radius:10px; text-transform:uppercase;">PENDING</span>
                   </div>
                   <div class="d-flex justify-content-between mb-1" style="font-size:13px;">
                     <span>Payment Method</span>
@@ -1075,7 +1124,8 @@
                   </div>
                   <div class="d-flex justify-content-between mb-1" id="modalOrderTxnRow" style="font-size:13px;">
                     <span>Transaction ID</span>
-                    <span id="modalOrderTransactionId" style="color:#bbb; word-break:break-all; max-width:140px; text-align:right;">N/A</span>
+                    <span id="modalOrderTransactionId"
+                      style="color:#bbb; word-break:break-all; max-width:140px; text-align:right;">N/A</span>
                   </div>
                   <div class="d-flex justify-content-between mb-1" style="font-size:13px;">
                     <span>Expected Delivery</span>
@@ -1088,11 +1138,12 @@
                       id="modalOrderSubtotal">Rs. 0.00</span></div>
                   <div class="d-flex justify-content-between mb-1"><span>Shipping</span><span
                       id="modalOrderShipping">FREE</span></div>
-                  <div id="modalOrderHandlingRow" class="d-flex justify-content-between mb-1"><span>Handling Charge</span><span
-                      id="modalOrderHandling">Rs. 0.00</span></div>
-                  <div id="modalOrderPlatformRow" class="d-flex justify-content-between mb-1"><span>Packing Fees</span><span
-                      id="modalOrderPlatform">Rs. 0.00</span></div>
-                  <div id="modalOrderPlatformServicesRow" class="d-flex justify-content-between mb-1" style="display:none!important;"><span>Platform Services Fees</span><span
+                  <div id="modalOrderHandlingRow" class="d-flex justify-content-between mb-1"><span>Handling
+                      Charge</span><span id="modalOrderHandling">Rs. 0.00</span></div>
+                  <div id="modalOrderPlatformRow" class="d-flex justify-content-between mb-1"><span>Packing
+                      Fees</span><span id="modalOrderPlatform">Rs. 0.00</span></div>
+                  <div id="modalOrderPlatformServicesRow" class="d-flex justify-content-between mb-1"
+                    style="display:none!important;"><span>Platform Services Fees</span><span
                       id="modalOrderPlatformServices">Rs. 0.00</span></div>
                   <div class="d-flex justify-content-between mb-1"><span>Discount</span><span
                       id="modalOrderDiscount">Rs. 0.00</span></div>
@@ -1104,9 +1155,13 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer" style="border-top:1px solid #222; display:flex; justify-content:space-between; align-items:center; padding:15px 30px;">
-            <button type="button" class="btn-action" id="modalOrderHelpBtn" style="color:#d4af37; border-color:#d4af37; margin:0;"><i class="ti-headphone-alt"></i> Get Help / Raise Ticket</button>
-            <button type="button" class="btn-gold" data-dismiss="modal" style="padding: 8px 24px; margin:0;">Close</button>
+          <div class="modal-footer"
+            style="border-top:1px solid #222; display:flex; justify-content:space-between; align-items:center; padding:15px 30px;">
+            <button type="button" class="btn-action" id="modalOrderHelpBtn"
+              style="color:#d4af37; border-color:#d4af37; margin:0;"><i class="ti-headphone-alt"></i> Get Help / Raise
+              Ticket</button>
+            <button type="button" class="btn-gold" data-dismiss="modal"
+              style="padding: 8px 24px; margin:0;">Close</button>
           </div>
         </div>
       </div>
@@ -1202,8 +1257,8 @@
                 <option value="Returns & Exchange">Returns & Exchange</option>
                 <option value="Other">Other</option>
               </select></div>
-            <div class="form-group mb-4"><label>How can we help?</label><textarea id="supportMessage" style="min-height:100px;"
-                placeholder="Describe your issue here..."></textarea></div>
+            <div class="form-group mb-4"><label>How can we help?</label><textarea id="supportMessage"
+                style="min-height:100px;" placeholder="Describe your issue here..."></textarea></div>
             <button class="btn-gold btn-block" onclick="submitSupportTicket()">Submit Ticket</button>
           </div>
         </div>
@@ -1219,15 +1274,19 @@
               <span id="orderActionIcon" style="font-size:28px;">&#9888;</span>
               <h5 id="orderActionTitle" style="color:#d4af37; margin:0; font-size:18px;">Cancel Order</h5>
             </div>
-            <button type="button" class="close" data-dismiss="modal" style="color:#888; font-size:22px;">&times;</button>
+            <button type="button" class="close" data-dismiss="modal"
+              style="color:#888; font-size:22px;">&times;</button>
           </div>
           <div class="modal-body" style="padding:24px;">
             <p id="orderActionDesc" style="color:#aaa; font-size:13px; margin-bottom:20px; line-height:1.7;"></p>
             <input type="hidden" id="orderActionId">
             <input type="hidden" id="orderActionType">
             <div class="form-group mb-4">
-              <label style="font-size:12px; color:#d4af37; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block;">Reason <span style="color:#888;">(optional but helps us improve)</span></label>
-              <select id="orderActionReasonSelect" style="background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px; padding:10px; width:100%; margin-bottom:10px; font-size:13px;">
+              <label
+                style="font-size:12px; color:#d4af37; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; display:block;">Reason
+                <span style="color:#888;">(optional but helps us improve)</span></label>
+              <select id="orderActionReasonSelect"
+                style="background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px; padding:10px; width:100%; margin-bottom:10px; font-size:13px;">
                 <option value="">Select a reason...</option>
                 <option>Changed my mind</option>
                 <option>Ordered by mistake</option>
@@ -1238,15 +1297,19 @@
                 <option>Delivery too late</option>
                 <option>Other</option>
               </select>
-              <textarea id="orderActionReason" rows="3" placeholder="Add any additional details..." style="background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px; padding:12px; width:100%; resize:vertical; font-size:13px;"></textarea>
+              <textarea id="orderActionReason" rows="3" placeholder="Add any additional details..."
+                style="background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px; padding:12px; width:100%; resize:vertical; font-size:13px;"></textarea>
             </div>
-            <div style="background:#1a1000; border:1px solid #3a2800; border-radius:8px; padding:12px; margin-bottom:20px;">
+            <div
+              style="background:#1a1000; border:1px solid #3a2800; border-radius:8px; padding:12px; margin-bottom:20px;">
               <div style="font-size:12px; color:#d4af37; font-weight:600; margin-bottom:4px;">&#9888; Please note</div>
               <div id="orderActionNote" style="font-size:12px; color:#888; line-height:1.6;"></div>
             </div>
             <div style="display:flex; gap:12px;">
-              <button class="btn btn-secondary" data-dismiss="modal" style="flex:1; border-radius:8px; background:#222; border:1px solid #333; color:#aaa;">Go Back</button>
-              <button id="orderActionSubmitBtn" onclick="submitOrderAction()" style="flex:2; border-radius:8px; padding:12px; font-weight:700; font-size:13px; border:none; cursor:pointer; transition:all 0.3s;">Confirm</button>
+              <button class="btn btn-secondary" data-dismiss="modal"
+                style="flex:1; border-radius:8px; background:#222; border:1px solid #333; color:#aaa;">Go Back</button>
+              <button id="orderActionSubmitBtn" onclick="submitOrderAction()"
+                style="flex:2; border-radius:8px; padding:12px; font-weight:700; font-size:13px; border:none; cursor:pointer; transition:all 0.3s;">Confirm</button>
             </div>
           </div>
         </div>
@@ -1367,6 +1430,44 @@
                 document.getElementById('avatarImg').style.display = 'block';
                 document.getElementById('avatarPlaceholder').style.display = 'none';
               }
+              if (profile.employeeDetails) {
+                const emp = profile.employeeDetails;
+                const salaryFormatted = parseFloat(emp.salary).toLocaleString('en-IN', {
+                  style: 'currency',
+                  currency: 'INR'
+                });
+                document.getElementById('employeeDetailsContainer').innerHTML = `
+                  <div class="profile-card" style="border: 1px solid #d4af37; box-shadow: 0 0 15px rgba(212,175,55,0.15); background: linear-gradient(135deg, #111 0%, #151208 100%);">
+                    <div class="card-title" style="color: #d4af37;"><i class="ti-id-badge"></i> Employee Work Details</div>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <div style="font-size: 11px; color: #888; text-transform: uppercase;">Employee ID</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.employeeId}</div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div style="font-size: 11px; color: #888; text-transform: uppercase;">System Role</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.role}</div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div style="font-size: 11px; color: #888; text-transform: uppercase;">Department</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.department}</div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div style="font-size: 11px; color: #888; text-transform: uppercase;">Designation</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.designation}</div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div style="font-size: 11px; color: #888; text-transform: uppercase;">Salary (Monthly)</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #d4af37;">${salaryFormatted}</div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <div style="font-size: 11px; color: #888; text-transform: uppercase;">Date of Joining</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.dateOfJoining}</div>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }
             }
           }
         } catch (e) {
@@ -1399,7 +1500,7 @@
         listEl.innerHTML = items.map(function (item) {
           var isOutOfStock = item.inStock === false;
           var isRemoved = item.removed === true;
-          
+
           var badgeHtml = '';
           var cardStyle = 'align-items:center;';
           var imgStyle = 'width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid #d4af37; transition: all 0.3s;';
@@ -1740,7 +1841,7 @@
             const data = await res.json();
             if (data.success && data.data && data.data.orders && data.data.orders.length > 0) {
               window.userOrders = data.data.orders; // Store globally for details modal
-              
+
               let ordersHtml = data.data.orders.map(order => {
                 const date = new Date(order.createdAt).toLocaleDateString('en-IN', {
                   day: 'numeric', month: 'short', year: 'numeric'
@@ -1770,7 +1871,7 @@
                       <div>
                         <div class="order-id">Order ID: RASA-${order.orderId}</div>
                         <div style="font-size:12px; color:#666;">Placed on ${date}</div>
-                        ${order.expectedDeliveryDate ? `<div style="font-size:12px; color:#4caf50; margin-top:4px;"><i class="fas fa-calendar-check"></i> Expected Delivery: ${new Date(order.expectedDeliveryDate).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</div>` : ''}
+                        ${order.expectedDeliveryDate ? `<div style="font-size:12px; color:#4caf50; margin-top:4px;"><i class="fas fa-calendar-check"></i> Expected Delivery: ${new Date(order.expectedDeliveryDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div>` : ''}
                       </div>
                       <div class="order-status" style="${statusStyle}">${order.status}</div>
                     </div>
@@ -1813,7 +1914,7 @@
         `;
       }
 
-      window.resetFilters = function() {
+      window.resetFilters = function () {
         if (document.getElementById('filterStatus')) document.getElementById('filterStatus').value = '';
         if (document.getElementById('filterStartDate')) document.getElementById('filterStartDate').value = '';
         if (document.getElementById('filterEndDate')) document.getElementById('filterEndDate').value = '';
@@ -1823,31 +1924,31 @@
 
       function renderPaginationControls(currentPage, totalPages) {
         if (totalPages <= 1) return '';
-        
+
         let html = `<div class="d-flex justify-content-center align-items-center mt-4 pt-3 border-top border-dark" style="gap: 8px;">`;
-        
+
         // Prev button
         if (currentPage > 0) {
           html += `<button class="btn-action" onclick="loadOrders(${currentPage - 1})"><i class="ti-angle-left"></i> Prev</button>`;
         } else {
           html += `<button class="btn-action" disabled style="opacity: 0.5; cursor: not-allowed;"><i class="ti-angle-left"></i> Prev</button>`;
         }
-        
+
         // Page numbers
         for (let i = 0; i < totalPages; i++) {
-          const activeStyle = i === currentPage 
-            ? 'background: linear-gradient(135deg, #d4af37, #aa8422); color: #000; font-weight: bold; border-color: #d4af37;' 
+          const activeStyle = i === currentPage
+            ? 'background: linear-gradient(135deg, #d4af37, #aa8422); color: #000; font-weight: bold; border-color: #d4af37;'
             : '';
           html += `<button class="btn-action" style="${activeStyle}" onclick="loadOrders(${i})">${i + 1}</button>`;
         }
-        
+
         // Next button
         if (currentPage < totalPages - 1) {
           html += `<button class="btn-action" onclick="loadOrders(${currentPage + 1})">Next <i class="ti-angle-right"></i></button>`;
         } else {
           html += `<button class="btn-action" disabled style="opacity: 0.5; cursor: not-allowed;">Next <i class="ti-angle-right"></i></button>`;
         }
-        
+
         html += `</div>`;
         return html;
       }
@@ -1924,7 +2025,7 @@
           document.getElementById('modalOrderTxnRow').style.display = 'flex'; // show N/A as standard
         }
 
-        const deliveryDate = order.expectedDeliveryDate 
+        const deliveryDate = order.expectedDeliveryDate
           ? new Date(order.expectedDeliveryDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
           : 'Pending';
         document.getElementById('modalOrderDeliveryDate').textContent = deliveryDate;
@@ -1935,6 +2036,8 @@
         progressEl.style.width = '0%';
         progressEl.style.background = '#d4af37';
 
+        document.querySelectorAll('.timeline-step-time').forEach(el => el.textContent = '');
+
         if (status === 'CANCELLED') {
           document.getElementById('step-placed').classList.add('active');
           progressEl.style.width = '0%';
@@ -1942,7 +2045,7 @@
         } else {
           const steps = ['PENDING', 'CONFIRMED', 'PROCESSING', 'SHIPPED', 'DELIVERED'];
           const stepIds = ['step-placed', 'step-confirmed', 'step-processing', 'step-shipped', 'step-delivered'];
-          
+
           let currentIdx = steps.indexOf(status);
           if (currentIdx === -1 && status === 'COMPLETED') {
             currentIdx = 4; // Delivered
@@ -1950,20 +2053,36 @@
           if (currentIdx === -1) {
             currentIdx = 0; // Default to placed
           }
-          
+
           for (let i = 0; i <= currentIdx; i++) {
             const stepEl = document.getElementById(stepIds[i]);
             if (stepEl) stepEl.classList.add('active');
           }
-          
+
           const percent = currentIdx * 25;
           progressEl.style.width = `${percent}%`;
+        }
+
+        if (order.statusHistory && order.statusHistory.length > 0) {
+          order.statusHistory.forEach(history => {
+            const dateStr = new Date(history.timestamp).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+            if (history.status === 'PENDING') document.getElementById('time-placed').textContent = dateStr;
+            else if (history.status === 'CONFIRMED') document.getElementById('time-confirmed').textContent = dateStr;
+            else if (history.status === 'PROCESSING') document.getElementById('time-processing').textContent = dateStr;
+            else if (history.status === 'SHIPPED') document.getElementById('time-shipped').textContent = dateStr;
+            else if (history.status === 'DELIVERED' || history.status === 'COMPLETED') document.getElementById('time-delivered').textContent = dateStr;
+            else if (history.status === 'CANCELLED') document.getElementById('time-placed').textContent = dateStr;
+          });
+        } else {
+          // Fallback to order created date if no history
+          const placedDate = new Date(order.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+          document.getElementById('time-placed').textContent = placedDate;
         }
 
         // Pricing details
         document.getElementById('modalOrderSubtotal').textContent = `Rs. ${parseFloat(order.subtotal).toFixed(2)}`;
         document.getElementById('modalOrderShipping').textContent = order.shipping > 0 ? `Rs. ${parseFloat(order.shipping).toFixed(2)}` : 'FREE';
-        
+
         const handling = parseFloat(order.handlingCharge || 0);
         if (handling > 0) {
           document.getElementById('modalOrderHandlingRow').style.display = 'flex';
@@ -1992,7 +2111,7 @@
         document.getElementById('modalOrderTotal').textContent = `Rs. ${parseFloat(order.total).toFixed(2)}`;
 
         // Help button handler
-        document.getElementById('modalOrderHelpBtn').onclick = function() {
+        document.getElementById('modalOrderHelpBtn').onclick = function () {
           $('#order_modal').modal('hide');
           setTimeout(() => {
             openSupportModal(order.orderId);
@@ -2045,7 +2164,7 @@
         }
       };
 
-      window.openOrderAction = function(type, orderId) {
+      window.openOrderAction = function (type, orderId) {
         document.getElementById('orderActionId').value = orderId;
         document.getElementById('orderActionType').value = type;
         document.getElementById('orderActionReasonSelect').value = '';
@@ -2088,7 +2207,7 @@
         $('#order_action_modal').modal('show');
       };
 
-      window.submitOrderAction = async function() {
+      window.submitOrderAction = async function () {
         const orderId = document.getElementById('orderActionId').value;
         const type = document.getElementById('orderActionType').value;
         const selectReason = document.getElementById('orderActionReasonSelect').value;
@@ -2121,7 +2240,7 @@
           } else {
             alert('Error: ' + (data.message || 'Request failed. Please try again.'));
           }
-        } catch(e) {
+        } catch (e) {
           alert('Network error. Please check your connection and try again.');
           console.error(e);
         } finally {
@@ -2168,7 +2287,7 @@
         }
       }
 
-      window.openSupportModal = function(orderId) {
+      window.openSupportModal = function (orderId) {
         document.getElementById('supportOrderId').value = orderId || '';
         document.getElementById('supportMessage').value = '';
         if (orderId) {
@@ -2179,7 +2298,7 @@
         $('#support_modal').modal('show');
       };
 
-      window.submitSupportTicket = async function() {
+      window.submitSupportTicket = async function () {
         const subject = document.getElementById('supportSubject').value;
         const message = document.getElementById('supportMessage').value;
         const orderId = document.getElementById('supportOrderId').value;
@@ -2198,11 +2317,11 @@
           const formData = new FormData();
           formData.append('subject', subject);
           formData.append('message', message);
-          
+
           let pName = (document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value).trim();
           let pEmail = document.getElementById('emailInput').value;
           let pPhone = document.getElementById('phoneInput').value;
-          
+
           if (pName) formData.append('name', pName);
           if (pEmail) formData.append('email', pEmail);
           if (pPhone) formData.append('mobileNo', pPhone);
@@ -2248,7 +2367,7 @@
           const res = await fetch(`${BASE_URL}/api/contact/my-tickets?page=${page}&size=5`, { credentials: 'include' });
           if (res.ok) {
             const data = await res.json();
-            
+
             // For backward compatibility if not paginated or paginated response
             const tickets = data.data && data.data.content ? data.data.content : (Array.isArray(data.data) ? data.data : []);
             const totalPages = data.data && data.data.totalPages ? data.data.totalPages : 1;
@@ -2315,7 +2434,7 @@
         }
       }
 
-      window.deleteTicket = async function(ticketId) {
+      window.deleteTicket = async function (ticketId) {
         if (!confirm('Are you sure you want to permanently delete this ticket? (Dev mode only)')) return;
         try {
           const res = await fetch(`${BASE_URL}/api/contact/ticket/${ticketId}`, {
@@ -2329,7 +2448,7 @@
           } else {
             alert(data.message || 'Failed to delete ticket');
           }
-        } catch(e) {
+        } catch (e) {
           console.error(e);
           alert('Network error while deleting ticket');
         }
@@ -2342,7 +2461,7 @@
         let badgeStyle = 'background: #1a1a00; color: #d4af37; border: 1px solid #3d3d11;';
         if (tkt.status === 'RESOLVED') badgeStyle = 'background: #0a1a00; color: #25d366; border: 1px solid #1c3d11;';
         else if (tkt.status === 'IN_PROGRESS') badgeStyle = 'background: #001a1a; color: #3be0e0; border: 1px solid #113d3d;';
-        
+
         let eventsHtml = '';
         if (tkt.events && tkt.events.length > 0) {
           eventsHtml = `
@@ -2350,11 +2469,11 @@
               <div style="font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 15px; font-weight: bold; letter-spacing: 0.5px;"><i class="ti-time"></i> Ticket History Timeline</div>
               <div class="ticket-events-timeline">
                 ${tkt.events.map((evt, idx) => {
-                  const evtDate = new Date(evt.createdAt).toLocaleDateString('en-IN', {
-                    day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
-                  });
-                  const isLast = idx === tkt.events.length - 1;
-                  return `
+            const evtDate = new Date(evt.createdAt).toLocaleDateString('en-IN', {
+              day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            const isLast = idx === tkt.events.length - 1;
+            return `
                     <div class="ticket-event-item ${isLast ? 'active' : ''}">
                       <div class="ticket-event-circle"></div>
                       <div class="ticket-event-meta">
@@ -2364,7 +2483,7 @@
                       <div class="ticket-event-note" style="color: #bbb; font-size: 13px;">${evt.note || ''}</div>
                     </div>
                   `;
-                }).join('')}
+          }).join('')}
               </div>
             </div>
           `;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,134 +20,584 @@
       --admin-gold-hover: #e5c158;
       --admin-border: #333333;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background-color: var(--admin-bg);
       color: var(--admin-text);
       font-family: 'Inter', sans-serif;
-      margin: 0; padding: 0;
-      display: flex; height: 100vh; overflow: hidden;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
     }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--admin-bg); }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--admin-gold); }
-    body.modal-open { padding-right: 0 !important; }
-    h1,h2,h3,h4,h5,h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--admin-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--admin-gold);
+    }
+
+    body.modal-open {
+      padding-right: 0 !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--admin-gold);
+      font-family: 'Cinzel', serif;
+    }
 
     /* Sidebar */
-    .admin-sidebar { width: 260px; background-color: var(--admin-surface); border-right: 1px solid var(--admin-border); display: flex; flex-direction: column; flex-shrink: 0; }
-    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); padding: 16px 0 12px; }
-    .admin-nav { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
-    .admin-nav-item { padding: 12px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
-    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212,175,55,0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); text-decoration: none; }
-    .admin-nav-item i { margin-right: 15px; font-size: 1.2rem; width: 24px; text-align: center; }
+    .admin-sidebar {
+      width: 260px;
+      background-color: var(--admin-surface);
+      border-right: 1px solid var(--admin-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .admin-logo {
+      text-align: center;
+      border-bottom: 1px solid var(--admin-border);
+      padding: 16px 0 12px;
+    }
+
+    .admin-nav {
+      flex-grow: 1;
+      padding: 20px 0;
+      overflow-y: auto;
+    }
+
+    .admin-nav-item {
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      color: var(--admin-text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .admin-nav-item:hover,
+    .admin-nav-item.active {
+      background-color: rgba(212, 175, 55, 0.1);
+      color: var(--admin-gold);
+      border-left-color: var(--admin-gold);
+      text-decoration: none;
+    }
+
+    .admin-nav-item i {
+      margin-right: 15px;
+      font-size: 1.2rem;
+      width: 24px;
+      text-align: center;
+    }
 
     /* Main */
-    .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
-    .admin-header { height: 70px; background-color: var(--admin-surface); border-bottom: 1px solid var(--admin-border); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; flex-shrink: 0; }
-    .admin-content { flex-grow: 1; padding: 24px 30px; overflow-y: auto; }
+    .admin-main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .admin-header {
+      height: 70px;
+      background-color: var(--admin-surface);
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      flex-shrink: 0;
+    }
+
+    .admin-content {
+      flex-grow: 1;
+      padding: 24px 30px;
+      overflow-y: auto;
+    }
 
     /* Stats Cards */
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
-    .stat-card { background: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 16px; transition: all 0.3s ease; }
-    .stat-card:hover { border-color: var(--admin-gold); transform: translateY(-2px); }
-    .stat-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-    .stat-icon.gold { background: rgba(212,175,55,0.15); color: var(--admin-gold); }
-    .stat-icon.warning { background: rgba(255,165,0,0.15); color: #ffa500; }
-    .stat-icon.blue { background: rgba(59,224,224,0.15); color: #3be0e0; }
-    .stat-icon.green { background: rgba(37,211,102,0.15); color: #25d366; }
-    .stat-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
-    .stat-value { font-size: 26px; font-weight: 700; color: #fff; line-height: 1.2; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--admin-gold);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .stat-icon.gold {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--admin-gold);
+    }
+
+    .stat-icon.warning {
+      background: rgba(255, 165, 0, 0.15);
+      color: #ffa500;
+    }
+
+    .stat-icon.blue {
+      background: rgba(59, 224, 224, 0.15);
+      color: #3be0e0;
+    }
+
+    .stat-icon.green {
+      background: rgba(37, 211, 102, 0.15);
+      color: #25d366;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
 
     /* Card */
-    .admin-card { background: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 10px; padding: 20px; }
+    .admin-card {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 10px;
+      padding: 20px;
+    }
 
     /* Table */
-    .admin-table { width: 100%; color: var(--admin-text); border-collapse: collapse; }
-    .admin-table th { text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--admin-border); color: var(--admin-gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
-    .admin-table td { padding: 14px 15px; border-bottom: 1px solid var(--admin-border); vertical-align: middle; font-size: 0.9rem; }
-    .admin-table tbody tr:hover { background-color: rgba(212,175,55,0.03); }
+    .admin-table {
+      width: 100%;
+      color: var(--admin-text);
+      border-collapse: collapse;
+    }
+
+    .admin-table th {
+      text-align: left;
+      padding: 12px 15px;
+      border-bottom: 2px solid var(--admin-border);
+      color: var(--admin-gold);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .admin-table td {
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--admin-border);
+      vertical-align: middle;
+      font-size: 0.9rem;
+    }
+
+    .admin-table tbody tr:hover {
+      background-color: rgba(212, 175, 55, 0.03);
+    }
 
     /* Badges */
-    .badge-status { padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }
-    .badge-open { background: rgba(212,175,55,0.15); color: #d4af37; border: 1px solid rgba(212,175,55,0.3); }
-    .badge-in-progress { background: rgba(59,224,224,0.15); color: #3be0e0; border: 1px solid rgba(59,224,224,0.3); }
-    .badge-resolved { background: rgba(37,211,102,0.15); color: #25d366; border: 1px solid rgba(37,211,102,0.3); }
+    .badge-status {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-block;
+    }
+
+    .badge-open {
+      background: rgba(212, 175, 55, 0.15);
+      color: #d4af37;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .badge-in-progress {
+      background: rgba(59, 224, 224, 0.15);
+      color: #3be0e0;
+      border: 1px solid rgba(59, 224, 224, 0.3);
+    }
+
+    .badge-resolved {
+      background: rgba(37, 211, 102, 0.15);
+      color: #25d366;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+    }
 
     /* Buttons */
-    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; }
-    .admin-btn:hover { background-color: var(--admin-gold-hover); transform: translateY(-1px); }
-    .admin-btn-outline { background-color: transparent; color: var(--admin-gold); border: 1px solid var(--admin-gold); }
-    .admin-btn-outline:hover { background-color: rgba(212,175,55,0.1); transform: translateY(-1px); }
-    .admin-btn-sm { padding: 5px 12px; font-size: 0.78rem; }
-    .admin-btn-danger { background: rgba(255,77,77,0.1); color: #ff4d4d; border: 1px solid rgba(255,77,77,0.3); }
-    .admin-btn-danger:hover { background: rgba(255,77,77,0.2); transform: translateY(-1px); }
+    .admin-btn {
+      background-color: var(--admin-gold);
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .admin-btn:hover {
+      background-color: var(--admin-gold-hover);
+    }
+
+    .admin-btn-outline {
+      background-color: transparent;
+      color: var(--admin-gold);
+      border: 1px solid var(--admin-gold);
+    }
+
+    .admin-btn-outline:hover {
+      background-color: rgba(212, 175, 55, 0.1);
+    }
+
+    .admin-btn-sm {
+      padding: 5px 12px;
+      font-size: 0.78rem;
+    }
+
+    .admin-btn-danger {
+      background: rgba(255, 77, 77, 0.1);
+      color: #ff4d4d;
+      border: 1px solid rgba(255, 77, 77, 0.3);
+    }
+
+    .admin-btn-danger:hover {
+      background: rgba(255, 77, 77, 0.2);
+    }
 
     /* Search & Filter Bar */
-    .ticket-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-    .search-input-wrap { position: relative; flex: 1; min-width: 200px; }
-    .search-input-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #555; }
-    .search-input-wrap input { width: 100%; background: #0a0a0a; border: 1px solid #333; color: #fff; padding: 9px 12px 9px 36px; border-radius: 6px; font-size: 0.85rem; transition: border-color 0.3s; outline: none; }
-    .search-input-wrap input:focus { border-color: var(--admin-gold); }
-    .admin-select { background: #0a0a0a; border: 1px solid #333; color: #fff; padding: 9px 14px; border-radius: 6px; font-size: 0.85rem; outline: none; cursor: pointer; transition: border-color 0.3s; }
-    .admin-select:focus { border-color: var(--admin-gold); }
+    .ticket-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .search-input-wrap i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #555;
+    }
+
+    .search-input-wrap input {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 9px 12px 9px 36px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+
+    .search-input-wrap input:focus {
+      border-color: var(--admin-gold);
+    }
+
+    .admin-select {
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 9px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.3s;
+    }
+
+    .admin-select:focus {
+      border-color: var(--admin-gold);
+    }
 
     /* Modal */
-    .modal-content { background: #111; border: 1px solid #333; color: #e0e0e0; border-radius: 10px; }
-    .modal-header { border-bottom: 1px solid #333; padding: 18px 24px; }
-    .modal-footer { border-top: 1px solid #333; padding: 14px 24px; }
-    .modal-body { padding: 24px; }
-    .modal-title { color: var(--admin-gold); font-family: 'Cinzel', serif; }
-    .btn-close { filter: invert(1); }
+    .modal-content {
+      background: #111;
+      border: 1px solid #333;
+      color: #e0e0e0;
+      border-radius: 10px;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid #333;
+      padding: 18px 24px;
+    }
+
+    .modal-footer {
+      border-top: 1px solid #333;
+      padding: 14px 24px;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-title {
+      color: var(--admin-gold);
+      font-family: 'Cinzel', serif;
+    }
+
+    .btn-close {
+      filter: invert(1);
+    }
 
     /* Info rows */
-    .info-row { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
-    .info-label { color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; width: 90px; flex-shrink: 0; padding-top: 2px; }
-    .info-value { color: #e0e0e0; font-size: 14px; flex: 1; }
+    .info-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+
+    .info-label {
+      color: #888;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: 90px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .info-value {
+      color: #e0e0e0;
+      font-size: 14px;
+      flex: 1;
+    }
 
     /* Timeline */
-    .ticket-timeline { margin-top: 20px; }
-    .timeline-item { display: flex; gap: 14px; margin-bottom: 16px; position: relative; }
-    .timeline-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
-    .timeline-icon.status { background: rgba(212,175,55,0.15); color: var(--admin-gold); }
-    .timeline-icon.reply { background: rgba(59,224,224,0.15); color: #3be0e0; }
-    .timeline-icon.created { background: rgba(37,211,102,0.15); color: #25d366; }
-    .timeline-body { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 16px; flex: 1; }
-    .timeline-body .tl-type { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; }
-    .timeline-body .tl-note { font-size: 13px; color: #ccc; margin-top: 4px; }
-    .timeline-body .tl-time { font-size: 11px; color: #555; margin-top: 6px; }
+    .ticket-timeline {
+      margin-top: 20px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .timeline-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .timeline-icon.status {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--admin-gold);
+    }
+
+    .timeline-icon.reply {
+      background: rgba(59, 224, 224, 0.15);
+      color: #3be0e0;
+    }
+
+    .timeline-icon.created {
+      background: rgba(37, 211, 102, 0.15);
+      color: #25d366;
+    }
+
+    .timeline-body {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      flex: 1;
+    }
+
+    .timeline-body .tl-type {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+    }
+
+    .timeline-body .tl-note {
+      font-size: 13px;
+      color: #ccc;
+      margin-top: 4px;
+    }
+
+    .timeline-body .tl-time {
+      font-size: 11px;
+      color: #555;
+      margin-top: 6px;
+    }
 
     /* Reply form */
-    .reply-textarea { width: 100%; background: #0a0a0a; border: 1px solid #333; color: #e0e0e0; padding: 12px; border-radius: 6px; resize: vertical; min-height: 100px; font-size: 14px; outline: none; transition: border-color 0.3s; }
-    .reply-textarea:focus { border-color: var(--admin-gold); }
+    .reply-textarea {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #e0e0e0;
+      padding: 12px;
+      border-radius: 6px;
+      resize: vertical;
+      min-height: 100px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .reply-textarea:focus {
+      border-color: var(--admin-gold);
+    }
 
     /* Pagination */
-    .pagination-wrap { display: flex; justify-content: center; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
-    .page-btn { background: transparent; border: 1px solid #333; color: #aaa; padding: 6px 13px; border-radius: 5px; cursor: pointer; font-size: 13px; transition: all 0.3s; }
-    .page-btn:hover { border-color: var(--admin-gold); color: var(--admin-gold); }
-    .page-btn.active { background: var(--admin-gold); color: #000; border-color: var(--admin-gold); font-weight: 700; }
-    .page-btn:disabled { opacity: 0.4; cursor: default; }
+    .pagination-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      background: transparent;
+      border: 1px solid #333;
+      color: #aaa;
+      padding: 6px 13px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.3s;
+    }
+
+    .page-btn:hover {
+      border-color: var(--admin-gold);
+      color: var(--admin-gold);
+    }
+
+    .page-btn.active {
+      background: var(--admin-gold);
+      color: #000;
+      border-color: var(--admin-gold);
+      font-weight: 700;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
 
     /* Empty / Loading state */
-    .table-state { text-align: center; padding: 40px; color: #555; }
-    .table-state i { font-size: 32px; margin-bottom: 12px; display: block; }
+    .table-state {
+      text-align: center;
+      padding: 40px;
+      color: #555;
+    }
+
+    .table-state i {
+      font-size: 32px;
+      margin-bottom: 12px;
+      display: block;
+    }
 
     /* Ticket ID link */
-    .tkt-id-link { color: var(--admin-gold); font-weight: 700; cursor: pointer; text-decoration: none; }
-    .tkt-id-link:hover { color: var(--admin-gold-hover); text-decoration: underline; }
+    .tkt-id-link {
+      color: var(--admin-gold);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .tkt-id-link:hover {
+      color: var(--admin-gold-hover);
+      text-decoration: underline;
+    }
 
     /* Customer message preview */
-    .msg-preview { color: #888; font-size: 12px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .msg-preview {
+      color: #888;
+      font-size: 12px;
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- Sidebar -->
   <aside class="admin-sidebar">
     <div class="admin-logo">
       <a href="index.html" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;">
-        <span style="font-family:'Samarkan',sans-serif!important;text-transform:lowercase;font-size:32px;color:#d4af37;letter-spacing:2px;">i rasa</span>
+        <span
+          style="font-family:'Samarkan',sans-serif!important;text-transform:lowercase;font-size:32px;color:#d4af37;letter-spacing:2px;">i
+          rasa</span>
       </a>
     </div>
     <nav class="admin-nav">
@@ -154,10 +605,10 @@
       <a href="admin-tickets.html" class="admin-nav-item active"><i class="ti-headphone-alt"></i> Support Tickets</a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
       <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
-      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons &amp; Offers</a>
       <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
       <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
     <div style="padding:20px;border-top:1px solid var(--admin-border);">
@@ -170,10 +621,12 @@
   <!-- Main -->
   <main class="admin-main">
     <header class="admin-header">
-      <h4 style="margin:0;"><i class="ti-headphone-alt" style="margin-right:10px;font-size:18px;"></i> Support Tickets</h4>
-      <div style="display:flex;align-items:center;gap:12px;">
+      <h4 style="margin:0;"><i class="ti-headphone-alt" style="margin-right:10px;font-size:18px;"></i> Support Tickets
+      </h4>
+      <div class="admin-user-info" style="display:flex;align-items:center;gap:12px;">
         <span id="headerAdminEmail" style="color:#888;font-size:13px;"></span>
-        <div style="width:40px;height:40px;border-radius:50%;background:#222;border:2px solid #333;display:flex;align-items:center;justify-content:center;">
+        <div
+          style="width:40px;height:40px;border-radius:50%;background:#222;border:2px solid #333;display:flex;align-items:center;justify-content:center;">
           <i class="ti-user" style="color:#d4af37;"></i>
         </div>
       </div>
@@ -185,19 +638,31 @@
       <div class="stats-grid" id="statsGrid">
         <div class="stat-card">
           <div class="stat-icon gold"><i class="ti-headphone-alt"></i></div>
-          <div><div class="stat-label">Total Tickets</div><div class="stat-value" id="statTotal">—</div></div>
+          <div>
+            <div class="stat-label">Total Tickets</div>
+            <div class="stat-value" id="statTotal">—</div>
+          </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon warning"><i class="ti-alert"></i></div>
-          <div><div class="stat-label">Open</div><div class="stat-value" id="statOpen">—</div></div>
+          <div>
+            <div class="stat-label">Open</div>
+            <div class="stat-value" id="statOpen">—</div>
+          </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon blue"><i class="ti-reload"></i></div>
-          <div><div class="stat-label">In Progress</div><div class="stat-value" id="statInProgress">—</div></div>
+          <div>
+            <div class="stat-label">In Progress</div>
+            <div class="stat-value" id="statInProgress">—</div>
+          </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon green"><i class="ti-check"></i></div>
-          <div><div class="stat-label">Resolved</div><div class="stat-value" id="statResolved">—</div></div>
+          <div>
+            <div class="stat-label">Resolved</div>
+            <div class="stat-value" id="statResolved">—</div>
+          </div>
         </div>
       </div>
 
@@ -206,7 +671,8 @@
         <div class="ticket-toolbar">
           <div class="search-input-wrap">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search by ticket ID, name, email, subject..." oninput="debounceSearch()">
+            <input type="text" id="searchInput" placeholder="Search by ticket ID, name, email, subject..."
+              oninput="debounceSearch()">
           </div>
           <select class="admin-select" id="statusFilter" onchange="loadTickets(0)">
             <option value="ALL">All Status</option>
@@ -224,18 +690,23 @@
             <option value="DESC">Newest</option>
             <option value="ASC">Oldest</option>
           </select>
-          <input type="date" class="admin-select" id="fromDate" onchange="loadTickets(0)" title="From Date" style="max-width:160px;">
-          <input type="date" class="admin-select" id="toDate" onchange="loadTickets(0)" title="To Date" style="max-width:160px;">
+          <input type="date" class="admin-select" id="fromDate" onchange="loadTickets(0)" title="From Date"
+            style="max-width:160px;">
+          <input type="date" class="admin-select" id="toDate" onchange="loadTickets(0)" title="To Date"
+            style="max-width:160px;">
           <button class="admin-btn" onclick="loadTickets(0)" title="Refresh">
             <i class="fas fa-sync-alt"></i> Refresh
           </button>
-          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="exportTicketsToExcel()" title="Export filtered tickets to Excel">
+          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="exportTicketsToExcel()"
+            title="Export filtered tickets to Excel">
             <i class="fas fa-file-excel"></i> Excel
           </button>
-          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="exportTicketsToPDF()" title="Export filtered tickets to PDF">
+          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="exportTicketsToPDF()"
+            title="Export filtered tickets to PDF">
             <i class="fas fa-file-pdf"></i> PDF
           </button>
-          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="printTickets()" title="Print filtered tickets">
+          <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="printTickets()"
+            title="Print filtered tickets">
             <i class="fas fa-print"></i> Print
           </button>
         </div>
@@ -254,7 +725,10 @@
               </tr>
             </thead>
             <tbody id="ticketsBody">
-              <tr><td colspan="7" class="table-state"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i><br>Loading tickets...</td></tr>
+              <tr>
+                <td colspan="7" class="table-state"><i class="fas fa-spinner fa-spin"
+                    style="color:#d4af37;"></i><br>Loading tickets...</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -269,44 +743,61 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"><i class="ti-headphone-alt" style="margin-right:8px;"></i> <span id="modalTicketId">—</span></h5>
+          <h5 class="modal-title"><i class="ti-headphone-alt" style="margin-right:8px;"></i> <span
+              id="modalTicketId">—</span></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <!-- Customer Info -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 20px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
-            <div class="info-row"><span class="info-label">Name</span><span class="info-value" id="modalName">—</span></div>
-            <div class="info-row"><span class="info-label">Email</span><span class="info-value" id="modalEmail">—</span></div>
-            <div class="info-row"><span class="info-label">Mobile</span><span class="info-value" id="modalMobile">—</span></div>
-            <div class="info-row"><span class="info-label">Order Ref.</span><span class="info-value" id="modalOrderId">—</span></div>
-            <div class="info-row"><span class="info-label">Submitted</span><span class="info-value" id="modalDate">—</span></div>
-            <div class="info-row"><span class="info-label">Status</span><span class="info-value" id="modalStatusBadge">—</span></div>
+          <div
+            style="display:grid;grid-template-columns:1fr 1fr;gap:0 20px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
+            <div class="info-row"><span class="info-label">Name</span><span class="info-value" id="modalName">—</span>
+            </div>
+            <div class="info-row"><span class="info-label">Email</span><span class="info-value" id="modalEmail">—</span>
+            </div>
+            <div class="info-row"><span class="info-label">Mobile</span><span class="info-value"
+                id="modalMobile">—</span></div>
+            <div class="info-row"><span class="info-label">Order Ref.</span><span class="info-value"
+                id="modalOrderId">—</span></div>
+            <div class="info-row"><span class="info-label">Submitted</span><span class="info-value"
+                id="modalDate">—</span></div>
+            <div class="info-row"><span class="info-label">Status</span><span class="info-value"
+                id="modalStatusBadge">—</span></div>
           </div>
 
           <!-- Subject & Message -->
           <div style="margin-bottom:20px;">
-            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Subject</div>
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">
+              Subject</div>
             <div id="modalSubject" style="font-size:15px;font-weight:600;color:#e0e0e0;margin-bottom:12px;"></div>
-            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Message</div>
-            <div id="modalMessage" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:14px;font-size:14px;color:#ccc;line-height:1.7;white-space:pre-wrap;"></div>
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">
+              Message</div>
+            <div id="modalMessage"
+              style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:14px;font-size:14px;color:#ccc;line-height:1.7;white-space:pre-wrap;">
+            </div>
           </div>
 
           <!-- Image (if present) -->
           <div id="modalImageWrap" style="display:none;margin-bottom:20px;">
-            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Attached Image</div>
-            <img id="modalImage" src="" alt="Ticket Attachment" style="max-width:100%;max-height:260px;border-radius:6px;border:1px solid #333;">
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">
+              Attached Image</div>
+            <img id="modalImage" src="" alt="Ticket Attachment"
+              style="max-width:100%;max-height:260px;border-radius:6px;border:1px solid #333;">
           </div>
 
           <!-- Status Update -->
           <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
-            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;"><i class="fas fa-edit" style="margin-right:6px;"></i>Update Status</div>
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;"><i
+                class="fas fa-edit" style="margin-right:6px;"></i>Update Status</div>
             <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
               <select class="admin-select" id="modalStatusSelect" style="flex:1;min-width:160px;">
                 <option value="OPEN">Open</option>
                 <option value="IN_PROGRESS">In Progress</option>
                 <option value="RESOLVED">Resolved</option>
               </select>
-              <input type="text" id="modalStatusNote" class="reply-textarea" style="flex:2;min-width:200px;min-height:40px;resize:none;padding:8px 12px;" placeholder="Optional note for status change...">
+              <input type="text" id="modalStatusNote" class="reply-textarea"
+                style="flex:2;min-width:200px;min-height:40px;resize:none;padding:8px 12px;"
+                placeholder="Optional note for status change...">
               <button class="admin-btn admin-btn-sm" onclick="submitStatusUpdate()" id="statusUpdateBtn">
                 <i class="fas fa-check"></i> Update
               </button>
@@ -315,8 +806,10 @@
 
           <!-- Admin Reply -->
           <div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
-            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;"><i class="fas fa-reply" style="margin-right:6px;"></i>Send Reply to Customer</div>
-            <textarea class="reply-textarea" id="replyMessage" placeholder="Type your reply here... Customer will be notified."></textarea>
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;"><i
+                class="fas fa-reply" style="margin-right:6px;"></i>Send Reply to Customer</div>
+            <textarea class="reply-textarea" id="replyMessage"
+              placeholder="Type your reply here... Customer will be notified."></textarea>
             <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
               <small style="color:#555;">Reply is saved as event in ticket history</small>
               <button class="admin-btn" onclick="submitAdminReply()" id="replyBtn">
@@ -327,12 +820,14 @@
 
           <!-- Timeline / Events -->
           <div>
-            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;"><i class="fas fa-history" style="margin-right:6px;"></i>Ticket Timeline</div>
+            <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;"><i
+                class="fas fa-history" style="margin-right:6px;"></i>Ticket Timeline</div>
             <div id="ticketTimeline" class="ticket-timeline"></div>
           </div>
         </div>
         <div class="modal-footer" style="justify-content:space-between;">
-          <button id="deleteTicketBtn" class="admin-btn admin-btn-danger admin-btn-sm" onclick="deleteTicketFromModal()"><i class="fas fa-trash"></i> Delete Ticket</button>
+          <button id="deleteTicketBtn" class="admin-btn admin-btn-danger admin-btn-sm"
+            onclick="deleteTicketFromModal()"><i class="fas fa-trash"></i> Delete Ticket</button>
           <button class="admin-btn admin-btn-outline admin-btn-sm" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
@@ -344,8 +839,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="js/admin-alert.js"></script>
+  <script src="js/auth-guard.js"></script>
   <script>
-    const API = '/api/admin/tickets';
+    const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? `http://${window.location.hostname}:8080/api/admin/tickets`
+      : '/api/admin/tickets';
     let currentPage = 0;
     let currentTicketId = null;
     let searchTimer = null;
@@ -435,8 +933,8 @@
               <td style="white-space:nowrap;">${date}</td>
               <td><span class="badge-status ${badgeClass}">${statusLabel}</span></td>
               <td style="text-align:center;white-space:nowrap;">
-                <button class="admin-btn admin-btn-sm" onclick="openTicketModal('${t.ticketId}')" title="View &amp; Reply"><i class="ti-eye"></i></button>
-                ${t.status !== 'RESOLVED' ? `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="quickResolve('${t.ticketId}')" title="Mark Resolved" style="margin-left:4px;"><i class="ti-check"></i></button>` : ''}
+                <button class="admin-btn admin-btn-sm" onclick="openTicketModal('${t.ticketId}')" title="View &amp; Reply" style="background:rgba(212,175,55,0.1); color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; gap:5px; margin:0 4px 0 0; transition:all 0.2s;" onmouseover="this.style.background='rgba(212,175,55,0.2)'" onmouseout="this.style.background='rgba(212,175,55,0.1)'"><i class="ti-eye"></i></button>
+                ${t.status !== 'RESOLVED' ? `<button class="admin-btn admin-btn-sm admin-btn-outline" onclick="quickResolve('${t.ticketId}')" title="Mark Resolved" style="background:rgba(39,174,96,0.1); color:#27ae60; border:1px solid #27ae60; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0; transition:all 0.2s;" onmouseover="this.style.background='rgba(39,174,96,0.2)'" onmouseout="this.style.background='rgba(39,174,96,0.1)'"><i class="ti-check"></i></button>` : ''}
               </td>
             </tr>`;
         }).join('');
@@ -504,10 +1002,10 @@
         'Created At': ticket.createdAt ? new Date(ticket.createdAt).toLocaleString('en-IN') : ''
       }));
       const ws = XLSX.utils.json_to_sheet(rows);
-      ws['!cols'] = [{wch:16},{wch:20},{wch:24},{wch:16},{wch:30},{wch:50},{wch:14},{wch:14},{wch:20}];
+      ws['!cols'] = [{ wch: 16 }, { wch: 20 }, { wch: 24 }, { wch: 16 }, { wch: 30 }, { wch: 50 }, { wch: 14 }, { wch: 14 }, { wch: 20 }];
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'Tickets');
-      XLSX.writeFile(wb, `IRasa_Tickets_${new Date().toISOString().slice(0,10)}.xlsx`);
+      XLSX.writeFile(wb, `IRasa_Tickets_${new Date().toISOString().slice(0, 10)}.xlsx`);
     }
 
     async function exportTicketsToPDF() {
@@ -569,7 +1067,7 @@
         </table>`;
       const opt = {
         margin: [0.3, 0.3, 0.3, 0.3],
-        filename: `IRasa_Tickets_${new Date().toISOString().slice(0,10)}.pdf`,
+        filename: `IRasa_Tickets_${new Date().toISOString().slice(0, 10)}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
@@ -624,7 +1122,7 @@
           <th>Ticket ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Subject</th><th>Message</th><th>Order Ref</th><th>Status</th><th>Date</th>
         </tr></thead><tbody>${rows}</tbody></table>
         <div class="footer">Generated by i rasa admin panel</div>
-        </body></html>`);
+        <` + `/body><` + `/html>`);
       win.document.close();
       win.focus();
       setTimeout(() => win.print(), 500);
@@ -670,10 +1168,26 @@
         document.getElementById('modalStatusBadge').innerHTML = `<span class="badge-status ${badgeClass}">${statusLabel}</span>`;
         document.getElementById('modalStatusSelect').value = t.status || 'OPEN';
 
-        // Image
+        // Image — normalize relative URLs to absolute so images load correctly
         if (t.imageUrl) {
-          document.getElementById('modalImage').src = t.imageUrl;
-          document.getElementById('modalImageWrap').style.display = 'block';
+          try {
+            let imageUrl = String(t.imageUrl || '').trim();
+            if (imageUrl && !imageUrl.startsWith('http')) {
+              if (!imageUrl.startsWith('/')) {
+                // Prepend /api/files/ if it's just a filename
+                imageUrl = '/api/files/' + imageUrl;
+              }
+              const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                 ? `http://${window.location.hostname}:8080` 
+                 : '';
+              imageUrl = baseUrl + imageUrl;
+            }
+            document.getElementById('modalImage').src = imageUrl;
+            document.getElementById('modalImageWrap').style.display = 'block';
+          } catch (e) {
+            console.error('Failed to set ticket image URL', e);
+            document.getElementById('modalImageWrap').style.display = 'none';
+          }
         } else {
           document.getElementById('modalImageWrap').style.display = 'none';
         }
@@ -864,7 +1378,7 @@
     // --- Escape HTML ---
     function escHtml(str) {
       if (!str) return '';
-      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
     // --- Init ---
@@ -874,4 +1388,5 @@
     });
   </script>
 </body>
+
 </html>

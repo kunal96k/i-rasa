@@ -5171,6 +5171,52 @@ a {
     margin: 5px
 }
 
+/* Force footer gallery into 2 columns and increase thumbnail sizes
+   This overrides inline image width/height used in multiple HTML files. */
+.single-footer-widget .instafeed {
+    display: grid !important;
+    grid-template-columns: repeat(2, auto) !important;
+    gap: 12px !important;
+    justify-items: center;
+    align-items: center;
+}
+.single-footer-widget .instafeed li { margin: 0 !important; }
+.single-footer-widget .instafeed img {
+    /* Use consistent square thumbnails, override inline sizes */
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: cover !important;
+    border: 2px solid #d4af37 !important;
+    border-radius: 2px !important;
+    display: block !important;
+}
+
+@media (max-width: 991px) {
+    .single-footer-widget .instafeed img { width: 44px !important; height: 44px !important; }
+}
+
+@media (max-width: 575px) {
+    .single-footer-widget .instafeed img { width: 36px !important; height: 36px !important; }
+}
+
+/* Global helper class for gallery thumbnails (applies across pages) */
+.insta-thumb {
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: cover !important;
+    border: 2px solid #d4af37 !important;
+    border-radius: 2px !important;
+    display: block !important;
+}
+
+@media (max-width: 991px) {
+    .insta-thumb { width: 44px !important; height: 44px !important; }
+}
+
+@media (max-width: 575px) {
+    .insta-thumb { width: 36px !important; height: 36px !important; }
+}
+
 @media (max-width: 1199px) and (min-width: 992px) {
 
     .single-footer-widget .instafeed li:nth-child(4),
@@ -7523,28 +7569,43 @@ html {
     font-family: 'Font Awesome 5 Brands' !important;
 }
 
-/* Footer Gallery Single Row responsive layout */
+/* Footer Gallery: fixed-size square thumbnails (overrides inline sizes) */
 .single-footer-widget .instafeed {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: space-between !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, auto) !important;
+    gap: 12px !important;
+    justify-items: center;
+    align-items: center;
     padding: 0 !important;
-    margin: 0 -3px !important;
+    margin: 0 !important;
 }
 
 .single-footer-widget .instafeed li {
-    margin: 3px !important;
-    flex: 1 1 0px !important;
-    min-width: 0 !important;
+    margin: 0 !important;
     padding: 0 !important;
 }
 
 .single-footer-widget .instafeed li img {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1 !important;
+    width: 50px !important;
+    height: 50px !important;
     object-fit: cover !important;
-    border: 1px solid #d4af37 !important;
+    border: 2px solid #d4af37 !important;
+    border-radius: 2px !important;
+    display: block !important;
+}
+
+@media (max-width: 991px) {
+    .single-footer-widget .instafeed {
+        grid-template-columns: repeat(3, auto) !important;
+    }
+    .single-footer-widget .instafeed li img { width: 44px !important; height: 44px !important; }
+}
+
+@media (max-width: 575px) {
+    .single-footer-widget .instafeed {
+        grid-template-columns: repeat(2, auto) !important;
+    }
+    .single-footer-widget .instafeed li img { width: 36px !important; height: 36px !important; }
 }
 
 /* ==========================================

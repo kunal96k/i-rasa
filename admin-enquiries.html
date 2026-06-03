@@ -261,11 +261,11 @@
       <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
       <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
       <a href="admin-enquiries.html" class="admin-nav-item active"><i class="ti-email"></i> Enquiries</a>
-      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
       <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
       <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
       <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
 
@@ -411,7 +411,8 @@
                         style="max-height:80px; max-width:120px; display:none; border-radius:2px;">
                       <div id="enqFilePreviewIcon"
                         style="display:none; width:48px; height:48px; background:#222; border:1px solid #d4af37; border-radius:4px; align-items:center; justify-content:center; color:#d4af37; font-size:24px; margin:0 auto 4px auto;">
-                        <i class="ti-file"></i></div>
+                        <i class="ti-file"></i>
+                      </div>
                       <span id="enqFileName"
                         style="font-size:11px; color:#aaa; display:block; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:4px; text-align:center;"></span>
                       <button type="button" class="btn btn-sm btn-danger" id="enqRemoveFileBtn"
@@ -540,7 +541,8 @@
                         style="max-height:80px; max-width:120px; display:none; border-radius:2px;">
                       <div id="editEnqFilePreviewIcon"
                         style="display:none; width:48px; height:48px; background:#222; border:1px solid #d4af37; border-radius:4px; align-items:center; justify-content:center; color:#d4af37; font-size:24px; margin:0 auto 4px auto;">
-                        <i class="ti-file"></i></div>
+                        <i class="ti-file"></i>
+                      </div>
                       <span id="editEnqFileName"
                         style="font-size:11px; color:#aaa; display:block; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:4px; text-align:center;"></span>
                       <button type="button" class="btn btn-sm btn-danger" id="editEnqRemoveFileBtn"
@@ -570,6 +572,7 @@
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="js/admin-alert.js"></script>
+  <script src="js/auth-guard.js"></script>
   <script src="js/form-validator.js"></script>
 
   <script>
@@ -632,13 +635,13 @@
                   </select>
                 </td>
                 <td style="white-space:nowrap;">
-                  <button class="admin-btn admin-btn-sm" onclick="viewEnquiry('${enq.enquiryId}')" title="View Details" style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37; margin-right:4px;">
+                  <button class="admin-btn admin-btn-sm" onclick="viewEnquiry('${enq.enquiryId}')" title="View Details" style="background:rgba(212,175,55,0.1); color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0 4px 0 0; transition:all 0.2s;" onmouseover="this.style.background='rgba(212,175,55,0.2)'" onmouseout="this.style.background='rgba(212,175,55,0.1)'">
                     <i class="ti-eye"></i>
                   </button>
-                  <button class="admin-btn admin-btn-sm" onclick="openEditModal('${enq.enquiryId}')" title="Edit" style="background:rgba(52,152,219,0.15); color:#3498db; border:1px solid #3498db; margin-right:4px;">
+                  <button class="admin-btn admin-btn-sm" onclick="openEditModal('${enq.enquiryId}')" title="Edit" style="background:rgba(52,152,219,0.1); color:#3498db; border:1px solid #3498db; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0 4px 0 0; transition:all 0.2s;" onmouseover="this.style.background='rgba(52,152,219,0.2)'" onmouseout="this.style.background='rgba(52,152,219,0.1)'">
                     <i class="ti-pencil"></i>
                   </button>
-                  <button class="admin-btn admin-btn-sm" onclick="deleteEnquiry('${enq.enquiryId}')" title="Delete" style="background:rgba(255,77,77,0.15); color:#ff4d4d; border:1px solid #ff4d4d;">
+                  <button class="admin-btn admin-btn-sm" onclick="deleteEnquiry('${enq.enquiryId}')" title="Delete" style="background:rgba(255,77,77,0.1); color:#ff4d4d; border:1px solid #ff4d4d; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,77,77,0.2)'" onmouseout="this.style.background='rgba(255,77,77,0.1)'">
                     <i class="ti-trash"></i>
                   </button>
                 </td>
@@ -1246,6 +1249,6 @@
     });
 
   </script>
-  </body>
+</body>
 
-  </html>
+</html>

@@ -58,10 +58,10 @@
       <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
       <a href="admin-orders.html" class="admin-nav-item active"><i class="ti-shopping-cart-full"></i> Orders</a>
-      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
       <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
       <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
     
@@ -159,6 +159,7 @@
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="js/admin-alert.js"></script>
+  <script src="js/auth-guard.js"></script>
 
   <script>
     let currentOrders = [];
@@ -221,7 +222,7 @@
                 <td style="font-size:11px; text-transform:uppercase;">${order.paymentMethod}</td>
                 <td>
                   <select style="background:${statusBg}; color:${statusColor}; border:1px solid ${statusColor}; border-radius:20px; padding:3px 8px; font-size:11px; font-weight:600; cursor:pointer; outline:none;"
-                    onchange="updateOrderStatus('${order.orderId}', this.value)">
+                    onchange="updateOrderStatus('${order.orderId}', this.value)" ${order.status === 'CANCELLED' ? 'disabled' : ''}>
                     <option value="PENDING" ${order.status==='PENDING'?'selected':''} style="background:#1a1a1a;color:#f39c12;">PENDING</option>
                     <option value="CONFIRMED" ${order.status==='CONFIRMED'?'selected':''} style="background:#1a1a1a;color:#3498db;">CONFIRMED</option>
                     <option value="PROCESSING" ${order.status==='PROCESSING'?'selected':''} style="background:#1a1a1a;color:#9b59b6;">PROCESSING</option>
@@ -232,7 +233,7 @@
                   </select>
                 </td>
                 <td style="white-space:nowrap;">
-                  <button class="admin-btn admin-btn-sm" onclick="viewOrder('${order.orderId}')" title="View Details" style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37; margin-right:4px;">
+                  <button class="admin-btn admin-btn-sm" onclick="viewOrder('${order.orderId}')" title="View Details" style="background:rgba(212,175,55,0.1); color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:12px; font-weight:600; display:inline-flex; align-items:center; justify-content:center; gap:5px; margin:0; transition:all 0.2s;" onmouseover="this.style.background='rgba(212,175,55,0.2)'" onmouseout="this.style.background='rgba(212,175,55,0.1)'">
                     <i class="ti-eye"></i> View
                   </button>
                 </td>
@@ -363,11 +364,16 @@
           
           <div style="background:#111; border:1px solid #222; border-radius:8px; padding:14px;">
             <div style="color:#d4af37; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;"><i class="ti-credit-card"></i> Payment Summary</div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Subtotal:</span> <span>₹${order.subtotal.toFixed(2)}</span></div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Shipping:</span> <span>₹${order.shipping.toFixed(2)}</span></div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Discount:</span> <span>-₹${order.discount.toFixed(2)}</span></div>
-            <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:6px; border-top:1px solid #333; font-weight:700; font-size:15px; color:#d4af37;"><span>Total:</span> <span>₹${order.total.toFixed(2)}</span></div>
-            <div style="font-size:11px; color:#888; margin-top:6px; text-transform:uppercase;">Method: ${order.paymentMethod}</div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Subtotal:</span> <span>₹${parseFloat(order.subtotal || 0).toFixed(2)}</span></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Shipping:</span> <span>${(order.shipping > 0) ? '₹' + parseFloat(order.shipping).toFixed(2) : 'FREE'}</span></div>
+            ${parseFloat(order.handlingCharge || 0) > 0 ? `<div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Handling Charge:</span> <span>₹${parseFloat(order.handlingCharge).toFixed(2)}</span></div>` : ''}
+            ${parseFloat(order.platformFee || 0) > 0 ? `<div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Platform Fee:</span> <span>₹${parseFloat(order.platformFee).toFixed(2)}</span></div>` : ''}
+            ${parseFloat(order.platformServicesFee || 0) > 0 ? `<div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Platform Services:</span> <span>₹${parseFloat(order.platformServicesFee).toFixed(2)}</span></div>` : ''}
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Discount:</span> <span style="color:#4caf50;">-₹${parseFloat(order.discount || 0).toFixed(2)}</span></div>
+            ${order.couponCode || order.coupon ? `<div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Coupon Applied:</span> <span style="color:#d4af37;">${order.couponCode || order.coupon}</span></div>` : ''}
+            <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:6px; border-top:1px solid #333; font-weight:700; font-size:15px; color:#d4af37;"><span>Total:</span> <span>₹${parseFloat(order.total || 0).toFixed(2)}</span></div>
+            <div style="font-size:11px; color:#888; margin-top:6px; text-transform:uppercase;">Method: ${order.paymentMethod || 'N/A'}</div>
+            ${order.transactionId ? `<div style="font-size:11px; color:#888; margin-top:2px; text-transform:uppercase;">Txn ID: ${order.transactionId}</div>` : ''}
           </div>
           
           <div style="background:#111; border:1px solid #222; border-radius:8px; padding:14px;">
@@ -486,12 +492,12 @@
       const element = document.createElement('div');
       element.innerHTML = `
         <style>
-          body { font-family: Arial, sans-serif; font-size: 11px; }
-          h2 { color: #333; margin-bottom: 4px; }
-          p { color: #888; font-size: 10px; margin-bottom: 12px; }
-          table { width: 100%; border-collapse: collapse; }
+          body { font-family: Arial, sans-serif; font-size: 11px; color: #000; }
+          h2 { color: #d4af37; margin-bottom: 4px; }
+          p { color: #555; font-size: 10px; margin-bottom: 12px; }
+          table { width: 100%; border-collapse: collapse; color: #000; }
           th { background: #222; color: #fff; padding: 8px 6px; text-align: left; font-size: 10px; }
-          td { padding: 6px; border-bottom: 1px solid #eee; font-size: 10px; vertical-align:top; }
+          td { padding: 6px; border-bottom: 1px solid #ddd; font-size: 10px; vertical-align:top; color: #000; }
           tr:nth-child(even) td { background: #f9f9f9; }
         </style>
         <h2>I Rasa Perfumes — Orders Report</h2>

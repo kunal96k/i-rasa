@@ -84,10 +84,10 @@
       <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
       <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
-      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-coupons.html" class="admin-nav-item active"><i class="ti-gift"></i> Coupons & Offers</a>
       <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
       <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
     
@@ -186,14 +186,19 @@
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="js/admin-alert.js"></script>
+  <script src="js/auth-guard.js"></script>
 
   <script>
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+      ? `http://${window.location.hostname}:8080/api/admin/coupons` 
+      : '/api/admin/coupons';
+
     async function loadAdminCoupons(page = 0) {
       const tbody = document.getElementById('adminCouponsBody');
       const pagContainer = document.getElementById('adminCouponsPagination');
       
       try {
-        const res = await fetch(`/api/admin/coupons?page=${page}&size=10`, { credentials: 'include' });
+        const res = await fetch(`${API_BASE}?page=${page}&size=10`, { credentials: 'include' });
         const data = await res.json();
         
         if (res.ok && data.success && data.data.content && data.data.content.length > 0) {
@@ -244,7 +249,7 @@
     async function toggleCoupon(id, active) {
       if(!(await showConfirm(`Are you sure you want to ${active ? 'activate' : 'deactivate'} this coupon?`))) return;
       try {
-        const res = await fetch(`/api/admin/coupons/${id}/status?active=${active}`, { method: 'PUT', credentials: 'include' });
+        const res = await fetch(`${API_BASE}/${id}/status?active=${active}`, { method: 'PUT', credentials: 'include' });
         const data = await res.json();
         if(res.ok && data.success) loadAdminCoupons();
         else alert(data.message || 'Error updating status');
@@ -254,7 +259,7 @@
     async function deleteCoupon(id) {
       if(!(await showConfirm(`Are you sure you want to permanently delete this coupon?`))) return;
       try {
-        const res = await fetch(`/api/admin/coupons/${id}`, { method: 'DELETE', credentials: 'include' });
+        const res = await fetch(`${API_BASE}/${id}`, { method: 'DELETE', credentials: 'include' });
         const data = await res.json();
         if(res.ok && data.success) loadAdminCoupons();
         else alert(data.message || 'Error deleting coupon');
@@ -275,7 +280,7 @@
       };
 
       try {
-        const res = await fetch('/api/admin/coupons', {
+        const res = await fetch(`${API_BASE}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
