@@ -370,8 +370,7 @@
 
           <div class="custom-control custom-checkbox mb-3">
             <input type="checkbox" class="custom-control-input" id="terms" required>
-            <label class="custom-control-label" for="terms" style="color: #666; font-size: 11px;">I agree to the Terms &
-              Conditions</label>
+            <label class="custom-control-label" for="terms" style="color: #666; font-size: 11px;">I agree to the <a href="javascript:void(0);" onclick="$('#terms_modal').modal('show');" style="color:#d4af37;text-decoration:underline;">Terms &amp; Conditions</a></label>
           </div>
 
           <button type="submit" id="btnRegister" class="btn-auth" disabled style="opacity: 0.6;">Register
@@ -577,6 +576,41 @@
       t.addEventListener('click', function(){ clearTimeout(timer); t.style.opacity='0'; t.style.transform='translateX(60px)'; setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 400); });
     }
   </script>
+  <!-- TERMS & CONDITIONS MODAL -->
+  <div class="modal fade" id="terms_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; text-align: left;">
+        <div class="modal-header" style="border-bottom: 1px solid #333;">
+          <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif;">Terms &amp; Conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; margin: 0; padding: 0;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="font-size: 13.5px; line-height: 1.6; max-height: 60vh; overflow-y: auto; padding: 24px;">
+          <h6 style="color: #d4af37; font-weight: 700; margin-bottom: 10px;">1. General Agreement</h6>
+          <p style="color: #bbb; margin-bottom: 15px;">By placing an order on I Rasa Perfumes, you agree to be bound by these Terms and Conditions. Please read them carefully before making a purchase.</p>
+
+          <h6 style="color: #d4af37; font-weight: 700; margin-bottom: 10px;">2. Strictly Non-Refundable &amp; Non-Returnable</h6>
+          <p style="color: #fff; font-weight: 600; background: rgba(212, 175, 55, 0.1); border-left: 3px solid #d4af37; padding: 12px; margin-bottom: 15px;">
+            ⚠️ <strong>Important Notice:</strong> Due to the personal, cosmetic, and hygienic nature of fragrance products, all purchases made on I Rasa Perfumes are <strong>100% non-refundable</strong> and <strong>non-returnable</strong> under any circumstances. Once an order is processed or delivered, we cannot accept returns or process refunds.
+          </p>
+
+          <h6 style="color: #d4af37; font-weight: 700; margin-bottom: 10px;">3. Shipping &amp; Delivery</h6>
+          <p style="color: #bbb; margin-bottom: 15px;">We offer standard shipping across India. Orders are processed within 24 hours and delivered within 3-5 business days. Delivery times are estimates and not guaranteed.</p>
+
+          <h6 style="color: #d4af37; font-weight: 700; margin-bottom: 10px;">4. Payments &amp; Verification</h6>
+          <p style="color: #bbb; margin-bottom: 15px;">For UPI payments, users must upload a valid transaction screenshot and UTR ID. Orders will only be processed after successful verification of the payment.</p>
+
+          <h6 style="color: #d4af37; font-weight: 700; margin-bottom: 10px;">5. Limitation of Liability</h6>
+          <p style="color: #bbb; margin-bottom: 5px;">I Rasa Perfumes shall not be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use our products.</p>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #333; justify-content: center;">
+          <button type="button" class="btn" data-dismiss="modal" style="background: linear-gradient(135deg, #d4af37, #aa8422); color: #000; border: none; padding: 10px 24px; border-radius: 20px; font-weight: 700; font-size: 12px; text-transform: uppercase;">Close &amp; Accept</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/form-validator.js"></script>
 </body>
 

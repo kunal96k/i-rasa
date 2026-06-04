@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Error - I Rasa Perfumes</title>
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      background: #000;
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+    }
+    .error-wrapper {
+      height: 100vh;
+      width: 100vw;
+      background: radial-gradient(circle at center, #151206 0%, #000000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .error-card {
+      text-align: center;
+      max-width: 500px;
+      padding: 50px 40px;
+      background: rgba(13, 13, 13, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.05);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .error-code {
+      font-family: 'Cinzel', serif;
+      font-size: 110px;
+      font-weight: 700;
+      line-height: 1;
+      color: #d4af37;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+    .error-title {
+      font-family: 'Cinzel', serif;
+      color: #fff;
+      font-size: 22px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .error-desc {
+      color: #aaa;
+      font-size: 14.5px;
+      line-height: 1.6;
+      margin-bottom: 35px;
+    }
+    .btn-luxury {
+      background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%);
+      color: #000 !important;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 12.5px;
+      border: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+    }
+    .btn-luxury:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    }
+    .perfume-bottle-icon {
+      font-size: 55px;
+      color: rgba(212, 175, 55, 0.15);
+      margin-bottom: 20px;
+      display: inline-block;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-wrapper">
+    <div class="error-card">
+      <div class="perfume-bottle-icon">
+        <i class="ti-unlink"></i>
+      </div>
+      <div class="error-code">500</div>
+      <h3 class="error-title">Scent Dispersion Interrupted</h3>
+      <p class="error-desc">
+        We encountered an internal server error while processing your request. Our technical staff has been notified and we are working to resolve the issue.
+      </p>
+      <a href="index.html" class="btn btn-luxury">
+        <i class="fas fa-home"></i> Return to Home
+      </a>
+    </div>
+  </div>
+</body>
+</html>

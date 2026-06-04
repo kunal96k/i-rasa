@@ -7,7 +7,7 @@
   <title>I-Rasa Perfumes - Admin Dashboard</title>
   <meta name="description" content="I Rasa Perfumes Admin Dashboard - Manage orders, revenue, tickets and analytics.">
 
-  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
@@ -23,7 +23,7 @@
       --admin-text: #e0e0e0;
       --admin-gold: #d4af37;
       --admin-gold-hover: #e5c158;
-      --admin-gold-dim: rgba(212,175,55,0.08);
+      --admin-gold-dim: rgba(212, 175, 55, 0.08);
       --admin-border: #2a2a2a;
       --admin-green: #25d366;
       --admin-red: #ff4d4d;
@@ -31,88 +31,163 @@
       --admin-orange: #f59e0b;
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
     body {
       background: var(--admin-bg);
       color: var(--admin-text);
       font-family: 'Inter', sans-serif;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       display: flex;
       height: 100vh;
       overflow: hidden;
     }
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--admin-bg); }
-    ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--admin-gold); }
-    body.modal-open { padding-right: 0 !important; }
+    /* Custom Scrollbar */
+    *::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
 
-    h1,h2,h3,h4,h5,h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
+    *::-webkit-scrollbar-track {
+      background: #e2dfd6;
+      border-radius: 6px;
+    }
 
-    /* ── Sidebar ────────────────────────────────── */
+    *::-webkit-scrollbar-thumb {
+      background: #b58c1e;
+      border-radius: 6px;
+      border: 1px solid #d8d5cc;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+      background: #d4af37;
+    }
+
+    * {
+      scrollbar-color: #b58c1e #e2dfd6;
+      scrollbar-width: thin;
+    }
+
+    body.modal-open {
+      padding-right: 0 !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--admin-gold);
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Sidebar */
     .admin-sidebar {
-      width: 240px;
-      background: var(--admin-surface);
+      width: 260px;
+      background-color: var(--admin-surface);
       border-right: 1px solid var(--admin-border);
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
       flex-shrink: 0;
     }
+
     .admin-logo {
-      padding: 18px 20px 14px;
+      text-align: center;
       border-bottom: 1px solid var(--admin-border);
-      text-align: center;
     }
-    .admin-nav { flex-grow: 1; padding: 14px 0; overflow-y: auto; }
-    .admin-nav-item {
-      padding: 11px 20px;
-      display: flex; align-items: center;
-      color: #888; text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      border-left: 3px solid transparent;
-      font-size: 14px; font-weight: 500;
-      gap: 12px;
+
+    .admin-nav {
+      text-align: left;
+      font-size: 16px;
+      color: #e6dfc8 !important;
+      font-family: 'Outfit', sans-serif !important;
+      line-height: 1.7 !important;
+      font-weight: 300 !important;
+      box-sizing: border-box;
+      display: block;
+      flex-grow: 1;
+      padding: 12px 0;
+      overflow-y: auto;
     }
-    .admin-nav-item:hover, .admin-nav-item.active {
-      background: var(--admin-gold-dim);
-      color: var(--admin-gold);
-      border-left-color: var(--admin-gold);
-    }
-    .admin-nav-item i { font-size: 1.1rem; width: 20px; text-align: center; }
-    .nav-badge {
-      margin-left: auto;
-      background: var(--admin-red);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 10px;
-      min-width: 18px;
-      text-align: center;
-    }
+
     .nav-section-label {
-      padding: 16px 20px 6px;
-      font-size: 10px;
+      padding: 14px 24px 4px;
+      font-size: 9px;
+      color: #555;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #444;
+      letter-spacing: 2px;
       font-weight: 600;
     }
 
+    .nav-badge {
+      background: var(--admin-gold);
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 1px 7px;
+      margin-left: auto;
+    }
+
+    .admin-nav-item {
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      color: var(--admin-text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+
+    .admin-nav-item:hover,
+    .admin-nav-item.active {
+      background-color: rgba(212, 175, 55, 0.1);
+      color: var(--admin-gold);
+      border-left-color: var(--admin-gold);
+      text-decoration: none;
+    }
+
+    .admin-nav-item i {
+      margin-right: 13px;
+      font-size: 1.1rem;
+      width: 22px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
     /* ── Main ───────────────────────────────────── */
-    .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .admin-main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
     .admin-header {
       height: 64px;
       background: var(--admin-surface);
       border-bottom: 1px solid var(--admin-border);
-      display: flex; align-items: center;
+      display: flex;
+      align-items: center;
       justify-content: space-between;
       padding: 0 28px;
       flex-shrink: 0;
     }
-    .admin-content { flex-grow: 1; padding: 24px 28px; overflow-y: auto; }
+
+    .admin-content {
+      flex-grow: 1;
+      padding: 24px 28px;
+      overflow-y: auto;
+    }
 
     /* ── Cards ──────────────────────────────────── */
     .admin-card {
@@ -122,11 +197,19 @@
       padding: 20px;
       margin-bottom: 20px;
     }
+
     .admin-card-title {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 18px;
     }
-    .admin-card-title h5 { margin: 0; font-size: 14px; letter-spacing: 0.5px; }
+
+    .admin-card-title h5 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
 
     /* ── Stat Cards ─────────────────────────────── */
     .stats-grid {
@@ -135,49 +218,104 @@
       gap: 16px;
       margin-bottom: 20px;
     }
+
     .stat-card {
       background: var(--admin-surface);
       border: 1px solid var(--admin-border);
       border-radius: 10px;
       padding: 18px;
-      display: flex; align-items: center; gap: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
       cursor: pointer;
       transition: all 0.25s ease;
       position: relative;
       overflow: hidden;
     }
+
     .stat-card::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 2px;
       background: var(--admin-gold);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease;
     }
-    .stat-card:hover { border-color: var(--admin-gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,0.08); }
-    .stat-card:hover::after { transform: scaleX(1); }
+
+    .stat-card:hover {
+      border-color: var(--admin-gold);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.08);
+    }
+
+    .stat-card:hover::after {
+      transform: scaleX(1);
+    }
 
     .stat-icon {
-      width: 46px; height: 46px;
+      width: 46px;
+      height: 46px;
       border-radius: 10px;
       background: var(--admin-gold-dim);
       color: var(--admin-gold);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 20px;
       flex-shrink: 0;
     }
-    .stat-icon.red   { background: rgba(255,77,77,0.1); color: var(--admin-red); }
-    .stat-icon.green { background: rgba(37,211,102,0.1); color: var(--admin-green); }
-    .stat-icon.blue  { background: rgba(59,224,224,0.1); color: var(--admin-blue); }
 
-    .stat-details { flex: 1; min-width: 0; }
-    .stat-details h3 { margin: 0 0 3px; font-size: 22px; color: #fff; font-family: 'Inter',sans-serif; font-weight: 700; }
-    .stat-details p { margin: 0; color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 0.7px; }
-    .stat-details .stat-change { font-size: 11px; margin-top: 3px; }
-    .stat-change.up   { color: var(--admin-green); }
-    .stat-change.down { color: var(--admin-red); }
+    .stat-icon.red {
+      background: rgba(255, 77, 77, 0.1);
+      color: var(--admin-red);
+    }
+
+    .stat-icon.green {
+      background: rgba(37, 211, 102, 0.1);
+      color: var(--admin-green);
+    }
+
+    .stat-icon.blue {
+      background: rgba(59, 224, 224, 0.1);
+      color: var(--admin-blue);
+    }
+
+    .stat-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .stat-details h3 {
+      margin: 0 0 3px;
+      font-size: 22px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+    }
+
+    .stat-details p {
+      margin: 0;
+      color: #666;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .stat-details .stat-change {
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .stat-change.up {
+      color: var(--admin-green);
+    }
+
+    .stat-change.down {
+      color: var(--admin-red);
+    }
 
     /* ── Charges Mini Row ───────────────────────── */
     .charges-grid {
@@ -186,29 +324,56 @@
       gap: 12px;
       margin-bottom: 20px;
     }
+
     .charge-chip {
       background: var(--admin-surface);
       border: 1px solid var(--admin-border);
       border-radius: 8px;
       padding: 12px 16px;
-      display: flex; align-items: center; gap: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       transition: border-color 0.2s;
     }
-    .charge-chip:hover { border-color: #444; }
-    .charge-chip .cc-icon { color: var(--admin-gold); font-size: 14px; }
-    .charge-chip .cc-label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.6px; }
-    .charge-chip .cc-val { font-size: 14px; font-weight: 700; color: #ccc; }
+
+    .charge-chip:hover {
+      border-color: #444;
+    }
+
+    .charge-chip .cc-icon {
+      color: var(--admin-gold);
+      font-size: 14px;
+    }
+
+    .charge-chip .cc-label {
+      font-size: 10px;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .charge-chip .cc-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ccc;
+    }
 
     /* ── Quick Actions Bar ──────────────────────── */
     .quick-actions {
-      display: flex; gap: 10px; flex-wrap: wrap;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
       margin-bottom: 20px;
     }
+
     .qa-btn {
-      display: flex; align-items: center; gap: 7px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
       padding: 8px 16px;
       border-radius: 8px;
-      font-size: 12px; font-weight: 600;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
       border: 1px solid var(--admin-border);
       background: var(--admin-surface);
@@ -216,174 +381,396 @@
       transition: all 0.2s ease;
       text-decoration: none;
     }
-    .qa-btn:hover { color: var(--admin-gold); border-color: var(--admin-gold); background: var(--admin-gold-dim); }
-    .qa-btn i { font-size: 13px; }
-    .qa-btn .qa-badge {
-      background: var(--admin-red); color: #fff;
-      font-size: 10px; font-weight: 700;
-      padding: 1px 5px; border-radius: 8px;
+
+    .qa-btn:hover {
+      color: var(--admin-gold);
+      border-color: var(--admin-gold);
+      background: var(--admin-gold-dim);
     }
-    .qa-btn.primary { background: var(--admin-gold); color: #000; border-color: var(--admin-gold); }
-    .qa-btn.primary:hover { background: var(--admin-gold-hover); }
+
+    .qa-btn i {
+      font-size: 13px;
+    }
+
+    .qa-btn .qa-badge {
+      background: var(--admin-red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 8px;
+    }
+
+    .qa-btn.primary {
+      background: var(--admin-gold);
+      color: #000;
+      border-color: var(--admin-gold);
+    }
+
+    .qa-btn.primary:hover {
+      background: var(--admin-gold-hover);
+    }
 
     /* ── Slicer Pills ───────────────────────────── */
     .slicer-group {
-      display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
     }
+
     .slicer-pill {
       padding: 5px 14px;
       border-radius: 20px;
-      font-size: 11px; font-weight: 600;
+      font-size: 11px;
+      font-weight: 600;
       border: 1px solid var(--admin-border);
       background: transparent;
       color: #666;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .slicer-pill:hover { color: var(--admin-gold); border-color: var(--admin-gold); }
-    .slicer-pill.active { background: var(--admin-gold); color: #000; border-color: var(--admin-gold); }
+
+    .slicer-pill:hover {
+      color: var(--admin-gold);
+      border-color: var(--admin-gold);
+    }
+
+    .slicer-pill.active {
+      background: var(--admin-gold);
+      color: #000;
+      border-color: var(--admin-gold);
+    }
 
     /* ── Table ──────────────────────────────────── */
-    .admin-table { width: 100%; color: var(--admin-text); border-collapse: collapse; }
+    .admin-table {
+      width: 100%;
+      color: var(--admin-text);
+      border-collapse: collapse;
+    }
+
     .admin-table th {
-      text-align: left; padding: 10px 14px;
+      text-align: left;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--admin-border);
-      color: var(--admin-gold); font-size: 11px;
-      text-transform: uppercase; letter-spacing: 0.7px;
+      color: var(--admin-gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
       font-weight: 600;
     }
+
     .admin-table td {
       padding: 13px 14px;
       border-bottom: 1px solid var(--admin-border);
       font-size: 13px;
     }
-    .admin-table tbody tr { transition: background 0.15s; }
-    .admin-table tbody tr:hover { background: rgba(255,255,255,0.02); }
-    .admin-table tbody tr:last-child td { border-bottom: none; }
+
+    .admin-table tbody tr {
+      transition: background 0.15s;
+    }
+
+    .admin-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .admin-table tbody tr:last-child td {
+      border-bottom: none;
+    }
 
     /* ── Badges ─────────────────────────────────── */
     .badge-status {
-      padding: 4px 10px; border-radius: 20px;
-      font-size: 10px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       display: inline-block;
     }
-    .badge-success { background: rgba(37,211,102,0.1); color: #25d366; border: 1px solid rgba(37,211,102,0.2); }
-    .badge-warning { background: rgba(212,175,55,0.1);  color: #d4af37; border: 1px solid rgba(212,175,55,0.2); }
-    .badge-danger  { background: rgba(255,77,77,0.1);   color: #ff4d4d; border: 1px solid rgba(255,77,77,0.2); }
-    .badge-info    { background: rgba(59,224,224,0.1);  color: #3be0e0; border: 1px solid rgba(59,224,224,0.2); }
-    .badge-secondary { background: rgba(255,255,255,0.05); color: #888; border: 1px solid #333; }
+
+    .badge-success {
+      background: rgba(37, 211, 102, 0.1);
+      color: #25d366;
+      border: 1px solid rgba(37, 211, 102, 0.2);
+    }
+
+    .badge-warning {
+      background: rgba(212, 175, 55, 0.1);
+      color: #d4af37;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .badge-danger {
+      background: rgba(255, 77, 77, 0.1);
+      color: #ff4d4d;
+      border: 1px solid rgba(255, 77, 77, 0.2);
+    }
+
+    .badge-info {
+      background: rgba(59, 224, 224, 0.1);
+      color: #3be0e0;
+      border: 1px solid rgba(59, 224, 224, 0.2);
+    }
+
+    .badge-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #888;
+      border: 1px solid #333;
+    }
 
     /* ── Buttons ─────────────────────────────────── */
     .admin-btn {
-      background: var(--admin-gold); color: #000;
-      border: none; padding: 8px 18px;
-      border-radius: 6px; font-weight: 700;
-      font-size: 13px; cursor: pointer;
+      background: var(--admin-gold);
+      color: #000;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
       transition: background 0.2s;
     }
-    .admin-btn:hover { background: var(--admin-gold-hover); }
+
+    .admin-btn:hover {
+      background: var(--admin-gold-hover);
+    }
+
     .admin-btn-outline {
-      background: transparent; color: var(--admin-gold);
+      background: transparent;
+      color: var(--admin-gold);
       border: 1px solid var(--admin-gold);
     }
-    .admin-btn-outline:hover { background: var(--admin-gold-dim); }
-    .admin-btn-sm { padding: 5px 12px; font-size: 11px; }
+
+    .admin-btn-outline:hover {
+      background: var(--admin-gold-dim);
+    }
+
+    .admin-btn-sm {
+      padding: 5px 12px;
+      font-size: 11px;
+    }
 
     /* ── Sections / Tabs ─────────────────────────── */
-    .admin-section { display: none; animation: fadeUp 0.3s ease; }
-    .admin-section.active { display: block; }
+    .admin-section {
+      display: none;
+      animation: fadeUp 0.3s ease;
+    }
+
+    .admin-section.active {
+      display: block;
+    }
 
     @keyframes fadeUp {
-      from { opacity:0; transform:translateY(12px); }
-      to   { opacity:1; transform:translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
     }
+
     @keyframes pulse {
-      0%,100% { opacity: 1; }
-      50% { opacity: 0.5; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
     }
-    .stat-val { transition: opacity 0.4s ease; }
-    .skeleton { animation: pulse 1.5s ease infinite; background: #1e1e1e; border-radius: 4px; display: inline-block; }
+
+    .stat-val {
+      transition: opacity 0.4s ease;
+    }
+
+    .skeleton {
+      animation: pulse 1.5s ease infinite;
+      background: #1e1e1e;
+      border-radius: 4px;
+      display: inline-block;
+    }
 
     /* ── Mini modal ──────────────────────────────── */
     .dash-modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.72);
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
       z-index: 1050;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
       transition: opacity 0.25s;
     }
-    .dash-modal-overlay.show { opacity: 1; pointer-events: all; }
+
+    .dash-modal-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
     .dash-modal {
       background: #131313;
       border: 1px solid var(--admin-border);
       border-radius: 12px;
-      width: 760px; max-width: 95vw;
+      width: 760px;
+      max-width: 95vw;
       max-height: 82vh;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
       transform: scale(0.95);
       transition: transform 0.25s;
     }
-    .dash-modal-overlay.show .dash-modal { transform: scale(1); }
+
+    .dash-modal-overlay.show .dash-modal {
+      transform: scale(1);
+    }
+
     .dash-modal-header {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 18px 22px;
       border-bottom: 1px solid var(--admin-border);
       flex-shrink: 0;
     }
-    .dash-modal-header h5 { margin: 0; font-size: 15px; }
+
+    .dash-modal-header h5 {
+      margin: 0;
+      font-size: 15px;
+    }
+
     .dash-modal-close {
-      background: none; border: none; color: #666;
-      font-size: 18px; cursor: pointer; line-height: 1;
-      width: 32px; height: 32px;
-      display: flex; align-items: center; justify-content: center;
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 1;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 6px;
       transition: all 0.2s;
       margin-right: 15px;
     }
-    .dash-modal-close:hover { background: #222; color: #fff; }
-    .dash-modal-body { padding: 18px 22px; overflow-y: auto; flex-grow: 1; }
+
+    .dash-modal-close:hover {
+      background: #222;
+      color: #fff;
+    }
+
+    .dash-modal-body {
+      padding: 18px 22px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
     .dash-modal-footer {
       padding: 14px 22px;
       border-top: 1px solid var(--admin-border);
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       flex-shrink: 0;
     }
 
     /* ── Empty state ─────────────────────────────── */
-    .empty-state { text-align: center; padding: 40px; color: #444; }
-    .empty-state i { font-size: 36px; display: block; margin-bottom: 10px; }
-    .empty-state p { font-size: 13px; }
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #444;
+    }
+
+    .empty-state i {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .empty-state p {
+      font-size: 13px;
+    }
 
     /* ── Two-column layout ───────────────────────── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
 
     /* ── Responsive ──────────────────────────────── */
     @media (max-width: 1200px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .charges-grid { grid-template-columns: repeat(2, 1fr); }
-      .two-col, .three-col { grid-template-columns: 1fr; }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .charges-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .two-col,
+      .three-col {
+        grid-template-columns: 1fr;
+      }
     }
+
     @media (max-width: 768px) {
-      .admin-sidebar { display: none; }
-      .stats-grid, .charges-grid { grid-template-columns: 1fr 1fr; }
+      .admin-sidebar {
+        display: none;
+      }
+
+      .stats-grid,
+      .charges-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     .link-btn {
-      color: var(--admin-gold); font-size: 12px; font-weight: 600;
+      color: var(--admin-gold);
+      font-size: 12px;
+      font-weight: 600;
       text-decoration: none;
-      display: inline-flex; align-items: center; gap: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
       transition: color 0.2s;
     }
-    .link-btn:hover { color: var(--admin-gold-hover); }
 
-    .loading-row td { color: #444; text-align: center; padding: 30px; font-size: 13px; }
+    .link-btn:hover {
+      color: var(--admin-gold-hover);
+    }
+
+    .loading-row td {
+      color: #444;
+      text-align: center;
+      padding: 30px;
+      font-size: 13px;
+    }
   </style>
 </head>
 
@@ -392,20 +779,25 @@
   <!-- ─── Sidebar ──────────────────────────────────────────────────── -->
   <aside class="admin-sidebar">
     <div class="admin-logo">
-      <a href="index.html" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; padding:4px 0 6px;">
-        <span style="font-family:'Samarkan',sans-serif; text-transform:lowercase; font-size:30px; color:#d4af37; letter-spacing:2px;">i rasa</span>
-        <span style="font-size:9px; color:#555; letter-spacing:3px; text-transform:uppercase; margin-top:-2px;">Perfumes</span>
+      <a class="navbar-brand logo_h" href="index.html"
+        style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+        <span
+          style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
       </a>
     </div>
 
     <nav class="admin-nav">
       <div class="nav-section-label">Main</div>
       <a href="admin.html" class="admin-nav-item active"><i class="ti-dashboard"></i> Dashboard</a>
-      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders <span class="nav-badge" id="sidebarPendingOrders" style="display:none;"></span></a>
-      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments <span class="nav-badge" id="sidebarPendingPay" style="display:none;"></span></a>
+      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders <span
+          class="nav-badge" id="sidebarPendingOrders" style="display:none;">0</span></a>
+      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments <span
+          class="nav-badge" id="sidebarPendingPay" style="display:none;">0</span></a>
 
       <div class="nav-section-label">Support</div>
-      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets <span class="nav-badge" id="sidebarTickets" style="display:none;"></span></a>
+      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets <span
+          class="nav-badge" id="sidebarTickets" style="">1</span></a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
 
       <div class="nav-section-label">Management</div>
@@ -417,8 +809,10 @@
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
 
-    <div style="padding:16px; border-top:1px solid var(--admin-border);">
-      <button class="admin-btn admin-btn-outline" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="logoutAdmin()">
+    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline"
+        style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 4px; font-weight: 600; font-size: 0.85rem;"
+        onclick="window.location.href='index.html'">
         <i class="ti-power-off"></i> Logout
       </button>
     </div>
@@ -426,21 +820,48 @@
 
   <!-- ─── Main ─────────────────────────────────────────────────────── -->
   <main class="admin-main">
+
     <header class="admin-header">
-      <div>
-        <h4 id="pageTitle" style="margin:0; font-size:15px; letter-spacing:1px;">Dashboard Overview</h4>
-        <p id="lastRefreshed" style="margin:0; font-size:10px; color:#555;"></p>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <button onclick="loadDashboardData()" style="background:none; border:1px solid #2a2a2a; color:#888; border-radius:6px; padding:6px 14px; cursor:pointer; font-size:12px; transition:all 0.2s; display:flex; align-items:center; gap:6px;" onmouseover="this.style.borderColor='#d4af37';this.style.color='#d4af37'" onmouseout="this.style.borderColor='#2a2a2a';this.style.color='#888'">
-          <i class="ti-reload" id="refreshIcon"></i> Refresh
-        </button>
-        <div style="text-align:right;">
-          <div style="font-size:13px; font-weight:600; color:#fff;" id="adminName">—</div>
-          <div style="font-size:10px; color:var(--admin-gold);" id="adminRole">Admin Panel</div>
-        </div>
-        <div style="width:38px; height:38px; border-radius:50%; background:#1e1e1e; border:1px solid #333; display:flex; align-items:center; justify-content:center;">
-          <i class="ti-user" style="color:var(--admin-gold);"></i>
+      <h4 style="margin: 0;">Dashboard Overview</h4>
+      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
+        <div class="admin-profile-container" id="adminProfileTrigger">
+          <div class="admin-profile-details d-none d-md-block">
+            <div class="admin-profile-name">System Admin</div>
+            <div class="admin-profile-role">SUPERADMIN</div>
+          </div>
+          <div class="admin-profile-avatar">
+            <span>S</span>
+          </div>
+          <i class="ti-angle-down" style="font-size: 0.8rem; color: #888; margin-left: 2px;"></i>
+
+          <!-- Dropdown Menu -->
+          <div class="admin-profile-dropdown" id="adminProfileDropdown">
+            <div class="dropdown-header-info">
+              <div class="dropdown-header-name">System Admin</div>
+              <div class="dropdown-header-email">admin@rasa.com</div>
+              <div class="dropdown-header-role-badge">SUPERADMIN</div>
+            </div>
+            <div class="dropdown-links-list">
+              <a href="#" class="dropdown-link-item" id="adminViewProfileLink">
+                <i class="ti-user"></i>
+                <span>View / Edit Profile</span>
+              </a>
+              <a href="#" class="dropdown-link-item" id="adminResetPasswordLink">
+                <i class="ti-key"></i>
+                <span>Change Password</span>
+              </a>
+              <a href="#" class="dropdown-link-item" id="adminHelpLink">
+                <i class="ti-help-alt"></i>
+                <span>Help Support</span>
+              </a>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#" class="dropdown-link-item" id="adminLogoutLink" style="color: #ff4d4d;">
+                <i class="ti-power-off" style="color: #ff4d4d;"></i>
+                <span style="font-weight: 600;">Logout</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -449,18 +870,24 @@
 
       <!-- ─ Quick Actions Bar ─────────────────────── -->
       <div class="quick-actions" id="quickActions">
-        <button class="qa-btn primary" onclick="openModal('pendingPayModal')"><i class="ti-credit-card"></i> Pending Payments <span class="qa-badge" id="qaPendingPayCount">…</span></button>
-        <button class="qa-btn" onclick="openModal('pendingOrderModal')"><i class="ti-shopping-cart"></i> Pending Orders <span class="qa-badge" id="qaPendingOrderCount">…</span></button>
-        <button class="qa-btn" onclick="openModal('openTicketsModal')"><i class="ti-headphone-alt"></i> Open Tickets <span class="qa-badge" id="qaOpenTicketCount">…</span></button>
-        <button class="qa-btn" onclick="window.open('admin-reports.html','_self')"><i class="ti-stats-up"></i> View Reports</button>
-        <button class="qa-btn" onclick="window.open('admin-orders.html','_self')"><i class="ti-list"></i> All Orders</button>
-        <button class="qa-btn" onclick="window.open('admin-coupons.html','_self')"><i class="ti-gift"></i> Coupons</button>
+        <button class="qa-btn primary" onclick="openModal('pendingPayModal')"><i class="ti-credit-card"></i> Pending
+          Payments <span class="qa-badge" id="qaPendingPayCount">…</span></button>
+        <button class="qa-btn" onclick="openModal('pendingOrderModal')"><i class="ti-shopping-cart"></i> Pending Orders
+          <span class="qa-badge" id="qaPendingOrderCount">…</span></button>
+        <button class="qa-btn" onclick="openModal('openTicketsModal')"><i class="ti-headphone-alt"></i> Open Tickets
+          <span class="qa-badge" id="qaOpenTicketCount">…</span></button>
+        <button class="qa-btn" onclick="window.open('admin-reports.html','_self')"><i class="ti-stats-up"></i> View
+          Reports</button>
+        <button class="qa-btn" onclick="window.open('admin-orders.html','_self')"><i class="ti-list"></i> All
+          Orders</button>
+        <button class="qa-btn" onclick="window.open('admin-coupons.html','_self')"><i class="ti-gift"></i>
+          Coupons</button>
       </div>
 
       <!-- ─ Main KPI Stats ───────────────────────── -->
       <div class="stats-grid">
         <div class="stat-card" onclick="openModal('pendingPayModal')" title="Click to view pending payments">
-          <div class="stat-icon"><i class="ti-money"></i></div>
+          <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
           <div class="stat-details">
             <h3 id="statRevenue" class="stat-val">—</h3>
             <p>Total Revenue</p>
@@ -524,7 +951,9 @@
       <!-- ─ Revenue Chart ────────────────────────── -->
       <div class="admin-card" style="margin-bottom:20px;">
         <div class="admin-card-title">
-          <h5>Revenue Overview <span id="chartPeriodLabel" style="font-size:11px; color:#555; font-family:'Inter',sans-serif; font-weight:400; text-transform:none;"></span></h5>
+          <h5>Revenue Overview <span id="chartPeriodLabel"
+              style="font-size:11px; color:#555; font-family:'Inter',sans-serif; font-weight:400; text-transform:none;"></span>
+          </h5>
           <div class="slicer-group" id="revenueSlicer">
             <button class="slicer-pill" onclick="setRevenuePeriod('today', this)">Today</button>
             <button class="slicer-pill" onclick="setRevenuePeriod('7d', this)">7 Days</button>
@@ -536,7 +965,9 @@
           <i class="ti-reload" style="animation:spin 1s linear infinite; display:inline-block; font-size:20px;"></i>
           <p style="font-size:12px; margin-top:8px;">Loading chart data…</p>
         </div>
-        <canvas id="revenueChart" height="72"></canvas>
+        <div class="admin-chart-container">
+          <canvas id="revenueChart"></canvas>
+        </div>
       </div>
 
       <!-- ─ Bottom two-col section ──────────────── -->
@@ -557,7 +988,10 @@
               </tr>
             </thead>
             <tbody id="recentOrdersBody">
-              <tr class="loading-row"><td colspan="4"><i class="ti-reload" style="animation:spin 1s linear infinite; display:inline-block;"></i> Loading…</td></tr>
+              <tr class="loading-row">
+                <td colspan="4"><i class="ti-reload"
+                    style="animation:spin 1s linear infinite; display:inline-block;"></i> Loading…</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -578,7 +1012,10 @@
               </tr>
             </thead>
             <tbody id="pendingPayBody">
-              <tr class="loading-row"><td colspan="4"><i class="ti-reload" style="animation:spin 1s linear infinite; display:inline-block;"></i> Loading…</td></tr>
+              <tr class="loading-row">
+                <td colspan="4"><i class="ti-reload"
+                    style="animation:spin 1s linear infinite; display:inline-block;"></i> Loading…</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -605,16 +1042,29 @@
             <button class="slicer-pill" onclick="filterPayModal('FAILED',this)">Failed</button>
             <button class="slicer-pill" onclick="filterPayModal('ALL',this)">All</button>
           </div>
-          <input id="payModalSearch" type="text" placeholder="Search order / customer…" style="margin-left:auto; background:#1a1a1a; border:1px solid #333; color:#e0e0e0; border-radius:6px; padding:5px 12px; font-size:12px; width:200px;" oninput="filterPayTableRows()">
+          <input id="payModalSearch" type="text" placeholder="Search order / customer…"
+            style="margin-left:auto; background:#1a1a1a; border:1px solid #333; color:#e0e0e0; border-radius:6px; padding:5px 12px; font-size:12px; width:200px;"
+            oninput="filterPayTableRows()">
         </div>
         <table class="admin-table">
-          <thead><tr><th>#</th><th>Date</th><th>Customer</th><th>Method</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Method</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody id="payModalBody"></tbody>
         </table>
       </div>
       <div class="dash-modal-footer">
         <span id="payModalCount" style="font-size:12px; color:#666;"></span>
-        <a href="admin-payments.html" class="admin-btn admin-btn-sm">Open Payments Page <i class="ti-arrow-right"></i></a>
+        <a href="admin-payments.html" class="admin-btn admin-btn-sm">Open Payments Page <i
+            class="ti-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -636,10 +1086,21 @@
             <button class="slicer-pill" onclick="filterOrderModal('CANCELLED',this)">Cancelled</button>
             <button class="slicer-pill" onclick="filterOrderModal('ALL',this)">All</button>
           </div>
-          <input id="orderModalSearch" type="text" placeholder="Search…" style="margin-left:auto; background:#1a1a1a; border:1px solid #333; color:#e0e0e0; border-radius:6px; padding:5px 12px; font-size:12px; width:180px;" oninput="filterOrderTableRows()">
+          <input id="orderModalSearch" type="text" placeholder="Search…"
+            style="margin-left:auto; background:#1a1a1a; border:1px solid #333; color:#e0e0e0; border-radius:6px; padding:5px 12px; font-size:12px; width:180px;"
+            oninput="filterOrderTableRows()">
         </div>
         <table class="admin-table">
-          <thead><tr><th>#</th><th>Date</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr></thead>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
           <tbody id="orderModalBody"></tbody>
         </table>
       </div>
@@ -665,10 +1126,21 @@
             <button class="slicer-pill" onclick="filterTicketModal('RESOLVED',this)">Resolved</button>
             <button class="slicer-pill" onclick="filterTicketModal('ALL',this)">All</button>
           </div>
-          <input id="ticketModalSearch" type="text" placeholder="Search…" style="margin-left:auto; background:#1a1a1a; border:1px solid #333; color:#e0e0e0; border-radius:6px; padding:5px 12px; font-size:12px; width:180px;" oninput="filterTicketTableRows()">
+          <input id="ticketModalSearch" type="text" placeholder="Search…"
+            style="margin-left:auto; background:#1a1a1a; border:1px solid #333; color:#e0e0e0; border-radius:6px; padding:5px 12px; font-size:12px; width:180px;"
+            oninput="filterTicketTableRows()">
         </div>
         <table class="admin-table">
-          <thead><tr><th>Ticket ID</th><th>Date</th><th>Name</th><th>Subject</th><th>Status</th><th></th></tr></thead>
+          <thead>
+            <tr>
+              <th>Ticket ID</th>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Subject</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody id="ticketModalBody"></tbody>
         </table>
       </div>
@@ -689,23 +1161,23 @@
   <script>
     /* ─── Config ─────────────────────────────────── */
     const BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? `http://${window.location.hostname}:8080`
-        : '';
-    const DASH_API  = `${BASE}/api/admin/dashboard`;
+      ? `http://${window.location.hostname}:8080`
+      : '';
+    const DASH_API = `${BASE}/api/admin/dashboard`;
     const ORDER_API = `${BASE}/api/admin/orders`;
-    const PAY_API   = `${BASE}/api/admin/payments`;
-    const TICK_API  = `${BASE}/api/admin/dashboard/reports/tickets`;
+    const PAY_API = `${BASE}/api/admin/payments`;
+    const TICK_API = `${BASE}/api/admin/dashboard/reports/tickets`;
 
     const fmt = (v) => '₹' + Number(v || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    const fmtDate = (s) => s ? new Date(s).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : '—';
+    const fmtDate = (s) => s ? new Date(s).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
 
     /* ─── State ──────────────────────────────────── */
     let revenueChart = null;
     let refreshTimer = null;
     let currentRevPeriod = '6m';
-    let allOrdersCache  = [];
-    let allPayCache     = [];
-    let allTicketCache  = [];
+    let allOrdersCache = [];
+    let allPayCache = [];
+    let allTicketCache = [];
     let currentPayFilter = 'PENDING';
     let currentOrderFilter = 'PENDING';
     let currentTicketFilter = 'OPEN';
@@ -714,10 +1186,10 @@
     function statusBadge(s) {
       if (!s) return '<span class="badge-status badge-secondary">—</span>';
       const map = {
-        DELIVERED:'success', PAID:'success', RESOLVED:'success',
-        PENDING:'warning', IN_PROGRESS:'warning', PROCESSING:'warning',
-        FAILED:'danger', CANCELLED:'danger',
-        SHIPPED:'info', REFUNDED:'info'
+        DELIVERED: 'success', PAID: 'success', RESOLVED: 'success',
+        PENDING: 'warning', IN_PROGRESS: 'warning', PROCESSING: 'warning',
+        FAILED: 'danger', CANCELLED: 'danger',
+        SHIPPED: 'info', REFUNDED: 'info'
       };
       const cls = map[s.toUpperCase()] || 'secondary';
       return `<span class="badge-status badge-${cls}">${s}</span>`;
@@ -735,16 +1207,16 @@
     function applyOverviewData(d) {
       if (!d) return;
       document.getElementById('statRevenue').innerText = fmt(d.totalRevenue);
-      document.getElementById('statOrders').innerText  = Number(d.totalOrders || 0).toLocaleString('en-IN');
+      document.getElementById('statOrders').innerText = Number(d.totalOrders || 0).toLocaleString('en-IN');
       document.getElementById('statTickets').innerText = Number(d.pendingTickets || 0).toLocaleString('en-IN');
-      document.getElementById('statUsers').innerText   = Number(d.registeredUsers || 0).toLocaleString('en-IN');
+      document.getElementById('statUsers').innerText = Number(d.registeredUsers || 0).toLocaleString('en-IN');
 
       // Charge row
-      document.getElementById('chargeShipping').innerText  = fmt(d.totalShipping);
-      document.getElementById('chargeHandling').innerText  = fmt(d.totalHandlingCharge);
-      document.getElementById('chargePlatform').innerText  = fmt(d.totalPlatformFee);
-      document.getElementById('chargeDiscount').innerText  = '– ' + fmt(d.totalDiscount);
-      document.getElementById('chargesRow').style.display  = 'grid';
+      document.getElementById('chargeShipping').innerText = fmt(d.totalShipping);
+      document.getElementById('chargeHandling').innerText = fmt(d.totalHandlingCharge);
+      document.getElementById('chargePlatform').innerText = fmt(d.totalPlatformFee);
+      document.getElementById('chargeDiscount').innerText = '– ' + fmt(d.totalDiscount);
+      document.getElementById('chargesRow').style.display = 'grid';
 
       // Sidebar badges
       const pt = Number(d.pendingTickets || 0);
@@ -766,7 +1238,7 @@
           document.getElementById('chartLoader').style.display = 'none';
           document.getElementById('revenueChart').style.display = 'block';
           window.dashboardInitialized = true;
-        } catch(e) { console.warn("Failed to parse cached dashboard overview", e); }
+        } catch (e) { console.warn("Failed to parse cached dashboard overview", e); }
       }
 
       setLoading(true);
@@ -776,7 +1248,7 @@
       }
 
       try {
-        const res = await fetch(`${DASH_API}/overview`, {
+        const res = await fetch(`${DASH_API}/overview?period=${currentRevPeriod}`, {
           credentials: 'include', headers: { 'Accept': 'application/json' }
         });
         if (res.status === 401 || res.status === 403) { window.location.href = 'login.html?expired=true'; return; }
@@ -788,7 +1260,8 @@
           localStorage.setItem('rasa_dashboard_overview', JSON.stringify(d));
           applyOverviewData(d);
           window.dashboardInitialized = true;
-          document.getElementById('lastRefreshed').textContent = 'Last refreshed: ' + new Date().toLocaleTimeString('en-IN');
+          const lr = document.getElementById('lastRefreshed');
+          if (lr) lr.textContent = 'Last refreshed: ' + new Date().toLocaleTimeString('en-IN');
 
           clearTimeout(refreshTimer);
           refreshTimer = setTimeout(loadDashboardData, 60000);
@@ -820,6 +1293,10 @@
 
     /* ─── Chart ─────────────────────────────────── */
     function renderChart(chartData, period) {
+      if (typeof Chart === 'undefined') {
+        console.warn("Chart.js is not loaded. Skipping chart rendering.");
+        return;
+      }
       if (!chartData) return;
       const ctx = document.getElementById('revenueChart').getContext('2d');
       if (revenueChart) revenueChart.destroy();
@@ -828,28 +1305,31 @@
       let values = (chartData.data || []).map(v => Number(v) || 0);
 
       // Filter for today / 7d (frontend slicing of monthly data)
-      const periodLabel = { 'today':'Today', '7d':'Last 7 Days', '6m':'Last 6 Months', '1y':'Last 12 Months' }[period] || '';
+      const periodLabel = { 'today': 'Today', '7d': 'Last 7 Days', '6m': 'Last 6 Months', '1y': 'Last 12 Months' }[period] || '';
       document.getElementById('chartPeriodLabel').textContent = '— ' + periodLabel;
 
       revenueChart = new Chart(ctx, {
         type: 'line',
-        data: { labels, datasets: [{
-          label: 'Revenue (₹)',
-          data: values,
-          borderColor: '#d4af37',
-          backgroundColor: (ctx) => {
-            const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, 200);
-            g.addColorStop(0, 'rgba(212,175,55,0.18)');
-            g.addColorStop(1, 'rgba(212,175,55,0)');
-            return g;
-          },
-          borderWidth: 2.5, fill: true, tension: 0.4,
-          pointBackgroundColor: '#d4af37',
-          pointBorderColor: '#0a0a0a',
-          pointRadius: 4, pointHoverRadius: 8
-        }]},
+        data: {
+          labels, datasets: [{
+            label: 'Revenue (₹)',
+            data: values,
+            borderColor: '#d4af37',
+            backgroundColor: (ctx) => {
+              const g = ctx.chart.ctx.createLinearGradient(0, 0, 0, 200);
+              g.addColorStop(0, 'rgba(212,175,55,0.18)');
+              g.addColorStop(1, 'rgba(212,175,55,0)');
+              return g;
+            },
+            borderWidth: 2.5, fill: true, tension: 0.4,
+            pointBackgroundColor: '#d4af37',
+            pointBorderColor: '#0a0a0a',
+            pointRadius: 4, pointHoverRadius: 8
+          }]
+        },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           animation: { duration: 700, easing: 'easeInOutQuart' },
           plugins: {
             legend: { display: false },
@@ -870,14 +1350,17 @@
     /* ─── Recent Orders Table ───────────────────── */
     async function loadRecentOrders() {
       try {
-        const res = await fetch(`${ORDER_API}?page=0&size=5&sortBy=createdAt&sortOrder=DESC`, { credentials:'include' });
-        if (!res.ok) return;
+        const res = await fetch(`${ORDER_API}?page=0&size=5&sortBy=createdAt&sortOrder=DESC`, { credentials: 'include' });
+        if (!res.ok) {
+          document.getElementById('recentOrdersBody').innerHTML = '<tr><td colspan="4" style="text-align:center; color:#ff4d4d; padding:24px;">Failed to load orders</td></tr>';
+          return;
+        }
         const api = await res.json();
         const orders = (api.data && api.data.content) || [];
         renderRecentOrdersTable(orders);
 
         // Pending count badge — use total from API (server-side count)
-        const pendCountRes = await fetch(`${ORDER_API}?page=0&size=1&status=PENDING`, { credentials:'include' });
+        const pendCountRes = await fetch(`${ORDER_API}?page=0&size=1&status=PENDING`, { credentials: 'include' });
         if (pendCountRes.ok) {
           const pendApi = await pendCountRes.json();
           const pendCount = pendApi.data ? pendApi.data.totalItems : 0;
@@ -885,7 +1368,10 @@
           if (sbo) { sbo.textContent = pendCount; sbo.style.display = pendCount > 0 ? '' : 'none'; }
           document.getElementById('qaPendingOrderCount').textContent = pendCount;
         }
-      } catch(e) { console.error('Recent orders error', e); }
+      } catch (e) {
+        console.error('Recent orders error', e);
+        document.getElementById('recentOrdersBody').innerHTML = '<tr><td colspan="4" style="text-align:center; color:#ff4d4d; padding:24px;">Failed to load orders</td></tr>';
+      }
     }
 
     function renderRecentOrdersTable(orders) {
@@ -906,8 +1392,11 @@
     /* ─── Pending Payments Mini Table ───────────── */
     async function loadPendingPayments() {
       try {
-        const res = await fetch(`${PAY_API}?page=0&size=5&status=PENDING`, { credentials:'include' });
-        if (!res.ok) return;
+        const res = await fetch(`${PAY_API}?page=0&size=5&status=PENDING`, { credentials: 'include' });
+        if (!res.ok) {
+          document.getElementById('pendingPayBody').innerHTML = '<tr><td colspan="4" style="text-align:center; color:#ff4d4d; padding:24px;">Failed to load payments</td></tr>';
+          return;
+        }
         const api = await res.json();
         const payments = (api.data && api.data.content) || [];
         renderPendingPayTable(payments);
@@ -916,7 +1405,10 @@
         const sbp = document.getElementById('sidebarPendingPay');
         if (sbp) { sbp.textContent = count; sbp.style.display = count > 0 ? '' : 'none'; }
         document.getElementById('qaPendingPayCount').textContent = count;
-      } catch(e) { console.error('Pending pay error', e); }
+      } catch (e) {
+        console.error('Pending pay error', e);
+        document.getElementById('pendingPayBody').innerHTML = '<tr><td colspan="4" style="text-align:center; color:#ff4d4d; padding:24px;">Failed to load payments</td></tr>';
+      }
     }
 
     function renderPendingPayTable(payments) {
@@ -963,15 +1455,15 @@
       try {
         const st = status === 'ALL' ? '' : `&status=${status}`;
         // Fetch only 5 most recent — efficient server-side page
-        const res = await fetch(`${PAY_API}?page=0&size=5${st}`, { credentials:'include' });
+        const res = await fetch(`${PAY_API}?page=0&size=5${st}`, { credentials: 'include' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const api = await res.json();
-        const rows  = (api.data && api.data.content) || [];
+        const rows = (api.data && api.data.content) || [];
         const total = (api.data && api.data.totalItems) || rows.length;
         allPayCache = rows;
         document.getElementById('payModalCount').textContent = `Showing ${rows.length} of ${total} record(s)`;
         renderPayModalRows(rows);
-      } catch(e) {
+      } catch (e) {
         tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#ff4d4d; padding:20px;">Failed to load payment data.</td></tr>';
       }
     }
@@ -1024,15 +1516,15 @@
       try {
         const st = status === 'ALL' ? '' : `&status=${status}`;
         // Fetch only 5 most recent from server
-        const res = await fetch(`${ORDER_API}?page=0&size=5${st}`, { credentials:'include' });
+        const res = await fetch(`${ORDER_API}?page=0&size=5${st}`, { credentials: 'include' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const api = await res.json();
-        const rows  = (api.data && api.data.content) || [];
+        const rows = (api.data && api.data.content) || [];
         const total = (api.data && api.data.totalItems) || rows.length;
         allOrdersCache = rows;
         document.getElementById('orderModalCount').textContent = `Showing ${rows.length} of ${total} record(s)`;
         renderOrderModalRows(rows);
-      } catch(e) {
+      } catch (e) {
         tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#ff4d4d; padding:20px;">Failed to load orders.</td></tr>';
       }
     }
@@ -1084,15 +1576,15 @@
         const st = status === 'ALL' ? 'ALL' : status;
         // Fetch only 5 most recent from server using tickets API with pagination
         const ticketUrl = `${BASE}/api/admin/tickets?page=0&size=5&status=${st}`;
-        const res = await fetch(ticketUrl, { credentials:'include' });
+        const res = await fetch(ticketUrl, { credentials: 'include' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const api = await res.json();
-        const rows  = (api.data && api.data.content) || [];
+        const rows = (api.data && api.data.content) || [];
         const total = (api.data && api.data.totalItems) || rows.length;
         allTicketCache = rows;
         document.getElementById('ticketModalCount').textContent = `Showing ${rows.length} of ${total} record(s)`;
         renderTicketModalRows(rows);
-      } catch(e) {
+      } catch (e) {
         tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#ff4d4d; padding:20px;">Failed to load tickets.</td></tr>';
       }
     }
@@ -1147,11 +1639,14 @@
       await AuthGuard.init();
       if (AuthGuard.currentUser) {
         const u = AuthGuard.currentUser;
-        document.getElementById('adminName').textContent = u.fullName || u.email || 'Admin';
-        document.getElementById('adminRole').textContent = (u.role || 'ADMIN').replace('_', ' ');
+        const nameEl = document.getElementById('adminName');
+        if (nameEl) nameEl.textContent = u.fullName || u.email || 'Admin';
+        const roleEl = document.getElementById('adminRole');
+        if (roleEl) roleEl.textContent = (u.role || 'ADMIN').replace('_', ' ');
       }
       loadDashboardData();
     });
   </script>
 </body>
+
 </html>

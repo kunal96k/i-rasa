@@ -179,49 +179,83 @@
       box-sizing: border-box;
     }
 
-    @media (max-width: 575.98px) {
+    /* ── Mobile stepper: compact horizontal scroll, no wrap ── */
+    @media (max-width: 767px) {
       .steps-bar-wrapper {
-        overflow-x: hidden;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .steps-bar-wrapper::-webkit-scrollbar {
+        display: none;
       }
 
       .steps-bar {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        padding: 20px 12px;
+        flex-wrap: nowrap !important;          /* never wrap */
+        justify-content: flex-start !important;
+        padding: 16px 20px !important;
+        gap: 0 !important;
+        width: max-content !important;         /* let it grow wider than screen */
+        min-width: unset !important;
       }
 
       .step-item {
-        flex: 1 1 calc(50% - 12px);
-        max-width: calc(50% - 12px);
-        min-width: 140px;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 8px;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 5px !important;
+        flex-shrink: 0 !important;
+        min-width: 60px !important;
+        max-width: 72px !important;
       }
 
       .step-num {
-        margin: 0 auto;
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 11px !important;
       }
 
       .step-label {
-        font-size: 12px;
-        white-space: normal;
-        line-height: 1.3;
+        font-size: 9px !important;
+        white-space: normal !important;
+        text-align: center !important;
+        line-height: 1.3 !important;
+        max-width: 70px !important;
       }
 
       .step-divider {
-        display: none;
+        width: 20px !important;
+        margin: 0 4px !important;
+        margin-bottom: 14px !important;        /* push down to sit between circles */
+        flex-shrink: 0 !important;
       }
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 400px) {
+      .steps-bar {
+        padding: 14px 12px !important;
+      }
+
       .step-item {
-        flex: 1 1 100%;
-        max-width: 100%;
+        min-width: 52px !important;
+        max-width: 60px !important;
+      }
+
+      .step-num {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 10px !important;
+      }
+
+      .step-divider {
+        width: 14px !important;
+        margin: 0 2px !important;
+        margin-bottom: 12px !important;
       }
     }
+
 
     .step-item {
       display: flex;
@@ -1309,10 +1343,10 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"
-            style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-            <span>i rasa</span>
-          </a>
+          <a class="navbar-brand logo_h" href="index.html">
+        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -1349,31 +1383,28 @@
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item">
-                <a href="cart.html"
-                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
-                  <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                </button>
+
+              <!-- Cart -->
+              <li class="nav-item nav-shop-icon">
+                <a href="cart.html" class="nav-shop-icon-link">
+                  <i class="ti-shopping-cart"></i>
+                  <span class="nav-shop__circle" style="display:none;">0</span>
+                </a>
               </li>
 
               <!-- Profile Icon -->
-
-
-              <!-- Shop Now -->
-              <li class="nav-item">
-                <a class="button button-header" href="category.html"
-                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
-                  Now</a>
-              </li>
-
-              <li class="nav-item">
-                <a href="login.html" id="profileNavLink"
-                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
-                  <img id="profileNavImg" src="" alt="Profile"
-                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
-                  <i id="profileNavIcon" class="ti-user" style="color: #d4af37; font-size: 18px;"></i>
+              <li class="nav-item nav-shop-icon">
+                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link">
+                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
+                  <i id="profileNavIcon" class="ti-user"></i>
                 </a>
               </li>
+
+              <!-- Shop Now — always last, full-width row -->
+              <li class="nav-item nav-shop-btn">
+                <a class="button button-header" href="category.html">Shop Now</a>
+              </li>
+
             </ul>
           </div>
         </div>
@@ -1719,7 +1750,7 @@
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/i_rasa_perfumes/"><i class="fab fa-instagram"></i></a>
-                <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
                 <a href="javascript:void(0);"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
@@ -1738,16 +1769,16 @@
             </div>
           </div>
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget instafeed">
+            <div class="single-footer-widget">
               <h4 class="footer_title">Our Gallery</h4>
-                <ul class="list instafeed d-flex flex-wrap">
-                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="insta-thumb"></li>
-                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="insta-thumb"></li>
-                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="insta-thumb"></li>
-                <li><img src="img/gallery/r5.avif" alt="Premium Attar" class="insta-thumb"></li>
-                <li><img src="img/gallery/r7.avif" alt="Bespoke Collection" class="insta-thumb"></li>
-                <li><img src="img/gallery/r8.avif" alt="I Rasa Perfumes" class="insta-thumb"></li>
-                </ul>
+                <ul class="footer-gallery-grid">
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb"></li>
+              </ul>
             </div>
           </div>
           <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">

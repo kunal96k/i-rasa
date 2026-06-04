@@ -128,3 +128,73 @@ window.showConfirm = function(msg, title = 'Are you sure?') {
     $modal.on('hidden.bs.modal', () => cleanup(false));
   });
 };
+
+// Sidebar Toggle & Collapse Handler for Admin Dashboard (applies to all admin pages)
+document.addEventListener('DOMContentLoaded', function () {
+  const header = document.querySelector('.admin-header');
+  if (header) {
+    // 1. Create and insert Toggle Button in Header
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'admin-sidebar-toggle';
+    toggleBtn.type = 'button';
+    toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    toggleBtn.title = 'Toggle Navigation';
+    
+    header.insertBefore(toggleBtn, header.firstChild);
+
+    // 2. Create Mobile Sidebar Backdrop Overlay
+    let backdrop = document.querySelector('.admin-sidebar-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'admin-sidebar-backdrop';
+      document.body.appendChild(backdrop);
+    }
+
+    const sidebar = document.querySelector('.admin-sidebar');
+
+    if (sidebar) {
+      // 3. Toggle Sidebar on Click
+      toggleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (window.innerWidth <= 768) {
+          // Mobile: slide in/out drawer
+          sidebar.classList.toggle('open');
+          backdrop.classList.toggle('show');
+        } else {
+          // Desktop: collapse to icons
+          sidebar.classList.toggle('collapsed');
+          // Save state in localStorage so it persists across page navigations
+          if (sidebar.classList.contains('collapsed')) {
+            localStorage.setItem('admin_sidebar_collapsed', 'true');
+          } else {
+            localStorage.setItem('admin_sidebar_collapsed', 'false');
+          }
+        }
+      });
+
+      // Close mobile sidebar on backdrop click
+      backdrop.addEventListener('click', function () {
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('show');
+      });
+
+      // Close mobile sidebar when clicking a link inside it
+      sidebar.querySelectorAll('.admin-nav-item').forEach(link => {
+        link.addEventListener('click', function () {
+          if (window.innerWidth <= 768) {
+            sidebar.classList.remove('open');
+            backdrop.classList.remove('show');
+          }
+        });
+      });
+
+      // Restore desktop collapsed state from localStorage
+      if (window.innerWidth > 768) {
+        const isCollapsed = localStorage.getItem('admin_sidebar_collapsed') === 'true';
+        if (isCollapsed) {
+          sidebar.classList.add('collapsed');
+        }
+      }
+    }
+  }
+});

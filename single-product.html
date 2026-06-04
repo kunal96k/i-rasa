@@ -170,10 +170,10 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"
-            style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-            <span>i rasa</span>
-          </a>
+          <a class="navbar-brand logo_h" href="index.html">
+        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -210,26 +210,28 @@
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item">
-                <a href="cart.html"
-                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
-                  <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+
+              <!-- Cart -->
+              <li class="nav-item nav-shop-icon">
+                <a href="cart.html" class="nav-shop-icon-link">
+                  <i class="ti-shopping-cart"></i>
+                  <span class="nav-shop__circle" style="display:none;">0</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="button button-header" href="category.html"
-                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
-                  Now</a>
-              </li>
-              <li class="nav-item">
-                <a href="login.html" id="profileNavLink"
-                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
-                  <img id="profileNavImg" src="" alt="Profile"
-                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
-                  <i id="profileNavIcon" class="ti-user" style="color: #d4af37; font-size: 18px;"></i>
+
+              <!-- Profile Icon -->
+              <li class="nav-item nav-shop-icon">
+                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link">
+                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
+                  <i id="profileNavIcon" class="ti-user"></i>
                 </a>
               </li>
+
+              <!-- Shop Now — always last, full-width row -->
+              <li class="nav-item nav-shop-btn">
+                <a class="button button-header" href="category.html">Shop Now</a>
+              </li>
+
             </ul>
           </div>
         </div>
@@ -265,13 +267,13 @@
 				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-6">
 					<div class="owl-carousel owl-theme s_Product_carousel">
 						<div class="single-prd-item">
-							<img id="mainProductImg" class="img-fluid" src="img/category/s-p1.avif" alt="">
+							<img id="mainProductImg" class="img-fluid" src="img/i_rasa_bottles/single-product_image.jfif" alt="">
 						</div>
 						<!-- <div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.avif" alt="">
+							<img class="img-fluid" src="img/i_rasa_bottles/single-product_image.jfif" alt="">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.avif" alt="">
+							<img class="img-fluid" src="img/i_rasa_bottles/single-product_image.jfif" alt="">
 						</div> -->
 					</div>
 				</div>
@@ -324,7 +326,7 @@
 							<a class="button" href="javascript:void(0);" onclick="buyNowFromSingle()" style="height: 40px; line-height: 40px; padding: 0 30px; border-radius: 4px; background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; display: inline-block; border: none; text-decoration: none;">Buy Now</a>
 						</div>
 						<div data-aos="zoom-in" data-aos-duration="800" class="card_area d-flex align-items-center">
-							<a class="icon_btn" id="main_wishlist_btn" href="javascript:void(0);" onclick="WishlistEngine.toggle({ id: document.getElementById('productTitle').textContent.trim(), name: document.getElementById('productTitle').textContent.trim(), img: document.getElementById('mainProductImg')?.getAttribute('src') || 'img/product/product1.png', price: parseInt(document.getElementById('productPrice')?.textContent.replace(/[^\d]/g, '')) || 499 })"><i class="ti-heart"></i></a>
+							<a class="icon_btn" id="main_wishlist_btn" href="javascript:void(0);" onclick="WishlistEngine.toggle({ id: document.getElementById('productTitle').textContent.trim(), name: document.getElementById('productTitle').textContent.trim(), img: document.getElementById('mainProductImg')?.getAttribute('src') || 'img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif', price: parseInt(document.getElementById('productPrice')?.textContent.replace(/[^\d]/g, '')) || 499 })"><i class="ti-heart"></i></a>
 						</div>
 					</div>
 				</div>
@@ -679,15 +681,15 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/product/product1.png" alt="Dior Savage" class="perfume-img">
+							<img src="img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif" alt="Dior Savage" class="perfume-img">
 							<div class="overlay-actions">
-								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Dior Savage" data-price="Rs. 499" data-img="img/product/product1.png">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Dior Savage" data-price="Rs. 499" data-img="img/i_rasa_bottles/gucci_flora.jfif">
 									<i class="ti-search"></i>
 								</button>
 								<button title="Add to Cart" onclick="addToCart('Dior Savage')">
 									<i class="ti-shopping-cart"></i>
 								</button>
-								<button title="Add to Wishlist" onclick="toggleWishlistCard('Dior Savage', 'img/product/product1.png', 499)">
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Dior Savage', 'img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif', 499)">
 									<i class="ti-heart"></i>
 								</button>
 							</div>
@@ -717,15 +719,15 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller" style="background: linear-gradient(135deg, #ff4d94 0%, #ff0066 100%) !important;"><i class="fas fa-gem"></i> Premium</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/product/product2.png" alt="Gucci Flora" class="perfume-img">
+							<img src="img/i_rasa_bottles/gucci_flora.jfif" alt="Gucci Flora" class="perfume-img">
 							<div class="overlay-actions">
-								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Gucci Flora" data-price="Rs. 499" data-img="img/product/product2.png">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Gucci Flora" data-price="Rs. 499" data-img="img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif">
 									<i class="ti-search"></i>
 								</button>
 								<button title="Add to Cart" onclick="addToCart('Gucci Flora')">
 									<i class="ti-shopping-cart"></i>
 								</button>
-								<button title="Add to Wishlist" onclick="toggleWishlistCard('Gucci Flora', 'img/product/product2.png', 499)">
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Gucci Flora', 'img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif', 499)">
 									<i class="ti-heart"></i>
 								</button>
 							</div>
@@ -755,15 +757,15 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/product/product3.png" alt="Creed Avantes" class="perfume-img">
+							<img src="img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png" alt="Creed Avantes" class="perfume-img">
 							<div class="overlay-actions">
-								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes" data-price="Rs. 499" data-img="img/product/product3.png">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes" data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png">
 									<i class="ti-search"></i>
 								</button>
 								<button title="Add to Cart" onclick="addToCart('Creed Avantes')">
 									<i class="ti-shopping-cart"></i>
 								</button>
-								<button title="Add to Wishlist" onclick="toggleWishlistCard('Creed Avantes', 'img/product/product3.png', 499)">
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Creed Avantes', 'img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png', 499)">
 									<i class="ti-heart"></i>
 								</button>
 							</div>
@@ -793,15 +795,15 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/product/product4.png" alt="Rasassi Hawas" class="perfume-img">
+							<img src="img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png" alt="Rasassi Hawas" class="perfume-img">
 							<div class="overlay-actions">
-								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas" data-price="Rs. 499" data-img="img/product/product4.png">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas" data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png">
 									<i class="ti-search"></i>
 								</button>
 								<button title="Add to Cart" onclick="addToCart('Rasassi Hawas')">
 									<i class="ti-shopping-cart"></i>
 								</button>
-								<button title="Add to Wishlist" onclick="toggleWishlistCard('Rasassi Hawas', 'img/product/product4.png', 499)">
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Rasassi Hawas', 'img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif', 499)">
 									<i class="ti-heart"></i>
 								</button>
 							</div>
@@ -850,7 +852,7 @@
 								<a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
 								<a href="https://www.instagram.com/i_rasa_perfumes/"><i
 										class="fab fa-instagram"></i></a>
-								<a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
+								<a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
 								<a href="javascript:void(0);"><i class="fab fa-whatsapp"></i></a>
 							</div>
 						</div>
@@ -870,16 +872,16 @@
 					</div>
 					<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
 						class="col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget instafeed">
+						<div class="single-footer-widget">
 							<h4 class="footer_title">Our Gallery</h4>
-							    <ul class="list instafeed d-flex flex-wrap">
-								<li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="insta-thumb"></li>
-								<li><img src="img/gallery/r2.webp" alt="Signature Scent" class="insta-thumb"></li>
-								<li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="insta-thumb"></li>
-								<li><img src="img/gallery/r5.avif" alt="Premium Attar" class="insta-thumb"></li>
-								<li><img src="img/gallery/r7.avif" alt="Bespoke Collection" class="insta-thumb"></li>
-								<li><img src="img/gallery/r8.avif" alt="I Rasa Perfumes" class="insta-thumb"></li>
-							    </ul>
+							    <ul class="footer-gallery-grid">
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb"></li>
+              </ul>
 						</div>
 					</div>
 					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
@@ -938,7 +940,7 @@
 						<div class="col-md-6">
 							<div class="modal-img-wrap"
 								style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
-								<img src="img/product/product1.png" class="img-fluid" id="modal_img" alt="Perfume"
+								<img src="img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif" class="img-fluid" id="modal_img" alt="Perfume"
 									style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
 							</div>
 						</div>
@@ -1031,35 +1033,35 @@
 		// Unified Product Catalog (Men, Women, Attars)
 		const ProductCatalog = [
 			// Men
-			{ name: "Savage Dior", category: "Men's Scents", price: 499, img: "img/product/1 (1).jpg", desc: "A raw and noble composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot." },
-			{ name: "Dev. Cool Water", category: "Men's Scents", price: 499, img: "img/product/1 (2).jpg", desc: "A fresh and sharp, simple and very masculine fragrance. Top notes include mint and green nuances, lavender, coriander and rosemary." },
-			{ name: "Rasassi Hawas", category: "Men's Scents", price: 499, img: "img/product/1 (3).jpg", desc: "Blends cinnamon, bergamot, orange blossom, grey amber and sandalwood to create an aquatic scent designed to embody masculine strength." },
-			{ name: "Donhill Red", category: "Men's Scents", price: 499, img: "img/product/1 (4).jpg", desc: "A warm, woody and spicy fragrance that captures the essence of classic sophistication and modern style." },
-			{ name: "Donhill Icon", category: "Men's Scents", price: 499, img: "img/product/1 (5).jpg", desc: "The perfect expression of natural refinement, a translation of the luxurious and classic heritage of the house." },
-			{ name: "C R 7", category: "Men's Scents", price: 499, img: "img/product/1 (6).jpg", desc: "An active fragrance for men who want to live life with passion and confidence, inspired by Cristiano Ronaldo." },
-			{ name: "Creed Avantes", category: "Men's Scents", price: 499, img: "img/product/1 (7).jpg", desc: "The exceptional Aventus was inspired by the dramatic life of a historic emperor, celebrating strength, power and success." },
-			{ name: "Creed Silver Mountain Water", category: "Men's Scents", price: 499, img: "img/product/1 (8).jpg", desc: "Captures the purity and freshness of the Swiss Alps, crisp and sparkling with green tea and blackcurrants." },
-			{ name: "Rasassi Hawas Ice", category: "Men's Scents", price: 499, img: "img/product/1 (9).jpg", desc: "An icy, fresh aquatic masterpiece that is highly invigorating and keeps you smelling crisp all day." },
-			{ name: "Hugo Boss", category: "Men's Scents", price: 499, img: "img/product/1 (10).jpg", desc: "Sharp and confident woody fragrance with fresh green notes and rich base tones for the modern leader." },
-			{ name: "Rasassi Royal Blue", category: "Men's Scents", price: 499, img: "img/product/1 (11).jpg", desc: "A premium floral woody fragrance for men that expresses dynamic energy, masculine strength, and lasting confidence." },
-			{ name: "Arabic Tonka", category: "Men's Scents", price: 499, img: "img/product/1 (12).jpg", desc: "An exceptionally rich, sweet woody fragrance capturing traditional Arabic essence with a modern luxury twist." },
+			{ name: "Savage Dior", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif", desc: "A raw and noble composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot." },
+			{ name: "Dev. Cool Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif", desc: "A fresh and sharp, simple and very masculine fragrance. Top notes include mint and green nuances, lavender, coriander and rosemary." },
+			{ name: "Rasassi Hawas", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif", desc: "Blends cinnamon, bergamot, orange blossom, grey amber and sandalwood to create an aquatic scent designed to embody masculine strength." },
+			{ name: "Donhill Red", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif", desc: "A warm, woody and spicy fragrance that captures the essence of classic sophistication and modern style." },
+			{ name: "Donhill Icon", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png", desc: "The perfect expression of natural refinement, a translation of the luxurious and classic heritage of the house." },
+			{ name: "C R 7", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png", desc: "An active fragrance for men who want to live life with passion and confidence, inspired by Cristiano Ronaldo." },
+			{ name: "Creed Avantes", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png", desc: "The exceptional Aventus was inspired by the dramatic life of a historic emperor, celebrating strength, power and success." },
+			{ name: "Creed Silver Mountain Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png", desc: "Captures the purity and freshness of the Swiss Alps, crisp and sparkling with green tea and blackcurrants." },
+			{ name: "Rasassi Hawas Ice", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png", desc: "An icy, fresh aquatic masterpiece that is highly invigorating and keeps you smelling crisp all day." },
+			{ name: "Hugo Boss", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif", desc: "Sharp and confident woody fragrance with fresh green notes and rich base tones for the modern leader." },
+			{ name: "Rasassi Royal Blue", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif", desc: "A premium floral woody fragrance for men that expresses dynamic energy, masculine strength, and lasting confidence." },
+			{ name: "Arabic Tonka", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif", desc: "An exceptionally rich, sweet woody fragrance capturing traditional Arabic essence with a modern luxury twist." },
 
 			// Women
-			{ name: "GUCCI FLORA", category: "Women's Scents", price: 499, img: "img/product/2 (1).jpg", desc: "An elegant, feminine fragrance designed for the modern woman who embraces her beauty and grace." },
-			{ name: "GUCCI BLOOM", category: "Women's Scents", price: 499, img: "img/product/2 (2).jpg", desc: "Designed to celebrate the authenticity, vitality and diversity of women—flourishing in a natural, expressive and individual way." },
-			{ name: "WHITE LONDON", category: "Women's Scents", price: 499, img: "img/product/2 (3).jpg", desc: "A light, clean and sophisticated fragrance inspired by the fresh spring mornings of London." },
-			{ name: "RASASSI HAWAS", category: "Women's Scents", price: 499, img: "img/product/2 (4).jpg", desc: "An elegant and refreshing floral-fruity scent designed to capture the vibrant spirit of modern women." },
-			{ name: "DEV. COOL WATER", category: "Women's Scents", price: 499, img: "img/product/2 (5).jpg", desc: "A beautiful, fresh aquatic fragrance that brings peace, calm and ocean freshness to your day." },
-			{ name: "SHANYA", category: "Women's Scents", price: 499, img: "img/product/2 (6).jpg", desc: "An exclusive sweet and sensual blend that leaves a memorable trail of premium luxury." },
+			{ name: "GUCCI FLORA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif", desc: "An elegant, feminine fragrance designed for the modern woman who embraces her beauty and grace." },
+			{ name: "GUCCI BLOOM", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif", desc: "Designed to celebrate the authenticity, vitality and diversity of women—flourishing in a natural, expressive and individual way." },
+			{ name: "WHITE LONDON", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif", desc: "A light, clean and sophisticated fragrance inspired by the fresh spring mornings of London." },
+			{ name: "RASASSI HAWAS", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png", desc: "An elegant and refreshing floral-fruity scent designed to capture the vibrant spirit of modern women." },
+			{ name: "DEV. COOL WATER", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png", desc: "A beautiful, fresh aquatic fragrance that brings peace, calm and ocean freshness to your day." },
+			{ name: "SHANYA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png", desc: "An exclusive sweet and sensual blend that leaves a memorable trail of premium luxury." },
 
 			// Attars
-			{ name: "Musk a tahara", category: "Attar · Musk", price: 200, img: "img/product/2 (13).jpg", desc: "A thick, white concentrated oil with a clean, powdery, soapy, and long-lasting fresh aroma." },
-			{ name: "Whtie sandel", category: "Attar · Traditional", price: 200, img: "img/product/2 (14).jpg", desc: "Pure white sandalwood concentrated attar. Rich, creamy, warm, and deeply traditional." },
-			{ name: "Mhaisur sandal", category: "Attar · Traditional", price: 200, img: "img/product/2 (15).jpg", desc: "Premium Mysore Sandalwood concentrated oil. Known for its ultra-luxurious, woody, and meditative aroma." },
-			{ name: "Kevd", category: "Attar · Traditional", price: 150, img: "img/product/2 (16).jpg", desc: "Distilled from the flowers of the screw pine, delivering a sweet, floral, and deeply cooling traditional scent." },
-			{ name: "Kesharchandan", category: "Attar · Traditional", price: 200, img: "img/product/2 (17).jpg", desc: "A magnificent blend of pure saffron (keshar) and rich sandalwood oil. Royal, warm, and highly aromatic." },
-			{ name: "Musk rose", category: "Attar · Musk", price: 150, img: "img/product/2 (18).jpg", desc: "A soft, beautiful combination of pure deer musk undercurrents with sweet fresh garden rose oils." },
-			{ name: "Black ROSE", category: "Attar · Traditional", price: 150, img: "img/product/2 (19).jpg", desc: "Deep, intense, spicy dark rose attar oil, conveying the ultimate fragrance of traditional Orient." }
+			{ name: "Musk a tahara", category: "Attar · Musk", price: 200, img: "img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png", desc: "A thick, white concentrated oil with a clean, powdery, soapy, and long-lasting fresh aroma." },
+			{ name: "Whtie sandel", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png", desc: "Pure white sandalwood concentrated attar. Rich, creamy, warm, and deeply traditional." },
+			{ name: "Mhaisur sandal", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif", desc: "Premium Mysore Sandalwood concentrated oil. Known for its ultra-luxurious, woody, and meditative aroma." },
+			{ name: "Kevd", category: "Attar · Traditional", price: 150, img: "img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif", desc: "Distilled from the flowers of the screw pine, delivering a sweet, floral, and deeply cooling traditional scent." },
+			{ name: "Kesharchandan", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif", desc: "A magnificent blend of pure saffron (keshar) and rich sandalwood oil. Royal, warm, and highly aromatic." },
+			{ name: "Musk rose", category: "Attar · Musk", price: 150, img: "img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif", desc: "A soft, beautiful combination of pure deer musk undercurrents with sweet fresh garden rose oils." },
+			{ name: "Black ROSE", category: "Attar · Traditional", price: 150, img: "img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif", desc: "Deep, intense, spicy dark rose attar oil, conveying the ultimate fragrance of traditional Orient." }
 		];
 
 		(function () {
@@ -1112,7 +1114,7 @@
 					
 					let category = "Men's Premium Scents";
 					let price = 499;
-					let img = "img/product/product1.png";
+					let img = "img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif";
 					
 					if (isAttar) {
 						category = "Attar · Concentrated";
@@ -1120,17 +1122,17 @@
 						// Deterministic image index for fallback
 						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 						const imgIdx = (hash % 10) + 1;
-						img = `img/product/1 (${imgIdx}).jpg`;
+						img = `img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png`;
 					} else if (isWomen) {
 						category = "Women's Premium Scents";
 						price = 499;
 						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 						const imgIdx = (hash % 6) + 1;
-						img = `img/product/2 (${imgIdx}).jpg`;
+						img = `img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png`;
 					} else {
 						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 						const imgIdx = (hash % 12) + 1;
-						img = `img/product/1 (${imgIdx}).jpg`;
+						img = `img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png`;
 					}
 					
 					prod = {
@@ -1172,7 +1174,7 @@
 			selectedSize: 50,
 			bottlePrice: 99,
 			reuseBottle: false,
-			img: 'img/product/1 (1).jpg'
+			img: 'img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png'
 		};
 
 		function selectSingleSize(size, bPrice, el) {
@@ -1365,7 +1367,7 @@
 
 		window.toggleWishlistFromModal = function() {
 			const name = document.getElementById('modal_title').textContent.trim();
-			const img = document.getElementById('modal_img').getAttribute('src') || 'img/product/product1.png';
+			const img = document.getElementById('modal_img').getAttribute('src') || 'img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png';
 			const priceText = document.getElementById('modal_price').textContent;
 			const price = parseInt(priceText.replace(/[^\d]/g, '')) || 499;
 			
@@ -1394,7 +1396,7 @@
 
 			var name = document.getElementById('modal_title').innerText.trim();
 			var qty = parseInt(document.getElementById('modal_qty').value) || 1;
-			var img = document.getElementById('modal_img').getAttribute('src') || 'img/product/product1.png';
+			var img = document.getElementById('modal_img').getAttribute('src') || 'img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif';
 			
 			if (modalPricingState.selectedSize === 0) {
 				CartEngine._showToast('✕ Please select a bottle size before adding to cart!');
@@ -1448,10 +1450,10 @@
 
 			// Default 60ml perfume
 			const finalPrice = 499 + 60;
-			let img = 'img/product/product1.png';
-			if (name === 'Gucci Flora') img = 'img/product/product2.png';
-			if (name === 'Creed Avantes') img = 'img/product/product3.png';
-			if (name === 'Rasassi Hawas') img = 'img/product/product4.png';
+			let img = 'img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif';
+			if (name === 'Gucci Flora') img = 'img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif';
+			if (name === 'Creed Avantes') img = 'img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif';
+			if (name === 'Rasassi Hawas') img = 'img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif';
 
 			CartEngine.add({
 				id: name,

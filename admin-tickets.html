@@ -754,12 +754,14 @@
         <div class="modal-header">
           <h5 class="modal-title"><i class="ti-headphone-alt" style="margin-right:8px;"></i> <span
               id="modalTicketId">—</span></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; background: transparent; border: none; font-size: 1.5rem; opacity: 0.8; outline: none; padding: 0; margin-right: 10px; line-height: 1;">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <!-- Customer Info -->
-          <div
-            style="display:grid;grid-template-columns:1fr 1fr;gap:0 20px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
+          <div class="admin-details-grid"
+            style="display:grid;gap:0 20px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:16px;margin-bottom:20px;">
             <div class="info-row"><span class="info-label">Name</span><span class="info-value" id="modalName">—</span>
             </div>
             <div class="info-row"><span class="info-label">Email</span><span class="info-value" id="modalEmail">—</span>
@@ -837,7 +839,7 @@
         <div class="modal-footer" style="justify-content:space-between;">
           <button id="deleteTicketBtn" class="admin-btn admin-btn-danger admin-btn-sm"
             onclick="deleteTicketFromModal()"><i class="fas fa-trash"></i> Delete Ticket</button>
-          <button class="admin-btn admin-btn-outline admin-btn-sm" data-bs-dismiss="modal">Close</button>
+          <button class="admin-btn admin-btn-outline admin-btn-sm" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

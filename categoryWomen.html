@@ -417,10 +417,10 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"
-            style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-            <span>i rasa</span>
-          </a>
+          <a class="navbar-brand logo_h" href="index.html">
+        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -457,26 +457,28 @@
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item">
-                <a href="cart.html"
-                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
-                  <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle" style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+
+              <!-- Cart -->
+              <li class="nav-item nav-shop-icon">
+                <a href="cart.html" class="nav-shop-icon-link">
+                  <i class="ti-shopping-cart"></i>
+                  <span class="nav-shop__circle" style="display:none;">0</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="button button-header" href="category.html"
-                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
-                  Now</a>
-              </li>
-              <li class="nav-item">
-                <a href="login.html" id="profileNavLink"
-                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
-                  <img id="profileNavImg" src="" alt="Profile"
-                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
-                  <i id="profileNavIcon" class="ti-user" style="color: #d4af37; font-size: 18px;"></i>
+
+              <!-- Profile Icon -->
+              <li class="nav-item nav-shop-icon">
+                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link">
+                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
+                  <i id="profileNavIcon" class="ti-user"></i>
                 </a>
               </li>
+
+              <!-- Shop Now — always last, full-width row -->
+              <li class="nav-item nav-shop-btn">
+                <a class="button button-header" href="category.html">Shop Now</a>
+              </li>
+
             </ul>
           </div>
         </div>
@@ -569,10 +571,10 @@
           <div class="mens-product-card">
             <span class="badge-bestseller"><i class='fas fa-fire'></i> Bestseller</span>
             <div class="card-img-area">
-              <img src="img/product/2 (1).jpg" alt="GUCCI FLORA" class="perfume-img">
+              <img src="img/i_rasa_bottles/gucci_flora.jfif" alt="GUCCI FLORA" class="perfume-img">
               <div class="overlay-actions">
                 <button title="Quick View" data-toggle="modal" data-target="#product_modal" data-title="GUCCI FLORA"
-                  data-price="Rs. 499" data-img="img/product/2 (1).jpg"><i class="ti-search"></i></button>
+                  data-price="Rs. 499" data-img="img/i_rasa_bottles/gucci_flora.jfif"><i class="ti-search"></i></button>
                 <button title="Cart" onclick="addToCart('GUCCI FLORA')"><i class="ti-shopping-cart"></i></button>
                 <button title="Wishlist"><i class="ti-heart"></i></button>
               </div>
@@ -594,10 +596,10 @@
           <div class="mens-product-card">
             <span class="badge-bestseller"><i class='fas fa-fire'></i> Bestseller</span>
             <div class="card-img-area">
-              <img src="img/product/2 (2).jpg" alt="GUCCI BLOOM" class="perfume-img">
+              <img src="img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png" alt="GUCCI BLOOM" class="perfume-img">
               <div class="overlay-actions">
                 <button title="Quick View" data-toggle="modal" data-target="#product_modal" data-title="GUCCI BLOOM"
-                  data-price="Rs. 499" data-img="img/product/2 (2).jpg"><i class="ti-search"></i></button>
+                  data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png"><i class="ti-search"></i></button>
                 <button title="Cart" onclick="addToCart('GUCCI BLOOM')"><i class="ti-shopping-cart"></i></button>
                 <button title="Wishlist"><i class="ti-heart"></i></button>
               </div>
@@ -625,10 +627,10 @@
           data-aos-delay="200">
           <div class="mens-product-card">
             <div class="card-img-area">
-              <img src="img/product/2 (3).jpg" alt="WHITE LONDON" class="perfume-img">
+              <img src="img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png" alt="WHITE LONDON" class="perfume-img">
               <div class="overlay-actions">
                 <button title="Quick View" data-toggle="modal" data-target="#product_modal" data-title="WHITE LONDON"
-                  data-price="Rs. 499" data-img="img/product/2 (3).jpg"><i class="ti-search"></i></button>
+                  data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png"><i class="ti-search"></i></button>
                 <button title="Cart" onclick="addToCart('WHITE LONDON')"><i class="ti-shopping-cart"></i></button>
                 <button title="Wishlist"><i class="ti-heart"></i></button>
               </div>
@@ -650,10 +652,10 @@
           <div class="mens-product-card">
             <span class="badge-bestseller"><i class='fas fa-fire'></i> Trending</span>
             <div class="card-img-area">
-              <img src="img/product/2 (4).jpg" alt="RASASSI HAWAS" class="perfume-img">
+              <img src="img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif" alt="RASASSI HAWAS" class="perfume-img">
               <div class="overlay-actions">
                 <button title="Quick View" data-toggle="modal" data-target="#product_modal" data-title="RASASSI HAWAS"
-                  data-price="Rs. 499" data-img="img/product/2 (4).jpg"><i class="ti-search"></i></button>
+                  data-price="Rs. 499" data-img="img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif"><i class="ti-search"></i></button>
                 <button title="Cart" onclick="addToCart('RASASSI HAWAS')"><i class="ti-shopping-cart"></i></button>
                 <button title="Wishlist"><i class="ti-heart"></i></button>
               </div>
@@ -675,10 +677,10 @@
           <div class="mens-product-card">
             <span class="badge-bestseller"><i class='fas fa-fire'></i> Favourite</span>
             <div class="card-img-area">
-              <img src="img/product/2 (9).jpg" alt="DEV. COOL WATER" class="perfume-img">
+              <img src="img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif" alt="DEV. COOL WATER" class="perfume-img">
               <div class="overlay-actions">
                 <button title="Quick View" data-toggle="modal" data-target="#product_modal" data-title="DEV. COOL WATER"
-                  data-price="Rs. 499" data-img="img/product/2 (9).jpg"><i class="ti-search"></i></button>
+                  data-price="Rs. 499" data-img="img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif"><i class="ti-search"></i></button>
                 <button title="Cart" onclick="addToCart('DEV. COOL WATER')"><i class="ti-shopping-cart"></i></button>
                 <button title="Wishlist"><i class="ti-heart"></i></button>
               </div>
@@ -700,10 +702,10 @@
           <div class="mens-product-card">
             <span class="badge-bestseller"><i class='fas fa-fire'></i> Best Scents</span>
             <div class="card-img-area">
-              <img src="img/product/2 (16).jpg" alt="SHANYA" class="perfume-img">
+              <img src="img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif" alt="SHANYA" class="perfume-img">
               <div class="overlay-actions">
                 <button title="Quick View" data-toggle="modal" data-target="#product_modal" data-title="SHANYA"
-                  data-price="Rs. 499" data-img="img/product/2 (16).jpg"><i class="ti-search"></i></button>
+                  data-price="Rs. 499" data-img="img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif"><i class="ti-search"></i></button>
                 <button title="Cart" onclick="addToCart('SHANYA')"><i class="ti-shopping-cart"></i></button>
                 <button title="Wishlist"><i class="ti-heart"></i></button>
               </div>
@@ -796,7 +798,7 @@
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/i_rasa_perfumes/"><i class="fab fa-instagram"></i></a>
-                <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
                 <a href="https://wa.me/919823833303"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
@@ -815,17 +817,15 @@
             </div>
           </div>
           <div class="col-lg-2 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="single-footer-widget instafeed">
+            <div class="single-footer-widget">
               <h4 class="footer_title">Our Gallery</h4>
-              <ul class="list instafeed d-flex flex-wrap">
-                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume"
-                    style="border:1px solid #d4af37;width:70px;height:70px;object-fit:cover;"></li>
-                <li><img src="img/gallery/r2.webp" alt="Signature Scent"
-                    style="border:1px solid #d4af37;width:70px;height:70px;object-fit:cover;"></li>
-                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance"
-                    style="border:1px solid #d4af37;width:70px;height:70px;object-fit:cover;"></li>
-                <li><img src="img/gallery/r5.avif" alt="Premium Attar"
-                    style="border:1px solid #d4af37;width:70px;height:70px;object-fit:cover;"></li>
+              <ul class="footer-gallery-grid">
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb"></li>
               </ul>
             </div>
           </div>
@@ -1134,7 +1134,7 @@
         return;
       }
 
-      let img = 'img/product/product1.png';
+      let img = 'img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png';
       let price = 499;
 
       const cards = document.querySelectorAll('.mens-product-card');

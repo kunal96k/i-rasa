@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I-Rasa Perfumes - Admin Coupons</title>
   
-  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
@@ -23,23 +23,110 @@
     }
 
     body { background-color: var(--admin-bg); color: var(--admin-text); font-family: 'Inter', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--admin-bg); }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--admin-gold); }
+        /* Custom Scrollbar */
+    *::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: #e2dfd6;
+      border-radius: 6px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background: #b58c1e;
+      border-radius: 6px;
+      border: 1px solid #d8d5cc;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+      background: #d4af37;
+    }
+
+    * {
+      scrollbar-color: #b58c1e #e2dfd6;
+      scrollbar-width: thin;
+    }
     body.modal-open { padding-right: 0 !important; }
 
     h1, h2, h3, h4, h5, h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
 
-    /* Sidebar */
-    .admin-sidebar { width: 260px; background-color: var(--admin-surface); border-right: 1px solid var(--admin-border); display: flex; flex-direction: column; flex-shrink: 0; }
-    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); }
-    .admin-logo img { max-width: 150px; }
-    .admin-nav { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
-    .admin-nav-item { padding: 12px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
-    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212, 175, 55, 0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); }
-    .admin-nav-item i { margin-right: 15px; font-size: 1.2rem; width: 24px; text-align: center; }
+        /* Sidebar */
+    .admin-sidebar {
+      width: 260px;
+      background-color: var(--admin-surface);
+      border-right: 1px solid var(--admin-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .admin-logo {
+      text-align: center;
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .admin-nav {
+      text-align: left;
+      font-size: 16px;
+      color: #e6dfc8 !important;
+      font-family: 'Outfit', sans-serif !important;
+      line-height: 1.7 !important;
+      font-weight: 300 !important;
+      box-sizing: border-box;
+      display: block;
+      flex-grow: 1;
+      padding: 12px 0;
+      overflow-y: auto;
+    }
+
+    .nav-section-label {
+      padding: 14px 24px 4px;
+      font-size: 9px;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .nav-badge {
+      background: var(--admin-gold);
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 1px 7px;
+      margin-left: auto;
+    }
+
+    .admin-nav-item {
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      color: var(--admin-text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+
+    .admin-nav-item:hover,
+    .admin-nav-item.active {
+      background-color: rgba(212, 175, 55, 0.1);
+      color: var(--admin-gold);
+      border-left-color: var(--admin-gold);
+      text-decoration: none;
+    }
+
+    .admin-nav-item i {
+      margin-right: 13px;
+      font-size: 1.1rem;
+      width: 22px;
+      text-align: center;
+      flex-shrink: 0;
+    }
 
     /* Main Content */
     .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
@@ -71,28 +158,35 @@
 <body>
 
   <!-- Sidebar -->
-  <aside class="admin-sidebar">
+    <aside class="admin-sidebar">
     <div class="admin-logo">
       <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
         <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
           rasa</span>
       </a>
     </div>
-    
+
     <nav class="admin-nav">
+      <div class="nav-section-label">Main</div>
       <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
-      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
+      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders <span class="nav-badge" id="sidebarPendingOrders" style="display:none;">0</span></a>
+      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments <span class="nav-badge" id="sidebarPendingPay" style="display:none;">0</span></a>
+
+      <div class="nav-section-label">Support</div>
+      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets <span class="nav-badge" id="sidebarTickets" style="">1</span></a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
-      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
-      <a href="admin-coupons.html" class="admin-nav-item active"><i class="ti-gift"></i> Coupons & Offers</a>
-      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments</a>
+
+      <div class="nav-section-label">Management</div>
+      <a href="admin-coupons.html" class="admin-nav-item active"><i class="ti-gift"></i> Coupons &amp; Offers</a>
       <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
       <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
+
+      <div class="nav-section-label">Analytics</div>
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
-    
+
     <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
-      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="logoutAdmin()">
+      <button class="admin-btn admin-btn-outline" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 4px; font-weight: 600; font-size: 0.85rem;" onclick="window.location.href='index.html'">
         <i class="ti-power-off"></i> Logout
       </button>
     </div>
@@ -100,13 +194,50 @@
 
   <!-- Main Content Area -->
   <main class="admin-main">
+    
     <header class="admin-header">
       <h4 style="margin: 0;">Coupons & Offers</h4>
       <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
-        <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;">
-          <i class="ti-user" style="color: #fff;"></i>
-        </div>
-      </div>
+                <div class="admin-profile-container" id="adminProfileTrigger">
+                    <div class="admin-profile-details d-none d-md-block">
+                        <div class="admin-profile-name">System Admin</div>
+                        <div class="admin-profile-role">SUPERADMIN</div>
+                    </div>
+                    <div class="admin-profile-avatar">
+                        <span>S</span>
+                    </div>
+                    <i class="ti-angle-down" style="font-size: 0.8rem; color: #888; margin-left: 2px;"></i>
+                    
+                    <!-- Dropdown Menu -->
+                    <div class="admin-profile-dropdown" id="adminProfileDropdown">
+                        <div class="dropdown-header-info">
+                            <div class="dropdown-header-name">System Admin</div>
+                            <div class="dropdown-header-email">admin@rasa.com</div>
+                            <div class="dropdown-header-role-badge">SUPERADMIN</div>
+                        </div>
+                        <div class="dropdown-links-list">
+                            <a href="#" class="dropdown-link-item" id="adminViewProfileLink">
+                                <i class="ti-user"></i>
+                                <span>View / Edit Profile</span>
+                            </a>
+                            <a href="#" class="dropdown-link-item" id="adminResetPasswordLink">
+                                <i class="ti-key"></i>
+                                <span>Change Password</span>
+                            </a>
+                            <a href="#" class="dropdown-link-item" id="adminHelpLink">
+                                <i class="ti-help-alt"></i>
+                                <span>Help Support</span>
+                            </a>
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="#" class="dropdown-link-item" id="adminLogoutLink" style="color: #ff4d4d;">
+                                <i class="ti-power-off" style="color: #ff4d4d;"></i>
+                                <span style="font-weight: 600;">Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </header>
 
     <div class="admin-content">

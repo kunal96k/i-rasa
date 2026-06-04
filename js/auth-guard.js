@@ -18,6 +18,19 @@ const AuthGuard = {
      * Initializes the auth state and updates the UI.
      */
     async init() {
+        // Handle backend-driven access denied redirects
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('accessDenied') === 'true') {
+            if (typeof showAlert === 'function') {
+                showAlert('error', 'Access Denied: You do not have permission to access that module.');
+            } else {
+                alert('Access Denied: You do not have permission to access that module.');
+            }
+            // clean up the URL search parameter without reloading
+            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+        }
+
         const path = window.location.pathname;
         const page = path.split("/").pop() || "index.html";
         const isAdminPage = page.startsWith('admin') || page === 'admin.html';
@@ -40,8 +53,15 @@ const AuthGuard = {
                             return;
                         }
 
-                        // Prevent non-superadmins/admins from accessing employee management page
-                        if (page.startsWith('admin-employees') && role !== 'ADMIN' && role !== 'SUPERADMIN') {
+                        // Prevent non-superadmins/admins from accessing employee management, subscribers, reports, and coupons
+                        const restrictedPages = [
+                            'admin-employees',
+                            'admin-subscribers',
+                            'admin-reports',
+                            'admin-coupons'
+                        ];
+                        const isRestricted = restrictedPages.some(p => page.startsWith(p));
+                        if (isRestricted && role !== 'ADMIN' && role !== 'SUPERADMIN') {
                             alert('Access Denied: Admin or Superadmin role required.');
                             window.location.href = 'admin.html';
                             return;
@@ -81,7 +101,14 @@ const AuthGuard = {
                         window.location.href = 'index.html';
                         return;
                     }
-                    if (page.startsWith('admin-employees') && role !== 'ADMIN' && role !== 'SUPERADMIN') {
+                    const restrictedPages = [
+                        'admin-employees',
+                        'admin-subscribers',
+                        'admin-reports',
+                        'admin-coupons'
+                    ];
+                    const isRestricted = restrictedPages.some(p => page.startsWith(p));
+                    if (isRestricted && role !== 'ADMIN' && role !== 'SUPERADMIN') {
                         alert('Access Denied: Admin or Superadmin role required.');
                         window.location.href = 'admin.html';
                         return;
@@ -290,24 +317,50 @@ const AuthGuard = {
 
             const logoutLink = document.getElementById('adminLogoutLink');
             if (logoutLink) {
-                logoutLink.addEventListener('click', (e) => {
+                logoutLink.addEventListener('click', async (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    this.logout();
+                    if (await showConfirm('Are you sure you want to log out?', 'Confirm Logout')) {
+                        this.logout();
+                    }
                 });
             }
         }
 
-        // Intercept sidebar logout button
         const sidebarLogoutBtn = document.querySelector('.admin-sidebar button');
         if (sidebarLogoutBtn) {
             sidebarLogoutBtn.removeAttribute('onclick');
             // Remove previous listeners if any, then add
             const newBtn = sidebarLogoutBtn.cloneNode(true);
             sidebarLogoutBtn.parentNode.replaceChild(newBtn, sidebarLogoutBtn);
-            newBtn.addEventListener('click', (e) => {
+            newBtn.addEventListener('click', async (e) => {
                 e.preventDefault();
-                this.logout();
+                if (await showConfirm('Are you sure you want to log out?', 'Confirm Logout')) {
+                    this.logout();
+                }
+            });
+        }
+
+        // Hide restricted sidebar links for EMPLOYEE role
+        if (this.currentUser.role === 'EMPLOYEE') {
+            const restrictedLinks = [
+                'admin-employees.html',
+                'admin-subscribers.html',
+                'admin-reports.html',
+                'admin-coupons.html'
+            ];
+            restrictedLinks.forEach(link => {
+                const el = document.querySelector(`.admin-sidebar a[href="${link}"]`);
+                if (el) {
+                    el.style.display = 'none';
+                }
+            });
+            // Also hide the "Management" and "Analytics" section headers if all their items are hidden
+            const labels = document.querySelectorAll('.nav-section-label');
+            labels.forEach(label => {
+                if (label.textContent.trim() === 'Management' || label.textContent.trim() === 'Analytics') {
+                    label.style.display = 'none';
+                }
             });
         }
         this.updateSidebarBadges();

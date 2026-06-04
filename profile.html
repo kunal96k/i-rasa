@@ -17,6 +17,10 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      overflow-x: hidden;
+    }
+
     body {
       background-color: #0d0d0d;
       color: #fff;
@@ -580,6 +584,7 @@
       align-items: center;
       gap: 15px;
       transition: all 0.3s;
+      overflow: hidden;
     }
 
     .blend-card:hover {
@@ -596,37 +601,181 @@
       align-items: center;
       justify-content: center;
       font-size: 20px;
+      flex-shrink: 0;
     }
 
-    .blend-info {
-      flex: 1;
-    }
+    .blend-info { flex: 1; min-width: 0; }
 
     .blend-name {
       font-weight: 700;
       color: #d4af37;
       font-size: 14px;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+      line-height: 1.3;
     }
 
     .blend-meta {
       font-size: 11px;
       color: #666;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Blend delete button: small icon only */
+    .blend-delete-btn {
+      flex-shrink: 0;
+      background: transparent;
+      border: 1px solid #333;
+      color: #ff4d4d;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .blend-delete-btn:hover { background: rgba(255,77,77,0.1); border-color: #ff4d4d; }
+
+    /* =============================================
+       RESPONSIVE â€” MOBILE FIXES (profile.html)
+       ============================================= */
+
+    /* --- Tabs: horizontal scroll on mobile, no wrap --- */
+    .profile-tabs {
+      overflow-x: auto;
+      flex-wrap: nowrap !important;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .profile-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn { white-space: nowrap; flex: 0 0 auto; }
+
+    @media (max-width: 991px) {
+      .profile-tabs {
+        justify-content: flex-start !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      /* Tabs: smaller on tablet too */
+      .tab-btn { padding: 12px 14px; font-size: 10px; letter-spacing: 0.5px; }
+    }
+
+    @media (max-width: 575px) {
+      .profile-banner { padding: 25px 12px 0; }
+      .profile-hero-name { font-size: 18px; letter-spacing: 0.5px; }
+      .profile-hero-email { font-size: 11px; margin-bottom: 16px; }
+      .tab-btn { padding: 10px 12px; font-size: 9.5px; letter-spacing: 0.3px; }
+
+      .profile-body { padding: 16px 12px 60px; }
+      .profile-card { padding: 16px 12px; border-radius: 10px; }
+
+      /* Order header: stack vertically */
+      .order-header { flex-direction: column; gap: 6px; }
+      .order-actions { flex-wrap: wrap; }
+
+      /* blend card on mobile */
+      .blend-card { padding: 12px 10px; gap: 10px; }
+      .blend-icon-box { width: 40px; height: 40px; font-size: 16px; }
+      .blend-name { font-size: 13px; }
+      .blend-meta { font-size: 10px; }
+
+      /* Danger links row: stack */
+      .mt-4.pt-4.border-top.border-dark.d-flex.justify-content-between {
+        flex-direction: column !important;
+        gap: 12px;
+      }
+
+      /* Security: stack button row */
+      .col-md-12.d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      /* --- Tracking timeline: scrollable --- */
+      .tracking-timeline {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 16px 0 8px;
+        padding: 0 4px;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+      }
+      .tracking-timeline::-webkit-scrollbar { display: none; } /* Hide scrollbar for Chrome, Safari, and Opera */
+      .tracking-timeline::before { top: 12px; left: 4px; right: 4px; }
+      .tracking-timeline-progress { top: 12px; }
+      .timeline-step-icon { width: 24px; height: 24px; font-size: 9px; }
+      .timeline-step-label { font-size: 7.5px; letter-spacing: 0; margin-top: 5px; }
+
+      /* --- Order modal: stack columns --- */
+      #order_modal .modal-body .row > div[class*="col-"] {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        border-left: none !important;
+        border-top: 1px solid #222;
+        padding-top: 15px;
+        margin-top: 10px;
+      }
+      #order_modal .modal-body .row > div[class*="col-"]:first-child {
+        border-top: none; margin-top: 0; padding-top: 0;
+      }
+      #order_modal .modal-footer {
+        flex-direction: column !important;
+        gap: 10px; padding: 15px;
+      }
+      #order_modal .modal-footer button { width: 100%; text-align: center; margin: 0; }
+
+      /* --- Logout / delete modal: stack buttons --- */
+      #logout_modal .d-flex.justify-content-center,
+      #delete_acc_modal .d-flex.justify-content-center {
+        flex-direction: column !important; gap: 10px; align-items: stretch;
+      }
+      #logout_modal .btn, #delete_acc_modal .btn { width: 100%; }
+
+      /* --- Order filters: full width cols on mobile --- */
+      #panel-orders .col-md-3, #panel-orders .col-md-6 {
+        width: 100%; flex: 0 0 100%; max-width: 100%; margin-bottom: 8px;
+      }
+      #panel-orders .d-flex.justify-content-end { flex-direction: column; gap: 8px; }
+      #panel-orders .d-flex.justify-content-end button { width: 100%; }
+
+      /* Support item */
+      .support-icon { flex-shrink: 0; width: 34px; height: 34px; font-size: 14px; }
+
+      /* Modal padding */
+      .modal-body { padding: 18px !important; }
+      .modal-header { padding: 15px 18px !important; }
+      .modal-footer { padding: 15px 18px !important; }
+    }
+
+    @media (max-width: 767px) {
+      #order_modal .modal-body .row > div[class*="col-"] {
+        width: 100% !important; flex: 0 0 100% !important;
+        max-width: 100% !important; border-left: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!--================ Start Header Menu Area =================-->
+  <!--================ Start Header Menu Area =================--> 
   <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"
-            style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-            <span>i rasa</span>
-          </a>
+          <a class="navbar-brand logo_h" href="index.html">
+        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -663,27 +812,28 @@
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item">
-                <a href="cart.html"
-                  style="background: transparent; border: none; cursor: pointer; transition: all 0.3s ease; display: block; position: relative;">
-                  <i class="ti-shopping-cart" style="color: #d4af37; font-size: 22px;"></i>
-                  <span class="nav-shop__circle"
-                    style="display:none; background: #d4af37; border-radius: 50px; color: #000; font-weight: bold; padding: 2px 7px; font-size: 11px; position: absolute; top: -10px; right: -12px; line-height: 1.2; min-width: 18px; text-align: center;">0</span>
+
+              <!-- Cart -->
+              <li class="nav-item nav-shop-icon">
+                <a href="cart.html" class="nav-shop-icon-link">
+                  <i class="ti-shopping-cart"></i>
+                  <span class="nav-shop__circle" style="display:none;">0</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="button button-header" href="category.html"
-                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000 !important; border-radius: 25px; padding: 10px 25px; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3); transition: all 0.3s ease; letter-spacing: 1px; text-transform: uppercase;">Shop
-                  Now</a>
-              </li>
-              <li class="nav-item active">
-                <a href="login.html" id="profileNavLink"
-                  style="display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #d4af37; background: transparent; box-shadow: 0 0 8px rgba(212,175,55,0.4); overflow: hidden; transition: all 0.3s ease; text-decoration: none;">
-                  <img id="profileNavImg" src="" alt="Profile"
-                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;" />
-                  <i id="profileNavIcon" class="ti-user" style="color: #d4af37; font-size: 18px;"></i>
+
+              <!-- Profile Icon -->
+              <li class="nav-item nav-shop-icon">
+                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link">
+                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
+                  <i id="profileNavIcon" class="ti-user"></i>
                 </a>
               </li>
+
+              <!-- Shop Now â€” always last, full-width row -->
+              <li class="nav-item nav-shop-btn">
+                <a class="button button-header" href="category.html">Shop Now</a>
+              </li>
+
             </ul>
           </div>
         </div>
@@ -913,7 +1063,7 @@
         <div class="card-title"><i class="ti-lock"></i> Account Security</div>
         <div class="row">
           <div class="col-md-12 mb-3">
-            <div class="form-group"><label>Current Password</label><input type="password" placeholder="••••••••"></div>
+            <div class="form-group"><label>Current Password</label><input type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"></div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="form-group"><label>New Password</label><input type="password" placeholder="Min 8 characters">
@@ -1018,7 +1168,7 @@
                 style="width:60px; height:60px; border-radius:8px; object-fit:cover;">
               <div class="blend-info">
                 <div class="blend-name">The Art of Layering Fragrances</div>
-                <div class="blend-meta">Published 05 May 2026 · 5 min read</div>
+                <div class="blend-meta">Published 05 May 2026 Â· 5 min read</div>
               </div>
               <i class="ti-angle-right" style="color:#d4af37;"></i>
             </div>
@@ -1028,7 +1178,7 @@
                 style="width:60px; height:60px; border-radius:8px; object-fit:cover;">
               <div class="blend-info">
                 <div class="blend-name">Sourcing Rare Oud from Assam</div>
-                <div class="blend-meta">Published 02 May 2026 · 8 min read</div>
+                <div class="blend-meta">Published 02 May 2026 Â· 8 min read</div>
               </div>
               <i class="ti-angle-right" style="color:#d4af37;"></i>
             </div>
@@ -1452,10 +1602,6 @@
               }
               if (profile.employeeDetails) {
                 const emp = profile.employeeDetails;
-                const salaryFormatted = parseFloat(emp.salary).toLocaleString('en-IN', {
-                  style: 'currency',
-                  currency: 'INR'
-                });
                 document.getElementById('employeeDetailsContainer').innerHTML = `
                   <div class="profile-card" style="border: 1px solid #d4af37; box-shadow: 0 0 15px rgba(212,175,55,0.15); background: linear-gradient(135deg, #111 0%, #151208 100%);">
                     <div class="card-title" style="color: #d4af37;"><i class="ti-id-badge"></i> Employee Work Details</div>
@@ -1470,19 +1616,15 @@
                       </div>
                       <div class="col-md-6 mb-3">
                         <div style="font-size: 11px; color: #888; text-transform: uppercase;">Department</div>
-                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.department}</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.department || 'â€”'}</div>
                       </div>
                       <div class="col-md-6 mb-3">
                         <div style="font-size: 11px; color: #888; text-transform: uppercase;">Designation</div>
-                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.designation}</div>
-                      </div>
-                      <div class="col-md-6 mb-3">
-                        <div style="font-size: 11px; color: #888; text-transform: uppercase;">Salary (Monthly)</div>
-                        <div style="font-size: 15px; font-weight: 600; color: #d4af37;">${salaryFormatted}</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.designation || 'â€”'}</div>
                       </div>
                       <div class="col-md-6 mb-3">
                         <div style="font-size: 11px; color: #888; text-transform: uppercase;">Date of Joining</div>
-                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.dateOfJoining}</div>
+                        <div style="font-size: 15px; font-weight: 600; color: #fff;">${emp.dateOfJoining || 'â€”'}</div>
                       </div>
                     </div>
                   </div>
@@ -1546,7 +1688,7 @@
 
           return `
           <div class="blend-card" style="${cardStyle}">
-            <img src="${item.img || 'img/product/product1.png'}" alt="${item.name}" style="${imgStyle}">
+            <img src="${item.img || 'img/product/product1.png'}" alt="${item.name}" style="${imgStyle}" onerror="this.src='img/product/product1.png'">
             <div class="blend-info" style="margin-left:15px;flex-grow:1;">
               <div class="blend-name" style="${nameStyle}">${item.name}</div>
               <div class="blend-meta" style="${priceStyle}">Rs. ${parseFloat(item.price).toFixed(2)}</div>
@@ -1584,13 +1726,13 @@
         }
 
         listEl.innerHTML = blends.map((b, idx) => `
-        <div class="blend-card" style="cursor: pointer;" onclick="window.location.href='customize.html?blend=${idx}'">
+        <div class="blend-card" onclick="window.location.href='customize.html?blend=${idx}'">
           <div class="blend-icon-box"><i class="fas fa-flask"></i></div>
           <div class="blend-info">
-            <div class="blend-name">${b.name}</div>
-            <div class="blend-meta">Saved on ${b.date} · ${b.iconA && b.iconB ? 'Multi-scent mix' : 'Custom blend'}</div>
+            <div class="blend-name" title="${b.name}">${b.name}</div>
+            <div class="blend-meta">${b.date} · ${b.iconA && b.iconB ? 'Multi-scent' : 'Custom'}</div>
           </div>
-          <button class="btn-action" style="color:#ff4d4d; position: relative; z-index: 2;" onclick="event.stopPropagation(); deleteBlend(${idx})"><i class="ti-trash"></i></button>
+          <button class="blend-delete-btn" title="Delete blend" onclick="event.stopPropagation(); deleteBlend(${idx})"><i class="ti-trash"></i></button>
         </div>
       `).join('');
       }
@@ -1910,7 +2052,7 @@
                       <button class="btn-action" onclick="downloadInvoice(${order.orderId})"><i class="ti-download"></i> Invoice</button>
                       <button class="btn-action" onclick="openSupportModal(${order.orderId})"><i class="ti-headphone-alt"></i> Help</button>
                       ${(order.status === 'PENDING' || order.status === 'CONFIRMED') ? `<button class="btn-action" style="color:#ff7070; border-color:#ff7070;" onclick="openOrderAction('cancel',${order.orderId})"><i class="ti-close"></i> Cancel</button>` : ''}
-                      ${order.status === 'DELIVERED' ? `<button class="btn-action" style="color:#c49cfc; border-color:#c49cfc;" onclick="openOrderAction('refund',${order.orderId})"><i class="ti-money"></i> Refund</button><button class="btn-action" style="color:#3be0e0; border-color:#3be0e0;" onclick="openOrderAction('exchange',${order.orderId})"><i class="ti-exchange-vertical"></i> Exchange</button>` : ''}
+                      ${/* order.status === 'DELIVERED' ? `<button class="btn-action" style="color:#c49cfc; border-color:#c49cfc;" onclick="openOrderAction('refund',${order.orderId})"><i class="fas fa-rupee-sign"></i> Refund</button><button class="btn-action" style="color:#3be0e0; border-color:#3be0e0;" onclick="openOrderAction('exchange',${order.orderId})"><i class="ti-exchange-vertical"></i> Exchange</button>` : */ ''}
                     </div>
                   </div>
                 `;
@@ -1985,7 +2127,7 @@
         if (order.items && order.items.length > 0) {
           itemsEl.innerHTML = order.items.map(item => `
             <div class="d-flex mt-3 align-items-center" style="gap: 12px;">
-              <img src="img/product/product1.png" style="width:40px; height:40px; border-radius:4px; object-fit: cover;" onerror="this.src='img/product/product1.png'">
+              <img src="${item.productId ? `img/product/${item.productId}.jpg` : 'img/product/product1.png'}" style="width:40px; height:40px; border-radius:4px; object-fit: cover;" onerror="this.src='img/product/product1.png'">
               <div style="flex-grow:1;">
                 <div>${item.name} (${item.size || '100ml'})</div>
                 <div style="font-size:12px; color:#888;">Qty: ${item.qty}</div>
@@ -2214,14 +2356,14 @@
           btn.style.color = '#fff';
           btn.textContent = '₹ Submit Refund Request';
         } else if (type === 'exchange') {
-          icon.textContent = '⇄';
+          icon.textContent = '⇔';
           icon.style.color = '#3be0e0';
           title.textContent = 'Request Exchange — Order #RASA-' + orderId;
           desc.textContent = 'Tell us why you would like to exchange an item from this order. Our team will contact you within 24–48 hours.';
           note.textContent = 'Exchange is available within 7 days of delivery. Please ensure the product is unused and in original packaging.';
           btn.style.background = 'linear-gradient(135deg, #0a6060, #3be0e0)';
           btn.style.color = '#000';
-          btn.textContent = '⇄ Submit Exchange Request';
+          btn.textContent = '⇔ Submit Exchange Request';
         }
 
         $('#order_action_modal').modal('show');
@@ -2561,6 +2703,13 @@
         if (typeof AOS !== 'undefined') {
           AOS.init({ once: true });
         }
+
+        // Prevent "Blocked aria-hidden on an element because its descendant retained focus" warning
+        $(document).on('hide.bs.modal', '.modal', function () {
+          if (document.activeElement && this.contains(document.activeElement)) {
+            document.activeElement.blur();
+          }
+        });
       });
 
     </script>
