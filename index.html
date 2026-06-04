@@ -871,8 +871,11 @@
                 const email = document.getElementById('subscribeEmail').value;
                 const msgDiv = document.getElementById('subscribeMessage');
                 msgDiv.textContent = "Subscribing...";
+                const subscribeUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                  ? 'http://localhost:8080/api/subscribe?email=' + encodeURIComponent(email)
+                  : '/api/subscribe?email=' + encodeURIComponent(email);
 
-                fetch('http://localhost:8080/api/subscribe?email=' + encodeURIComponent(email), {
+                fetch(subscribeUrl, {
                   method: 'POST'
                 })
                   .then(response => response.json().then(data => ({ status: response.status, body: data })))

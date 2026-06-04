@@ -2823,14 +2823,10 @@
 
     function getCouponApiBase() {
       var hostname = window.location.hostname;
-      var port = window.location.port;
-      if (window.location.protocol === 'file:' || hostname === '') {
-        return 'http://localhost:8080/api/coupons';
+      if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        return `http://${hostname}:8080/api/coupons`;
       }
-      if (port === '8080' || port === '8081') {
-        return '/api/coupons';
-      }
-      return `http://${hostname || 'localhost'}:8080/api/coupons`;
+      return '/api/coupons';
     }
 
     async function loadCartCoupons() {

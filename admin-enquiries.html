@@ -655,7 +655,7 @@
 
   <script>
     let currentEnquiries = [];
-    const API_BASE = window.location.hostname ? `http://${window.location.hostname}:8080/api/admin` : 'http://localhost:8080/api/admin';
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:8080/api/admin` : '/api/admin';
 
     async function loadAdminEnquiries(page = 0) {
       const tbody = document.getElementById('adminEnquiriesBody');

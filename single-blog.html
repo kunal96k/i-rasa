@@ -1090,7 +1090,7 @@
 			}
 			
 			// Sidebar Newsletter subscription hookup to Spring Boot Backend API
-			const SUBSCRIBE_API = window.location.hostname ? `http://${window.location.hostname}:8080/api/subscribe` : 'http://localhost:8080/api/subscribe';
+			const SUBSCRIBE_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:8080/api/subscribe` : '/api/subscribe';
 			const newsletterEmailInput = document.getElementById('newsletter-email-input');
 			const newsletterSubscribeBtn = document.getElementById('newsletter-subscribe-btn');
 			

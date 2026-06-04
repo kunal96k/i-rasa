@@ -1,5 +1,5 @@
 // Contact form handler with API integration and toast notifications
-const API_BASE_CONTACT = window.location.hostname ? `http://${window.location.hostname}:8080` : 'http://localhost:8080';
+const API_BASE_CONTACT = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:8080` : '';
 
 document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contactForm');
