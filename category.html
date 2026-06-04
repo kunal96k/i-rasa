@@ -603,6 +603,16 @@
         <p>Hand-picked bestsellers from our 100+ collection — all at one unbeatable price</p>
       </div>
 
+      <!-- Search Bar -->
+      <div class="row mb-4 justify-content-center" data-aos="fade-up">
+        <div class="col-md-6 col-lg-5">
+          <div class="search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" id="product-search" class="search-input" placeholder="Search from 50+ premium fragrances..." oninput="handleSearch()">
+          </div>
+        </div>
+      </div>
+
       <!-- Category Filter Tabs -->
       <div class="mens-tabs" data-aos="fade-up" data-aos-delay="100">
         <button class="tab-btn active" onclick="filterCategory('all', this)">All (50+)</button>
@@ -1857,21 +1867,65 @@
   <script>AOS.init({ once: true });</script>
 
   <script>
-    // ── Filter Tabs ──
+    // ── Filter Tabs & Search ──
+    var currentCategory = 'all';
+    var searchQuery = '';
+
+    function debounce(func, delay) {
+      var timeoutId;
+      return function () {
+        var context = this;
+        var args = arguments;
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(function () {
+          func.apply(context, args);
+        }, delay);
+      };
+    }
+
     function filterCategory(cat, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      if (btn) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      currentCategory = cat || currentCategory;
+      applyFilters();
+    }
+
+    var handleSearch = debounce(function() {
+      var searchInput = document.getElementById('product-search');
+      if (searchInput) {
+        searchQuery = searchInput.value;
+        applyFilters();
+      }
+    }, 250);
+
+    function applyFilters() {
       var items = document.querySelectorAll('.product-grid-item');
       var visible = 0;
+      var q = searchQuery.toLowerCase().trim();
+      
       items.forEach(function (item) {
-        if (cat === 'all' || item.dataset.category === cat) {
+        var titleEl = item.querySelector('.product-title');
+        var title = titleEl ? titleEl.textContent.toLowerCase() : '';
+        var scentCategoryEl = item.querySelector('.scent-category');
+        var scentCategory = scentCategoryEl ? scentCategoryEl.textContent.toLowerCase() : '';
+
+        var matchesCategory = currentCategory === 'all' || item.dataset.category === currentCategory;
+        var matchesSearch = title.includes(q) || scentCategory.includes(q);
+
+        if (matchesCategory && matchesSearch) {
           item.classList.remove('hidden');
           visible++;
         } else {
           item.classList.add('hidden');
         }
       });
-      document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+
+      var noResults = document.getElementById('no-results');
+      if (noResults) {
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+      }
       if (typeof AOS !== 'undefined') AOS.refresh();
     }
 

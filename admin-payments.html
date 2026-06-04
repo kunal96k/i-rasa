@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    :root { --admin-bg: #0a0a0a; --admin-surface: #111111; --admin-text: #e0e0e0; --admin-gold: #d4af37; --admin-gold-hover: #e5c158; --admin-border: #333333; }
+    :root { --admin-bg: #0a0a0a; --admin-surface: #111111; --admin-surface-light: #1a1a1a; --admin-text: #e0e0e0; --admin-gold: #d4af37; --admin-gold-hover: #e5c158; --admin-border: #333333; }
+    * { box-sizing: border-box; }
     body { background-color: var(--admin-bg); color: var(--admin-text); font-family: 'Inter', sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: var(--admin-bg); }
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -22,47 +22,53 @@
     body.modal-open { padding-right: 0 !important; }
     h1, h2, h3, h4, h5, h6 { color: var(--admin-gold); font-family: 'Cinzel', serif; }
     .admin-sidebar { width: 260px; background-color: var(--admin-surface); border-right: 1px solid var(--admin-border); display: flex; flex-direction: column; flex-shrink: 0; }
-    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); }
-    .admin-nav { flex-grow: 1; padding: 20px 0; overflow-y: auto; }
-    .admin-nav-item { padding: 12px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
-    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212, 175, 55, 0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); }
-    .admin-nav-item i { margin-right: 15px; font-size: 1.2rem; width: 24px; text-align: center; }
+    .admin-logo { text-align: center; border-bottom: 1px solid var(--admin-border); padding: 16px 0 12px; }
+    .admin-nav { flex-grow: 1; padding: 12px 0; overflow-y: auto; }
+    .nav-section-label { padding: 14px 24px 4px; font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    .nav-badge { background: var(--admin-gold); color: #000; font-size: 10px; font-weight: 700; border-radius: 10px; padding: 1px 7px; margin-left: auto; }
+    .admin-nav-item { padding: 10px 24px; display: flex; align-items: center; color: var(--admin-text); text-decoration: none; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; font-size: 0.82rem; }
+    .admin-nav-item:hover, .admin-nav-item.active { background-color: rgba(212, 175, 55, 0.1); color: var(--admin-gold); border-left-color: var(--admin-gold); text-decoration: none; }
+    .admin-nav-item i { margin-right: 13px; font-size: 1.1rem; width: 22px; text-align: center; flex-shrink: 0; }
     .admin-main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
     .admin-header { height: 70px; background-color: var(--admin-surface); border-bottom: 1px solid var(--admin-border); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; flex-shrink: 0; }
-    .admin-content { flex-grow: 1; padding: 30px; overflow-y: auto; }
+    .admin-content { flex-grow: 1; padding: 24px 30px; overflow-y: auto; }
     .admin-card { background-color: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 8px; padding: 20px; margin-bottom: 24px; }
     .admin-table { width: 100%; color: var(--admin-text); border-collapse: collapse; }
     .admin-table th { text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--admin-border); color: var(--admin-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
     .admin-table td { padding: 15px; border-bottom: 1px solid var(--admin-border); vertical-align: middle; font-size: 0.95rem; }
     .admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
-    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 600; cursor: pointer; transition: background-color 0.3s; margin: 5px; }
+    .admin-btn { background-color: var(--admin-gold); color: #000; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+    .admin-btn:hover { background-color: var(--admin-gold-hover); }
     .admin-btn-outline { background-color: transparent; color: var(--admin-gold); border: 1px solid var(--admin-gold); }
+    .admin-btn-outline:hover { background-color: rgba(212,175,55,0.1); }
   </style>
 </head>
 <body>
 
   <aside class="admin-sidebar">
     <div class="admin-logo">
-      <a class="navbar-brand logo_h" href="index.html" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
-        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
-          rasa</span>
+      <a href="index.html" style="display:flex;flex-direction:column;align-items:center;text-decoration:none;padding:4px 0 6px;">
+        <span style="font-family:'Samarkan',sans-serif;text-transform:lowercase;font-size:30px;color:#d4af37;letter-spacing:2px;">i rasa</span>
+        <span style="font-size:9px;color:#555;letter-spacing:3px;text-transform:uppercase;margin-top:-2px;">Perfumes</span>
       </a>
     </div>
-    
     <nav class="admin-nav">
+      <div class="nav-section-label">Main</div>
       <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
-      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets</a>
+      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders <span class="nav-badge" id="sidebarPendingOrders" style="display:none;"></span></a>
+      <a href="admin-payments.html" class="admin-nav-item active"><i class="ti-credit-card"></i> Payments <span class="nav-badge" id="sidebarPendingPay" style="display:none;"></span></a>
+      <div class="nav-section-label">Support</div>
+      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets <span class="nav-badge" id="sidebarTickets" style="display:none;"></span></a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
-      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders</a>
-      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons & Offers</a>
-      <a href="admin-payments.html" class="admin-nav-item active"><i class="ti-credit-card"></i> Payments</a>
+      <div class="nav-section-label">Management</div>
+      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons &amp; Offers</a>
       <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
       <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
+      <div class="nav-section-label">Analytics</div>
       <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
     </nav>
-    
-    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
-      <button class="admin-btn admin-btn-outline" style="width: 100%;" onclick="window.location.href='index.html'">
+    <div style="padding:16px;border-top:1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline" style="width:100%;justify-content:center;" onclick="if(typeof AuthGuard!=='undefined') AuthGuard.logout(); else window.location.href='login.html?logout=true';">
         <i class="ti-power-off"></i> Logout
       </button>
     </div>
@@ -70,9 +76,18 @@
 
   <main class="admin-main">
     <header class="admin-header">
-      <h4 style="margin: 0;">Payment Transactions</h4>
-      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
-        <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center;"><i class="ti-user" style="color: #fff;"></i></div>
+      <div>
+        <h4 style="margin:0;font-size:15px;letter-spacing:1px;"><i class="ti-credit-card" style="margin-right:8px;"></i> Payment Transactions</h4>
+        <p style="margin:0;font-size:10px;color:#555;">Verify and manage all payments</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="text-align:right;">
+          <div style="font-size:13px;font-weight:600;color:#fff;" id="adminName">—</div>
+          <div style="font-size:10px;color:var(--admin-gold);">Admin Panel</div>
+        </div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#1e1e1e;border:1px solid #333;display:flex;align-items:center;justify-content:center;">
+          <i class="ti-user" style="color:var(--admin-gold);"></i>
+        </div>
       </div>
     </header>
 
@@ -161,15 +176,27 @@
             <div class="col-md-6">
               <h6 class="mb-3 text-gold" style="font-family: 'Cinzel', serif;">Order & Transaction Info</h6>
               
-              <div style="font-size: 0.9rem; line-height: 1.6;">
+              <div style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px;">
                 <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
                 <p><strong>Customer:</strong> <span id="modalCustomerEmail"></span></p>
-                <p><strong>Amount:</strong> <span id="modalAmount" class="text-gold" style="font-weight: 600;"></span></p>
                 <p><strong>Date/Time:</strong> <span id="modalDate"></span></p>
                 <p><strong>Payment Method:</strong> <span id="modalMethod" class="badge badge-info"></span></p>
               </div>
+
+              <!-- Payment Summary Breakdown -->
+              <div style="background:#111; border:1px solid #222; border-radius:8px; padding:14px; margin-bottom:15px;">
+                <div style="color:#d4af37; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;"><i class="ti-credit-card"></i> Financial Breakdown</div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Subtotal:</span> <span id="modalSubtotal"></span></div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Shipping:</span> <span id="modalShipping"></span></div>
+                <div id="modalHandlingRow" style="display:none; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Handling Charge:</span> <span id="modalHandling"></span></div>
+                <div id="modalPlatformRow" style="display:none; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Platform Fee:</span> <span id="modalPlatform"></span></div>
+                <div id="modalPlatformServicesRow" style="display:none; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Platform Services:</span> <span id="modalPlatformServices"></span></div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Discount:</span> <span id="modalDiscount" style="color:#4caf50;"></span></div>
+                <div id="modalCouponRow" style="display:none; justify-content:space-between; margin-bottom:4px; font-size:13px;"><span style="color:#aaa;">Coupon Applied:</span> <span id="modalCoupon" style="color:#d4af37;"></span></div>
+                <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:6px; border-top:1px solid #333; font-weight:700; font-size:15px; color:#d4af37;"><span>Total Amount:</span> <span id="modalAmount"></span></div>
+              </div>
               
-              <hr style="border-color: #333;">
+              <hr style="border-color: #333; margin-top:0;">
               
               <form id="paymentForm" onsubmit="savePaymentChanges(event)">
                 <div class="form-group">
@@ -418,12 +445,47 @@
 
       document.getElementById('modalOrderId').innerText = '#' + payment.orderId;
       document.getElementById('modalCustomerEmail').innerText = payment.userEmail || 'N/A';
-      document.getElementById('modalAmount').innerText = payment.total ? `₹${payment.total.toFixed(2)}` : '₹0.00';
       document.getElementById('modalDate').innerText = new Date(payment.createdAt).toLocaleString('en-IN');
       
       const methodEl = document.getElementById('modalMethod');
       methodEl.innerText = payment.paymentMethod || 'N/A';
       methodEl.className = 'badge ' + (payment.paymentMethod && payment.paymentMethod.toUpperCase() === 'UPI' ? 'badge-warning' : (payment.paymentMethod && payment.paymentMethod.toUpperCase() === 'COD' ? 'badge-info' : 'badge-success'));
+
+      // Populate financial breakdown
+      document.getElementById('modalSubtotal').innerText = payment.subtotal ? `₹${payment.subtotal.toFixed(2)}` : '₹0.00';
+      document.getElementById('modalShipping').innerText = payment.shipping > 0 ? `₹${payment.shipping.toFixed(2)}` : 'FREE';
+      
+      if (payment.handlingCharge && payment.handlingCharge > 0) {
+        document.getElementById('modalHandlingRow').style.display = 'flex';
+        document.getElementById('modalHandling').innerText = `₹${payment.handlingCharge.toFixed(2)}`;
+      } else {
+        document.getElementById('modalHandlingRow').style.display = 'none';
+      }
+      
+      if (payment.platformFee && payment.platformFee > 0) {
+        document.getElementById('modalPlatformRow').style.display = 'flex';
+        document.getElementById('modalPlatform').innerText = `₹${payment.platformFee.toFixed(2)}`;
+      } else {
+        document.getElementById('modalPlatformRow').style.display = 'none';
+      }
+
+      if (payment.platformServicesFee && payment.platformServicesFee > 0) {
+        document.getElementById('modalPlatformServicesRow').style.display = 'flex';
+        document.getElementById('modalPlatformServices').innerText = `₹${payment.platformServicesFee.toFixed(2)}`;
+      } else {
+        document.getElementById('modalPlatformServicesRow').style.display = 'none';
+      }
+
+      document.getElementById('modalDiscount').innerText = payment.discount > 0 ? `-₹${payment.discount.toFixed(2)}` : '₹0.00';
+      
+      if (payment.couponCode) {
+        document.getElementById('modalCouponRow').style.display = 'flex';
+        document.getElementById('modalCoupon').innerText = payment.couponCode;
+      } else {
+        document.getElementById('modalCouponRow').style.display = 'none';
+      }
+      
+      document.getElementById('modalAmount').innerText = payment.total ? `₹${payment.total.toFixed(2)}` : '₹0.00';
 
       document.getElementById('modalTransactionId').value = payment.transactionId || '';
       document.getElementById('modalStatusSelect').value = payment.status || 'PENDING';

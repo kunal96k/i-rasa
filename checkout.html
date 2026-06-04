@@ -612,10 +612,15 @@
     async function revalidateCoupon() {
       if (!appliedCouponCode) return;
       try {
+        const items = CartEngine.getItems();
         const res = await fetch(`${COUPON_API}/validate`, {
           method: 'POST', credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code: appliedCouponCode, cartTotal: CartEngine.getTotal() })
+          body: JSON.stringify({ 
+            code: appliedCouponCode, 
+            cartTotal: CartEngine.getTotal(),
+            items: items.map(i => ({ productId: i.id, name: i.name, price: i.price, qty: i.qty, size: i.size }))
+          })
         });
         const data = await res.json();
         if (data.success) {
@@ -771,11 +776,43 @@
         return;
       }
 
+      const isRefillCoupon = code.toUpperCase() === 'REFILL100' || code.toUpperCase() === 'REFIL100';
+      if (isRefillCoupon) {
+        const items = CartEngine.getItems();
+        const knownAttars = new Set([
+          "dove", "mogra (attarfull)", "kasturi", "white london", "green musk", 
+          "latafa khamrha kawa", "parijat", "darbar", "gold sandel", "ice blue", 
+          "sonchafa", "ambar oud", "shanaya gold", "shanaya", "ponds", "charli black", 
+          "chocolate", "vanilla", "tulsi", "kapoor", "dalchini", "ratrani", 
+          "musk a tahara", "whtie sandel", "mhaisur sandal", "kevd", "kesharchandan", 
+          "musk rose", "black rose", "ice barg", "belpaan", "musk saffi", 
+          "london light", "heena", "lemongrass", "lemon", "oreng", "pineapple", 
+          "cigar", "coffee", "jasmine", "lavender", "open", "green ajmeri", 
+          "555", "white oud", "arabic oud", "blackberry", "kala bhoot"
+        ]);
+        const hasPerfume = items.some(i => {
+          const nameLower = (i.name || i.id || '').toLowerCase();
+          return !knownAttars.has(nameLower);
+        });
+        if (!hasPerfume) {
+          if (msg) {
+            msg.style.color = '#ff4d4d';
+            msg.textContent = '❌ Coupon is only eligible for orders containing perfumes.';
+          }
+          return;
+        }
+      }
+
       try {
+        const items = CartEngine.getItems();
         const res = await fetch(`${COUPON_API}/validate`, {
           method: 'POST', credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code, cartTotal: CartEngine.getTotal() })
+          body: JSON.stringify({ 
+            code, 
+            cartTotal: CartEngine.getTotal(),
+            items: items.map(i => ({ productId: i.id, name: i.name, price: i.price, qty: i.qty, size: i.size }))
+          })
         });
         const data = await res.json();
         if (data.success) {
@@ -785,7 +822,11 @@
           sessionStorage.setItem('appliedDiscount', appliedDiscount);
           if (msg) {
             msg.style.color = '#4caf50';
-            msg.innerHTML = `✓ Coupon <strong>${code.toUpperCase()}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <a href=\"javascript:void(0);\" onclick=\"removeCoupon()\" style=\"color:#ff4d4d; margin-left:10px; text-decoration:underline;\">[Remove]</a>`;
+            if (isRefillCoupon) {
+              msg.innerHTML = `✓ Coupon <strong>${code.toUpperCase()}</strong> applied! Eligible for Rs. 100 refill discount next time. <a href=\"javascript:void(0);\" onclick=\"removeCoupon()\" style=\"color:#ff4d4d; margin-left:10px; text-decoration:underline;\">[Remove]</a>`;
+            } else {
+              msg.innerHTML = `✓ Coupon <strong>${code.toUpperCase()}</strong> applied! You saved Rs. ${appliedDiscount.toFixed(2)} <a href=\"javascript:void(0);\" onclick=\"removeCoupon()\" style=\"color:#ff4d4d; margin-left:10px; text-decoration:underline;\">[Remove]</a>`;
+            }
           }
           renderCheckoutCart();
         } else {

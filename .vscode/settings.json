@@ -1,0 +1,10 @@
+{
+  "liveServer.settings.ignoreFiles": [
+    "**/node_modules/**",
+    ".vscode/**",
+    "**/rasa/**",
+    "**/target/**",
+    "**/upload/**",
+    "**/*.log"
+  ]
+}

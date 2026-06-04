@@ -116,6 +116,19 @@
           <h5 style="margin: 0;">Manage Coupons</h5>
           <button class="admin-btn" data-toggle="modal" data-target="#addCouponModal"><i class="ti-plus"></i> Create Coupon</button>
         </div>
+
+        <!-- Search and Export Toolbar -->
+        <div class="row mb-3" style="gap:10px; margin: 0; align-items: center;">
+          <div class="col-md-4 p-0">
+            <div class="position-relative">
+              <input type="text" class="form-control-admin" id="couponSearchInput" placeholder="Search by code or description..." oninput="triggerSearch()" style="padding-left: 35px;">
+              <i class="ti-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+            </div>
+          </div>
+          <div class="col-md-8 p-0 text-right">
+            <button class="admin-btn admin-btn-outline" onclick="exportToCSV()"><i class="ti-download"></i> Export CSV</button>
+          </div>
+        </div>
         
         <div style="overflow-x: auto;">
           <table class="admin-table">
@@ -124,13 +137,14 @@
                 <th>Code</th>
                 <th>Discount</th>
                 <th>Min Cart Value</th>
-                <th>Validity</th>
+                <th>Expiry Date</th>
+                <th>Created At</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody id="adminCouponsBody">
-              <tr><td colspan="6" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading...</td></tr>
+              <tr><td colspan="7" style="text-align:center;"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading...</td></tr>
             </tbody>
           </table>
         </div>
@@ -157,16 +171,26 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Discount Amount (₹)</label>
-                <input type="number" step="0.01" class="form-control-admin" id="discountAmount">
+                <input type="number" step="0.01" class="form-control-admin" id="discountAmount" placeholder="e.g. 100 (or 0 for Refill)">
               </div>
               <div class="col-md-6 mb-3">
                 <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Discount Percentage (%)</label>
-                <input type="number" step="0.01" class="form-control-admin" id="discountPercentage">
+                <input type="number" step="0.01" class="form-control-admin" id="discountPercentage" placeholder="e.g. 10">
               </div>
             </div>
             <div class="form-group mb-3">
               <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Minimum Cart Value (₹)</label>
-              <input type="number" step="0.01" class="form-control-admin" id="minCartValue" required>
+              <input type="number" step="0.01" class="form-control-admin" id="minCartValue" placeholder="0 if none">
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Validity Duration</label>
+                <input type="text" class="form-control-admin" id="validity" placeholder="e.g. All Time, 30 Days">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Discount Tagline / Tag</label>
+                <input type="text" class="form-control-admin" id="discountTag" placeholder="e.g. ♻️ Bottle Refill Offer">
+              </div>
             </div>
             <div class="form-group mb-3">
               <label style="color:#aaa; font-size:12px; text-transform:uppercase;">Description / Tagline</label>
@@ -183,6 +207,24 @@
     </div>
   </div>
 
+  <!-- View Details Modal -->
+  <div class="modal fade" id="viewCouponModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background:#0a0a0a; border: 1px solid #d4af37; color:#fff;">
+        <div class="modal-header" style="border-bottom: 1px solid #333;">
+          <h5 style="color:#d4af37; margin-bottom:0;" id="viewModalTitle">Coupon Details</h5>
+          <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>
+        </div>
+        <div class="modal-body p-4" id="viewCouponModalBody">
+          <!-- Populated dynamically -->
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #333; padding: 10px 20px;">
+          <button class="admin-btn admin-btn-outline" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="js/admin-alert.js"></script>
@@ -193,23 +235,44 @@
       ? `http://${window.location.hostname}:8080/api/admin/coupons` 
       : '/api/admin/coupons';
 
+    let couponsCache = [];
+    let currentSearch = '';
+    let searchTimeout = null;
+
+    function triggerSearch() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        currentSearch = document.getElementById('couponSearchInput').value.trim();
+        loadAdminCoupons(0);
+      }, 300);
+    }
+
     async function loadAdminCoupons(page = 0) {
       const tbody = document.getElementById('adminCouponsBody');
       const pagContainer = document.getElementById('adminCouponsPagination');
       
       try {
-        const res = await fetch(`${API_BASE}?page=${page}&size=10`, { credentials: 'include' });
+        const url = `${API_BASE}?page=${page}&size=10${currentSearch ? '&search=' + encodeURIComponent(currentSearch) : ''}`;
+        const res = await fetch(url, { credentials: 'include' });
         const data = await res.json();
         
         if (res.ok && data.success && data.data.content && data.data.content.length > 0) {
+          couponsCache = data.data.content;
           tbody.innerHTML = data.data.content.map(c => {
             const statusBadge = c.active 
               ? '<span class="badge-status badge-success">Active</span>' 
               : '<span class="badge-status badge-danger">Inactive</span>';
               
-            let discountStr = '';
-            if(c.discountAmount && c.discountAmount > 0) discountStr = `₹${c.discountAmount} OFF`;
-            else if(c.discountPercentage && c.discountPercentage > 0) discountStr = `${c.discountPercentage}% OFF`;
+            let discountStr = 'Refill Offer';
+            if (c.code === 'REFILL100' || c.code === 'REFIL100') {
+              discountStr = 'Refill (₹0 Now)';
+            } else if (c.discountAmount && c.discountAmount > 0) {
+              discountStr = `₹${c.discountAmount} OFF`;
+            } else if (c.discountPercentage && c.discountPercentage > 0) {
+              discountStr = `${c.discountPercentage}% OFF`;
+            }
+            
+            const createdDate = c.createdAt ? new Date(c.createdAt).toLocaleDateString('en-IN') : 'N/A';
             
             return `
               <tr>
@@ -217,10 +280,12 @@
                 <td>${discountStr}</td>
                 <td>₹${c.minCartValue || 0}</td>
                 <td>${c.expiryDate ? new Date(c.expiryDate).toLocaleDateString() : 'Never'}</td>
+                <td>${createdDate}</td>
                 <td>${statusBadge}</td>
                 <td>
+                  <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="viewCouponDetails(${c.id})" title="View Details"><i class="ti-eye"></i></button>
                   <button class="admin-btn admin-btn-sm admin-btn-outline" onclick="toggleCoupon(${c.id}, ${!c.active})" title="Toggle Active Status"><i class="ti-reload"></i></button>
-                  <button class="admin-btn admin-btn-sm" style="background:#ff4d4d; border-color:#ff4d4d;" onclick="deleteCoupon(${c.id})" title="Delete"><i class="ti-trash"></i></button>
+                  <button class="admin-btn admin-btn-sm" style="background:#ff4d4d; border-color:#ff4d4d; color: #fff;" onclick="deleteCoupon(${c.id})" title="Delete"><i class="ti-trash"></i></button>
                 </td>
               </tr>
             `;
@@ -238,11 +303,133 @@
           }
           pagContainer.innerHTML = pagHtml;
         } else {
-          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888;">No coupons found.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#888;">No coupons found.</td></tr>';
           pagContainer.innerHTML = '';
         }
       } catch(err) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#ff4d4d;">Failed to load coupons.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#ff4d4d;">Failed to load coupons.</td></tr>';
+      }
+    }
+
+    function viewCouponDetails(id) {
+      const c = couponsCache.find(coupon => coupon.id == id);
+      if (!c) {
+        alert('Coupon details not found');
+        return;
+      }
+      
+      let discountStr = 'No Direct Discount';
+      if (c.code === 'REFILL100' || c.code === 'REFIL100') {
+        discountStr = 'Refill Offer (₹0 current order impact, noted on invoice for next visit)';
+      } else if (c.discountAmount && c.discountAmount > 0) {
+        discountStr = `₹${c.discountAmount} Off`;
+      } else if (c.discountPercentage && c.discountPercentage > 0) {
+        discountStr = `${c.discountPercentage}% Off`;
+      }
+      
+      const createdDateStr = c.createdAt ? new Date(c.createdAt).toLocaleString('en-IN') : 'N/A';
+      const expiryDateStr = c.expiryDate ? new Date(c.expiryDate).toLocaleString('en-IN') : 'Never';
+      
+      const html = `
+        <div style="font-family:'Inter', sans-serif; font-size:14px; line-height:1.6;">
+          <div class="mb-3 d-flex justify-content-between border-bottom pb-2" style="border-color:#333 !important;">
+            <strong style="color:#d4af37;">Code:</strong>
+            <span style="font-weight:700; letter-spacing:1px; font-size:16px;">${c.code}</span>
+          </div>
+          <div class="mb-3 d-flex justify-content-between border-bottom pb-2" style="border-color:#333 !important;">
+            <strong style="color:#aaa;">Discount Type:</strong>
+            <span>${discountStr}</span>
+          </div>
+          <div class="mb-3 d-flex justify-content-between border-bottom pb-2" style="border-color:#333 !important;">
+            <strong style="color:#aaa;">Min Cart Value:</strong>
+            <span>₹${c.minCartValue || 0}</span>
+          </div>
+          <div class="mb-3 d-flex justify-content-between border-bottom pb-2" style="border-color:#333 !important;">
+            <strong style="color:#aaa;">Expiry Date:</strong>
+            <span>${expiryDateStr}</span>
+          </div>
+          <div class="mb-3 d-flex justify-content-between border-bottom pb-2" style="border-color:#333 !important;">
+            <strong style="color:#aaa;">Created At:</strong>
+            <span>${createdDateStr}</span>
+          </div>
+          <div class="mb-3 d-flex justify-content-between border-bottom pb-2" style="border-color:#333 !important;">
+            <strong style="color:#aaa;">Validity Duration:</strong>
+            <span>${c.validity || 'All Time'}</span>
+          </div>
+          <div class="mb-3 d-flex justify-content-between border-bottom pb-2" style="border-color:#333 !important;">
+            <strong style="color:#aaa;">Discount Tagline:</strong>
+            <span>${c.discount || 'N/A'}</span>
+          </div>
+          <div class="mb-3 border-bottom pb-2" style="border-color:#333 !important;">
+            <strong style="color:#aaa; display:block; margin-bottom:4px;">Description:</strong>
+            <span style="color:#eee; font-style:italic;">${c.description || 'No description provided.'}</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <strong style="color:#aaa;">Status:</strong>
+            <span>${c.active ? '<span class="badge-status badge-success">Active</span>' : '<span class="badge-status badge-danger">Inactive</span>'}</span>
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('viewCouponModalBody').innerHTML = html;
+      $('#viewCouponModal').modal('show');
+    }
+
+    async function exportToCSV() {
+      try {
+        const url = `${API_BASE}?page=0&size=1000${currentSearch ? '&search=' + encodeURIComponent(currentSearch) : ''}`;
+        const res = await fetch(url, { credentials: 'include' });
+        const data = await res.json();
+        
+        if (!res.ok || !data.success || !data.data.content) {
+          alert('Failed to export coupons: ' + (data.message || 'Unknown error'));
+          return;
+        }
+        
+        const coupons = data.data.content;
+        if (coupons.length === 0) {
+          alert('No coupons to export');
+          return;
+        }
+        
+        // Define CSV headers
+        const headers = ['ID', 'Code', 'Discount', 'Min Cart Value', 'Expiry Date', 'Created At', 'Status', 'Description', 'Validity', 'Tagline'];
+        
+        // Generate CSV rows
+        const csvRows = [headers.join(',')];
+        for (const c of coupons) {
+          let discountStr = '0';
+          if (c.code === 'REFILL100' || c.code === 'REFIL100') discountStr = 'Refill Offer';
+          else if (c.discountAmount && c.discountAmount > 0) discountStr = `Rs. ${c.discountAmount}`;
+          else if (c.discountPercentage && c.discountPercentage > 0) discountStr = `${c.discountPercentage}%`;
+          
+          const row = [
+            c.id,
+            `"${c.code.replace(/"/g, '""')}"`,
+            `"${discountStr}"`,
+            c.minCartValue || 0,
+            c.expiryDate ? `"${new Date(c.expiryDate).toLocaleString()}"` : 'Never',
+            c.createdAt ? `"${new Date(c.createdAt).toLocaleString()}"` : 'N/A',
+            c.active ? 'Active' : 'Inactive',
+            `"${(c.description || '').replace(/"/g, '""')}"`,
+            `"${(c.validity || '').replace(/"/g, '""')}"`,
+            `"${(c.discount || '').replace(/"/g, '""')}"`
+          ];
+          csvRows.push(row.join(','));
+        }
+        
+        // Create file and download
+        const blob = new Blob([csvRows.join("\n")], { type: 'text/csv;charset=utf-8;' });
+        const encodedUri = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `coupons_export_${new Date().toISOString().slice(0,10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (err) {
+        console.error('Export error:', err);
+        alert('Network Error during CSV export');
       }
     }
 
@@ -274,6 +461,8 @@
         discountAmount: document.getElementById('discountAmount').value || null,
         discountPercentage: document.getElementById('discountPercentage').value || null,
         minCartValue: document.getElementById('minCartValue').value || 0,
+        validity: document.getElementById('validity').value || null,
+        discount: document.getElementById('discountTag').value || null,
         description: document.getElementById('description').value,
         expiryDate: document.getElementById('expiryDate').value || null,
         active: true

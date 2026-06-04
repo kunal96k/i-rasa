@@ -546,6 +546,16 @@
         <p>Premium handcrafted fragrances for the modern woman. Flat Rs. 499/- only.</p>
       </div>
 
+      <!-- Search Bar -->
+      <div class="row mb-4 justify-content-center" data-aos="fade-up">
+        <div class="col-md-6 col-lg-5">
+          <div class="search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" id="product-search" class="search-input" placeholder="Search from 25+ premium fragrances..." oninput="handleSearch()">
+          </div>
+        </div>
+      </div>
+
       <!-- Filter Tabs -->
       <div class="mens-tabs" data-aos="fade-up">
         <button class="tab-btn active" onclick="filterCategory('all', this)">All Scents</button>
@@ -1054,20 +1064,61 @@
 
 
 
+    // ── Filter Tabs & Search ──
+    var currentCategory = 'all';
+    var searchQuery = '';
+
+    function debounce(func, delay) {
+      var timeoutId;
+      return function () {
+        var context = this;
+        var args = arguments;
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(function () {
+          func.apply(context, args);
+        }, delay);
+      };
+    }
+
     function filterCategory(cat, btn) {
-      $('.tab-btn').removeClass('active');
-      $(btn).addClass('active');
+      if (btn) {
+        $('.tab-btn').removeClass('active');
+        $(btn).addClass('active');
+      }
+      currentCategory = cat || currentCategory;
+      applyFilters();
+    }
+
+    var handleSearch = debounce(function() {
+      var searchInput = document.getElementById('product-search');
+      if (searchInput) {
+        searchQuery = searchInput.value;
+        applyFilters();
+      }
+    }, 250);
+
+    function applyFilters() {
       var visible = 0;
+      var q = searchQuery.toLowerCase().trim();
+      
       $('.product-grid-item').each(function () {
-        if (cat === 'all' || $(this).data('category') === cat) {
-          $(this).removeClass('hidden');
+        var item = $(this);
+        var title = item.find('.product-title').text().toLowerCase();
+        var scentCategory = item.find('.scent-category').text().toLowerCase();
+
+        var matchesCategory = currentCategory === 'all' || item.data('category') === currentCategory;
+        var matchesSearch = title.indexOf(q) !== -1 || scentCategory.indexOf(q) !== -1;
+
+        if (matchesCategory && matchesSearch) {
+          item.removeClass('hidden');
           visible++;
         } else {
-          $(this).addClass('hidden');
+          item.addClass('hidden');
         }
       });
+
       $('#no-results').toggleClass('hidden', visible > 0);
-      AOS.refresh();
+      if (typeof AOS !== 'undefined') AOS.refresh();
     }
 
     async function addToCart(name) {

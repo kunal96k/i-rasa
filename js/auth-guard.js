@@ -310,6 +310,60 @@ const AuthGuard = {
                 this.logout();
             });
         }
+        this.updateSidebarBadges();
+    },
+
+    async updateSidebarBadges() {
+        const hasPendingOrdersBadge = document.getElementById('sidebarPendingOrders');
+        const hasPendingPayBadge = document.getElementById('sidebarPendingPay');
+        const hasTicketsBadge = document.getElementById('sidebarTickets');
+
+        if (!hasPendingOrdersBadge && !hasPendingPayBadge && !hasTicketsBadge) return;
+
+        try {
+            const apiBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:8080/api/admin` : '/api/admin';
+
+            // 1. Pending tickets & other overview items
+            const overviewRes = await fetch(`${apiBase}/dashboard/overview`, { credentials: 'include' });
+            if (overviewRes.ok) {
+                const overviewData = await overviewRes.json();
+                if (overviewData.success && overviewData.data) {
+                    const pt = Number(overviewData.data.pendingTickets || 0);
+                    if (hasTicketsBadge) {
+                        hasTicketsBadge.textContent = pt;
+                        hasTicketsBadge.style.display = pt > 0 ? '' : 'none';
+                    }
+                }
+            }
+
+            // 2. Pending orders
+            if (hasPendingOrdersBadge) {
+                const orderRes = await fetch(`${apiBase}/orders?page=0&size=1&status=PENDING`, { credentials: 'include' });
+                if (orderRes.ok) {
+                    const orderData = await orderRes.json();
+                    if (orderData.success && orderData.data) {
+                        const count = orderData.data.totalItems || 0;
+                        hasPendingOrdersBadge.textContent = count;
+                        hasPendingOrdersBadge.style.display = count > 0 ? '' : 'none';
+                    }
+                }
+            }
+
+            // 3. Pending payments
+            if (hasPendingPayBadge) {
+                const payRes = await fetch(`${apiBase}/payments?page=0&size=1&status=PENDING`, { credentials: 'include' });
+                if (payRes.ok) {
+                    const payData = await payRes.json();
+                    if (payData.success && payData.data) {
+                        const count = payData.data.totalItems || 0;
+                        hasPendingPayBadge.textContent = count;
+                        hasPendingPayBadge.style.display = count > 0 ? '' : 'none';
+                    }
+                }
+            }
+        } catch (e) {
+            console.error('Failed to update sidebar badges:', e);
+        }
     },
 
     async showAdminProfileModal() {
@@ -595,7 +649,7 @@ const AuthGuard = {
             <div class="modal-content" style="background:#0a0a0a; border:2px solid #d4af37; color:#fff; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
               <div class="modal-header" style="border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center;">
                 <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif; margin: 0;"><i class="ti-help-alt" style="margin-right: 8px;"></i>System Help & Support</h5>
-                <button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close" style="color:#fff; background:transparent; border:none; font-size:1.5rem; cursor: pointer; padding: 0; line-height: 1;">
+                <button type="button" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close" style="color:#fff; background:transparent; border:none; font-size:1.5rem; cursor: pointer; padding: 0; line-height: 1; margin-right: 15px;">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -603,8 +657,8 @@ const AuthGuard = {
                 <p style="color: #d4af37; font-weight: 600; margin-bottom: 15px;">Welcome to I Rasa Administrative Dashboard.</p>
                 <p>For system inquiries or administrative support, you can contact the technical support team:</p>
                 <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border: 1px solid #333; margin: 15px 0;">
-                  <div style="margin-bottom: 8px;"><i class="ti-email" style="color: #d4af37; margin-right: 10px;"></i><strong>Email:</strong> support@irasa.com</div>
-                  <div><i class="ti-headphone-alt" style="color: #d4af37; margin-right: 10px;"></i><strong>Hotline:</strong> +91 98765 43210 (Mon-Sat, 9AM - 6PM)</div>
+                  <div style="margin-bottom: 8px;"><i class="ti-email" style="color: #d4af37; margin-right: 10px;"></i><strong>Email:</strong> irasaperfumes@gmail.com</div>
+                  <div><i class="ti-headphone-alt" style="color: #d4af37; margin-right: 10px;"></i><strong>Hotline:</strong> +91 98238 33303 / +91 93718 33303 (Mon-Sat, 9AM - 6PM)</div>
                 </div>
                 <p style="font-size: 12px; color: #888; margin-top: 15px;">Version 1.0.0 (Stable) &bull; Built with Spring Boot</p>
                 <div style="display: flex; justify-content: flex-end; margin-top: 20px;">

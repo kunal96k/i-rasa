@@ -7649,3 +7649,37 @@ html {
     cursor: not-allowed;
     pointer-events: none;
 }
+
+/* ── SEARCH & FILTER CONTROLS ── */
+.search-wrapper {
+  max-width: 500px;
+  margin: 0 auto 30px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  background: #0d0d0d;
+  border: 1.5px solid #d4af37;
+  border-radius: 30px;
+  padding: 12px 25px 12px 50px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.search-input:focus {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  border-color: #ffd700;
+}
+
+.search-wrapper i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d4af37;
+  font-size: 16px;
+}

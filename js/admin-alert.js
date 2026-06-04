@@ -83,7 +83,7 @@ window.showConfirm = function(msg, title = 'Are you sure?') {
             <h5 style="color:#d4af37; font-family:'Cinzel', serif; font-weight:700; margin-bottom:0; letter-spacing:1px; font-size: 16px;">
               <i class="fas fa-exclamation-circle" style="margin-right:10px; color:#d4af37;"></i>${title}
             </h5>
-            <button type="button" class="close" data-dismiss="modal" style="color:#fff; font-size:1.5rem; opacity:0.8; outline:none; border:none; background:none;" id="${modalId}_close">&times;</button>
+            <button type="button" class="close" data-dismiss="modal" style="color:#fff; font-size:1.5rem; opacity:0.8; outline:none; border:none; background:none; margin-right: 15px;" id="${modalId}_close">&times;</button>
           </div>
           <div class="modal-body p-4" style="color:#e8dfc8; font-family:'Inter', sans-serif; font-size:14.5px; line-height:1.6; text-align:center;">
             ${msg}
