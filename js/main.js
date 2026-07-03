@@ -131,8 +131,12 @@ $(function () {
         var sticky = $('.header_area'),
           scroll = $(window).scrollTop();
 
-        if (scroll >= 100) sticky.addClass('navbar_fixed');
-        else sticky.removeClass('navbar_fixed');
+        if (window.innerWidth > 991) {
+          if (scroll >= 100) sticky.addClass('navbar_fixed');
+          else sticky.removeClass('navbar_fixed');
+        } else {
+          sticky.removeClass('navbar_fixed');
+        }
 
         if (scroll > window.innerHeight) {
           $('#scroll-top').addClass('visible');
@@ -244,7 +248,7 @@ $(document).ready(function () {
     }
   });
 
-  $('.navbar-collapse .nav-link:not(.dropdown-toggle)').on('click', function () {
+  $('.navbar-collapse .nav-link:not(.dropdown-toggle):not(.irasa-drop-trigger)').on('click', function () {
     if ($('.navbar-toggler').is(':visible')) {
       $('.navbar-collapse').collapse('hide');
     }

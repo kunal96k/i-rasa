@@ -87,51 +87,75 @@ const RasaAuth = {
     window.location.href = '/login.html';
   },
 
+  /** Get initials from full name (e.g., "Kunal Patil" → "KP") */
+  _getInitials(name) {
+    if (!name) return '?';
+    return name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0, 2).join('');
+  },
+
   /** Update profile icon in navbar */
   _updateProfileIcon(loggedIn) {
-    const icon = document.getElementById('profileNavIcon');
-    const img  = document.getElementById('profileNavImg');
-    const link = document.getElementById('profileNavLink');
+    const icon    = document.getElementById('profileNavIcon');
+    const img     = document.getElementById('profileNavImg');
+    const link    = document.getElementById('profileNavLink');
+    const wrapper = document.getElementById('profileNavWrapper');
 
     if (!link) return;
 
+    // Remove any existing initials avatar
+    const existingAvatar = link.querySelector('.irasa-initials-avatar');
+    if (existingAvatar) existingAvatar.remove();
+
     if (loggedIn && this.user) {
-      // Show profile avatar with initials
+      // 1. Hide default icon
       if (icon) icon.style.display = 'none';
-      if (img) {
-        // Use initials avatar via DiceBear or just show icon change
-        img.style.display = 'none';
-      }
-      // Change icon to person-check (filled user)
-      if (icon) {
-        icon.className = 'ti-user';
-        icon.style.display = 'inline-block';
-        icon.style.color = '#d4af37';
-      }
-      // Add gold ring + tooltip
-      link.style.background = 'rgba(212,175,55,0.15)';
-      link.title = `Logged in as ${this.user.fullName}`;
-      link.href = '/profile.html';
+      if (img)  img.style.display  = 'none';
 
-      // Show name badge if it exists
-      const badge = document.getElementById('profileNavBadge');
-      if (badge) {
-        badge.textContent = this.user.fullName.split(' ')[0];
-        badge.style.display = 'inline-block';
+      // 2. Show profile image if available, otherwise initials bubble
+      const profilePic = this.user.profilePicture || this.user.profilePic;
+      if (profilePic) {
+        if (img) {
+          img.src = profilePic;
+          img.style.display = 'block';
+          img.style.width   = '100%';
+          img.style.height  = '100%';
+          img.style.borderRadius = '50%';
+          img.style.objectFit = 'cover';
+        }
+      } else {
+        // Initials avatar bubble
+        const initials = this._getInitials(this.user.fullName);
+        const avatarEl = document.createElement('div');
+        avatarEl.className = 'irasa-initials-avatar';
+        avatarEl.textContent = initials;
+        link.appendChild(avatarEl);
       }
 
-      // Add logout to dropdown if exists
+      // 3. Gold ring on wrapper
+      if (wrapper) wrapper.classList.add('is-logged-in');
+
+      // 4. Update link tooltip and destination
+      link.title = `Hello, ${this.user.fullName.split(' ')[0]}!`;
+      link.href  = '/profile.html';
+
+      // 5. Build enhanced profile dropdown
       this._buildProfileDropdown(link);
+
     } else {
+      // Logged out state — show login icon
       if (icon) {
         icon.className = 'ti-user';
         icon.style.display = 'inline-block';
-        icon.style.color = '#d4af37';
+        icon.removeAttribute('style');
       }
       if (img) img.style.display = 'none';
-      link.style.background = 'transparent';
-      link.title = 'Login';
-      link.href = '/login.html';
+      if (wrapper) wrapper.classList.remove('is-logged-in');
+      link.title = 'Sign In';
+      link.href  = '/login.html';
+
+      // Remove profile dropdown if exists
+      const existingDrop = document.getElementById('rasaProfileDropdown');
+      if (existingDrop) existingDrop.remove();
     }
   },
 
@@ -143,26 +167,72 @@ const RasaAuth = {
     if (!wrapper) return;
     wrapper.style.position = 'relative';
 
+    const initials = this._getInitials(this.user.fullName);
+    const profilePic = this.user.profilePicture || this.user.profilePic;
+    const avatarHtml = profilePic
+      ? `<img src="${profilePic}" style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(212,175,55,0.4);" alt="Avatar">`
+      : `<div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#a46a00,#ffc559);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:700;font-size:16px;color:#000;border:2px solid rgba(212,175,55,0.4);flex-shrink:0;">${initials}</div>`;
+
     const dropdown = document.createElement('div');
     dropdown.id = 'rasaProfileDropdown';
     dropdown.style.cssText = `
-      position: absolute; top: calc(100% + 8px); right: 0;
-      background: #1a1a1a; border: 1px solid #2a2a2a;
-      border-radius: 12px; padding: 10px 0; min-width: 180px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      display: none; z-index: 9999; animation: fadeInDown 0.2s ease;
+      position: absolute; top: calc(100% + 10px); right: 0;
+      background: rgba(10,10,10,0.98);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 14px;
+      padding: 0;
+      overflow: hidden;
+      min-width: 230px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 0 1px rgba(212,175,55,0.05) inset;
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      display: none;
+      z-index: 9999;
+      animation: irasaFadeDown 0.22s ease;
     `;
     dropdown.innerHTML = `
-      <div style="padding:12px 16px;border-bottom:1px solid #2a2a2a;">
-        <div style="font-size:13px;font-weight:600;color:#e8dfc8;">${this.user.fullName}</div>
-        <div style="font-size:11px;color:#888;margin-top:2px;">${this.user.email}</div>
+      <style>
+        @keyframes irasaFadeDown {
+          from { opacity:0; transform:translateY(-8px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+        .irasa-drop-link {
+          display: flex; align-items: center; gap: 10px;
+          padding: 11px 18px; color: #c2c2c2; text-decoration: none;
+          font-size: 13.5px; font-family: 'Inter', sans-serif;
+          font-weight: 400; transition: all 0.18s ease;
+          border-left: 3px solid transparent;
+        }
+        .irasa-drop-link:hover {
+          background: rgba(212,175,55,0.06);
+          color: #ffc458;
+          border-left-color: #ffc458;
+        }
+        .irasa-drop-link i { font-size: 15px; width: 18px; text-align: center; }
+      </style>
+
+      <!-- User info header -->
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(212,175,55,0.1);background:rgba(212,175,55,0.03);">
+        ${avatarHtml}
+        <div style="overflow:hidden;">
+          <div style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#ede4cc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px;">${this.user.fullName}</div>
+          <div style="font-family:'Inter',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px;">${this.user.email}</div>
+        </div>
       </div>
-      <a href="/profile.html" style="display:block;padding:10px 16px;color:#ccc;text-decoration:none;font-size:13px;transition:0.2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#ccc'">
-        <i class="ti-user" style="margin-right:8px;"></i>My Profile
-      </a>
-      <a href="#" id="rasaLogoutBtn" style="display:block;padding:10px 16px;color:#ccc;text-decoration:none;font-size:13px;transition:0.2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#ccc'">
-        <i class="ti-power-off" style="margin-right:8px;"></i>Logout
-      </a>
+
+      <!-- Links -->
+      <div style="padding: 6px 0;">
+        <a href="/profile.html" class="irasa-drop-link">
+          <i class="ti-user"></i> My Profile
+        </a>
+        <a href="/cart.html" class="irasa-drop-link">
+          <i class="ti-shopping-cart"></i> My Cart
+        </a>
+        <div style="height:1px;background:rgba(212,175,55,0.08);margin:4px 0;"></div>
+        <a href="#" id="rasaLogoutBtn" class="irasa-drop-link" style="color:#ff7b7b;">
+          <i class="ti-power-off"></i> Sign Out
+        </a>
+      </div>
     `;
 
     wrapper.appendChild(dropdown);
@@ -192,3 +262,4 @@ const RasaAuth = {
 document.addEventListener('DOMContentLoaded', () => {
   RasaAuth.checkSession();
 });
+

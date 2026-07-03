@@ -169,70 +169,187 @@
   <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h" href="index.html">
-        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
-          rasa</span>
-      </a>
+        <div class="container-fluid irasa-nav-container">
+
+          <!-- ── LOGO (text-only) ── -->
+          <a class="navbar-brand logo_h irasa-logo" href="index.html">
+            <div class="irasa-logo__text">
+              <span class="irasa-logo__brand">I Rasa</span>
+              <span class="irasa-logo__tagline">The Perfect Perfume</span>
+            </div>
+          </a>
+
+          <!-- ── HAMBURGER (mobile) ── -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Shop</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
-                  <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
-                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a>
-                  </li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                </ul>
-              </li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Blog</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                </ul>
+
+            <!-- Mobile Menu Header -->
+            <div class="mobile-menu-header d-lg-none">
+              <div class="irasa-logo__text">
+                <span class="irasa-logo__brand">I Rasa</span>
+                <span class="irasa-logo__tagline">The Perfect Perfume</span>
+              </div>
+              <button class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+
+            <!-- ── CENTER NAV PILL ── -->
+            <ul class="nav navbar-nav menu_nav">
+
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <i class="ti-home irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Home</span>
+                </a>
               </li>
 
-              <li class="nav-item"><a class="nav-link" href="customize.html"
-                  style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;"><i class='fas fa-magic'></i>
-                  Customize</a></li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              <!-- Shop Dropdown (click-based) -->
+              <li class="nav-item submenu irasa-has-mega irasa-click-drop active">
+                <a href="javascript:void(0);" class="nav-link irasa-drop-trigger" role="button">
+                  <i class="ti-bag irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Shop</span>
+                  <svg class="irasa-chevron" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="m6 9 6 6 6-6" />
+                  </svg>
+                </a>
+                <div class="irasa-mega-drop">
+                  <div class="irasa-drop-header">
+                    <span class="irasa-drop-title">Our Collections</span>
+                    <span class="irasa-drop-sub">Handcrafted in Nashik</span>
+                  </div>
+                  <div class="irasa-drop-grid">
+                    <a href="category.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-male"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Men's Perfumes</strong>
+                        <small>Bold, lasting fragrances</small>
+                      </span>
+                    </a>
+                    <a href="categoryWomen.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-female"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Women's Perfumes</strong>
+                        <small>Floral &amp; oriental blends</small>
+                      </span>
+                    </a>
+                    <a href="attar.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-vial"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Attar Collection</strong>
+                        <small>Pure oil-based perfumes</small>
+                      </span>
+                    </a>
+                    <a href="single-product.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-star"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Product Details</strong>
+                        <small>Explore individual scents</small>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Blog Dropdown (click-based) -->
+              <li class="nav-item submenu irasa-has-mega irasa-click-drop">
+                <a href="javascript:void(0);" class="nav-link irasa-drop-trigger" role="button">
+                  <i class="ti-file irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Blogs</span>
+                  <svg class="irasa-chevron" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="m6 9 6 6 6-6" />
+                  </svg>
+                </a>
+                <div class="irasa-mega-drop irasa-mega-drop--sm">
+                  <div class="irasa-drop-header">
+                    <span class="irasa-drop-title">Our Stories</span>
+                    <span class="irasa-drop-sub">Fragrance insights</span>
+                  </div>
+                  <div class="irasa-drop-grid">
+                    <a href="blog.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-newspaper"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Blog</strong>
+                        <small>Scent stories &amp; tips</small>
+                      </span>
+                    </a>
+                    <a href="single-blog.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-book-open"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Blog Details</strong>
+                        <small>Read in-depth articles</small>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link irasa-customize-link" href="customize.html">
+                  <i class="fas fa-magic irasa-nav-icon"></i>
+                  <span class="irasa-nav-label">Customize</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">
+                  <i class="ti-mobile irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Contact</span>
+                </a>
+              </li>
+
             </ul>
 
-            <ul class="nav-shop">
+            <!-- ── RIGHT ACTIONS (desktop only) ── -->
+            <ul class="nav-shop irasa-nav-actions d-none d-lg-flex">
 
-              <!-- Cart -->
+              <!-- Cart Icon -->
               <li class="nav-item nav-shop-icon">
-                <a href="cart.html" class="nav-shop-icon-link">
+                <a href="cart.html" class="nav-shop-icon-link irasa-action-btn" title="Shopping Cart">
                   <i class="ti-shopping-cart"></i>
                   <span class="nav-shop__circle" style="display:none;">0</span>
                 </a>
               </li>
 
-              <!-- Profile Icon -->
-              <li class="nav-item nav-shop-icon">
-                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link">
+              <!-- Profile / Login Icon -->
+              <li class="nav-item nav-shop-icon irasa-profile-wrap" id="profileNavWrapper">
+                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link irasa-action-btn" title="Sign In">
                   <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
                   <i id="profileNavIcon" class="ti-user"></i>
                 </a>
+                <!-- Profile dropdown injected here by auth.js -->
               </li>
 
-              <!-- Shop Now — always last, full-width row -->
+              <!-- Shop Now CTA — no icon, matches Browse Now style -->
               <li class="nav-item nav-shop-btn">
-                <a class="button button-header" href="category.html">Shop Now</a>
+                <a class="button button-header irasa-shop-cta" href="category.html">Shop Now</a>
               </li>
 
             </ul>
+
+            <!-- Mobile Menu Footer -->
+            <div class="mobile-menu-footer d-lg-none">
+              <div class="mobile-menu-divider"></div>
+              <div class="mobile-menu-actions">
+                <a class="button button-header mobile-shop-cta" href="category.html">Shop Now</a>
+                <a href="cart.html" class="mobile-action-btn" title="Shopping Cart">
+                  <i class="ti-shopping-cart"></i>
+                </a>
+                <a href="login.html" class="mobile-action-btn" title="Sign In">
+                  <i class="ti-shift-right"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -267,13 +384,13 @@
 				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-6">
 					<div class="owl-carousel owl-theme s_Product_carousel">
 						<div class="single-prd-item">
-							<img id="mainProductImg" class="img-fluid" src="img/i_rasa_bottles/single-product_image.jfif" alt="">
+							<img id="mainProductImg" class="img-fluid" src="img/i_rasa_bottles/p5.png" alt="">
 						</div>
 						<!-- <div class="single-prd-item">
-							<img class="img-fluid" src="img/i_rasa_bottles/single-product_image.jfif" alt="">
+							<img class="img-fluid" src="img/i_rasa_bottles/p6.png" alt="">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/i_rasa_bottles/single-product_image.jfif" alt="">
+							<img class="img-fluid" src="img/i_rasa_bottles/p7.png" alt="">
 						</div> -->
 					</div>
 				</div>
@@ -326,7 +443,7 @@
 							<a class="button" href="javascript:void(0);" onclick="buyNowFromSingle()" style="height: 40px; line-height: 40px; padding: 0 30px; border-radius: 4px; background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; display: inline-block; border: none; text-decoration: none;">Buy Now</a>
 						</div>
 						<div data-aos="zoom-in" data-aos-duration="800" class="card_area d-flex align-items-center">
-							<a class="icon_btn" id="main_wishlist_btn" href="javascript:void(0);" onclick="WishlistEngine.toggle({ id: document.getElementById('productTitle').textContent.trim(), name: document.getElementById('productTitle').textContent.trim(), img: document.getElementById('mainProductImg')?.getAttribute('src') || 'img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif', price: parseInt(document.getElementById('productPrice')?.textContent.replace(/[^\d]/g, '')) || 499 })"><i class="ti-heart"></i></a>
+							<a class="icon_btn" id="main_wishlist_btn" href="javascript:void(0);" onclick="WishlistEngine.toggle({ id: document.getElementById('productTitle').textContent.trim(), name: document.getElementById('productTitle').textContent.trim(), img: document.getElementById('mainProductImg')?.getAttribute('src') || 'img/i_rasa_bottles/p1.png', price: parseInt(document.getElementById('productPrice')?.textContent.replace(/[^\d]/g, '')) || 499 })"><i class="ti-heart"></i></a>
 						</div>
 					</div>
 				</div>
@@ -681,15 +798,15 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif" alt="Dior Savage" class="perfume-img">
+							<img src="img/i_rasa_bottles/p2.png" alt="Dior Savage" class="perfume-img">
 							<div class="overlay-actions">
-								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Dior Savage" data-price="Rs. 499" data-img="img/i_rasa_bottles/gucci_flora.jfif">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Dior Savage" data-price="Rs. 499" data-img="img/i_rasa_bottles/p3.png">
 									<i class="ti-search"></i>
 								</button>
 								<button title="Add to Cart" onclick="addToCart('Dior Savage')">
 									<i class="ti-shopping-cart"></i>
 								</button>
-								<button title="Add to Wishlist" onclick="toggleWishlistCard('Dior Savage', 'img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif', 499)">
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Dior Savage', 'img/i_rasa_bottles/p4.png', 499)">
 									<i class="ti-heart"></i>
 								</button>
 							</div>
@@ -719,15 +836,15 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller" style="background: linear-gradient(135deg, #ff4d94 0%, #ff0066 100%) !important;"><i class="fas fa-gem"></i> Premium</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/i_rasa_bottles/gucci_flora.jfif" alt="Gucci Flora" class="perfume-img">
+							<img src="img/i_rasa_bottles/p5.png" alt="Gucci Flora" class="perfume-img">
 							<div class="overlay-actions">
-								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Gucci Flora" data-price="Rs. 499" data-img="img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Gucci Flora" data-price="Rs. 499" data-img="img/i_rasa_bottles/p6.png">
 									<i class="ti-search"></i>
 								</button>
 								<button title="Add to Cart" onclick="addToCart('Gucci Flora')">
 									<i class="ti-shopping-cart"></i>
 								</button>
-								<button title="Add to Wishlist" onclick="toggleWishlistCard('Gucci Flora', 'img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif', 499)">
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Gucci Flora', 'img/i_rasa_bottles/p7.png', 499)">
 									<i class="ti-heart"></i>
 								</button>
 							</div>
@@ -757,15 +874,15 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png" alt="Creed Avantes" class="perfume-img">
+							<img src="img/i_rasa_bottles/p1.png" alt="Creed Avantes" class="perfume-img">
 							<div class="overlay-actions">
-								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes" data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes" data-price="Rs. 499" data-img="img/i_rasa_bottles/p2.png">
 									<i class="ti-search"></i>
 								</button>
 								<button title="Add to Cart" onclick="addToCart('Creed Avantes')">
 									<i class="ti-shopping-cart"></i>
 								</button>
-								<button title="Add to Wishlist" onclick="toggleWishlistCard('Creed Avantes', 'img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png', 499)">
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Creed Avantes', 'img/i_rasa_bottles/p3.png', 499)">
 									<i class="ti-heart"></i>
 								</button>
 							</div>
@@ -795,15 +912,15 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png" alt="Rasassi Hawas" class="perfume-img">
+							<img src="img/i_rasa_bottles/p4.png" alt="Rasassi Hawas" class="perfume-img">
 							<div class="overlay-actions">
-								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas" data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png">
+								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas" data-price="Rs. 499" data-img="img/i_rasa_bottles/p5.png">
 									<i class="ti-search"></i>
 								</button>
 								<button title="Add to Cart" onclick="addToCart('Rasassi Hawas')">
 									<i class="ti-shopping-cart"></i>
 								</button>
-								<button title="Add to Wishlist" onclick="toggleWishlistCard('Rasassi Hawas', 'img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif', 499)">
+								<button title="Add to Wishlist" onclick="toggleWishlistCard('Rasassi Hawas', 'img/i_rasa_bottles/p6.png', 499)">
 									<i class="ti-heart"></i>
 								</button>
 							</div>
@@ -853,7 +970,7 @@
 								<a href="https://www.instagram.com/i_rasa_perfumes/"><i
 										class="fab fa-instagram"></i></a>
 								<a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
-								<a href="javascript:void(0);"><i class="fab fa-whatsapp"></i></a>
+								<a href="https://wa.me/919823833303" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
 							</div>
 						</div>
 					</div>
@@ -916,102 +1033,178 @@
 		</div>
 
 		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="col-lg-12 footer-text text-center" style="letter-spacing: 1px; font-size: 13px;">
-						&copy; 2026 I Rasa Perfumes | Crafted by Technokraft services LLP.</p>
-				</div>
-			</div>
-		</div>
+      <div class="container">
+        <div class="row">
+          <p class="col-lg-12 footer-text text-center" style="letter-spacing: 1px; font-size: 13px;">
+            &copy; 2026 I Rasa Perfumes | <a href="#" data-toggle="modal" data-target="#technokraft_credits_modal" style="color: #d4af37; text-decoration: none; font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='#fff';" onmouseout="this.style.color='#d4af37';">Crafted by Technokraft services LLP.</a>
+          </p>
+        </div>
+      </div>
+    </div>
 	</footer>
 
+  <!-- TECHNOKRAFT SERVICES LLP. TEAM CREDITS MODAL -->
+  <div class="modal fade" id="technokraft_credits_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);">
+        <div class="modal-header" style="border-bottom: 1px solid #222; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center;">
+          <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; margin: 0; font-size: 18px;">
+            TechnoKraft Services Team
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; opacity: 0.8; font-size: 24px; background: none; border: none; outline: none; cursor: pointer; padding: 0; margin: 0; line-height: 1;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 30px 25px; text-align: center;">
+          <!-- TechnoKraft Brand Icon / Logo -->
+          <div style="font-size: 40px; color: #d4af37; margin-bottom: 15px;">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          
+          <h4 style="font-family: 'Cinzel', serif; color: #fff; font-size: 20px; font-weight: 700; margin-bottom: 5px; letter-spacing: 0.5px;">
+            TechnoKraft Services LLP
+          </h4>
+          <p style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px;">
+            Partner in Digital Excellence
+          </p>
+          
+          <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px; margin-bottom: 20px;">
+            <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
+              Designed By
+            </p>
+            <h5 style="font-size: 14px; font-weight: 600; color: #fff; line-height: 1.6; margin: 0; letter-spacing: 0.5px;">
+              ABHISHEK SOUNDANKAR<br>
+              ADITYA KAWALE<br>
+              SAMADHAN PATIL
+            </h5>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px;">
+            <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
+              Developed By
+            </p>
+            <h5 style="font-size: 14px; font-weight: 600; color: #fff; margin: 0; letter-spacing: 0.5px;">
+              KUNAL PATIL
+            </h5>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #222; padding: 15px 25px; display: flex; justify-content: center; background: #070707;">
+          <a href="https://technokraftllp.com/" target="_blank" class="button" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 8px 24px; font-weight: bold; font-size: 12px; transition: all 0.3s; outline: none; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">
+            Visit Website
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 	<!-- PRODUCT QUICK VIEW MODAL -->
-	<div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="margin-top: 90px !important; margin-bottom: 50px !important;">
-			<div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden;">
-				<div class="modal-header" style="border-bottom: 1px solid #333; padding: 20px 30px;">
-					<h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px;">Product Quick View</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; opacity: 1; outline: none;">
-						<span aria-hidden="true" style="font-size: 28px;">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" style="padding: 40px 30px;">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="modal-img-wrap"
-								style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
-								<img src="img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif" class="img-fluid" id="modal_img" alt="Perfume"
-									style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px; font-weight: 700;">Oud Supreme</h2>
-							<p class="price" id="modal_price" style="font-size: 24px; color: #ffd700; font-weight: bold; margin-bottom: 15px;">Rs. 399</p>
-							<div class="rating mb-3">
-								<div class="stars">
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<span>(120+ Reviews)</span>
-								</div>
-							</div>
-							<p style="color: #b0a58a; line-height: 1.6; font-size: 14px; margin-bottom: 25px;">A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for evening elegance.</p>
-							
-							<!-- Premium Longevity Detail -->
-							<div style="margin-top: -15px; margin-bottom: 20px; font-weight: bold; color: #d4af37; font-size: 13px;">
-								<i class="fas fa-history"></i> Longevity: Guaranteed 7-8 Hours Trail
-							</div>
+  <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document"
+      style="margin-top: 90px !important; margin-bottom: 50px !important;">
+      <div class="modal-content"
+        style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden;">
+        <div class="modal-header" style="border-bottom: 1px solid #333; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center;">
+          <h5 class="modal-title"
+            style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; margin: 0;">Product Quick
+            View</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            style="color: #fff; opacity: 0.8; font-size: 28px; background: none; border: none; outline: none; cursor: pointer; transition: color 0.3s, opacity 0.3s; padding: 0; margin: 0; line-height: 1;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 40px 30px;">
+          <div class="row">
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
+              <div class="modal-img-wrap"
+                style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
+                <img src="img/i_rasa_bottles/p7.png" class="img-fluid" id="modal_img" alt="Perfume"
+                  style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
+              </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
+              <h2 id="modal_title"
+                style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px; font-weight: 700;">Oud Supreme
+              </h2>
+              <p class="price" id="modal_price"
+                style="font-size: 24px; color: #ffd700; font-weight: bold; margin-bottom: 15px;">Rs. 399</p>
+              <div class="rating mb-3">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span>(120+ Reviews)</span>
+                </div>
+              </div>
+              <p style="color: #b0a58a; line-height: 1.6; font-size: 14px; margin-bottom: 25px;">A deep, mysterious
+                fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for evening elegance.
+              </p>
 
-							<!-- Dynamic Bottle Sizing Selector -->
-							<div class="bottle-size-selector-wrap mb-4" style="margin-top: 15px;">
-								<span style="color: #d4af37; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Select Bottle Size:</span>
-								<div style="display: flex; gap: 10px; flex-wrap: wrap;">
-									<button class="modal-size-btn active" onclick="selectModalSize(60, 99, this)" style="background: transparent; color: #d4af37; border: 1px solid #d4af37; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 8px rgba(212,175,55,0.2); cursor: pointer;">60ml (+₹99)</button>
-									<button class="modal-size-btn" onclick="selectModalSize(100, 149, this)" style="background: transparent; color: #888; border: 1px solid #555; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; cursor: pointer;">100ml (+₹149)</button>
-								</div>
-							</div>
+              <!-- Premium Longevity Detail -->
+              <div style="margin-top: -15px; margin-bottom: 20px; font-weight: bold; color: #d4af37; font-size: 13px;">
+                <i class="fas fa-history"></i> Longevity: Guaranteed 7-8 Hours Trail
+              </div>
 
-							<!-- Eco-Friendly Return Checkbox -->
-							<div class="eco-offer-box p-3 mb-4" style="background: rgba(212, 175, 55, 0.05); border: 1px dashed #d4af37; border-radius: 8px; margin-top: 10px;">
-								<div class="custom-control custom-checkbox" style="display: flex; align-items: center; gap: 8px; padding-left: 0;">
-									<input type="checkbox" id="modalReuseBottleCheck" onchange="toggleReuseModalBottle()" style="accent-color: #d4af37; cursor: pointer; width: 16px; height: 16px; margin: 0;">
-									<label for="modalReuseBottleCheck" style="color: #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin: 0; user-select: none;">
-										<i class="fas fa-recycle" style="color: #4CAF50;"></i> Return/Bring Same Bottle next time (Save Bottle Price!)
-									</label>
-								</div>
-								<small style="color: #aaa; display: block; margin-top: 3px; font-size: 11px; margin-left: 24px;">
-									Receive ₹<span id="modalBottleSavingsAmount">99</span> off when you bring or return a compatible bottle!
-								</small>
-							</div>
+              <!-- Dynamic Bottle Sizing Selector -->
+              <div class="bottle-size-selector-wrap mb-4" style="margin-top: 15px;">
+                <span
+                  style="color: #d4af37; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Select
+                  Bottle Size:</span>
+                <div class="d-flex" style="gap: 10px; flex-wrap: wrap;">
+                  <button class="btn modal-size-btn active" onclick="selectModalSize(60, 99, this)"
+                    style="background: #111; color: #fff; border: 1px solid #d4af37; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 8px rgba(212,175,55,0.2);">60ml
+                    (+₹99)</button>
+                  <button class="btn modal-size-btn" onclick="selectModalSize(100, 149, this)"
+                    style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">100ml
+                    (+₹149)</button>
+                </div>
+              </div>
 
-							<!-- Dynamic Action Row (Qty Picker + Add to Cart + Wishlist) -->
-							<div class="d-flex align-items-center mb-4 flex-wrap" style="gap: 15px;">
-								<div class="quantity-picker"
-									style="display: flex; align-items: center; background: #111; border: 1px solid #333; border-radius: 25px; padding: 5px 15px; margin-right: 0;">
-									<button onclick="changeQty(-1)"
-										style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">-</button>
-									<input type="number" id="modal_qty" value="1" readonly
-										style="width: 40px; background: transparent; border: none; color: #fff; text-align: center; font-weight: bold; font-size: 16px; -moz-appearance: textfield; margin: 0; outline: none;">
-									<button onclick="changeQty(1)"
-										style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">+</button>
-								</div>
-								
-								<button onclick="addToCartModal()" class="button button--active"
-									style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 12px 25px; font-weight: bold; flex-grow: 1; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; outline: none; text-transform: uppercase;">
-									<i class="fas fa-shopping-cart"></i> Add to Cart
-								</button>
-								
-								<button onclick="toggleWishlistFromModal()" id="modal_wishlist_btn" class="button"
-									style="background: #111; color: #d4af37; border: 1px solid #333; border-radius: 50%; width: 48px; height: 48px; padding: 0; font-size: 18px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; outline: none;">
-									<i class="far fa-heart"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+              <!-- Eco-Friendly Return Checkbox -->
+              <div class="eco-offer-box p-3 mb-4"
+                style="background: rgba(212, 175, 55, 0.05); border: 1px dashed #d4af37; border-radius: 8px; margin-top: 10px;">
+                <div class="custom-control custom-checkbox"
+                  style="display: flex; align-items: center; gap: 8px; padding-left: 0;">
+                  <input type="checkbox" id="modalReuseBottleCheck" onchange="toggleReuseModalBottle()"
+                    style="accent-color: #d4af37; cursor: pointer; width: 16px; height: 16px; margin: 0;">
+                  <label for="modalReuseBottleCheck"
+                    style="color: #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin: 0; user-select: none;">
+                    ♻️ Return/Bring Same Bottle next time (Save Bottle Price!)
+                  </label>
+                </div>
+                <small style="color: #aaa; display: block; margin-top: 3px; font-size: 11px; margin-left: 24px;">
+                  Receive ₹<span id="modalBottleSavingsAmount">99</span> off when you bring or return a compatible
+                  bottle!
+                </small>
+              </div>
+
+              <!-- Dynamic Action Row (Qty Picker + Add to Cart + Wishlist) -->
+              <div class="d-flex align-items-center mb-4 flex-wrap" style="gap: 15px;">
+                <div class="quantity-picker"
+                  style="display: flex; align-items: center; background: #111; border: 1px solid #333; border-radius: 25px; padding: 5px 15px; margin-right: 0;">
+                  <button onclick="changeQty(-1)"
+                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">-</button>
+                  <input type="number" id="modal_qty" value="1" readonly
+                    style="width: 40px; background: transparent; border: none; color: #fff; text-align: center; font-weight: bold; font-size: 16px; -moz-appearance: textfield; margin: 0; outline: none;">
+                  <button onclick="changeQty(1)"
+                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">+</button>
+                </div>
+
+                <button onclick="addToCartModal()" class="button button--active"
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 12px 25px; font-weight: bold; flex-grow: 1; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; outline: none; text-transform: uppercase;">
+                  <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+
+                <button onclick="toggleWishlistFromModal()" id="modal_wishlist_btn" class="button"
+                  style="background: #111; color: #d4af37; border: 1px solid #333; border-radius: 50%; width: 48px; height: 48px; padding: 0; font-size: 18px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; outline: none;">
+                  <i class="far fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 		</div>
 	</div>
 
@@ -1033,35 +1226,35 @@
 		// Unified Product Catalog (Men, Women, Attars)
 		const ProductCatalog = [
 			// Men
-			{ name: "Savage Dior", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif", desc: "A raw and noble composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot." },
-			{ name: "Dev. Cool Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif", desc: "A fresh and sharp, simple and very masculine fragrance. Top notes include mint and green nuances, lavender, coriander and rosemary." },
-			{ name: "Rasassi Hawas", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif", desc: "Blends cinnamon, bergamot, orange blossom, grey amber and sandalwood to create an aquatic scent designed to embody masculine strength." },
-			{ name: "Donhill Red", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif", desc: "A warm, woody and spicy fragrance that captures the essence of classic sophistication and modern style." },
-			{ name: "Donhill Icon", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png", desc: "The perfect expression of natural refinement, a translation of the luxurious and classic heritage of the house." },
-			{ name: "C R 7", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png", desc: "An active fragrance for men who want to live life with passion and confidence, inspired by Cristiano Ronaldo." },
-			{ name: "Creed Avantes", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png", desc: "The exceptional Aventus was inspired by the dramatic life of a historic emperor, celebrating strength, power and success." },
-			{ name: "Creed Silver Mountain Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png", desc: "Captures the purity and freshness of the Swiss Alps, crisp and sparkling with green tea and blackcurrants." },
-			{ name: "Rasassi Hawas Ice", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png", desc: "An icy, fresh aquatic masterpiece that is highly invigorating and keeps you smelling crisp all day." },
-			{ name: "Hugo Boss", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif", desc: "Sharp and confident woody fragrance with fresh green notes and rich base tones for the modern leader." },
-			{ name: "Rasassi Royal Blue", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif", desc: "A premium floral woody fragrance for men that expresses dynamic energy, masculine strength, and lasting confidence." },
-			{ name: "Arabic Tonka", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif", desc: "An exceptionally rich, sweet woody fragrance capturing traditional Arabic essence with a modern luxury twist." },
+			{ name: "Savage Dior", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p1.png", desc: "A raw and noble composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot." },
+			{ name: "Dev. Cool Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p2.png", desc: "A fresh and sharp, simple and very masculine fragrance. Top notes include mint and green nuances, lavender, coriander and rosemary." },
+			{ name: "Rasassi Hawas", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p3.png", desc: "Blends cinnamon, bergamot, orange blossom, grey amber and sandalwood to create an aquatic scent designed to embody masculine strength." },
+			{ name: "Donhill Red", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p4.png", desc: "A warm, woody and spicy fragrance that captures the essence of classic sophistication and modern style." },
+			{ name: "Donhill Icon", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p5.png", desc: "The perfect expression of natural refinement, a translation of the luxurious and classic heritage of the house." },
+			{ name: "C R 7", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p6.png", desc: "An active fragrance for men who want to live life with passion and confidence, inspired by Cristiano Ronaldo." },
+			{ name: "Creed Avantes", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p7.png", desc: "The exceptional Aventus was inspired by the dramatic life of a historic emperor, celebrating strength, power and success." },
+			{ name: "Creed Silver Mountain Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p1.png", desc: "Captures the purity and freshness of the Swiss Alps, crisp and sparkling with green tea and blackcurrants." },
+			{ name: "Rasassi Hawas Ice", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p2.png", desc: "An icy, fresh aquatic masterpiece that is highly invigorating and keeps you smelling crisp all day." },
+			{ name: "Hugo Boss", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p3.png", desc: "Sharp and confident woody fragrance with fresh green notes and rich base tones for the modern leader." },
+			{ name: "Rasassi Royal Blue", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p4.png", desc: "A premium floral woody fragrance for men that expresses dynamic energy, masculine strength, and lasting confidence." },
+			{ name: "Arabic Tonka", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p5.png", desc: "An exceptionally rich, sweet woody fragrance capturing traditional Arabic essence with a modern luxury twist." },
 
 			// Women
-			{ name: "GUCCI FLORA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif", desc: "An elegant, feminine fragrance designed for the modern woman who embraces her beauty and grace." },
-			{ name: "GUCCI BLOOM", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif", desc: "Designed to celebrate the authenticity, vitality and diversity of women—flourishing in a natural, expressive and individual way." },
-			{ name: "WHITE LONDON", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif", desc: "A light, clean and sophisticated fragrance inspired by the fresh spring mornings of London." },
-			{ name: "RASASSI HAWAS", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png", desc: "An elegant and refreshing floral-fruity scent designed to capture the vibrant spirit of modern women." },
-			{ name: "DEV. COOL WATER", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png", desc: "A beautiful, fresh aquatic fragrance that brings peace, calm and ocean freshness to your day." },
-			{ name: "SHANYA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png", desc: "An exclusive sweet and sensual blend that leaves a memorable trail of premium luxury." },
+			{ name: "GUCCI FLORA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p6.png", desc: "An elegant, feminine fragrance designed for the modern woman who embraces her beauty and grace." },
+			{ name: "GUCCI BLOOM", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p7.png", desc: "Designed to celebrate the authenticity, vitality and diversity of women—flourishing in a natural, expressive and individual way." },
+			{ name: "WHITE LONDON", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p1.png", desc: "A light, clean and sophisticated fragrance inspired by the fresh spring mornings of London." },
+			{ name: "RASASSI HAWAS", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p2.png", desc: "An elegant and refreshing floral-fruity scent designed to capture the vibrant spirit of modern women." },
+			{ name: "DEV. COOL WATER", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p3.png", desc: "A beautiful, fresh aquatic fragrance that brings peace, calm and ocean freshness to your day." },
+			{ name: "SHANYA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p4.png", desc: "An exclusive sweet and sensual blend that leaves a memorable trail of premium luxury." },
 
 			// Attars
-			{ name: "Musk a tahara", category: "Attar · Musk", price: 200, img: "img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png", desc: "A thick, white concentrated oil with a clean, powdery, soapy, and long-lasting fresh aroma." },
-			{ name: "Whtie sandel", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png", desc: "Pure white sandalwood concentrated attar. Rich, creamy, warm, and deeply traditional." },
-			{ name: "Mhaisur sandal", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif", desc: "Premium Mysore Sandalwood concentrated oil. Known for its ultra-luxurious, woody, and meditative aroma." },
-			{ name: "Kevd", category: "Attar · Traditional", price: 150, img: "img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif", desc: "Distilled from the flowers of the screw pine, delivering a sweet, floral, and deeply cooling traditional scent." },
-			{ name: "Kesharchandan", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif", desc: "A magnificent blend of pure saffron (keshar) and rich sandalwood oil. Royal, warm, and highly aromatic." },
-			{ name: "Musk rose", category: "Attar · Musk", price: 150, img: "img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif", desc: "A soft, beautiful combination of pure deer musk undercurrents with sweet fresh garden rose oils." },
-			{ name: "Black ROSE", category: "Attar · Traditional", price: 150, img: "img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif", desc: "Deep, intense, spicy dark rose attar oil, conveying the ultimate fragrance of traditional Orient." }
+			{ name: "Musk a tahara", category: "Attar · Musk", price: 200, img: "img/i_rasa_bottles/a2.png", desc: "A thick, white concentrated oil with a clean, powdery, soapy, and long-lasting fresh aroma." },
+			{ name: "Whtie sandel", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/a1.png", desc: "Pure white sandalwood concentrated attar. Rich, creamy, warm, and deeply traditional." },
+			{ name: "Mhaisur sandal", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/a2.png", desc: "Premium Mysore Sandalwood concentrated oil. Known for its ultra-luxurious, woody, and meditative aroma." },
+			{ name: "Kevd", category: "Attar · Traditional", price: 150, img: "img/i_rasa_bottles/a1.png", desc: "Distilled from the flowers of the screw pine, delivering a sweet, floral, and deeply cooling traditional scent." },
+			{ name: "Kesharchandan", category: "Attar · Traditional", price: 200, img: "img/i_rasa_bottles/a2.png", desc: "A magnificent blend of pure saffron (keshar) and rich sandalwood oil. Royal, warm, and highly aromatic." },
+			{ name: "Musk rose", category: "Attar · Musk", price: 150, img: "img/i_rasa_bottles/a1.png", desc: "A soft, beautiful combination of pure deer musk undercurrents with sweet fresh garden rose oils." },
+			{ name: "Black ROSE", category: "Attar · Traditional", price: 150, img: "img/i_rasa_bottles/a2.png", desc: "Deep, intense, spicy dark rose attar oil, conveying the ultimate fragrance of traditional Orient." }
 		];
 
 		(function () {
@@ -1114,7 +1307,7 @@
 					
 					let category = "Men's Premium Scents";
 					let price = 499;
-					let img = "img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif";
+					let img = "img/i_rasa_bottles/p5.png";
 					
 					if (isAttar) {
 						category = "Attar · Concentrated";
@@ -1122,17 +1315,17 @@
 						// Deterministic image index for fallback
 						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 						const imgIdx = (hash % 10) + 1;
-						img = `img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png`;
+						img = `img/i_rasa_bottles/p6.png`;
 					} else if (isWomen) {
 						category = "Women's Premium Scents";
 						price = 499;
 						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 						const imgIdx = (hash % 6) + 1;
-						img = `img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png`;
+						img = `img/i_rasa_bottles/p7.png`;
 					} else {
 						const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
 						const imgIdx = (hash % 12) + 1;
-						img = `img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png`;
+						img = `img/i_rasa_bottles/p1.png`;
 					}
 					
 					prod = {
@@ -1174,7 +1367,7 @@
 			selectedSize: 50,
 			bottlePrice: 99,
 			reuseBottle: false,
-			img: 'img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png'
+			img: 'img/i_rasa_bottles/p2.png'
 		};
 
 		function selectSingleSize(size, bPrice, el) {
@@ -1367,7 +1560,7 @@
 
 		window.toggleWishlistFromModal = function() {
 			const name = document.getElementById('modal_title').textContent.trim();
-			const img = document.getElementById('modal_img').getAttribute('src') || 'img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png';
+			const img = document.getElementById('modal_img').getAttribute('src') || 'img/i_rasa_bottles/p3.png';
 			const priceText = document.getElementById('modal_price').textContent;
 			const price = parseInt(priceText.replace(/[^\d]/g, '')) || 499;
 			
@@ -1396,7 +1589,7 @@
 
 			var name = document.getElementById('modal_title').innerText.trim();
 			var qty = parseInt(document.getElementById('modal_qty').value) || 1;
-			var img = document.getElementById('modal_img').getAttribute('src') || 'img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif';
+			var img = document.getElementById('modal_img').getAttribute('src') || 'img/i_rasa_bottles/p4.png';
 			
 			if (modalPricingState.selectedSize === 0) {
 				CartEngine._showToast('✕ Please select a bottle size before adding to cart!');
@@ -1450,10 +1643,10 @@
 
 			// Default 60ml perfume
 			const finalPrice = 499 + 60;
-			let img = 'img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif';
-			if (name === 'Gucci Flora') img = 'img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif';
-			if (name === 'Creed Avantes') img = 'img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif';
-			if (name === 'Rasassi Hawas') img = 'img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif';
+			let img = 'img/i_rasa_bottles/p5.png';
+			if (name === 'Gucci Flora') img = 'img/i_rasa_bottles/p6.png';
+			if (name === 'Creed Avantes') img = 'img/i_rasa_bottles/p7.png';
+			if (name === 'Rasassi Hawas') img = 'img/i_rasa_bottles/p1.png';
 
 			CartEngine.add({
 				id: name,
@@ -1568,6 +1761,60 @@
 			}
 		}
 	</script>
+
+  <!-- Navbar Scroll State -->
+  <script>
+    (function () {
+      var header = document.querySelector('header.header_area');
+      if (!header) return;
+      var SCROLL_THRESHOLD = 50;
+
+      function onScroll() {
+        if (window.innerWidth > 991) {
+          if (window.scrollY > SCROLL_THRESHOLD) {
+            header.classList.add('irasa-scrolled');
+          } else {
+            header.classList.remove('irasa-scrolled');
+          }
+        } else {
+          header.classList.remove('irasa-scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // run once on load in case page reloads mid-scroll
+    })();
+  </script>
+
+  <!-- Click-based Nav Dropdowns -->
+  <script>
+    (function () {
+      var drops = document.querySelectorAll('.irasa-click-drop');
+      drops.forEach(function (li) {
+        var trigger = li.querySelector('.irasa-drop-trigger');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var isOpen = li.classList.contains('irasa-open');
+          // Close all first
+          drops.forEach(function (d) { d.classList.remove('irasa-open'); });
+          // Toggle this one
+          if (!isOpen) { li.classList.add('irasa-open'); }
+        });
+      });
+
+      // Close on any outside click
+      document.addEventListener('click', function () {
+        drops.forEach(function (d) { d.classList.remove('irasa-open'); });
+      });
+
+      // Prevent clicks inside the dropdown from closing it
+      document.querySelectorAll('.irasa-mega-drop').forEach(function (panel) {
+        panel.addEventListener('click', function (e) { e.stopPropagation(); });
+      });
+    })();
+  </script>
 </body>
 
 </html>

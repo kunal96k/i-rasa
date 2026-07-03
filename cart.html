@@ -1950,67 +1950,187 @@
   <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h" href="index.html">
-        <span style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
-          rasa</span>
-      </a>
+        <div class="container-fluid irasa-nav-container">
+
+          <!-- ── LOGO (text-only) ── -->
+          <a class="navbar-brand logo_h irasa-logo" href="index.html">
+            <div class="irasa-logo__text">
+              <span class="irasa-logo__brand">I Rasa</span>
+              <span class="irasa-logo__tagline">The Perfect Perfume</span>
+            </div>
+          </a>
+
+          <!-- ── HAMBURGER (mobile) ── -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Shop</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a></li>
-                  <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a></li>
-                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                </ul>
-              </li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Blog</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                </ul>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="customize.html"
-                  style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;"><i class='fas fa-magic'></i>
-                  Customize</a></li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-            <ul class="nav-shop">
 
-              <!-- Cart -->
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+
+            <!-- Mobile Menu Header -->
+            <div class="mobile-menu-header d-lg-none">
+              <div class="irasa-logo__text">
+                <span class="irasa-logo__brand">I Rasa</span>
+                <span class="irasa-logo__tagline">The Perfect Perfume</span>
+              </div>
+              <button class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+
+            <!-- ── CENTER NAV PILL ── -->
+            <ul class="nav navbar-nav menu_nav">
+
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <i class="ti-home irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Home</span>
+                </a>
+              </li>
+
+              <!-- Shop Dropdown (click-based) -->
+              <li class="nav-item submenu irasa-has-mega irasa-click-drop">
+                <a href="javascript:void(0);" class="nav-link irasa-drop-trigger" role="button">
+                  <i class="ti-bag irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Shop</span>
+                  <svg class="irasa-chevron" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="m6 9 6 6 6-6" />
+                  </svg>
+                </a>
+                <div class="irasa-mega-drop">
+                  <div class="irasa-drop-header">
+                    <span class="irasa-drop-title">Our Collections</span>
+                    <span class="irasa-drop-sub">Handcrafted in Nashik</span>
+                  </div>
+                  <div class="irasa-drop-grid">
+                    <a href="category.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-male"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Men's Perfumes</strong>
+                        <small>Bold, lasting fragrances</small>
+                      </span>
+                    </a>
+                    <a href="categoryWomen.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-female"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Women's Perfumes</strong>
+                        <small>Floral &amp; oriental blends</small>
+                      </span>
+                    </a>
+                    <a href="attar.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-vial"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Attar Collection</strong>
+                        <small>Pure oil-based perfumes</small>
+                      </span>
+                    </a>
+                    <a href="single-product.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-star"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Product Details</strong>
+                        <small>Explore individual scents</small>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Blog Dropdown (click-based) -->
+              <li class="nav-item submenu irasa-has-mega irasa-click-drop">
+                <a href="javascript:void(0);" class="nav-link irasa-drop-trigger" role="button">
+                  <i class="ti-file irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Blogs</span>
+                  <svg class="irasa-chevron" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="m6 9 6 6 6-6" />
+                  </svg>
+                </a>
+                <div class="irasa-mega-drop irasa-mega-drop--sm">
+                  <div class="irasa-drop-header">
+                    <span class="irasa-drop-title">Our Stories</span>
+                    <span class="irasa-drop-sub">Fragrance insights</span>
+                  </div>
+                  <div class="irasa-drop-grid">
+                    <a href="blog.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-newspaper"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Blog</strong>
+                        <small>Scent stories &amp; tips</small>
+                      </span>
+                    </a>
+                    <a href="single-blog.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-book-open"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Blog Details</strong>
+                        <small>Read in-depth articles</small>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link irasa-customize-link" href="customize.html">
+                  <i class="fas fa-magic irasa-nav-icon"></i>
+                  <span class="irasa-nav-label">Customize</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">
+                  <i class="ti-mobile irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Contact</span>
+                </a>
+              </li>
+
+            </ul>
+
+            <!-- ── RIGHT ACTIONS (desktop only) ── -->
+            <ul class="nav-shop irasa-nav-actions d-none d-lg-flex">
+
+              <!-- Cart Icon -->
               <li class="nav-item nav-shop-icon">
-                <a href="cart.html" class="nav-shop-icon-link">
+                <a href="cart.html" class="nav-shop-icon-link irasa-action-btn" title="Shopping Cart">
                   <i class="ti-shopping-cart"></i>
                   <span class="nav-shop__circle" style="display:none;">0</span>
                 </a>
               </li>
 
-              <!-- Profile Icon -->
-              <li class="nav-item nav-shop-icon">
-                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link">
+              <!-- Profile / Login Icon -->
+              <li class="nav-item nav-shop-icon irasa-profile-wrap" id="profileNavWrapper">
+                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link irasa-action-btn" title="Sign In">
                   <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
                   <i id="profileNavIcon" class="ti-user"></i>
                 </a>
+                <!-- Profile dropdown injected here by auth.js -->
               </li>
 
-              <!-- Shop Now — always last, full-width row -->
+              <!-- Shop Now CTA — no icon, matches Browse Now style -->
               <li class="nav-item nav-shop-btn">
-                <a class="button button-header" href="category.html">Shop Now</a>
+                <a class="button button-header irasa-shop-cta" href="category.html">Shop Now</a>
               </li>
 
             </ul>
+
+            <!-- Mobile Menu Footer -->
+            <div class="mobile-menu-footer d-lg-none">
+              <div class="mobile-menu-divider"></div>
+              <div class="mobile-menu-actions">
+                <a class="button button-header mobile-shop-cta" href="category.html">Shop Now</a>
+                <a href="cart.html" class="mobile-action-btn" title="Shopping Cart">
+                  <i class="ti-shopping-cart"></i>
+                </a>
+                <a href="login.html" class="mobile-action-btn" title="Sign In">
+                  <i class="ti-shift-right"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -2242,7 +2362,7 @@
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/i_rasa_perfumes/"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="javascript:void(0);"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/919823833303" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
           </div>
@@ -2304,45 +2424,170 @@
       <div class="container">
         <div class="row">
           <p class="col-lg-12 footer-text text-center" style="letter-spacing: 1px; font-size: 13px;">
-            &copy; 2026 I Rasa Perfumes | Crafted by Technokraft services LLP.</p>
+            &copy; 2026 I Rasa Perfumes | <a href="#" data-toggle="modal" data-target="#technokraft_credits_modal" style="color: #d4af37; text-decoration: none; font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='#fff';" onmouseout="this.style.color='#d4af37';">Crafted by Technokraft services LLP.</a>
+          </p>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- PRODUCT QUICK VIEW MODAL -->
-  <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff;">
-        <div class="modal-header" style="border-bottom: 1px solid #333;">
-          <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif;">Product Quick View</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
+  <!-- TECHNOKRAFT SERVICES LLP. TEAM CREDITS MODAL -->
+  <div class="modal fade" id="technokraft_credits_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);">
+        <div class="modal-header" style="border-bottom: 1px solid #222; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center;">
+          <h5 class="modal-title" style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; margin: 0; font-size: 18px;">
+            TechnoKraft Services Team
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; opacity: 0.8; font-size: 24px; background: none; border: none; outline: none; cursor: pointer; padding: 0; margin: 0; line-height: 1;">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="padding: 30px 25px; text-align: center;">
+          <!-- TechnoKraft Brand Icon / Logo -->
+          <div style="font-size: 40px; color: #d4af37; margin-bottom: 15px;">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          
+          <h4 style="font-family: 'Cinzel', serif; color: #fff; font-size: 20px; font-weight: 700; margin-bottom: 5px; letter-spacing: 0.5px;">
+            TechnoKraft Services LLP
+          </h4>
+          <p style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px;">
+            Partner in Digital Excellence
+          </p>
+          
+          <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px; margin-bottom: 20px;">
+            <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
+              Designed By
+            </p>
+            <h5 style="font-size: 14px; font-weight: 600; color: #fff; line-height: 1.6; margin: 0; letter-spacing: 0.5px;">
+              ABHISHEK SOUNDANKAR<br>
+              ADITYA KAWALE<br>
+              SAMADHAN PATIL
+            </h5>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px;">
+            <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
+              Developed By
+            </p>
+            <h5 style="font-size: 14px; font-weight: 600; color: #fff; margin: 0; letter-spacing: 0.5px;">
+              KUNAL PATIL
+            </h5>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #222; padding: 15px 25px; display: flex; justify-content: center; background: #070707;">
+          <a href="https://technokraftllp.com/" target="_blank" class="button" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 8px 24px; font-weight: bold; font-size: 12px; transition: all 0.3s; outline: none; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">
+            Visit Website
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT QUICK VIEW MODAL -->
+  <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document"
+      style="margin-top: 90px !important; margin-bottom: 50px !important;">
+      <div class="modal-content"
+        style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden;">
+        <div class="modal-header" style="border-bottom: 1px solid #333; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center;">
+          <h5 class="modal-title"
+            style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; margin: 0;">Product Quick
+            View</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            style="color: #fff; opacity: 0.8; font-size: 28px; background: none; border: none; outline: none; cursor: pointer; transition: color 0.3s, opacity 0.3s; padding: 0; margin: 0; line-height: 1;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 40px 30px;">
           <div class="row">
-            <div class="col-md-6">
-              <img src="img/product/product1.png" class="img-fluid rounded" id="modal_img" alt="Perfume">
-            </div>
-            <div class="col-md-6">
-              <h2 id="modal_title" style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px;">Oud Supreme
-              </h2>
-              <p class="price" style="font-size: 24px; color: #ffd700; font-weight: bold;">Rs. 399</p>
-              <div class="rating mb-3">
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <i class="fas fa-star" style="color: #ffd700;"></i>
-                <span class="ml-2">(120+ Reviews)</span>
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
+              <div class="modal-img-wrap"
+                style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
+                <img src="img/i_rasa_bottles/p7.png" class="img-fluid" id="modal_img" alt="Perfume"
+                  style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
               </div>
-              <p style="color: #b0a58a;">A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting
-                and intense.</p>
-              <div class="d-flex mt-4">
-                <input type="number" class="form-control mr-2" value="1"
-                  style="width: 70px; background: #111; border: 1px solid #333; color: #fff;">
-                <button class="button button--active" style="width: 100%;">Add to Cart</button>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
+              <h2 id="modal_title"
+                style="color: #d4af37; font-family: 'Cinzel', serif; margin-top: 20px; font-weight: 700;">Oud Supreme
+              </h2>
+              <p class="price" id="modal_price"
+                style="font-size: 24px; color: #ffd700; font-weight: bold; margin-bottom: 15px;">Rs. 399</p>
+              <div class="rating mb-3">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span>(120+ Reviews)</span>
+                </div>
+              </div>
+              <p style="color: #b0a58a; line-height: 1.6; font-size: 14px; margin-bottom: 25px;">A deep, mysterious
+                fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for evening elegance.
+              </p>
+
+              <!-- Premium Longevity Detail -->
+              <div style="margin-top: -15px; margin-bottom: 20px; font-weight: bold; color: #d4af37; font-size: 13px;">
+                <i class="fas fa-history"></i> Longevity: Guaranteed 7-8 Hours Trail
+              </div>
+
+              <!-- Dynamic Bottle Sizing Selector -->
+              <div class="bottle-size-selector-wrap mb-4" style="margin-top: 15px;">
+                <span
+                  style="color: #d4af37; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Select
+                  Bottle Size:</span>
+                <div class="d-flex" style="gap: 10px; flex-wrap: wrap;">
+                  <button class="btn modal-size-btn active" onclick="selectModalSize(60, 99, this)"
+                    style="background: #111; color: #fff; border: 1px solid #d4af37; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 8px rgba(212,175,55,0.2);">60ml
+                    (+₹99)</button>
+                  <button class="btn modal-size-btn" onclick="selectModalSize(100, 149, this)"
+                    style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">100ml
+                    (+₹149)</button>
+                </div>
+              </div>
+
+              <!-- Eco-Friendly Return Checkbox -->
+              <div class="eco-offer-box p-3 mb-4"
+                style="background: rgba(212, 175, 55, 0.05); border: 1px dashed #d4af37; border-radius: 8px; margin-top: 10px;">
+                <div class="custom-control custom-checkbox"
+                  style="display: flex; align-items: center; gap: 8px; padding-left: 0;">
+                  <input type="checkbox" id="modalReuseBottleCheck" onchange="toggleReuseModalBottle()"
+                    style="accent-color: #d4af37; cursor: pointer; width: 16px; height: 16px; margin: 0;">
+                  <label for="modalReuseBottleCheck"
+                    style="color: #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin: 0; user-select: none;">
+                    ♻️ Return/Bring Same Bottle next time (Save Bottle Price!)
+                  </label>
+                </div>
+                <small style="color: #aaa; display: block; margin-top: 3px; font-size: 11px; margin-left: 24px;">
+                  Receive ₹<span id="modalBottleSavingsAmount">99</span> off when you bring or return a compatible
+                  bottle!
+                </small>
+              </div>
+
+              <!-- Dynamic Action Row (Qty Picker + Add to Cart + Wishlist) -->
+              <div class="d-flex align-items-center mb-4 flex-wrap" style="gap: 15px;">
+                <div class="quantity-picker"
+                  style="display: flex; align-items: center; background: #111; border: 1px solid #333; border-radius: 25px; padding: 5px 15px; margin-right: 0;">
+                  <button onclick="changeQty(-1)"
+                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">-</button>
+                  <input type="number" id="modal_qty" value="1" readonly
+                    style="width: 40px; background: transparent; border: none; color: #fff; text-align: center; font-weight: bold; font-size: 16px; -moz-appearance: textfield; margin: 0; outline: none;">
+                  <button onclick="changeQty(1)"
+                    style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">+</button>
+                </div>
+
+                <button onclick="addToCartModal()" class="button button--active"
+                  style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 12px 25px; font-weight: bold; flex-grow: 1; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; outline: none; text-transform: uppercase;">
+                  <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+
+                <button onclick="toggleWishlistFromModal()" id="modal_wishlist_btn" class="button"
+                  style="background: #111; color: #d4af37; border: 1px solid #333; border-radius: 50%; width: 48px; height: 48px; padding: 0; font-size: 18px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; outline: none;">
+                  <i class="far fa-heart"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -3149,6 +3394,60 @@
     /* ═══════════════════════════════════════════════════════════════ */
   </script>
   <script src="js/auth-guard.js"></script>
+
+  <!-- Navbar Scroll State -->
+  <script>
+    (function () {
+      var header = document.querySelector('header.header_area');
+      if (!header) return;
+      var SCROLL_THRESHOLD = 50;
+
+      function onScroll() {
+        if (window.innerWidth > 991) {
+          if (window.scrollY > SCROLL_THRESHOLD) {
+            header.classList.add('irasa-scrolled');
+          } else {
+            header.classList.remove('irasa-scrolled');
+          }
+        } else {
+          header.classList.remove('irasa-scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // run once on load in case page reloads mid-scroll
+    })();
+  </script>
+
+  <!-- Click-based Nav Dropdowns -->
+  <script>
+    (function () {
+      var drops = document.querySelectorAll('.irasa-click-drop');
+      drops.forEach(function (li) {
+        var trigger = li.querySelector('.irasa-drop-trigger');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var isOpen = li.classList.contains('irasa-open');
+          // Close all first
+          drops.forEach(function (d) { d.classList.remove('irasa-open'); });
+          // Toggle this one
+          if (!isOpen) { li.classList.add('irasa-open'); }
+        });
+      });
+
+      // Close on any outside click
+      document.addEventListener('click', function () {
+        drops.forEach(function (d) { d.classList.remove('irasa-open'); });
+      });
+
+      // Prevent clicks inside the dropdown from closing it
+      document.querySelectorAll('.irasa-mega-drop').forEach(function (panel) {
+        panel.addEventListener('click', function (e) { e.stopPropagation(); });
+      });
+    })();
+  </script>
 </body>
 
 </html>

@@ -509,7 +509,7 @@ a {
 
 .nav-shop li {
     margin: 0 !important;
-    /* ❌ remove old spacing */
+    /* âŒ remove old spacing */
 }
 
 .nav-shop {
@@ -517,7 +517,7 @@ a {
     align-items: center;
     gap: 25px;
     margin-left: auto;
-    /* 🔥 main spacing control */
+    /* ðŸ”¥ main spacing control */
 }
 
 .header_area .navbar {
@@ -533,7 +533,7 @@ a {
 
 .nav-shop li:last-child {
     margin-right: 10px;
-    /* adjust 0–15px as per design */
+    /* adjust 0â€“15px as per design */
 }
 
 .nav-shop li button {
@@ -585,17 +585,19 @@ a {
 
 @media (max-width: 991px) {
     .navbar-toggler {
-
         border: none;
         border-radius: 0px;
-        padding: 0px;
+        padding: 4px 6px;
         cursor: pointer;
-        margin-top: 27px;
-        margin-bottom: 23px
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .header_area .navbar {
         background: #000 !important;
+        min-height: 56px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 
     .navbar-toggler[aria-expanded="false"] span:nth-child(2) {
@@ -634,14 +636,24 @@ a {
         padding-right: 15px
     }
 
+    /* Container inside header: full-width flex row with toggler on right */
+    .header_area .irasa-nav-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        min-height: 56px !important;
+        padding: 0 16px !important;
+    }
+
     .nav {
         padding: 0px 0px
     }
 
     .header_area+section,
     .header_area+row,
-    .header_area+div {
-        margin-top: 117px
+    .header_area+div,
+    .header_area+main {
+        margin-top: 56px !important;
     }
 
     .header_top .nav {
@@ -665,37 +677,18 @@ a {
         background: rgba(212, 175, 55, 0.05);
     }
 
-    .header_area .navbar .nav-shop {
-        padding: 40px 20px !important;
-        margin-top: 20px;
-        border-top: 1px solid rgba(212, 175, 55, 0.1);
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(212, 175, 55, 0.05) 100%);
-        flex-shrink: 0;
-    }
-
-    .header_area .navbar .nav-shop .nav-item {
+    /* Desktop right actions — hidden entirely on mobile; mobile-menu-footer handles those */
+    .header_area .navbar .nav-shop.irasa-nav-actions {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        padding: 0 !important;
         margin: 0 !important;
-        display: flex;
-        justify-content: center;
     }
 
-    /* First two items (Cart and Profile) side by side */
-    .header_area .navbar .nav-shop .nav-item:nth-child(1),
-    .header_area .navbar .nav-shop .nav-item:nth-child(3) {
-        width: 45%;
-    }
-
-    /* Last item (Shop Now) full width */
-    .header_area .navbar .nav-shop .nav-item:nth-child(2) {
-        width: 100%;
-        order: 3;
-        margin-top: 10px !important;
+    .header_area .navbar .nav-shop.irasa-nav-actions .nav-item {
+        display: none !important;
     }
 
     .header_area .navbar .nav-shop .button-header {
@@ -737,7 +730,6 @@ a {
     }
 
     .header_topbar .topbar-btn:hover {
-        transform: translateY(-1px);
         background: rgba(212, 175, 55, 0.15);
         color: #000;
         border-color: #d4af37;
@@ -764,70 +756,339 @@ a {
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
-        height: 100% !important;
-        height: 100dvh !important;
+        height: 100svh !important;
         width: 85vw !important;
         max-width: 320px !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        z-index: 1050 !important;
+        overflow: hidden !important;
+        z-index: 1060 !important;
         transform: translateX(-105%);
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-right: 1px solid #d4af37 !important;
+        border-right: 1px solid rgba(255, 196, 88, 0.15) !important;
         border-top: none !important;
-        padding: 80px 0 20px !important;
-        background: #000 !important;
+        padding: 0 !important;
+        background: #060606 !important;
         display: flex !important;
-        flex-direction: column;
-        box-shadow: 15px 0 50px rgba(0, 0, 0, 0.9) !important;
-        -webkit-overflow-scrolling: touch;
+        flex-direction: column !important;
+        box-shadow: 8px 0 40px rgba(0, 0, 0, 0.95) !important;
     }
 
-    .header_area .navbar-collapse .navbar-nav {
-        padding: 10px 20px;
-        flex-grow: 1;
+    .header_area .navbar-collapse ul.menu_nav {
+        padding: 16px 14px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .header_area .navbar-collapse ul.menu_nav .nav-item {
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 12px 12px 0 !important;
+        overflow: visible !important;
+        transition: background 0.3s ease, border-color 0.3s ease !important;
+        background: linear-gradient(90deg, rgba(44, 44, 44, 0) 0%, rgba(36, 36, 36, 0.45) 100%) !important;
+        border-left: 4px solid #313131 !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Mobile sub dropdowns accordion styling */
+    .header_area .navbar-collapse .irasa-mega-drop {
+        display: none !important;
+        position: static !important;
+        width: 100% !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 8px !important;
+        padding: 14px 16px !important;
+        margin-top: 8px !important;
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 196, 88, 0.08) !important;
+        flex-shrink: 0 !important;
+        overflow: visible !important;
+    }
+
+    .header_area .navbar-collapse .irasa-click-drop.irasa-open>.irasa-mega-drop {
+        display: block !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 14px !important;
+        padding: 10px 12px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.02) !important;
+        text-decoration: none !important;
+        width: 100% !important;
+        transition: all 0.25s ease !important;
+        border-bottom: none !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-item:hover {
+        background: rgba(255, 196, 88, 0.08) !important;
+        transform: translateX(4px) !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-icon {
+        color: #ffc458 !important;
+        font-size: 15px !important;
+        width: 24px !important;
+        text-align: center !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-info {
+        display: flex !important;
+        flex-direction: column !important;
+        line-height: 1.3 !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-info strong {
+        color: #ffffff !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        display: block !important;
+        font-family: "Poppins", sans-serif !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-info small {
+        color: rgba(255, 255, 255, 0.4) !important;
+        font-size: 11.5px !important;
+        font-weight: 300 !important;
+        display: block !important;
+        font-family: "Poppins", sans-serif !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-header {
+        padding-bottom: 10px !important;
+        margin-bottom: 10px !important;
+        border-bottom: 1px solid rgba(255, 196, 88, 0.1) !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-title {
+        color: #ffc458 !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        display: block !important;
+        font-family: "Poppins", sans-serif !important;
+    }
+
+    .header_area .navbar-collapse .irasa-drop-sub {
+        color: rgba(255, 255, 255, 0.3) !important;
+        font-size: 11.5px !important;
+        display: block !important;
+        font-family: "Poppins", sans-serif !important;
+    }
+
+    .header_area .navbar-collapse ul.menu_nav .nav-item.active,
+    .header_area .navbar-collapse ul.menu_nav .nav-item:hover {
+        background: linear-gradient(90deg, rgba(255, 197, 89, 0.05) 0%, rgba(255, 218, 149, 0.25) 100%) !important;
+        border-left: 4px solid #ffc458 !important;
+    }
+
+    .header_area .navbar-collapse ul.menu_nav .nav-item .nav-link {
+        font-family: "Poppins", "Outfit", sans-serif !important;
+        font-weight: 200 !important;
+        color: #ffffff !important;
+        font-size: 16px !important;
+        padding: 12px 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        background: transparent !important;
+        border-radius: 0 12px 12px 0 !important;
+        width: 100% !important;
+        text-transform: capitalize !important;
+        letter-spacing: 0.5px !important;
+        min-height: 46px !important;
+    }
+
+    .header_area .navbar-collapse ul.menu_nav .nav-item.active .nav-link {
+        font-weight: 500 !important;
+    }
+
+    .header_area .navbar-collapse ul.menu_nav .irasa-nav-icon {
+        font-size: 17px !important;
+        color: #ffffff !important;
+        opacity: 0.85 !important;
+        width: 20px !important;
+        text-align: center !important;
+        flex-shrink: 0 !important;
+    }
+
+    .header_area .navbar-collapse ul.menu_nav .irasa-chevron {
+        margin-left: auto !important;
+        width: 13px !important;
+        height: 13px !important;
+        opacity: 0.5 !important;
+        flex-shrink: 0 !important;
     }
 
     .mobile-menu-header {
-        padding: 20px 25px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        margin-bottom: 10px;
+        padding: 24px 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        border-bottom: 1px solid rgba(255, 196, 88, 0.1) !important;
+        background: #040404 !important;
+        width: 100% !important;
     }
 
-    .mobile-brand {
-        font-family: 'Samarkan', sans-serif;
-        color: #d4af37;
-        font-size: 32px;
-        text-transform: lowercase;
+    .mobile-menu-header .irasa-logo__text {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2px !important;
+        line-height: 1 !important;
     }
 
-    /* Mobile Close Button */
-    .mobile-menu-close {
-        background: transparent;
-        border: 1px solid rgba(212, 175, 55, 0.4);
-        color: #d4af37;
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        cursor: pointer;
-        transition: all 0.3s;
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        z-index: 10;
-        flex-shrink: 0;
+    .mobile-menu-header .irasa-logo__brand {
+        font-family: 'Samarkan', sans-serif !important;
+        font-size: 32px !important;
+        color: #ffffff !important;
+        letter-spacing: 2px !important;
+        font-style: normal !important;
+        font-weight: normal !important;
+        line-height: 1 !important;
+        text-shadow: 0 0 15px rgba(255, 196, 88, 0.5) !important;
     }
 
-    .mobile-menu-close:hover {
-        background: rgba(212, 175, 55, 0.1);
-        border-color: #d4af37;
+    .mobile-menu-header .irasa-logo__tagline {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 9px !important;
+        font-weight: 400 !important;
+        color: rgba(255, 196, 88, 0.6) !important;
+        letter-spacing: 3px !important;
+        text-transform: uppercase !important;
+    }
+
+    .mobile-menu-header .mobile-menu-close {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: none !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        width: 34px !important;
+        height: 34px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 13px !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        position: static !important;
+        margin: 0 !important;
+    }
+
+    .mobile-menu-footer {
+        width: 100% !important;
+        background: #060606 !important;
+        padding: 14px 0 20px !important;
+        flex-shrink: 0 !important;
+        border-top: 1px solid rgba(255, 196, 88, 0.1) !important;
+    }
+
+    .mobile-menu-divider {
+        display: none !important;
+    }
+
+    .mobile-menu-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 0 20px !important;
+        gap: 12px !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .mobile-shop-cta {
+        background: linear-gradient(153deg, #976303 0%, #ffc559 50%, #a46a00 100%) !important;
+        color: #5d3c00 !important;
+        font-family: "Inter", sans-serif !important;
+        font-weight: 500 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        font-size: 16px !important;
+        padding: 10px 20px !important;
+        border-radius: 30px !important;
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2) !important;
+        transition: all 0.3s ease !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 40px !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+    }
+
+    .mobile-shop-cta:hover {
+        box-shadow: 0 6px 20px rgba(255, 197, 89, 0.4) !important;
+        color: #5d3c00 !important;
+    }
+
+    .mobile-action-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        font-size: 18px !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .mobile-action-btn:hover {
+        background: rgba(212, 175, 55, 0.15) !important;
+        border-color: rgba(212, 175, 55, 0.4) !important;
+        color: #ffc458 !important;
+    }
+
+    /* ── MOBILE ONLY: Kill all duplicate/desktop elements ── */
+
+
+    /* 1. Show main navbar logo — styled and sized for mobile top bar */
+
+    /* 2. Kill the desktop right-actions list on mobile — sidebar footer handles it */
+    .header_area ul.irasa-nav-actions,
+    .header_area ul.nav-shop.irasa-nav-actions,
+    .header_area .navbar ul.irasa-nav-actions {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+    }
+
+    /* Clean toggler button — no box outline */
+    .header_area .navbar-toggler {
+        border: none !important;
+        background: transparent !important;
+        outline: none !important;
+        box-shadow: none !important;
+        padding: 8px !important;
     }
 
     .header_area .navbar-collapse.show {
@@ -6025,6 +6286,14 @@ a:hover {
     transition: all 0.3s ease;
 }
 
+.modal-size-btn {
+    color: #aaaaaa !important;
+}
+
+.modal-size-btn.active {
+    color: #ffffff !important;
+}
+
 .button:hover,
 .btn:hover {
     background-color: #fff;
@@ -6544,6 +6813,7 @@ input[type=number] {
         margin-right: 0 !important;
         z-index: 100 !important;
         flex-grow: 0 !important;
+        display: none !important;
     }
 
     .header_area .navbar-brand span {
@@ -6552,13 +6822,15 @@ input[type=number] {
     }
 
     .header_area .navbar-toggler {
-        margin-top: 1.2rem !important;
+        margin-top: 0 !important;
         z-index: 100 !important;
-        background: #111 !important;
-        border: 1px solid #d4af37 !important;
-        padding: 6px 10px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 8px !important;
         border-radius: 4px !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 0 !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
 
     .header_area .navbar-toggler .icon-bar {
@@ -6589,7 +6861,7 @@ input[type=number] {
         .header_area .navbar-collapse.offset.show,
         .header_area .navbar-collapse.show,
         .header_area .navbar-collapse.collapsing {
-            max-height: calc(100vh - 90px) !important;
+            max-height: calc(100vh) !important;
             overflow-y: auto !important;
             overflow-x: hidden !important;
             -webkit-overflow-scrolling: touch !important;
@@ -7009,7 +7281,7 @@ html {
 }
 
 /* ============================================
-   I RASA — PREMIUM OFFER SECTION
+   I RASA â€” PREMIUM OFFER SECTION
    ============================================ */
 
 .irasa-offer-section {
@@ -7109,7 +7381,6 @@ html {
 }
 
 .irasa-offer-card:hover {
-    transform: translateY(-6px);
     border-color: #d4af37;
     box-shadow: 0 20px 60px rgba(212, 175, 55, 0.18);
 }
@@ -7135,7 +7406,7 @@ html {
     background: radial-gradient(circle, rgba(255, 215, 0, 0.18) 0%, transparent 70%);
 }
 
-/* Featured card — slightly elevated style */
+/* Featured card â€” slightly elevated style */
 .irasa-offer-card--featured {
     border-color: #d4af37;
     background: linear-gradient(160deg, #0f0f0f 0%, #181408 100%);
@@ -7266,7 +7537,6 @@ html {
     color: #000 !important;
     border-color: transparent;
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-    transform: translateY(-2px);
 }
 
 .irasa-offer-card__btn--featured {
@@ -7325,7 +7595,7 @@ html {
 }
 
 /* ============================================
-   BLOG CARDS — EQUAL HEIGHT & POLISH
+   BLOG CARDS â€” EQUAL HEIGHT & POLISH
    ============================================ */
 
 /* Row equal height: stretch all flex children */
@@ -7378,7 +7648,6 @@ html {
 .card-blog:hover {
     border-color: rgba(212, 175, 55, 0.5) !important;
     box-shadow: 0 12px 40px rgba(212, 175, 55, 0.1);
-    transform: translateY(-4px);
 }
 
 .card-blog__img img {
@@ -7434,7 +7703,7 @@ html {
 }
 
 #scroll-top.floating-toggler:hover {
-    transform: translateY(-5px) scale(1.05);
+    transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
     background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
 }
@@ -7452,7 +7721,7 @@ html {
 }
 
 .whatsapp-float:hover {
-    transform: translateY(-5px) scale(1.05);
+    transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
     background: linear-gradient(135deg, #1ebc5a 0%, #128c7e 100%);
 }
@@ -7469,7 +7738,7 @@ html {
 }
 
 .shop-now-float:hover {
-    transform: translateY(-5px) scale(1.05);
+    transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
     background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
 }
@@ -7700,7 +7969,7 @@ html {
     pointer-events: none;
 }
 
-/* ── SEARCH & FILTER CONTROLS ── */
+/* â”€â”€ SEARCH & FILTER CONTROLS â”€â”€ */
 .search-wrapper {
     max-width: 500px;
     margin: 0 auto 30px;
@@ -7735,12 +8004,12 @@ html {
 }
 
 /* ==========================================
-   INDEX PAGE — MOBILE & TABLET RESPONSIVE
-   Targets: md (≤991px) and sm (≤575px)
-   LG (≥992px) styles are NOT touched.
+   INDEX PAGE â€” MOBILE & TABLET RESPONSIVE
+   Targets: md (â‰¤991px) and sm (â‰¤575px)
+   LG (â‰¥992px) styles are NOT touched.
    ========================================== */
 
-/* ── MD Breakpoint (tablets & small desktops, ≤991px) ── */
+/* â”€â”€ MD Breakpoint (tablets & small desktops, â‰¤991px) â”€â”€ */
 @media (max-width: 991px) {
 
     /* === GLOBAL SPACING === */
@@ -7845,9 +8114,15 @@ html {
         margin-bottom: 24px;
     }
 
-    .card-product .card-product__img img.card-img {
-        height: 260px !important;
-        object-fit: cover !important;
+    .card-product .card-product__img {
+        padding: 12px 8px 0 !important;
+        background: transparent !important;
+    }
+
+    .card-product .card-product__img img.card-img,
+    .card-product .card-product__img img {
+        height: 250px !important;
+        object-fit: contain !important;
         width: 100% !important;
     }
 
@@ -7909,9 +8184,14 @@ html {
     }
 
     /* === BEST SELLER CAROUSEL === */
+    #bestSellerCarousel .card-product__img {
+        padding: 14px 10px 0 !important;
+        background: transparent !important;
+    }
+
     #bestSellerCarousel .card-product__img img {
-        height: 240px !important;
-        object-fit: cover !important;
+        height: 250px !important;
+        object-fit: contain !important;
         width: 100% !important;
     }
 
@@ -8082,7 +8362,7 @@ html {
     }
 }
 
-/* ── SM Breakpoint (phones, ≤575px) ── */
+/* â”€â”€ SM Breakpoint (phones, â‰¤575px) â”€â”€ */
 @media (max-width: 575px) {
 
     /* === HERO BANNER === */
@@ -8114,8 +8394,10 @@ html {
         max-width: 50% !important;
     }
 
-    .card-product .card-product__img img.card-img {
-        height: 180px !important;
+    .card-product .card-product__img img.card-img,
+    .card-product .card-product__img img {
+        height: 190px !important;
+        object-fit: contain !important;
     }
 
     .card-product .card-body {
@@ -8140,7 +8422,8 @@ html {
 
     /* === BEST SELLER CAROUSEL (single item) === */
     #bestSellerCarousel .card-product__img img {
-        height: 200px !important;
+        height: 220px !important;
+        object-fit: contain !important;
     }
 
     /* === BLOG SECTION === */
@@ -8209,7 +8492,7 @@ html {
     }
 }
 
-/* ── Extra fine-tune: hero image inline height override on mobile ── */
+/* â”€â”€ Extra fine-tune: hero image inline height override on mobile â”€â”€ */
 @media (max-width: 991px) {
 
     /* Override the inline height:480px set on desktop hero image */
@@ -8264,7 +8547,7 @@ html {
 }
 
 /* ==========================================
-   FOOTER GALLERY — Clean 3x2 grid
+   FOOTER GALLERY â€” Clean 3x2 grid
    ========================================== */
 .footer-gallery-grid {
     display: grid;
@@ -8292,7 +8575,7 @@ html {
 }
 
 /* ==========================================
-   VISIT BOUTIQUE — no indent overflow
+   VISIT BOUTIQUE â€” no indent overflow
    ========================================== */
 .footer-contact-list {
     margin: 0;
@@ -8321,7 +8604,7 @@ html {
 }
 
 /* ==========================================
-   HERO CAROUSEL OVERLAY — Enhanced & always-visible on mobile
+   HERO CAROUSEL OVERLAY â€” Enhanced & always-visible on mobile
    ========================================== */
 
 /* Desktop: gradient overlay on every slide for better visibility */
@@ -8378,16 +8661,16 @@ html {
 }
 
 /* ==========================================
-   PRODUCT CARD OVERLAY — Always visible on sm/md (touch devices)
-   Only sm (≤575px): always show, no hover needed
-   md (576–991px): keep visible too for touch
-   Desktop (≥992px): hover-only (base CSS handles it)
+   PRODUCT CARD OVERLAY â€” Always visible on sm/md (touch devices)
+   Only sm (â‰¤575px): always show, no hover needed
+   md (576â€“991px): keep visible too for touch
+   Desktop (â‰¥992px): hover-only (base CSS handles it)
    ========================================== */
 
 /* md + sm: always visible */
 @media (max-width: 991px) {
 
-    /* Unlock the overlay — override ALL three hidden states */
+    /* Unlock the overlay â€” override ALL three hidden states */
     .card-product__imgOverlay {
         position: absolute !important;
         bottom: 0 !important;
@@ -8448,7 +8731,7 @@ html {
     }
 }
 
-/* sm only (≤575px): smaller buttons to fit tighter cards */
+/* sm only (â‰¤575px): smaller buttons to fit tighter cards */
 @media (max-width: 575px) {
 
     /* Overlay slightly more compact */
@@ -8487,7 +8770,7 @@ html {
 
 
 /* ==========================================
-   HERO CAROUSEL — Critical fixes
+   HERO CAROUSEL â€” Critical fixes
    ========================================== */
 
 /* Ensure slide is positioned relative for ::before and overlay to work */
@@ -8580,7 +8863,7 @@ html {
 }
 
 /* ==========================================
-   VISIT BOUTIQUE — Fix icon overflow on mobile
+   VISIT BOUTIQUE â€” Fix icon overflow on mobile
    ========================================== */
 
 /* On mobile, zero out the ml-40 indent so icons aren't hidden off-screen */
@@ -8614,8 +8897,8 @@ html {
 }
 
 /* ==========================================
-   MOBILE NAVBAR — Final Perfect Version
-   sm & md (max 991px) — LG screens untouched
+   MOBILE NAVBAR â€” Final Perfect Version
+   sm & md (max 991px) â€” LG screens untouched
    ========================================== */
 @media (max-width: 991px) {
 
@@ -8628,9 +8911,10 @@ html {
 
     .header_area {
         border-bottom: 1px solid rgba(212, 175, 55, 0.18) !important;
+        transition: none !important;
     }
 
-    /* Navbar: full-width flex row, vertically centered, exactly 62px ── */
+    /* Navbar: full-width flex row, vertically centered, exactly 62px â”€â”€ */
     .header_area .main_menu {
         height: 62px !important;
         overflow: visible !important;
@@ -8647,8 +8931,10 @@ html {
         justify-content: space-between !important;
     }
 
-    /* Container inside navbar: must also be row + centered */
-    .header_area .main_menu .navbar>.container {
+    /* Container inside navbar: must also be row + centered, preventing wrapping */
+    .header_area .main_menu .navbar>.container,
+    .header_area .main_menu .navbar>.irasa-nav-container,
+    .header_area .main_menu .navbar>.container-fluid {
         height: 62px !important;
         display: flex !important;
         flex-direction: row !important;
@@ -8658,31 +8944,51 @@ html {
         flex-wrap: nowrap !important;
     }
 
-    /* Brand logo — override inline flex-direction:column */
+    /* Brand logo — visible on left of top navbar on mobile */
     .header_area .navbar-brand {
         display: flex !important;
-        flex-direction: row !important;
-        /* override inline column */
-        align-items: center !important;
-        justify-content: center !important;
-        height: 62px !important;
-        max-height: 62px !important;
-        padding: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        pointer-events: auto !important;
         margin: 0 !important;
-        flex-shrink: 0 !important;
-        overflow: hidden !important;
+        padding: 0 !important;
+        align-items: center !important;
+        text-shadow: none !important;
     }
 
-    /* Logo text: scaled to fit inside 62px bar */
-    .header_area .navbar-brand span {
-        font-size: 34px !important;
-        line-height: 62px !important;
-        /* vertically centers text in 62px */
-        display: block !important;
-        vertical-align: middle !important;
+    .header_area .navbar-brand .irasa-logo__text {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1px !important;
+        line-height: 1 !important;
+        align-items: flex-start !important;
     }
 
-    /* ── Hamburger toggle: 40×40 gold box, always self-centered ── */
+    .header_area .navbar-brand .irasa-logo__brand {
+        font-family: 'Samarkan', sans-serif !important;
+        font-size: 24px !important;
+        color: #ffc458 !important;
+        letter-spacing: 1px !important;
+        line-height: 1 !important;
+        font-weight: normal !important;
+        font-style: normal !important;
+        text-shadow: 0 0 10px rgba(255, 196, 88, 0.4) !important;
+    }
+
+    .header_area .navbar-brand .irasa-logo__tagline {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 7px !important;
+        font-weight: 400 !important;
+        color: rgba(255, 255, 255, 0.5) !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        line-height: 1 !important;
+    }
+
+    /* â”€â”€ Hamburger toggle: 40Ã—40 gold box, always self-centered â”€â”€ */
     .navbar-toggler {
         margin: 0 !important;
         padding: 0 !important;
@@ -8721,7 +9027,7 @@ html {
         transition: transform 0.3s ease, opacity 0.3s ease !important;
     }
 
-    /* Hamburger → X on open */
+    /* Hamburger â†’ X on open */
     .navbar-toggler[aria-expanded="true"] .icon-bar:nth-child(1) {
         transform: translateY(7px) rotate(45deg) !important;
     }
@@ -8735,19 +9041,18 @@ html {
         transform: translateY(-7px) rotate(-45deg) !important;
     }
 
-    /* ── Offcanvas sidebar ── */
+    /* â”€â”€ Offcanvas sidebar â”€â”€ */
     .header_area .navbar-collapse {
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
         width: min(290px, 84vw) !important;
-        height: 100dvh !important;
+        height: 100svh !important;
         background: #060606 !important;
         border-right: 1.5px solid rgba(212, 175, 55, 0.22) !important;
         box-shadow: 4px 0 30px rgba(0, 0, 0, 0.9) !important;
         z-index: 1060 !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
+        overflow: hidden !important;
         transform: translateX(-110%) !important;
         transition: transform 0.36s cubic-bezier(0.4, 0, 0.2, 1) !important;
         display: flex !important;
@@ -8760,99 +9065,112 @@ html {
         transform: translateX(0) !important;
     }
 
-    /* Sidebar top: "i rasa" logo strip */
+    /* Sidebar logo is provided by .mobile-menu-header — no ::before needed */
     .header_area .navbar-collapse::before {
-        content: "i rasa";
-        font-family: 'Samarkan', sans-serif !important;
-        color: #d4af37 !important;
-        font-size: 26px !important;
-        display: block !important;
-        padding: 16px 20px 14px !important;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important;
-        background: #000 !important;
-        flex-shrink: 0 !important;
-        letter-spacing: 1px !important;
+        display: none !important;
+        content: none !important;
     }
 
     /* ── Close (×) button — inside sidebar, top-right ── */
     .mobile-menu-close {
-        position: absolute !important;
-        top: 12px !important;
-        right: 12px !important;
-        width: 30px !important;
-        height: 30px !important;
-        background: rgba(212, 175, 55, 0.08) !important;
-        border: 1.5px solid rgba(212, 175, 55, 0.35) !important;
-        border-radius: 7px !important;
-        color: #d4af37 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: none !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        width: 34px !important;
+        height: 34px !important;
+        border-radius: 50% !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         font-size: 13px !important;
         cursor: pointer !important;
-        z-index: 20 !important;
-        transition: background 0.2s ease, transform 0.2s ease !important;
-        line-height: 1 !important;
+        transition: all 0.3s ease !important;
+        position: static !important;
+        margin: 0 !important;
         flex-shrink: 0 !important;
+        z-index: 20 !important;
     }
 
     .mobile-menu-close:hover,
     .mobile-menu-close:active {
-        background: rgba(212, 175, 55, 0.18) !important;
-        border-color: #d4af37 !important;
-        transform: rotate(90deg) !important;
+        background: rgba(255, 196, 88, 0.2) !important;
+        color: #ffc458 !important;
+        transform: none !important;
     }
 
-    /* ── Nav list container ── */
+    /* â”€â”€ Nav list container â”€â”€ */
     .header_area .navbar-collapse .navbar-nav {
         padding: 6px 0 0 !important;
-        flex-grow: 1 !important;
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
         width: 100% !important;
         margin: 0 !important;
+        -webkit-overflow-scrolling: touch !important;
     }
 
     /* Individual nav items */
     .header_area .navbar .nav .nav-item {
         width: 100% !important;
-        margin: 0 !important;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.06) !important;
+        margin: 0 0 10px 0 !important;
+        border-radius: 0 12px 12px 0 !important;
+        border: none !important;
+        background: linear-gradient(90deg, rgba(44, 44, 44, 0) 0%, rgba(36, 36, 36, 0.45) 100%) !important;
+        border-left: 4px solid #313131 !important;
+        transition: all 0.3s ease !important;
         text-align: left !important;
+        flex-shrink: 0 !important;
+        overflow: visible !important;
     }
 
-    /* Nav links — LEFT-ALIGNED, icon and text together */
+    .header_area .navbar .nav .nav-item.active,
+    .header_area .navbar .nav .nav-item:hover {
+        background: linear-gradient(90deg, rgba(255, 197, 89, 0.05) 0%, rgba(255, 218, 149, 0.25) 100%) !important;
+        border-left: 4px solid #ffc458 !important;
+    }
+
+    /* Nav links — Poppins, 20px, match mockup */
     .header_area .navbar .nav .nav-item .nav-link {
-        padding: 13px 20px !important;
-        color: #ccc !important;
-        font-size: 11.5px !important;
-        font-weight: 700 !important;
-        letter-spacing: 1.8px !important;
-        text-transform: uppercase !important;
+        font-family: "Poppins", "Outfit", sans-serif !important;
+        font-weight: 200 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 12px 20px !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: flex-start !important;
-        /* CRITICAL: icon+text left-aligned */
-        gap: 8px !important;
-        transition: color 0.2s, background 0.2s, padding-left 0.2s !important;
+        gap: 12px !important;
         background: transparent !important;
-        border-radius: 0 !important;
-        border-left: 3px solid transparent !important;
-        white-space: nowrap !important;
+        border-radius: 0 12px 12px 0 !important;
+        width: 100% !important;
+        text-transform: capitalize !important;
+        letter-spacing: 0.5px !important;
+        border: none !important;
+        transition: color 0.3s ease !important;
     }
 
-    /* Hover */
-    .header_area .navbar .nav .nav-item .nav-link:hover {
-        color: #d4af37 !important;
-        background: rgba(212, 175, 55, 0.05) !important;
-        border-left-color: rgba(212, 175, 55, 0.4) !important;
-        padding-left: 25px !important;
-    }
-
-    /* Active page link */
     .header_area .navbar .nav .nav-item.active .nav-link {
-        color: #d4af37 !important;
-        background: rgba(212, 175, 55, 0.07) !important;
-        border-left-color: #d4af37 !important;
-        padding-left: 20px !important;
+        font-weight: 500 !important;
+    }
+
+    /* Icons */
+    .header_area .navbar .nav .nav-item .irasa-nav-icon {
+        font-size: 18px !important;
+        color: #ffffff !important;
+        opacity: 0.85 !important;
+        width: 24px !important;
+        text-align: center !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Chevron style */
+    .header_area .navbar .nav .nav-item .irasa-chevron {
+        margin-left: auto !important;
+        width: 14px !important;
+        height: 14px !important;
+        opacity: 0.5 !important;
+        color: #ffffff !important;
+        transition: transform 0.3s ease !important;
     }
 
     /* Dropdown toggle: arrow pushed to far right */
@@ -8897,137 +9215,9 @@ html {
         padding-left: 22px !important;
     }
 
-    /* ── Nav-shop strip (bottom of sidebar) ── */
-    .header_area .navbar .nav-shop {
-        width: 100% !important;
-        border-top: 1px solid rgba(212, 175, 55, 0.12) !important;
-        background: #000 !important;
-        padding: 14px 16px 16px !important;
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 10px !important;
-        flex-wrap: wrap !important;
-        margin-top: auto !important;
-        flex-shrink: 0 !important;
-    }
-
-    /* ── Icon items (Cart + Profile) — side by side ── */
-    .header_area .navbar .nav-shop .nav-shop-icon {
-        width: auto !important;
-        flex-shrink: 0 !important;
-    }
-
-    /* Cart icon link */
-    .header_area .navbar .nav-shop .nav-shop-icon-link {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 40px !important;
-        height: 40px !important;
-        border-radius: 50% !important;
-        border: 1.5px solid rgba(212, 175, 55, 0.45) !important;
-        background: rgba(212, 175, 55, 0.08) !important;
-        color: #d4af37 !important;
-        text-decoration: none !important;
-        transition: background 0.2s, border-color 0.2s !important;
-        position: relative !important;
-    }
-
-    .header_area .navbar .nav-shop .nav-shop-icon-link i {
-        font-size: 18px !important;
-        color: #d4af37 !important;
-    }
-
-    .header_area .navbar .nav-shop .nav-shop-icon-link:hover {
-        background: rgba(212, 175, 55, 0.18) !important;
-        border-color: #d4af37 !important;
-    }
-
-    /* Cart badge */
-    .header_area .navbar .nav-shop .nav-shop__circle {
-        position: absolute !important;
-        top: -6px !important;
-        right: -6px !important;
-        background: #d4af37 !important;
-        border-radius: 50px !important;
-        color: #000 !important;
-        font-weight: 700 !important;
-        font-size: 10px !important;
-        min-width: 16px !important;
-        height: 16px !important;
-        line-height: 16px !important;
-        text-align: center !important;
-        padding: 0 4px !important;
-    }
-
-    /* Profile icon link */
-    .header_area .navbar .nav-shop .nav-shop-profile-link {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 40px !important;
-        height: 40px !important;
-        border-radius: 50% !important;
-        border: 1.5px solid rgba(212, 175, 55, 0.45) !important;
-        background: rgba(212, 175, 55, 0.08) !important;
-        overflow: hidden !important;
-        text-decoration: none !important;
-        transition: background 0.2s, border-color 0.2s !important;
-    }
-
-    .header_area .navbar .nav-shop .nav-shop-profile-link i {
-        font-size: 18px !important;
-        color: #d4af37 !important;
-    }
-
-    .header_area .navbar .nav-shop .nav-shop-profile-link img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        border-radius: 50% !important;
-    }
-
-    .header_area .navbar .nav-shop .nav-shop-profile-link:hover {
-        background: rgba(212, 175, 55, 0.18) !important;
-        border-color: #d4af37 !important;
-    }
-
-    /* ── Shop Now — always full-width row below icons ── */
-    .header_area .navbar .nav-shop .nav-shop-btn {
-        flex: 0 0 100% !important;
-        width: 100% !important;
-        margin-top: 6px !important;
-    }
-
-    .header_area .navbar .nav-shop .nav-shop-btn a,
-    .header_area .navbar .nav-shop .button-header {
-        display: block !important;
-        width: 100% !important;
-        text-align: center !important;
-        padding: 12px 0 !important;
-        font-size: 11.5px !important;
-        letter-spacing: 2.5px !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%) !important;
-        border-radius: 22px !important;
-        box-shadow: 0 4px 14px rgba(212, 175, 55, 0.28) !important;
-        color: #000 !important;
-        border: none !important;
-        text-decoration: none !important;
-        transition: opacity 0.2s, transform 0.15s !important;
-    }
-
-    .header_area .navbar .nav-shop .nav-shop-btn a:hover,
-    .header_area .navbar .nav-shop .button-header:hover {
-        opacity: 0.88 !important;
-        transform: translateY(-1px) !important;
-    }
 
 
-    /* ── Backdrop overlay behind sidebar ── */
+    /* â”€â”€ Backdrop overlay behind sidebar â”€â”€ */
     .irasa-offcanvas-backdrop {
         position: fixed !important;
         inset: 0 !important;
@@ -9050,9 +9240,43 @@ html {
     body.irasa-offcanvas-open {
         overflow: hidden !important;
     }
+
+    /* Solid background on mobile scroll to prevent transparent text overlapping */
+    header.header_area.navbar_fixed,
+    header.header_area.navbar_fixed .main_menu,
+    header.header_area.navbar_fixed .main_menu .navbar {
+        background: #000000 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    header.header_area.navbar_fixed {
+        border-bottom: 1px solid rgba(212, 175, 55, 0.18) !important;
+        transition: none !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important;
+    }
+
+    /* Disable fadeInDown animation on mobile scroll sticky transition */
+    header.header_area.navbar_fixed .main_menu {
+        animation: none !important;
+        transition: none !important;
+        height: 62px !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    header.header_area.navbar_fixed .main_menu .navbar {
+        height: 62px !important;
+        max-height: 62px !important;
+    }
 }
 
-/* ── Tiny phones ≤400px ── */
+/* â”€â”€ Tiny phones â‰¤400px â”€â”€ */
 @media (max-width: 400px) {
     .header_area .navbar-collapse {
         width: 90vw !important;
@@ -9068,7 +9292,7 @@ html {
     }
 }
 
-/* ── HERO CAROUSEL: Responsive image & layout fixes ── */
+/* â”€â”€ HERO CAROUSEL: Responsive image & layout fixes â”€â”€ */
 .hero-carousel .owl-item {
     display: block !important;
 }
@@ -9077,10 +9301,13 @@ html {
     display: block !important;
     position: relative !important;
     overflow: hidden !important;
-    height: 420px !important; /* Desktop default height */
-    background: linear-gradient(135deg, #0f0f0f 0%, #171717 100%) !important; /* Premium dark background */
+    height: 420px !important;
+    /* Desktop default height */
+    background: linear-gradient(135deg, #0f0f0f 0%, #171717 100%) !important;
+    /* Premium dark background */
     border-radius: 8px !important;
-    border: 1px solid rgba(212, 175, 55, 0.15) !important; /* Subtle luxury gold border */
+    border: 1px solid rgba(212, 175, 55, 0.15) !important;
+    /* Subtle luxury gold border */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
 }
 
@@ -9091,9 +9318,11 @@ html {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: center top !important; /* Keep perfume bottles focused at top */
+    object-position: center top !important;
+    /* Keep perfume bottles focused at top */
     display: block !important;
-    opacity: 0.8 !important; /* Blends with the dark gradient for high text contrast */
+    opacity: 0.8 !important;
+    /* Blends with the dark gradient for high text contrast */
     transition: transform 0.5s ease, opacity 0.5s ease !important;
 }
 
@@ -9107,7 +9336,7 @@ html {
     .hero-carousel .owl-item .hero-carousel__slide {
         height: 320px !important;
     }
-    
+
     .hero-carousel .owl-item .hero-carousel__slide .hero-carousel__slideOverlay {
         padding: 16px 20px 14px !important;
     }
@@ -9117,13 +9346,13 @@ html {
     .hero-carousel .owl-item .hero-carousel__slide {
         height: 260px !important;
     }
-    
+
     .hero-carousel .owl-item .hero-carousel__slide .hero-carousel__slideOverlay {
         padding: 12px 15px 10px !important;
     }
 }
 
-/* ===== Profile Nav Image — circular avatar in navbar ===== */
+/* ===== Profile Nav Image â€” circular avatar in navbar ===== */
 #profileNavImg {
     width: 32px;
     height: 32px;
@@ -9140,152 +9369,175 @@ html {
 
 /* Toggle Button in Header */
 .admin-sidebar-toggle {
-  background: none;
-  border: none;
-  color: var(--admin-gold, #d4af37) !important;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 8px;
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  transition: background 0.2s;
-  outline: none;
+    background: none;
+    border: none;
+    color: var(--admin-gold, #d4af37) !important;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: background 0.2s;
+    outline: none;
 }
+
 .admin-sidebar-toggle:hover {
-  background: rgba(212, 175, 55, 0.08);
+    background: rgba(212, 175, 55, 0.08);
 }
 
 /* Sidebar transition */
 .admin-sidebar {
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Collapsed Sidebar on Desktop */
 @media (min-width: 769px) {
-  .admin-sidebar.collapsed {
-    width: 70px !important;
-  }
-  .admin-sidebar.collapsed .admin-logo {
-    padding: 10px 0 !important;
-  }
-  .admin-sidebar.collapsed .admin-logo a span {
-    font-size: 0 !important;
-    letter-spacing: 0 !important;
-  }
-  .admin-sidebar.collapsed .admin-logo a span::after {
-    content: 'iR' !important;
-    font-size: 24px !important;
-    font-family: 'Samarkan', sans-serif !important;
-    color: #d4af37 !important;
-    letter-spacing: 0 !important;
-  }
-  .admin-sidebar.collapsed .nav-section-label {
-    display: none !important;
-  }
-  .admin-sidebar.collapsed .admin-nav-item {
-    font-size: 0 !important;
-    justify-content: center !important;
-    padding: 12px 0 !important;
-    border-left-width: 4px !important;
-  }
-  .admin-sidebar.collapsed .admin-nav-item i {
-    margin-right: 0 !important;
-    font-size: 1.25rem !important;
-  }
-  .admin-sidebar.collapsed .admin-nav-item .nav-badge {
-    display: none !important;
-  }
-  .admin-sidebar.collapsed .admin-sidebar-footer {
-    padding: 16px 10px !important;
-  }
-  .admin-sidebar.collapsed .admin-sidebar-footer button {
-    font-size: 0 !important;
-    padding: 10px 0 !important;
-    justify-content: center !important;
-    gap: 0 !important;
-  }
-  .admin-sidebar.collapsed .admin-sidebar-footer button i {
-    font-size: 1.2rem !important;
-    margin: 0 !important;
-  }
+    .admin-sidebar.collapsed {
+        width: 70px !important;
+    }
+
+    .admin-sidebar.collapsed .admin-logo {
+        padding: 10px 0 !important;
+    }
+
+    .admin-sidebar.collapsed .admin-logo a span {
+        font-size: 0 !important;
+        letter-spacing: 0 !important;
+    }
+
+    .admin-sidebar.collapsed .admin-logo a span::after {
+        content: 'iR' !important;
+        font-size: 24px !important;
+        font-family: 'Samarkan', sans-serif !important;
+        color: #d4af37 !important;
+        letter-spacing: 0 !important;
+    }
+
+    .admin-sidebar.collapsed .nav-section-label {
+        display: none !important;
+    }
+
+    .admin-sidebar.collapsed .admin-nav-item {
+        font-size: 0 !important;
+        justify-content: center !important;
+        padding: 12px 0 !important;
+        border-left-width: 4px !important;
+    }
+
+    .admin-sidebar.collapsed .admin-nav-item i {
+        margin-right: 0 !important;
+        font-size: 1.25rem !important;
+    }
+
+    .admin-sidebar.collapsed .admin-nav-item .nav-badge {
+        display: none !important;
+    }
+
+    .admin-sidebar.collapsed .admin-sidebar-footer {
+        padding: 16px 10px !important;
+    }
+
+    .admin-sidebar.collapsed .admin-sidebar-footer button {
+        font-size: 0 !important;
+        padding: 10px 0 !important;
+        justify-content: center !important;
+        gap: 0 !important;
+    }
+
+    .admin-sidebar.collapsed .admin-sidebar-footer button i {
+        font-size: 1.2rem !important;
+        margin: 0 !important;
+    }
 }
 
 /* Mobile Sidebar Drawer */
 @media (max-width: 768px) {
-  .admin-sidebar {
-    display: flex !important; /* Override inline display: none */
-    position: fixed !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: -260px !important; /* Slide out of screen */
-    z-index: 1060 !important;
-    width: 260px !important;
-    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8) !important;
-  }
-  .admin-sidebar.open {
-    left: 0 !important; /* Slide in */
-  }
-  
-  /* Sidebar backdrop overlay */
-  .admin-sidebar-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    z-index: 1050;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-  .admin-sidebar-backdrop.show {
-    opacity: 1;
-    pointer-events: all;
-  }
+    .admin-sidebar {
+        display: flex !important;
+        /* Override inline display: none */
+        position: fixed !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        left: -260px !important;
+        /* Slide out of screen */
+        z-index: 1060 !important;
+        width: 260px !important;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8) !important;
+    }
 
-  /* Adjust header padding and alignment */
-  .admin-header {
-    padding: 0 16px !important;
-  }
-  .admin-header h4 {
-    font-size: 15px !important;
-    flex-grow: 1;
-  }
-  .admin-content {
-    padding: 16px !important;
-  }
+    .admin-sidebar.open {
+        left: 0 !important;
+        /* Slide in */
+    }
 
-  /* Grid layout modifications for mobile app feel */
-  .stats-grid {
-    grid-template-columns: 1fr !important; /* Stack stats vertically for app feel */
-    gap: 12px !important;
-  }
-  .charges-grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px !important;
-  }
-  .charge-chip {
-    padding: 8px 12px !important;
-  }
-  
-  /* Tables horizontal scrolling card */
-  .admin-card {
-    padding: 16px 12px !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Quick actions list */
-  .quick-actions {
-    gap: 8px !important;
-  }
-  .qa-btn {
-    flex: 1 1 calc(50% - 8px); /* 2 buttons per row */
-    justify-content: center;
-    padding: 10px 8px !important;
-  }
+    /* Sidebar backdrop overlay */
+    .admin-sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 1050;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .admin-sidebar-backdrop.show {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    /* Adjust header padding and alignment */
+    .admin-header {
+        padding: 0 16px !important;
+    }
+
+    .admin-header h4 {
+        font-size: 15px !important;
+        flex-grow: 1;
+    }
+
+    .admin-content {
+        padding: 16px !important;
+    }
+
+    /* Grid layout modifications for mobile app feel */
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        /* Stack stats vertically for app feel */
+        gap: 12px !important;
+    }
+
+    .charges-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+
+    .charge-chip {
+        padding: 8px 12px !important;
+    }
+
+    /* Tables horizontal scrolling card */
+    .admin-card {
+        padding: 16px 12px !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Quick actions list */
+    .quick-actions {
+        gap: 8px !important;
+    }
+
+    .qa-btn {
+        flex: 1 1 calc(50% - 8px);
+        /* 2 buttons per row */
+        justify-content: center;
+        padding: 10px 8px !important;
+    }
 }
 
 /* ==========================================================================
@@ -9294,38 +9546,590 @@ html {
 
 /* Responsive Grid for Details Modal */
 .admin-details-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
 /* Responsive Chart Container */
 .admin-chart-container {
-  position: relative;
-  height: 320px;
-  width: 100%;
+    position: relative;
+    height: 320px;
+    width: 100%;
 }
 
 @media (max-width: 768px) {
-  .admin-details-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-  
-  /* Responsive card title column layout for charts/filters */
-  .admin-card-title {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
-  }
-  
-  .admin-card-title .slicer-group {
-    width: 100% !important;
-    justify-content: flex-start !important;
-  }
-  
-  .admin-chart-container {
-    height: 240px !important;
-  }
+    .admin-details-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    /* Responsive card title column layout for charts/filters */
+    .admin-card-title {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+    }
+
+    .admin-card-title .slicer-group {
+        width: 100% !important;
+        justify-content: flex-start !important;
+    }
+
+    .admin-chart-container {
+        height: 240px !important;
+    }
 }
-
+
+/* ==========================================================================
+   PREMIUM NAVBAR â€” Full Redesign (LG Desktop Only â‰¥ 992px)
+   ========================================================================== */
+@media (min-width: 992px) {
+
+    /* â”€â”€ 1. Header Shell â”€â”€ */
+    header.header_area {
+        background: #000000 !important;
+        position: fixed !important;
+        width: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1050 !important;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.12) !important;
+        box-shadow: 0 2px 40px rgba(0, 0, 0, 0.85) !important;
+        overflow: visible !important;
+    }
+
+    header.header_area .main_menu {
+        background: transparent !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    header.header_area .navbar {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    /* Full-width nav container â€” slightly taller for better visual breathing */
+    header.header_area .irasa-nav-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 10px 48px !important;
+        height: 90px !important;
+        gap: 28px !important;
+    }
+
+    /* â”€â”€ 2. LOGO (text-only, enlarged) â”€â”€ */
+    header.header_area .irasa-logo {
+        display: flex !important;
+        align-items: flex-start !important;
+        flex-direction: column !important;
+        gap: 2px !important;
+        text-decoration: none !important;
+        flex-shrink: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    header.header_area .irasa-logo__text {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 3px !important;
+        line-height: 1 !important;
+    }
+
+    header.header_area .irasa-logo__brand {
+        font-family: 'Samarkan', sans-serif !important;
+        font-size: 40px !important;
+        color: #ffffff !important;
+        letter-spacing: 4px !important;
+        font-style: normal !important;
+        font-weight: normal !important;
+        display: block !important;
+        line-height: 1 !important;
+        text-transform: capitalize !important;
+        transition: color 0.25s ease, text-shadow 0.25s ease !important;
+        text-shadow: 0 0 20px rgba(255, 196, 88, 0.6), 0 0 40px rgba(255, 196, 88, 0.25) !important;
+    }
+
+    header.header_area .irasa-logo:hover .irasa-logo__brand {
+        color: #ffd97a !important;
+        text-shadow: 0 0 28px rgba(255, 196, 88, 0.9), 0 0 60px rgba(255, 196, 88, 0.4) !important;
+    }
+
+    header.header_area .irasa-logo__tagline {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 10.5px !important;
+        font-weight: 400 !important;
+        color: rgba(255, 196, 88, 0.65) !important;
+        letter-spacing: 4.5px !important;
+        text-transform: uppercase !important;
+        display: block !important;
+        transition: color 0.25s ease !important;
+    }
+
+    header.header_area .irasa-logo:hover .irasa-logo__tagline {
+        color: rgba(255, 196, 88, 0.9) !important;
+    }
+
+    /* â”€â”€ 3. Collapse wrapper: flex row â”€â”€ */
+    header.header_area .navbar-collapse {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex: 1 !important;
+        gap: 0 !important;
+    }
+
+    /* â”€â”€ 4. CENTER NAV PILL â”€â”€ */
+    header.header_area ul.menu_nav {
+        background: rgba(255, 255, 255, 0.04) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(212, 175, 55, 0.18) !important;
+        border-radius: 50px !important;
+        padding: 3px 10px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 2px !important;
+        margin: 0 auto !important;
+        list-style: none !important;
+        position: relative !important;
+        height: 54px !important;
+        overflow: visible !important;
+        flex-shrink: 1 !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+    }
+
+    header.header_area ul.menu_nav .nav-item {
+        position: relative !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    header.header_area ul.menu_nav .nav-item .nav-link {
+        font-family: "Inter", sans-serif !important;
+        font-size: 13.5px !important;
+        font-weight: 500 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1.3px !important;
+        color: rgba(212, 175, 55, 0.72) !important;
+        padding: 7px 16px !important;
+        transition: all 0.25s ease !important;
+        border-radius: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        white-space: nowrap !important;
+        text-shadow: none !important;
+        line-height: 1 !important;
+    }
+
+    header.header_area ul.menu_nav .nav-item .nav-link:hover {
+        color: #ffffff !important;
+        background: rgba(212, 175, 55, 0.09) !important;
+    }
+
+    header.header_area ul.menu_nav .nav-item.active .nav-link {
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    /* Customize link gold */
+    header.header_area ul.menu_nav .irasa-customize-link {
+        color: #ffc458 !important;
+    }
+
+    /* Nav icons (magic wand etc) */
+    header.header_area ul.menu_nav .irasa-nav-icon {
+        font-size: 14px !important;
+    }
+
+    /* Chevron icon */
+    header.header_area .irasa-chevron {
+        transition: transform 0.25s ease !important;
+        stroke: currentColor !important;
+        opacity: 0.7 !important;
+    }
+
+    /* Chevron rotate when dropdown open */
+    header.header_area .irasa-click-drop.irasa-open .irasa-chevron {
+        transform: rotate(180deg) !important;
+        opacity: 1 !important;
+    }
+
+    /* â”€â”€ 5. MEGA DROPDOWN (click-based) â”€â”€ */
+    header.header_area .irasa-click-drop {
+        position: relative !important;
+    }
+
+    header.header_area .irasa-mega-drop {
+        position: absolute !important;
+        top: calc(100% + 16px) !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(12px) !important;
+        background: rgba(8, 8, 8, 0.98) !important;
+        border: 1px solid rgba(212, 175, 55, 0.18) !important;
+        border-radius: 18px !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(212, 175, 55, 0.05) inset !important;
+        backdrop-filter: blur(30px) !important;
+        -webkit-backdrop-filter: blur(30px) !important;
+        min-width: 350px !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        display: block !important;
+        transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        pointer-events: none !important;
+        z-index: 2000 !important;
+    }
+
+    header.header_area .irasa-mega-drop--sm {
+        min-width: 290px !important;
+    }
+
+    /* Shown state â€” toggled by JS */
+    header.header_area .irasa-click-drop.irasa-open>.irasa-mega-drop {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(-50%) translateY(0) !important;
+        pointer-events: auto !important;
+    }
+
+    /* Bridge gap so mouse can reach panel */
+    header.header_area .irasa-mega-drop::before {
+        content: '' !important;
+        position: absolute !important;
+        top: -16px !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 16px !important;
+        background: transparent !important;
+    }
+
+    /* Dropdown header section */
+    header.header_area .irasa-drop-header {
+        padding: 18px 22px 14px !important;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 3px !important;
+    }
+
+    header.header_area .irasa-drop-title {
+        font-family: 'Playfair Display', serif !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        color: #ffc458 !important;
+        letter-spacing: 0.5px !important;
+        display: block !important;
+    }
+
+    header.header_area .irasa-drop-sub {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 11px !important;
+        font-weight: 300 !important;
+        color: rgba(255, 255, 255, 0.35) !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        display: block !important;
+    }
+
+    /* Dropdown items grid */
+    header.header_area .irasa-drop-grid {
+        padding: 10px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+    }
+
+    header.header_area .irasa-drop-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 14px !important;
+        padding: 12px 14px !important;
+        border-radius: 12px !important;
+        text-decoration: none !important;
+        transition: all 0.2s ease !important;
+        border: 1px solid transparent !important;
+    }
+
+    header.header_area .irasa-drop-item:hover {
+        background: rgba(212, 175, 55, 0.07) !important;
+        border-color: rgba(212, 175, 55, 0.12) !important;
+        transform: translateX(4px) !important;
+    }
+
+    header.header_area .irasa-drop-icon {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 11px !important;
+        background: rgba(212, 175, 55, 0.1) !important;
+        border: 1px solid rgba(212, 175, 55, 0.2) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        color: #ffc458 !important;
+        font-size: 18px !important;
+        transition: all 0.2s ease !important;
+    }
+
+    header.header_area .irasa-drop-item:hover .irasa-drop-icon {
+        background: rgba(212, 175, 55, 0.2) !important;
+        box-shadow: 0 0 14px rgba(212, 175, 55, 0.25) !important;
+    }
+
+    header.header_area .irasa-drop-info {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 3px !important;
+    }
+
+    header.header_area .irasa-drop-info strong {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: rgba(255, 255, 255, 0.88) !important;
+        display: block !important;
+        transition: color 0.2s ease !important;
+        letter-spacing: 0.3px !important;
+    }
+
+    header.header_area .irasa-drop-item:hover .irasa-drop-info strong {
+        color: #ffc458 !important;
+    }
+
+    header.header_area .irasa-drop-info small {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 12px !important;
+        font-weight: 300 !important;
+        color: rgba(255, 255, 255, 0.35) !important;
+        display: block !important;
+        letter-spacing: 0.2px !important;
+    }
+
+    /* â”€â”€ 6. RIGHT ACTIONS â”€â”€ */
+    header.header_area .irasa-nav-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 12px !important;
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+    }
+
+    header.header_area .irasa-nav-actions .nav-item {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Icon Action Buttons (Cart, Profile) â€” larger */
+    header.header_area .irasa-action-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 50px !important;
+        height: 50px !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(212, 175, 55, 0.22) !important;
+        color: rgba(255, 255, 255, 0.78) !important;
+        font-size: 20px !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+    }
+
+    header.header_area .irasa-action-btn:hover {
+        background: rgba(212, 175, 55, 0.12) !important;
+        border: 1px solid rgba(212, 175, 55, 0.5) !important;
+        color: #ffc458 !important;
+        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.18) !important;
+    }
+
+    /* Cart badge */
+    header.header_area .irasa-nav-actions .nav-shop__circle {
+        position: absolute !important;
+        top: -4px !important;
+        right: -4px !important;
+        background: #ffc458 !important;
+        color: #000000 !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        width: 19px !important;
+        height: 19px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 2px solid #000 !important;
+        line-height: 1 !important;
+    }
+
+    /* Profile: when logged in â€” gold ring */
+    header.header_area .irasa-profile-wrap.is-logged-in .irasa-action-btn {
+        border-color: rgba(212, 175, 55, 0.55) !important;
+        background: rgba(212, 175, 55, 0.1) !important;
+    }
+
+    /* Profile avatar image */
+    header.header_area .irasa-action-btn #profileNavImg {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+    }
+
+    /* Initials avatar */
+    header.header_area .irasa-initials-avatar {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, #a46a00, #ffc559) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 17px !important;
+        color: #000 !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    /* â”€â”€ 7. SHOP NOW BUTTON â€” matches Browse Now pill â”€â”€ */
+    header.header_area .irasa-shop-cta {
+        background: linear-gradient(135deg, #c8941e 0%, #ffd06b 55%, #a86b00 100%) !important;
+        color: #000000 !important;
+        font-family: "Inter", sans-serif !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1.2px !important;
+        font-size: 11.5px !important;
+        padding: 0 20px !important;
+        border-radius: 50px !important;
+        border: 1px solid rgba(212, 175, 55, 0.45) !important;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25) !important;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 42px !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        min-width: 110px !important;
+    }
+
+    header.header_area .irasa-shop-cta:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 24px rgba(255, 197, 89, 0.45) !important;
+        color: #000000 !important;
+        text-decoration: none !important;
+        border-color: #ffd06b !important;
+    }
+
+    /* â”€â”€ 8. PROFILE DROPDOWN (auth.js injected) â”€â”€ */
+    #rasaProfileDropdown {
+        background: rgba(10, 10, 10, 0.98) !important;
+        border: 1px solid rgba(212, 175, 55, 0.2) !important;
+        border-radius: 14px !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(212, 175, 55, 0.05) inset !important;
+        backdrop-filter: blur(30px) !important;
+        -webkit-backdrop-filter: blur(30px) !important;
+        min-width: 230px !important;
+    }
+}
+
+/* ==========================================================================
+   NAVBAR SCROLL STATE — Enhanced design on Y-axis scroll (≥ 992px)
+   Class `.irasa-scrolled` is added to <header> via JS on scroll > 50px
+   ========================================================================== */
+@media (min-width: 992px) {
+
+    /* Transition for smooth scroll-state change */
+    header.header_area {
+        transition:
+            background 0.4s ease,
+            box-shadow 0.4s ease,
+            border-color 0.4s ease,
+            height 0.4s ease !important;
+    }
+
+    /* ── SCROLLED STATE ── */
+    header.header_area.irasa-scrolled {
+        background: rgba(0, 0, 0, 0.88) !important;
+        backdrop-filter: blur(28px) !important;
+        -webkit-backdrop-filter: blur(28px) !important;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.28) !important;
+        box-shadow:
+            0 4px 24px rgba(0, 0, 0, 0.9),
+            0 1px 0 rgba(212, 175, 55, 0.12) inset !important;
+    }
+
+    /* Compact height when scrolled */
+    header.header_area.irasa-scrolled .irasa-nav-container {
+        height: 72px !important;
+        padding: 6px 48px !important;
+        transition: height 0.35s ease, padding 0.35s ease !important;
+    }
+
+    /* Logo shrinks slightly on scroll */
+    header.header_area.irasa-scrolled .irasa-logo__brand {
+        font-size: 33px !important;
+        text-shadow: 0 0 22px rgba(255, 196, 88, 0.8), 0 0 50px rgba(255, 196, 88, 0.35) !important;
+    }
+
+    header.header_area.irasa-scrolled .irasa-logo__tagline {
+        font-size: 9.5px !important;
+        letter-spacing: 4px !important;
+    }
+
+    /* Nav pill gets slightly stronger glass on scroll */
+    header.header_area.irasa-scrolled ul.menu_nav {
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: none !important;
+        height: 48px !important;
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            0 4px 16px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    /* Nav links stay same size but get slightly brighter on scroll */
+    header.header_area.irasa-scrolled ul.menu_nav .nav-item .nav-link {
+        color: rgba(212, 175, 55, 0.85) !important;
+    }
+
+    /* Action icons get gold tint on scroll */
+    header.header_area.irasa-scrolled .irasa-action-btn {
+        background: rgba(255, 255, 255, 0.07) !important;
+        border: none !important;
+        color: rgba(255, 196, 88, 0.85) !important;
+    }
+
+    /* Shop Now glows more on scroll */
+    header.header_area.irasa-scrolled .irasa-shop-cta {
+        box-shadow: 0 4px 28px rgba(212, 175, 55, 0.5) !important;
+    }
+
+    /* Gold accent line at bottom edge of header */
+    header.header_area.irasa-scrolled::after {
+        content: '' !important;
+        position: absolute !important;
+        bottom: -1px !important;
+        left: 10% !important;
+        width: 80% !important;
+        height: 1px !important;
+        background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5) 30%, rgba(255, 196, 88, 0.7) 50%, rgba(212, 175, 55, 0.5) 70%, transparent) !important;
+        display: block !important;
+        pointer-events: none !important;
+    }
+}

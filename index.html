@@ -5,7 +5,7 @@
   <meta name="description"
     content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 399.">
   <meta name="keywords"
-    content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
+    content="Perfumes in Nashik, Luxury Fragrances Nashik, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
   <meta name="author" content="Technokraft services LLP">
   <link rel="canonical" href="https://irasaperfumes.in/">
   <meta charset="UTF-8">
@@ -22,6 +22,9 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link href="css/vendors/aos.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&family=Manrope:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Prata&display=swap"
+    rel="stylesheet">
   <style>
     /* Custom Quantity Picker for Modal */
     .quantity-picker {
@@ -87,84 +90,1142 @@
         margin-top: 10px;
       }
     }
+
+    /* Logo Custom Style */
+    .logo_h span {
+      font-family: "Cormorant Garamond", serif !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 2px !important;
+      font-style: normal !important;
+      /* Remove italic */
+    }
+
+    /* Product Name Custom Style */
+    .card-product__title a,
+    .product-title a,
+    .product-title {
+      font-family: "Prata", serif !important;
+      font-style: normal !important;
+      /* Remove italic */
+    }
+
+    /* Hero Banner Redesign */
+    .hero-banner {
+      background-color: #000000 !important;
+      background-image: radial-gradient(circle at 35% 50%, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 65%, rgba(0, 0, 0, 0.85) 100%),
+        url('img/i_rasa_bottles/hero_bg.jpg') !important;
+      background-repeat: no-repeat !important;
+      background-position: right center !important;
+      background-size: auto 100% !important;
+      /* Scale height to fit container, width scales proportionally */
+      min-height: 90vh !important;
+      /* Take up 90% of screen height */
+      display: flex !important;
+      align-items: center !important;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0 !important;
+    }
+
+    .hero-banner::before {
+      display: none !important;
+    }
+
+    .hero-banner__content {
+      max-width: 620px !important;
+      background: transparent !important;
+      padding: 0 !important;
+      border: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      box-shadow: none !important;
+      margin-top: 55px !important;
+    }
+
+    @media (max-width: 991px) {
+      .hero-banner {
+        background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 65%, rgba(0, 0, 0, 0.8) 100%),
+          url('img/i_rasa_bottles/hero_bg.jpg') no-repeat center center !important;
+        background-size: cover !important;
+        min-height: 70vh !important;
+        padding: 80px 0 !important;
+        display: block !important;
+      }
+
+      .hero-banner__content {
+        max-width: 100% !important;
+        padding: 30px !important;
+        background: rgba(0, 0, 0, 0.85) !important;
+        border: 1px solid rgba(212, 175, 55, 0.28) !important;
+        border-radius: 15px !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .hero-banner {
+        padding: 60px 0 !important;
+      }
+
+      .hero-banner__content {
+        padding: 25px 20px !important;
+      }
+    }
+
+    .hero-banner__content h4 {
+      font-family: "Inter", sans-serif !important;
+      font-weight: 500 !important;
+      color: #ffc458 !important;
+      font-size: 14px !important;
+      letter-spacing: 4px !important;
+      line-height: normal !important;
+      margin-bottom: 20px !important;
+      text-transform: uppercase !important;
+      font-style: normal !important;
+      /* Remove italic */
+      opacity: 0.9;
+    }
+
+    .hero-banner__content h1 {
+      font-family: "Playfair Display", serif !important;
+      font-weight: normal !important;
+      color: #ffffff !important;
+      font-size: 58px !important;
+      letter-spacing: 1px !important;
+      line-height: 1.25 !important;
+      margin-bottom: 25px !important;
+      text-transform: none !important;
+      font-style: normal !important;
+      /* Remove italic */
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    .hero-banner__content h1 span {
+      background: linear-gradient(135deg, #ffe3a8 0%, #ffc458 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: normal !important;
+      /* Remove italic */
+    }
+
+    @media (max-width: 768px) {
+      .hero-banner__content h1 {
+        font-size: 38px !important;
+      }
+    }
+
+    .hero-banner__content p {
+      font-family: "Inter", sans-serif !important;
+      font-weight: 300 !important;
+      color: #d1d1d1 !important;
+      font-size: 18px !important;
+      line-height: 1.7 !important;
+      margin-bottom: 35px !important;
+      font-style: normal !important;
+      /* Remove italic */
+    }
+
+    .hero-banner__content .button-hero {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 15px 40px !important;
+      border-radius: 12px 35px 12px 35px !important;
+      background: linear-gradient(135deg, #976303 0%, #ffc559 50%, #a46a00 100%) !important;
+      color: #5d3c00 !important;
+      font-family: "Manrope", sans-serif !important;
+      font-weight: 500 !important;
+      /* Medium */
+      font-size: 18px !important;
+      border: none !important;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+      text-transform: uppercase !important;
+      /* Uppercase */
+      letter-spacing: 2px !important;
+      /* Letter spacing 1-2px */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+      font-style: normal !important;
+      /* Remove italic */
+    }
+
+    .hero-banner__content .button-hero:hover {
+      transform: translateY(-3px) scale(1.03) !important;
+      box-shadow: 0 15px 30px rgba(255, 197, 89, 0.35) !important;
+      color: #5d3c00 !important;
+      text-decoration: none !important;
+    }
+
+    /* Showcase Section Styling */
+    .showcase-section {
+      background-color: #000000 !important;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 !important;
+    }
+
+    .showcase-title {
+      font-family: "Playfair Display", serif !important;
+      font-weight: normal !important;
+      color: #ffc458 !important;
+      font-size: 42px !important;
+      line-height: 1.35 !important;
+      text-transform: none !important;
+      font-style: normal !important;
+      text-shadow: 0 2px 10px rgba(255, 196, 89, 0.15) !important;
+    }
+
+    @media (max-width: 768px) {
+      .showcase-title {
+        font-size: 28px !important;
+      }
+
+      .showcase-section {
+        padding: 60px 0 !important;
+      }
+    }
+
+    .showcase-img-wrap {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 600px;
+      aspect-ratio: 1 / 1;
+      height: auto;
+      margin: 0 auto -50px auto !important;
+    }
+
+    .showcase-glow-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 85%;
+      height: 85%;
+      background: radial-gradient(circle, rgba(255, 197, 89, 0.45) 0%, rgba(212, 175, 55, 0.15) 50%, rgba(0, 0, 0, 0) 75%) !important;
+      border-radius: 50% !important;
+      filter: blur(60px) !important;
+      transform: translate(-50%, -50%) !important;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .showcase-bottle {
+      position: relative;
+      z-index: 2;
+      max-height: 96%;
+      object-fit: contain;
+      /* filter: url(#outline-with-gap) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85)) !important; */
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85)) !important;
+      transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+      border: 0 !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    .showcase-content {
+      padding: 20px 0;
+    }
+
+    .showcase-item-title {
+      font-family: "Playfair Display", serif !important;
+      font-weight: 600 !important;
+      color: #ffc458 !important;
+      font-size: 38px !important;
+      font-style: normal !important;
+      margin-bottom: 25px !important;
+    }
+
+    .showcase-bullets {
+      list-style: none !important;
+      padding-left: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    .showcase-bullets li {
+      font-family: "Inter", sans-serif !important;
+      font-weight: 300 !important;
+      color: #c2c2c2 !important;
+      font-size: 20px !important;
+      line-height: 1.8 !important;
+      margin-bottom: 22px !important;
+      position: relative !important;
+      padding-left: 28px !important;
+      font-style: normal !important;
+    }
+
+    .showcase-bullets li::before {
+      content: "•" !important;
+      color: #ffc458 !important;
+      font-size: 28px !important;
+      position: absolute !important;
+      left: 5px !important;
+      top: -3px !important;
+      line-height: 1 !important;
+    }
+
+    @media (min-width: 768px) {
+      .showcase-bullets.text-md-right li {
+        padding-left: 0 !important;
+        padding-right: 28px !important;
+      }
+
+      .showcase-bullets.text-md-right li::before {
+        left: auto !important;
+        right: 5px !important;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .showcase-img-wrap {
+        max-width: 480px;
+      }
+
+      .showcase-bottle {
+        max-height: 94%;
+      }
+
+      .showcase-glow-circle {
+        width: 80%;
+        height: 80%;
+        filter: blur(50px) !important;
+      }
+
+      .showcase-item-title {
+        font-size: 32px !important;
+        text-align: center !important;
+      }
+
+      .showcase-bullets {
+        text-align: center !important;
+      }
+
+      .showcase-bullets li {
+        font-size: 18px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+      }
+
+      .showcase-bullets li::before {
+        display: none !important;
+      }
+
+      .showcase-content {
+        text-align: center !important;
+        padding: 10px 0 !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .showcase-img-wrap {
+        max-width: 360px;
+      }
+
+      .showcase-bottle {
+        max-height: 92%;
+      }
+
+      .showcase-glow-circle {
+        width: 75%;
+        height: 75%;
+        filter: blur(40px) !important;
+      }
+
+      .showcase-item-title {
+        font-size: 26px !important;
+      }
+
+      .showcase-bullets li {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 12px !important;
+      }
+    }
+
+    .showcase-row-animate {
+      will-change: transform, opacity;
+      opacity: 0;
+      /* Starts hidden until scrolled */
+    }
+
+    .exclusive-card-animate {
+      will-change: transform, opacity;
+      opacity: 0;
+    }
+
+    /* Exclusive Collection Custom Cards */
+    .exclusive-card {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .exclusive-card__box {
+      position: relative;
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 280 / 400;
+      /* Matching 280px x 400px aspect ratio */
+      border: 1px solid #6b6b6b;
+      border-radius: 30px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      /* Reduced padding to let image grow larger */
+      margin: 0 auto 35px auto;
+      /* 35px margin to accommodate the -25px badge overlap */
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .exclusive-card__box:hover {
+      border-color: #ffc458;
+      box-shadow: 0 10px 30px rgba(255, 196, 88, 0.15);
+    }
+
+    .exclusive-card__img {
+      max-width: 92%;
+      /* Increased width to fit container box fully */
+      max-height: 88%;
+      /* Increased height to fit container box fully */
+      object-fit: contain;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7));
+      transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s ease, opacity 0.3s ease;
+      position: relative;
+      z-index: 2;
+      /* Sits in front of the glow circle */
+    }
+
+    .exclusive-card__glow-circle {
+      position: absolute;
+      top: 45%;
+      /* Slightly offset upward to center behind the bottle body */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      aspect-ratio: 1 / 1;
+      background: radial-gradient(circle, rgba(218, 165, 32, 0.48) 0%, rgba(218, 165, 32, 0.18) 50%, rgba(0, 0, 0, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .exclusive-card__price-badge {
+      position: absolute;
+      bottom: -25px;
+      /* Offset halfway out of the box */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 49px;
+      background-color: #000000;
+      border: 1px solid #6b6b6b;
+      /* Closed border all around */
+      border-radius: 25px;
+      /* Fully rounded capsule */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .exclusive-card__box:hover .exclusive-card__price-badge {
+      border-color: #ffc458;
+      box-shadow: 0 5px 15px rgba(255, 196, 88, 0.2);
+    }
+
+    .exclusive-card__overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      display: inline-flex;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      opacity: 0;
+      z-index: 5;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      pointer-events: none;
+    }
+
+    .exclusive-card__box:hover .exclusive-card__overlay {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+
+    /* Blur the bottle image slightly on hover when buttons appear */
+    .exclusive-card__box:hover .exclusive-card__img {
+      transform: scale(1.05);
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7)) blur(4px);
+      opacity: 0.5;
+    }
+
+    .exclusive-card__overlay li {
+      margin: 0;
+    }
+
+    .exclusive-card__overlay button {
+      background: #ffc458;
+      border: 1px solid #ffc458;
+      color: #000000;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .exclusive-card__overlay button:hover {
+      background: #000000;
+      color: #ffc458;
+      border-color: #ffc458;
+      transform: translateY(-3px);
+    }
+
+    .exclusive-card__price-text {
+      font-family: "Inter", sans-serif !important;
+      font-weight: 500 !important;
+      color: #ffc458 !important;
+      font-size: 24px !important;
+      letter-spacing: 0;
+      line-height: 1 !important;
+      margin: 0 !important;
+    }
+
+    .exclusive-card__title {
+      font-family: "Manrope", sans-serif !important;
+      font-weight: 600 !important;
+      color: #ffc458 !important;
+      font-size: 22px !important;
+      margin-bottom: 8px !important;
+      letter-spacing: 0.5px !important;
+      font-style: normal !important;
+      text-transform: none !important;
+    }
+
+    .exclusive-card__desc {
+      font-family: "Inter", sans-serif !important;
+      font-weight: 300 !important;
+      color: #949494 !important;
+      font-size: 16px !important;
+      line-height: 1.6 !important;
+      max-width: 260px;
+      margin: 0 auto !important;
+      text-align: center;
+    }
+
+    .exclusive-card__desc span {
+      color: #ffc458;
+      font-weight: 400;
+    }
+
+    .button-explore {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 45px !important;
+      border-radius: 30px !important;
+      background: linear-gradient(135deg, #a46a00 0%, #ffc559 50%, #976303 100%) !important;
+      color: #000000 !important;
+      font-family: "Manrope", sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      border: none !important;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 2px !important;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+      cursor: pointer;
+    }
+
+    .button-explore:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(255, 197, 89, 0.25) !important;
+      color: #000000 !important;
+    }
+
+    /* Unify All Section Headings (H2) and Remove Italics */
+    h2.showcase-title,
+    .section-intro h2,
+    .irasa-offer-title {
+      font-family: 'Playfair Display', serif !important;
+      font-weight: normal !important;
+      /* 400 */
+      font-style: normal !important;
+      /* Remove Italic */
+      font-size: 48px !important;
+      line-height: 1.25 !important;
+      text-transform: none !important;
+      color: #ffffff !important;
+      text-align: center !important;
+      margin-bottom: 15px !important;
+      letter-spacing: 0px !important;
+    }
+
+    /* Subheadings/eyebrows in the intro sections */
+    .section-intro p,
+    .irasa-offer-subtitle {
+      font-family: 'Inter', sans-serif !important;
+      font-weight: 300 !important;
+      color: #aaaaaa !important;
+      font-size: 24px !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+      font-style: normal !important;
+      text-align: center !important;
+      margin-bottom: 45px !important;
+    }
+
+    /* Target the highlights/accents inside the titles (like spans, or accent classes) to be gold and not italic */
+    .section-intro h2 span,
+    .section-intro__style,
+    .irasa-offer-title span,
+    .irasa-offer-title--accent {
+      font-family: 'Playfair Display', serif !important;
+      font-weight: normal !important;
+      font-style: normal !important;
+      /* Remove Italic */
+      color: #ffc458 !important;
+      background: none !important;
+      -webkit-background-clip: initial !important;
+      -webkit-text-fill-color: initial !important;
+      display: inline !important;
+    }
+
+    /*  Section Styles */
+    .choose-fragrance-section {
+      background-color: transparent;
+      padding: 60px 0;
+      position: relative;
+    }
+
+    .choose-fragrance-section .row {
+      row-gap: 30px !important;
+      justify-content: center !important;
+    }
+
+    .choose-fragrance__card {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .choose-fragrance__img-container {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      /* Increased height by 20% */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      /* Increased bottom spacing */
+      overflow: visible;
+    }
+
+    .choose-fragrance__img {
+      position: absolute;
+      max-height: 380px;
+      /* Increased max-height by 20% */
+      max-width: 85%;
+      object-fit: contain;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s ease;
+    }
+
+    .choose-fragrance__img--main {
+      z-index: 3;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7));
+    }
+
+    .choose-fragrance__img--shadow-left {
+      z-index: 1;
+      opacity: 0.15;
+      transform: scale(0.9) translate(-45px, -8px);
+      filter: brightness(0.1) contrast(1.5) blur(1px);
+    }
+
+    .choose-fragrance__img--shadow-right {
+      z-index: 1;
+      opacity: 0.15;
+      transform: scale(0.9) translate(45px, -8px);
+      filter: brightness(0.1) contrast(1.5) blur(1px);
+    }
+
+    .choose-fragrance__glow-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      aspect-ratio: 1 / 1;
+      background: radial-gradient(circle, rgba(218, 165, 32, 0.45) 0%, rgba(218, 165, 32, 0.15) 50%, rgba(0, 0, 0, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2;
+      /* Sits behind main image but in front of shadows */
+    }
+
+    /* Rounded Border Capsule Buttons - Custom 10px 30px 10px 30px Figma Corners */
+    .choose-fragrance__btn {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 100% !important;
+      /* Dynamic width */
+      max-width: 270px !important;
+      /* Cap it on desktop */
+      padding: 12px 10px !important;
+      /* Centered padding for fixed width */
+      white-space: nowrap !important;
+      /* Prevent text wrapping */
+      border: 1px solid #c68f28 !important;
+      border-radius: 10px 30px 10px 30px !important;
+      /* Figma Custom Rounding */
+      background: linear-gradient(153deg, rgba(151, 99, 3, 0.1) 0%, rgba(255, 197, 89, 0.1) 50%, rgba(164, 106, 0, 0.1) 100%) !important;
+      color: #ffc458 !important;
+      font-family: "Inter", sans-serif !important;
+      font-weight: 300 !important;
+      font-size: 20px !important;
+      /* Mocks size */
+      text-transform: capitalize !important;
+      letter-spacing: 0.5px !important;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+      text-decoration: none !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .choose-fragrance__card:hover .choose-fragrance__btn {
+      background: linear-gradient(153deg, rgba(151, 99, 3, 1) 0%, rgba(255, 197, 89, 1) 50%, rgba(164, 106, 0, 1) 100%) !important;
+      color: #5d3c00 !important;
+      border-color: #ffc458 !important;
+      box-shadow: 0 10px 20px rgba(255, 196, 88, 0.25) !important;
+    }
+
+    /* Responsive Mobile Override for Choose Your Fragrance columns */
+    @media (max-width: 768px) {
+      .choose-fragrance-section .row {
+        row-gap: 30px !important;
+      }
+
+      .choose-fragrance__img-container {
+        height: 380px !important;
+        /* Spacious height on tablet/mobile */
+      }
+
+      .choose-fragrance__img {
+        max-height: 320px !important;
+        /* Spacious image size on tablet/mobile */
+      }
+
+      .choose-fragrance__btn {
+        font-size: 18px !important;
+        /* Readable large button font */
+        padding: 12px 10px !important;
+      }
+    }
+
+    /* Section Gold Separator Line Style */
+    .section-separator {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 196, 88, 0) 0%, rgba(255, 196, 88, 0.45) 50%, rgba(255, 196, 88, 0) 100%) !important;
+      margin: 50px 0 !important;
+    }
+
+    /* Choose Your Fragrance header-to-content gap reduction */
+    .choose-fragrance-section .section-intro {
+      padding-bottom: 10px !important;
+    }
+
+    .choose-fragrance-section .section-intro p {
+      margin-bottom: 10px !important;
+    }
+
+    /* Contact Banner Section Style (Mockup based) */
+    .contact-banner-section {
+      background-color: transparent;
+      padding: 60px 0;
+      position: relative;
+      overflow: visible;
+    }
+
+    .contact-banner-card {
+      background: rgba(24, 24, 24, 0.95);
+      border: 1px solid rgba(255, 196, 88, 0.15);
+      border-radius: 30px;
+      padding: 60px;
+      position: relative;
+      overflow: visible;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .contact-banner-header {
+      margin-bottom: 45px !important;
+    }
+
+    .contact-banner-header h2 {
+      font-family: 'Playfair Display', serif !important;
+      font-weight: 400 !important;
+      font-style: normal !important;
+      color: #ffffff !important;
+      font-size: 38px !important;
+      margin-bottom: 15px !important;
+      text-transform: none !important;
+    }
+
+    .contact-banner-header p {
+      font-family: 'Inter', sans-serif !important;
+      font-weight: 300 !important;
+      color: #aaaaaa !important;
+      font-size: 18px !important;
+      margin-bottom: 0 !important;
+    }
+
+    .contact-banner-card .form-control {
+      background-color: rgba(148, 148, 148, 0.06) !important;
+      border: 1px solid #444444 !important;
+      border-radius: 10px !important;
+      color: #ffffff !important;
+      font-family: "Inter", sans-serif !important;
+      font-weight: 300 !important;
+      padding: 12px 20px !important;
+      font-size: 16px !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .contact-banner-card .form-control:focus {
+      border-color: #ffc458 !important;
+      box-shadow: 0 0 10px rgba(255, 196, 88, 0.25) !important;
+      background-color: rgba(148, 148, 148, 0.12) !important;
+    }
+
+    .contact-banner-card textarea.form-control {
+      min-height: 180px !important;
+      resize: none !important;
+    }
+
+    .contact-banner-card .btn-submit {
+      background: linear-gradient(153deg, #976303 0%, #ffc559 50%, #a46a00 100%) !important;
+      color: #5d3c00 !important;
+      border: 1px solid #ffc458 !important;
+      border-radius: 10px 30px 10px 30px !important;
+      /* Figma Custom Corners */
+      font-family: "Manrope", sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 2px !important;
+      padding: 14px 45px !important;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+      cursor: pointer;
+    }
+
+    .contact-banner-card .btn-submit:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 10px 20px rgba(255, 196, 88, 0.25) !important;
+      filter: brightness(1.05);
+    }
+
+    .contact-banner-card .btn-submit:disabled {
+      background: #555555 !important;
+      color: #888888 !important;
+      border-color: #666666 !important;
+      cursor: not-allowed;
+    }
+
+    .contact-bottle-container {
+      position: absolute !important;
+      right: -130px !important;
+      top: -270px !important;
+      /* Pull it up to overflow top-right borders of container card */
+      width: 580px !important;
+      /* Enlarged ~2x size */
+      height: 580px !important;
+      z-index: 10 !important;
+      pointer-events: none !important;
+    }
+
+    .contact-bottle-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      transform: rotate(15deg) !important;
+      /* Tilted to the right side! */
+      filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.8)) !important;
+      z-index: 3 !important;
+      position: relative !important;
+    }
+
+    .contact-bottle-glow {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: 75% !important;
+      aspect-ratio: 1 / 1 !important;
+      background: radial-gradient(circle, rgba(218, 165, 32, 0.5) 0%, rgba(218, 165, 32, 0.18) 50%, rgba(0, 0, 0, 0) 70%) !important;
+      border-radius: 50% !important;
+      z-index: 1 !important;
+    }
+
+    /* Contact Banner Responsive Overrides */
+    @media (max-width: 991px) {
+      .contact-banner-card {
+        padding: 40px 20px !important;
+      }
+
+      .contact-bottle-container {
+        display: none !important;
+      }
+
+      .contact-banner-card .btn-submit {
+        width: 100% !important;
+        text-align: center;
+      }
+
+      .contact-banner-card textarea.form-control {
+        min-height: 140px !important;
+        margin-top: 15px !important;
+      }
+    }
+
+    /* Responsive Headings */
+    @media (max-width: 768px) {
+
+      h2.showcase-title,
+      .section-intro h2,
+      .irasa-offer-title {
+        font-size: 32px !important;
+      }
+
+      .section-intro p,
+      .irasa-offer-subtitle {
+        font-size: 18px !important;
+        margin-bottom: 30px !important;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Commented out SVG Filter for Outline with Gap (Preserved for future use)
+  <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="outline-with-gap">
+        <feMorphology operator="dilate" radius="6" in="SourceAlpha" result="outer"/>
+        <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="inner"/>
+        <feComposite operator="out" in="outer" in2="inner" result="outline"/>
+        <feFlood flood-color="#dfd6bf" result="color"/>
+        <feComposite operator="in" in="color" in2="outline" result="coloredOutline"/>
+        <feMerge>
+          <feMergeNode in="coloredOutline"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
+  -->
+
   <!--================ Start Header Menu Area =================-->
   <header class="header_area">
-    <div class="header_topbar d-none d-lg-flex align-items-center justify-content-end">
-      <a class="topbar-btn topbar-btn-shop" href="category.html"><i class="fas fa-shopping-bag"></i> Shop</a>
-      <a class="topbar-btn topbar-btn-whatsapp"
-        href="https://wa.me/919823833303?text=Hello%20I%27m%20interested%20in%20ordering%20from%20I%20Rasa%20Perfumes."
-        target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-    </div>
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h" href="index.html">
-            <span>i rasa</span>
+        <div class="container-fluid irasa-nav-container">
+
+          <!-- ── LOGO (text-only) ── -->
+          <a class="navbar-brand logo_h irasa-logo" href="index.html">
+            <div class="irasa-logo__text">
+              <span class="irasa-logo__brand">I Rasa</span>
+              <span class="irasa-logo__tagline">The Perfect Perfume</span>
+            </div>
           </a>
+
+          <!-- ── HAMBURGER (mobile) ── -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Shop</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="category.html">Shop Category Men's</a>
-                  <li class="nav-item"><a class="nav-link" href="categoryWomen.html">Shop Category Women's</a>
-                  <li class="nav-item"><a class="nav-link" href="attar.html">Shop Category Attar</a>
 
-                  </li>
-                  <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                </ul>
-              </li>
-              <li class="nav-item submenu dropdown">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-haspopup="true" aria-expanded="false">Blog</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                </ul>
+            <!-- Mobile Menu Header -->
+            <div class="mobile-menu-header d-lg-none">
+              <div class="irasa-logo__text">
+                <span class="irasa-logo__brand">I Rasa</span>
+                <span class="irasa-logo__tagline">The Perfect Perfume</span>
+              </div>
+              <button class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+
+            <!-- ── CENTER NAV PILL ── -->
+            <ul class="nav navbar-nav menu_nav">
+
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                  <i class="ti-home irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Home</span>
+                </a>
               </li>
 
-              <li class="nav-item"><a class="nav-link" href="customize.html"
-                  style="color:#d4af37 !important; font-weight:700; letter-spacing:1px;"><i class='fas fa-magic'></i>
-                  Customize</a></li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              <!-- Shop Dropdown (click-based) -->
+              <li class="nav-item submenu irasa-has-mega irasa-click-drop">
+                <a href="javascript:void(0);" class="nav-link irasa-drop-trigger" role="button">
+                  <i class="ti-bag irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Shop</span>
+                  <svg class="irasa-chevron" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="m6 9 6 6 6-6" />
+                  </svg>
+                </a>
+                <div class="irasa-mega-drop">
+                  <div class="irasa-drop-header">
+                    <span class="irasa-drop-title">Our Collections</span>
+                    <span class="irasa-drop-sub">Handcrafted in Nashik</span>
+                  </div>
+                  <div class="irasa-drop-grid">
+                    <a href="category.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-male"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Men's Perfumes</strong>
+                        <small>Bold, lasting fragrances</small>
+                      </span>
+                    </a>
+                    <a href="categoryWomen.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-female"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Women's Perfumes</strong>
+                        <small>Floral &amp; oriental blends</small>
+                      </span>
+                    </a>
+                    <a href="attar.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-vial"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Attar Collection</strong>
+                        <small>Pure oil-based perfumes</small>
+                      </span>
+                    </a>
+                    <a href="single-product.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-star"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Product Details</strong>
+                        <small>Explore individual scents</small>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Blog Dropdown (click-based) -->
+              <li class="nav-item submenu irasa-has-mega irasa-click-drop">
+                <a href="javascript:void(0);" class="nav-link irasa-drop-trigger" role="button">
+                  <i class="ti-file irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Blogs</span>
+                  <svg class="irasa-chevron" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="m6 9 6 6 6-6" />
+                  </svg>
+                </a>
+                <div class="irasa-mega-drop irasa-mega-drop--sm">
+                  <div class="irasa-drop-header">
+                    <span class="irasa-drop-title">Our Stories</span>
+                    <span class="irasa-drop-sub">Fragrance insights</span>
+                  </div>
+                  <div class="irasa-drop-grid">
+                    <a href="blog.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-newspaper"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Blog</strong>
+                        <small>Scent stories &amp; tips</small>
+                      </span>
+                    </a>
+                    <a href="single-blog.html" class="irasa-drop-item">
+                      <span class="irasa-drop-icon"><i class="fas fa-book-open"></i></span>
+                      <span class="irasa-drop-info">
+                        <strong>Blog Details</strong>
+                        <small>Read in-depth articles</small>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link irasa-customize-link" href="customize.html">
+                  <i class="fas fa-magic irasa-nav-icon"></i>
+                  <span class="irasa-nav-label">Customize</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">
+                  <i class="ti-mobile irasa-nav-icon d-lg-none"></i>
+                  <span class="irasa-nav-label">Contact</span>
+                </a>
+              </li>
+
             </ul>
 
-            <ul class="nav-shop">
+            <!-- ── RIGHT ACTIONS (desktop only) ── -->
+            <ul class="nav-shop irasa-nav-actions d-none d-lg-flex">
 
-              <!-- Cart -->
+              <!-- Cart Icon -->
               <li class="nav-item nav-shop-icon">
-                <a href="cart.html" class="nav-shop-icon-link">
+                <a href="cart.html" class="nav-shop-icon-link irasa-action-btn" title="Shopping Cart">
                   <i class="ti-shopping-cart"></i>
                   <span class="nav-shop__circle" style="display:none;">0</span>
                 </a>
               </li>
 
-              <!-- Profile Icon -->
-              <li class="nav-item nav-shop-icon">
-                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link">
+              <!-- Profile / Login Icon -->
+              <li class="nav-item nav-shop-icon irasa-profile-wrap" id="profileNavWrapper">
+                <a href="login.html" id="profileNavLink" class="nav-shop-profile-link irasa-action-btn" title="Sign In">
                   <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
                   <i id="profileNavIcon" class="ti-user"></i>
                 </a>
+                <!-- Profile dropdown injected here by auth.js -->
               </li>
 
-              <!-- Shop Now — always last, full-width row -->
+              <!-- Shop Now CTA — no icon, matches Browse Now style -->
               <li class="nav-item nav-shop-btn">
-                <a class="button button-header" href="category.html">Shop Now</a>
+                <a class="button button-header irasa-shop-cta" href="category.html">Shop Now</a>
               </li>
 
             </ul>
+
+            <!-- Mobile Menu Footer -->
+            <div class="mobile-menu-footer d-lg-none">
+              <div class="mobile-menu-divider"></div>
+              <div class="mobile-menu-actions">
+                <a class="button button-header mobile-shop-cta" href="category.html">Shop Now</a>
+                <a href="cart.html" class="mobile-action-btn" title="Shopping Cart">
+                  <i class="ti-shopping-cart"></i>
+                </a>
+                <a href="login.html" class="mobile-action-btn" title="Sign In">
+                  <i class="ti-shift-right"></i>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -175,25 +1236,13 @@
   <main class="site-main">
 
     <!--================ Hero banner start =================-->
-    <section data-aos="fade-up" data-aos-duration="1000" class="hero-banner">
+    <section class="hero-banner mt-5">
       <div class="container">
-        <div class="row no-gutters align-items-center pt-60px">
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-12 col-sm-5 col-lg-5">
-            <div class="hero-banner__img">
-
-              <div class="hero-banner__video"
-                style="position: relative; border: 2px solid #d4af37; border-radius: 10px; overflow: hidden; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);">
-                <img class="img" src="img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png"
-                  alt="I Rasa Perfumes Hero" style="width:100%; height:480px; object-fit:cover; display:block;">
-              </div>
-
-            </div>
-          </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
-            class="col-12 col-sm-7 col-lg-6 offset-lg-1 pl-md-4 pl-lg-0">
+        <div class="row align-items-center">
+          <div data-aos="fade-right" data-aos-duration="1000" class="col-12 col-md-8 col-lg-6">
             <div class="hero-banner__content">
               <h4>Fragrance like never before</h4>
-              <h1>I Rasa Premium Perfumes In India</h1>
+              <h1><span>I Rasa</span> Premium Perfumes In Nashik</h1>
               <p>Experience the essence of luxury. Handcrafted long-lasting fragrances designed perfectly for the Indian
                 climate. Elevate your presence with I Rasa.</p>
               <a class="button button-hero" href="category.html">Browse Now</a>
@@ -202,317 +1251,260 @@
         </div>
       </div>
     </section>
-    <!--================ Featured Collections start =================-->
-    <section data-aos="fade-up" data-aos-duration="1000" class="section-margin mt-4">
+    <!--================ Showcase Collections start =================-->
+    <section class="showcase-section">
       <div class="container">
-        <div class="row">
-          
-          <div class="col-md-4 mb-4">
-            <div class="featured-collection-card" style="background:#222; border:1px solid #d4af37; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; height:100%;">
-              <img src="img/gallery/r3.webp" alt="Signature luxury perfume collection bottle" loading="lazy" style="width:100%; height:250px; object-fit:cover;">
-              <div style="padding:20px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                <div>
-                  <h3 style="color:#d4af37; font-size:20px; margin-bottom:10px;">Signature Luxury</h3>
-                  <p style="color:#fff; font-size:14px;">Premium Extrait De Parfum starting at Rs. 399. Long-lasting luxury scents.</p>
-                </div>
-                <a href="category.html" style="color:#d4af37; text-decoration:underline; font-weight:bold; margin-top:10px; display:inline-block;">Explore &rarr;</a>
-              </div>
+        <h2 class="showcase-title text-center mb-5" data-aos="fade-up" data-aos-duration="1000">Fragrances That Have Won
+          Hearts<br>Around the World</h2>
+
+        <!-- Row 1: Signature Luxury (Image left, Text right) -->
+        <div class="row align-items-center mb-4 showcase-row-animate">
+          <div class="col-md-6 text-center position-relative mb-4 mb-md-0">
+            <div class="showcase-img-wrap">
+              <div class="showcase-glow-circle"></div>
+              <img src="img/p1_withoutBg.png" alt="Signature Luxury Perfume Bottle" class="showcase-bottle img-fluid">
             </div>
           </div>
-
-          <div class="col-md-4 mb-4">
-            <div class="featured-collection-card" style="background:#222; border:1px solid #d4af37; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; height:100%;">
-              <img src="img/gallery/r2.webp" alt="Exclusive long lasting perfumes collection for men" loading="lazy" style="width:100%; height:250px; object-fit:cover;">
-              <div style="padding:20px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                <div>
-                  <h3 style="color:#d4af37; font-size:20px; margin-bottom:10px;">Men's Perfumes</h3>
-                  <p style="color:#fff; font-size:14px;">Premium long-lasting fragrances for men. Rs. 399 onwards.</p>
-                </div>
-                <a href="category.html" style="color:#d4af37; text-decoration:underline; font-weight:bold; margin-top:10px; display:inline-block;">Explore &rarr;</a>
-              </div>
+          <div class="col-md-6 pl-md-3">
+            <div class="showcase-content">
+              <h3 class="showcase-item-title mb-4">Signature Luxury</h3>
+              <ul class="showcase-bullets">
+                <li>Premium Extrait De Parfum starting at Rs. 399. Long-lasting luxury scents.</li>
+                <li>Rich woody notes create a deep and luxurious impression.</li>
+              </ul>
             </div>
           </div>
-
-          <div class="col-md-4 mb-4">
-            <div class="featured-collection-card" style="background:#222; border:1px solid #d4af37; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; height:100%;">
-              <img src="img/gallery/r1.webp" alt="Elegant floral fragrance bottle for women" loading="lazy" style="width:100%; height:250px; object-fit:cover;">
-              <div style="padding:20px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                <div>
-                  <h3 style="color:#d4af37; font-size:20px; margin-bottom:10px;">Women's Collection</h3>
-                  <p style="color:#fff; font-size:14px;">Elegant, floral &amp; fresh scents for women starting at Rs. 499.</p>
-                </div>
-                <a href="categoryWomen.html" style="color:#d4af37; text-decoration:underline; font-weight:bold; margin-top:10px; display:inline-block;">Explore &rarr;</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-4">
-            <div class="featured-collection-card" style="background:#222; border:1px solid #d4af37; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; height:100%;">
-              <img src="img/gallery/r5.webp" alt="Traditional Indian attar oud and musk bottle" loading="lazy" style="width:100%; height:250px; object-fit:cover;">
-              <div style="padding:20px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                <div>
-                  <h3 style="color:#d4af37; font-size:20px; margin-bottom:10px;">Traditional Attars</h3>
-                  <p style="color:#fff; font-size:14px;">Pure Indian Oud, Sandalwood &amp; Musk attars. Rs. 399.</p>
-                </div>
-                <a href="attar.html" style="color:#d4af37; text-decoration:underline; font-weight:bold; margin-top:10px; display:inline-block;">Explore &rarr;</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 mb-4">
-            <div class="featured-collection-card" style="background:#222; border:1px solid #d4af37; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; height:100%;">
-              <img src="img/gallery/r7.webp" alt="Bespoke handcrafted custom fragrance" loading="lazy" style="width:100%; height:250px; object-fit:cover;">
-              <div style="padding:20px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                <div>
-                  <h3 style="color:#d4af37; font-size:20px; margin-bottom:10px;">Bespoke Scents</h3>
-                  <p style="color:#fff; font-size:14px;">Custom perfumes crafted for the Indian climate. Rs. 499.</p>
-                </div>
-                <a href="category.html" style="color:#d4af37; text-decoration:underline; font-weight:bold; margin-top:10px; display:inline-block;">Explore &rarr;</a>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <!-- Row 2: Dior Savage (Text left, Image right) -->
+        <div class="row align-items-center mb-4 flex-column-reverse flex-md-row showcase-row-animate">
+          <div class="col-md-6 pr-md-3">
+            <div class="showcase-content text-md-right">
+              <h3 class="showcase-item-title mb-4">Dior Savage</h3>
+              <ul class="showcase-bullets text-md-right">
+                <li>Premium Extrait De Parfum starting at Rs. 399. Long-lasting luxury scents.</li>
+                <li>Rich woody notes create a deep and luxurious impression.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 text-center position-relative mb-4 mb-md-0">
+            <div class="showcase-img-wrap">
+              <div class="showcase-glow-circle"></div>
+              <img src="img/p2_withoutBg.png" alt="Dior Savage Perfume Bottle" class="showcase-bottle img-fluid">
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Premium Attar (Image left, Text right) -->
+        <div class="row align-items-center showcase-row-animate">
+          <div class="col-md-6 text-center position-relative mb-4 mb-md-0">
+            <div class="showcase-img-wrap">
+              <div class="showcase-glow-circle"></div>
+              <img src="img/attar_withoutBg.png" alt="Premium Attar Bottle" class="showcase-bottle img-fluid">
+            </div>
+          </div>
+          <div class="col-md-6 pl-md-3">
+            <div class="showcase-content">
+              <h3 class="showcase-item-title mb-4">Premium Attar</h3>
+              <ul class="showcase-bullets">
+                <li>Premium Non-Alcoholic Attar starting at Rs. 299. Concentrated traditional scents.</li>
+                <li>Rich, exotic blends of pure natural extracts for long-lasting longevity.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
-    <!--================ Featured Collections end =================-->
-    <!-- ================ trending product section start ================= -->
+    <!--================ Showcase Collections end =================-->
+
+    <!-- ================ Exclusive Collection Section Start ================= -->
     <section data-aos="fade-up" data-aos-duration="1000" class="section-margin calc-60px">
       <div class="container">
-        <div class="section-intro pb-60px">
-          <p>Hand-picked for our finest customers</p>
-          <h2>Exclusive <span class="section-intro__style">Collection</span></h2>
+        <div class="section-intro text-center pb-60px">
+          <h2
+            style="font-family: 'Playfair Display', serif !important; font-weight: normal !important; color: #ffc458 !important; font-size: 48px !important; margin-bottom: 15px !important; text-transform: none !important;">
+            Exclusive Collection</h2>
+          <p
+            style="font-family: 'Inter', sans-serif !important; font-weight: 300 !important; color: #aaaaaa !important; font-size: 24px !important; letter-spacing: 0 !important; text-transform: none !important;">
+            Hand-picked for our finest customers</p>
         </div>
-        <div class="row">
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
-            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-                <span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
-                <img class="card-img" loading="lazy" src="img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif"
-                  alt="">
-                <ul class="card-product__imgOverlay">
+        <div class="row justify-content-center">
+          <!-- Card 1 -->
+          <div class="col-md-6 col-lg-3 d-flex justify-content-center exclusive-card-animate">
+            <div class="exclusive-card">
+              <div class="exclusive-card__box">
+                <div class="exclusive-card__glow-circle"></div>
+                <img src="img/i_rasa_bottles/ex1.png" alt="Dior Savage Perfume Bottle" class="exclusive-card__img">
+                <ul class="exclusive-card__overlay">
                   <li><button data-toggle="modal" data-target="#product_modal" data-title="Dior Savage"
-                      data-price="Rs. 399" data-img="img/i_rasa_bottles/gucci_flora.jfif"><i
-                        class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
+                      data-price="Rs. 399" data-img="img/i_rasa_bottles/ex1.png"><i class="ti-search"></i></button></li>
+                  <li><button data-toggle="modal" data-target="#product_modal" data-title="Dior Savage"
+                      data-price="Rs. 399" data-img="img/i_rasa_bottles/ex1.png"><i
+                        class="ti-shopping-cart"></i></button></li>
+                  <li><button onclick="CartEngine._showToast('❤️ Added to Wishlist!')"><i class="ti-heart"></i></button>
+                  </li>
                 </ul>
-              </div>
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
-                <p>Men's Perfume</p>
-                <h4 class="card-product__title"><a href="single-product.html">Dior Savage</a></h4>
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>(167)</span>
+                <div class="exclusive-card__price-badge">
+                  <p class="exclusive-card__price-text">Rs. 399/-</p>
                 </div>
-                <p class="card-product__price">Rs. 399</p>
               </div>
+              <h4 class="exclusive-card__title">Dior Savage</h4>
+              <p class="exclusive-card__desc">Premium Extrait De Parfum starting at Rs. 399. Long-lasting luxury scents.
+              </p>
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
-            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-                <img class="card-img" loading="lazy" src="img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif"
-                  alt="">
-                <ul class="card-product__imgOverlay">
+
+          <!-- Card 2 -->
+          <div class="col-md-6 col-lg-3 d-flex justify-content-center exclusive-card-animate">
+            <div class="exclusive-card">
+              <div class="exclusive-card__box">
+                <div class="exclusive-card__glow-circle"></div>
+                <img src="img/i_rasa_bottles/ex2.png" alt="Gucci Flora Perfume Bottle" class="exclusive-card__img">
+                <ul class="exclusive-card__overlay">
                   <li><button data-toggle="modal" data-target="#product_modal" data-title="Gucci Flora"
-                      data-price="Rs. 499" data-img="img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif"><i
-                        class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
+                      data-price="Rs. 499" data-img="img/i_rasa_bottles/ex2.png"><i class="ti-search"></i></button></li>
+                  <li><button data-toggle="modal" data-target="#product_modal" data-title="Gucci Flora"
+                      data-price="Rs. 499" data-img="img/i_rasa_bottles/ex2.png"><i
+                        class="ti-shopping-cart"></i></button></li>
+                  <li><button onclick="CartEngine._showToast('❤️ Added to Wishlist!')"><i class="ti-heart"></i></button>
+                  </li>
                 </ul>
-              </div>
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
-                <p>Women's Perfume</p>
-                <h4 class="card-product__title"><a href="single-product.html">Gucci Flora</a></h4>
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>(167)</span>
+                <div class="exclusive-card__price-badge">
+                  <p class="exclusive-card__price-text">Rs. 499/-</p>
                 </div>
-                <p class="card-product__price">Rs. 499</p>
               </div>
+              <h4 class="exclusive-card__title">Gucci Flora</h4>
+              <p class="exclusive-card__desc">Premium Extrait De Parfum starting at Rs. 499. Long-lasting luxury scents.
+              </p>
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
-            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-                <img class="card-img" loading="lazy" src="img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif"
-                  alt="">
-                <ul class="card-product__imgOverlay">
+
+          <!-- Card 3 -->
+          <div class="col-md-6 col-lg-3 d-flex justify-content-center exclusive-card-animate">
+            <div class="exclusive-card">
+              <div class="exclusive-card__box">
+                <div class="exclusive-card__glow-circle"></div>
+                <img src="img/i_rasa_bottles/ex3.png" alt="Savage Dior Perfume Bottle" class="exclusive-card__img">
+                <ul class="exclusive-card__overlay">
                   <li><button data-toggle="modal" data-target="#product_modal" data-title="Savage Dior"
-                      data-price="Rs. 499" data-img="img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif"><i
-                        class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
+                      data-price="Rs. 499" data-img="img/i_rasa_bottles/ex3.png"><i class="ti-search"></i></button></li>
+                  <li><button data-toggle="modal" data-target="#product_modal" data-title="Savage Dior"
+                      data-price="Rs. 499" data-img="img/i_rasa_bottles/ex3.png"><i
+                        class="ti-shopping-cart"></i></button></li>
+                  <li><button onclick="CartEngine._showToast('❤️ Added to Wishlist!')"><i class="ti-heart"></i></button>
+                  </li>
                 </ul>
-              </div>
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
-                <p>Men's Perfume</p>
-                <h4 class="card-product__title"><a href="single-product.html">Savage Dior</a></h4>
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>(167)</span>
+                <div class="exclusive-card__price-badge">
+                  <p class="exclusive-card__price-text">Rs. 499/-</p>
                 </div>
-                <p class="card-product__price">Rs. 499</p>
               </div>
+              <h4 class="exclusive-card__title">Savage Dior</h4>
+              <p class="exclusive-card__desc">Premium Extrait De Parfum starting at Rs. 499. Long-lasting luxury scents.
+              </p>
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
-            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-                <img class="card-img" loading="lazy" src="img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif"
-                  alt="">
-                <ul class="card-product__imgOverlay">
+
+          <!-- Card 4 -->
+          <div class="col-md-6 col-lg-3 d-flex justify-content-center exclusive-card-animate">
+            <div class="exclusive-card">
+              <div class="exclusive-card__box">
+                <div class="exclusive-card__glow-circle"></div>
+                <img src="img/i_rasa_bottles/ex4.png" alt="Creed Avantes Perfume Bottle" class="exclusive-card__img">
+                <ul class="exclusive-card__overlay">
                   <li><button data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes"
-                      data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png"><i
-                        class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
+                      data-price="Rs. 499" data-img="img/i_rasa_bottles/ex4.png"><i class="ti-search"></i></button></li>
+                  <li><button data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes"
+                      data-price="Rs. 499" data-img="img/i_rasa_bottles/ex4.png"><i
+                        class="ti-shopping-cart"></i></button></li>
+                  <li><button onclick="CartEngine._showToast('Added to Wishlist!')"><i class="ti-heart"></i></button>
+                  </li>
                 </ul>
-              </div>
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
-                <p>Men's Perfume</p>
-                <h4 class="card-product__title"><a href="single-product.html">Creed Avantes</a></h4>
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>(167)</span>
+                <div class="exclusive-card__price-badge">
+                  <p class="exclusive-card__price-text">Rs. 499/-</p>
                 </div>
-                <p class="card-product__price">Rs. 499</p>
               </div>
+              <h4 class="exclusive-card__title">Creed Avantes</h4>
+              <p class="exclusive-card__desc">Premium Extrait De Parfum starting at Rs. 499. Long-lasting luxury scents.
+              </p>
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
-            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-                <img class="card-img" loading="lazy"
-                  src="img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas"
-                      data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png"><i
-                        class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
-                <p>Men's Perfume</p>
-                <h4 class="card-product__title"><a href="single-product.html">Rasassi Hawas</a></h4>
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>(167)</span>
-                </div>
-                <p class="card-product__price">Rs. 499</p>
-              </div>
-            </div>
-          </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
-            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-                <img class="card-img" loading="lazy"
-                  src="img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button data-toggle="modal" data-target="#product_modal" data-title="V. Boomshell"
-                      data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png"><i
-                        class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
-                <p>Women's Perfume</p>
-                <h4 class="card-product__title"><a href="single-product.html">V. Boomshell</a></h4>
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>(167)</span>
-                </div>
-                <p class="card-product__price">Rs. 499</p>
-              </div>
-            </div>
-          </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
-            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-                <img class="card-img" loading="lazy" src="img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif"
+        </div>
+
+        <div class="text-center mt-4 pt-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+          <a href="category.html" class="button-explore">Explore More</a>
+        </div>
+      </div>
+    </section>
+    <!-- ================ Exclusive Collection Section End ================= -->
+
+    <div class="container">
+      <div class="section-separator" data-aos="fade-up" data-aos-duration="1000"></div>
+    </div>
+
+    <!--================ Choose Your Fragrance Section Start =================-->
+    <section class="section-margin choose-fragrance-section" data-aos="fade-up" data-aos-duration="1000">
+      <div class="container">
+        <div class="section-intro text-center pb-60px">
+          <h2>Choose Your <span class="section-intro__style">Fragrance</span></h2>
+          <p>Explore collections created for different moods and personalities.</p>
+        </div>
+        <div class="row justify-content-center">
+          <!-- Men's Collection -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4 mb-lg-0 exclusive-card-animate">
+            <div class="choose-fragrance__card text-center">
+              <div class="choose-fragrance__img-container">
+                <div class="choose-fragrance__glow-circle"></div>
+                <img src="img/i_rasa_bottles/ex2.png" class="choose-fragrance__img choose-fragrance__img--shadow-left"
                   alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button data-toggle="modal" data-target="#product_modal" data-title="Armani Code"
-                      data-price="Rs. 499" data-img="img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif"><i
-                        class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
+                <img src="img/i_rasa_bottles/ex2.png" class="choose-fragrance__img choose-fragrance__img--shadow-right"
+                  alt="">
+                <img src="img/i_rasa_bottles/ex2.png" class="choose-fragrance__img choose-fragrance__img--main"
+                  alt="Men's Collection">
               </div>
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
-                <p>Men's Perfume</p>
-                <h4 class="card-product__title"><a href="single-product.html">Armani Code</a></h4>
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>(167)</span>
-                </div>
-                <p class="card-product__price">Rs. 499</p>
-              </div>
+              <a href="category.html" class="choose-fragrance__btn">Men's Collection</a>
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6 col-lg-4 col-xl-3">
-            <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-                <img class="card-img" loading="lazy" src="img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif"
-                  alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button data-toggle="modal" data-target="#product_modal" data-title="Blue De Chanel"
-                      data-price="Rs. 499" data-img="img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif"><i
-                        class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
+
+          <!-- Women's Collection -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4 mb-lg-0 exclusive-card-animate">
+            <div class="choose-fragrance__card text-center">
+              <div class="choose-fragrance__img-container">
+                <div class="choose-fragrance__glow-circle"></div>
+                <img src="img/i_rasa_bottles/p1_withoutBg.png"
+                  class="choose-fragrance__img choose-fragrance__img--shadow-left" alt="">
+                <img src="img/i_rasa_bottles/p1_withoutBg.png"
+                  class="choose-fragrance__img choose-fragrance__img--shadow-right" alt="">
+                <img src="img/i_rasa_bottles/p1_withoutBg.png" class="choose-fragrance__img choose-fragrance__img--main"
+                  alt="Women's Collection">
               </div>
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
-                <p>Women's Perfume</p>
-                <h4 class="card-product__title"><a href="javascript:void(0);">Blue De Chanel</a></h4>
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <span>(167)</span>
-                </div>
-                <p class="card-product__price">Rs. 499</p>
+              <a href="categoryWomen.html" class="choose-fragrance__btn">Women's Collection</a>
+            </div>
+          </div>
+
+          <!-- Attar Collection -->
+          <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4 mb-lg-0 exclusive-card-animate">
+            <div class="choose-fragrance__card text-center">
+              <div class="choose-fragrance__img-container">
+                <div class="choose-fragrance__glow-circle"></div>
+                <img src="img/i_rasa_bottles/attar_withoutBg.png"
+                  class="choose-fragrance__img choose-fragrance__img--shadow-left" alt="">
+                <img src="img/i_rasa_bottles/attar_withoutBg.png"
+                  class="choose-fragrance__img choose-fragrance__img--shadow-right" alt="">
+                <img src="img/i_rasa_bottles/attar_withoutBg.png"
+                  class="choose-fragrance__img choose-fragrance__img--main" alt="Attar Collection">
               </div>
+              <a href="attar.html" class="choose-fragrance__btn">Attar Collection</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- ================ trending product section end ================= -->
+    <!--================ Choose Your Fragrance Section End =================-->
+
+    <div class="container">
+      <div class="section-separator" data-aos="fade-up" data-aos-duration="1000"></div>
+    </div>
 
     <!-- ================ offer section start ================= -->
     <section data-aos="fade-up" data-aos-duration="1000" class="irasa-offer-section">
@@ -560,7 +1552,8 @@
             <h4 class="irasa-offer-card__sub">Prices start from<br><strong>just Rs. 499!</strong></h4>
             <div class="irasa-offer-card__divider"></div>
             <p class="irasa-offer-card__text">
-              Discover the most luxury affordable premium perfumes in India. Handcrafted for long-lasting fragrance that
+              Discover the most luxury affordable premium perfumes in Nashik. Handcrafted for long-lasting fragrance
+              that
               turns heads wherever you go.
             </p>
             <a href="category.html" class="irasa-offer-card__btn irasa-offer-card__btn--featured">Explore Collection <i
@@ -582,11 +1575,10 @@
         <div class="owl-carousel owl-theme" id="bestSellerCarousel">
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-              <img class="img-fluid" src="img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif" alt="">
+              <img class="img-fluid" src="img/i_rasa_bottles/p4.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Hugo Boss" data-price="Rs. 499"
-                    data-img="img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif"><i
-                      class="ti-search"></i></button></li>
+                    data-img="img/i_rasa_bottles/p7.png"><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
@@ -608,11 +1600,10 @@
 
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-              <img class="img-fluid" src="img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png" alt="">
+              <img class="img-fluid" src="img/i_rasa_bottles/p3.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Gucci Bloom"
-                    data-price="Rs. 499" data-img="img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png"><i
-                      class="ti-search"></i></button></li>
+                    data-price="Rs. 499" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
@@ -634,11 +1625,10 @@
 
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-              <img class="img-fluid" src="img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png" alt="">
+              <img class="img-fluid" src="img/i_rasa_bottles/p3.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Musk Velvet"
-                    data-price="Rs. 399" data-img="img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png"><i
-                      class="ti-search"></i></button></li>
+                    data-price="Rs. 399" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
@@ -659,11 +1649,10 @@
 
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-              <img class="img-fluid" src="img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png" alt="">
+              <img class="img-fluid" src="img/i_rasa_bottles/p2.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Musk Velvet"
-                    data-price="Rs. 399" data-img="img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif"><i
-                      class="ti-search"></i></button></li>
+                    data-price="Rs. 399" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
@@ -684,11 +1673,10 @@
 
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-              <img class="img-fluid" src="img/i_rasa_bottles/5ba999bf-b1d0-43bb-b1fb-e495ea8c8b3b.jfif" alt="">
+              <img class="img-fluid" src="img/i_rasa_bottles/p3.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Oud Supreme"
-                    data-price="Rs. 399" data-img="img/i_rasa_bottles/79245e6a-ff41-48d6-a737-96b15c7f5a31.jfif"><i
-                      class="ti-search"></i></button></li>
+                    data-price="Rs. 399" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
@@ -709,11 +1697,10 @@
 
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-              <img class="img-fluid" src="img/i_rasa_bottles/9541adbe-aff3-4ed4-bf90-447ce1b94e10.jfif" alt="">
+              <img class="img-fluid" src="img/i_rasa_bottles/p2.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Rose Gold" data-price="Rs. 399"
-                    data-img="img/i_rasa_bottles/b6567052-f1fa-4c6f-b4e7-39917667b99e.jfif"><i
-                      class="ti-search"></i></button></li>
+                    data-img="img/i_rasa_bottles/p5.png"><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
@@ -734,11 +1721,10 @@
 
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-              <img class="img-fluid" src="img/i_rasa_bottles/f2b34ddf-2479-4913-a0b1-4e437c70b8de.jfif" alt="">
+              <img class="img-fluid" src="img/i_rasa_bottles/p1.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Musk Velvet"
-                    data-price="Rs. 399" data-img="img/i_rasa_bottles/Gemini_Generated_Image_13yc2413yc2413yc.png"><i
-                      class="ti-search"></i></button></li>
+                    data-price="Rs. 399" data-img="img/i_rasa_bottles/p4.png"><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
@@ -752,11 +1738,10 @@
 
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
-              <img class="img-fluid" src="img/i_rasa_bottles/Gemini_Generated_Image_1ht3cv1ht3cv1ht3.png" alt="">
+              <img class="img-fluid" src="img/i_rasa_bottles/p7.png" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Musk Velvet"
-                    data-price="Rs. 399" data-img="img/i_rasa_bottles/Gemini_Generated_Image_59242l59242l5924.png"><i
-                      class="ti-search"></i></button></li>
+                    data-price="Rs. 399" data-img="img/i_rasa_bottles/p4.png"><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
                 <li><button><i class="ti-heart"></i></button></li>
               </ul>
@@ -905,6 +1890,151 @@
     </section>
     <!-- ================ Subscribe section end ================= -->
 
+    <div class="container">
+      <div class="section-separator" data-aos="fade-up" data-aos-duration="1000"></div>
+    </div>
+
+    <!-- ================ Contact Banner Section Start ================= -->
+    <section data-aos="fade-up" data-aos-duration="1000" class="contact-banner-section mt-5">
+      <div class="container">
+        <div class="contact-banner-card">
+          <div class="row align-items-center">
+            <!-- Form Column -->
+            <div class="col-12 col-lg-8">
+              <div class="contact-banner-header text-left">
+                <h2>Be the First to <span class="section-intro__style">Know</span></h2>
+                <p>Receive updates about new arrivals, promotions, and exclusive offers.</p>
+              </div>
+
+              <form class="form-contact contact_form" id="contactForm" novalidate="novalidate">
+                <div class="row">
+                  <!-- Left inputs -->
+                  <div class="col-12 col-md-5">
+                    <div class="form-group mb-3">
+                      <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name"
+                        required>
+                    </div>
+                    <div class="form-group mb-3">
+                      <input class="form-control" name="email" id="email" type="email" placeholder="Enter email address"
+                        required>
+                    </div>
+                    <div class="form-group mb-3">
+                      <input class="form-control" name="mobileNo" id="mobileNo" type="tel"
+                        placeholder="Enter mobile number (optional)" pattern="[0-9]{10,15}">
+                    </div>
+                    <div class="form-group mb-3 mb-md-0">
+                      <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject"
+                        minlength="2" maxlength="100" required>
+                    </div>
+                  </div>
+                  <!-- Right message -->
+                  <div class="col-12 col-md-7">
+                    <div class="form-group h-100">
+                      <textarea class="form-control h-100" name="message" id="message"
+                        placeholder="Enter your message (10–1000 characters)" minlength="10" maxlength="1000"
+                        required></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!-- Submit -->
+                <div class="form-group text-center text-md-left mt-4 mb-0">
+                  <button type="submit" class="btn-submit" id="contactSubmitBtn">Send Message</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Bottle Visual -->
+            <div class="col-12 col-lg-4 position-relative">
+              <div class="contact-bottle-container">
+                <div class="contact-bottle-glow"></div>
+                <img src="img/i_rasa_bottles/p1_withoutBg.png" class="contact-bottle-img"
+                  alt="I Rasa Red Perfume Bottle">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Contact Form - POST to /api/contact/submit-enquiry
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById('name').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const mobileNo = document.getElementById('mobileNo').value.trim();
+          const subject = document.getElementById('subject').value.trim();
+          const message = document.getElementById('message').value.trim();
+          const btn = document.getElementById('contactSubmitBtn');
+
+          // Validation
+          if (!name || !email || !subject || !message) {
+            showContactToast('Please fill in all required fields.', 'error');
+            return;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showContactToast('Please enter a valid email address.', 'error');
+            return;
+          }
+          if (message.length < 10) {
+            showContactToast('Message must be at least 10 characters.', 'error');
+            return;
+          }
+
+          btn.textContent = 'Sending...';
+          btn.disabled = true;
+
+          try {
+            const params = new URLSearchParams({ name, email, subject, message });
+            if (mobileNo) params.append('mobileNo', mobileNo);
+
+            const contactUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+              ? 'http://localhost:8080/api/contact/submit-enquiry'
+              : '/api/contact/submit-enquiry';
+
+            const res = await fetch(contactUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: params.toString()
+            });
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+              showContactToast('Message sent successfully! We will contact you soon.', 'success');
+              e.target.reset();
+            } else {
+              showContactToast(data.message || 'Failed to send message. Please try again.', 'error');
+            }
+          } catch (err) {
+            showContactToast('Network error. Please check your connection.', 'error');
+            console.error(err);
+          } finally {
+            btn.textContent = 'Send Message';
+            btn.disabled = false;
+          }
+        });
+
+        function showContactToast(msg, type) {
+          let tc = document.getElementById('toast-container');
+          if (!tc) {
+            tc = document.createElement('div');
+            tc.id = 'toast-container';
+            tc.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;';
+            document.body.appendChild(tc);
+          }
+          const t = document.createElement('div');
+          const borderColor = type === 'success' ? '#d4af37' : '#ff4d4d';
+          const icon = type === 'success' ? 'fa-check-circle' : 'fa-times-circle';
+          t.style.cssText = `background:#111;border-left:4px solid ${borderColor};color:#fff;padding:15px 25px;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,0.5);font-weight:bold;opacity:0;transform:translateX(100%);transition:all .3s ease;display:flex;align-items:center;gap:10px;font-family:"Michroma",sans-serif;font-size:12px;`;
+          t.innerHTML = `<i class="fas ${icon}" style="color:${borderColor};font-size:16px;"></i> ${msg}`;
+          tc.appendChild(t);
+          setTimeout(() => { t.style.opacity = '1'; t.style.transform = 'translateX(0)'; }, 10);
+          setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(100%)'; setTimeout(() => t.remove(), 300); }, 4000);
+        }
+      </script>
+    </section>
+    <!-- ================ Contact Banner Section End ================= -->
+
 
 
   </main>
@@ -925,7 +2055,7 @@
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/i_rasa_perfumes/"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="javascript:void(0);"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/919823833303" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
           </div>
@@ -978,11 +2108,66 @@
       <div class="container">
         <div class="row">
           <p class="col-lg-12 footer-text text-center" style="letter-spacing: 1px; font-size: 13px;">
-            &copy; 2026 I Rasa Perfumes | Crafted by Technokraft services LLP.</p>
+            &copy; 2026 I Rasa Perfumes | <a href="#" data-toggle="modal" data-target="#technokraft_credits_modal" style="color: #d4af37; text-decoration: none; font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='#fff';" onmouseout="this.style.color='#d4af37';">Crafted by Technokraft services LLP.</a>
+          </p>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- TECHNOKRAFT SERVICES LLP. TEAM CREDITS MODAL -->
+  <div class="modal fade" id="technokraft_credits_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);">
+        <div class="modal-header" style="border-bottom: 1px solid #222; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center;">
+          <h5 class="modal-title" style="color: #ffffff !important; font-family: 'Cinzel', serif !important; font-weight: 500 !important; letter-spacing: 1.5px !important; margin: 0; font-size: 16px !important;">
+            TechnoKraft Services Team
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #ffffff !important; opacity: 0.8 !important; font-size: 24px !important; background: none !important; border: none !important; outline: none !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 1 !important; transition: color 0.3s !important;" onmouseover="this.style.setProperty('color', '#ff4757', 'important');" onmouseout="this.style.setProperty('color', '#ffffff', 'important');">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 30px 25px; text-align: center;">
+          <!-- TechnoKraft Brand Icon / Logo -->
+          <div style="font-size: 36px !important; color: #ffd700 !important; margin-bottom: 12px !important;">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          
+          <h4 style="font-family: 'Cinzel', serif !important; color: #ffd700 !important; font-size: 19px !important; font-weight: 500 !important; margin-bottom: 5px !important; letter-spacing: 0.8px !important;">
+            TechnoKraft Services LLP
+          </h4>
+          <p style="font-size: 10px !important; color: #718093 !important; text-transform: uppercase !important; letter-spacing: 2px !important; margin-bottom: 25px !important; font-family: 'Inter', sans-serif !important; font-weight: 400 !important;">
+            Partner in Digital Excellence
+          </p>
+          
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.08) !important; padding-top: 20px !important; margin-bottom: 20px !important;">
+            <p style="font-size: 10px !important; text-transform: uppercase !important; color: #a5b1c2 !important; letter-spacing: 2.5px !important; font-weight: 500 !important; margin-bottom: 12px !important; font-family: 'Inter', sans-serif !important;">
+              Designed By
+            </p>
+            <h5 style="font-family: 'Inter', sans-serif !important; font-size: 14px !important; font-weight: 400 !important; color: #ffffff !important; line-height: 1.8 !important; margin: 0 !important; letter-spacing: 0.8px !important;">
+              ABHISHEK SOUNDANKAR<br>
+              ADITYA KAWALE<br>
+              SAMADHAN PATIL
+            </h5>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.08) !important; padding-top: 20px !important; margin-bottom: 5px !important;">
+            <p style="font-size: 10px !important; text-transform: uppercase !important; color: #a5b1c2 !important; letter-spacing: 2.5px !important; font-weight: 500 !important; margin-bottom: 12px !important; font-family: 'Inter', sans-serif !important;">
+              Developed By
+            </p>
+            <h5 style="font-family: 'Inter', sans-serif !important; font-size: 14px !important; font-weight: 400 !important; color: #ffffff !important; margin: 0 !important; letter-spacing: 0.8px !important;">
+              KUNAL PATIL
+            </h5>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #222 !important; padding: 15px 25px !important; display: flex !important; justify-content: center !important; background: #070707 !important;">
+          <a href="https://www.technokraftservices.com/" target="_blank" class="button" style="background: #0a0a0a !important; color: #ffd700 !important; border: 1px solid #ffd700 !important; border-radius: 25px !important; padding: 8px 24px !important; font-weight: 500 !important; font-size: 11px !important; transition: all 0.3s !important; outline: none !important; text-decoration: none !important; text-transform: uppercase !important; letter-spacing: 1px !important; display: inline-block !important; cursor: pointer !important; font-family: 'Inter', sans-serif !important;" onmouseover="this.style.setProperty('background', '#ffd700', 'important'); this.style.setProperty('color', '#000000', 'important');" onmouseout="this.style.setProperty('background', '#0a0a0a', 'important'); this.style.setProperty('color', '#ffd700', 'important');">
+            Visit Website
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- PRODUCT QUICK VIEW MODAL -->
   <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -990,19 +2175,21 @@
       style="margin-top: 90px !important; margin-bottom: 50px !important;">
       <div class="modal-content"
         style="background: #0a0a0a; border: 2px solid #d4af37; color: #fff; border-radius: 15px; overflow: hidden;">
-        <div class="modal-header" style="border-bottom: 1px solid #333; padding: 20px 30px;">
+        <div class="modal-header" style="border-bottom: 1px solid #333; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center;">
           <h5 class="modal-title"
-            style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px;">Product Quick
+            style="color: #d4af37; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px; margin: 0;">Product Quick
             View</h5>
-          <!-- close button removed to avoid stray X near header logo -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            style="color: #fff; opacity: 0.8; font-size: 28px; background: none; border: none; outline: none; cursor: pointer; transition: color 0.3s, opacity 0.3s; padding: 0; margin: 0; line-height: 1;">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body" style="padding: 40px 30px;">
           <div class="row">
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
               <div class="modal-img-wrap"
                 style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
-                <img src="img/i_rasa_bottles/Gemini_Generated_Image_b6qufb6qufb6qufb.png" class="img-fluid"
-                  id="modal_img" alt="Perfume"
+                <img src="img/i_rasa_bottles/p7.png" class="img-fluid" id="modal_img" alt="Perfume"
                   style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
               </div>
             </div>
@@ -1209,7 +2396,7 @@
 
       var name = document.getElementById('modal_title').innerText.trim();
       var qty = parseInt(document.getElementById('modal_qty').value) || 1;
-      var img = document.getElementById('modal_img').getAttribute('src') || 'img/i_rasa_bottles/Gemini_Generated_Image_h6kuafh6kuafh6ku.png';
+      var img = document.getElementById('modal_img').getAttribute('src') || 'img/i_rasa_bottles/p3.png';
 
       if (modalPricingState.selectedSize === 0) {
         CartEngine._showToast('✕ Please select a bottle size before adding to cart!');
@@ -1238,13 +2425,114 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      // Lerp smooth scroll variables
+      let targetScrollY = window.scrollY || window.pageYOffset;
+      let currentScrollY = targetScrollY;
+
+      window.addEventListener('scroll', () => {
+        targetScrollY = window.scrollY || window.pageYOffset;
+      }, { passive: true });
+
+      const animateOnScroll = () => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const viewportHeight = window.innerHeight;
+        const isMobile = window.innerWidth <= 768;
+
+        // Interpolate scroll position for buttery smooth lag-free movement (lerp)
+        currentScrollY += (targetScrollY - currentScrollY) * 0.085;
+
+        // Animate Hero Section Parallax (Background slide, content shift and fade)
+        const heroSection = document.querySelector('.hero-banner');
+        const heroContent = document.querySelector('.hero-banner__content');
+        if (heroSection && heroContent) {
+          const contentTranslateY = currentScrollY * 0.35;
+          const contentOpacity = Math.max(0, 1 - currentScrollY / 550);
+          heroContent.style.transform = `translate3d(0, ${contentTranslateY}px, 0)`;
+          heroContent.style.opacity = contentOpacity.toString();
+
+          if (!isMobile) {
+            heroSection.style.backgroundPosition = `right calc(50% + ${currentScrollY * 0.18}px)`;
+          } else {
+            heroSection.style.backgroundPosition = `center calc(50% + ${currentScrollY * 0.12}px)`;
+          }
+        }
+
+        // Animate Showcase Rows
+        document.querySelectorAll('.showcase-row-animate').forEach((el, index) => {
+          const rect = el.getBoundingClientRect();
+          // Find the absolute top of the element in the document relative to actual window scroll
+          const elementDocTop = rect.top + (window.scrollY || window.pageYOffset);
+
+          // Compute elements position relative to the interpolated scroll pos
+          const relativeTop = elementDocTop - currentScrollY;
+
+          const entryPoint = viewportHeight;
+          const exitPoint = viewportHeight * (isMobile ? 0.25 : 0.35); // Trigger earlier on mobile
+
+          let progress = 0;
+          if (relativeTop <= entryPoint) {
+            progress = (entryPoint - relativeTop) / (entryPoint - exitPoint);
+            progress = Math.max(0, Math.min(1, progress));
+          }
+
+          const opacity = progress;
+          const translateY = (1 - progress) * (isMobile ? 40 : 80); // 40px translation on mobile, 80px on desktop
+          const scale = isMobile ? (0.98 + progress * 0.02) : (0.96 + progress * 0.04);
+
+          // Only apply horizontal slide-in on desktop, not on mobile
+          let translateX = 0;
+          if (!isMobile) {
+            const isEven = index % 2 === 0;
+            translateX = (1 - progress) * (isEven ? window.innerWidth : -window.innerWidth);
+          }
+
+          el.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+          el.style.opacity = opacity.toString();
+        });
+
+        // Animate Exclusive Collection Cards (Fade & Rise stagger on Desktop, Fade & Rise on Mobile)
+        document.querySelectorAll('.exclusive-card-animate').forEach((el, index) => {
+          const rect = el.getBoundingClientRect();
+          const elementDocTop = rect.top + (window.scrollY || window.pageYOffset);
+          const relativeTop = elementDocTop - currentScrollY;
+
+          const entryPoint = viewportHeight;
+          const exitPoint = viewportHeight * (isMobile ? 0.2 : 0.30); // Trigger earlier on mobile
+
+          let progress = 0;
+          if (relativeTop <= entryPoint) {
+            progress = (entryPoint - relativeTop) / (entryPoint - exitPoint);
+            progress = Math.max(0, Math.min(1, progress));
+          }
+
+          const opacity = progress;
+          const translateY = (1 - progress) * (isMobile ? 30 : 60); // 30px translation on mobile, 60px on desktop
+          const scale = isMobile ? (0.98 + progress * 0.02) : (0.96 + progress * 0.04);
+
+          let translateX = 0;
+          if (!isMobile) {
+            // Subtle horizontal stagger slide-in
+            const isLeft = index % 2 === 0;
+            translateX = (1 - progress) * (isLeft ? -30 : 30);
+          }
+
+          el.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+          el.style.opacity = opacity.toString();
+        });
+
+        requestAnimationFrame(animateOnScroll);
+      };
+
+      // Run smooth rendering loop
+      requestAnimationFrame(animateOnScroll);
+
       // Wire up grid buttons
       document.querySelectorAll('.card-product').forEach(card => {
         const searchBtn = card.querySelector('button[data-target="#product_modal"]');
         if (!searchBtn) return;
         const title = searchBtn.getAttribute('data-title');
         const priceText = searchBtn.getAttribute('data-price') || "Rs. 499";
-        const img = searchBtn.getAttribute('data-img') || "img/i_rasa_bottles/5845c656-1ecf-4943-9aad-16f6764ba573.jfif";
+        const img = searchBtn.getAttribute('data-img') || "img/i_rasa_bottles/p7.png";
         const basePrice = parseInt(priceText.replace(/[^\d]/g, '')) || 499;
 
         const buttons = card.querySelectorAll('.card-product__imgOverlay button');
@@ -1261,6 +2549,60 @@
     });
   </script>
   <script src="js/auth-guard.js"></script>
+
+  <!-- Navbar Scroll State -->
+  <script>
+    (function () {
+      var header = document.querySelector('header.header_area');
+      if (!header) return;
+      var SCROLL_THRESHOLD = 50;
+
+      function onScroll() {
+        if (window.innerWidth > 991) {
+          if (window.scrollY > SCROLL_THRESHOLD) {
+            header.classList.add('irasa-scrolled');
+          } else {
+            header.classList.remove('irasa-scrolled');
+          }
+        } else {
+          header.classList.remove('irasa-scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // run once on load in case page reloads mid-scroll
+    })();
+  </script>
+
+  <!-- Click-based Nav Dropdowns -->
+  <script>
+    (function () {
+      var drops = document.querySelectorAll('.irasa-click-drop');
+      drops.forEach(function (li) {
+        var trigger = li.querySelector('.irasa-drop-trigger');
+        if (!trigger) return;
+
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var isOpen = li.classList.contains('irasa-open');
+          // Close all first
+          drops.forEach(function (d) { d.classList.remove('irasa-open'); });
+          // Toggle this one
+          if (!isOpen) { li.classList.add('irasa-open'); }
+        });
+      });
+
+      // Close on any outside click
+      document.addEventListener('click', function () {
+        drops.forEach(function (d) { d.classList.remove('irasa-open'); });
+      });
+
+      // Prevent clicks inside the dropdown from closing it
+      document.querySelectorAll('.irasa-mega-drop').forEach(function (panel) {
+        panel.addEventListener('click', function (e) { e.stopPropagation(); });
+      });
+    })();
+  </script>
 </body>
 
 </html>
