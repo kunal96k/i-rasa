@@ -468,7 +468,7 @@
           $('#otp_section').slideUp();
           $('#btnSendOtp').html('<i class="fas fa-check mr-1"></i> Email Verified').css('background', '#28a745').prop('disabled', true);
           $('#email').prop('readonly', true);
-          $('#btnRegister').prop('disabled', false).css('opacity', '1');
+          updateRegisterButtonState();
           showAlert('success', 'Email verified! You can now register.');
         } else {
           showAlert('error', data.message);
@@ -477,6 +477,20 @@
         showAlert('error', 'Verification failed. Please try again.');
       }
     }
+
+    function updateRegisterButtonState() {
+      var isVerified = $('#email').prop('readonly');
+      var isTermsChecked = $('#terms').is(':checked');
+      if (isVerified && isTermsChecked) {
+        $('#btnRegister').prop('disabled', false).css('opacity', '1');
+      } else {
+        $('#btnRegister').prop('disabled', true).css('opacity', '0.6');
+      }
+    }
+
+    $(document).ready(function() {
+      $('#terms').on('change', updateRegisterButtonState);
+    });
 
     async function handleRegister(e) {
       e.preventDefault();

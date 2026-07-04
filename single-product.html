@@ -2,16 +2,33 @@
 <html lang="en">
 
 <head>
-	<meta name="description"
-		content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 399.">
-	<meta name="keywords"
-		content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
-	<meta name="author" content="Technokraft services LLP">
-	<link rel="canonical" href="https://irasaperfumes.in/">
-	<meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+	
+	
+	  <!-- Font Preconnect (performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Explore I Rasa Perfumes product details — premium long-lasting fragrance crafted in Nashik, Maharashtra. View notes, size options, and order online starting at Rs. 399.">
+  <meta name="keywords" content="I Rasa Perfume, Buy Perfume Nashik, Luxury Fragrance India, Long-lasting Perfume, Premium Scent Nashik">
+  <link rel="canonical" href="https://irasaperfumes.in/single-product.html">
+  <!-- Open Graph -->
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="Luxury Perfume — Product Details | I Rasa Perfumes Nashik">
+  <meta property="og:description" content="Explore I Rasa Perfumes product details — premium long-lasting fragrance crafted in Nashik, Maharashtra. View notes, size options, and order online starting at Rs. 399.">
+  <meta property="og:image" content="https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp">
+  <meta property="og:url" content="https://irasaperfumes.in/single-product.html">
+  <meta property="og:site_name" content="I Rasa Perfumes">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Luxury Perfume — Product Details | I Rasa Perfumes Nashik">
+  <meta name="twitter:description" content="Explore I Rasa Perfumes product details — premium long-lasting fragrance crafted in Nashik, Maharashtra. View notes, size options, and order online starting at Rs. 399.">
+  <meta name="twitter:image" content="https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp">
+  <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>I Rasa Perfumes - Product Details</title>
+	<title>Luxury Perfume — Product Details | I Rasa Perfumes Nashik</title>
 	<link rel="icon" href="img/favicon-irasa.png" type="image/png">
 	<link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
@@ -21,7 +38,7 @@
 	<link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
 	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
 
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style.min.css">
 	<link href="css/vendors/aos.css" rel="stylesheet">
 	<style>
 		/* Custom Premium Product Cards Styling */
@@ -162,9 +179,36 @@
 			font-size: 14px;
 		}
 	</style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "I Rasa Luxury Perfume",
+    "description": "Premium long-lasting luxury fragrance handcrafted in Nashik, Maharashtra.",
+    "brand": { "@type": "Brand", "name": "I Rasa Perfumes" },
+    "image": "https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "INR",
+      "price": "399",
+      "priceValidUntil": "2027-12-31",
+      "availability": "https://schema.org/InStock",
+      "url": "https://irasaperfumes.in/single-product.html",
+      "seller": { "@type": "Organization", "name": "I Rasa Perfumes" }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "150",
+      "bestRating": "5"
+    }
+  }
+  </script>
 </head>
 
 <body>
+  <a class="skip-link d-none" href="#main-content">Skip to main content</a>
   <!--================ Start Header Menu Area =================-->
   <header class="header_area">
     <div class="main_menu">
@@ -180,7 +224,7 @@
           </a>
 
           <!-- ── HAMBURGER (mobile) ── -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          <button class="navbar-toggler" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbarNav" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -324,7 +368,7 @@
               <!-- Profile / Login Icon -->
               <li class="nav-item nav-shop-icon irasa-profile-wrap" id="profileNavWrapper">
                 <a href="login.html" id="profileNavLink" class="nav-shop-profile-link irasa-action-btn" title="Sign In">
-                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
+                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" / loading="lazy">
                   <i id="profileNavIcon" class="ti-user"></i>
                 </a>
                 <!-- Profile dropdown injected here by auth.js -->
@@ -355,6 +399,7 @@
       </nav>
     </div>
   </header>
+  <main id="main-content">
   <!--================ End Header Menu Area =================-->
 	<!--================ End Header Menu Area =================-->
 
@@ -363,7 +408,7 @@
 		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
-					<h1>Product Details</h1>
+					<h1>Explore Our Signature Fragrances</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -384,13 +429,13 @@
 				<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-lg-6">
 					<div class="owl-carousel owl-theme s_Product_carousel">
 						<div class="single-prd-item">
-							<img id="mainProductImg" class="img-fluid" src="img/i_rasa_bottles/p5.png" alt="">
+							<img id="mainProductImg" class="img-fluid" src="img/i_rasa_bottles/p5.webp" alt="" loading="lazy">
 						</div>
 						<!-- <div class="single-prd-item">
-							<img class="img-fluid" src="img/i_rasa_bottles/p6.png" alt="">
+							<img class="img-fluid" src="img/i_rasa_bottles/p6.webp" alt="I Rasa Luxury Perfume Bottle" width="400" height="400" loading="lazy">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/i_rasa_bottles/p7.png" alt="">
+							<img class="img-fluid" src="img/i_rasa_bottles/p7.webp" alt="I Rasa Luxury Perfume Bottle" width="400" height="400" loading="lazy">
 						</div> -->
 					</div>
 				</div>
@@ -556,7 +601,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
+											<img src="img/product/review-1.webp" alt="" loading="lazy">
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
@@ -571,7 +616,7 @@
 								<div class="review_item reply">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
+											<img src="img/product/review-2.webp" alt="" loading="lazy">
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
@@ -586,7 +631,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
+											<img src="img/product/review-3.webp" alt="" loading="lazy">
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
@@ -678,7 +723,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
+											<img src="img/product/review-1.webp" alt="" loading="lazy">
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
@@ -698,7 +743,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
+											<img src="img/product/review-2.webp" alt="" loading="lazy">
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
@@ -718,7 +763,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
+											<img src="img/product/review-3.webp" alt="" loading="lazy">
 										</div>
 										<div class="media-body">
 											<h4>Kunal Patil</h4>
@@ -798,7 +843,7 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/i_rasa_bottles/p2.png" alt="Dior Savage" class="perfume-img">
+							<img src="img/i_rasa_bottles/p2.webp" alt="Dior Savage" class="perfume-img" loading="lazy">
 							<div class="overlay-actions">
 								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Dior Savage" data-price="Rs. 499" data-img="img/i_rasa_bottles/p3.png">
 									<i class="ti-search"></i>
@@ -836,7 +881,7 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller" style="background: linear-gradient(135deg, #ff4d94 0%, #ff0066 100%) !important;"><i class="fas fa-gem"></i> Premium</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/i_rasa_bottles/p5.png" alt="Gucci Flora" class="perfume-img">
+							<img src="img/i_rasa_bottles/p5.webp" alt="Gucci Flora" class="perfume-img" loading="lazy">
 							<div class="overlay-actions">
 								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Gucci Flora" data-price="Rs. 499" data-img="img/i_rasa_bottles/p6.png">
 									<i class="ti-search"></i>
@@ -874,7 +919,7 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/i_rasa_bottles/p1.png" alt="Creed Avantes" class="perfume-img">
+							<img src="img/i_rasa_bottles/p1.webp" alt="Creed Avantes" class="perfume-img" loading="lazy">
 							<div class="overlay-actions">
 								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes" data-price="Rs. 499" data-img="img/i_rasa_bottles/p2.png">
 									<i class="ti-search"></i>
@@ -912,7 +957,7 @@
 					<div class="mens-product-card">
 						<span class="badge-bestseller"><i class="fas fa-fire"></i> Bestseller</span>
 						<div class="card-img-area" style="background:#fff;">
-							<img src="img/i_rasa_bottles/p4.png" alt="Rasassi Hawas" class="perfume-img">
+							<img src="img/i_rasa_bottles/p4.webp" alt="Rasassi Hawas" class="perfume-img" loading="lazy">
 							<div class="overlay-actions">
 								<button title="Quick Preview" data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas" data-price="Rs. 499" data-img="img/i_rasa_bottles/p5.png">
 									<i class="ti-search"></i>
@@ -967,10 +1012,10 @@
 							</p>
 							<div class="footer-social mt-4">
 								<a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
-								<a href="https://www.instagram.com/i_rasa_perfumes/"><i
+								<a href="https://www.instagram.com/i_rasa_perfumes/" rel="noopener noreferrer" target="_blank"><i
 										class="fab fa-instagram"></i></a>
 								<a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
-								<a href="https://wa.me/919823833303" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+								<a href="https://wa.me/919823833303" aria-label="Chat with I Rasa Perfumes on WhatsApp" role="button" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
 							</div>
 						</div>
 					</div>
@@ -992,12 +1037,12 @@
 						<div class="single-footer-widget">
 							<h4 class="footer_title">Our Gallery</h4>
 							    <ul class="footer-gallery-grid">
-                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb" loading="lazy"></li>
               </ul>
 						</div>
 					</div>
@@ -1070,7 +1115,16 @@
           
           <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px; margin-bottom: 20px;">
             <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
-              Designed By
+              Graphics Designer
+            </p>
+            <h5 style="font-size: 14px; font-weight: 600; color: #fff; line-height: 1.6; margin: 0; letter-spacing: 0.5px;">
+              DIPAK MAHAJAN
+            </h5>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px; margin-bottom: 20px;">
+            <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
+              Front End Dev.
             </p>
             <h5 style="font-size: 14px; font-weight: 600; color: #fff; line-height: 1.6; margin: 0; letter-spacing: 0.5px;">
               ABHISHEK SOUNDANKAR<br>
@@ -1081,7 +1135,7 @@
           
           <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px;">
             <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
-              Developed By
+              Backend Dev.
             </p>
             <h5 style="font-size: 14px; font-weight: 600; color: #fff; margin: 0; letter-spacing: 0.5px;">
               KUNAL PATIL
@@ -1089,7 +1143,7 @@
           </div>
         </div>
         <div class="modal-footer" style="border-top: 1px solid #222; padding: 15px 25px; display: flex; justify-content: center; background: #070707;">
-          <a href="https://technokraftllp.com/" target="_blank" class="button" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 8px 24px; font-weight: bold; font-size: 12px; transition: all 0.3s; outline: none; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">
+          <a href="https://technokraftllp.com/" target="_blank" class="button" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 8px 24px; font-weight: bold; font-size: 12px; transition: all 0.3s; outline: none; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;" rel="noopener noreferrer" target="_blank">
             Visit Website
           </a>
         </div>
@@ -1117,8 +1171,8 @@
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
               <div class="modal-img-wrap"
                 style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
-                <img src="img/i_rasa_bottles/p7.png" class="img-fluid" id="modal_img" alt="Perfume"
-                  style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
+                <img src="img/i_rasa_bottles/p7.webp" class="img-fluid" id="modal_img" alt="Perfume"
+                  style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;" loading="lazy">
               </div>
             </div>
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
@@ -1209,18 +1263,17 @@
 	</div>
 
 
-	<script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-	<script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-	<script src="vendors/skrollr.min.js"></script>
-	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-	<script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-	<script src="vendors/jquery.ajaxchimp.min.js"></script>
-	<script src="vendors/mail-script.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/vendors/aos.js"></script>
-	<script src="js/cart.js"></script>
-	<script src="js/auth-guard.js"></script>
-	<script>AOS.init();</script>
+	<script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+	<script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
+	<script src="vendors/owl-carousel/owl.carousel.min.js" defer></script>
+	<script src="vendors/nice-select/jquery.nice-select.min.js" defer></script>
+	<script src="vendors/jquery.ajaxchimp.min.js" defer></script>
+	<script src="vendors/mail-script.js" defer></script>
+	<script src="js/main.js" defer></script>
+	<script src="js/vendors/aos.js" defer></script>
+	<script src="js/cart.js" defer></script>
+	<script src="js/auth-guard.js" defer></script>
+	<script>document.addEventListener('DOMContentLoaded', () => { AOS.init(); });</script>
 
 	<script>
 		// Unified Product Catalog (Men, Women, Attars)
@@ -1494,12 +1547,13 @@
 			$('#modal_price').text('Rs. ' + finalPrice.toFixed(2));
 		}
 
-		$(document).ready(function () {
+		document.addEventListener('DOMContentLoaded', function () {
 			$('[data-target="#product_modal"]').click(function () {
 				var btn = $(this);
 				var title = btn.data('title');
 				var priceVal = btn.data('price') || "Rs. 499";
-				var img = btn.data('img');
+				var cardImg = btn.closest('.card-product, .exclusive-card, .mens-product-card, .womens-product-card, .card').find('img').first().attr('src');
+				var img = cardImg || btn.data('img');
 				var desc = btn.data('desc') || "A deep, mysterious fragrance crafted from the finest ingredients. Long-lasting and intense, perfect for evening elegance.";
 				
 				$('#modal_title').text(title);
@@ -1762,29 +1816,7 @@
 		}
 	</script>
 
-  <!-- Navbar Scroll State -->
-  <script>
-    (function () {
-      var header = document.querySelector('header.header_area');
-      if (!header) return;
-      var SCROLL_THRESHOLD = 50;
 
-      function onScroll() {
-        if (window.innerWidth > 991) {
-          if (window.scrollY > SCROLL_THRESHOLD) {
-            header.classList.add('irasa-scrolled');
-          } else {
-            header.classList.remove('irasa-scrolled');
-          }
-        } else {
-          header.classList.remove('irasa-scrolled');
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // run once on load in case page reloads mid-scroll
-    })();
-  </script>
 
   <!-- Click-based Nav Dropdowns -->
   <script>

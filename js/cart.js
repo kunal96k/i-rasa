@@ -130,6 +130,13 @@ const CartEngine = {
    * @param {number} qty
    */
   add(product, qty) {
+    if (!this._userId) {
+      this._showToast('First login to your account');
+      setTimeout(function() {
+        window.location.href = 'login.html';
+      }, 1000);
+      return;
+    }
     if (qty === undefined) qty = 1;
     var items = this._read();
     var currentTotalQty = items.reduce(function(s, i) { return s + (parseInt(i.qty) || 1); }, 0);
@@ -432,6 +439,13 @@ const WishlistEngine = {
   },
 
   async add(product) {
+    if (!CartEngine._userId) {
+      CartEngine._showToast('First login to your account');
+      setTimeout(function() {
+        window.location.href = 'login.html';
+      }, 1000);
+      return;
+    }
     const items = this._read();
     if (items.length >= 50) {
       CartEngine._showToast('\u2715 Cannot save in wishlist, more than our limit');
@@ -504,6 +518,13 @@ const WishlistEngine = {
   },
 
   async toggle(product) {
+    if (!CartEngine._userId) {
+      CartEngine._showToast('First login to your account');
+      setTimeout(function() {
+        window.location.href = 'login.html';
+      }, 1000);
+      return;
+    }
     if (this.has(product.id)) { await this.remove(product.id); }
     else { await this.add(product); }
   }

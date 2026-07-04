@@ -125,13 +125,21 @@ $(function () {
 
   //------- fixed navbar with throttling --------//  
   var isScrolling = false;
+  var isIndexPage = document.querySelector('.hero-banner') !== null;
+  if (!isIndexPage) {
+    $('.header_area').css({
+      'position': 'relative',
+      'top': 'auto'
+    });
+  }
+
   $(window).scroll(function () {
     if (!isScrolling) {
       window.requestAnimationFrame(function () {
         var sticky = $('.header_area'),
           scroll = $(window).scrollTop();
 
-        if (window.innerWidth > 991) {
+        if (isIndexPage && window.innerWidth > 991) {
           if (scroll >= 100) sticky.addClass('navbar_fixed');
           else sticky.removeClass('navbar_fixed');
         } else {

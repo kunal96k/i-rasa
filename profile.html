@@ -2,15 +2,35 @@
 <html lang="en">
 
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+    <!-- Font Preconnect (performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Manage your I Rasa Perfumes account — view orders, wishlist, addresses, and support tickets.">
+  <link rel="canonical" href="https://irasaperfumes.in/profile.html">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="My Account — I Rasa Perfumes">
+  <meta property="og:description" content="Manage your I Rasa Perfumes account — view orders, wishlist, addresses, and support tickets.">
+  <meta property="og:image" content="https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp">
+  <meta property="og:url" content="https://irasaperfumes.in/profile.html">
+  <meta property="og:site_name" content="I Rasa Perfumes">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="My Account — I Rasa Perfumes">
+  <meta name="twitter:description" content="Manage your I Rasa Perfumes account — view orders, wishlist, addresses, and support tickets.">
+  <meta name="twitter:image" content="https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile - I Rasa Perfumes</title>
+  <title>My Account — I Rasa Perfumes</title>
   <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
   <link href="css/vendors/aos.css" rel="stylesheet">
   <style>
     * {
@@ -766,6 +786,7 @@
 </head>
 
 <body>
+  <a class="skip-link d-none" href="#main-content">Skip to main content</a>
 
   <!--================ Start Header Menu Area =================-->
   <header class="header_area">
@@ -782,7 +803,7 @@
           </a>
 
           <!-- ── HAMBURGER (mobile) ── -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          <button class="navbar-toggler" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbarNav" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -926,7 +947,7 @@
               <!-- Profile / Login Icon -->
               <li class="nav-item nav-shop-icon irasa-profile-wrap" id="profileNavWrapper">
                 <a href="login.html" id="profileNavLink" class="nav-shop-profile-link irasa-action-btn" title="Sign In">
-                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
+                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" / loading="lazy">
                   <i id="profileNavIcon" class="ti-user"></i>
                 </a>
                 <!-- Profile dropdown injected here by auth.js -->
@@ -957,18 +978,19 @@
       </nav>
     </div>
   </header>
+  <main id="main-content">
   <!--================ End Header Menu Area =================-->
 
   <!-- BANNER -->
   <div class="profile-banner">
     <div class="avatar-wrap">
       <div class="avatar-circle" onclick="document.getElementById('avatarInput').click()">
-        <img id="avatarImg" src="" style="display:none;">
+        <img id="avatarImg" src="" style="display:none;" loading="lazy">
         <i class="ti-user avatar-placeholder" id="avatarPlaceholder"></i>
       </div>
       <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
     </div>
-    <div class="profile-hero-name" id="heroName">Guest User</div>
+    <h1 class="profile-hero-name" id="heroName">Guest User</h1>
     <div class="profile-hero-email" id="heroEmail">Manage your account details</div>
 
     <div class="profile-tabs">
@@ -993,25 +1015,25 @@
           <div class="col-md-6 mb-3">
             <div class="form-group">
               <label>First Name</label>
-              <input type="text" id="firstName" placeholder="First Name">
+              <input type="text" id="firstName" autocomplete="given-name" placeholder="First Name">
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="form-group">
               <label>Last Name</label>
-              <input type="text" id="lastName" placeholder="Last Name">
+              <input type="text" id="lastName" autocomplete="family-name" placeholder="Last Name">
             </div>
           </div>
           <div class="col-md-12 mb-3">
             <div class="form-group">
               <label>Email Address</label>
-              <input type="email" id="emailInput" placeholder="email@example.com">
+              <input type="email" id="emailInput" autocomplete="email" placeholder="email@example.com">
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="form-group">
               <label>Phone Number</label>
-              <input type="tel" id="phoneInput" placeholder="+91 98XXX XXXXX">
+              <input type="tel" id="phoneInput" autocomplete="tel" placeholder="+91 98XXX XXXXX">
             </div>
           </div>
           <div class="col-md-6 mb-3">
@@ -1281,8 +1303,8 @@
               perfumery insights.</p>
 
             <div class="blend-card" onclick="location.href='blog.html'">
-              <img src="img/blog/main-blog/m-blog-1.jpg"
-                style="width:60px; height:60px; border-radius:8px; object-fit:cover;">
+              <img src="img/blog/main-blog/m-blog-1.webp"
+                style="width:60px; height:60px; border-radius:8px; object-fit:cover;" loading="lazy">
               <div class="blend-info">
                 <div class="blend-name">The Art of Layering Fragrances</div>
                 <div class="blend-meta">Published 05 May 2026 Â· 5 min read</div>
@@ -1291,8 +1313,8 @@
             </div>
 
             <div class="blend-card" onclick="location.href='blog.html'">
-              <img src="img/blog/main-blog/m-blog-2.jpg"
-                style="width:60px; height:60px; border-radius:8px; object-fit:cover;">
+              <img src="img/blog/main-blog/m-blog-2.webp"
+                style="width:60px; height:60px; border-radius:8px; object-fit:cover;" loading="lazy">
               <div class="blend-info">
                 <div class="blend-name">Sourcing Rare Oud from Assam</div>
                 <div class="blend-meta">Published 02 May 2026 Â· 8 min read</div>
@@ -1678,12 +1700,12 @@
       </div>
     </div>
 
-    <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-    <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/vendors/aos.js"></script>
-    <script src="js/auth-guard.js"></script>
+    <script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+    <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script src="vendors/nice-select/jquery.nice-select.min.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/vendors/aos.js" defer></script>
+    <script src="js/auth-guard.js" defer></script>
     <script>
       const STORAGE_KEY = 'irasa_profile';
 
@@ -1805,7 +1827,7 @@
 
           return `
           <div class="blend-card" style="${cardStyle}">
-            <img src="${item.img || 'img/product/product1.png'}" alt="${item.name}" style="${imgStyle}" onerror="this.src='img/product/product1.png'">
+            <img src="${item.img || 'img/product/product1.png'}" alt="${item.name}" style="${imgStyle}" onerror="this.src='img/product/product1.png'" loading="lazy">
             <div class="blend-info" style="margin-left:15px;flex-grow:1;">
               <div class="blend-name" style="${nameStyle}">${item.name}</div>
               <div class="blend-meta" style="${priceStyle}">Rs. ${parseFloat(item.price).toFixed(2)}</div>
@@ -2157,7 +2179,7 @@
                     <div class="d-flex align-items-center" style="gap: 15px;">
                       <img src="${firstItem && firstItem.productId ? `img/product/${firstItem.productId}.jpg` : 'img/product/product1.png'}"
                         style="width:50px; height:50px; border-radius:4px; border:1px solid #333; background:#fff;"
-                        onerror="this.src='img/product/product1.png'">
+                        onerror="this.src='img/product/product1.png'" loading="lazy">
                       <div style="flex-grow:1;">
                         <div style="font-weight:600; font-size:14px; color:#d4af37;">${itemsDesc}</div>
                         <div style="font-size:13px; color:#888;">Total Amount: Rs. ${parseFloat(order.total).toFixed(2)}</div>
@@ -2244,7 +2266,7 @@
         if (order.items && order.items.length > 0) {
           itemsEl.innerHTML = order.items.map(item => `
             <div class="d-flex mt-3 align-items-center" style="gap: 12px;">
-              <img src="${item.productId ? `img/product/${item.productId}.jpg` : 'img/product/product1.png'}" style="width:40px; height:40px; border-radius:4px; object-fit: cover;" onerror="this.src='img/product/product1.png'">
+              <img src="${item.productId ? `img/product/${item.productId}.jpg` : 'img/product/product1.png'}" style="width:40px; height:40px; border-radius:4px; object-fit: cover;" onerror="this.src='img/product/product1.png'" loading="lazy">
               <div style="flex-grow:1;">
                 <div>${item.name} (${item.size || '100ml'})</div>
                 <div style="font-size:12px; color:#888;">Qty: ${item.qty}</div>
@@ -2816,7 +2838,7 @@
       function getProfile() { var r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : {}; }
 
       // Init AOS
-      $(document).ready(function () {
+      document.addEventListener('DOMContentLoaded', function () {
         if (typeof AOS !== 'undefined') {
           AOS.init({ once: true });
         }
@@ -2831,29 +2853,7 @@
 
     </script>
 
-  <!-- Navbar Scroll State -->
-  <script>
-    (function () {
-      var header = document.querySelector('header.header_area');
-      if (!header) return;
-      var SCROLL_THRESHOLD = 50;
 
-      function onScroll() {
-        if (window.innerWidth > 991) {
-          if (window.scrollY > SCROLL_THRESHOLD) {
-            header.classList.add('irasa-scrolled');
-          } else {
-            header.classList.remove('irasa-scrolled');
-          }
-        } else {
-          header.classList.remove('irasa-scrolled');
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // run once on load in case page reloads mid-scroll
-    })();
-  </script>
 
   <!-- Click-based Nav Dropdowns -->
   <script>

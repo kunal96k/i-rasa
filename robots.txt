@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Private / utility pages — do not index
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /confirmation.html
+Disallow: /profile.html
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /tracking-order.html
+Disallow: /admin.html
+Disallow: /admin-coupons.html
+Disallow: /admin-employees.html
+Disallow: /admin-enquiries.html
+Disallow: /admin-orders.html
+Disallow: /admin-payments.html
+Disallow: /admin-reports.html
+Disallow: /admin-subscribers.html
+Disallow: /admin-tickets.html
+
+# Sitemap
+Sitemap: https://irasaperfumes.in/sitemap.xml

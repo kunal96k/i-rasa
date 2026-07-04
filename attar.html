@@ -2,28 +2,45 @@
 <html lang="en">
 
 <head>
-  <meta name="description"
-    content="I Rasa Perfumes - Discover our premium range of handcrafted, long-lasting Attars starting at just Rs. 110. Available in 6ml, 8ml, and 12ml bottles.">
-  <meta name="keywords"
-    content="Attar in Nashik, Premium Attar India, Mogra Attar, Kasturi Attar, Musk Rose, White Oud, Long lasting Attar">
-  <meta name="author" content="Technokraft services LLP">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+  
+  
+    <!-- Font Preconnect (performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Discover I Rasa premium handcrafted attars in Nashik. Long-lasting oil-based fragrances — Mogra, Kasturi, Musk Rose & more. Starting at just Rs. 110. Available in 6ml, 8ml, 12ml.">
+  <meta name="keywords" content="Attar in Nashik, Premium Attar India, Mogra Attar, Kasturi Attar, Musk Rose Attar, Handcrafted Attar Nashik, Itr Perfume India">
   <link rel="canonical" href="https://irasaperfumes.in/attar.html">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Premium Attar in Nashik — Handcrafted Oil Fragrances | I Rasa">
+  <meta property="og:description" content="Discover I Rasa premium handcrafted attars in Nashik. Long-lasting oil-based fragrances — Mogra, Kasturi, Musk Rose & more. Starting at just Rs. 110. Available in 6ml, 8ml, 12ml.">
+  <meta property="og:image" content="https://irasaperfumes.in/img/attar_withoutBg.png">
+  <meta property="og:url" content="https://irasaperfumes.in/attar.html">
+  <meta property="og:site_name" content="I Rasa Perfumes">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Premium Attar in Nashik — Handcrafted Oil Fragrances | I Rasa">
+  <meta name="twitter:description" content="Discover I Rasa premium handcrafted attars in Nashik. Long-lasting oil-based fragrances — Mogra, Kasturi, Musk Rose & more. Starting at just Rs. 110. Available in 6ml, 8ml, 12ml.">
+  <meta name="twitter:image" content="https://irasaperfumes.in/img/attar_withoutBg.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>I Rasa Perfumes - Attar Collection</title>
+  <title>Premium Attar in Nashik — Handcrafted Oil Fragrances | I Rasa</title>
   <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
   <link href="css/vendors/aos.css" rel="stylesheet">
   <style>
     /* ── PAGE HERO ── */
     .attar-banner-area {
-      background: url('img/home/light_banner_bg.png') no-repeat center center / cover !important;
+      background: url('img/home/light_banner_bg.webp') no-repeat center center / cover !important;
       padding: 95px 0 65px;
       position: relative;
       overflow: hidden;
@@ -217,25 +234,26 @@
       border-color: #ffd700;
     }
 
-    .card-product .card-img-area {
-      background: #fff;
-      height: 250px;
+    .card-product .card-product__img {
+      background: #000;
+      height: 280px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
-      padding: 20px;
+      padding: 10px;
     }
 
-    .card-product .card-img-area img {
-      max-height: 100%;
-      width: auto;
-      object-fit: contain;
+    .card-product .card-product__img img {
+      max-height: 95%;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
       transition: transform 0.5s ease;
     }
 
-    .card-product:hover .card-img-area img {
+    .card-product:hover .card-product__img img {
       transform: scale(1.08);
     }
 
@@ -497,9 +515,36 @@
       }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "I Rasa Perfumes Collection",
+    "url": "https://irasaperfumes.in",
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "I Rasa Premium Perfume",
+        "brand": { "@type": "Brand", "name": "I Rasa Perfumes" },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "INR",
+          "lowPrice": "399",
+          "highPrice": "2000",
+          "offerCount": "20+",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@type": "Organization", "name": "I Rasa Perfumes" }
+        },
+        "image": "https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body style="background: #000; color: #fff;">
+  <a class="skip-link d-none" href="#main-content">Skip to main content</a>
   <!--================ Start Header Menu Area =================-->
   <header class="header_area">
     <div class="main_menu">
@@ -515,7 +560,7 @@
           </a>
 
           <!-- ── HAMBURGER (mobile) ── -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          <button class="navbar-toggler" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbarNav" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -659,7 +704,7 @@
               <!-- Profile / Login Icon -->
               <li class="nav-item nav-shop-icon irasa-profile-wrap" id="profileNavWrapper">
                 <a href="login.html" id="profileNavLink" class="nav-shop-profile-link irasa-action-btn" title="Sign In">
-                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
+                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" / loading="lazy">
                   <i id="profileNavIcon" class="ti-user"></i>
                 </a>
                 <!-- Profile dropdown injected here by auth.js -->
@@ -690,6 +735,7 @@
       </nav>
     </div>
   </header>
+  <main id="main-content">
   <!--================ End Header Menu Area =================-->
 
   <!-- Hero Section -->
@@ -835,8 +881,8 @@
       <p style="color:#b8a97a;margin-bottom:30px;">Visit our boutique in Nashik or speak directly with our Master
         Perfumer on WhatsApp.</p>
       <div class="d-flex flex-wrap gap-3 justify-content-center" style="gap:15px;">
-        <a href="https://wa.me/919823833303" target="_blank"
-          style="background:#25d366;color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;text-decoration:none; display: inline-block;">
+        <a href="https://wa.me/919823833303" aria-label="Chat with I Rasa Perfumes on WhatsApp" role="button" target="_blank"
+          style="background:#25d366;color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;text-decoration:none; display: inline-block;" rel="noopener noreferrer" target="_blank">
           <i class="fab fa-whatsapp"></i> Chat on WhatsApp
         </a>
       </div>
@@ -858,9 +904,9 @@
               </p>
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/i_rasa_perfumes/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/i_rasa_perfumes/" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://wa.me/919823833303" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/919823833303" aria-label="Chat with I Rasa Perfumes on WhatsApp" role="button" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
           </div>
@@ -881,12 +927,12 @@
             <div class="single-footer-widget">
               <h4 class="footer_title">Our Gallery</h4>
                 <ul class="footer-gallery-grid">
-                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb" loading="lazy"></li>
               </ul>
             </div>
           </div>
@@ -959,7 +1005,16 @@
           
           <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px; margin-bottom: 20px;">
             <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
-              Designed By
+              Graphics Designer
+            </p>
+            <h5 style="font-size: 14px; font-weight: 600; color: #fff; line-height: 1.6; margin: 0; letter-spacing: 0.5px;">
+              DIPAK MAHAJAN
+            </h5>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px; margin-bottom: 20px;">
+            <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
+              Front End Dev.
             </p>
             <h5 style="font-size: 14px; font-weight: 600; color: #fff; line-height: 1.6; margin: 0; letter-spacing: 0.5px;">
               ABHISHEK SOUNDANKAR<br>
@@ -970,7 +1025,7 @@
           
           <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px;">
             <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
-              Developed By
+              Backend Dev.
             </p>
             <h5 style="font-size: 14px; font-weight: 600; color: #fff; margin: 0; letter-spacing: 0.5px;">
               KUNAL PATIL
@@ -978,7 +1033,7 @@
           </div>
         </div>
         <div class="modal-footer" style="border-top: 1px solid #222; padding: 15px 25px; display: flex; justify-content: center; background: #070707;">
-          <a href="https://technokraftllp.com/" target="_blank" class="button" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 8px 24px; font-weight: bold; font-size: 12px; transition: all 0.3s; outline: none; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">
+          <a href="https://technokraftllp.com/" target="_blank" class="button" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 8px 24px; font-weight: bold; font-size: 12px; transition: all 0.3s; outline: none; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;" rel="noopener noreferrer" target="_blank">
             Visit Website
           </a>
         </div>
@@ -1006,8 +1061,8 @@
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
               <div class="modal-img-wrap"
                 style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
-                <img src="img/i_rasa_bottles/p7.png" class="img-fluid" id="modal_img" alt="Perfume"
-                  style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
+                <img src="img/i_rasa_bottles/p7.webp" class="img-fluid" id="modal_img" alt="Perfume"
+                  style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;" loading="lazy">
               </div>
             </div>
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
@@ -1098,67 +1153,67 @@
   </div>
 
   <!-- Scripts -->
-  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/auth-guard.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/vendors/aos.js"></script>
-  <script>AOS.init({ once: true });</script>
+  <script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
+  <script src="vendors/nice-select/jquery.nice-select.min.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/auth-guard.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/vendors/aos.js" defer></script>
+  <script>document.addEventListener('DOMContentLoaded', () => { AOS.init({ once: true }); });</script>
 
   <script>
     // ── PRODUCTS DATA ──
     const attars = [
-      { name: "Dove", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 145, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Mogra (attarfull)", category: "traditional", isPremium: false, rating: 5, reviews: 210, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Kasturi", category: "musk", isPremium: true, rating: 5, reviews: 198, img: "img/i_rasa_bottles/a2.png" },
-      { name: "White London", category: "premium_blends", isPremium: false, rating: 5, reviews: 112, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Green musk", category: "musk", isPremium: false, rating: 5, reviews: 154, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Latafa khamrha kawa", category: "premium_blends", isPremium: true, rating: 5, reviews: 312, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Parijat", category: "traditional", isPremium: false, rating: 5, reviews: 88, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Darbar", category: "traditional", isPremium: false, rating: 5, reviews: 94, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Gold sandel", category: "traditional", isPremium: true, rating: 5, reviews: 176, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Ice blue", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 165, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Sonchafa", category: "traditional", isPremium: false, rating: 5, reviews: 124, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Ambar oud", category: "premium_blends", isPremium: true, rating: 5, reviews: 254, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Shanaya Gold", category: "premium_blends", isPremium: true, rating: 5, reviews: 289, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Shanaya", category: "premium_blends", isPremium: false, rating: 5, reviews: 232, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Ponds", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 104, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Charli black", category: "premium_blends", isPremium: false, rating: 5, reviews: 118, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Chocolate", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 202, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Vanilla", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 187, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Tulsi", category: "traditional", isPremium: false, rating: 5, reviews: 76, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Kapoor", category: "traditional", isPremium: false, rating: 5, reviews: 62, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Dalchini", category: "traditional", isPremium: false, rating: 5, reviews: 85, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Ratrani", category: "traditional", isPremium: false, rating: 5, reviews: 142, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Musk a tahara", category: "musk", isPremium: true, rating: 5, reviews: 298, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Whtie sandel", category: "traditional", isPremium: true, rating: 5, reviews: 164, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Mhaisur sandal", category: "traditional", isPremium: true, rating: 5, reviews: 215, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Kevd", category: "traditional", isPremium: false, rating: 5, reviews: 92, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Kesharchandan", category: "traditional", isPremium: true, rating: 5, reviews: 184, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Musk rose", category: "musk", isPremium: false, rating: 5, reviews: 156, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Black ROSE", category: "traditional", isPremium: false, rating: 5, reviews: 122, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Ice barg", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 103, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Belpaan", category: "traditional", isPremium: false, rating: 5, reviews: 95, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Musk saffi", category: "musk", isPremium: false, rating: 5, reviews: 141, img: "img/i_rasa_bottles/a2.png" },
-      { name: "London light", category: "premium_blends", isPremium: false, rating: 5, reviews: 114, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Heena", category: "traditional", isPremium: true, rating: 5, reviews: 172, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Lemongrass", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 128, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Lemon", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 115, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Oreng", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 98, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Pineapple", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 107, img: "img/i_rasa_bottles/a2.png" },
-      { name: "Cigar", category: "premium_blends", isPremium: false, rating: 5, reviews: 164, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Coffee", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 152, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Jasmine", category: "traditional", isPremium: false, rating: 5, reviews: 179, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Lavender", category: "traditional", isPremium: false, rating: 5, reviews: 194, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Open", category: "premium_blends", isPremium: false, rating: 5, reviews: 88, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Green Ajmeri", category: "traditional", isPremium: false, rating: 5, reviews: 142, img: "img/i_rasa_bottles/a1.png" },
-      { name: "555", category: "premium_blends", isPremium: false, rating: 5, reviews: 113, img: "img/i_rasa_bottles/a2.png" },
-      { name: "White oud", category: "premium_blends", isPremium: true, rating: 5, reviews: 268, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Arabic oud", category: "premium_blends", isPremium: true, rating: 5, reviews: 247, img: "img/i_rasa_bottles/a2.png" },
-      { name: "BlackBerry", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 136, img: "img/i_rasa_bottles/a1.png" },
-      { name: "Kala bhoot", category: "premium_blends", isPremium: true, rating: 5, reviews: 189, img: "img/i_rasa_bottles/a1.png" }
+      { name: "Dove", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 145, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Mogra (attarfull)", category: "traditional", isPremium: false, rating: 5, reviews: 210, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Kasturi", category: "musk", isPremium: true, rating: 5, reviews: 198, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "White London", category: "premium_blends", isPremium: false, rating: 5, reviews: 112, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Green musk", category: "musk", isPremium: false, rating: 5, reviews: 154, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Latafa khamrha kawa", category: "premium_blends", isPremium: true, rating: 5, reviews: 312, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Parijat", category: "traditional", isPremium: false, rating: 5, reviews: 88, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Darbar", category: "traditional", isPremium: false, rating: 5, reviews: 94, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Gold sandel", category: "traditional", isPremium: true, rating: 5, reviews: 176, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Ice blue", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 165, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Sonchafa", category: "traditional", isPremium: false, rating: 5, reviews: 124, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Ambar oud", category: "premium_blends", isPremium: true, rating: 5, reviews: 254, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Shanaya Gold", category: "premium_blends", isPremium: true, rating: 5, reviews: 289, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Shanaya", category: "premium_blends", isPremium: false, rating: 5, reviews: 232, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Ponds", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 104, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Charli black", category: "premium_blends", isPremium: false, rating: 5, reviews: 118, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Chocolate", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 202, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Vanilla", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 187, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Tulsi", category: "traditional", isPremium: false, rating: 5, reviews: 76, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Kapoor", category: "traditional", isPremium: false, rating: 5, reviews: 62, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Dalchini", category: "traditional", isPremium: false, rating: 5, reviews: 85, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Ratrani", category: "traditional", isPremium: false, rating: 5, reviews: 142, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Musk a tahara", category: "musk", isPremium: true, rating: 5, reviews: 298, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Whtie sandel", category: "traditional", isPremium: true, rating: 5, reviews: 164, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Mhaisur sandal", category: "traditional", isPremium: true, rating: 5, reviews: 215, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Kevd", category: "traditional", isPremium: false, rating: 5, reviews: 92, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Kesharchandan", category: "traditional", isPremium: true, rating: 5, reviews: 184, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Musk rose", category: "musk", isPremium: false, rating: 5, reviews: 156, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Black ROSE", category: "traditional", isPremium: false, rating: 5, reviews: 122, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Ice barg", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 103, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Belpaan", category: "traditional", isPremium: false, rating: 5, reviews: 95, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Musk saffi", category: "musk", isPremium: false, rating: 5, reviews: 141, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "London light", category: "premium_blends", isPremium: false, rating: 5, reviews: 114, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Heena", category: "traditional", isPremium: true, rating: 5, reviews: 172, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Lemongrass", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 128, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Lemon", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 115, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Oreng", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 98, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Pineapple", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 107, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "Cigar", category: "premium_blends", isPremium: false, rating: 5, reviews: 164, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Coffee", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 152, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Jasmine", category: "traditional", isPremium: false, rating: 5, reviews: 179, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Lavender", category: "traditional", isPremium: false, rating: 5, reviews: 194, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Open", category: "premium_blends", isPremium: false, rating: 5, reviews: 88, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Green Ajmeri", category: "traditional", isPremium: false, rating: 5, reviews: 142, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "555", category: "premium_blends", isPremium: false, rating: 5, reviews: 113, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "White oud", category: "premium_blends", isPremium: true, rating: 5, reviews: 268, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Arabic oud", category: "premium_blends", isPremium: true, rating: 5, reviews: 247, img: "img/i_rasa_bottles/a2.webp" },
+      { name: "BlackBerry", category: "fresh_sweet", isPremium: false, rating: 5, reviews: 136, img: "img/i_rasa_bottles/a1.webp" },
+      { name: "Kala bhoot", category: "premium_blends", isPremium: true, rating: 5, reviews: 189, img: "img/i_rasa_bottles/a1.webp" }
     ];
 
     let currentCategory = 'all';
@@ -1462,7 +1517,7 @@
     document.addEventListener('wishlist:updated', updateWishlistButtons);
 
     // Initial Render
-    $(document).ready(function () {
+    document.addEventListener('DOMContentLoaded', function () {
       renderAttars();
       updateWishlistButtons();
 
@@ -1503,29 +1558,7 @@
     })();
   </script>
 
-  <!-- Navbar Scroll State -->
-  <script>
-    (function () {
-      var header = document.querySelector('header.header_area');
-      if (!header) return;
-      var SCROLL_THRESHOLD = 50;
 
-      function onScroll() {
-        if (window.innerWidth > 991) {
-          if (window.scrollY > SCROLL_THRESHOLD) {
-            header.classList.add('irasa-scrolled');
-          } else {
-            header.classList.remove('irasa-scrolled');
-          }
-        } else {
-          header.classList.remove('irasa-scrolled');
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // run once on load in case page reloads mid-scroll
-    })();
-  </script>
 
   <!-- Click-based Nav Dropdowns -->
   <script>

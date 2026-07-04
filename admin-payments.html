@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+  <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I-Rasa Perfumes - Admin Payments</title>
@@ -9,7 +11,7 @@
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
 
   <style>
     :root { --admin-bg: #0a0a0a; --admin-surface: #111111; --admin-surface-light: #1a1a1a; --admin-text: #e0e0e0; --admin-gold: #d4af37; --admin-gold-hover: #e5c158; --admin-border: #333333; }
@@ -131,6 +133,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link d-none" href="#main-content">Skip to main content</a>
 
     <aside class="admin-sidebar">
     <div class="admin-logo">
@@ -370,10 +373,10 @@
     .badge-dark { background-color: #34495e; color: #fff; }
   </style>
 
-  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="js/admin-alert.js"></script>
-  <script src="js/auth-guard.js"></script>
+  <script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
+  <script src="js/admin-alert.js" defer></script>
+  <script src="js/auth-guard.js" defer></script>
 
   <script>
     const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')

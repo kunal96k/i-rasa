@@ -221,7 +221,7 @@ a {
 .navbar-brand span {
     font-family: 'Samarkan', sans-serif !important;
     font-size: 62px;
-    color: #d4af37;
+    color: rgb(255, 255, 255) !important;
     font-weight: normal;
     text-transform: lowercase;
     text-shadow: 1px 1px 2px #000;
@@ -961,7 +961,7 @@ a {
     .mobile-menu-header .irasa-logo__brand {
         font-family: 'Samarkan', sans-serif !important;
         font-size: 32px !important;
-        color: #ffffff !important;
+        color: rgb(255, 255, 255) !important;
         letter-spacing: 2px !important;
         font-style: normal !important;
         font-weight: normal !important;
@@ -2091,7 +2091,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../img/home/light_banner_bg.png') no-repeat center center / cover;
+    background: url('../img/home/light_banner_bg.webp') no-repeat center center / cover;
     z-index: -1
 }
 
@@ -10028,7 +10028,6 @@ html {
     }
 
     header.header_area .irasa-shop-cta:hover {
-        transform: translateY(-2px) !important;
         box-shadow: 0 8px 24px rgba(255, 197, 89, 0.45) !important;
         color: #000000 !important;
         text-decoration: none !important;
@@ -10085,7 +10084,6 @@ html {
     /* Logo shrinks slightly on scroll */
     header.header_area.irasa-scrolled .irasa-logo__brand {
         font-size: 33px !important;
-        text-shadow: 0 0 22px rgba(255, 196, 88, 0.8), 0 0 50px rgba(255, 196, 88, 0.35) !important;
     }
 
     header.header_area.irasa-scrolled .irasa-logo__tagline {
@@ -10132,4 +10130,79 @@ html {
         display: block !important;
         pointer-events: none !important;
     }
+}
+/* Mobile Touch Target & UX Accessibility Enhancements */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .size-selector .size-btn,
+  .bottle-size-selector-wrap .modal-size-btn {
+    padding: 10px 20px !important;
+    min-width: 55px !important;
+    min-height: 42px !important;
+  }
+  .quantity-picker button {
+    padding: 10px 20px !important;
+    font-size: 24px !important;
+    min-height: 42px !important;
+  }
+  #scroll-top {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .card-product .stars i,
+  .stars i {
+    padding: 2px !important; /* Increase click buffer spacing */
+  }
+}
+
+.skip-link {
+  display: none !important;
+}
+
+/* Global Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+::-webkit-scrollbar-track {
+  background: #000000 !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4af37 !important;
+  border-radius: 10px !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #aa8422 !important;
+}
+
+/* Thin Scrollbar for smaller containers like modal bodies */
+.modal-body::-webkit-scrollbar,
+.scroll-thin::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+/* Firefox compatibility */
+html {
+  scrollbar-width: thin !important;
+  scrollbar-color: #d4af37 #000000 !important;
+}
+
+.modal-body {
+  scrollbar-width: thin !important;
+  scrollbar-color: #d4af37 #000000 !important;
+}
+
+/* Force Brand Logo Color to White globally (both desktop and mobile) */
+.header_area .navbar-brand .irasa-logo__brand,
+.navbar-brand span,
+.mobile-menu-header .irasa-logo__brand {
+    color: rgb(255, 255, 255) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4) !important;
 }

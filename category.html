@@ -2,16 +2,33 @@
 <html lang="en">
 
 <head>
-  <meta name="description"
-    content="I Rasa Perfumes - The best luxury perfumes and handcrafted fragrances in Nashik, Maharashtra. Explore our long-lasting attars and perfumes starting at Rs. 399.">
-  <meta name="keywords"
-    content="Perfumes in Nashik, Luxury Fragrances India, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents">
-  <meta name="author" content="Technokraft services LLP">
-  <link rel="canonical" href="https://irasaperfumes.in/">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+  
+  
+    <!-- Font Preconnect (performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Shop premium men's perfumes in Nashik at I Rasa Perfumes. Explore 20+ long-lasting luxury fragrances for men starting at Rs. 399. Fast delivery across Maharashtra.">
+  <meta name="keywords" content="Men's Perfumes Nashik, Luxury Cologne India, Best Perfume for Men, I Rasa Men's Collection, Buy Perfume Online Nashik">
+  <link rel="canonical" href="https://irasaperfumes.in/category.html">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Men's Perfumes in Nashik — Shop Online | I Rasa Perfumes">
+  <meta property="og:description" content="Shop premium men's perfumes in Nashik at I Rasa Perfumes. Explore 20+ long-lasting luxury fragrances for men starting at Rs. 399. Fast delivery across Maharashtra.">
+  <meta property="og:image" content="https://irasaperfumes.in/img/product/product1.png">
+  <meta property="og:url" content="https://irasaperfumes.in/category.html">
+  <meta property="og:site_name" content="I Rasa Perfumes">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Men's Perfumes in Nashik — Shop Online | I Rasa Perfumes">
+  <meta name="twitter:description" content="Shop premium men's perfumes in Nashik at I Rasa Perfumes. Explore 20+ long-lasting luxury fragrances for men starting at Rs. 399. Fast delivery across Maharashtra.">
+  <meta name="twitter:image" content="https://irasaperfumes.in/img/product/product1.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>I Rasa Perfumes - Category</title>
+  <title>Men's Perfumes in Nashik — Shop Online | I Rasa Perfumes</title>
   <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
@@ -22,12 +39,12 @@
   <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
   <link href="css/vendors/aos.css" rel="stylesheet">
   <style>
     /* ── PAGE HERO ── */
     .mens-banner-area {
-      background: url('img/home/light_banner_bg.png') no-repeat center center / cover !important;
+      background: url('img/home/light_banner_bg.webp') no-repeat center center / cover !important;
       padding: 90px 0 60px;
       position: relative;
       overflow: hidden;
@@ -459,9 +476,36 @@
       }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "I Rasa Perfumes Collection",
+    "url": "https://irasaperfumes.in",
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "I Rasa Premium Perfume",
+        "brand": { "@type": "Brand", "name": "I Rasa Perfumes" },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "INR",
+          "lowPrice": "399",
+          "highPrice": "2000",
+          "offerCount": "20+",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@type": "Organization", "name": "I Rasa Perfumes" }
+        },
+        "image": "https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
+  <a class="skip-link d-none" href="#main-content">Skip to main content</a>
   <!--================ Start Header Menu Area =================-->
   <header class="header_area">
     <div class="main_menu">
@@ -477,7 +521,7 @@
           </a>
 
           <!-- ── HAMBURGER (mobile) ── -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          <button class="navbar-toggler" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbarNav" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -621,7 +665,7 @@
               <!-- Profile / Login Icon -->
               <li class="nav-item nav-shop-icon irasa-profile-wrap" id="profileNavWrapper">
                 <a href="login.html" id="profileNavLink" class="nav-shop-profile-link irasa-action-btn" title="Sign In">
-                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" />
+                  <img id="profileNavImg" src="" alt="Profile" style="display:none;" / loading="lazy">
                   <i id="profileNavIcon" class="ti-user"></i>
                 </a>
                 <!-- Profile dropdown injected here by auth.js -->
@@ -652,6 +696,7 @@
       </nav>
     </div>
   </header>
+  <main id="main-content">
   <!--================ End Header Menu Area =================-->
 
   <!-- ================ start banner area ================= -->
@@ -659,7 +704,7 @@
     <div class="container h-100">
       <div class="blog-banner">
         <div class="text-center">
-          <h1>Production of Perfumes</h1>
+          <h1>Men's Perfume Collection in Nashik</h1>
           <nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
@@ -746,7 +791,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-fire'></i> Bestseller</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.png" alt="Savage Dior">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.webp" alt="Savage Dior" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Savage Dior" data-price="Rs. 499" data-img="img/i_rasa_bottles/p1.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Savage Dior')"><i class="ti-shopping-cart"></i></button></li>
@@ -774,7 +819,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-fire'></i> Bestseller</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.png" alt="Dev. Cool Water">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.webp" alt="Dev. Cool Water" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Dev. Cool Water" data-price="Rs. 499" data-img="img/i_rasa_bottles/p2.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Dev. Cool Water')"><i class="ti-shopping-cart"></i></button></li>
@@ -798,7 +843,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.png" alt="Rasassi Hawas">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.webp" alt="Rasassi Hawas" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas" data-price="Rs. 499" data-img="img/i_rasa_bottles/p3.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Rasassi Hawas')"><i class="ti-shopping-cart"></i></button></li>
@@ -822,7 +867,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.png" alt="Donhill Red">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.webp" alt="Donhill Red" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Donhill Red" data-price="Rs. 499" data-img="img/i_rasa_bottles/p4.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Donhill Red')"><i class="ti-shopping-cart"></i></button></li>
@@ -846,7 +891,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.png" alt="Donhill Icon">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.webp" alt="Donhill Icon" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Donhill Icon" data-price="Rs. 499" data-img="img/i_rasa_bottles/p5.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Donhill Icon')"><i class="ti-shopping-cart"></i></button></li>
@@ -870,7 +915,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.png" alt="C R 7">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.webp" alt="C R 7" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="C R 7" data-price="Rs. 499" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('C R 7')"><i class="ti-shopping-cart"></i></button></li>
@@ -894,7 +939,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-trophy'></i> Top Rated</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.png" alt="Creed Avantes">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.webp" alt="Creed Avantes" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Creed Avantes" data-price="Rs. 499" data-img="img/i_rasa_bottles/p7.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Creed Avantes')"><i class="ti-shopping-cart"></i></button></li>
@@ -918,7 +963,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-gift'></i> Gift Pick</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.png" alt="Creed Silver Mountain Water">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.webp" alt="Creed Silver Mountain Water" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Creed Silver Mountain" data-price="Rs. 499" data-img="img/i_rasa_bottles/p1.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Creed Silver Mountain Water')"><i class="ti-shopping-cart"></i></button></li>
@@ -942,7 +987,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.png" alt="Rasassi Hawas Ice">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.webp" alt="Rasassi Hawas Ice" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Rasassi Hawas Ice" data-price="Rs. 499" data-img="img/i_rasa_bottles/p2.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Rasassi Hawas Ice')"><i class="ti-shopping-cart"></i></button></li>
@@ -966,7 +1011,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-gift'></i> Gift Pick</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.png" alt="Hugo Boss">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.webp" alt="Hugo Boss" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Hugo Boss" data-price="Rs. 499" data-img="img/i_rasa_bottles/p3.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Hugo Boss')"><i class="ti-shopping-cart"></i></button></li>
@@ -990,7 +1035,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.png" alt="Rasassi Royal Blue">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.webp" alt="Rasassi Royal Blue" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Rasassi Royal Blue" data-price="Rs. 499" data-img="img/i_rasa_bottles/p4.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Rasassi Royal Blue')"><i class="ti-shopping-cart"></i></button></li>
@@ -1014,7 +1059,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.png" alt="Arabic Tonka">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.webp" alt="Arabic Tonka" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Arabic Tonka" data-price="Rs. 499" data-img="img/i_rasa_bottles/p5.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Arabic Tonka')"><i class="ti-shopping-cart"></i></button></li>
@@ -1038,7 +1083,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.png" alt="Arabian Arromas">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.webp" alt="Arabian Arromas" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Arabian Arromas" data-price="Rs. 499" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Arabian Arromas')"><i class="ti-shopping-cart"></i></button></li>
@@ -1062,7 +1107,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.png" alt="Azzaro Chrome">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.webp" alt="Azzaro Chrome" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Azzaro Chrome" data-price="Rs. 499" data-img="img/i_rasa_bottles/p7.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Azzaro Chrome')"><i class="ti-shopping-cart"></i></button></li>
@@ -1086,7 +1131,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-fire'></i> Hot Pick</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.png" alt="Azzaro Most Wanted">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.webp" alt="Azzaro Most Wanted" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Azzaro Most Wanted" data-price="Rs. 499" data-img="img/i_rasa_bottles/p1.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Azzaro Most Wanted')"><i class="ti-shopping-cart"></i></button></li>
@@ -1110,7 +1155,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.png" alt="M.B. Legant">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.webp" alt="M.B. Legant" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="M.B. Legant" data-price="Rs. 499" data-img="img/i_rasa_bottles/p2.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('M.B. Legant')"><i class="ti-shopping-cart"></i></button></li>
@@ -1135,7 +1180,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.png" alt="Brown Musk">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.webp" alt="Brown Musk" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Brown Musk" data-price="Rs. 499" data-img="img/i_rasa_bottles/p3.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Brown Musk')"><i class="ti-shopping-cart"></i></button></li>
@@ -1160,7 +1205,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-magic'></i> Combo</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.png" alt="Tam Dao + Donhill Icon">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.webp" alt="Tam Dao + Donhill Icon" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Tam Dao + Icon" data-price="Rs. 499" data-img="img/i_rasa_bottles/p4.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Tam Dao + Donhill Icon')"><i class="ti-shopping-cart"></i></button></li>
@@ -1185,7 +1230,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-crown'></i> Luxury</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.png" alt="Tom Ford Oud Wood">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.webp" alt="Tom Ford Oud Wood" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Tom Ford Oud Wood" data-price="Rs. 499" data-img="img/i_rasa_bottles/p5.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Tom Ford Oud Wood')"><i class="ti-shopping-cart"></i></button></li>
@@ -1210,7 +1255,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.png" alt="Latafa Al Oud">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.webp" alt="Latafa Al Oud" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Latafa Al Oud" data-price="Rs. 499" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Latafa Al Oud')"><i class="ti-shopping-cart"></i></button></li>
@@ -1235,7 +1280,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.png" alt="Blvgiri Aqva Man">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.webp" alt="Blvgiri Aqva Man" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Blvgiri Aqva Man" data-price="Rs. 499" data-img="img/i_rasa_bottles/p7.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Blvgiri Aqva Man')"><i class="ti-shopping-cart"></i></button></li>
@@ -1260,7 +1305,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-fire'></i> Bestseller</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.png" alt="Blue De Chanel">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.webp" alt="Blue De Chanel" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Blue De Chanel" data-price="Rs. 499" data-img="img/i_rasa_bottles/p1.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Blue De Chanel')"><i class="ti-shopping-cart"></i></button></li>
@@ -1285,7 +1330,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.png" alt="Armani Code">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.webp" alt="Armani Code" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Armani Code" data-price="Rs. 499" data-img="img/i_rasa_bottles/p2.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Armani Code')"><i class="ti-shopping-cart"></i></button></li>
@@ -1310,7 +1355,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.png" alt="Polo Sports">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.webp" alt="Polo Sports" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Polo Sports" data-price="Rs. 499" data-img="img/i_rasa_bottles/p3.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Polo Sports')"><i class="ti-shopping-cart"></i></button></li>
@@ -1335,7 +1380,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.png" alt="Givenchy Gentleman">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.webp" alt="Givenchy Gentleman" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Givenchy Gentleman" data-price="Rs. 499" data-img="img/i_rasa_bottles/p4.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Givenchy Gentleman')"><i class="ti-shopping-cart"></i></button></li>
@@ -1360,7 +1405,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.png" alt="Dev. Champion">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.webp" alt="Dev. Champion" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Dev. Champion" data-price="Rs. 499" data-img="img/i_rasa_bottles/p5.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Dev. Champion')"><i class="ti-shopping-cart"></i></button></li>
@@ -1385,7 +1430,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-water'></i> Classic</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.png" alt="Acqua Di Gio Armani">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.webp" alt="Acqua Di Gio Armani" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Acqua Di Gio" data-price="Rs. 499" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Acqua Di Gio Armani')"><i class="ti-shopping-cart"></i></button></li>
@@ -1409,7 +1454,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-magic'></i> Special</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.png" alt="Latafa Khamrha Kawa Oud">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.webp" alt="Latafa Khamrha Kawa Oud" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Khamrha Kawa Oud" data-price="Rs. 499" data-img="img/i_rasa_bottles/p7.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Latafa Khamrha Kawa Oud')"><i class="ti-shopping-cart"></i></button></li>
@@ -1434,7 +1479,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.png" alt="Dior Homme Intense">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p1.webp" alt="Dior Homme Intense" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Homme Intense" data-price="Rs. 499" data-img="img/i_rasa_bottles/p1.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Dior Homme Intense')"><i class="ti-shopping-cart"></i></button></li>
@@ -1459,7 +1504,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-heart'></i> Romantic</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.png" alt="Armani Stronger With You">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p2.webp" alt="Armani Stronger With You" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Stronger With You" data-price="Rs. 499" data-img="img/i_rasa_bottles/p2.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Armani Stronger With You')"><i class="ti-shopping-cart"></i></button></li>
@@ -1484,7 +1529,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.png" alt="Ambar Oud">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p3.webp" alt="Ambar Oud" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Ambar Oud" data-price="Rs. 499" data-img="img/i_rasa_bottles/p3.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Ambar Oud')"><i class="ti-shopping-cart"></i></button></li>
@@ -1509,7 +1554,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.png" alt="Gucci Guilty">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p4.webp" alt="Gucci Guilty" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Gucci Guilty" data-price="Rs. 499" data-img="img/i_rasa_bottles/p4.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Gucci Guilty')"><i class="ti-shopping-cart"></i></button></li>
@@ -1534,7 +1579,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.png" alt="C.K. Defy">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p5.webp" alt="C.K. Defy" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="CK Defy" data-price="Rs. 499" data-img="img/i_rasa_bottles/p5.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('C.K. Defy')"><i class="ti-shopping-cart"></i></button></li>
@@ -1559,7 +1604,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               <span class="badge-bestseller"><i class='fas fa-crown'></i> Luxury</span>
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.png" alt="Tom Ford Tuscan Leather">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p6.webp" alt="Tom Ford Tuscan Leather" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="Tuscan Leather" data-price="Rs. 499" data-img="img/i_rasa_bottles/p6.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('Tom Ford Tuscan Leather')"><i class="ti-shopping-cart"></i></button></li>
@@ -1584,7 +1629,7 @@
           <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product">
             <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
               
-              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.png" alt="D&amp;G">
+              <img class="card-img perfume-img" loading="lazy" src="img/i_rasa_bottles/p7.webp" alt="D&amp;G" width="400" height="400">
               <ul class="card-product__imgOverlay">
                 <li><button data-toggle="modal" data-target="#product_modal" data-title="D&G" data-price="Rs. 499" data-img="img/i_rasa_bottles/p7.png"><i class="ti-search"></i></button></li>
                 <li><button onclick="addToCart('D&amp;G')"><i class="ti-shopping-cart"></i></button></li>
@@ -1669,7 +1714,7 @@
       </p>
       <div class="d-flex flex-wrap gap-3 justify-content-center" style="gap:15px;">
         <a href="https://wa.me/919823833303?text=Hi! I'm interested in the Men's Bestseller Collection" target="_blank"
-          style="background:#25d366;color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:1px;display:inline-flex;align-items:center;gap:8px;">
+          style="background:#25d366;color:#fff;padding:14px 32px;border-radius:30px;font-weight:700;font-size:14px;text-decoration:none;letter-spacing:1px;display:inline-flex;align-items:center;gap:8px;" rel="noopener noreferrer" target="_blank">
           <i class="fab fa-whatsapp"></i> Order on WhatsApp
         </a>
         <a href="category.html"
@@ -1702,9 +1747,9 @@
               <p>I Rasa Perfumes provides the finest fragrances across India. Starting at just Rs. 399.</p>
               <div class="footer-social mt-4">
                 <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/i_rasa_perfumes/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/i_rasa_perfumes/" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:irasaperfumes@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://wa.me/919823833303" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/919823833303" aria-label="Chat with I Rasa Perfumes on WhatsApp" role="button" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
           </div>
@@ -1725,12 +1770,12 @@
             <div class="single-footer-widget">
               <h4 class="footer_title">Our Gallery</h4>
               <ul class="footer-gallery-grid">
-                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb"></li>
-                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb"></li>
+                <li><img src="img/gallery/r1.webp" alt="Luxury Perfume" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r2.webp" alt="Signature Scent" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r3.webp" alt="Elegant Fragrance" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r5.webp" alt="Premium Attar" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r7.webp" alt="Bespoke Collection" class="footer-gallery-thumb" loading="lazy"></li>
+                <li><img src="img/gallery/r8.webp" alt="I Rasa Perfumes" class="footer-gallery-thumb" loading="lazy"></li>
               </ul>
             </div>
           </div>
@@ -1786,7 +1831,16 @@
           
           <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px; margin-bottom: 20px;">
             <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
-              Designed By
+              Graphics Designer
+            </p>
+            <h5 style="font-size: 14px; font-weight: 600; color: #fff; line-height: 1.6; margin: 0; letter-spacing: 0.5px;">
+              DIPAK MAHAJAN
+            </h5>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px; margin-bottom: 20px;">
+            <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
+              Front End Dev.
             </p>
             <h5 style="font-size: 14px; font-weight: 600; color: #fff; line-height: 1.6; margin: 0; letter-spacing: 0.5px;">
               ABHISHEK SOUNDANKAR<br>
@@ -1797,7 +1851,7 @@
           
           <div style="border-top: 1px solid rgba(212, 175, 55, 0.12); padding-top: 20px;">
             <p style="font-size: 11px; text-transform: uppercase; color: #d4af37; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;">
-              Developed By
+              Backend Dev.
             </p>
             <h5 style="font-size: 14px; font-weight: 600; color: #fff; margin: 0; letter-spacing: 0.5px;">
               KUNAL PATIL
@@ -1805,7 +1859,7 @@
           </div>
         </div>
         <div class="modal-footer" style="border-top: 1px solid #222; padding: 15px 25px; display: flex; justify-content: center; background: #070707;">
-          <a href="https://technokraftllp.com/" target="_blank" class="button" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 8px 24px; font-weight: bold; font-size: 12px; transition: all 0.3s; outline: none; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">
+          <a href="https://technokraftllp.com/" target="_blank" class="button" style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 8px 24px; font-weight: bold; font-size: 12px; transition: all 0.3s; outline: none; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;" rel="noopener noreferrer" target="_blank">
             Visit Website
           </a>
         </div>
@@ -1823,15 +1877,14 @@
 
 
   <!-- Scripts -->
-  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="vendors/skrollr.min.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/vendors/aos.js"></script>
-  <script>AOS.init({ once: true });</script>
+  <script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
+  <script src="vendors/owl-carousel/owl.carousel.min.js" defer></script>
+  <script src="vendors/nice-select/jquery.nice-select.min.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/vendors/aos.js" defer></script>
+  <script>document.addEventListener('DOMContentLoaded', () => { AOS.init({ once: true }); });</script>
 
   <script>
     // ── Filter Tabs & Search ──
@@ -2024,8 +2077,8 @@
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
               <div class="modal-img-wrap"
                 style="height: 380px; overflow: hidden; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #222;">
-                <img src="img/i_rasa_bottles/p7.png" class="img-fluid" id="modal_img" alt="Perfume"
-                  style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;">
+                <img src="img/i_rasa_bottles/p7.webp" class="img-fluid" id="modal_img" alt="Perfume"
+                  style="max-height: 100%; width: auto; object-fit: contain; transition: transform 0.5s;" loading="lazy">
               </div>
             </div>
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-md-6">
@@ -2177,12 +2230,13 @@
       $('#modal_price').text('Rs. ' + finalPrice.toFixed(2));
     }
 
-    $(document).ready(function () {
+    document.addEventListener('DOMContentLoaded', function () {
       $('[data-target="#product_modal"]').click(function () {
         var btn = $(this);
         var title = btn.data('title');
         var priceVal = btn.data('price') || "Rs. 499";
-        var img = btn.data('img');
+        var cardImg = btn.closest('.card-product, .exclusive-card, .mens-product-card, .womens-product-card, .card').find('img').first().attr('src');
+        var img = cardImg || btn.data('img');
 
         $('#modal_title').text(title);
         $('#modal_img').attr('src', img);
@@ -2263,31 +2317,9 @@
       </div>
     </div>
   </div>
-  <script src="js/auth-guard.js"></script>
+  <script src="js/auth-guard.js" defer></script>
 
-  <!-- Navbar Scroll State -->
-  <script>
-    (function () {
-      var header = document.querySelector('header.header_area');
-      if (!header) return;
-      var SCROLL_THRESHOLD = 50;
 
-      function onScroll() {
-        if (window.innerWidth > 991) {
-          if (window.scrollY > SCROLL_THRESHOLD) {
-            header.classList.add('irasa-scrolled');
-          } else {
-            header.classList.remove('irasa-scrolled');
-          }
-        } else {
-          header.classList.remove('irasa-scrolled');
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // run once on load in case page reloads mid-scroll
-    })();
-  </script>
 
   <!-- Click-based Nav Dropdowns -->
   <script>

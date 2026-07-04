@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+    <!-- Font Preconnect (performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Something went wrong on our end. Please try again or return to the I Rasa Perfumes homepage.">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Server Error — I Rasa Perfumes">
+  <meta property="og:description" content="Something went wrong on our end. Please try again or return to the I Rasa Perfumes homepage.">
+  <meta property="og:image" content="https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp">
+  <meta property="og:site_name" content="I Rasa Perfumes">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Server Error — I Rasa Perfumes">
+  <meta name="twitter:description" content="Something went wrong on our end. Please try again or return to the I Rasa Perfumes homepage.">
+  <meta name="twitter:image" content="https://irasaperfumes.in/img/i_rasa_bottles/s-p1.webp">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Server Error - I Rasa Perfumes</title>
+  <title>Server Error — I Rasa Perfumes</title>
   <link rel="icon" href="img/favicon-irasa.png" type="image/png">
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
   
   <style>
@@ -103,13 +121,14 @@
   </style>
 </head>
 <body>
-  <div class="error-wrapper">
+  <a class="skip-link d-none" href="#main-content">Skip to main content</a>
+  <main id="main-content" class="error-wrapper">
     <div class="error-card">
       <div class="perfume-bottle-icon">
         <i class="ti-unlink"></i>
       </div>
       <div class="error-code">500</div>
-      <h3 class="error-title">Scent Dispersion Interrupted</h3>
+      <h1 class="error-title">Scent Dispersion Interrupted</h1>
       <p class="error-desc">
         We encountered an internal server error while processing your request. Our technical staff has been notified and we are working to resolve the issue.
       </p>
@@ -117,6 +136,6 @@
         <i class="fas fa-home"></i> Return to Home
       </a>
     </div>
-  </div>
+  </main>
 </body>
 </html>
