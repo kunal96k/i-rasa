@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
 
 
   <!-- Font Preconnect (performance) -->
@@ -12,7 +13,7 @@
   <meta name="description"
     content="I Rasa Perfumes offers premium handcrafted perfumes and long-lasting attars in Nashik, Maharashtra. Shop luxury fragrances for men & women starting at Rs. 399. Free delivery available.">
   <meta name="keywords"
-    content="Perfumes in Nashik, Luxury Fragrances Nashik, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents, Handcrafted Perfumes">
+    content="Perfumes in Nashik, Luxury Fragrances Nashik, I Rasa Perfumes, Best Attar Nashik, Indian Perfume Brand, Affordable Luxury Scents, Handcrafted Perfumes, Independence Day Perfume Offer Nashik, 15 August Perfume Sale, Buy 2 Perfumes 790 Rupees, Attar 79 Rupees Nashik, Agarbatti Offer Nashik, DAY79 coupon code">
   <link rel="canonical" href="https://irasaperfumes.in/">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -279,7 +280,6 @@
     .hero-banner__content .button-hero:hover,
     .custom-perfume-section .button-hero:hover,
     .subscribe-form button:hover {
-      transform: scale(1.03) !important;
       box-shadow: 0 15px 30px rgba(255, 197, 89, 0.35) !important;
       color: #5d3c00 !important;
       text-decoration: none !important;
@@ -588,7 +588,6 @@
 
     /* Blur the bottle image slightly on hover when buttons appear */
     .exclusive-card__box:hover .exclusive-card__img {
-      transform: scale(1.05);
       filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7)) blur(4px);
       opacity: 0.5;
     }
@@ -675,7 +674,6 @@
     }
 
     .button-explore:hover {
-      transform: scale(1.02);
       box-shadow: 0 15px 30px rgba(255, 197, 89, 0.25) !important;
       color: #000000 !important;
     }
@@ -1043,6 +1041,756 @@
         margin-bottom: 30px !important;
       }
     }
+
+    /* =============================================
+       Independence Day 79 Offer — Indian Flag Theme
+    ============================================= */
+    #independenceDayOffer {
+      background: #05080d;
+      position: relative;
+      overflow: hidden;
+      padding: 0 0 80px;
+    }
+
+    /* Tricolor top stripe */
+    .id79-flag-stripe {
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg,
+          #FF9933 33.33%,
+          #ffffff 33.33%,
+          #ffffff 66.66%,
+          #138808 66.66%);
+      margin-bottom: 0;
+    }
+
+    /* Subtle static Ashoka Chakra SVG watermark (no distracting animation) */
+    .id79-chakra-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 520px;
+      height: 520px;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Saffron & green ambient glows (clean, static) */
+    #independenceDayOffer::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: -80px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(255, 153, 0, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #independenceDayOffer::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(19, 136, 8, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header section */
+    .id79-header-wrap {
+      position: relative;
+      z-index: 2;
+      padding-top: 60px;
+      padding-bottom: 48px;
+    }
+
+    .id79-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 153, 0, 0.08);
+      border: 1px solid rgba(255, 153, 0, 0.35);
+      border-radius: 50px;
+      padding: 7px 20px;
+      margin-bottom: 22px;
+    }
+
+    .id79-badge span {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: #FF9933;
+    }
+
+    .id79-heading {
+      font-family: 'Playfair Display', serif !important;
+      font-weight: 700 !important;
+      font-size: 54px !important;
+      line-height: 1.15 !important;
+      color: #ffffff !important;
+      margin-bottom: 14px !important;
+      text-align: center;
+    }
+
+    .id79-heading .id79-saffron {
+      color: #FF9933;
+    }
+
+    .id79-heading .id79-green {
+      color: #3ecf3e;
+    }
+
+    .id79-heading .id79-navy {
+      color: #ffffff;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .id79-heading {
+        font-size: 34px !important;
+      }
+    }
+
+    .id79-subhead {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #999999;
+      margin-bottom: 8px;
+    }
+
+    .id79-location-tag {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 153, 0, 0.75);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+
+    .id79-location-tag i {
+      margin-right: 6px;
+    }
+
+    /* === Smooth Neo Animated Card Border with SVG Filter Glow === */
+    @property --id79-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .id79-card-wrap {
+      position: relative;
+      border-radius: 26px;
+      padding: 3px;
+      overflow: hidden;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+    }
+
+    /* Ultra-smooth rotating neon beam loop with GPU acceleration */
+    .id79-card-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -65%;
+      border-radius: 50%;
+      background: conic-gradient(from var(--id79-angle, 0deg),
+          transparent 0%,
+          transparent 55%,
+          var(--beam-color-glow) 76%,
+          #ffffff 92%,
+          var(--beam-color) 100%);
+      filter: var(--id79-glow-filter, url(#id79-glow-0));
+      animation: id79-border-spin 5.5s linear infinite;
+      z-index: 0;
+      will-change: transform, --id79-angle;
+      transform-origin: center center;
+    }
+
+    @keyframes id79-border-spin {
+      from {
+        --id79-angle: 0deg;
+        transform: rotate(0deg);
+      }
+
+      to {
+        --id79-angle: 360deg;
+        transform: rotate(360deg);
+      }
+    }
+
+    /* 1. Saffron beam (Top flag color) */
+    .id79-card-wrap--saffron {
+      --beam-color: #FF9933;
+      --beam-color-glow: rgba(255, 153, 0, 0.9);
+    }
+
+    /* 2. White beam (Middle flag color) */
+    .id79-card-wrap--white {
+      --beam-color: #ffffff;
+      --beam-color-glow: rgba(255, 255, 255, 0.95);
+    }
+
+    /* 3. Green beam (Bottom flag color) */
+    .id79-card-wrap--green {
+      --beam-color: #3ecf3e;
+      --beam-color-glow: rgba(62, 207, 62, 0.9);
+    }
+
+    /* === Offer Cards === */
+    .id79-card-link {
+      display: block;
+      text-decoration: none !important;
+      color: inherit !important;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .id79-card-link:hover {
+      text-decoration: none !important;
+      color: inherit !important;
+    }
+
+    .id79-offer-card {
+      position: relative;
+      z-index: 1;
+      border-radius: 24px;
+      padding: 40px 28px 34px;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+      height: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* === Three Indian Flag Card Themes (Saffron - White - Green) === */
+    /* 100% solid opaque dark gradients to keep rotation animation ONLY on the 3px border */
+
+    /* Card 1: Saffron (Indian Flag Saffron) */
+    .id79-offer-card--saffron {
+      background:
+        radial-gradient(ellipse at top left, rgba(255, 153, 0, 0.25) 0%, transparent 60%),
+        linear-gradient(170deg, #160e04 0%, #06090e 50%, #0a0601 100%);
+    }
+
+    /* Card 2: White (Indian Flag Middle Color White) */
+    .id79-offer-card--white {
+      background:
+        radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.20) 0%, transparent 60%),
+        linear-gradient(170deg, #10151f 0%, #06090e 50%, #07090f 100%);
+    }
+
+    /* Card 3: Green (Indian Flag Green) */
+    .id79-offer-card--green {
+      background:
+        radial-gradient(ellipse at top left, rgba(19, 136, 8, 0.25) 0%, transparent 60%),
+        linear-gradient(170deg, #041608 0%, #06090e 50%, #010a04 100%);
+    }
+
+    /* Hover lift per card */
+    .id79-card-link:hover .id79-offer-card--saffron {
+      box-shadow: 0 24px 60px rgba(255, 153, 0, 0.22), 0 0 0 1px rgba(255, 153, 0, 0.18);
+    }
+
+    .id79-card-link:hover .id79-offer-card--white {
+      box-shadow: 0 24px 60px rgba(255, 255, 255, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.22);
+    }
+
+    .id79-card-link:hover .id79-offer-card--green {
+      box-shadow: 0 24px 60px rgba(19, 136, 8, 0.22), 0 0 0 1px rgba(62, 207, 62, 0.18);
+    }
+
+    /* Icons per theme */
+    .id79-offer-icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 28px;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .id79-offer-icon--saffron {
+      background: rgba(255, 153, 0, 0.12);
+      border: 1.5px solid rgba(255, 153, 0, 0.35);
+      color: #FF9933;
+    }
+
+    .id79-offer-icon--white {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    }
+
+    .id79-offer-icon--green {
+      background: rgba(19, 136, 8, 0.14);
+      border: 1.5px solid rgba(62, 207, 62, 0.35);
+      color: #3ecf3e;
+    }
+
+    .id79-card-link:hover .id79-offer-icon--saffron {
+      background: rgba(255, 153, 0, 0.22);
+    }
+
+    .id79-card-link:hover .id79-offer-icon--white {
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    .id79-card-link:hover .id79-offer-icon--green {
+      background: rgba(19, 136, 8, 0.24);
+    }
+
+    .id79-card-corner {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    .id79-offer-card--saffron .id79-card-corner {
+      color: #FF9933;
+    }
+
+    .id79-offer-card--white .id79-card-corner {
+      color: #ffffff;
+    }
+
+    .id79-offer-card--green .id79-card-corner {
+      color: #3ecf3e;
+    }
+
+    .id79-offer-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 21px;
+      color: #ffffff;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .id79-offer-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 300;
+      color: #888888;
+      margin-bottom: 20px;
+      line-height: 1.75;
+    }
+
+    .id79-offer-desc strong {
+      color: #cccccc;
+      font-weight: 500;
+    }
+
+    .id79-price-block {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    /* Original price - now clearly visible with bright strikethrough */
+    .id79-original-price {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #aaaaaa;
+      text-decoration: line-through;
+      text-decoration-color: #ff4444;
+      text-decoration-thickness: 2px;
+    }
+
+    .id79-offer-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .id79-offer-price--saffron {
+      color: #FF9933;
+    }
+
+    .id79-offer-price--white {
+      color: #ffffff;
+      text-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
+    }
+
+    .id79-offer-price--green {
+      color: #3ecf3e;
+    }
+
+    .id79-savings-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 30px;
+      padding: 4px 14px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+
+    .id79-savings-tag--saffron {
+      background: rgba(255, 153, 0, 0.15);
+      border: 1px solid rgba(255, 153, 0, 0.35);
+      color: #FF9933;
+    }
+
+    .id79-savings-tag--white {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+    }
+
+    .id79-savings-tag--green {
+      background: rgba(19, 136, 8, 0.15);
+      border: 1px solid rgba(62, 207, 62, 0.35);
+      color: #3ecf3e;
+    }
+
+    .id79-shop-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 30px;
+      border-radius: 10px 28px 10px 28px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      border: none;
+      text-decoration: none !important;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      /* parent <a> handles click */
+    }
+
+    .id79-shop-btn--saffron {
+      background: linear-gradient(135deg, #7a3d00 0%, #FF9933 55%, #7a3d00 100%);
+      color: #2a1200 !important;
+      box-shadow: 0 6px 22px rgba(255, 153, 0, 0.28);
+    }
+
+    .id79-shop-btn--white {
+      background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 50%, #d8e2ec 100%);
+      color: #050e18 !important;
+      font-weight: 800;
+      box-shadow: 0 6px 22px rgba(255, 255, 255, 0.3);
+    }
+
+    .id79-shop-btn--green {
+      background: linear-gradient(135deg, #023300 0%, #138808 50%, #3ecf3e 100%);
+      color: #001500 !important;
+      box-shadow: 0 6px 22px rgba(19, 136, 8, 0.28);
+    }
+
+    .id79-card-link:hover .id79-shop-btn--saffron {
+      box-shadow: 0 10px 32px rgba(255, 153, 0, 0.42);
+    }
+
+    .id79-card-link:hover .id79-shop-btn--white {
+      box-shadow: 0 10px 32px rgba(255, 255, 255, 0.5);
+    }
+
+    .id79-card-link:hover .id79-shop-btn--green {
+      box-shadow: 0 10px 32px rgba(19, 136, 8, 0.42);
+    }
+
+    /* Visually hidden validity text (SEO accessible, not visible) */
+    .id79-validity-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Row z-index fix */
+    .id79-cards-row {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =============================================
+       Independence Day 79 On-Load Popup Modal
+    ============================================= */
+    .id79-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 6, 12, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .id79-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @property --id79-modal-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .id79-modal-wrap {
+      position: relative;
+      max-width: min(520px, 92vw);
+      width: fit-content;
+      margin: 0 auto;
+      padding: 3px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #090e17;
+      box-shadow: 0 25px 75px rgba(0, 0, 0, 0.95), 0 0 55px rgba(255, 153, 0, 0.3);
+      transform: scale(0.88) translateY(25px);
+      transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Animated tricolor spinning neon beam around modal */
+    .id79-modal-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -65%;
+      border-radius: 50%;
+      background: conic-gradient(from var(--id79-modal-angle, 0deg),
+          transparent 0%,
+          transparent 50%,
+          #FF9933 70%,
+          #ffffff 88%,
+          #138808 100%);
+      filter: var(--id79-glow-filter, url(#id79-glow-0));
+      animation: id79-modal-border-spin 4.5s linear infinite;
+      z-index: 0;
+      will-change: transform, --id79-modal-angle;
+      transform-origin: center center;
+    }
+
+    @keyframes id79-modal-border-spin {
+      from {
+        --id79-modal-angle: 0deg;
+        transform: rotate(0deg);
+      }
+
+      to {
+        --id79-modal-angle: 360deg;
+        transform: rotate(360deg);
+      }
+    }
+
+    .id79-modal-content-inner {
+      position: relative;
+      background: transparent;
+      border-radius: 23px;
+      overflow: hidden;
+      z-index: 1;
+      width: fit-content;
+    }
+
+    .id79-modal-overlay.active .id79-modal-wrap {
+      transform: scale(1) translateY(0);
+    }
+
+    .id79-modal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      font-size: 20px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .id79-modal-close-btn:hover {
+      border-color: rgba(255, 255, 255, 0.7);
+      opacity: 0.9;
+    }
+
+    .id79-modal-poster-link {
+      display: block;
+      width: fit-content;
+      text-decoration: none !important;
+      cursor: pointer;
+    }
+
+    .id79-modal-poster-img {
+      width: 100%;
+      height: auto;
+      max-height: 84vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 23px;
+    }
+
+    .id79-modal-body {
+      padding: 22px 24px 26px;
+      text-align: center;
+    }
+
+    .id79-modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .id79-modal-subhead {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: #aaaaaa;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Ultra-Premium Luxury Button UI (Matching I Rasa Brand UI) */
+    .id79-modal-cta-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: fit-content;
+      min-width: 220px;
+      padding: 0 32px;
+      height: 50px;
+      background: linear-gradient(135deg, #FF9933 0%, #d4af37 48%, #138808 100%);
+      background-size: 200% 100%;
+      color: #050a12 !important;
+      font-family: 'Outfit', 'Manrope', 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 14.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 14px 34px 14px 34px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      text-decoration: none !important;
+      box-shadow: 0 8px 28px rgba(255, 153, 0, 0.4), 0 0 18px rgba(212, 175, 55, 0.25);
+      overflow: hidden;
+      transition: background-position 0.4s ease, border-color 0.4s ease;
+      z-index: 1;
+    }
+
+    /* Shimmer Light Glare Sweep Effect */
+    .id79-modal-cta-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.55) 50%,
+          transparent 100%);
+      transform: skewX(-25deg);
+      transition: left 0.75s ease;
+    }
+
+    .id79-modal-cta-btn:hover {
+      background-position: 100% 0;
+      color: #000000 !important;
+      transform: none;
+      border-color: rgba(255, 255, 255, 0.85);
+    }
+
+    .id79-modal-cta-btn:hover::after {
+      left: 140%;
+    }
+
+    .id79-modal-cta-btn i {
+      font-size: 15px;
+    }
+
+    @media (max-width: 767px) {
+      .id79-offer-price {
+        font-size: 36px;
+      }
+
+      .id79-modal-poster-img {
+        max-height: 360px;
+      }
+
+      .id79-modal-body {
+        padding: 18px 20px 22px;
+      }
+    }
+
+    /* Fast & responsive scroll reveal animation for offer cards & header */
+    .id79-scroll-reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      will-change: opacity, transform;
+    }
+
+    .id79-scroll-reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .id79-scroll-reveal--delay-1 {
+      transition-delay: 0.06s;
+    }
+
+    .id79-scroll-reveal--delay-2 {
+      transition-delay: 0.12s;
+    }
   </style>
 
   <script type="application/ld+json">
@@ -1100,6 +1848,32 @@
         }
       }
     ]
+  }
+  </script>
+
+  <!-- Independence Day 79 Offer — SEO Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SpecialAnnouncement",
+    "name": "Happy Independence Day 79 Offer — I Rasa Perfumes Nashik",
+    "text": "Celebrate India's 79th Independence Day with I Rasa Perfumes, Nashik. Buy any 2 different 60ml perfumes (men, women, or random) for just ₹790/-. Any 6ml attar for just ₹79/- (original ₹99/-). Fragrance Agarbatti 100gm for just ₹79/-. Use coupon code DAY79. Valid only on 15 August 2026. Available in Nashik and pan-India.",
+    "datePosted": "2026-08-15",
+    "expires": "2026-08-15T23:59:59+05:30",
+    "announcementLocation": {
+      "@type": "LocalBusiness",
+      "name": "I Rasa Perfumes",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nashik",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "Nashik, Maharashtra, India"
+    }
   }
   </script>
 </head>
@@ -1333,6 +2107,185 @@
         </div>
       </div>
     </section>
+    <!--================ Hero banner end =================-->
+
+    <!--================ Independence Day 79 Offer Section Start =================-->
+    <section id="independenceDayOffer" aria-label="Independence Day 79 Special Offer — I Rasa Perfumes Nashik" itemscope
+      itemtype="https://schema.org/Offer" style="display:block;">
+
+      <!-- Indian Flag Tricolor Top Stripe -->
+      <div class="id79-flag-stripe" aria-hidden="true"></div>
+
+      <!-- SVG Filter Glow Enhancement for Card Borders -->
+      <svg width="0" height="0" aria-hidden="true" style="position:fixed;top:-9999px;left:-9999px;">
+        <filter id="id79-glow-0" x="-50%" y="-50%" width="200%" height="200%">
+          <feComponentTransfer>
+            <feFuncA type="table" tableValues="0 2 0" />
+          </feComponentTransfer>
+          <feGaussianBlur stdDeviation="3" />
+          <feComponentTransfer result="rond">
+            <feFuncA type="table" tableValues="-3 4" />
+          </feComponentTransfer>
+          <feMorphology operator="dilate" radius="1.5" />
+          <feGaussianBlur stdDeviation="3" />
+          <feBlend in="rond" result="glow" />
+          <feComponentTransfer in="SourceGraphic">
+            <feFuncA type="table" tableValues="0 0 1" />
+          </feComponentTransfer>
+          <feBlend in2="glow" />
+        </filter>
+      </svg>
+
+      <!-- Ashoka Chakra SVG Watermark -->
+      <svg class="id79-chakra-bg" aria-hidden="true" viewBox="0 0 100 100" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" stroke="#003580" stroke-width="2" fill="none" />
+        <circle cx="50" cy="50" r="5" fill="#003580" />
+        <circle cx="50" cy="50" r="38" stroke="#003580" stroke-width="1" fill="none" />
+        <!-- 24 spokes -->
+        <g stroke="#003580" stroke-width="1.2">
+          <line x1="50" y1="12" x2="50" y2="50" />
+          <line x1="65.6" y1="15.6" x2="50" y2="50" />
+          <line x1="78" y1="27" x2="50" y2="50" />
+          <line x1="84.4" y1="42" x2="50" y2="50" />
+          <line x1="84.4" y1="58" x2="50" y2="50" />
+          <line x1="78" y1="73" x2="50" y2="50" />
+          <line x1="65.6" y1="84.4" x2="50" y2="50" />
+          <line x1="50" y1="88" x2="50" y2="50" />
+          <line x1="34.4" y1="84.4" x2="50" y2="50" />
+          <line x1="22" y1="73" x2="50" y2="50" />
+          <line x1="15.6" y1="58" x2="50" y2="50" />
+          <line x1="15.6" y1="42" x2="50" y2="50" />
+          <line x1="22" y1="27" x2="50" y2="50" />
+          <line x1="34.4" y1="15.6" x2="50" y2="50" />
+          <line x1="57.7" y1="13.4" x2="50" y2="50" />
+          <line x1="71.6" y1="21.3" x2="50" y2="50" />
+          <line x1="81.6" y1="34.4" x2="50" y2="50" />
+          <line x1="85" y1="50" x2="50" y2="50" />
+          <line x1="81.6" y1="65.6" x2="50" y2="50" />
+          <line x1="71.6" y1="78.7" x2="50" y2="50" />
+          <line x1="57.7" y1="86.6" x2="50" y2="50" />
+          <line x1="42.3" y1="86.6" x2="50" y2="50" />
+          <line x1="28.4" y1="78.7" x2="50" y2="50" />
+          <line x1="18.4" y1="65.6" x2="50" y2="50" />
+        </g>
+      </svg>
+
+      <div class="container" style="position:relative;z-index:2;">
+
+        <!-- Section Header -->
+        <div class="id79-header-wrap text-center id79-scroll-reveal" data-aos="fade-up" data-aos-duration="450">
+          <div class="id79-badge">
+            <span><i class="fas fa-flag" style="color:#FF9933;"></i> &nbsp;Happy 79th Independence Day &nbsp;|&nbsp; 15
+              August 2026</span>
+          </div>
+          <h2 class="id79-heading">
+            <span class="id79-saffron">Celebrate</span> India's <span class="id79-navy">79th</span> Independence<br>
+            with <span class="id79-green">Special Fragrance</span> Offers
+          </h2>
+          <p class="id79-subhead">One day. Three irresistible deals. Nashik's finest perfumery celebrates Azadi.</p>
+          <p class="id79-location-tag"><i class="fas fa-map-marker-alt"></i>Nashik, Maharashtra &amp; Pan-India Delivery
+          </p>
+        </div>
+
+        <!-- Offer Cards (lg: 3 per row, md: 2 per row, sm: 1 per row) -->
+        <div class="row justify-content-center id79-cards-row">
+
+          <!-- Offer 1: Perfume Duo — SAFFRON theme — redirects to category.html -->
+          <div class="col-lg-4 col-md-6 col-12 mb-4 id79-scroll-reveal" data-aos="fade-up" data-aos-duration="450"
+            data-aos-delay="0">
+            <a href="category.html" class="id79-card-link"
+              title="Shop 2 Perfumes for ₹790 — Independence Day 79 Offer, Nashik">
+              <div class="id79-card-wrap id79-card-wrap--saffron">
+                <div class="id79-offer-card id79-offer-card--saffron">
+                  <div class="id79-offer-icon id79-offer-icon--saffron">
+                    <i class="fas fa-spray-can"></i>
+                  </div>
+                  <h3 class="id79-offer-title">Perfume Duo Deal</h3>
+                  <p class="id79-offer-desc">
+                    Buy any <strong>2 different 60ml perfumes</strong> — Men's, Women's, or any mix.<br>
+                    Premium long-lasting luxury scents, handcrafted in Nashik.
+                  </p>
+                  <div class="id79-price-block">
+                    <span class="id79-original-price">₹1,100/-</span>
+                    <span class="id79-offer-price id79-offer-price--saffron">₹790/-</span>
+                  </div>
+                  <div class="id79-savings-tag id79-savings-tag--saffron"><i class="fas fa-tags"></i> &nbsp;You Save
+                    ₹310</div>
+                  <span class="id79-shop-btn id79-shop-btn--saffron">
+                    <i class="fas fa-shopping-bag"></i> Shop Perfumes
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Offer 2: Attar 6ml — WHITE theme (Indian Flag Middle Color) — redirects to attar.html -->
+          <div class="col-lg-4 col-md-6 col-12 mb-4 id79-scroll-reveal id79-scroll-reveal--delay-1" data-aos="fade-up"
+            data-aos-duration="450" data-aos-delay="50">
+            <a href="attar.html" class="id79-card-link"
+              title="Shop 6ml Pure Attar for ₹79 — Independence Day Offer, Nashik">
+              <div class="id79-card-wrap id79-card-wrap--white">
+                <div class="id79-offer-card id79-offer-card--white">
+                  <div class="id79-offer-icon id79-offer-icon--white">
+                    <i class="fas fa-vial"></i>
+                  </div>
+                  <h3 class="id79-offer-title">Pure Attar (6ml)</h3>
+                  <p class="id79-offer-desc">
+                    Any <strong>6ml pure attar</strong> from our signature oil-based collection.<br>
+                    Alcohol-free, long-lasting, 100% natural fragrance oil.
+                  </p>
+                  <div class="id79-price-block">
+                    <span class="id79-original-price">₹99/-</span>
+                    <span class="id79-offer-price id79-offer-price--white">₹79/-</span>
+                  </div>
+                  <div class="id79-savings-tag id79-savings-tag--white"><i class="fas fa-star"></i> &nbsp;You Save ₹20
+                  </div>
+                  <span class="id79-shop-btn id79-shop-btn--white">
+                    <i class="fas fa-vial"></i> Shop Attars
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Offer 3: Agarbatti — GREEN theme — redirects to category.html -->
+          <div class="col-lg-4 col-md-6 col-12 mb-4 id79-scroll-reveal id79-scroll-reveal--delay-2" data-aos="fade-up"
+            data-aos-duration="450" data-aos-delay="100">
+            <a href="category.html" class="id79-card-link"
+              title="Shop Fragrance Agarbatti 100gm for ₹79 — Independence Day Offer, Nashik">
+              <div class="id79-card-wrap id79-card-wrap--green">
+                <div class="id79-offer-card id79-offer-card--green">
+                  <div class="id79-offer-icon id79-offer-icon--green">
+                    <i class="fas fa-fire-alt"></i>
+                  </div>
+                  <h3 class="id79-offer-title">Fragrance Agarbatti</h3>
+                  <p class="id79-offer-desc">
+                    Any <strong>Fragrance Essence Agarbatti 100gm</strong> pack.<br>
+                    Fill your home with premium, long-lasting incense fragrance.
+                  </p>
+                  <div class="id79-price-block">
+                    <span class="id79-original-price">₹120/-</span>
+                    <span class="id79-offer-price id79-offer-price--green">₹79/-</span>
+                  </div>
+                  <div class="id79-savings-tag id79-savings-tag--green"><i class="fas fa-fire"></i> &nbsp;You Save ₹41
+                  </div>
+                  <span class="id79-shop-btn id79-shop-btn--green">
+                    <i class="fas fa-fire-alt"></i> Shop Now
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div><!-- /cards row -->
+
+        <!-- Bottom Flag Stripe -->
+        <div class="id79-flag-stripe mt-5" aria-hidden="true"></div>
+      </div>
+    </section>
+    <!--================ Independence Day 79 Offer Section End =================-->
+
     <!--================ Showcase Collections start =================-->
     <section class="showcase-section">
       <div class="container">
@@ -1871,8 +2824,10 @@
       .custom-perfume-section {
         background: transparent;
       }
+
       .custom-perfume-section .section-intro__desc {
-        color: #e5dfd3 !important; /* High-contrast soft warm cream color */
+        color: #e5dfd3 !important;
+        /* High-contrast soft warm cream color */
         font-family: 'Manrope', sans-serif !important;
         font-size: 18px !important;
         line-height: 1.8 !important;
@@ -1882,6 +2837,7 @@
         margin: 20px auto 0 !important;
         letter-spacing: 0.5px !important;
       }
+
       .custom-card {
         background: rgba(13, 13, 13, 0.6) !important;
         border: 1px solid #333333 !important;
@@ -1894,11 +2850,13 @@
         flex-direction: column;
         justify-content: flex-start;
       }
+
       .custom-card:hover {
         border-color: #d4af37 !important;
         background: rgba(20, 20, 20, 0.95) !important;
         box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15) !important;
       }
+
       .custom-card h3 {
         color: #ffffff !important;
         font-size: 20px !important;
@@ -1909,6 +2867,7 @@
         margin-bottom: 15px !important;
         text-transform: none !important;
       }
+
       .custom-card p {
         color: #aaaaaa !important;
         font-size: 14px !important;
@@ -1916,11 +2875,13 @@
         font-family: 'Inter', sans-serif !important;
         font-style: normal !important;
       }
+
       .custom-card .icon-wrap {
         font-size: 40px !important;
         color: #d4af37 !important;
         transition: transform 0.3s ease !important;
       }
+
       .replication-banner {
         background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(10, 10, 10, 0.95) 100%) !important;
         border: 1px solid rgba(212, 175, 55, 0.3) !important;
@@ -1928,6 +2889,7 @@
         padding: 50px 40px !important;
         box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6) !important;
       }
+
       .replication-banner h3 {
         color: #d4af37 !important;
         font-family: 'Playfair Display', serif !important;
@@ -1937,6 +2899,7 @@
         margin-bottom: 15px !important;
         text-transform: none !important;
       }
+
       .replication-banner p {
         color: #cccccc !important;
         font-size: 15px !important;
@@ -1959,7 +2922,9 @@
             style="font-family: 'Playfair Display', serif; font-weight: normal; color: #fff; font-size: 40px; margin-bottom: 15px; font-style: normal;">
             How We Replicate <span class="section-intro__style" style="color: #d4af37;">Luxury Scents</span></h2>
           <p class="section-intro__desc">
-            We master the art of molecular perfumery. By deconstructing the exact notes of iconic designer masterpieces—such as Dior Sauvage, Gucci Flora, Creed Aventus, and Blue de Chanel—we formulate exceptional, long-lasting replicas that deliver the identical luxury olfactory experience at an accessible price.
+            We master the art of molecular perfumery. By deconstructing the exact notes of iconic designer
+            masterpieces—such as Dior Sauvage, Gucci Flora, Creed Aventus, and Blue de Chanel—we formulate exceptional,
+            long-lasting replicas that deliver the identical luxury olfactory experience at an accessible price.
           </p>
         </div>
 
@@ -2921,6 +3886,176 @@
         panel.addEventListener('click', function (e) { e.stopPropagation(); });
       });
     })();
+  </script>
+
+  <!-- Independence Day 79 Offer: Real-Time Auto Scheduler -->
+  <script>
+    (function () {
+      var offerSection = document.getElementById('independenceDayOffer');
+      var offerModal = document.getElementById('id79OfferModal');
+
+      // Calculate current IST time (UTC+5:30)
+      var now = new Date();
+      var istOffset = 5.5 * 60 * 60 * 1000;
+      var utcMs = now.getTime() + (now.getTimezoneOffset() * 60 * 1000);
+      var ist = new Date(utcMs + istOffset);
+
+      // Expiry moment: 15 August 2026 at 23:59:59.999 IST
+      var expireIST = new Date(2026, 7, 15, 23, 59, 59, 999);
+
+      // Start moment: 14 August 2026 at 00:00:00.000 IST
+      var startIST = new Date(2026, 7, 14, 0, 0, 0, 0);
+
+      var isExpired = ist.getTime() > expireIST.getTime();
+      window.id79OfferExpired = isExpired;
+
+      if (isExpired) {
+        // Automatically hide offer section and modal after 15 August 2026 IST
+        if (offerSection) offerSection.style.display = 'none';
+        if (offerModal) offerModal.style.display = 'none';
+      } else {
+        // Active offer period
+        if (offerSection) offerSection.style.display = 'block';
+
+        // Schedule real-time auto-hide at exact moment 15 Aug 2026 23:59:59 IST ends
+        var msUntilExpiry = expireIST.getTime() - ist.getTime();
+        if (msUntilExpiry > 0 && msUntilExpiry < 72 * 60 * 60 * 1000) {
+          setTimeout(function () {
+            window.id79OfferExpired = true;
+            if (offerModal) {
+              offerModal.classList.remove('active');
+              offerModal.style.display = 'none';
+            }
+            if (offerSection) {
+              offerSection.style.transition = 'opacity 1.5s ease';
+              offerSection.style.opacity = '0';
+              setTimeout(function () { offerSection.style.display = 'none'; }, 1600);
+            }
+          }, msUntilExpiry);
+        }
+      }
+    })();
+    // Coupon copy-to-clipboard
+    function id79CopyCoupon(el) {
+      var code = el.textContent.trim();
+      var feedback = document.getElementById('id79-copy-feedback');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function () {
+          if (feedback) { feedback.style.display = 'inline'; setTimeout(function () { feedback.style.display = 'none'; }, 2500); }
+        });
+      } else {
+        // Fallback
+        var tmp = document.createElement('textarea');
+        tmp.value = code;
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand('copy');
+        document.body.removeChild(tmp);
+        if (feedback) { feedback.style.display = 'inline'; setTimeout(function () { feedback.style.display = 'none'; }, 2500); }
+      }
+    }
+  </script>
+
+  <!-- =============================================
+       Independence Day 79 On-Load Popup Modal Poster
+  ============================================= -->
+  <div id="id79OfferModal" class="id79-modal-overlay" aria-hidden="true">
+    <div class="id79-modal-wrap" role="dialog" aria-label="Independence Day 79 Special Fragrance Offers Poster">
+      <div class="id79-modal-content-inner">
+        <button type="button" class="id79-modal-close-btn" id="id79ModalClose"
+          aria-label="Close offer modal">&times;</button>
+        <a href="#independenceDayOffer" id="id79ModalCta" class="id79-modal-poster-link"
+          title="Click to view Independence Day Offers">
+          <img src="img/offers.png"
+            alt="India's 79th Independence Day Special Fragrance Offers — I Rasa Perfumes Nashik"
+            class="id79-modal-poster-img" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Independence Day 79 Offer Modal & Scroll Reveal System
+    window.addEventListener('DOMContentLoaded', function () {
+      var offerModal = document.getElementById('id79OfferModal');
+      var modalClose = document.getElementById('id79ModalClose');
+      var modalCta = document.getElementById('id79ModalCta');
+      var offerSection = document.getElementById('independenceDayOffer');
+
+      // 1. Scroll Reveal Observer for Offer Cards & Section Elements
+      if ('IntersectionObserver' in window) {
+        var revealElements = document.querySelectorAll('.id79-scroll-reveal');
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.02, rootMargin: "0px 0px 50px 0px" });
+
+        revealElements.forEach(function (el) {
+          revealObserver.observe(el);
+        });
+      } else {
+        // Fallback for older browsers
+        document.querySelectorAll('.id79-scroll-reveal').forEach(function (el) {
+          el.classList.add('in-view');
+        });
+      }
+
+      // 2. On-Load & On-Scroll Trigger for Offer Modal
+      if (!offerModal) return;
+
+      var modalOpened = false;
+
+      function openModal() {
+        if (modalOpened) return;
+        if (window.id79OfferExpired) {
+          if (offerModal) offerModal.style.display = 'none';
+          if (offerSection) offerSection.style.display = 'none';
+          return;
+        }
+        modalOpened = true;
+        if (offerSection) {
+          offerSection.style.display = 'block';
+        }
+        offerModal.style.display = 'flex';
+        offerModal.classList.add('active');
+        offerModal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        offerModal.classList.remove('active');
+        offerModal.setAttribute('aria-hidden', 'true');
+      }
+
+      // Auto-open on page load after 500ms
+      setTimeout(openModal, 500);
+
+      // Fallback trigger on window load
+      window.addEventListener('load', function () {
+        setTimeout(openModal, 300);
+      });
+
+      if (modalClose) modalClose.addEventListener('click', closeModal);
+      if (modalCta) {
+        modalCta.addEventListener('click', function () {
+          closeModal();
+          if (offerSection) {
+            offerSection.style.display = 'block';
+            offerSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Close on backdrop click
+      offerModal.addEventListener('click', function (e) {
+        if (e.target === offerModal) {
+          closeModal();
+        }
+      });
+    });
   </script>
 </body>
 
