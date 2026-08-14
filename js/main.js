@@ -498,3 +498,123 @@ $(document).ready(function() {
     }
   }
 });
+
+// Global Product Modal Pricing State & Handlers
+window.modalPricingState = window.modalPricingState || {
+  basePrice: 499,
+  selectedSize: 60,
+  bottlePrice: 99,
+  reuseBottle: false
+};
+
+window.selectModalSize = function (size, bPrice, el) {
+  window.modalPricingState.selectedSize = size;
+  window.modalPricingState.bottlePrice = bPrice;
+
+  document.querySelectorAll('.modal-size-btn').forEach(function (btn) {
+    btn.classList.remove('active');
+    btn.style.color = '#aaa';
+    btn.style.border = '1px solid #333';
+    btn.style.boxShadow = 'none';
+  });
+  if (el) {
+    el.classList.add('active');
+    el.style.color = '#fff';
+    el.style.border = '1px solid #d4af37';
+    el.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+  }
+
+  var savingsEl = document.getElementById('modalBottleSavingsAmount');
+  if (savingsEl) {
+    savingsEl.textContent = bPrice;
+  }
+
+  window.updateModalPriceDisplay();
+};
+
+window.toggleReuseModalBottle = function () {
+  var check = document.getElementById('modalReuseBottleCheck');
+  if (check) {
+    window.modalPricingState.reuseBottle = check.checked;
+  }
+  window.updateModalPriceDisplay();
+};
+
+window.updateModalPriceDisplay = function () {
+  var state = window.modalPricingState || { basePrice: 499, selectedSize: 0, bottlePrice: 0, reuseBottle: false };
+  var bottleAddon = state.selectedSize > 0 ? state.bottlePrice : 0;
+  var finalPrice = state.basePrice + bottleAddon - (state.reuseBottle ? bottleAddon : 0);
+  var modalPriceEl = document.getElementById('modal_price');
+  if (modalPriceEl) {
+    modalPriceEl.textContent = 'Rs. ' + finalPrice.toFixed(2);
+  }
+};
+
+window.changeQty = function (amount) {
+  var input = document.getElementById('modal_qty');
+  if (input) {
+    var val = parseInt(input.value) + amount;
+    if (val < 1) val = 1;
+    input.value = val;
+  }
+};
+
+window.addToCartModal = async function () {
+  if (typeof AuthGuard !== 'undefined' && !AuthGuard.currentUser) {
+    await AuthGuard.init();
+  }
+
+  if (typeof AuthGuard !== 'undefined' && !AuthGuard.currentUser) {
+    if (typeof CartEngine !== 'undefined' && CartEngine._showToast) {
+      CartEngine._showToast('✕ Please login first to add items to cart!');
+    }
+    setTimeout(function () {
+      window.location.href = 'login.html?redirect=' + window.location.pathname.split("/").pop();
+    }, 1500);
+    return;
+  }
+
+  var titleEl = document.getElementById('modal_title');
+  var qtyEl = document.getElementById('modal_qty');
+  var imgEl = document.getElementById('modal_img');
+
+  var name = titleEl ? titleEl.innerText.trim() : '';
+  var qty = qtyEl ? (parseInt(qtyEl.value) || 1) : 1;
+  var img = imgEl ? (imgEl.getAttribute('src') || 'img/i_rasa_bottles/p3.png') : 'img/i_rasa_bottles/p3.png';
+
+  var state = window.modalPricingState || { basePrice: 499, selectedSize: 0, bottlePrice: 0, reuseBottle: false };
+
+  if (state.selectedSize === 0) {
+    if (typeof CartEngine !== 'undefined' && CartEngine._showToast) {
+      CartEngine._showToast('✕ Please select a bottle size before adding to cart!');
+    } else {
+      alert('Please select a bottle size before adding to cart!');
+    }
+    return;
+  }
+
+  var bottleAddon = state.selectedSize > 0 ? state.bottlePrice : 0;
+  var finalPrice = state.basePrice + bottleAddon - (state.reuseBottle ? bottleAddon : 0);
+  var size = state.selectedSize > 0 ? (state.selectedSize + 'ml') : 'No Bottle';
+  var reuseBottle = state.reuseBottle;
+  var bottlePrice = state.bottlePrice;
+  var bottlePriceDiscount = state.reuseBottle ? bottleAddon : 0;
+
+  if (typeof CartEngine !== 'undefined') {
+    CartEngine.add({
+      id: name,
+      name: name,
+      img: img,
+      price: finalPrice,
+      size: size,
+      reuseBottle: reuseBottle,
+      bottlePrice: bottlePrice,
+      bottlePriceDiscount: bottlePriceDiscount
+    }, qty);
+  }
+
+  if (typeof $ !== 'undefined' && $('#product_modal').length) {
+    $('#product_modal').modal('hide');
+  }
+};
+

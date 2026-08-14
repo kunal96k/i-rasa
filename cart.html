@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+    content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: http://127.0.0.1:8080 http://localhost:8080 https:;">
 
 
   <!-- Font Preconnect (performance) -->
@@ -2694,7 +2694,7 @@
       </div>
     </div>
 
-    <script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+    <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
     <script src="vendors/owl-carousel/owl.carousel.min.js" defer></script>
     <script src="vendors/nice-select/jquery.nice-select.min.js" defer></script>
@@ -2875,7 +2875,7 @@
       });
 
       // Initialize after DOM and nice-select are ready
-      $(document).ready(async function () {
+      document.addEventListener('DOMContentLoaded', async function () {
         // Show a loading state immediately — actual render happens after cart:updated fires from DB
         var desktopItems = document.getElementById('desktop-cart-items');
         if (desktopItems) {
@@ -3190,13 +3190,27 @@
         }
 
         var COUPON_API = getCouponApiBase();
+        var cartItems = CartEngine.getItems();
+        var payloadItems = cartItems.map(function (i) {
+          return {
+            productId: i.id || i.name,
+            name: i.name,
+            price: i.price,
+            qty: i.qty,
+            size: i.size
+          };
+        });
 
         try {
           var res = await fetch(`${COUPON_API}/validate`, {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ code: code, cartTotal: CartEngine.getTotal() })
+            body: JSON.stringify({
+              code: code,
+              cartTotal: CartEngine.getTotal(),
+              items: payloadItems
+            })
           });
           var data = await res.json();
           if (data.success) {
@@ -3234,12 +3248,26 @@
       async function revalidateCartCoupon() {
         if (!appliedCouponCode) return;
         var COUPON_API = getCouponApiBase();
+        var revalidCartItems = CartEngine.getItems();
+        var revalidPayloadItems = revalidCartItems.map(function (i) {
+          return {
+            productId: i.id || i.name,
+            name: i.name,
+            price: i.price,
+            qty: i.qty,
+            size: i.size
+          };
+        });
         try {
           var res = await fetch(`${COUPON_API}/validate`, {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ code: appliedCouponCode, cartTotal: CartEngine.getTotal() })
+            body: JSON.stringify({
+              code: appliedCouponCode,
+              cartTotal: CartEngine.getTotal(),
+              items: revalidPayloadItems
+            })
           });
           var data = await res.json();
           if (data.success) {

@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+    content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: http://127.0.0.1:8080 http://localhost:8080 https:;">
   <!-- Font Preconnect (performance) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -209,7 +209,6 @@
     }
 
     .btn-auth:hover {
-      transform: translateY(-2px);
       box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
     }
 
@@ -394,18 +393,33 @@
             <button type="button" class="close" data-dismiss="modal" style="color: #fff;"><span>&times;</span></button>
           </div>
           <div class="modal-body" style="padding: 30px;">
-            <p style="color: #888; font-size: 13px; margin-bottom: 20px;">Enter your registered email address. We will
-              send recovery instructions.</p>
-            <div class="form-group">
+            <p id="forgotSubtext" style="color: #888; font-size: 13px; margin-bottom: 20px;">Enter your registered email
+              address to receive a 6-digit OTP verification code.</p>
+
+            <div class="form-group mb-3">
               <input type="email" id="forgotEmail" class="form-control" placeholder="Enter your email">
             </div>
-            <button type="button" onclick="handleForgot()" class="btn-auth mt-3">Send Instructions</button>
+
+            <div id="forgotStep2" style="display: none;">
+              <div class="form-group mb-3">
+                <input type="text" id="forgotOtp" class="form-control" placeholder="Enter 6-digit OTP" maxlength="6">
+              </div>
+              <div class="form-group mb-3">
+                <input type="password" id="forgotNewPass" class="form-control"
+                  placeholder="Enter new password (min 6 chars)">
+              </div>
+            </div>
+
+            <button type="button" id="forgotBtn" onclick="handleForgotStep()" class="btn-auth mt-2"
+              style="width: fit-content; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
+              Send Reset OTP
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+    <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
     <script>
       const AUTH_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
@@ -529,10 +543,108 @@
         }
       }
 
-      function handleForgot() {
-        alert('Recovery instructions sent if email exists.');
-        $('#forgotModal').modal('hide');
+      let forgotStep = 1;
+
+      function resetForgotModal() {
+        forgotStep = 1;
+        const step2 = document.getElementById('forgotStep2');
+        if (step2) step2.style.display = 'none';
+        
+        const emailInput = document.getElementById('forgotEmail');
+        if (emailInput) {
+          emailInput.readOnly = false;
+          emailInput.value = '';
+        }
+        
+        const otpInput = document.getElementById('forgotOtp');
+        if (otpInput) otpInput.value = '';
+        
+        const newPassInput = document.getElementById('forgotNewPass');
+        if (newPassInput) newPassInput.value = '';
+        
+        const subtext = document.getElementById('forgotSubtext');
+        if (subtext) subtext.textContent = 'Enter your registered email address to receive a 6-digit OTP verification code.';
+        
+        const btn = document.getElementById('forgotBtn');
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Send Reset OTP';
+        }
       }
+
+      async function handleForgotStep() {
+        const email = document.getElementById('forgotEmail').value.trim();
+        if (!email) { showAlert('error', 'Please enter your email address.'); return; }
+
+        const btn = document.getElementById('forgotBtn');
+
+        if (forgotStep === 1) {
+          btn.disabled = true;
+          btn.textContent = 'Sending OTP…';
+          try {
+            const res = await fetch(`${AUTH_API}/forgot-password-otp`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            if (data.success) {
+              showAlert('success', data.message);
+              forgotStep = 2;
+              document.getElementById('forgotSubtext').textContent = 'An OTP has been sent to your email. Enter the OTP and your new password below.';
+              document.getElementById('forgotStep2').style.display = 'block';
+              document.getElementById('forgotEmail').readOnly = true;
+              btn.textContent = 'Reset Password';
+            } else {
+              showAlert('error', data.message || 'Failed to send OTP.');
+              btn.textContent = 'Send Reset OTP';
+            }
+          } catch (e) {
+            showAlert('error', 'Network error. Please try again.');
+            btn.textContent = 'Send Reset OTP';
+          } finally {
+            btn.disabled = false;
+          }
+        } else if (forgotStep === 2) {
+          const otp = document.getElementById('forgotOtp').value.trim();
+          const newPassword = document.getElementById('forgotNewPass').value;
+          if (!otp || !newPassword) { showAlert('error', 'Please enter OTP and new password.'); return; }
+          if (newPassword.length < 6) { showAlert('error', 'New password must be at least 6 characters.'); return; }
+
+          btn.disabled = true;
+          btn.textContent = 'Resetting Password…';
+          try {
+            const res = await fetch(`${AUTH_API}/reset-password`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, otp, newPassword })
+            });
+            const data = await res.json();
+            if (data.success) {
+              showAlert('success', 'Password reset successfully! Please log in.');
+              $('#forgotModal').modal('hide');
+              document.getElementById('loginEmail').value = email;
+              document.getElementById('password').focus();
+              resetForgotModal();
+            } else {
+              showAlert('error', data.message || 'Failed to reset password.');
+              btn.textContent = 'Reset Password';
+            }
+          } catch (e) {
+            showAlert('error', 'Network error. Please try again.');
+            btn.textContent = 'Reset Password';
+          } finally {
+            btn.disabled = false;
+          }
+        }
+      }
+
+      // Auto-reset modal whenever it is closed
+      document.addEventListener('DOMContentLoaded', function() {
+        $('#forgotModal').on('hidden.bs.modal', function () {
+          resetForgotModal();
+        });
+      });
     </script>
     <script src="js/form-validator.js" defer></script>
 </body>

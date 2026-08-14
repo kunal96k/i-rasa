@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+    content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: http://127.0.0.1:8080 http://localhost:8080 https:;">
 
 
   <!-- Font Preconnect (performance) -->
@@ -1547,6 +1547,9 @@
     /* =============================================
        Independence Day 79 On-Load Popup Modal
     ============================================= */
+    /* =============================================
+       Independence Day 79 On-Load Popup Modal
+    ============================================= */
     .id79-modal-overlay {
       position: fixed;
       top: 0;
@@ -1757,13 +1760,69 @@
       font-size: 15px;
     }
 
+    /* Responsive sizing strictly for sm & md devices (max-width: 991px) */
+    @media (max-width: 991px) {
+      .id79-modal-overlay {
+        padding: 12px;
+        height: 100dvh;
+      }
+
+      .id79-modal-wrap {
+        width: 100%;
+        max-width: min(540px, 92vw);
+      }
+
+      .id79-modal-content-inner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .id79-modal-poster-link {
+        width: 100%;
+        text-align: center;
+      }
+
+      .id79-modal-poster-img {
+        width: 100%;
+        max-height: 84vh;
+        max-height: 84dvh;
+      }
+    }
+
     @media (max-width: 767px) {
       .id79-offer-price {
         font-size: 36px;
       }
 
+      .id79-modal-overlay {
+        padding: 8px;
+      }
+
+      .id79-modal-wrap {
+        width: 100%;
+        max-width: min(480px, 94vw);
+        border-radius: 20px;
+        padding: 2px;
+      }
+
+      .id79-modal-content-inner {
+        border-radius: 18px;
+      }
+
       .id79-modal-poster-img {
-        max-height: 360px;
+        max-height: 82vh;
+        max-height: 82dvh;
+        border-radius: 18px;
+      }
+
+      .id79-modal-close-btn {
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
       }
 
       .id79-modal-body {
@@ -3563,7 +3622,7 @@
     </div>
   </div>
 
-  <script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
   <script src="vendors/owl-carousel/owl.carousel.min.js" defer></script>
   <script src="vendors/nice-select/jquery.nice-select.min.js" defer></script>
@@ -3632,22 +3691,29 @@
         $('#modal_qty').val(1); // reset qty to 1
         $('.modal-body p:not(.price)').text(desc);
 
-        // Initialize modal pricing state — no bottle selected by default
+        // Initialize modal pricing state — 60ml bottle selected by default
         var basePrice = parseInt(priceVal.replace(/[^\d]/g, '')) || 499;
         modalPricingState.basePrice = basePrice;
-        modalPricingState.selectedSize = 0; // no bottle selected
-        modalPricingState.bottlePrice = 0;
+        modalPricingState.selectedSize = 60; // 60ml selected by default
+        modalPricingState.bottlePrice = 99;
         modalPricingState.reuseBottle = false;
 
         // Reset inputs
         $('#modalReuseBottleCheck').prop('checked', false);
         $('#modalBottleSavingsAmount').text('99');
-        // Reset all size buttons to unselected
-        document.querySelectorAll('.modal-size-btn').forEach((btn) => {
-          btn.classList.remove('active');
-          btn.style.color = '#aaa';
-          btn.style.border = '1px solid #333';
-          btn.style.boxShadow = 'none';
+        // Set 60ml button as active by default
+        document.querySelectorAll('.modal-size-btn').forEach((btn, idx) => {
+          if (idx === 0 || btn.textContent.includes('60ml')) {
+            btn.classList.add('active');
+            btn.style.color = '#fff';
+            btn.style.border = '1px solid #d4af37';
+            btn.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+          } else {
+            btn.classList.remove('active');
+            btn.style.color = '#aaa';
+            btn.style.border = '1px solid #333';
+            btn.style.boxShadow = 'none';
+          }
         });
 
         updateModalPriceDisplay();

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: http://127.0.0.1:8080 http://localhost:8080 https:;">
   
     <!-- Font Preconnect (performance) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1199,7 +1199,7 @@
   </div>
 
   <!-- Scripts -->
-  <script src="vendors/jquery/jquery-3.2.1.min.js" defer></script>
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
   <script src="vendors/owl-carousel/owl.carousel.min.js" defer></script>
   <script src="vendors/nice-select/jquery.nice-select.min.js" defer></script>
@@ -1263,22 +1263,29 @@
         $('#modal_img').attr('src', img);
         $('#modal_qty').val(1); // reset qty to 1
 
-        // Initialize modal pricing state — no bottle selected by default
+        // Initialize modal pricing state — 60ml bottle selected by default
         var basePrice = parseInt(priceVal.replace(/[^\d]/g, '')) || 499;
         modalPricingState.basePrice = basePrice;
-        modalPricingState.selectedSize = 0; // no bottle selected
-        modalPricingState.bottlePrice = 0;
+        modalPricingState.selectedSize = 60; // 60ml selected by default
+        modalPricingState.bottlePrice = 99;
         modalPricingState.reuseBottle = false;
 
         // Reset inputs
         $('#modalReuseBottleCheck').prop('checked', false);
         $('#modalBottleSavingsAmount').text('99');
-        // Reset all size buttons to unselected
-        document.querySelectorAll('.modal-size-btn').forEach((btn) => {
-          btn.classList.remove('active');
-          btn.style.color = '#aaa';
-          btn.style.border = '1px solid #333';
-          btn.style.boxShadow = 'none';
+        // Set 60ml button as active by default
+        document.querySelectorAll('.modal-size-btn').forEach((btn, idx) => {
+          if (idx === 0 || btn.textContent.includes('60ml')) {
+            btn.classList.add('active');
+            btn.style.color = '#fff';
+            btn.style.border = '1px solid #d4af37';
+            btn.style.boxShadow = '0 0 8px rgba(212,175,55,0.2)';
+          } else {
+            btn.classList.remove('active');
+            btn.style.color = '#aaa';
+            btn.style.border = '1px solid #333';
+            btn.style.boxShadow = 'none';
+          }
         });
 
         updateModalPriceDisplay();
