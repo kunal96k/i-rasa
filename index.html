@@ -1594,7 +1594,7 @@
       transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    /* Animated tricolor spinning neon beam around modal */
+    /* Animated gold spinning neon beam around modal */
     .id79-modal-wrap::before {
       content: '';
       position: absolute;
@@ -1603,9 +1603,9 @@
       background: conic-gradient(from var(--id79-modal-angle, 0deg),
           transparent 0%,
           transparent 50%,
-          #FF9933 70%,
-          #ffffff 88%,
-          #138808 100%);
+          #aa8422 70%,
+          #ffe3a8 88%,
+          #d4af37 100%);
       filter: var(--id79-glow-filter, url(#id79-glow-0));
       animation: id79-modal-border-spin 4.5s linear infinite;
       z-index: 0;
@@ -2093,6 +2093,7 @@
                   <span class="irasa-nav-label">Customize</span>
                 </a>
               </li>
+
 
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">
@@ -4020,108 +4021,6 @@
         if (feedback) { feedback.style.display = 'inline'; setTimeout(function () { feedback.style.display = 'none'; }, 2500); }
       }
     }
-  </script>
-
-  <!-- =============================================
-       Independence Day 79 On-Load Popup Modal Poster
-  ============================================= -->
-  <div id="id79OfferModal" class="id79-modal-overlay" aria-hidden="true">
-    <div class="id79-modal-wrap" role="dialog" aria-label="Independence Day 79 Special Fragrance Offers Poster">
-      <div class="id79-modal-content-inner">
-        <button type="button" class="id79-modal-close-btn" id="id79ModalClose"
-          aria-label="Close offer modal">&times;</button>
-        <a href="#independenceDayOffer" id="id79ModalCta" class="id79-modal-poster-link"
-          title="Click to view Independence Day Offers">
-          <img src="img/offers.png"
-            alt="India's 79th Independence Day Special Fragrance Offers — I Rasa Perfumes Nashik"
-            class="id79-modal-poster-img" />
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Independence Day 79 Offer Modal & Scroll Reveal System
-    window.addEventListener('DOMContentLoaded', function () {
-      var offerModal = document.getElementById('id79OfferModal');
-      var modalClose = document.getElementById('id79ModalClose');
-      var modalCta = document.getElementById('id79ModalCta');
-      var offerSection = document.getElementById('independenceDayOffer');
-
-      // 1. Scroll Reveal Observer for Offer Cards & Section Elements
-      if ('IntersectionObserver' in window) {
-        var revealElements = document.querySelectorAll('.id79-scroll-reveal');
-        var revealObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in-view');
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.02, rootMargin: "0px 0px 50px 0px" });
-
-        revealElements.forEach(function (el) {
-          revealObserver.observe(el);
-        });
-      } else {
-        // Fallback for older browsers
-        document.querySelectorAll('.id79-scroll-reveal').forEach(function (el) {
-          el.classList.add('in-view');
-        });
-      }
-
-      // 2. On-Load & On-Scroll Trigger for Offer Modal
-      if (!offerModal) return;
-
-      var modalOpened = false;
-
-      function openModal() {
-        if (modalOpened) return;
-        if (window.id79OfferExpired) {
-          if (offerModal) offerModal.style.display = 'none';
-          if (offerSection) offerSection.style.display = 'none';
-          return;
-        }
-        modalOpened = true;
-        if (offerSection) {
-          offerSection.style.display = 'block';
-        }
-        offerModal.style.display = 'flex';
-        offerModal.classList.add('active');
-        offerModal.setAttribute('aria-hidden', 'false');
-      }
-
-      function closeModal() {
-        offerModal.classList.remove('active');
-        offerModal.setAttribute('aria-hidden', 'true');
-      }
-
-      // Auto-open on page load after 500ms
-      setTimeout(openModal, 500);
-
-      // Fallback trigger on window load
-      window.addEventListener('load', function () {
-        setTimeout(openModal, 300);
-      });
-
-      if (modalClose) modalClose.addEventListener('click', closeModal);
-      if (modalCta) {
-        modalCta.addEventListener('click', function () {
-          closeModal();
-          if (offerSection) {
-            offerSection.style.display = 'block';
-            offerSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      }
-
-      // Close on backdrop click
-      offerModal.addEventListener('click', function (e) {
-        if (e.target === offerModal) {
-          closeModal();
-        }
-      });
-    });
   </script>
 </body>
 
