@@ -224,7 +224,7 @@ a {
     color: rgb(255, 255, 255) !important;
     font-weight: normal;
     text-transform: lowercase;
-    text-shadow: 1px 1px 2px #000;
+    text-shadow: none !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -966,7 +966,7 @@ a {
         font-style: normal !important;
         font-weight: normal !important;
         line-height: 1 !important;
-        text-shadow: 0 0 15px rgba(255, 196, 88, 0.5) !important;
+        text-shadow: none !important;
     }
 
     .mobile-menu-header .irasa-logo__tagline {
@@ -2010,7 +2010,6 @@ a {
     border-color: #d4af37;
     background: transparent;
     color: #cccccc;
-    border-radius: 0 !important;
 }
 
 .button-register {
@@ -5162,49 +5161,75 @@ a {
 .product_description_area .nav.nav-tabs {
     background: #f1f6f7;
     text-align: center;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     border: none;
-    padding: 10px 0px
+    padding: 14px 10px;
+    border-radius: 8px 8px 0 0;
 }
 
-.product_description_area .nav.nav-tabs li {
+.product_description_area .nav.nav-tabs li,
+.product_description_area .nav.nav-tabs .nav-item {
     display: inline-block;
-    margin-right: 7px
+    margin: 0;
 }
 
-.product_description_area .nav.nav-tabs li:last-child {
-    margin-right: 0px
-}
-
-@media (max-width: 441px) {
-    .product_description_area .nav.nav-tabs li:last-child {
-        margin-top: 15px
-    }
-}
-
+.product_description_area .nav.nav-tabs .nav-link,
 .product_description_area .nav.nav-tabs li a {
-    padding: 0px;
-    border: none;
-    line-height: 38px;
-    background: #fff;
-    border: 1px solid #eeeeee;
-    border-radius: 30px;
-    padding: 0px 30px;
-    color: #cccccc;
-    font-size: 14px;
-    font-weight: normal
+    padding: 0 32px !important;
+    line-height: 42px !important;
+    height: 42px !important;
+    background: #ffffff !important;
+    border: 1.5px solid #d5d5d5 !important;
+    border-radius: 30px !important;
+    color: #333333 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-transform: capitalize !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+    cursor: pointer !important;
+    outline: none !important;
+    text-decoration: none !important;
 }
 
 @media (max-width: 570px) {
+    .product_description_area .nav.nav-tabs .nav-link,
     .product_description_area .nav.nav-tabs li a {
-        padding: 0 15px
+        padding: 0 16px !important;
+        font-size: 13px !important;
     }
 }
 
+.product_description_area .nav.nav-tabs .nav-link:hover,
+.product_description_area .nav.nav-tabs .nav-link:focus,
+.product_description_area .nav.nav-tabs li a:hover,
+.product_description_area .nav.nav-tabs li a:focus {
+    color: #000000 !important;
+    background: #d4af37 !important;
+    border-color: #d4af37 !important;
+    border-radius: 30px !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
+    transform: translateY(-2px);
+    text-decoration: none !important;
+}
+
+.product_description_area .nav.nav-tabs .nav-link.active,
 .product_description_area .nav.nav-tabs li a.active {
-    color: #fff;
-    background: #d4af37;
-    border-color: #d4af37
+    color: #000000 !important;
+    background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%) !important;
+    border-color: #d4af37 !important;
+    border-radius: 30px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.45) !important;
+    cursor: default !important;
+    transform: none !important;
 }
 
 .product_description_area .tab-content {
@@ -6179,21 +6204,11 @@ p,
     opacity: 0.8;
 }
 
-.modal .close:hover {
-    opacity: 1;
-    color: #d4af37 !important;
-}
-
 .card-blog__link,
 .card-blog__link i {
     color: #d4af37 !important;
     font-size: 16px !important;
     font-weight: 700 !important;
-}
-
-.modal .close:hover {
-    background: #d4af37 !important;
-    color: #000 !important;
 }
 
 .navbar-toggler:hover {
@@ -6366,10 +6381,6 @@ footer a:hover {
     text-shadow: none;
 }
 
-.close:hover {
-    color: #d4af37;
-}
-
 /* ---- DROPDOWN MENU UI  ---- */
 .header_area .navbar .nav .nav-item.submenu ul {
     background: #111 !important;
@@ -6529,11 +6540,7 @@ footer a:hover {
     font-weight: 300 !important;
     padding: 15px !important;
     margin: -15px -15px -15px auto !important;
-    transition: all 0.3s ease !important;
-}
-
-#product_modal .close:hover {
-    color: #fff !important;
+    transition: none !important;
 }
 
 #product_modal .modal-body {
@@ -6603,12 +6610,6 @@ footer a:hover {
 
 .card-product {
     margin-bottom: 20px !important;
-}
-
-/* Remove modal close button hover effect */
-#product_modal .close:hover {
-    color: #d4af37 !important;
-    background: transparent !important;
 }
 
 /* Remove number input range spinner (arrows) */
@@ -6917,6 +6918,7 @@ input[type=number] {
     border-radius: 8px !important;
     overflow: hidden !important;
     /* Clip golden title inside */
+    padding-top: 15px !important;
 }
 
 .single_sidebar_widget .widget_title {
@@ -7055,7 +7057,7 @@ input[type=number] {
 .login_form_inner .button-login:hover {
     background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%) !important;
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4) !important;
-    border-radius: 0 !important;
+    border-radius: 30px !important;
 }
 
 /* Remove border radius from all navigation links on hover */
@@ -7118,7 +7120,6 @@ input[type=number] {
     font-size: 52px !important;
     /* High visibility in footer */
     color: #d4af37 !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     margin-bottom: 25px !important;
     display: inline-block;
     letter-spacing: 1px;
@@ -7249,29 +7250,37 @@ input[type=number] {
     border: 1px solid rgba(255, 77, 77, 0.3) !important;
 }
 
-/* Global custom scrollbar for the whole system */
+/* Global custom clean thin scrollbar */
 *::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
 }
 
 *::-webkit-scrollbar-track {
-    background: #e2dfd6;
-    border-radius: 8px;
+    background: #121212;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: #b58c1e;
-    border-radius: 8px;
-    border: 1px solid #d8d5cc;
+    background: #555555;
+    border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: #d4af37;
+    background: #777777;
 }
 
-html {
-    scrollbar-color: #b58c1e #e2dfd6;
+*::-webkit-scrollbar-thumb:active {
+    background: #999999;
+}
+
+*::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+* {
+    scrollbar-color: #555555 #121212;
     scrollbar-width: thin;
 }
 
@@ -8975,7 +8984,7 @@ html {
         line-height: 1 !important;
         font-weight: normal !important;
         font-style: normal !important;
-        text-shadow: 0 0 10px rgba(255, 196, 88, 0.4) !important;
+        text-shadow: none !important;
     }
 
     .header_area .navbar-brand .irasa-logo__tagline {
@@ -9650,13 +9659,17 @@ html {
         display: block !important;
         line-height: 1 !important;
         text-transform: capitalize !important;
-        transition: color 0.25s ease, text-shadow 0.25s ease !important;
-        text-shadow: 0 0 20px rgba(255, 196, 88, 0.6), 0 0 40px rgba(255, 196, 88, 0.25) !important;
+        transition: color 0.25s ease !important;
+        text-shadow: none !important;
     }
 
-    header.header_area .irasa-logo:hover .irasa-logo__brand {
+    header.header_area .irasa-logo:hover .irasa-logo__brand,
+    header.header_area .irasa-logo:focus .irasa-logo__brand,
+    header.header_area .irasa-logo:active .irasa-logo__brand {
         color: #ffd97a !important;
-        text-shadow: 0 0 28px rgba(255, 196, 88, 0.9), 0 0 60px rgba(255, 196, 88, 0.4) !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+        filter: none !important;
     }
 
     header.header_area .irasa-logo__tagline {
@@ -9668,10 +9681,16 @@ html {
         text-transform: uppercase !important;
         display: block !important;
         transition: color 0.25s ease !important;
+        text-shadow: none !important;
     }
 
-    header.header_area .irasa-logo:hover .irasa-logo__tagline {
+    header.header_area .irasa-logo:hover .irasa-logo__tagline,
+    header.header_area .irasa-logo:focus .irasa-logo__tagline,
+    header.header_area .irasa-logo:active .irasa-logo__tagline {
         color: rgba(255, 196, 88, 0.9) !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+        filter: none !important;
     }
 
     /* â”€â”€ 3. Collapse wrapper: flex row â”€â”€ */
@@ -9728,15 +9747,18 @@ html {
         line-height: 1 !important;
     }
 
-    header.header_area ul.menu_nav .nav-item .nav-link:hover {
+    header.header_area .navbar .nav.menu_nav .nav-item:hover .nav-link,
+    header.header_area .navbar .nav.menu_nav .nav-item .nav-link:hover {
         color: #ffffff !important;
         background: rgba(212, 175, 55, 0.09) !important;
+        border-radius: 40px !important;
     }
 
-    header.header_area ul.menu_nav .nav-item.active .nav-link {
+    header.header_area .navbar .nav.menu_nav .nav-item.active .nav-link {
         color: #ffffff !important;
         font-weight: 700 !important;
         background: rgba(255, 255, 255, 0.08) !important;
+        border-radius: 40px !important;
     }
 
     /* Customize link gold */
@@ -10131,78 +10153,245 @@ html {
         pointer-events: none !important;
     }
 }
+
 /* Mobile Touch Target & UX Accessibility Enhancements */
 @media (max-width: 768px) {
-  .navbar-toggler {
-    width: 48px !important;
-    height: 48px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  .size-selector .size-btn,
-  .bottle-size-selector-wrap .modal-size-btn {
-    padding: 10px 20px !important;
-    min-width: 55px !important;
-    min-height: 42px !important;
-  }
-  .quantity-picker button {
-    padding: 10px 20px !important;
-    font-size: 24px !important;
-    min-height: 42px !important;
-  }
-  #scroll-top {
-    width: 50px !important;
-    height: 50px !important;
-  }
-  .card-product .stars i,
-  .stars i {
-    padding: 2px !important; /* Increase click buffer spacing */
-  }
+    .navbar-toggler {
+        width: 48px !important;
+        height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .size-selector .size-btn,
+    .bottle-size-selector-wrap .modal-size-btn {
+        padding: 10px 20px !important;
+        min-width: 55px !important;
+        min-height: 42px !important;
+    }
+
+    .quantity-picker button {
+        padding: 10px 20px !important;
+        font-size: 24px !important;
+        min-height: 42px !important;
+    }
+
+    #scroll-top {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .card-product .stars i,
+    .stars i {
+        padding: 2px !important;
+        /* Increase click buffer spacing */
+    }
 }
 
 .skip-link {
-  display: none !important;
+    display: none !important;
 }
 
 /* Global Custom Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 8px !important;
-  height: 8px !important;
+    width: 8px !important;
+    height: 8px !important;
 }
+
 ::-webkit-scrollbar-track {
-  background: #000000 !important;
+    background: #000000 !important;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #d4af37 !important;
-  border-radius: 10px !important;
+    background: #d4af37 !important;
+    border-radius: 10px !important;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #aa8422 !important;
+    background: #aa8422 !important;
 }
 
 /* Thin Scrollbar for smaller containers like modal bodies */
 .modal-body::-webkit-scrollbar,
 .scroll-thin::-webkit-scrollbar {
-  width: 6px !important;
-  height: 6px !important;
+    width: 6px !important;
+    height: 6px !important;
 }
 
 /* Firefox compatibility */
 html {
-  scrollbar-width: thin !important;
-  scrollbar-color: #d4af37 #000000 !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #555555 #121212 !important;
 }
 
 .modal-body {
-  scrollbar-width: thin !important;
-  scrollbar-color: #d4af37 #000000 !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #555555 #121212 !important;
 }
 
-/* Force Brand Logo Color to White globally (both desktop and mobile) */
+/* Force Brand Logo Color to White globally (both desktop and mobile) without any text-shadow */
 .header_area .navbar-brand .irasa-logo__brand,
 .navbar-brand span,
-.mobile-menu-header .irasa-logo__brand {
-    color: rgb(255, 255, 255) !important;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4) !important;
+.mobile-menu-header .irasa-logo__brand,
+.irasa-logo,
+.irasa-logo:hover,
+.irasa-logo:focus,
+.irasa-logo:active,
+.irasa-logo:hover .irasa-logo__brand,
+.irasa-logo:focus .irasa-logo__brand,
+.irasa-logo:active .irasa-logo__brand,
+.irasa-logo:hover .irasa-logo__tagline,
+.irasa-logo:focus .irasa-logo__tagline,
+.irasa-logo:active .irasa-logo__tagline,
+.navbar-brand:hover span,
+.navbar-brand:focus span,
+.navbar-brand:active span {
+    text-shadow: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    outline: none !important;
+}
+
+/* ==========================================
+   GLOBAL: Close button — no hover animation
+   ========================================== */
+.close,
+.modal .close,
+.modal-header .close,
+.btn-close {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+/* ==========================================
+   COMPLETE: Close button hover — fully killed
+   ========================================== */
+.close:hover,
+.close:focus,
+.close:active,
+.modal .close:hover,
+.modal .close:focus,
+.modal-header .close:hover,
+.modal-header .close:focus,
+.btn-close:hover,
+.btn-close:focus {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 0.8 !important;
+    background: transparent !important;
+    color: #fff !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+
+/* Custom Overrides for Fixed Header Spacing */
+.blog-banner-area {
+    margin-top: 62px !important;
+}
+
+@media (min-width: 992px) {
+    .blog-banner-area {
+        margin-top: 80px !important;
+    }
+}
+
+/* Button Hero & Subscribe Form Button Shape, Text Color & Hover Fix */
+.hero-banner__content .button-hero,
+.custom-perfume-section .button-hero,
+.subscribe-form button {
+    color: #000000 !important;
+    font-weight: 700 !important;
+    border-radius: 12px 35px 12px 35px !important;
+}
+
+.hero-banner__content .button-hero:hover,
+.custom-perfume-section .button-hero:hover,
+.subscribe-form button:hover {
+    color: #000000 !important;
+    border-radius: 12px 35px 12px 35px !important;
+}
+
+/* Completely remove and disable Behance icon */
+.fa-behance, .fa-behance-square, .fa-behance:before, .fa-behance-square:before, [class*="fa-behance"] {
+    display: none !important;
+    content: "" !important;
+    visibility: hidden !important;
+}
+
+/* Luxury Server-Side Pagination UI for Blogs & Comments */
+.blog-pagination,
+.comments-pagination-nav {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.blog-pagination .pagination,
+.comments-pagination-nav .pagination {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.blog-pagination .page-item,
+.comments-pagination-nav .page-item {
+    margin: 0 3px !important;
+}
+
+.blog-pagination .page-link,
+.comments-pagination-nav .page-link {
+    background: #141414 !important;
+    border: 1px solid #2e2e2e !important;
+    color: #cccccc !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 40px !important;
+    height: 38px !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.blog-pagination .page-link:hover,
+.comments-pagination-nav .page-link:hover {
+    background: #222222 !important;
+    border-color: #d4af37 !important;
+    color: #d4af37 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+}
+
+.blog-pagination .page-item.active .page-link,
+.comments-pagination-nav .page-item.active .page-link {
+    background: #d4af37 !important;
+    border-color: #d4af37 !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+    cursor: default !important;
+    transform: none !important;
+}
+
+.blog-pagination .page-item.disabled .page-link,
+.comments-pagination-nav .page-item.disabled .page-link {
+    background: #0f0f0f !important;
+    border-color: #222222 !important;
+    color: #555555 !important;
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+    box-shadow: none !important;
+    transform: none !important;
 }

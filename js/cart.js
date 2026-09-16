@@ -251,48 +251,54 @@ const CartEngine = {
       style.id = '_irasa_toast_styles';
       style.textContent = `
         #_irasa_toast_container {
-          position: fixed; bottom: 24px; right: 24px; z-index: 999999;
-          display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
-          pointer-events: none;
+          position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 9999999;
+          display: flex; flex-direction: column; gap: 10px; align-items: center;
+          pointer-events: none; width: auto; max-width: 92vw;
         }
         ._irasa_toast {
           display: flex; align-items: center; gap: 12px;
-          min-width: 280px; max-width: 360px;
-          padding: 14px 18px 14px 16px;
-          border-radius: 14px;
-          font-family: 'Outfit', 'Inter', sans-serif;
-          font-size: 13.5px; font-weight: 600;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
-          backdrop-filter: blur(12px);
-          border-left: 4px solid transparent;
+          min-width: 280px; max-width: 480px;
+          padding: 10px 16px 10px 14px;
+          border-radius: 50px;
+          background: rgba(18, 18, 18, 0.94);
+          color: #f3f4f6;
+          font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+          font-size: 13.5px; font-weight: 500;
+          box-shadow: 0 12px 36px rgba(0,0,0,0.6), 0 2px 10px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+          backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(255,255,255,0.1);
           position: relative; overflow: hidden;
-          opacity: 0; transform: translateX(60px);
-          transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
-          pointer-events: auto;
+          opacity: 0; transform: translateY(-24px) scale(0.92);
+          transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          pointer-events: auto; cursor: pointer; user-select: none;
         }
-        ._irasa_toast.show { opacity: 1; transform: translateX(0); }
-        ._irasa_toast.hide { opacity: 0; transform: translateX(60px); }
-        ._irasa_toast--success { background: #0d1f0f; color: #6ee88a; border-color: #4caf50; }
-        ._irasa_toast--error   { background: #1f0d0d; color: #f87171; border-color: #ef4444; }
-        ._irasa_toast--warning { background: #1f1700; color: #fbbf24; border-color: #f59e0b; }
-        ._irasa_toast--wishlist{ background: #1f0d15; color: #f472b6; border-color: #ec4899; }
-        ._irasa_toast--info    { background: #0a1220; color: #d4af37; border-color: #d4af37; }
-        ._irasa_toast__icon { font-size: 16px; flex-shrink: 0; }
-        ._irasa_toast__msg { flex: 1; line-height: 1.4; }
-        ._irasa_toast__bar {
-          position: absolute; bottom: 0; left: 0; height: 3px;
-          border-radius: 0 0 0 10px;
-          animation: _irasa_bar 3s linear forwards;
+        ._irasa_toast.show { opacity: 1; transform: translateY(0) scale(1); }
+        ._irasa_toast.hide { opacity: 0; transform: translateY(-20px) scale(0.94); transition: opacity 0.28s ease, transform 0.28s ease; }
+        ._irasa_toast--success { border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 12px 36px rgba(0,0,0,0.6), 0 0 20px rgba(16, 185, 129, 0.15); }
+        ._irasa_toast--error   { border-color: rgba(239, 68, 68, 0.4); box-shadow: 0 12px 36px rgba(0,0,0,0.6), 0 0 20px rgba(239, 68, 68, 0.15); }
+        ._irasa_toast--warning { border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 12px 36px rgba(0,0,0,0.6), 0 0 20px rgba(245, 158, 11, 0.15); }
+        ._irasa_toast--wishlist{ border-color: rgba(236, 72, 153, 0.4); box-shadow: 0 12px 36px rgba(0,0,0,0.6), 0 0 20px rgba(236, 72, 153, 0.15); }
+        ._irasa_toast--info    { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 12px 36px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.15); }
+        ._irasa_toast__icon {
+          width: 32px; height: 32px; border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 14px; flex-shrink: 0;
         }
-        ._irasa_toast--success ._irasa_toast__bar { background: #4caf50; }
-        ._irasa_toast--error   ._irasa_toast__bar { background: #ef4444; }
-        ._irasa_toast--warning ._irasa_toast__bar { background: #f59e0b; }
-        ._irasa_toast--wishlist._irasa_toast__bar { background: #ec4899; }
-        ._irasa_toast--info    ._irasa_toast__bar { background: #d4af37; }
-        @keyframes _irasa_bar { from { width: 100%; } to { width: 0%; } }
-        @media (max-width: 480px) {
-          #_irasa_toast_container { bottom: 12px; right: 12px; left: 12px; align-items: stretch; }
-          ._irasa_toast { min-width: 0; max-width: 100%; }
+        ._irasa_toast--success ._irasa_toast__icon { background: rgba(16, 185, 129, 0.16); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        ._irasa_toast--error ._irasa_toast__icon   { background: rgba(239, 68, 68, 0.16); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+        ._irasa_toast--warning ._irasa_toast__icon { background: rgba(245, 158, 11, 0.16); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        ._irasa_toast--wishlist ._irasa_toast__icon{ background: rgba(236, 72, 153, 0.16); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
+        ._irasa_toast--info ._irasa_toast__icon    { background: rgba(212, 175, 55, 0.16); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3); }
+        ._irasa_toast__msg { flex: 1; line-height: 1.4; font-size: 13.5px; color: #f9fafb; }
+        ._irasa_toast__close {
+          background: transparent; border: none; color: #888; font-size: 18px;
+          line-height: 1; padding: 0 4px; cursor: pointer; opacity: 0.7; transition: opacity 0.2s, color 0.2s; flex-shrink: 0;
+        }
+        ._irasa_toast__close:hover { opacity: 1; color: #fff; }
+        @media (max-width: 600px) {
+          #_irasa_toast_container { top: 14px; width: calc(100% - 24px); max-width: 440px; }
+          ._irasa_toast { min-width: 0 !important; width: 100% !important; padding: 9px 14px 9px 12px !important; font-size: 12.5px !important; border-radius: 40px !important; }
+          ._irasa_toast__icon { width: 28px !important; height: 28px !important; font-size: 12px !important; }
         }
       `;
       document.head.appendChild(style);
@@ -320,9 +326,9 @@ const CartEngine = {
 
     var toast = document.createElement('div');
     toast.className = '_irasa_toast _irasa_toast--' + type;
-    toast.innerHTML = '<span class="_irasa_toast__icon">' + (icons[type] || icons.info) + '</span>'
+    toast.innerHTML = '<div class="_irasa_toast__icon">' + (icons[type] || icons.info) + '</div>'
       + '<span class="_irasa_toast__msg">' + cleanMsg + '</span>'
-      + '<div class="_irasa_toast__bar"></div>';
+      + '<button class="_irasa_toast__close" aria-label="Close">&times;</button>';
 
     container.appendChild(toast);
 
@@ -331,19 +337,22 @@ const CartEngine = {
       requestAnimationFrame(function() { toast.classList.add('show'); });
     });
 
-    // Dismiss after 3s
-    var timer = setTimeout(function() {
+    var dismissed = false;
+    var dismiss = function() {
+      if (dismissed) return;
+      dismissed = true;
       toast.classList.remove('show');
       toast.classList.add('hide');
-      setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
-    }, 3000);
+      setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+    };
+
+    // Dismiss after 3.2s
+    var timer = setTimeout(dismiss, 3200);
 
     // Click to dismiss early
     toast.addEventListener('click', function() {
       clearTimeout(timer);
-      toast.classList.remove('show');
-      toast.classList.add('hide');
-      setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
+      dismiss();
     });
   }
 };

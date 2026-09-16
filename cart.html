@@ -2741,17 +2741,14 @@
 
       /* ── Mobile: Recalculate Summary ── */
       function mobileUpdateSummary() {
-        var cards = document.querySelectorAll('.mobile-cart-card');
-        var subtotal = 0;
-        cards.forEach(function (card) {
-          var t = card.querySelector('.mobile-cart-total span').textContent.replace(/[^\d.]/g, '');
-          subtotal += parseFloat(t) || 0;
-        });
-
+        var subtotal = CartEngine.getTotal();
         var disc = appliedDiscount || 0;
         var total = subtotal > 0 ? (Math.max(0, subtotal - disc) + 10 + 35 + 5) : 0; // 10 handling + 35 packing + 5 platform services fee
 
-        var fmt = 'Rs. ' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        var isGanesh = appliedCouponCode && (appliedCouponCode.toUpperCase() === 'BAPPA999' || appliedCouponCode.toUpperCase() === 'GANESH999' || appliedCouponCode.toUpperCase() === 'GANESHOTSAV999');
+        var fmt = (isGanesh && disc > 0)
+          ? `<span style="text-decoration:line-through;color:#888;font-size:12px;margin-right:6px;">Rs. ${subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span> <span style="color:#d4af37;font-weight:700;">Rs. ${(Math.max(0, subtotal - disc)).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>`
+          : 'Rs. ' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         var totalFmt = 'Rs. ' + total.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         var discFmt = '— Rs. ' + disc.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -2762,7 +2759,7 @@
         var rowDisc = document.getElementById('mobile-coupon-row');
         var labelDisc = document.getElementById('mobile-coupon-label');
 
-        if (el1) el1.textContent = fmt;
+        if (el1) el1.innerHTML = fmt;
         if (el2) el2.textContent = totalFmt;
         if (el3) el3.textContent = 'Rs. ' + Math.round(total).toLocaleString('en-IN');
         if (labelDisc) labelDisc.textContent = disc > 0 && appliedCouponCode ? 'Coupon (' + appliedCouponCode + ')' : 'Coupon Discount';
@@ -2777,8 +2774,9 @@
         }
 
         /* Update item count label */
+        var items = CartEngine.getItems();
         var label = document.querySelector('.mobile-section-label');
-        if (label) label.textContent = cards.length + ' Item' + (cards.length !== 1 ? 's' : '') + ' in your cart';
+        if (label) label.textContent = items.length + ' Item' + (items.length !== 1 ? 's' : '') + ' in your cart';
       }
 
       /* ── Mobile: Remove Item ── */
@@ -2944,6 +2942,8 @@
 
             syncDesktopSummary();
             mobileUpdateSummary();
+            renderCartDesktop();
+            renderCartMobile();
           }
         }
 
@@ -2994,6 +2994,7 @@
         if (countEl) countEl.textContent = items.length + ' Item' + (items.length > 1 ? 's' : '') + ' in your cart';
 
         try {
+          var isGanesh = appliedCouponCode && (appliedCouponCode.toUpperCase() === 'BAPPA999' || appliedCouponCode.toUpperCase() === 'GANESH999' || appliedCouponCode.toUpperCase() === 'GANESHOTSAV999');
           listEl.innerHTML = items.map(function (item) {
             if (!item) return '';
             var imgSrc = (item.img && typeof item.img === 'string') ? item.img.trim() : 'img/product/product1.png';
@@ -3002,6 +3003,14 @@
             var key = item._key || item.id || Math.random().toString();
             var name = item.name || 'Unknown Product';
 
+            var priceHtml = (isGanesh && appliedDiscount > 0)
+              ? `<span style="text-decoration:line-through;color:#888;font-size:12px;margin-right:4px;">Rs. ${price.toFixed(2)}</span> <span style="color:#2ecc71;font-weight:600;">Rs. 333.00</span>`
+              : `Rs. ${price.toFixed(2)}`;
+
+            var totalHtml = (isGanesh && appliedDiscount > 0)
+              ? `<span style="text-decoration:line-through;color:#888;font-size:12px;display:block;">Rs. ${(price * qty).toFixed(2)}</span> <span style="color:#ffd700;font-weight:700;">Rs. ${(333 * qty).toFixed(2)}</span>`
+              : `Rs. ${(price * qty).toFixed(2)}`;
+
             return `<div class="desktop-cart-card" data-key="${key}">
             <div class="desktop-cart-card-img">
               <img src="${imgSrc}" alt="${name}" onerror="this.src='img/product/product1.png';" loading="lazy">
@@ -3009,7 +3018,7 @@
             <div class="desktop-cart-card-info">
               <div class="desktop-cart-card-name">${name}</div>
               ${item.size ? `<div class="desktop-cart-card-size">Size: ${item.size}</div>` : ''}
-              <div class="desktop-cart-card-price">Rs. ${price.toFixed(2)}</div>
+              <div class="desktop-cart-card-price">${priceHtml}</div>
             </div>
             <div class="desktop-cart-card-qty-wrap">
               <div class="mobile-qty-wrap">
@@ -3019,7 +3028,7 @@
               </div>
             </div>
             <div class="desktop-cart-card-total">
-              Rs. ${(price * qty).toFixed(2)}
+              ${totalHtml}
             </div>
             <button class="desktop-cart-card-remove" title="Remove item" onclick="CartEngine.remove('${key}')">
               <i class="fas fa-trash-alt"></i>
@@ -3134,6 +3143,8 @@
         renderCartCouponOffers();
         syncDesktopSummary();
         mobileUpdateSummary();
+        renderCartDesktop();
+        renderCartMobile();
       }
 
       function getCouponApiBase() {
@@ -3236,6 +3247,8 @@
             renderCartCouponOffers();
             syncDesktopSummary();
             mobileUpdateSummary();
+            renderCartDesktop();
+            renderCartMobile();
           } else {
             msgEl.style.color = '#ff4d4d';
             msgEl.textContent = data.message || 'Invalid coupon code.';
@@ -3328,14 +3341,23 @@
         renderCartCouponOffers();
         syncDesktopSummary();
         mobileUpdateSummary();
+        renderCartDesktop();
+        renderCartMobile();
       }
 
       function syncDesktopSummary() {
         var sub = CartEngine.getTotal();
         var disc = appliedDiscount || 0;
-        var total = sub > 0 ? (Math.max(0, sub - disc) + 7 + 5) : 0; // 7 handling + 5 platform fee
+        var total = sub > 0 ? (Math.max(0, sub - disc) + 10 + 35 + 5) : 0; // 10 handling + 35 packing + 5 platform services fee
 
-        $('#desktop-subtotal').text('Rs. ' + sub.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+        var isGanesh = appliedCouponCode && (appliedCouponCode.toUpperCase() === 'BAPPA999' || appliedCouponCode.toUpperCase() === 'GANESH999' || appliedCouponCode.toUpperCase() === 'GANESHOTSAV999');
+
+        if (isGanesh && disc > 0) {
+          var discountedSub = Math.max(0, sub - disc);
+          $('#desktop-subtotal').html(`<span style="text-decoration:line-through;color:#888;font-size:13px;margin-right:6px;">Rs. ${sub.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span> <span style="color:#d4af37;font-weight:700;">Rs. ${discountedSub.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>`);
+        } else {
+          $('#desktop-subtotal').text('Rs. ' + sub.toLocaleString('en-IN', { minimumFractionDigits: 2 }));
+        }
 
         if (disc > 0) {
           $('#desktop-coupon-row').show();
@@ -3377,6 +3399,7 @@
         }
 
         try {
+          var isGanesh = appliedCouponCode && (appliedCouponCode.toUpperCase() === 'BAPPA999' || appliedCouponCode.toUpperCase() === 'GANESH999' || appliedCouponCode.toUpperCase() === 'GANESHOTSAV999');
           listEl.innerHTML = items.map(function (item) {
             if (!item) return '';
             var imgSrc = (item.img && typeof item.img === 'string') ? item.img.trim() : 'img/product/product1.png';
@@ -3385,6 +3408,14 @@
             var qty = parseInt(item.qty) || 1;
             var key = item._key || item.id || Math.random().toString();
             var name = item.name || 'Unknown Product';
+
+            var priceHtml = (isGanesh && appliedDiscount > 0)
+              ? `<span style="text-decoration:line-through;color:#888;font-size:11px;margin-right:4px;">Rs. ${price.toFixed(2)}</span> <span style="color:#2ecc71;font-weight:600;">Rs. 333.00</span>`
+              : `Rs. ${price.toFixed(2)}`;
+
+            var totalHtml = (isGanesh && appliedDiscount > 0)
+              ? `<span style="text-decoration:line-through;color:#888;font-size:11px;margin-right:4px;">Rs. ${(price * qty).toFixed(2)}</span> <span style="color:#ffd700;font-weight:700;">Rs. ${(333 * qty).toFixed(2)}</span>`
+              : `Rs. ${(price * qty).toFixed(2)}`;
 
             return `<div class="mobile-cart-card" data-key="${key}">
             <div class="mobile-cart-img">
@@ -3395,14 +3426,14 @@
               ${offerText}
               <div class="mobile-cart-meta">Quantity: <span style="color:#d4af37; font-weight:600;">${qty}</span></div>
               <div class="mobile-cart-bottom">
-                <div class="mobile-cart-price">Rs. ${price.toFixed(2)}</div>
+                <div class="mobile-cart-price">${priceHtml}</div>
                 <div class="mobile-qty-wrap">
                   <button class="qty-btn" type="button" onclick="cartQtyChange('${key}', -1)" aria-label="Decrease">&#8722;</button>
                   <input class="qty-num" type="text" value="${qty}" readonly>
                   <button class="qty-btn" type="button" onclick="cartQtyChange('${key}', 1)" aria-label="Increase">&#43;</button>
                 </div>
               </div>
-              <div class="mobile-cart-total">Total: <span style="color:#ffd700; font-weight:600;">Rs. ${(price * qty).toFixed(2)}</span></div>
+              <div class="mobile-cart-total">Total: <span style="color:#ffd700; font-weight:600;">${totalHtml}</span></div>
             </div>
             <button class="mobile-remove-btn" type="button" aria-label="Remove" onclick="CartEngine.remove('${key}')" title="Remove item">&times;</button>
           </div>`;

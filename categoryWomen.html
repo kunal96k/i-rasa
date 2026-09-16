@@ -738,7 +738,7 @@
             </div>
             <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Iconic · Floral</p>
-              <h4 class="card-product__title product-title"><a href="single-product.html">GUCCI FLORA</a></h4>
+              <h4 class="card-product__title product-title"><a href="javascript:void(0);" onclick="var modalBtn = this.closest('.card-product').querySelector('button[data-target=\'#product_modal\']'); if (modalBtn) modalBtn.click();">GUCCI FLORA</a></h4>
               <div class="stars">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i> <span>(245)</span>
@@ -762,7 +762,7 @@
             </div>
             <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Iconic · Floral</p>
-              <h4 class="card-product__title product-title"><a href="single-product.html">GUCCI BLOOM</a></h4>
+              <h4 class="card-product__title product-title"><a href="javascript:void(0);" onclick="var modalBtn = this.closest('.card-product').querySelector('button[data-target=\'#product_modal\']'); if (modalBtn) modalBtn.click();">GUCCI BLOOM</a></h4>
               <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -791,7 +791,7 @@
             </div>
             <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Iconic · Fresh</p>
-              <h4 class="card-product__title product-title"><a href="single-product.html">WHITE LONDON</a></h4>
+              <h4 class="card-product__title product-title"><a href="javascript:void(0);" onclick="var modalBtn = this.closest('.card-product').querySelector('button[data-target=\'#product_modal\']'); if (modalBtn) modalBtn.click();">WHITE LONDON</a></h4>
               <div class="stars">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i> <span>(156)</span>
@@ -815,7 +815,7 @@
             </div>
             <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Iconic · Oriental</p>
-              <h4 class="card-product__title product-title"><a href="single-product.html">RASASSI HAWAS</a></h4>
+              <h4 class="card-product__title product-title"><a href="javascript:void(0);" onclick="var modalBtn = this.closest('.card-product').querySelector('button[data-target=\'#product_modal\']'); if (modalBtn) modalBtn.click();">RASASSI HAWAS</a></h4>
               <div class="stars">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i> <span>(192)</span>
@@ -839,7 +839,7 @@
             </div>
             <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Women's Scents · Fresh</p>
-              <h4 class="card-product__title product-title"><a href="single-product.html">DEV. COOL WATER</a></h4>
+              <h4 class="card-product__title product-title"><a href="javascript:void(0);" onclick="var modalBtn = this.closest('.card-product').querySelector('button[data-target=\'#product_modal\']'); if (modalBtn) modalBtn.click();">DEV. COOL WATER</a></h4>
               <div class="stars">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i> <span>(134)</span>
@@ -863,7 +863,7 @@
             </div>
             <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
               <p>Women's Scents</p>
-              <h4 class="card-product__title product-title"><a href="single-product.html">SHANYA</a></h4>
+              <h4 class="card-product__title product-title"><a href="javascript:void(0);" onclick="var modalBtn = this.closest('.card-product').querySelector('button[data-target=\'#product_modal\']'); if (modalBtn) modalBtn.click();">SHANYA</a></h4>
               <div class="stars">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                   class="fas fa-star"></i><i class="fas fa-star"></i> <span>(312)</span>
@@ -1457,33 +1457,6 @@
         }
       }
     })();
-
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.product-title').forEach(el => {
-        el.style.cursor = 'pointer';
-        el.addEventListener('click', () => {
-          const name = el.textContent.trim();
-          window.location.href = 'single-product.html?name=' + encodeURIComponent(name);
-        });
-      });
-
-      document.querySelectorAll('.perfume-img').forEach(el => {
-        el.style.cursor = 'pointer';
-        el.addEventListener('click', () => {
-          const card = el.closest('.card-product');
-          if (card) {
-            const titleEl = card.querySelector('.product-title');
-            if (titleEl) {
-              const name = titleEl.textContent.trim();
-              window.location.href = 'single-product.html?name=' + encodeURIComponent(name);
-            }
-          }
-        });
-      });
-
-    });
   </script>
 
   <!-- Logout Modal -->

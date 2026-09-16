@@ -1251,30 +1251,34 @@
         const defaultPrice = getPrice(a.isPremium, '6ml');
         const cardId = `attar-card-${idx}`;
         const starsHtml = Array(a.rating).fill('<i class="fas fa-star"></i>').join('') + `<span>(${a.reviews})</span>`;
+        const attarNameEscaped = a.name.replace(/'/g, "\\'");
+        const attarCatEscaped = ('Attar · ' + a.category.replace('_', ' ')).replace(/'/g, "\\'");
 
         const cardHtml = `
           <div class="col-md-6 col-lg-4 col-xl-3 product-grid-item" data-aos="zoom-in" data-aos-delay="${(idx % 6) * 50}">
             <div data-aos="zoom-in" data-aos-duration="800" class="card text-center card-product" id="${cardId}">
-              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img">
+              <div data-aos="zoom-in" data-aos-duration="800" class="card-product__img" style="cursor: pointer;" onclick="if (!event.target.closest('.card-product__imgOverlay')) openPreviewModal('${attarNameEscaped}')">
                 <span class="badge-bestseller ${a.isPremium ? 'badge-premium' : ''}">
                   <i class="fas ${a.isPremium ? 'fa-gem' : 'fa-fire'}"></i> ${a.isPremium ? 'Royal Extract' : 'Pure Scent'}
                 </span>
                 <img class="card-img perfume-img" loading="lazy" src="${a.img}" alt="${a.name}">
                 <ul class="card-product__imgOverlay">
-                  <li><button data-toggle="modal" data-target="#product_modal" data-title="${a.name}" data-price="Rs. ${defaultPrice}" data-img="${a.img}" onclick="openPreviewModal('${a.name}')">
+                  <li><button data-toggle="modal" data-target="#product_modal" data-title="${a.name}" data-price="Rs. ${defaultPrice}" data-img="${a.img}" onclick="openPreviewModal('${attarNameEscaped}')">
                     <i class="ti-search"></i>
                   </button></li>
-                  <li><button onclick="quickAddToCart('${a.name}', '${cardId}')">
+                  <li><button onclick="quickAddToCart('${attarNameEscaped}', '${cardId}')">
                     <i class="ti-shopping-cart"></i>
                   </button></li>
-                  <li><button id="wl-${cardId}" onclick="toggleWishlistCard('${a.name}', '${a.img}', ${a.isPremium}, '${cardId}')" style="color:${typeof WishlistEngine !== 'undefined' && WishlistEngine.has(a.name) ? '#ff6b6b' : '#d4af37'};">
+                  <li><button id="wl-${cardId}" onclick="toggleWishlistCard('${attarNameEscaped}', '${a.img}', ${a.isPremium}, '${cardId}')" style="color:${typeof WishlistEngine !== 'undefined' && WishlistEngine.has(a.name) ? '#ff6b6b' : '#d4af37'};">
                     <i class="fas fa-heart"></i>
                   </button></li>
                 </ul>
               </div>
               <div data-aos="zoom-in" data-aos-duration="800" class="card-body">
                 <p class="scent-category">${a.category.replace('_', ' ')} · Concentrated</p>
-                <h4 class="card-product__title product-title"><a href="single-product.html">${a.name}</a></h4>
+                <h4 class="card-product__title product-title" style="cursor: pointer;">
+                  <a href="javascript:void(0);" onclick="openPreviewModal('${attarNameEscaped}')">${a.name}</a>
+                </h4>
                 <div class="stars">${starsHtml}</div>
                 
                 <div class="size-selector justify-content-center" style="display: flex; gap: 5px; margin: 10px 0; justify-content: center;">
@@ -1285,7 +1289,8 @@
                 <p class="card-product__price price">Rs. ${defaultPrice}/-</p>
               </div>
             </div>
-          `;
+          </div>
+        `;
         grid.insertAdjacentHTML('beforeend', cardHtml);
       });
       if (typeof AOS !== 'undefined') AOS.refresh();

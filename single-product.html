@@ -183,6 +183,128 @@
 			margin-bottom: 12px;
 			font-size: 14px;
 		}
+
+		/* Product Description Tabs & Reviews Luxury Styling */
+		.product_description_area .nav.nav-tabs {
+			background: #f1f6f7;
+			text-align: center;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+			border: none;
+			padding: 14px 10px;
+			border-radius: 8px 8px 0 0;
+		}
+
+		.product_description_area .nav.nav-tabs li,
+		.product_description_area .nav.nav-tabs .nav-item {
+			display: inline-block;
+			margin: 0;
+		}
+
+		.product_description_area .nav.nav-tabs .nav-link,
+		.product_description_area .nav.nav-tabs li a {
+			padding: 0 32px !important;
+			line-height: 42px !important;
+			height: 42px !important;
+			background: #ffffff !important;
+			border: 1.5px solid #d5d5d5 !important;
+			border-radius: 30px !important;
+			color: #333333 !important;
+			font-size: 14px !important;
+			font-weight: 600 !important;
+			text-transform: capitalize !important;
+			display: inline-flex !important;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+			cursor: pointer !important;
+			outline: none !important;
+			text-decoration: none !important;
+		}
+
+		/* Hover & Focus state: Pill shape locked (no rectangle!), visible high-contrast color */
+		.product_description_area .nav.nav-tabs .nav-link:hover,
+		.product_description_area .nav.nav-tabs .nav-link:focus,
+		.product_description_area .nav.nav-tabs li a:hover,
+		.product_description_area .nav.nav-tabs li a:focus {
+			color: #000000 !important;
+			background: #d4af37 !important;
+			border-color: #d4af37 !important;
+			border-radius: 30px !important;
+			box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
+			transform: translateY(-2px);
+			text-decoration: none !important;
+		}
+
+		/* Active tab state: Premium Gold pill */
+		.product_description_area .nav.nav-tabs .nav-link.active,
+		.product_description_area .nav.nav-tabs li a.active {
+			color: #000000 !important;
+			background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%) !important;
+			border-color: #d4af37 !important;
+			border-radius: 30px !important;
+			font-weight: 700 !important;
+			box-shadow: 0 4px 18px rgba(212, 175, 55, 0.45) !important;
+			cursor: default !important;
+			transform: none !important;
+		}
+
+		/* Review & Comment Items Styling with UI Avatars */
+		.review_item {
+			margin-bottom: 25px;
+			padding-bottom: 20px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		}
+
+		.review_item:last-child {
+			margin-bottom: 0;
+			border-bottom: none;
+			padding-bottom: 0;
+		}
+
+		.review_item .media {
+			align-items: center;
+		}
+
+		.review_item .media .d-flex {
+			padding-right: 18px;
+		}
+
+		.review_item .media .d-flex img,
+		.review-avatar-img {
+			width: 52px !important;
+			height: 52px !important;
+			border-radius: 50% !important;
+			object-fit: cover !important;
+			border: 2px solid #d4af37 !important;
+			box-shadow: 0 2px 8px rgba(212, 175, 55, 0.25) !important;
+		}
+
+		.review_item .media .media-body h4 {
+			font-size: 16px;
+			color: #ffffff;
+			font-weight: 700;
+			margin-bottom: 2px;
+		}
+
+		.review_item .media .media-body h5 {
+			font-size: 12px;
+			color: #888888;
+			font-weight: normal;
+			margin-bottom: 0;
+		}
+
+		.review_item p {
+			color: #cccccc;
+			font-size: 14px;
+			line-height: 1.6;
+			padding-top: 8px;
+			margin-bottom: 0;
+		}
 	</style>
 
 	<script type="application/ld+json">
@@ -650,7 +772,7 @@
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/review-1.webp" alt="" loading="lazy">
+												<img class="review-avatar-img" src="https://ui-avatars.com/api/?name=Kunal+Patil&background=151515&color=d4af37&bold=true&size=128" alt="Kunal Patil" loading="lazy">
 											</div>
 											<div class="media-body">
 												<h4>Kunal Patil</h4>
@@ -658,39 +780,33 @@
 												<a class="reply_btn" href="javascript:void(0);">Reply</a>
 											</div>
 										</div>
-										<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
-											disappoint. The Oud Supreme has such a deep, rich scent that lasts all day
-											without being overpowering. Highly recommended!</p>
+										<p>How long does the fragrance radiate on cotton fabrics versus directly on skin pulse points? Looking forward to making this my daily signature scent.</p>
 									</div>
 									<div class="review_item reply">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/review-2.webp" alt="" loading="lazy">
+												<img class="review-avatar-img" src="https://ui-avatars.com/api/?name=Samadhan+Patil&background=d4af37&color=000000&bold=true&size=128" alt="Samadhan Patil" loading="lazy">
 											</div>
 											<div class="media-body">
-												<h4>Kunal Patil</h4>
-												<h5>12th Feb, 2026 at 05:56 pm</h5>
+												<h4>Samadhan Patil <span style="background: #d4af37; color: #000; font-size: 10px; padding: 2px 8px; border-radius: 12px; font-weight: 700; margin-left: 6px; text-transform: uppercase;">Team I Rasa</span></h4>
+												<h5>12th Feb, 2026 at 06:15 pm</h5>
 												<a class="reply_btn" href="javascript:void(0);">Reply</a>
 											</div>
 										</div>
-										<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
-											disappoint. The Oud Supreme has such a deep, rich scent that lasts all day
-											without being overpowering. Highly recommended!</p>
+										<p>Hello Kunal! On pulse points it easily radiates for 7-8 hours, and on cotton fabric it stays fresh for over 12+ hours due to our pure Extrait de Parfum concentration.</p>
 									</div>
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/review-3.webp" alt="" loading="lazy">
+												<img class="review-avatar-img" src="https://ui-avatars.com/api/?name=Priya+Deshmukh&background=151515&color=d4af37&bold=true&size=128" alt="Priya Deshmukh" loading="lazy">
 											</div>
 											<div class="media-body">
-												<h4>Kunal Patil</h4>
-												<h5>12th Feb, 2026 at 05:56 pm</h5>
+												<h4>Priya Deshmukh</h4>
+												<h5>14th Feb, 2026 at 02:30 pm</h5>
 												<a class="reply_btn" href="javascript:void(0);">Reply</a>
 											</div>
 										</div>
-										<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
-											disappoint. The Oud Supreme has such a deep, rich scent that lasts all day
-											without being overpowering. Highly recommended!</p>
+										<p>Is same-day dispatch available for Nashik delivery addresses? Would love to surprise a friend with the custom bespoke gift set this weekend.</p>
 									</div>
 								</div>
 							</div>
@@ -744,7 +860,7 @@
 									<div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="col-6">
 										<div class="box_total">
 											<h5>Overall</h5>
-											<h4>4.0</h4>
+											<h4>5.0</h4>
 											<h6>(03 Reviews)</h6>
 										</div>
 									</div>
@@ -756,22 +872,30 @@
 															class="stars d-inline-flex"><i class="fas fa-star"></i><i
 																class="fas fa-star"></i><i class="fas fa-star"></i><i
 																class="fas fa-star"></i><i class="fas fa-star"></i>
-														</div> 01</a></li>
-												<li><a href="javascript:void(0);">4 Star <i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i> 01</a>
+														</div> 03</a></li>
+												<li><a href="javascript:void(0);">4 Star <div
+															class="stars d-inline-flex"><i class="fas fa-star"></i><i
+																class="fas fa-star"></i><i class="fas fa-star"></i><i
+																class="fas fa-star"></i><i class="far fa-star"></i>
+														</div> 00</a>
 												</li>
-												<li><a href="javascript:void(0);">3 Star <i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i> 01</a>
+												<li><a href="javascript:void(0);">3 Star <div
+															class="stars d-inline-flex"><i class="fas fa-star"></i><i
+																class="fas fa-star"></i><i class="fas fa-star"></i><i
+																class="far fa-star"></i><i class="far fa-star"></i>
+														</div> 00</a>
 												</li>
-												<li><a href="javascript:void(0);">2 Star <i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i> 01</a>
+												<li><a href="javascript:void(0);">2 Star <div
+															class="stars d-inline-flex"><i class="fas fa-star"></i><i
+																class="fas fa-star"></i><i class="far fa-star"></i><i
+																class="far fa-star"></i><i class="far fa-star"></i>
+														</div> 00</a>
 												</li>
-												<li><a href="javascript:void(0);">1 Star <i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i> 01</a>
+												<li><a href="javascript:void(0);">1 Star <div
+															class="stars d-inline-flex"><i class="fas fa-star"></i><i
+																class="far fa-star"></i><i class="far fa-star"></i><i
+																class="far fa-star"></i><i class="far fa-star"></i>
+														</div> 00</a>
 												</li>
 											</ul>
 										</div>
@@ -781,7 +905,7 @@
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/review-1.webp" alt="" loading="lazy">
+												<img class="review-avatar-img" src="https://ui-avatars.com/api/?name=Kunal+Patil&background=151515&color=d4af37&bold=true&size=128" alt="Kunal Patil" loading="lazy">
 											</div>
 											<div class="media-body">
 												<h4>Kunal Patil</h4>
@@ -794,17 +918,15 @@
 												</div>
 											</div>
 										</div>
-										<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
-											disappoint. The Oud Supreme has such a deep, rich scent that lasts all day
-											without being overpowering. Highly recommended!</p>
+										<p>I was looking for a long-lasting artisanal perfume for daily wear and I Rasa exceeded all expectations. The scent has such a deep, rich woody profile that lasts all day without being overpowering. Highly recommended!</p>
 									</div>
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/review-2.webp" alt="" loading="lazy">
+												<img class="review-avatar-img" src="https://ui-avatars.com/api/?name=Priya+Deshmukh&background=151515&color=d4af37&bold=true&size=128" alt="Priya Deshmukh" loading="lazy">
 											</div>
 											<div class="media-body">
-												<h4>Kunal Patil</h4>
+												<h4>Priya Deshmukh</h4>
 												<div class="stars">
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
@@ -814,17 +936,15 @@
 												</div>
 											</div>
 										</div>
-										<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
-											disappoint. The Oud Supreme has such a deep, rich scent that lasts all day
-											without being overpowering. Highly recommended!</p>
+										<p>The projection and sillage are outstanding! The opening notes are fresh and settle into a beautiful, elegant warmth that lasts 8+ hours. Truly luxury perfumery handcrafted in Nashik.</p>
 									</div>
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/review-3.webp" alt="" loading="lazy">
+												<img class="review-avatar-img" src="https://ui-avatars.com/api/?name=Aarav+Sharma&background=151515&color=d4af37&bold=true&size=128" alt="Aarav Sharma" loading="lazy">
 											</div>
 											<div class="media-body">
-												<h4>Kunal Patil</h4>
+												<h4>Aarav Sharma</h4>
 												<div class="stars">
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
@@ -834,9 +954,7 @@
 												</div>
 											</div>
 										</div>
-										<p>I was looking for a long-lasting attar for daily use and I Rasa didn't
-											disappoint. The Oud Supreme has such a deep, rich scent that lasts all day
-											without being overpowering. Highly recommended!</p>
+										<p>Unbeatable quality and presentation. The packaging is pure luxury and the fragrance trail is remarkable. The bottle refill/return discount is a fantastic touch!</p>
 									</div>
 								</div>
 							</div>
@@ -1340,7 +1458,8 @@
 											style="accent-color: #d4af37; cursor: pointer; width: 16px; height: 16px; margin: 0;">
 										<label for="modalReuseBottleCheck"
 											style="color: #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin: 0; user-select: none;">
-											♻️ Return/Bring Same Bottle next time (Save Bottle Price!)
+											<i class="fas fa-recycle" style="color: #2ecc71; margin-right: 4px;"></i>
+											Return/Bring Same Bottle next time (Save Bottle Price!)
 										</label>
 									</div>
 									<small
@@ -1394,29 +1513,55 @@
 		<script>document.addEventListener('DOMContentLoaded', () => { AOS.init(); });</script>
 
 		<script>
-			// Unified Product Catalog (Men, Women, Attars)
-			const ProductCatalog = [
-				// Men
-				{ name: "Savage Dior", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p1.png", desc: "A raw and noble composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot." },
-				{ name: "Dev. Cool Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p2.png", desc: "A fresh and sharp, simple and very masculine fragrance. Top notes include mint and green nuances, lavender, coriander and rosemary." },
-				{ name: "Rasassi Hawas", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p3.png", desc: "Blends cinnamon, bergamot, orange blossom, grey amber and sandalwood to create an aquatic scent designed to embody masculine strength." },
-				{ name: "Donhill Red", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p4.png", desc: "A warm, woody and spicy fragrance that captures the essence of classic sophistication and modern style." },
-				{ name: "Donhill Icon", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p5.png", desc: "The perfect expression of natural refinement, a translation of the luxurious and classic heritage of the house." },
-				{ name: "C R 7", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p6.png", desc: "An active fragrance for men who want to live life with passion and confidence, inspired by Cristiano Ronaldo." },
-				{ name: "Creed Avantes", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p7.png", desc: "The exceptional Aventus was inspired by the dramatic life of a historic emperor, celebrating strength, power and success." },
-				{ name: "Creed Silver Mountain Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p1.png", desc: "Captures the purity and freshness of the Swiss Alps, crisp and sparkling with green tea and blackcurrants." },
-				{ name: "Rasassi Hawas Ice", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p2.png", desc: "An icy, fresh aquatic masterpiece that is highly invigorating and keeps you smelling crisp all day." },
-				{ name: "Hugo Boss", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p3.png", desc: "Sharp and confident woody fragrance with fresh green notes and rich base tones for the modern leader." },
-				{ name: "Rasassi Royal Blue", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p4.png", desc: "A premium floral woody fragrance for men that expresses dynamic energy, masculine strength, and lasting confidence." },
-				{ name: "Arabic Tonka", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p5.png", desc: "An exceptionally rich, sweet woody fragrance capturing traditional Arabic essence with a modern luxury twist." },
+			// Pricing engine state for single-product
+			var singleProductState = {
+				basePrice: 499,
+				selectedSize: 60,
+				bottlePrice: 99,
+				reuseBottle: false,
+				isAttar: false,
+				img: 'img/i_rasa_bottles/ex1.webp'
+			};
 
-				// Women
-				{ name: "GUCCI FLORA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p6.png", desc: "An elegant, feminine fragrance designed for the modern woman who embraces her beauty and grace." },
-				{ name: "GUCCI BLOOM", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p7.png", desc: "Designed to celebrate the authenticity, vitality and diversity of women—flourishing in a natural, expressive and individual way." },
-				{ name: "WHITE LONDON", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p1.png", desc: "A light, clean and sophisticated fragrance inspired by the fresh spring mornings of London." },
-				{ name: "RASASSI HAWAS", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p2.png", desc: "An elegant and refreshing floral-fruity scent designed to capture the vibrant spirit of modern women." },
-				{ name: "DEV. COOL WATER", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p3.png", desc: "A beautiful, fresh aquatic fragrance that brings peace, calm and ocean freshness to your day." },
-				{ name: "SHANYA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p4.png", desc: "An exclusive sweet and sensual blend that leaves a memorable trail of premium luxury." },
+			// Unified Comprehensive Product Catalog (with accurate webp image references)
+			const ProductCatalog = [
+				// Exclusive / Spotlight
+				{ name: "Dior Sauvage", category: "Exclusive Collection", price: 399, img: "img/i_rasa_bottles/ex1.webp", desc: "A raw, noble, and deeply magnetic composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot." },
+				{ name: "Gucci Flora", category: "Exclusive Collection", price: 499, img: "img/i_rasa_bottles/ex2.webp", desc: "An intensely feminine and joyful floral fragrance built around the gardenia flower, blended with solar jasmine absolute." },
+				{ name: "Blue De Chanel", category: "Exclusive Collection", price: 499, img: "img/i_rasa_bottles/ex3.webp", desc: "A tribute to masculine freedom in an aromatic-woody fragrance with a captivating trail. Timeless, bold, and luxurious." },
+				{ name: "Creed Aventus", category: "Exclusive Collection", price: 499, img: "img/i_rasa_bottles/ex4.webp", desc: "The exceptional Aventus celebrates strength, power, and success with smoky pineapple, birch, and rich ambergris notes." },
+
+				// Men's Perfumes
+				{ name: "Savage Dior", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p1.webp", desc: "A raw and noble composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot." },
+				{ name: "Dev. Cool Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p2.webp", desc: "A fresh, sharp, and intensely masculine fragrance. Top notes include cooling mint, green nuances, and crisp ocean breeze." },
+				{ name: "Rasassi Hawas", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p3.webp", desc: "Blends cinnamon, bergamot, orange blossom, grey amber and sandalwood to create an aquatic scent embodying masculine strength." },
+				{ name: "Donhill Red", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p4.webp", desc: "A warm, woody and spicy fragrance that captures the essence of classic sophistication and modern style." },
+				{ name: "Donhill Icon", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p5.webp", desc: "The perfect expression of natural refinement, a translation of the luxurious and classic heritage of artisanal perfumery." },
+				{ name: "C R 7", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p6.webp", desc: "An active fragrance for men who want to live life with passion and confidence, inspired by modern elegance." },
+				{ name: "Creed Avantes", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p7.webp", desc: "Inspired by the dramatic life of a historic emperor, celebrating strength, power and triumphant success." },
+				{ name: "Creed Silver Mountain Water", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p1.webp", desc: "Captures the purity and freshness of sparkling alpine streams, crisp with green tea and blackcurrants." },
+				{ name: "Rasassi Hawas Ice", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p2.webp", desc: "An icy, fresh aquatic masterpiece that is highly invigorating and keeps you smelling fresh all day long." },
+				{ name: "Hugo Boss", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p4.webp", desc: "Sharp and confident woody fragrance with fresh green notes and rich base tones for the modern leader." },
+				{ name: "Rasassi Royal Blue", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p4.webp", desc: "A premium floral woody fragrance for men that expresses dynamic energy, masculine strength, and lasting confidence." },
+				{ name: "Arabic Tonka", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p5.webp", desc: "An exceptionally rich, sweet woody fragrance capturing traditional Arabic essence with a modern luxury twist." },
+				{ name: "Azzaro Chrome", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p7.webp", desc: "A crisp, refreshing Mediterranean scent combining citrus, musk, and woody undertones for an uplifting trail." },
+				{ name: "Azzaro Most Wanted", category: "Men's Scents", price: 499, img: "img/i_rasa_bottles/p2.webp", desc: "An intense, woody-amber fragrance for men featuring cardamom, caramel, and amberwood for charismatic allure." },
+				{ name: "Oud Supreme", category: "Men's Scents", price: 399, img: "img/i_rasa_bottles/p7.webp", desc: "A deep, mysterious smoky oud fragrance crafted from finest oriental ingredients for evening sophistication." },
+
+				// Women's Perfumes
+				{ name: "GUCCI FLORA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p6.webp", desc: "An elegant, deeply feminine fragrance designed for the modern woman who embraces her beauty and grace." },
+				{ name: "Gucci Flora", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/ex2.webp", desc: "An elegant, deeply feminine fragrance designed for the modern woman who embraces her beauty and grace." },
+				{ name: "GUCCI BLOOM", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p3.webp", desc: "Designed to celebrate authenticity, vitality and diversity—flourishing in a natural, expressive garden bouquet." },
+				{ name: "Gucci Bloom", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p3.webp", desc: "Designed to celebrate authenticity, vitality and diversity—flourishing in a natural, expressive garden bouquet." },
+				{ name: "WHITE LONDON", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p1.webp", desc: "A light, clean and sophisticated fragrance inspired by fresh spring mornings and delicate white blooms." },
+				{ name: "White London", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p1.webp", desc: "A light, clean and sophisticated fragrance inspired by fresh spring mornings and delicate white blooms." },
+				{ name: "RASASSI HAWAS", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p2.webp", desc: "An elegant and refreshing floral-fruity scent designed to capture the vibrant spirit of modern women." },
+				{ name: "DEV. COOL WATER", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p3.webp", desc: "A beautiful, fresh aquatic floral fragrance that brings calm ocean freshness to your everyday ritual." },
+				{ name: "SHANYA", category: "Women's Scents", price: 499, img: "img/i_rasa_bottles/p4.webp", desc: "An exclusive sweet and sensual blend that leaves a memorable trail of premium luxury and golden warmth." },
+				{ name: "Rose Gold", category: "Women's Scents", price: 399, img: "img/i_rasa_bottles/p2.webp", desc: "A sparkling, luminous floral fragrance wrapped in soft Bulgarian rose petals and warm white amber." },
+				{ name: "Rose Gold Perfume", category: "Women's Scents", price: 399, img: "img/i_rasa_bottles/p2.webp", desc: "A sparkling, luminous floral fragrance wrapped in soft Bulgarian rose petals and warm white amber." },
+				{ name: "Musk Velvet", category: "Unisex Scents", price: 399, img: "img/i_rasa_bottles/p3.webp", desc: "A velvety, soft cashmere musk blended with delicate white woods for a comforting yet regal scent signature." },
+				{ name: "Musk Velvet Perfume", category: "Unisex Scents", price: 399, img: "img/i_rasa_bottles/p3.webp", desc: "A velvety, soft cashmere musk blended with delicate white woods for a comforting yet regal scent signature." },
 
 				// Attars
 				{ name: "Musk a tahara", category: "Attar · Musk", price: 200, img: "img/i_rasa_bottles/a2.png", desc: "A thick, white concentrated oil with a clean, powdery, soapy, and long-lasting fresh aroma." },
@@ -1441,105 +1586,201 @@
 				}
 			})();
 
-			// Dynamic Loader
+			// Global product details opener
+			window.openProductDetails = function (product) {
+				if (!product || !product.name) return;
+				const name = String(product.name).trim();
+				const price = product.price ? String(product.price).replace(/[^\d]/g, '') : '499';
+				const img = product.img ? String(product.img).trim() : '';
+				const category = product.category ? String(product.category).trim() : '';
+				const desc = product.desc ? String(product.desc).trim() : '';
+
+				const prodData = { name, price: parseInt(price) || 499, img, category, desc };
+				try {
+					localStorage.setItem('selectedProduct', JSON.stringify(prodData));
+					sessionStorage.setItem('selectedProduct', JSON.stringify(prodData));
+				} catch (e) { }
+
+				const params = new URLSearchParams();
+				params.set('name', name);
+				if (price) params.set('price', price);
+				if (img) params.set('img', img);
+				if (category) params.set('category', category);
+				if (desc) params.set('desc', desc);
+
+				window.location.href = 'single-product.html?' + params.toString();
+			};
+
+			// Dynamic Loader: Renders the exact clicked product details, image, and price
 			document.addEventListener('DOMContentLoaded', () => {
 				const params = new URLSearchParams(window.location.search);
 				const nameParam = params.get('name');
+				const priceParam = params.get('price');
+				const imgParam = params.get('img');
+				const categoryParam = params.get('category');
+				const descParam = params.get('desc');
 
+				let prod = null;
+
+				// 1. Check URL parameters
 				if (nameParam) {
-					const decodedName = decodeURIComponent(nameParam);
-					let prod = ProductCatalog.find(p => p.name.toLowerCase() === decodedName.toLowerCase());
-
-					if (!prod) {
-						// Dynamic Fallback Generator for new or dynamic items
-						const nameLower = decodedName.toLowerCase();
-						const isAttar = nameLower.includes('musk') ||
-							nameLower.includes('sandel') ||
-							nameLower.includes('sandal') ||
-							nameLower.includes('oud') ||
-							nameLower.includes('rose') ||
-							nameLower.includes('heena') ||
-							nameLower.includes('lemon') ||
-							nameLower.includes('cigar') ||
-							nameLower.includes('coffee') ||
-							nameLower.includes('jasmine') ||
-							nameLower.includes('lavender') ||
-							nameLower.includes('ajmeri') ||
-							nameLower.includes('kevd') ||
-							nameLower.includes('belpaan') ||
-							nameLower.includes('tahara') ||
-							nameLower.includes('555');
-
-						const isWomen = nameLower.includes('flora') ||
-							nameLower.includes('bloom') ||
-							nameLower.includes('white') ||
-							nameLower.includes('shanya') ||
-							nameLower.includes('light');
-
-						let category = "Men's Premium Scents";
-						let price = 499;
-						let img = "img/i_rasa_bottles/p5.png";
-
-						if (isAttar) {
-							category = "Attar · Concentrated";
-							price = nameLower.includes('premium') || nameLower.includes('tahara') || nameLower.includes('sandel') || nameLower.includes('sandal') ? 200 : 150;
-							// Deterministic image index for fallback
-							const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-							const imgIdx = (hash % 10) + 1;
-							img = `img/i_rasa_bottles/p6.png`;
-						} else if (isWomen) {
-							category = "Women's Premium Scents";
-							price = 499;
-							const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-							const imgIdx = (hash % 6) + 1;
-							img = `img/i_rasa_bottles/p7.png`;
-						} else {
-							const hash = nameLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-							const imgIdx = (hash % 12) + 1;
-							img = `img/i_rasa_bottles/p1.png`;
-						}
-
-						prod = {
-							name: decodedName,
-							category: category,
-							price: price,
-							img: img,
-							desc: "An exclusive, high-grade fragrance masterpiece meticulously blended from our premium collections for an exceptionally long-lasting trail."
-						};
-					}
-
-					// Update DOM elements dynamically
-					document.getElementById('productTitle').textContent = prod.name;
-					document.getElementById('productCategory').textContent = prod.category;
-					document.getElementById('productDesc').textContent = prod.desc;
-
-					const imgEl = document.getElementById('mainProductImg');
-					if (imgEl) {
-						imgEl.src = prod.img;
-						imgEl.alt = prod.name;
-					}
-
-					// Update breadcrumb
-					const breadcrumb = document.querySelector('.banner-breadcrumb .active');
-					if (breadcrumb) {
-						breadcrumb.textContent = prod.name;
-					}
-
-					// Initialize dynamic pricing engine state
-					singleProductState.basePrice = prod.price;
-					singleProductState.img = prod.img;
-					updateSingleProductPriceDisplay();
+					const decodedName = decodeURIComponent(nameParam).trim();
+					prod = {
+						name: decodedName,
+						price: priceParam ? parseInt(priceParam.replace(/[^\d]/g, '')) : null,
+						img: imgParam ? decodeURIComponent(imgParam).trim() : '',
+						category: categoryParam ? decodeURIComponent(categoryParam).trim() : '',
+						desc: descParam ? decodeURIComponent(descParam).trim() : ''
+					};
 				}
-			});
 
-			// Pricing engine state for single-product
-			var singleProductState = {
-				basePrice: 499,
-				selectedSize: 50,
-				bottlePrice: 99,
-				reuseBottle: false,
-				img: 'img/i_rasa_bottles/p2.png'
-			};
+				// 2. Check localStorage / sessionStorage for selected product
+				try {
+					const saved = localStorage.getItem('selectedProduct') || sessionStorage.getItem('selectedProduct');
+					if (saved) {
+						const parsed = JSON.parse(saved);
+						if (parsed && parsed.name) {
+							if (!prod) {
+								prod = parsed;
+							} else if (parsed.name.toLowerCase() === prod.name.toLowerCase()) {
+								prod = Object.assign({}, parsed, prod);
+							}
+						}
+					}
+				} catch (e) { }
+
+				// 3. Look up in catalog for missing metadata or fallbacks
+				if (prod && prod.name) {
+					const catalogItem = ProductCatalog.find(p => p.name.toLowerCase() === prod.name.toLowerCase());
+					if (catalogItem) {
+						if (!prod.img) prod.img = catalogItem.img;
+						if (!prod.price) prod.price = catalogItem.price;
+						if (!prod.category) prod.category = catalogItem.category;
+						if (!prod.desc) prod.desc = catalogItem.desc;
+					}
+				}
+
+				// 4. Default fallback if opened directly without product selection
+				if (!prod || !prod.name) {
+					prod = {
+						name: "Dior Sauvage",
+						category: "Exclusive Collection",
+						price: 399,
+						img: "img/i_rasa_bottles/ex1.webp",
+						desc: "A raw, noble, and deeply magnetic composition. Radiant top notes burst with the juicy freshness of Reggio di Calabria Bergamot."
+					};
+				}
+
+				// Ensure valid fallbacks
+				if (!prod.price || isNaN(prod.price)) prod.price = 499;
+				if (!prod.img) prod.img = "img/i_rasa_bottles/p1.webp";
+				if (!prod.desc) {
+					prod.desc = `Experience the essence of luxury with our signature ${prod.name}. Handcrafted in Nashik with finest fragrance concentrates for guaranteed 7-8 hours lasting trail.`;
+				}
+
+				const nameLower = prod.name.toLowerCase();
+				const isAttar = nameLower.includes('attar') || nameLower.includes('tahara') || nameLower.includes('sandal') || nameLower.includes('sandel') || (prod.category && prod.category.toLowerCase().includes('attar')) || prod.price <= 250;
+				singleProductState.isAttar = isAttar;
+
+				if (!prod.category) {
+					if (isAttar) prod.category = "Attar Collection";
+					else if (nameLower.includes('flora') || nameLower.includes('bloom') || nameLower.includes('women') || nameLower.includes('shanya')) prod.category = "Women's Perfume";
+					else prod.category = "Men's Perfume";
+				}
+
+				// Update DOM elements dynamically
+				const titleEl = document.getElementById('productTitle');
+				if (titleEl) titleEl.textContent = prod.name;
+
+				const catEl = document.getElementById('productCategory');
+				if (catEl) catEl.textContent = prod.category;
+
+				const descEl = document.getElementById('productDesc');
+				if (descEl) descEl.textContent = prod.desc;
+
+				// Update main product image and carousel items
+				const imgEl = document.getElementById('mainProductImg');
+				if (imgEl) {
+					imgEl.src = prod.img;
+					imgEl.alt = prod.name;
+				}
+				document.querySelectorAll('.single-prd-item img, .s_Product_carousel img').forEach(im => {
+					im.src = prod.img;
+					im.alt = prod.name;
+				});
+
+				// Update breadcrumbs & page title
+				const breadcrumb = document.querySelector('.banner-breadcrumb .active');
+				if (breadcrumb) {
+					breadcrumb.textContent = prod.name;
+				}
+				document.title = `${prod.name} | I Rasa Perfumes Nashik`;
+
+				// Adapt Bottle Sizing Options for Attar vs Perfume
+				const sizeWrapper = document.querySelector('.bottle-size-selector-wrap');
+				if (sizeWrapper) {
+					if (isAttar) {
+						sizeWrapper.innerHTML = `
+							<span style="color: #d4af37; font-size: 14px; font-weight: 700; display: block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Select Attar Size:</span>
+							<div style="display: flex; gap: 12px; flex-wrap: wrap;">
+								<button class="size-btn-select active" onclick="selectSingleSize('6ml', 0, this)"
+									style="background: transparent; color: #d4af37; border: 1px solid #d4af37; border-radius: 25px; padding: 8px 20px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 10px rgba(212,175,55,0.2); cursor: pointer;">6ml (Pure Oil)</button>
+								<button class="size-btn-select" onclick="selectSingleSize('8ml', 50, this)"
+									style="background: transparent; color: #888; border: 1px solid #555; border-radius: 25px; padding: 8px 20px; font-weight: bold; transition: all 0.3s; outline: none; cursor: pointer;">8ml (+₹50)</button>
+								<button class="size-btn-select" onclick="selectSingleSize('12ml', 100, this)"
+									style="background: transparent; color: #888; border: 1px solid #555; border-radius: 25px; padding: 8px 20px; font-weight: bold; transition: all 0.3s; outline: none; cursor: pointer;">12ml (+₹100)</button>
+							</div>
+						`;
+						singleProductState.selectedSize = '6ml';
+						singleProductState.bottlePrice = 0;
+					} else {
+						sizeWrapper.innerHTML = `
+							<span style="color: #d4af37; font-size: 14px; font-weight: 700; display: block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Select Bottle Size:</span>
+							<div style="display: flex; gap: 12px; flex-wrap: wrap;">
+								<button class="size-btn-select active" onclick="selectSingleSize(60, 99, this)"
+									style="background: transparent; color: #d4af37; border: 1px solid #d4af37; border-radius: 25px; padding: 8px 20px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 10px rgba(212,175,55,0.2); cursor: pointer;">60ml (+₹99)</button>
+								<button class="size-btn-select" onclick="selectSingleSize(100, 149, this)"
+									style="background: transparent; color: #888; border: 1px solid #555; border-radius: 25px; padding: 8px 20px; font-weight: bold; transition: all 0.3s; outline: none; cursor: pointer;">100ml (+₹149)</button>
+							</div>
+						`;
+						singleProductState.selectedSize = 60;
+						singleProductState.bottlePrice = 99;
+					}
+				}
+
+				// Hide eco return for small attar bottles
+				const ecoBox = document.querySelector('.eco-offer-box');
+				if (ecoBox) {
+					ecoBox.style.display = isAttar ? 'none' : 'block';
+				}
+
+				// Initialize pricing engine
+				singleProductState.basePrice = prod.price;
+				singleProductState.img = prod.img;
+				updateSingleProductPriceDisplay();
+
+				// Attach click listeners to related product cards
+				document.querySelectorAll('.mens-product-card').forEach(card => {
+					const titleEl = card.querySelector('.product-title');
+					if (titleEl) {
+						titleEl.style.cursor = 'pointer';
+						titleEl.addEventListener('click', () => {
+							const modalBtn = card.querySelector('button[data-target="#product_modal"]');
+							if (modalBtn) modalBtn.click();
+						});
+					}
+
+					const imgArea = card.querySelector('.card-img-area');
+					if (imgArea) {
+						imgArea.style.cursor = 'pointer';
+						imgArea.addEventListener('click', (e) => {
+							if (e.target.closest('.overlay-actions')) return;
+							const modalBtn = card.querySelector('button[data-target="#product_modal"]');
+							if (modalBtn) modalBtn.click();
+						});
+					}
+				});
+			});
 
 			function selectSingleSize(size, bPrice, el) {
 				singleProductState.selectedSize = size;
@@ -1548,29 +1789,35 @@
 				// Highlight active button
 				document.querySelectorAll('.size-btn-select').forEach(btn => {
 					btn.classList.remove('active');
-					btn.style.color = '#aaa';
-					btn.style.border = '1px solid #333';
+					btn.style.color = '#888';
+					btn.style.border = '1px solid #555';
 					btn.style.boxShadow = 'none';
 				});
 				el.classList.add('active');
-				el.style.color = '#fff';
+				el.style.color = '#d4af37';
 				el.style.border = '1px solid #d4af37';
 				el.style.boxShadow = '0 0 10px rgba(212,175,55,0.2)';
 
 				// Update bottle savings amount display
-				document.getElementById('bottleSavingsAmount').textContent = bPrice;
+				const savEl = document.getElementById('bottleSavingsAmount');
+				if (savEl) savEl.textContent = bPrice;
 
 				updateSingleProductPriceDisplay();
 			}
 
 			function toggleReuseSingleBottle() {
-				singleProductState.reuseBottle = document.getElementById('reuseBottleCheck').checked;
+				const chk = document.getElementById('reuseBottleCheck');
+				singleProductState.reuseBottle = chk ? chk.checked : false;
 				updateSingleProductPriceDisplay();
 			}
 
 			function updateSingleProductPriceDisplay() {
-				var finalPrice = singleProductState.basePrice + (singleProductState.reuseBottle ? 0 : singleProductState.bottlePrice);
-				document.getElementById('productPrice').textContent = 'Rs. ' + finalPrice.toFixed(2);
+				var bottleAddon = singleProductState.bottlePrice;
+				var finalPrice = singleProductState.basePrice + (singleProductState.reuseBottle ? 0 : bottleAddon);
+				const priceEl = document.getElementById('productPrice');
+				if (priceEl) {
+					priceEl.textContent = 'Rs. ' + finalPrice.toFixed(2);
+				}
 			}
 
 			async function addToCartFromSingle() {
@@ -1588,13 +1835,14 @@
 				const name = document.querySelector('.s_product_text h3').textContent.trim();
 				const qty = parseInt(document.getElementById('sst').value) || 1;
 				const finalPrice = singleProductState.basePrice + (singleProductState.reuseBottle ? 0 : singleProductState.bottlePrice);
+				const sizeStr = typeof singleProductState.selectedSize === 'number' ? (singleProductState.selectedSize + 'ml') : String(singleProductState.selectedSize);
 
 				CartEngine.add({
 					id: name,
 					name: name,
 					img: singleProductState.img,
 					price: finalPrice,
-					size: singleProductState.selectedSize + 'ml',
+					size: sizeStr,
 					reuseBottle: singleProductState.reuseBottle,
 					bottlePrice: singleProductState.bottlePrice,
 					bottlePriceDiscount: singleProductState.reuseBottle ? singleProductState.bottlePrice : 0
@@ -1606,13 +1854,14 @@
 					const name = document.querySelector('.s_product_text h3').textContent.trim();
 					const qty = parseInt(document.getElementById('sst').value) || 1;
 					const finalPrice = singleProductState.basePrice + (singleProductState.reuseBottle ? 0 : singleProductState.bottlePrice);
+					const sizeStr = typeof singleProductState.selectedSize === 'number' ? (singleProductState.selectedSize + 'ml') : String(singleProductState.selectedSize);
 
 					CartEngine.add({
 						id: name,
 						name: name,
 						img: singleProductState.img,
 						price: finalPrice,
-						size: singleProductState.selectedSize + 'ml',
+						size: sizeStr,
 						reuseBottle: singleProductState.reuseBottle,
 						bottlePrice: singleProductState.bottlePrice,
 						bottlePriceDiscount: singleProductState.reuseBottle ? singleProductState.bottlePrice : 0

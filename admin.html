@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: http://127.0.0.1:8080 http://localhost:8080 https:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https: http://127.0.0.1:8080 http://localhost:8080;">
   <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,29 +50,37 @@
       overflow: hidden;
     }
 
-    /* Custom Scrollbar */
+    /* Custom Clean Thin Scrollbar */
     *::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
 
     *::-webkit-scrollbar-track {
-      background: #e2dfd6;
-      border-radius: 6px;
+      background: #121212;
     }
 
     *::-webkit-scrollbar-thumb {
-      background: #b58c1e;
-      border-radius: 6px;
-      border: 1px solid #d8d5cc;
+      background: #555555;
+      border-radius: 10px;
     }
 
     *::-webkit-scrollbar-thumb:hover {
-      background: #d4af37;
+      background: #777777;
+    }
+
+    *::-webkit-scrollbar-thumb:active {
+      background: #999999;
+    }
+
+    *::-webkit-scrollbar-button {
+      display: none;
+      width: 0;
+      height: 0;
     }
 
     * {
-      scrollbar-color: #b58c1e #e2dfd6;
+      scrollbar-color: #555555 #121212;
       scrollbar-width: thin;
     }
 
@@ -802,6 +810,7 @@
       <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets <span
           class="nav-badge" id="sidebarTickets" style="">1</span></a>
       <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
+      <a href="admin-blogs.html" class="admin-nav-item"><i class="ti-write"></i> Manage Blogs</a>
 
       <div class="nav-section-label">Management</div>
       <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons &amp; Offers</a>
@@ -1156,10 +1165,10 @@
 
   <!-- ──────────────────────────────── -->
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
-  <script src="js/admin-alert.js" defer></script>
-  <script src="js/auth-guard.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="js/admin-alert.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
     /* ─── Config ─────────────────────────────────── */
@@ -1638,7 +1647,7 @@
     }
 
     /* ─── Init ──────────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', async function () {
+    $(document).ready(async function () {
       await AuthGuard.init();
       if (AuthGuard.currentUser) {
         const u = AuthGuard.currentUser;

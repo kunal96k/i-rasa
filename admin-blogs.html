@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' https:; connect-src 'self' http://127.0.0.1:8080 http://localhost:8080 https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https: http://127.0.0.1:8080 http://localhost:8080;">
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I-Rasa Perfumes - Blog Management</title>
+
+  <link rel="icon" href="img/favicon-irasa.png" type="image/png">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <!-- Quill Editor CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --admin-bg: #0a0a0a;
+      --admin-surface: #111111;
+      --admin-surface-light: #1a1a1a;
+      --admin-text: #e0e0e0;
+      --admin-gold: #d4af37;
+      --admin-gold-hover: #e5c158;
+      --admin-border: #333333;
+    }
+
+    body {
+      background-color: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Scrollbar */
+    *::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: #111;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background: var(--admin-gold);
+      border-radius: 6px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--admin-gold);
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Sidebar */
+    .admin-sidebar {
+      width: 260px;
+      background-color: var(--admin-surface);
+      border-right: 1px solid var(--admin-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .admin-logo {
+      text-align: center;
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .admin-nav {
+      padding: 12px 0;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .nav-section-label {
+      padding: 14px 24px 4px;
+      font-size: 9px;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .nav-badge {
+      background: var(--admin-gold);
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 1px 7px;
+      margin-left: auto;
+    }
+
+    .admin-nav-item {
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      color: var(--admin-text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+
+    .admin-nav-item i {
+      margin-right: 13px;
+      font-size: 1.1rem;
+      width: 22px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .admin-nav-item:hover,
+    .admin-nav-item.active {
+      background-color: rgba(212, 175, 55, 0.1);
+      color: var(--admin-gold);
+      border-left-color: var(--admin-gold);
+      text-decoration: none;
+    }
+
+    /* Main Content */
+    .admin-main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .admin-header {
+      height: 70px;
+      background-color: var(--admin-surface);
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      flex-shrink: 0;
+    }
+
+    .admin-content {
+      flex-grow: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    /* Cards & Tables */
+    .admin-card {
+      background-color: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .admin-table {
+      width: 100%;
+      color: var(--admin-text);
+      border-collapse: collapse;
+    }
+
+    .admin-table th {
+      text-align: left;
+      padding: 12px 15px;
+      border-bottom: 2px solid var(--admin-border);
+      color: var(--admin-gold);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-table td {
+      padding: 15px;
+      border-bottom: 1px solid var(--admin-border);
+      vertical-align: middle;
+      font-size: 0.95rem;
+    }
+
+    .admin-table tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Badges */
+    .badge-status {
+      padding: 5px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-success {
+      background: rgba(37, 211, 102, 0.1);
+      color: #25d366;
+      border: 1px solid #1a5c31;
+    }
+
+    .badge-warning {
+      background: rgba(212, 175, 55, 0.1);
+      color: #d4af37;
+      border: 1px solid #735d1e;
+    }
+
+    /* Buttons */
+    .admin-btn {
+      background-color: var(--admin-gold);
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .admin-btn:hover {
+      background-color: var(--admin-gold-hover);
+    }
+
+    .admin-btn-outline {
+      background-color: transparent;
+      color: var(--admin-gold);
+      border: 1px solid var(--admin-gold);
+    }
+
+    .admin-btn-outline:hover {
+      background-color: rgba(212, 175, 55, 0.1);
+    }
+
+    .admin-btn-sm {
+      padding: 4px 10px;
+      font-size: 0.8rem;
+    }
+
+    /* Admin Tabs */
+    .admin-tab-nav {
+      display: flex;
+      gap: 12px;
+      border-bottom: 1px solid var(--admin-border);
+      padding-bottom: 12px;
+    }
+
+    .admin-tab-btn {
+      background: var(--admin-surface);
+      color: #999;
+      border: 1px solid var(--admin-border);
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+    }
+
+    .admin-tab-btn:hover {
+      background: var(--admin-surface-light);
+      color: var(--admin-gold);
+      border-color: #555;
+    }
+
+    .admin-tab-btn.active {
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--admin-gold);
+      border-color: var(--admin-gold);
+    }
+
+    .tab-badge {
+      background: #252525;
+      color: #aaa;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .admin-tab-btn.active .tab-badge {
+      background: var(--admin-gold);
+      color: #000;
+    }
+
+    .comment-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #1c1c1c;
+      color: var(--admin-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      border: 1px solid #333;
+      flex-shrink: 0;
+    }
+
+    .comment-preview-text {
+      color: #ccc;
+      font-size: 13px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Quill Editor Dark Tweaks */
+    .ql-toolbar {
+      background: var(--admin-surface-light) !important;
+      border-color: var(--admin-border) !important;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .ql-container {
+      background: var(--admin-surface-light) !important;
+      border-color: var(--admin-border) !important;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      min-height: 280px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      /* Allow Quill link tooltip to overflow outside the editor box */
+      overflow: visible !important;
+    }
+
+    .ql-editor {
+      color: var(--admin-text) !important;
+      min-height: 240px;
+    }
+
+    /* Quill placeholder text — visible on dark background */
+    .ql-editor.ql-blank::before {
+      color: #666 !important;
+      font-style: italic;
+      opacity: 1 !important;
+    }
+
+    .ql-stroke {
+      stroke: #888 !important;
+    }
+
+    .ql-fill {
+      fill: #888 !important;
+    }
+
+    .ql-picker {
+      color: #888 !important;
+    }
+
+    /* ── Quill Link/Image Tooltip — dark themed, high z-index ── */
+    .ql-tooltip {
+      background: #1a1a1a !important;
+      border: 1px solid #d4af37 !important;
+      border-radius: 6px !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+      color: #fff !important;
+      z-index: 99999 !important;
+      /* Escape overflow:hidden by using fixed positioning via JS */
+    }
+
+    .ql-tooltip input[type="text"] {
+      background: #111 !important;
+      border: 1px solid #444 !important;
+      color: #fff !important;
+      border-radius: 4px !important;
+      padding: 4px 8px !important;
+      outline: none !important;
+      font-size: 0.82rem !important;
+    }
+
+    .ql-tooltip input[type="text"]:focus {
+      border-color: #d4af37 !important;
+      box-shadow: 0 0 4px rgba(212, 175, 55, 0.3) !important;
+    }
+
+    .ql-tooltip a.ql-action,
+    .ql-tooltip a.ql-remove {
+      color: #d4af37 !important;
+      text-decoration: none !important;
+      font-size: 0.78rem !important;
+      margin-left: 8px !important;
+    }
+
+    .ql-tooltip a.ql-action:hover,
+    .ql-tooltip a.ql-remove:hover {
+      color: #fff !important;
+    }
+
+    .ql-tooltip a.ql-preview {
+      color: #d4af37 !important;
+      font-size: 0.78rem !important;
+      max-width: 180px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      display: inline-block !important;
+    }
+
+    /* Save / Edit buttons inside tooltip */
+    .ql-tooltip .ql-action::after {
+      content: 'Save' !important;
+    }
+
+    .ql-tooltip.ql-editing .ql-action::after {
+      content: 'Save' !important;
+    }
+
+    /* Image Preview */
+    .image-preview-container {
+      width: 100%;
+      height: 180px;
+      border: 2px dashed var(--admin-border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--admin-surface-light);
+      margin-top: 10px;
+    }
+
+    .image-preview-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Custom form-control for admin */
+    .form-control,
+    .form-select {
+      background-color: #111 !important;
+      border: 1px solid #333 !important;
+      color: #fff !important;
+      font-size: 0.88rem;
+      border-radius: 4px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: var(--admin-gold) !important;
+      box-shadow: 0 0 5px rgba(212, 175, 55, 0.2) !important;
+    }
+
+    /* Placeholder visibility — all input/textarea fields */
+    .form-control::placeholder,
+    .form-select::placeholder {
+      color: #666 !important;
+      opacity: 1 !important;
+    }
+
+    .form-control::-webkit-input-placeholder,
+    .form-select::-webkit-input-placeholder {
+      color: #666 !important;
+      opacity: 1 !important;
+    }
+
+    .form-control::-moz-placeholder,
+    .form-select::-moz-placeholder {
+      color: #666 !important;
+      opacity: 1 !important;
+    }
+
+    .form-control:-ms-input-placeholder,
+    .form-select:-ms-input-placeholder {
+      color: #666 !important;
+      opacity: 1 !important;
+    }
+
+
+    /* ── BLOG MODAL: 80vw × 90vh two-column layout ── */
+    #blogModal .modal-dialog {
+      max-width: 80vw !important;
+      width: 80vw !important;
+      margin: 5vh auto !important;
+    }
+
+    #blogModal .modal-content {
+      height: 90vh !important;
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #blogModal .modal-header {
+      flex-shrink: 0;
+      padding: 16px 24px;
+    }
+
+    #blogModal .modal-footer {
+      flex-shrink: 0;
+      padding: 12px 24px;
+    }
+
+    /* Modal body fills remaining height and scrolls */
+    #blogModal .modal-body {
+      flex: 1 1 auto;
+      overflow: hidden;
+      padding: 0 !important;
+    }
+
+    /* The form fills the modal body */
+    #blogModal #blogForm {
+      height: 100%;
+    }
+
+    /* Two-column flex row that fills full height */
+    #blogModal .blog-modal-row {
+      display: flex;
+      height: 100%;
+      gap: 0;
+    }
+
+    /* LEFT column: takes 63% width, scrollable */
+    #blogModal .blog-col-main {
+      flex: 0 0 63%;
+      max-width: 63%;
+      padding: 24px;
+      overflow-y: auto;
+      border-right: 1px solid var(--admin-border);
+      scrollbar-width: thin;
+      scrollbar-color: var(--admin-gold) #111;
+    }
+
+    /* RIGHT column: takes 37% width, scrollable */
+    #blogModal .blog-col-sidebar {
+      flex: 0 0 37%;
+      max-width: 37%;
+      padding: 24px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--admin-gold) #111;
+      background: #0d0d0d;
+    }
+
+    /* Quill editor grows to fill left column remainder */
+    #blogModal .ql-container {
+      min-height: 260px !important;
+      max-height: none !important;
+    }
+
+    /* Section card headers in sidebar don't wrap */
+    #blogModal .sidebar-section-title {
+      color: var(--admin-gold);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    #blogModal .sidebar-card {
+      background: #111;
+      border: 1px solid var(--admin-border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    /* ── QUILL TOOLBAR: Tooltip badges on hover ── */
+    .ql-toolbar button,
+    .ql-toolbar .ql-picker {
+      position: relative;
+    }
+
+    .ql-toolbar button[title]:hover::after,
+    .ql-toolbar .ql-picker[title]:hover::after {
+      content: attr(title);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #d4af37;
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: 3px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 9999;
+      letter-spacing: 0.3px;
+    }
+
+    .ql-toolbar button[title]:hover::before,
+    .ql-toolbar .ql-picker[title]:hover::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: #d4af37;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Quill toolbar active/hover state */
+    .ql-toolbar button:hover,
+    .ql-toolbar button.ql-active {
+      background: rgba(212, 175, 55, 0.12) !important;
+      border-radius: 3px;
+    }
+
+    .ql-toolbar button:hover .ql-stroke,
+    .ql-toolbar button.ql-active .ql-stroke {
+      stroke: var(--admin-gold) !important;
+    }
+
+    .ql-toolbar button:hover .ql-fill,
+    .ql-toolbar button.ql-active .ql-fill {
+      fill: var(--admin-gold) !important;
+    }
+
+    /* Quill picker options dark style */
+    .ql-picker-options {
+      background: #1a1a1a !important;
+      border-color: #333 !important;
+      border-radius: 4px !important;
+    }
+
+    .ql-picker-item {
+      color: #ccc !important;
+    }
+
+    .ql-picker-item:hover {
+      color: #d4af37 !important;
+    }
+
+    .ql-picker-label {
+      color: #aaa !important;
+    }
+
+    .ql-picker-label:hover {
+      color: #d4af37 !important;
+    }
+
+    /* ── GUIDE NOTE PANEL ── */
+    .editor-guide-note {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.07) 0%, rgba(212, 175, 55, 0.02) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-left: 3px solid var(--admin-gold);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      font-size: 0.75rem;
+      color: #999;
+      line-height: 1.5;
+    }
+
+    .editor-guide-note .guide-title {
+      color: #d4af37;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .guide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: #d4af37;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      vertical-align: middle;
+      margin: 1px 2px;
+      cursor: default;
+    }
+
+    /* ── COVER IMAGE UPLOAD ZONE ── */
+    .cover-upload-zone {
+      border: 2px dashed #444;
+      border-radius: 6px;
+      padding: 14px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
+      background: #0d0d0d;
+      position: relative;
+    }
+
+    .cover-upload-zone:hover {
+      border-color: var(--admin-gold);
+      background: rgba(212, 175, 55, 0.04);
+    }
+
+    .cover-upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cover-upload-zone .upload-icon {
+      font-size: 1.4rem;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    .cover-upload-zone:hover .upload-icon {
+      color: var(--admin-gold);
+    }
+
+    .cover-upload-zone .upload-label {
+      font-size: 0.75rem;
+      color: #666;
+      display: block;
+    }
+
+    .cover-upload-zone:hover .upload-label {
+      color: #aaa;
+    }
+
+    .upload-divider {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0;
+      color: #444;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .upload-divider::before,
+    .upload-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #333;
+    }
+
+    /* ── SweetAlert2: always on top of Bootstrap modals ── */
+    .swal2-container {
+      z-index: 99999 !important;
+    }
+
+    .swal2-popup {
+      z-index: 99999 !important;
+    }
+
+    /* Insert Image modal gold border */
+    .swal-img-modal {
+      border: 1px solid #d4af37 !important;
+      border-radius: 10px !important;
+      background: #0d0d0d !important;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(212, 175, 55, 0.12) !important;
+    }
+
+    .swal-img-modal .swal2-title {
+      font-style: normal !important;
+    }
+
+    .swal-img-modal .swal2-html-container {
+      color: #ccc !important;
+    }
+
+    /* Global sidebar toggle button (hidden on desktop) */
+    .admin-btn-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--admin-gold);
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .admin-btn-toggle:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* ── RESPONSIVE: Small screens ≤ 768px — single column blog modal & sidebar drawer ── */
+    @media (max-width: 768px) {
+      #blogModal .modal-dialog {
+        max-width: 98vw !important;
+        width: 98vw !important;
+        margin: 2vw auto !important;
+      }
+
+      #blogModal .modal-content {
+        height: 95vh !important;
+        border-radius: 8px;
+      }
+
+      /* Switch two-column to single-column stacked layout */
+      #blogModal [style*="display: flex"][style*="overflow: hidden"][style*="min-height: 0"],
+      #blogModal .blog-modal-row {
+        flex-direction: column !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+        min-height: 0;
+      }
+
+      /* Left column: full width, no border-right */
+      #blogModal .blog-col-main,
+      #blogModal [style*="flex: 0 0 62%"],
+      #blogModal [style*="flex: 0 0 63%"] {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--admin-border) !important;
+        padding: 16px !important;
+      }
+
+      /* Right sidebar: full width */
+      #blogModal .blog-col-sidebar,
+      #blogModal [style*="flex: 0 0 38%"],
+      #blogModal [style*="flex: 0 0 37%"] {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 16px !important;
+        background: #0d0d0d !important;
+      }
+
+      /* Modal footer wraps nicely */
+      #blogModal .modal-footer {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px 16px !important;
+      }
+
+      #blogModal .modal-footer .btn {
+        flex: 1 1 auto;
+        min-width: 100px;
+      }
+
+      /* Quill editor min-height reduced for mobile */
+      #blogModal .ql-container {
+        min-height: 180px !important;
+      }
+
+      /* Mobile sidebar drawer layout */
+      .admin-btn-toggle {
+        display: inline-flex !important;
+      }
+
+      .admin-sidebar {
+        display: flex !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 100vh !important;
+        width: 260px !important;
+        background-color: var(--admin-surface) !important;
+        z-index: 10001 !important;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+      }
+
+      .admin-sidebar.show {
+        transform: translateX(0) !important;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8) !important;
+      }
+
+      .admin-main {
+        width: 100% !important;
+        flex-grow: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="skip-link d-none" href="#main-content">Skip to main content</a>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="admin-sidebar">
+    <div class="admin-logo">
+      <a class="navbar-brand logo_h" href="index.html"
+        style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding-top: 10px;">
+        <span
+          style="font-family: 'Samarkan', sans-serif !important; text-transform: lowercase; font-size: 32px; color: #d4af37; letter-spacing: 2px;">i
+          rasa</span>
+      </a>
+    </div>
+
+    <nav class="admin-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="admin.html" class="admin-nav-item"><i class="ti-dashboard"></i> Dashboard</a>
+      <a href="admin-orders.html" class="admin-nav-item"><i class="ti-shopping-cart-full"></i> Orders <span
+          class="nav-badge" id="sidebarPendingOrders" style="display:none;">0</span></a>
+      <a href="admin-payments.html" class="admin-nav-item"><i class="ti-credit-card"></i> Payments <span
+          class="nav-badge" id="sidebarPendingPay" style="display:none;">0</span></a>
+
+      <div class="nav-section-label">Support</div>
+      <a href="admin-tickets.html" class="admin-nav-item"><i class="ti-headphone-alt"></i> Support Tickets <span
+          class="nav-badge" id="sidebarTickets" style="">1</span></a>
+      <a href="admin-enquiries.html" class="admin-nav-item"><i class="ti-email"></i> Enquiries</a>
+      <a href="admin-blogs.html" class="admin-nav-item active"><i class="ti-write"></i> Manage Blogs</a>
+
+      <div class="nav-section-label">Management</div>
+      <a href="admin-coupons.html" class="admin-nav-item"><i class="ti-gift"></i> Coupons &amp; Offers</a>
+      <a href="admin-employees.html" class="admin-nav-item"><i class="ti-id-badge"></i> Employee Master</a>
+      <a href="admin-subscribers.html" class="admin-nav-item"><i class="ti-bell"></i> Subscribers</a>
+
+      <div class="nav-section-label">Analytics</div>
+      <a href="admin-reports.html" class="admin-nav-item"><i class="ti-stats-up"></i> Reports</a>
+    </nav>
+
+    <div style="padding: 20px; border-top: 1px solid var(--admin-border);">
+      <button class="admin-btn admin-btn-outline"
+        style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 4px; font-weight: 600; font-size: 0.85rem;"
+        id="sidebarLogoutBtn">
+        <i class="ti-power-off"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT AREA ── -->
+  <main class="admin-main">
+    <header class="admin-header" style="display: flex; align-items: center; justify-content: space-between; padding: 0 30px;">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <button id="sidebarToggleBtn" class="admin-btn-toggle">
+          <i class="ti-menu"></i>
+        </button>
+        <h4 style="margin: 0;">Blog Management</h4>
+      </div>
+      <div class="admin-user-info" style="display: flex; align-items: center; gap: 10px;">
+        <!-- Populated dynamically by auth-guard.js -->
+      </div>
+    </header>
+
+    <div class="admin-content" id="main-content">
+
+      <!-- Top Tab Navigation -->
+      <div class="admin-tab-nav">
+        <button class="admin-tab-btn active" id="tabBtnArticles" onclick="window.switchBlogTab('articles')">
+          <i class="ti-write"></i> Blog Articles <span class="tab-badge" id="tabBadgeArticles">0</span>
+        </button>
+        <button class="admin-tab-btn" id="tabBtnComments" onclick="window.switchBlogTab('comments')">
+          <i class="ti-comments"></i> Blog Comments <span class="tab-badge" id="tabBadgeComments">0</span>
+        </button>
+      </div>
+
+      <!-- ================= 1. BLOG ARTICLES VIEW ================= -->
+      <div id="viewArticlesSection">
+        <!-- Metrics Grid -->
+        <div class="row mb-4">
+          <div class="col-md-3">
+            <div class="admin-card d-flex align-items-center justify-content-between" style="padding: 20px;">
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #888;">Total Articles</div>
+                <div id="statTotalBlogs"
+                  style="font-size: 1.8rem; font-weight: bold; color: var(--admin-gold); font-family: 'Cinzel', serif;">0
+                </div>
+              </div>
+              <i class="ti-journal" style="font-size: 2.2rem; color: #444;"></i>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin-card d-flex align-items-center justify-content-between" style="padding: 20px;">
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #888;">Published Articles</div>
+                <div id="statPublishedBlogs"
+                  style="font-size: 1.8rem; font-weight: bold; color: #25d366; font-family: 'Cinzel', serif;">0</div>
+              </div>
+              <i class="ti-check" style="font-size: 2.2rem; color: #444;"></i>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin-card d-flex align-items-center justify-content-between" style="padding: 20px;">
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #888;">Draft Articles</div>
+                <div id="statDraftBlogs"
+                  style="font-size: 1.8rem; font-weight: bold; color: var(--admin-gold); font-family: 'Cinzel', serif;">0
+                </div>
+              </div>
+              <i class="ti-pencil-alt" style="font-size: 2.2rem; color: #444;"></i>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin-card d-flex align-items-center justify-content-between" style="padding: 20px; cursor: pointer;" onclick="window.switchBlogTab('comments')">
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #888;">Total Comments</div>
+                <div id="statTotalCommentsArticleTab"
+                  style="font-size: 1.8rem; font-weight: bold; color: #3498db; font-family: 'Cinzel', serif;">0
+                </div>
+              </div>
+              <i class="ti-comments" style="font-size: 2.2rem; color: #444;"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters Panel -->
+        <div class="admin-card">
+          <div class="row align-items-center">
+            <div class="col-md-4 mb-2 mb-md-0">
+              <input type="text" class="form-control" id="blogSearchInput"
+                placeholder="Search by title, summary, content...">
+            </div>
+            <div class="col-md-3 mb-2 mb-md-0">
+              <select class="form-control" id="blogStatusFilter">
+                <option value="ALL">All Statuses</option>
+                <option value="DRAFT">Draft</option>
+                <option value="PUBLISHED">Published</option>
+              </select>
+            </div>
+            <div class="col-md-3 mb-2 mb-md-0">
+              <select class="form-control" id="blogPageSizeSelect">
+                <option value="5">5 per page</option>
+                <option value="10">10 per page</option>
+                <option value="25" selected>25 per page</option>
+              </select>
+            </div>
+            <div class="col-md-2 text-md-right">
+              <button class="admin-btn admin-btn-outline w-100" id="btnClearBlogFilters"
+                style="margin: 0; padding: 6px 12px; font-size: 13px;">Clear Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Panel -->
+        <div class="admin-card">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 style="margin: 0;">Blog Articles</h5>
+            <button class="admin-btn admin-btn-sm" id="btnNewBlog"><i class="ti-plus"></i> Create New Blog</button>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 80px;">Cover</th>
+                  <th>Article Title</th>
+                  <th>Slug / URL</th>
+                  <th>Author</th>
+                  <th style="width: 100px; text-align: center;">Comments</th>
+                  <th>Status</th>
+                  <th>Published Date</th>
+                  <th style="width: 140px; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="blogsTableBody">
+                <tr>
+                  <td colspan="8" class="text-center py-4 text-muted">
+                    <i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading blog posts...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="paginationContainer" class="mt-3"></div>
+        </div>
+      </div>
+
+      <!-- ================= 2. BLOG COMMENTS VIEW ================= -->
+      <div id="viewCommentsSection" style="display:none;">
+        <!-- Comments Metrics Grid -->
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <div class="admin-card d-flex align-items-center justify-content-between" style="padding: 20px;">
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #888;">Total Comments</div>
+                <div id="statTotalComments"
+                  style="font-size: 1.8rem; font-weight: bold; color: var(--admin-gold); font-family: 'Cinzel', serif;">0
+                </div>
+              </div>
+              <i class="ti-comments" style="font-size: 2.2rem; color: #444;"></i>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="admin-card d-flex align-items-center justify-content-between" style="padding: 20px;">
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #888;">Comments Today</div>
+                <div id="statTodayComments"
+                  style="font-size: 1.8rem; font-weight: bold; color: #25d366; font-family: 'Cinzel', serif;">0</div>
+              </div>
+              <i class="ti-time" style="font-size: 2.2rem; color: #444;"></i>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="admin-card d-flex align-items-center justify-content-between" style="padding: 20px;">
+              <div>
+                <div style="font-size: 11px; text-transform: uppercase; color: #888;">Articles Filter</div>
+                <div id="statArticlesFilterLabel"
+                  style="font-size: 1.1rem; font-weight: 600; color: #3498db; margin-top: 4px;">All Articles
+                </div>
+              </div>
+              <i class="ti-filter" style="font-size: 2.2rem; color: #444;"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comments Filters Panel -->
+        <div class="admin-card">
+          <div class="row align-items-center">
+            <div class="col-md-4 mb-2 mb-md-0">
+              <input type="text" class="form-control" id="commentSearchInput"
+                placeholder="Search by name, email, subject, text, article...">
+            </div>
+            <div class="col-md-4 mb-2 mb-md-0">
+              <select class="form-control" id="commentBlogFilter">
+                <option value="">All Blog Articles</option>
+              </select>
+            </div>
+            <div class="col-md-2 mb-2 mb-md-0">
+              <select class="form-control" id="commentPageSizeSelect">
+                <option value="5">5 per page</option>
+                <option value="10" selected>10 per page</option>
+                <option value="25">25 per page</option>
+                <option value="50">50 per page</option>
+              </select>
+            </div>
+            <div class="col-md-2 text-md-right">
+              <button class="admin-btn admin-btn-outline w-100" id="btnClearCommentFilters"
+                style="margin: 0; padding: 6px 12px; font-size: 13px;">Clear Filters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comments Table Panel -->
+        <div class="admin-card">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 style="margin: 0;">Blog Comments</h5>
+            <button class="admin-btn admin-btn-sm admin-btn-outline" id="btnRefreshComments"><i class="ti-reload"></i> Refresh</button>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="min-width: 200px;">Commenter</th>
+                  <th style="min-width: 200px;">Blog Article</th>
+                  <th style="min-width: 260px;">Subject &amp; Message</th>
+                  <th style="width: 160px;">Date &amp; Time</th>
+                  <th style="width: 120px; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="commentsTableBody">
+                <tr>
+                  <td colspan="5" class="text-center py-4 text-muted">
+                    <i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading comments...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination Bar -->
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 pt-3" style="border-top: 1px solid var(--admin-border);">
+            <div id="commentsPaginationInfo" style="font-size: 13px; color: #888; margin-bottom: 10px; margin-bottom: md-0;">
+              Showing 0 to 0 of 0 comments
+            </div>
+            <div id="commentsPaginationContainer"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- --- BLOG EDIT/CREATE MODAL --- -->
+  <div class="modal fade" id="blogModal" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background:#0a0a0a; border: 1px solid var(--admin-gold); color: #fff;">
+
+        <!-- Modal Header -->
+        <div class="modal-header"
+          style="border-bottom: 1px solid var(--admin-border); padding: 16px 24px; flex-shrink: 0;">
+          <h5 class="modal-title" id="blogModalLabel"
+            style="color: var(--admin-gold); font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 1px;">Create
+            Blog Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Modal Body: two-column layout -->
+        <div class="modal-body" style="padding: 0 !important; background:#0a0a0a; flex: 1 1 auto; overflow: hidden;">
+          <form id="blogForm" style="height: 100%; display: flex; flex-direction: column;">
+            <input type="hidden" id="blogId">
+
+            <!-- Two-column flex row -->
+            <div style="display: flex; flex: 1 1 auto; overflow: hidden; min-height: 0;">
+
+              <!-- ── LEFT COLUMN: Title, Slug, Summary, Content ── -->
+              <div
+                style="flex: 0 0 62%; max-width: 62%; padding: 24px; overflow-y: auto; border-right: 1px solid var(--admin-border); scrollbar-width: thin; scrollbar-color: #d4af37 #111;">
+
+                <div class="form-group mb-3">
+                  <label for="blogTitle"
+                    style="color:#aaa; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Title *</label>
+                  <input type="text" class="form-control" id="blogTitle"
+                    placeholder="e.g. 10 Best Fragrance Choices for Indian Summer" required>
+                  <small class="form-text text-muted" style="font-size:0.7rem;">Required. Maximum 255
+                    characters.</small>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="blogSlug"
+                    style="color:#aaa; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">SEO Friendly
+                    Slug / URL *</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        style="background:#222; border:1px solid #333; color:#888; font-size:0.82rem;">/blogs/</span>
+                    </div>
+                    <input type="text" class="form-control" id="blogSlug" placeholder="automated-slug-from-title"
+                      required>
+                  </div>
+                  <small class="form-text text-muted" style="font-size:0.72rem;">Required. Only lowercase, numbers, and
+                    hyphens. Max 255 characters. Leave empty to auto-generate.</small>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="blogSummary"
+                    style="color:#aaa; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Summary / Short
+                    Description *</label>
+                  <textarea class="form-control" id="blogSummary" rows="3"
+                    placeholder="Enter a brief summary (under 500 characters) to show in listings..."
+                    required></textarea>
+                  <small class="form-text text-muted" style="font-size:0.7rem;">Required. Maximum 500
+                    characters.</small>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label style="color:#aaa; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Blog
+                    Content *</label>
+
+                  <!-- ── Editor Guide Note ── -->
+                  <div class="editor-guide-note">
+                    <div class="guide-title"><i class="ti-info-alt"></i> How to use the editor</div>
+                    <div style="display:flex; flex-wrap:wrap; gap:4px 2px; margin-bottom:6px;">
+                      <span class="guide-badge" title="Change heading size">H1–H4</span>
+                      <span class="guide-badge" title="Bold text"><b>B</b></span>
+                      <span class="guide-badge" title="Italic text"><i>I</i></span>
+                      <span class="guide-badge" title="Underline text">U</span>
+                      <span class="guide-badge" title="Strikethrough">S</span>
+                      <span class="guide-badge" title="Blockquote">&#8220;&#8220;</span>
+                      <span class="guide-badge" title="Code block">&lt;/&gt;</span>
+                      <span class="guide-badge" title="Ordered list">1.</span>
+                      <span class="guide-badge" title="Bullet list">•</span>
+                      <span class="guide-badge" title="Insert hyperlink">Link</span>
+                      <span class="guide-badge" title="Insert image via URL">Img</span>
+                      <span class="guide-badge" title="Remove formatting">Tx</span>
+                    </div>
+                    <div>
+                      <strong style="color:#bbb;">Tip:</strong> Hover any toolbar button to see its name.
+                      Use <span class="guide-badge">Img</span> to embed an image inside the article body by URL.
+                      To set the <em>thumbnail/cover</em> photo, use the <strong style="color:#d4af37;">Cover
+                        Image</strong> panel on the right &rarr;
+                    </div>
+                  </div>
+
+                  <div id="editor-container"></div>
+                  <input type="hidden" id="blogContent">
+                </div>
+
+              </div>
+              <!-- ── END LEFT COLUMN ── -->
+
+              <!-- ── RIGHT SIDEBAR: Publish Settings, Cover Image, SEO ── -->
+              <div
+                style="flex: 0 0 38%; max-width: 38%; padding: 20px; overflow-y: auto; background:#0d0d0d; scrollbar-width: thin; scrollbar-color: #d4af37 #111;">
+
+                <!-- Publish Settings Card -->
+                <div
+                  style="background:#111; border: 1px solid #333; border-radius:6px; padding:16px; margin-bottom:16px;">
+                  <div
+                    style="color:#d4af37; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; padding-bottom:10px; margin-bottom:14px; border-bottom:1px solid #333; display:flex; align-items:center; gap:7px;">
+                    <i class="ti-settings"></i> Publish Settings
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="blogAuthor" style="color:#aaa; font-size:11px; text-transform:uppercase;">Author</label>
+                    <input type="text" class="form-control" id="blogAuthor" value="I Rasa Perfumes"
+                      placeholder="Author name">
+                    <small class="form-text text-muted" style="font-size:0.7rem;">Optional. Maximum 100
+                      characters.</small>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="blogStatus" style="color:#aaa; font-size:11px; text-transform:uppercase;">Status</label>
+                    <select class="form-control" id="blogStatus">
+                      <option value="DRAFT">Draft</option>
+                      <option value="PUBLISHED">Published</option>
+                    </select>
+                    <small class="form-text text-warning mt-1 d-none" id="draftStatusWarning"
+                      style="font-size:0.7rem; line-height:1.25;">
+                      Note: Draft posts are hidden from the public site.
+                    </small>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="blogPublishStartDate"
+                      style="color:#aaa; font-size:11px; text-transform:uppercase;">Publish Start Date</label>
+                    <input type="datetime-local" class="form-control" id="blogPublishStartDate">
+                    <small class="form-text text-muted" style="font-size:0.7rem;">Defaults to current time. Scheduled
+                      publishing support.</small>
+                  </div>
+
+                  <div class="form-group mb-0">
+                    <label for="blogPublishEndDate"
+                      style="color:#aaa; font-size:11px; text-transform:uppercase;">Publish End Date</label>
+                    <input type="datetime-local" class="form-control" id="blogPublishEndDate">
+                    <small class="form-text text-muted" style="font-size:0.7rem;">Optional. Post automatically hides
+                      after this time.</small>
+                  </div>
+                </div>
+
+                <!-- Cover Image Card -->
+                <div
+                  style="background:#111; border: 1px solid #333; border-radius:6px; padding:16px; margin-bottom:16px;">
+                  <div
+                    style="color:#d4af37; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; padding-bottom:10px; margin-bottom:14px; border-bottom:1px solid #333; display:flex; align-items:center; gap:7px;">
+                    <i class="ti-image"></i> Cover Image
+                  </div>
+
+                  <!-- Upload Zone -->
+                  <div class="cover-upload-zone" id="coverUploadZone">
+                    <input class="form-control-file" type="file" id="imageUpload" accept="image/*">
+                    <div class="upload-icon"><i class="ti-cloud-up"></i></div>
+                    <span class="upload-label">Click or drag &amp; drop to upload</span>
+                    <span class="upload-label" style="font-size:0.65rem; color:#555; margin-top:2px;">JPG, PNG, WEBP
+                      &mdash; max 5MB</span>
+                  </div>
+
+                  <!-- Upload progress/status -->
+                  <div id="uploadStatus"
+                    style="display:none; font-size:0.72rem; margin-top:6px; color:#d4af37; text-align:center;"></div>
+
+                  <div class="upload-divider">or paste url</div>
+
+                  <div class="form-group mb-2">
+                    <input type="text" class="form-control form-control-sm" id="blogImageUrl"
+                      placeholder="https://example.com/cover.jpg" style="border-radius:5px;">
+                  </div>
+
+                  <div class="image-preview-container d-none" id="previewContainer" style="margin-top:8px;">
+                    <img id="imagePreview" src="" alt="Cover Image Preview">
+                  </div>
+                  <div id="previewActions" class="d-none" style="margin-top:6px; text-align:right;">
+                    <button type="button" id="btnClearCoverImage"
+                      style="background:none; border:none; color:#888; font-size:0.72rem; cursor:pointer; padding:0;"><i
+                        class="ti-trash" style="margin-right:3px;"></i>Remove image</button>
+                  </div>
+                </div>
+
+                <!-- SEO Card -->
+                <div style="background:#111; border: 1px solid #333; border-radius:6px; padding:16px;">
+                  <div
+                    style="color:#d4af37; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; padding-bottom:10px; margin-bottom:14px; border-bottom:1px solid #333; display:flex; align-items:center; gap:7px;">
+                    <i class="ti-search"></i> SEO Configuration
+                  </div>
+
+                  <div class="form-group mb-2">
+                    <label for="blogMetaTitle" style="color:#aaa; font-size:11px; text-transform:uppercase;">Meta
+                      Title</label>
+                    <input type="text" class="form-control form-control-sm" id="blogMetaTitle"
+                      placeholder="Custom meta title">
+                  </div>
+
+                  <div class="form-group mb-2">
+                    <label for="blogMetaDesc" style="color:#aaa; font-size:11px; text-transform:uppercase;">Meta
+                      Description</label>
+                    <textarea class="form-control form-control-sm" id="blogMetaDesc" rows="3"
+                      placeholder="SEO Description (150-160 chars)"></textarea>
+                  </div>
+
+                  <div class="form-group mb-0">
+                    <label for="blogKeywords"
+                      style="color:#aaa; font-size:11px; text-transform:uppercase;">Keywords</label>
+                    <input type="text" class="form-control form-control-sm" id="blogKeywords"
+                      placeholder="perfume, attar, scents">
+                  </div>
+                </div>
+
+              </div>
+              <!-- ── END RIGHT SIDEBAR ── -->
+
+            </div>
+            <!-- end two-column flex row -->
+
+          </form>
+        </div>
+        <!-- end modal-body -->
+
+        <!-- Modal Footer -->
+        <div class="modal-footer"
+          style="border-top: 1px solid var(--admin-border); background:#0a0a0a; flex-shrink: 0; padding: 12px 24px;">
+          <button type="button" class="admin-btn admin-btn-outline" data-dismiss="modal">Cancel</button>
+          <button type="button" class="admin-btn" id="btnSaveBlog">Save Post</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- --- COMMENT DETAILS MODAL --- -->
+  <div class="modal fade" id="viewCommentModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 620px;">
+      <div class="modal-content" style="background:#0e0e0e; border: 1px solid var(--admin-gold); color: #fff; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);">
+        <div class="modal-header" style="border-bottom: 1px solid var(--admin-border); padding: 16px 24px;">
+          <h5 class="modal-title" style="color: var(--admin-gold); font-family: 'Cinzel', serif; font-size: 1.05rem;">
+            <i class="ti-comment-alt mr-2"></i> Blog Comment Details
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 24px;">
+          <div class="d-flex align-items-center mb-3 pb-3" style="border-bottom: 1px solid #222;">
+            <div id="modalCommentAvatar" class="comment-avatar mr-3" style="width:48px; height:48px; font-size:18px;">U</div>
+            <div>
+              <h6 id="modalCommentName" style="color:#fff; margin-bottom:2px; font-weight:600; font-family:'Inter', sans-serif;">User Name</h6>
+              <div id="modalCommentEmail" style="color:#d4af37; font-size:12px;">user@example.com</div>
+              <div id="modalCommentDate" style="color:#777; font-size:11px; margin-top:2px;">Date</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label style="color:#888; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:4px;">Article</label>
+            <div id="modalCommentArticle" style="color:#e0e0e0; font-weight:500; font-size:14px; background:#161616; padding:10px 14px; border-radius:6px; border:1px solid #282828;">Article Title</div>
+          </div>
+
+          <div class="mb-3" id="modalCommentSubjectGroup">
+            <label style="color:#888; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:4px;">Subject</label>
+            <div id="modalCommentSubject" style="color:#d4af37; font-weight:600; font-size:14px; background:#161616; padding:10px 14px; border-radius:6px; border:1px solid #282828;">Subject text</div>
+          </div>
+
+          <div class="mb-3">
+            <label style="color:#888; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:4px;">Comment Message</label>
+            <div id="modalCommentText" style="color:#ccc; font-size:14px; line-height:1.6; background:#161616; padding:14px; border-radius:6px; border:1px solid #282828; white-space:pre-wrap; max-height:240px; overflow-y:auto;">Comment body text</div>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid var(--admin-border); padding: 12px 24px; justify-content: space-between;">
+          <button type="button" class="admin-btn admin-btn-outline" id="btnModalDeleteComment" style="color:#ff4d4d; border-color:#ff4d4d;">
+            <i class="ti-trash"></i> Delete Comment
+          </button>
+          <button type="button" class="admin-btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JQuery & Bootstrap 4 JS (local) -->
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Quill Editor JS -->
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
+
+  <!-- Auth Guard Integration -->
+  <script src="js/admin-alert.js"></script>
+  <script src="js/auth-guard.js"></script>
+
+  <script>
+    (function () {
+      // Logout handler utilizing AuthGuard helper
+      $('#sidebarLogoutBtn').on('click', function () {
+        if (typeof showConfirm === 'function') {
+          showConfirm('Are you sure you want to log out?', 'Confirm Logout').then((confirmed) => {
+            if (confirmed && typeof AuthGuard !== 'undefined' && typeof AuthGuard.logout === 'function') {
+              AuthGuard.logout();
+            }
+          });
+        } else {
+          Swal.fire({
+            title: 'Logout?',
+            text: 'Are you sure you want to end your session?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#D6483D',
+            cancelButtonColor: '#6B7280',
+            confirmButtonText: 'Yes, Logout'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              if (typeof AuthGuard !== 'undefined' && typeof AuthGuard.logout === 'function') {
+                AuthGuard.logout();
+              } else {
+                window.location.href = '/api/auth/logout';
+              }
+            }
+          });
+        }
+      });
+
+      // ── QUILL WYSIWYG EDITOR INITIALIZATION ──
+      const quill = new Quill('#editor-container', {
+        modules: {
+          toolbar: {
+            container: [
+              [{ header: [1, 2, 3, 4, false] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              ['blockquote', 'code-block'],
+              [{ list: 'ordered' }, { list: 'bullet' }],
+              ['link', 'image'],
+              ['clean']
+            ],
+            handlers: {
+              // Custom image handler — replaces ugly browser prompt()
+              image: function () {
+                Swal.fire({
+                  target: '#blogModal',
+                  title: '<span style="color:#d4af37; font-family:\'Cinzel\',serif; font-size:1rem; letter-spacing:1px; font-style:normal;">Insert Image into Article</span>',
+                  html: `
+                    <div style="text-align:left; font-size:0.82rem; color:#aaa; margin-bottom:12px;">
+                      This inserts an image <strong style="color:#fff;">inside the article body</strong>.<br>
+                      <span style="color:#888; font-size:0.75rem;">To set the thumbnail/cover photo, use the Cover Image panel on the right.</span>
+                    </div>
+                    <input id="swal-img-url" type="text" class="swal2-input" placeholder="https://example.com/image.jpg" style="background:#1a1a1a; border:1px solid #444; color:#fff; border-radius:6px; font-size:0.85rem;">
+                    <div style="display:flex; align-items:center; gap:8px; margin:10px 0; color:#555; font-size:0.72rem;">
+                      <div style="flex:1; height:1px; background:#333;"></div> OR UPLOAD FILE <div style="flex:1; height:1px; background:#333;"></div>
+                    </div>
+                    <label for="swal-img-file" style="display:flex; align-items:center; justify-content:center; gap:8px; border:2px dashed #444; border-radius:6px; padding:10px; cursor:pointer; color:#888; font-size:0.78rem; background:#111;" onmouseover="this.style.borderColor='#d4af37'; this.style.color='#d4af37'" onmouseout="this.style.borderColor='#444'; this.style.color='#888'">
+                      <i class="ti-cloud-up" style="font-size:1rem;"></i> Click to upload an image file
+                    </label>
+                    <input id="swal-img-file" type="file" accept="image/*" style="display:none;">
+                    <div id="swal-img-preview" style="display:none; margin-top:10px; text-align:center;">
+                      <img id="swal-preview-img" src="" style="max-height:100px; max-width:100%; border-radius:4px; border:1px solid #444;">
+                      <div id="swal-preview-name" style="color:#888; font-size:0.72rem; margin-top:4px;"></div>
+                    </div>
+                  `,
+                  background: '#0d0d0d',
+                  color: '#fff',
+                  showCancelButton: true,
+                  confirmButtonText: 'Insert',
+                  cancelButtonText: 'Cancel',
+                  confirmButtonColor: '#d4af37',
+                  cancelButtonColor: '#333',
+                  focusConfirm: false,
+                  customClass: { popup: 'swal-img-modal' },
+                  didOpen: () => {
+                    document.getElementById('swal-img-file').addEventListener('change', function () {
+                      const file = this.files[0];
+                      if (!file) return;
+                      document.getElementById('swal-preview-name').textContent = file.name;
+                      const reader = new FileReader();
+                      reader.onload = e => {
+                        document.getElementById('swal-preview-img').src = e.target.result;
+                        document.getElementById('swal-img-preview').style.display = 'block';
+                        document.getElementById('swal-img-url').value = '';
+                      };
+                      reader.readAsDataURL(file);
+                    });
+                  },
+                  preConfirm: () => {
+                    const url = document.getElementById('swal-img-url').value.trim();
+                    const file = document.getElementById('swal-img-file').files[0];
+                    const prevSrc = document.getElementById('swal-preview-img').src;
+                    if (url) return Promise.resolve({ type: 'url', value: url });
+                    if (file && prevSrc) return Promise.resolve({ type: 'dataurl', value: prevSrc });
+                    Swal.showValidationMessage('Please enter an image URL or upload a file.');
+                    return false;
+                  }
+                }).then(result => {
+                  if (result.isConfirmed && result.value) {
+                    quill.focus();
+                    const range = quill.getSelection() || { index: quill.getLength() - 1, length: 0 };
+                    quill.insertEmbed(range.index, 'image', result.value.value, 'user');
+                    quill.setSelection(range.index + 1, 'silent');
+                  }
+                });
+              }
+
+            }
+          }
+
+        },
+        placeholder: 'Compose your insightful blog article here...',
+        theme: 'snow'
+      });
+
+      // ── Add title attributes to toolbar buttons for tooltip badges ──
+      (function addQuillTooltips() {
+        const tooltips = {
+          'ql-bold': 'Bold',
+          'ql-italic': 'Italic',
+          'ql-underline': 'Underline',
+          'ql-strike': 'Strikethrough',
+          'ql-blockquote': 'Blockquote',
+          'ql-code-block': 'Code Block',
+          'ql-list[value="ordered"]': 'Ordered List',
+          'ql-list[value="bullet"]': 'Bullet List',
+          'ql-link': 'Insert Link',
+          'ql-image': 'Insert Image',
+          'ql-clean': 'Remove Formatting',
+          'ql-header': 'Heading'
+        };
+        Object.entries(tooltips).forEach(([selector, label]) => {
+          const btn = document.querySelector(`.ql-toolbar .${selector}`);
+          if (btn) btn.setAttribute('title', label);
+        });
+        // Header picker special
+        const headerPicker = document.querySelector('.ql-toolbar .ql-header');
+        if (headerPicker) headerPicker.setAttribute('title', 'Heading Style');
+      })();
+
+      //.ql-tooltip uses position:fixed to escape modal overflow:hidden ──
+      // Without this, the link tooltip is clipped by the modal's overflow containers
+      (function fixQuillTooltipOverflow() {
+        // Watch for the tooltip being shown and reposition it as fixed
+        const editorRoot = document.querySelector('#editor-container');
+        if (!editorRoot) return;
+        const observer = new MutationObserver(() => {
+          const tooltip = document.querySelector('.ql-tooltip');
+          if (!tooltip) return;
+          // Get the editor's bounding rect to anchor the tooltip near it
+          const editorRect = editorRoot.getBoundingClientRect();
+          // Only re-apply fixed positioning if not already done
+          if (tooltip.style.position !== 'fixed') {
+            const origTop = parseInt(tooltip.style.top) || 0;
+            const origLeft = parseInt(tooltip.style.left) || 0;
+            // Convert absolute position within editor to viewport-fixed position
+            tooltip.style.position = 'fixed';
+            tooltip.style.top = Math.max(10, editorRect.top + 40) + 'px';
+            tooltip.style.left = Math.max(10, editorRect.left + 10) + 'px';
+            tooltip.style.zIndex = '999999';
+          }
+        });
+        observer.observe(editorRoot, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
+      })();
+
+      // ── DATA CONTROLS & PAGINATION ──
+      let currentTab = 'articles';
+      let currentPage = 0; // 0-indexed for Spring backend
+      let totalPages = 1;
+      let limit = 25;
+      let blogsList = [];
+      let totalElements = 0;
+
+      // Comments State
+      let commentsPage = 0;
+      let commentsLimit = 10;
+      let commentsTotalPages = 1;
+      let commentsTotalElements = 0;
+      let commentsList = [];
+      let allBlogsCache = [];
+
+      const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? `http://${window.location.hostname}:8080/api/admin/blogs`
+        : '/api/admin/blogs';
+
+      // ── TAB SWITCHING HANDLER ──
+      window.switchBlogTab = function (tab) {
+        currentTab = tab;
+        if (tab === 'comments') {
+          $('#tabBtnArticles').removeClass('active');
+          $('#tabBtnComments').addClass('active');
+          $('#viewArticlesSection').hide();
+          $('#viewCommentsSection').fadeIn(150);
+          window.location.hash = 'comments';
+          fetchComments(0);
+          fetchCommentStats();
+          populateBlogFilterDropdown();
+        } else {
+          $('#tabBtnComments').removeClass('active');
+          $('#tabBtnArticles').addClass('active');
+          $('#viewCommentsSection').hide();
+          $('#viewArticlesSection').fadeIn(150);
+          window.location.hash = 'articles';
+          fetchBlogs();
+          fetchStats();
+        }
+      };
+
+      // Helper to jump directly from an article's comment count badge to the comments tab
+      window.filterCommentsByBlog = function (blogId) {
+        window.switchBlogTab('comments');
+        $('#commentBlogFilter').val(blogId);
+        fetchComments(0);
+      };
+
+      // ── 1. BLOG ARTICLES FUNCTIONS ──
+
+      // Fetch and render article stats
+      function fetchStats() {
+        $.ajax({
+          url: `${API_BASE}?page=0&size=1000`,
+          type: 'GET',
+          xhrFields: { withCredentials: true },
+          dataType: 'json',
+          success: function (data) {
+            const list = data.content || [];
+            const total = list.length;
+            const published = list.filter(b => b.status === 'PUBLISHED').length;
+            const drafts = total - published;
+
+            $('#statTotalBlogs').text(total);
+            $('#statPublishedBlogs').text(published);
+            $('#statDraftBlogs').text(drafts);
+            $('#tabBadgeArticles').text(total);
+          },
+          error: function () {
+            console.error('Could not fetch blog statistics.');
+          }
+        });
+      }
+
+      // Fetch dynamic blogs with filters & pagination
+      function fetchBlogs() {
+        limit = parseInt($('#blogPageSizeSelect').val()) || 25;
+        const search = $('#blogSearchInput').val().trim();
+        const status = $('#blogStatusFilter').val();
+
+        let url = `${API_BASE}?page=${currentPage}&size=${limit}`;
+        if (search) url += `&search=${encodeURIComponent(search)}`;
+        if (status && status !== 'ALL') url += `&status=${encodeURIComponent(status)}`;
+
+        $.ajax({
+          url: url,
+          type: 'GET',
+          xhrFields: { withCredentials: true },
+          dataType: 'json',
+          success: function (data) {
+            blogsList = data.content || [];
+            totalElements = data.totalElements;
+            totalPages = data.totalPages;
+            renderBlogsTable(data);
+          },
+          error: function () {
+            $('#blogsTableBody').html('<tr><td colspan="8" class="text-center py-4 text-danger"><i class="ti-close mr-1"></i> Failed to retrieve blog records from database.</td></tr>');
+          }
+        });
+      }
+
+      function renderBlogsTable(data) {
+        const $tbody = $('#blogsTableBody');
+        $tbody.empty();
+
+        if (blogsList.length === 0) {
+          $tbody.append('<tr><td colspan="8" class="text-center py-5 text-muted"><i class="ti-info-alt" style="font-size:1.5rem; color:var(--admin-gold);"></i><br>No blog articles found. Click "Create New Blog" to get started!</td></tr>');
+          renderPagination(0);
+          return;
+        }
+
+        blogsList.forEach(blog => {
+          const statusClass = blog.status === 'PUBLISHED' ? 'badge-success' : 'badge-warning';
+
+          const formattedDate = blog.publishStartDate
+            ? new Date(blog.publishStartDate).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
+            : '<span class="text-muted italic">Not Set</span>';
+
+          const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? `http://${window.location.hostname}:8080`
+            : '';
+          let coverImageUrl = blog.imageUrl || '';
+          if (coverImageUrl && !coverImageUrl.startsWith('http')) {
+            coverImageUrl = baseUrl + coverImageUrl;
+          }
+
+          const coverImage = coverImageUrl
+            ? `<img src="${coverImageUrl}" alt="Cover" style="width: 50px; height: 35px; object-fit: cover; border-radius:4px; border:1px solid var(--admin-border);">`
+            : `<div class="d-flex align-items-center justify-content-center text-muted" style="width: 50px; height: 35px; background:var(--admin-surface-light); border-radius:4px; border: 1px solid var(--admin-border);"><i class="ti-image" style="font-size:0.8rem;"></i></div>`;
+
+          const previewUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? `single-blog.html?slug=${blog.slug}`
+            : `/blogs/${blog.slug}`;
+
+          const commentCount = blog.commentCount || 0;
+          const commentBadge = `
+            <span class="badge ${commentCount > 0 ? 'badge-warning' : 'badge-secondary'}"
+              style="cursor:pointer; padding:5px 10px; font-size:11px; border-radius:10px; transition:all 0.2s;"
+              onclick="window.filterCommentsByBlog(${blog.id})"
+              title="Click to view comments for this article"
+              onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+              <i class="ti-comments mr-1"></i> ${commentCount}
+            </span>
+          `;
+
+          const row = `
+            <tr>
+              <td>${coverImage}</td>
+              <td><strong>${escapeHtml(blog.title)}</strong></td>
+              <td><code style="font-size: 0.76rem; color:#d4af37;">/blogs/${escapeHtml(blog.slug)}</code></td>
+              <td>${escapeHtml(blog.author || 'I Rasa Perfumes')}</td>
+              <td style="text-align:center;">${commentBadge}</td>
+              <td><span class="badge-status ${statusClass}">${blog.status}</span></td>
+              <td><span style="font-size:12px; color:#aaa;">${formattedDate}</span></td>
+              <td style="white-space:nowrap; text-align: center;">
+                <button class="admin-btn admin-btn-sm btnEditBlog" data-id="${blog.id}" title="Edit" style="background:rgba(52,152,219,0.1); color:#3498db; border:1px solid #3498db; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0 4px 0 0; transition:all 0.2s;" onmouseover="this.style.background='rgba(52,152,219,0.2)'" onmouseout="this.style.background='rgba(52,152,219,0.1)'">
+                  <i class="ti-pencil"></i>
+                </button>
+                <a href="${previewUrl}" target="_blank" class="admin-btn admin-btn-sm" title="Preview" style="background:rgba(212,175,55,0.1); color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0 4px 0 0; transition:all 0.2s; text-decoration:none;" onmouseover="this.style.background='rgba(212,175,55,0.2)'" onmouseout="this.style.background='rgba(212,175,55,0.1)'">
+                  <i class="ti-eye"></i>
+                </a>
+                <button class="admin-btn admin-btn-sm btnDeleteBlog" data-id="${blog.id}" data-title="${blog.title}" title="Delete" style="background:rgba(255,77,77,0.1); color:#ff4d4d; border:1px solid #ff4d4d; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,77,77,0.2)'" onmouseout="this.style.background='rgba(255,77,77,0.1)'">
+                  <i class="ti-trash"></i>
+                </button>
+              </td>
+            </tr>
+          `;
+          $tbody.append(row);
+        });
+
+        renderPagination(totalPages);
+      }
+
+      function renderPagination(totalPages) {
+        const paginationContainer = document.getElementById('paginationContainer');
+        paginationContainer.innerHTML = '';
+
+        if (totalPages <= 1) return;
+
+        let pagHtml = `<div class="d-flex justify-content-center mt-3" style="gap:5px;">`;
+
+        // Prev button
+        if (currentPage > 0) {
+          pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" id="btnPrevPage">Prev</button>`;
+        }
+
+        // Numbers
+        for (let i = 0; i < totalPages; i++) {
+          const activeStyle = i === currentPage ? 'background:#d4af37; color:#000;' : '';
+          pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline btn-page-number" style="${activeStyle}" data-page="${i}">${i + 1}</button>`;
+        }
+
+        // Next button
+        if (currentPage < totalPages - 1) {
+          pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" id="btnNextPage">Next</button>`;
+        }
+
+        pagHtml += `</div>`;
+        paginationContainer.innerHTML = pagHtml;
+
+        // Bind clicks
+        $('#btnPrevPage').on('click', function () {
+          if (currentPage > 0) {
+            currentPage--;
+            fetchBlogs();
+          }
+        });
+
+        $('#btnNextPage').on('click', function () {
+          if (currentPage < totalPages - 1) {
+            currentPage++;
+            fetchBlogs();
+          }
+        });
+
+        $('.btn-page-number').on('click', function () {
+          currentPage = parseInt($(this).data('page'));
+          fetchBlogs();
+        });
+      }
+
+      // ── 2. BLOG COMMENTS MANAGEMENT FUNCTIONS ──
+
+      // Fetch comments overview statistics
+      function fetchCommentStats() {
+        $.ajax({
+          url: `${API_BASE}/comments/stats`,
+          type: 'GET',
+          xhrFields: { withCredentials: true },
+          dataType: 'json',
+          success: function (res) {
+            if (res && res.success && res.data) {
+              const stats = res.data;
+              const total = stats.totalComments || 0;
+              const today = stats.todayComments || 0;
+
+              $('#statTotalComments').text(total);
+              $('#statTotalCommentsArticleTab').text(total);
+              $('#statTodayComments').text(today);
+              $('#tabBadgeComments').text(total);
+            }
+          },
+          error: function () {
+            console.error('Could not fetch blog comments statistics.');
+          }
+        });
+      }
+
+      // Populate blogs dropdown for filtering comments
+      function populateBlogFilterDropdown() {
+        $.ajax({
+          url: `${API_BASE}?page=0&size=500`,
+          type: 'GET',
+          xhrFields: { withCredentials: true },
+          dataType: 'json',
+          success: function (data) {
+            allBlogsCache = data.content || [];
+            const $dropdown = $('#commentBlogFilter');
+            const currentVal = $dropdown.val();
+            $dropdown.empty();
+            $dropdown.append('<option value="">All Blog Articles</option>');
+            allBlogsCache.forEach(b => {
+              $dropdown.append(`<option value="${b.id}">${escapeHtml(b.title)}</option>`);
+            });
+            if (currentVal) {
+              $dropdown.val(currentVal);
+            }
+          },
+          error: function () {
+            console.error('Could not load blog list for comments filter.');
+          }
+        });
+      }
+
+      // Fetch comments with server-side pagination, search, and article filter
+      function fetchComments(page = 0) {
+        commentsPage = page;
+        commentsLimit = parseInt($('#commentPageSizeSelect').val()) || 10;
+        const search = $('#commentSearchInput').val().trim();
+        const blogId = $('#commentBlogFilter').val();
+
+        // Update active filter card label
+        if (blogId) {
+          const selectedBlog = allBlogsCache.find(b => String(b.id) === String(blogId));
+          $('#statArticlesFilterLabel').text(selectedBlog ? (selectedBlog.title.length > 22 ? selectedBlog.title.substring(0, 22) + '...' : selectedBlog.title) : 'Filtered Article');
+        } else {
+          $('#statArticlesFilterLabel').text('All Articles');
+        }
+
+        let url = `${API_BASE}/comments?page=${commentsPage}&size=${commentsLimit}`;
+        if (search) url += `&search=${encodeURIComponent(search)}`;
+        if (blogId) url += `&blogId=${encodeURIComponent(blogId)}`;
+
+        $('#commentsTableBody').html('<tr><td colspan="5" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin" style="color:#d4af37;"></i> Loading comments...</td></tr>');
+
+        $.ajax({
+          url: url,
+          type: 'GET',
+          xhrFields: { withCredentials: true },
+          dataType: 'json',
+          success: function (data) {
+            commentsList = data.content || [];
+            commentsTotalElements = data.totalElements !== undefined ? data.totalElements : commentsList.length;
+            commentsTotalPages = data.totalPages !== undefined ? data.totalPages : 1;
+            renderCommentsTable(data);
+            renderCommentsPagination(data);
+          },
+          error: function () {
+            $('#commentsTableBody').html('<tr><td colspan="5" class="text-center py-4 text-danger"><i class="ti-close mr-1"></i> Failed to retrieve comments from database.</td></tr>');
+            $('#commentsPaginationContainer').empty();
+            $('#commentsPaginationInfo').text('Showing 0 to 0 of 0 comments');
+          }
+        });
+      }
+
+      function renderCommentsTable(data) {
+        const $tbody = $('#commentsTableBody');
+        $tbody.empty();
+
+        if (commentsList.length === 0) {
+          $tbody.append('<tr><td colspan="5" class="text-center py-5 text-muted"><i class="ti-comments" style="font-size:1.8rem; color:var(--admin-gold);"></i><br><span class="mt-2 d-inline-block">No blog comments found matching your query or filters.</span></td></tr>');
+          return;
+        }
+
+        commentsList.forEach(comment => {
+          const commenterName = comment.name || 'Anonymous';
+          const initial = commenterName.charAt(0).toUpperCase();
+          const blogTitle = comment.blog ? comment.blog.title : 'Blog Article';
+          const blogSlug = comment.blog ? comment.blog.slug : '';
+          const previewUrl = blogSlug
+            ? (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `single-blog.html?slug=${blogSlug}` : `/blogs/${blogSlug}`)
+            : 'javascript:void(0);';
+
+          const formattedDate = comment.createdAt
+            ? new Date(comment.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+            : '<span class="text-muted italic">N/A</span>';
+
+          const subjectHtml = comment.subject
+            ? `<div style="font-weight:600; color:#d4af37; font-size:13px; margin-bottom:3px;">${escapeHtml(comment.subject)}</div>`
+            : '';
+
+          const row = `
+            <tr>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="comment-avatar mr-2">${initial}</div>
+                  <div>
+                    <strong style="color:#ffffff; font-size:13px;">${escapeHtml(commenterName)}</strong>
+                    <div style="color:#888; font-size:11px; margin-top:1px;">${escapeHtml(comment.email || 'No email')}</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <a href="${previewUrl}" target="_blank" style="color:#e0e0e0; font-size:13px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:5px;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#e0e0e0'">
+                  <i class="ti-bookmark" style="color:#d4af37; font-size:11px;"></i> ${escapeHtml(blogTitle)}
+                </a>
+              </td>
+              <td>
+                ${subjectHtml}
+                <div class="comment-preview-text" title="${escapeHtml(comment.comment)}">${escapeHtml(comment.comment)}</div>
+              </td>
+              <td><span style="font-size:12px; color:#aaa;">${formattedDate}</span></td>
+              <td style="white-space:nowrap; text-align: center;">
+                <button class="admin-btn admin-btn-sm btnViewComment" data-id="${comment.id}" title="View Details" style="background:rgba(52,152,219,0.1); color:#3498db; border:1px solid #3498db; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0 4px 0 0; transition:all 0.2s;" onmouseover="this.style.background='rgba(52,152,219,0.2)'" onmouseout="this.style.background='rgba(52,152,219,0.1)'">
+                  <i class="ti-eye"></i>
+                </button>
+                <button class="admin-btn admin-btn-sm btnDeleteComment" data-id="${comment.id}" data-name="${escapeHtml(commenterName)}" title="Delete" style="background:rgba(255,77,77,0.1); color:#ff4d4d; border:1px solid #ff4d4d; border-radius:4px; padding:4px 10px; font-size:12px; display:inline-flex; align-items:center; justify-content:center; margin:0; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,77,77,0.2)'" onmouseout="this.style.background='rgba(255,77,77,0.1)'">
+                  <i class="ti-trash"></i>
+                </button>
+              </td>
+            </tr>
+          `;
+          $tbody.append(row);
+        });
+      }
+
+      function renderCommentsPagination(data) {
+        const paginationContainer = document.getElementById('commentsPaginationContainer');
+        const infoContainer = document.getElementById('commentsPaginationInfo');
+        paginationContainer.innerHTML = '';
+
+        const total = commentsTotalElements;
+        const start = total === 0 ? 0 : commentsPage * commentsLimit + 1;
+        const end = Math.min((commentsPage + 1) * commentsLimit, total);
+        if (infoContainer) {
+          infoContainer.textContent = `Showing ${start} to ${end} of ${total} comments`;
+        }
+
+        if (commentsTotalPages <= 1) return;
+
+        let pagHtml = `<div class="d-flex justify-content-center" style="gap:5px;">`;
+
+        // Prev button
+        if (commentsPage > 0) {
+          pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" id="btnPrevCommentPage">Prev</button>`;
+        }
+
+        // Numbers
+        for (let i = 0; i < commentsTotalPages; i++) {
+          const activeStyle = i === commentsPage ? 'background:#d4af37; color:#000;' : '';
+          pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline btn-comment-page-number" style="${activeStyle}" data-page="${i}">${String(i + 1).padStart(2, '0')}</button>`;
+        }
+
+        // Next button
+        if (commentsPage < commentsTotalPages - 1) {
+          pagHtml += `<button class="admin-btn admin-btn-sm admin-btn-outline" id="btnNextCommentPage">Next</button>`;
+        }
+
+        pagHtml += `</div>`;
+        paginationContainer.innerHTML = pagHtml;
+
+        $('#btnPrevCommentPage').on('click', function () {
+          if (commentsPage > 0) {
+            fetchComments(commentsPage - 1);
+          }
+        });
+
+        $('#btnNextCommentPage').on('click', function () {
+          if (commentsPage < commentsTotalPages - 1) {
+            fetchComments(commentsPage + 1);
+          }
+        });
+
+        $('.btn-comment-page-number').on('click', function () {
+          fetchComments(parseInt($(this).data('page')));
+        });
+      }
+
+      function showCommentModal(id) {
+        const comment = commentsList.find(c => String(c.id) === String(id));
+        if (!comment) return;
+
+        const commenterName = comment.name || 'Anonymous';
+        $('#modalCommentName').text(commenterName);
+        $('#modalCommentEmail').text(comment.email || 'N/A');
+        $('#modalCommentAvatar').text(commenterName.charAt(0).toUpperCase());
+
+        const formattedDate = comment.createdAt
+          ? new Date(comment.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+          : 'N/A';
+        $('#modalCommentDate').text(formattedDate);
+
+        const blogTitle = comment.blog ? comment.blog.title : 'Blog Article';
+        const blogSlug = comment.blog ? comment.blog.slug : '';
+        const previewUrl = blogSlug
+          ? (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `single-blog.html?slug=${blogSlug}` : `/blogs/${blogSlug}`)
+          : '#';
+        $('#modalCommentArticle').html(`<a href="${previewUrl}" target="_blank" style="color:#d4af37; text-decoration:none;"><i class="ti-link mr-1"></i> ${escapeHtml(blogTitle)}</a>`);
+
+        if (comment.subject) {
+          $('#modalCommentSubjectGroup').show();
+          $('#modalCommentSubject').text(comment.subject);
+        } else {
+          $('#modalCommentSubjectGroup').hide();
+        }
+
+        $('#modalCommentText').text(comment.comment || '');
+        $('#btnModalDeleteComment').data('id', comment.id).data('name', commenterName);
+
+        $('#viewCommentModal').modal('show');
+      }
+
+      function deleteCommentAction(id, name) {
+        const isModalOpen = $('#viewCommentModal').hasClass('show');
+        Swal.fire({
+          target: isModalOpen ? '#viewCommentModal' : 'body',
+          title: 'Delete Comment?',
+          html: `Are you sure you want to delete comment from <strong>"${escapeHtml(name)}"</strong>?<br>This action cannot be undone.`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#D6483D',
+          cancelButtonColor: '#6B7280',
+          confirmButtonText: 'Yes, Delete Comment'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: `${API_BASE}/comments/${id}`,
+              type: 'DELETE',
+              xhrFields: { withCredentials: true },
+              dataType: 'json',
+              success: function (res) {
+                if (res.success) {
+                  $('#viewCommentModal').modal('hide');
+                  Swal.fire({ icon: 'success', title: 'Deleted', text: 'Comment deleted successfully!', timer: 1500, showConfirmButton: false });
+                  fetchComments(commentsPage);
+                  fetchCommentStats();
+                } else {
+                  logError(res.message);
+                }
+              },
+              error: function () {
+                logError('Could not process delete comment request.');
+              }
+            });
+          }
+        });
+      }
+
+      // Helper function to escape HTML tags in JSON outputs
+      function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+      }
+
+      function logError(msg) {
+        const isBlogModalOpen = $('#blogModal').hasClass('show');
+        const isCommentModalOpen = $('#viewCommentModal').hasClass('show');
+        const target = isBlogModalOpen ? '#blogModal' : (isCommentModalOpen ? '#viewCommentModal' : 'body');
+        Swal.fire({
+          target: target,
+          icon: 'error',
+          title: 'Action Failed',
+          text: msg
+        });
+      }
+
+      // Auto-slugify input title
+      function slugify(text) {
+        return text.toString().toLowerCase()
+          .replace(/\s+/g, '-')           // Replace spaces with -
+          .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+          .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+          .replace(/^-+/, '')             // Trim - from start
+          .replace(/-+$/, '');            // Trim - from end
+      }
+
+      // Live slug input generator helper
+      $('#blogTitle').on('input', function () {
+        if (!$('#blogId').val()) { // Only auto-slugify for new entries
+          $('#blogSlug').val(slugify($(this).val()));
+        }
+      });
+
+      $('#blogSlug').on('blur', function () {
+        $(this).val(slugify($(this).val()));
+      });
+
+      // Cover image link preview handler
+      function showCoverPreview(src) {
+        let fullSrc = src;
+        const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? `http://${window.location.hostname}:8080`
+          : '';
+        if (fullSrc && !fullSrc.startsWith('http') && !fullSrc.startsWith('data:')) {
+          fullSrc = baseUrl + fullSrc;
+        }
+        $('#imagePreview').attr('src', fullSrc);
+        $('#previewContainer').removeClass('d-none');
+        $('#previewActions').removeClass('d-none');
+      }
+      function clearCoverPreview() {
+        $('#imagePreview').attr('src', '');
+        $('#previewContainer').addClass('d-none');
+        $('#previewActions').addClass('d-none');
+        $('#blogImageUrl').val('');
+        $('#imageUpload').val('');
+        $('#uploadStatus').hide().text('');
+      }
+
+      $('#blogImageUrl').on('input', function () {
+        const val = $(this).val().trim();
+        if (val) { showCoverPreview(val); } else { clearCoverPreview(); }
+      });
+
+      // Remove image button
+      $(document).on('click', '#btnClearCoverImage', function () { clearCoverPreview(); });
+
+      // Drag & drop on upload zone
+      const zone = document.getElementById('coverUploadZone');
+      if (zone) {
+        zone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          zone.style.borderColor = '#d4af37';
+          zone.style.background = 'rgba(212,175,55,0.06)';
+        });
+        zone.addEventListener('dragleave', () => {
+          zone.style.borderColor = '#444';
+          zone.style.background = '#0d0d0d';
+        });
+        zone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          zone.style.borderColor = '#444';
+          zone.style.background = '#0d0d0d';
+          const file = e.dataTransfer.files[0];
+          if (file && file.type.startsWith('image/')) {
+            $('#imageUpload')[0].files = e.dataTransfer.files;
+            $('#imageUpload').trigger('change');
+          }
+        });
+      }
+
+      // Show/hide status warning note dynamically
+      $('#blogStatus').on('change', function () {
+        if ($(this).val() === 'DRAFT') {
+          $('#draftStatusWarning').removeClass('d-none');
+        } else {
+          $('#draftStatusWarning').addClass('d-none');
+        }
+      });
+
+      // Dynamic cover image upload via AJAX
+      $('#imageUpload').on('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        if (file.size > 5 * 1024 * 1024) {
+          logError('Image too large. Please upload a file under 5MB.');
+          return;
+        }
+
+        $('#uploadStatus').show().html('<i class="ti-reload" style="margin-right:4px;"></i> Uploading...');
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        $.ajax({
+          url: `${API_BASE}/upload-image`,
+          type: 'POST',
+          dataType: 'json',
+          xhrFields: { withCredentials: true },
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (res) {
+            if (res.success) {
+              $('#blogImageUrl').val(res.url);
+              showCoverPreview(res.url);
+              $('#uploadStatus').html('<i class="ti-check" style="margin-right:4px; color:#25d366;"></i><span style="color:#25d366;">Uploaded successfully</span>').fadeOut(3000);
+            } else {
+              $('#uploadStatus').hide();
+              logError(res.message || 'Image upload failed.');
+            }
+          },
+          error: function (xhr) {
+            $('#uploadStatus').hide();
+            let errMsg = 'Server failed to handle image. Max size is 5MB.';
+            try { const e = JSON.parse(xhr.responseText); if (e.message) errMsg = e.message; } catch (e) { }
+            logError(errMsg);
+          }
+        });
+      });
+
+      // Create new blog trigger
+      $('#btnNewBlog').on('click', function () {
+        $('#blogId').val('');
+        $('#blogForm')[0].reset();
+        quill.setContents([]);
+        clearCoverPreview();
+
+        const now = new Date();
+        const offset = now.getTimezoneOffset() * 60000;
+        const localISOTime = (new Date(now - offset)).toISOString().slice(0, 16);
+        $('#blogPublishStartDate').val(localISOTime);
+        $('#blogPublishEndDate').val('');
+
+        $('#blogStatus').val('DRAFT').trigger('change');
+        $('#blogModalLabel').text('Create New Blog Post');
+        $('#blogModal').modal('show');
+      });
+
+      // Edit blog trigger
+      $('#blogsTableBody').on('click', '.btnEditBlog', function () {
+        const id = $(this).data('id');
+
+        Swal.fire({
+          title: 'Loading details...',
+          allowOutsideClick: false,
+          didOpen: () => { Swal.showLoading(); }
+        });
+
+        $.ajax({
+          url: `${API_BASE}/${id}`,
+          type: 'GET',
+          xhrFields: { withCredentials: true },
+          dataType: 'json',
+          success: function (blog) {
+            Swal.close();
+            $('#blogId').val(blog.id);
+            $('#blogTitle').val(blog.title);
+            $('#blogSlug').val(blog.slug);
+            $('#blogSummary').val(blog.summary);
+
+            quill.clipboard.dangerouslyPasteHTML(blog.content);
+
+            $('#blogImageUrl').val(blog.imageUrl || '');
+            if (blog.imageUrl) {
+              showCoverPreview(blog.imageUrl);
+            } else {
+              clearCoverPreview();
+            }
+
+            $('#blogAuthor').val(blog.author || 'I Rasa Perfumes');
+            $('#blogStatus').val(blog.status || 'DRAFT').trigger('change');
+
+            $('#blogPublishStartDate').val(blog.publishStartDate ? blog.publishStartDate.substring(0, 16) : '');
+            $('#blogPublishEndDate').val(blog.publishEndDate ? blog.publishEndDate.substring(0, 16) : '');
+
+            $('#blogMetaTitle').val(blog.metaTitle || '');
+            $('#blogMetaDesc').val(blog.metaDescription || '');
+            $('#blogKeywords').val(blog.keywords || '');
+
+            $('#blogModalLabel').text('Edit Blog Post');
+            $('#blogModal').modal('show');
+          },
+          error: function () {
+            Swal.close();
+            logError('Could not fetch blog post details from DB.');
+          }
+        });
+      });
+
+      // Save blog (POST/PUT)
+      $('#btnSaveBlog').on('click', function () {
+        const id = $('#blogId').val();
+        const title = $('#blogTitle').val().trim();
+        const slug = $('#blogSlug').val().trim();
+        const summary = $('#blogSummary').val().trim();
+
+        const content = quill.getSemanticHTML();
+        if (quill.getText().trim().length === 0) {
+          logError('Please write some content inside the editor.');
+          return;
+        }
+
+        if (!title || !summary) {
+          logError('Please fill out all required fields marked with *');
+          return;
+        }
+
+        const payload = {
+          title: title,
+          slug: slug,
+          summary: summary,
+          content: content,
+          imageUrl: $('#blogImageUrl').val().trim(),
+          author: $('#blogAuthor').val().trim(),
+          status: $('#blogStatus').val(),
+          metaTitle: $('#blogMetaTitle').val().trim(),
+          metaDescription: $('#blogMetaDesc').val().trim(),
+          keywords: $('#blogKeywords').val().trim(),
+          publishStartDate: $('#blogPublishStartDate').val() ? $('#blogPublishStartDate').val() : null,
+          publishEndDate: $('#blogPublishEndDate').val() ? $('#blogPublishEndDate').val() : null
+        };
+
+        const isEdit = !!id;
+        const apiUrl = isEdit ? `${API_BASE}/${id}` : API_BASE;
+        const method = isEdit ? 'PUT' : 'POST';
+
+        Swal.fire({
+          target: '#blogModal',
+          title: 'Saving blog post...',
+          allowOutsideClick: false,
+          didOpen: () => { Swal.showLoading(); }
+        });
+
+        $.ajax({
+          url: apiUrl,
+          type: method,
+          contentType: 'application/json',
+          dataType: 'json',
+          xhrFields: { withCredentials: true },
+          data: JSON.stringify(payload),
+          success: function (res) {
+            Swal.close();
+            if (res.success) {
+              Swal.fire({
+                target: '#blogModal',
+                icon: 'success',
+                title: isEdit ? 'Article Updated' : 'Article Created',
+                text: res.message,
+                timer: 2000,
+                showConfirmButton: false
+              });
+              $('#blogModal').modal('hide');
+              fetchBlogs();
+              fetchStats();
+            } else {
+              logError(res.message || 'Validation errors occurred.');
+            }
+          },
+          error: function (xhr) {
+            Swal.close();
+            let errMsg = 'Failed to submit article data.';
+            try {
+              const err = JSON.parse(xhr.responseText);
+              if (err.message) {
+                errMsg = err.message;
+              }
+            } catch (e) { }
+            Swal.fire({ target: '#blogModal', icon: 'error', title: 'Action Failed', text: errMsg });
+          }
+        });
+      });
+
+      // Delete article trigger
+      $('#blogsTableBody').on('click', '.btnDeleteBlog', function () {
+        const id = $(this).data('id');
+        const title = $(this).data('title');
+
+        Swal.fire({
+          title: 'Delete Article?',
+          html: `Are you sure you want to delete article: <strong>"${escapeHtml(title)}"</strong>?<br>All its comments will also be removed.<br>This action cannot be undone.`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#D6483D',
+          cancelButtonColor: '#6B7280',
+          confirmButtonText: 'Yes, Delete Post'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: `${API_BASE}/${id}`,
+              type: 'DELETE',
+              xhrFields: { withCredentials: true },
+              dataType: 'json',
+              success: function (res) {
+                if (res.success) {
+                  Swal.fire({ icon: 'success', title: 'Deleted', text: 'Article and associated comments deleted successfully!', timer: 1500, showConfirmButton: false });
+                  fetchBlogs();
+                  fetchStats();
+                  fetchCommentStats();
+                } else {
+                  logError(res.message);
+                }
+              },
+              error: function () {
+                logError('Could not process delete request.');
+              }
+            });
+          }
+        });
+      });
+
+      // Article Search input change listener
+      let blogSearchTimeout = null;
+      $('#blogSearchInput').on('input', function () {
+        clearTimeout(blogSearchTimeout);
+        blogSearchTimeout = setTimeout(function () {
+          currentPage = 0;
+          fetchBlogs();
+        }, 400);
+      });
+
+      // Article Filter change listeners
+      $('#blogStatusFilter, #blogPageSizeSelect').on('change', function () {
+        currentPage = 0;
+        fetchBlogs();
+      });
+
+      // Clear Article Filters handler
+      $('#btnClearBlogFilters').on('click', function () {
+        $('#blogSearchInput').val('');
+        $('#blogStatusFilter').val('ALL');
+        $('#blogPageSizeSelect').val('25');
+        currentPage = 0;
+        fetchBlogs();
+      });
+
+      // ── Comments Event Listeners ──
+
+      // Comment Search input listener
+      let commentSearchTimeout = null;
+      $('#commentSearchInput').on('input', function () {
+        clearTimeout(commentSearchTimeout);
+        commentSearchTimeout = setTimeout(function () {
+          commentsPage = 0;
+          fetchComments(0);
+        }, 400);
+      });
+
+      // Comment Article Filter & Page Size listeners
+      $('#commentBlogFilter, #commentPageSizeSelect').on('change', function () {
+        commentsPage = 0;
+        fetchComments(0);
+      });
+
+      // Clear Comments Filters handler
+      $('#btnClearCommentFilters').on('click', function () {
+        $('#commentSearchInput').val('');
+        $('#commentBlogFilter').val('');
+        $('#commentPageSizeSelect').val('10');
+        commentsPage = 0;
+        fetchComments(0);
+      });
+
+      // Refresh comments button
+      $('#btnRefreshComments').on('click', function () {
+        fetchComments(commentsPage);
+        fetchCommentStats();
+      });
+
+      // View comment details modal trigger
+      $('#commentsTableBody').on('click', '.btnViewComment', function () {
+        const id = $(this).data('id');
+        showCommentModal(id);
+      });
+
+      // Delete comment trigger from table
+      $('#commentsTableBody').on('click', '.btnDeleteComment', function () {
+        const id = $(this).data('id');
+        const name = $(this).data('name');
+        deleteCommentAction(id, name);
+      });
+
+      // Delete comment trigger from inside view modal
+      $('#btnModalDeleteComment').on('click', function () {
+        const id = $(this).data('id');
+        const name = $(this).data('name');
+        deleteCommentAction(id, name);
+      });
+
+      // Initialize & Mobile Sidebar toggle setup
+      $(document).ready(function () {
+        fetchStats();
+        fetchCommentStats();
+        populateBlogFilterDropdown();
+
+        // Check URL hash or parameter to see if user wants Comments tab directly
+        const hash = window.location.hash;
+        const urlParams = new URLSearchParams(window.location.search);
+        if (hash === '#comments' || urlParams.get('tab') === 'comments') {
+          window.switchBlogTab('comments');
+        } else {
+          fetchBlogs();
+        }
+
+        // Mobile sidebar toggle
+        $('#sidebarToggleBtn').on('click', function () {
+          $('.admin-sidebar').addClass('show');
+          $('#sidebarBackdrop').fadeIn(200);
+        });
+
+        $('#sidebarBackdrop, .admin-nav-item').on('click', function () {
+          if (window.innerWidth <= 768 || this.id === 'sidebarBackdrop') {
+            $('.admin-sidebar').removeClass('show');
+            $('#sidebarBackdrop').fadeOut(200);
+          }
+        });
+      });
+
+    })();
+  </script>
+
+  <!-- Sidebar Backdrop for Mobile -->
+  <div id="sidebarBackdrop" style="position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; display: none;"></div>
+
+</body>
+
+</html>

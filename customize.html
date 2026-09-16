@@ -2340,13 +2340,23 @@
 
     // ======== TOAST ========
     function showToast(msg, success) {
+      if (typeof CartEngine !== 'undefined' && CartEngine._showToast) {
+        CartEngine._showToast(msg, success ? 'success' : 'error');
+        return;
+      }
+      if (window.showToast && window.showToast !== showToast) {
+        window.showToast(msg, success ? 'success' : 'error');
+        return;
+      }
       var t = document.getElementById('toast');
-      document.getElementById('toastText').innerHTML = msg;
-      t.style.borderColor = success ? '#4caf50' : '#e57373';
-      t.style.color = success ? '#4caf50' : '#e57373';
-      t.style.background = success ? '#1a2a1a' : '#2a1a1a';
-      t.classList.add('show');
-      setTimeout(function () { t.classList.remove('show'); }, 3000);
+      if (t) {
+        document.getElementById('toastText').innerHTML = msg;
+        t.style.borderColor = success ? '#4caf50' : '#e57373';
+        t.style.color = success ? '#4caf50' : '#e57373';
+        t.style.background = success ? '#1a2a1a' : '#2a1a1a';
+        t.classList.add('show');
+        setTimeout(function () { t.classList.remove('show'); }, 3000);
+      }
     }
 
     // ======== INIT ========

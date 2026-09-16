@@ -1053,9 +1053,13 @@
       const sub = CartEngine.getTotal();
       const disc = appliedDiscount;
       const total = sub > 0 ? (Math.max(0, sub - disc) + currentShippingCost + HANDLING_CHARGE + PLATFORM_FEE + PLATFORM_SERVICES_FEE) : 0;
+      const isGanesh = appliedCouponCode && (appliedCouponCode.toUpperCase() === 'BAPPA999' || appliedCouponCode.toUpperCase() === 'GANESH999' || appliedCouponCode.toUpperCase() === 'GANESHOTSAV999');
+      const subtotalHtml = (isGanesh && disc > 0)
+        ? `<span style="text-decoration:line-through;color:#888;margin-right:6px;">Rs. ${sub.toFixed(2)}</span> <strong style="color:#d4af37;">Rs. ${(Math.max(0, sub - disc)).toFixed(2)}</strong>`
+        : `Rs. ${sub.toFixed(2)}`;
 
       totalEl.innerHTML =
-        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Subtotal</span> <span>Rs. ${sub.toFixed(2)}</span></a></li>` +
+        `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Subtotal</span> <span>${subtotalHtml}</span></a></li>` +
         (disc > 0 ? `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#4caf50;"><span>Coupon (${appliedCouponCode})</span> <span>- Rs. ${disc.toFixed(2)}</span></a></li>` : '') +
         `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Shipping</span> <span>${currentShippingCost === 0 ? '<span style="color:#4caf50; font-weight:600;"><i class="fas fa-shipping-fast"></i> Free Nashik Delivery</span>' : 'Rs. ' + currentShippingCost.toFixed(2)}</span></a></li>` +
         `<li style="padding:6px 0;"><a href="javascript:void(0);" style="display:flex; justify-content:space-between; width:100%; color:#bbb;"><span>Handling Charge</span> <span>Rs. ${HANDLING_CHARGE.toFixed(2)}</span></a></li>` +
