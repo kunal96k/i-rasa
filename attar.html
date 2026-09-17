@@ -1510,29 +1510,16 @@
       updateWishlistButtons();
 
       document.getElementById('attar-grid').addEventListener('click', function (e) {
-        if (e.target.closest('.size-selector') || e.target.closest('button')) return;
+        if (e.target.closest('.size-selector') || e.target.closest('button') || e.target.closest('.card-product__imgOverlay')) return;
 
-        var titleEl = e.target.closest('.product-title');
-        if (titleEl) {
-          e.preventDefault();
-          e.stopPropagation();
-          var name = titleEl.textContent.trim();
-          openPreviewModal(name);
-          return;
-        }
-
-        var imgEl = e.target.closest('.perfume-img') || e.target.closest('.card-product__img');
-        if (imgEl) {
-          e.preventDefault();
-          e.stopPropagation();
-          var card = imgEl.closest('.card-product');
-          if (card) {
-            var tEl = card.querySelector('.product-title');
-            if (tEl) {
-              var name = tEl.textContent.trim();
-              openPreviewModal(name);
-              return;
-            }
+        var card = e.target.closest('.card-product');
+        if (card) {
+          var titleEl = card.querySelector('.product-title');
+          if (titleEl) {
+            e.preventDefault();
+            e.stopPropagation();
+            var name = titleEl.textContent.trim();
+            openPreviewModal(name);
           }
         }
       });
