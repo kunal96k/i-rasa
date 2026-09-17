@@ -1079,7 +1079,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <span>(120+ Reviews)</span>
+                  <span id="modal_reviews">(120+ Reviews)</span>
                 </div>
               </div>
               <p style="color: #b0a58a; line-height: 1.6; font-size: 14px; margin-bottom: 25px;">A deep, mysterious
@@ -1091,37 +1091,19 @@
                 <i class="fas fa-history"></i> Longevity: Guaranteed 7-8 Hours Trail
               </div>
 
-              <!-- Dynamic Bottle Sizing Selector -->
+              <!-- Dynamic Bottle Sizing Selector for Attars -->
               <div class="bottle-size-selector-wrap mb-4" style="margin-top: 15px;">
                 <span
                   style="color: #d4af37; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Select
                   Bottle Size:</span>
-                <div class="d-flex" style="gap: 10px; flex-wrap: wrap;">
-                  <button class="btn modal-size-btn active" onclick="selectModalSize(60, 99, this)"
-                    style="background: #111; color: #fff; border: 1px solid #d4af37; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 8px rgba(212,175,55,0.2);">60ml
-                    (+₹99)</button>
-                  <button class="btn modal-size-btn" onclick="selectModalSize(100, 149, this)"
-                    style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">100ml
-                    (+₹149)</button>
+                <div class="d-flex" id="modal-size-container" style="gap: 10px; flex-wrap: wrap;">
+                  <button class="btn modal-size-btn size-btn active" onclick="changeModalSize('6ml', this)"
+                    style="background: #111; color: #fff; border: 1px solid #d4af37; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none; box-shadow: 0 0 8px rgba(212,175,55,0.2);">6ml</button>
+                  <button class="btn modal-size-btn size-btn" onclick="changeModalSize('8ml', this)"
+                    style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">8ml</button>
+                  <button class="btn modal-size-btn size-btn" onclick="changeModalSize('12ml', this)"
+                    style="background: #111; color: #aaa; border: 1px solid #333; border-radius: 20px; padding: 6px 15px; font-size: 12px; font-weight: bold; transition: all 0.3s; outline: none;">12ml</button>
                 </div>
-              </div>
-
-              <!-- Eco-Friendly Return Checkbox -->
-              <div class="eco-offer-box p-3 mb-4"
-                style="background: rgba(212, 175, 55, 0.05); border: 1px dashed #d4af37; border-radius: 8px; margin-top: 10px;">
-                <div class="custom-control custom-checkbox"
-                  style="display: flex; align-items: center; gap: 8px; padding-left: 0;">
-                  <input type="checkbox" id="modalReuseBottleCheck" onchange="toggleReuseModalBottle()"
-                    style="accent-color: #d4af37; cursor: pointer; width: 16px; height: 16px; margin: 0;">
-                  <label for="modalReuseBottleCheck"
-                    style="color: #fff; font-weight: bold; cursor: pointer; font-size: 12px; margin: 0; user-select: none;">
-                    ♻️ Return/Bring Same Bottle next time (Save Bottle Price!)
-                  </label>
-                </div>
-                <small style="color: #aaa; display: block; margin-top: 3px; font-size: 11px; margin-left: 24px;">
-                  Receive ₹<span id="modalBottleSavingsAmount">99</span> off when you bring or return a compatible
-                  bottle!
-                </small>
               </div>
 
               <!-- Dynamic Action Row (Qty Picker + Add to Cart + Wishlist) -->
@@ -1136,7 +1118,7 @@
                     style="background:none; border:none; color:#d4af37; font-size:20px; padding:0 10px; cursor:pointer; outline: none;">+</button>
                 </div>
 
-                <button onclick="addToCartModal()" class="button button--active"
+                <button onclick="addModalToCart()" class="button button--active"
                   style="background: linear-gradient(135deg, #d4af37 0%, #aa8422 100%); color: #000; border: none; border-radius: 25px; padding: 12px 25px; font-weight: bold; flex-grow: 1; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; outline: none; text-transform: uppercase;">
                   <i class="fas fa-shopping-cart"></i> Add to Cart
                 </button>
@@ -1528,21 +1510,28 @@
       updateWishlistButtons();
 
       document.getElementById('attar-grid').addEventListener('click', function (e) {
+        if (e.target.closest('.size-selector') || e.target.closest('button')) return;
+
         var titleEl = e.target.closest('.product-title');
         if (titleEl) {
+          e.preventDefault();
+          e.stopPropagation();
           var name = titleEl.textContent.trim();
-          window.location.href = 'single-product.html?name=' + encodeURIComponent(name);
+          openPreviewModal(name);
           return;
         }
 
-        var imgEl = e.target.closest('.perfume-img');
+        var imgEl = e.target.closest('.perfume-img') || e.target.closest('.card-product__img');
         if (imgEl) {
+          e.preventDefault();
+          e.stopPropagation();
           var card = imgEl.closest('.card-product');
           if (card) {
             var tEl = card.querySelector('.product-title');
             if (tEl) {
               var name = tEl.textContent.trim();
-              window.location.href = 'single-product.html?name=' + encodeURIComponent(name);
+              openPreviewModal(name);
+              return;
             }
           }
         }

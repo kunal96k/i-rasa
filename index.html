@@ -4067,23 +4067,66 @@
       // Run smooth rendering loop
       requestAnimationFrame(animateOnScroll);
 
-      // Wire up grid buttons
+      // Wire up grid buttons and card clicks for carousel products
       document.querySelectorAll('.card-product').forEach(card => {
-        const searchBtn = card.querySelector('button[data-target="#product_modal"]');
-        if (!searchBtn) return;
-        const title = searchBtn.getAttribute('data-title');
-        const priceText = searchBtn.getAttribute('data-price') || "Rs. 499";
-        const img = searchBtn.getAttribute('data-img') || "img/i_rasa_bottles/p7.png";
-        const basePrice = parseInt(priceText.replace(/[^\d]/g, '')) || 499;
+        const modalBtn = card.querySelector('button[data-target="#product_modal"]');
+        if (!modalBtn) return;
+
+        const titleEl = card.querySelector('.card-product__title, .product-title');
+        if (titleEl) {
+          titleEl.style.cursor = 'pointer';
+          titleEl.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            modalBtn.click();
+          });
+        }
+
+        const imgEl = card.querySelector('.card-product__img, .card-img, img');
+        if (imgEl) {
+          imgEl.style.cursor = 'pointer';
+          imgEl.addEventListener('click', (e) => {
+            if (e.target.closest('.card-product__imgOverlay') || e.target.closest('button')) return;
+            e.preventDefault();
+            e.stopPropagation();
+            modalBtn.click();
+          });
+        }
 
         const buttons = card.querySelectorAll('.card-product__imgOverlay button');
         if (buttons.length >= 3) {
           const cartBtn = buttons[1];
-
           // Cart click handler
           cartBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            searchBtn.click();
+            modalBtn.click();
+          });
+        }
+      });
+
+      // Wire up Exclusive Collection cards
+      document.querySelectorAll('.exclusive-card').forEach(card => {
+        const modalBtn = card.querySelector('button[data-target="#product_modal"]');
+        if (!modalBtn) return;
+
+        const titleEl = card.querySelector('.exclusive-card__title');
+        if (titleEl) {
+          titleEl.style.cursor = 'pointer';
+          titleEl.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            modalBtn.click();
+          });
+        }
+
+        const boxEl = card.querySelector('.exclusive-card__box');
+        if (boxEl) {
+          boxEl.style.cursor = 'pointer';
+          boxEl.addEventListener('click', (e) => {
+            if (e.target.closest('.exclusive-card__overlay') || e.target.closest('button')) return;
+            e.preventDefault();
+            e.stopPropagation();
+            modalBtn.click();
           });
         }
       });

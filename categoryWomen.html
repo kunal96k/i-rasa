@@ -1292,6 +1292,32 @@
         updateModalPriceDisplay();
         if (typeof syncWishlistButtons === 'function') syncWishlistButtons();
       });
+
+      document.querySelectorAll('.card-product, .mens-product-card').forEach(card => {
+        const modalBtn = card.querySelector('button[data-target="#product_modal"]');
+        if (!modalBtn) return;
+
+        const titleEl = card.querySelector('.product-title, .card-product__title');
+        if (titleEl) {
+          titleEl.style.cursor = 'pointer';
+          titleEl.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            modalBtn.click();
+          });
+        }
+
+        const imgEl = card.querySelector('.perfume-img, .card-img, img');
+        if (imgEl) {
+          imgEl.style.cursor = 'pointer';
+          imgEl.addEventListener('click', (e) => {
+            if (e.target.closest('.card-product__imgOverlay') || e.target.closest('button')) return;
+            e.preventDefault();
+            e.stopPropagation();
+            modalBtn.click();
+          });
+        }
+      });
     });
 
     window.changeQty = function (amount) {
@@ -1378,13 +1404,13 @@
       let img = 'img/i_rasa_bottles/p4.png';
       let price = 499;
 
-      const cards = document.querySelectorAll('.mens-product-card');
+      const cards = document.querySelectorAll('.card-product, .mens-product-card');
       for (const card of cards) {
-        const titleEl = card.querySelector('.product-title');
+        const titleEl = card.querySelector('.product-title, .card-product__title');
         if (titleEl && titleEl.textContent.trim().toUpperCase() === name.toUpperCase()) {
-          const imgEl = card.querySelector('.perfume-img');
+          const imgEl = card.querySelector('.perfume-img, .card-img, img');
           if (imgEl) img = imgEl.getAttribute('src');
-          const priceEl = card.querySelector('.price');
+          const priceEl = card.querySelector('.price, .card-product__price');
           if (priceEl) {
             const txt = priceEl.textContent.replace(/[^\d]/g, '');
             if (txt) price = parseInt(txt);
@@ -1416,10 +1442,10 @@
         bottlePriceDiscount = modalPricingState.reuseBottle ? bottleAddon : 0;
       } else {
         // If modal is not open, open it so user can select bottle size
-        const cards = document.querySelectorAll('.mens-product-card');
+        const cards = document.querySelectorAll('.card-product, .mens-product-card');
         for (const card of cards) {
-          const titleEl = card.querySelector('.product-title');
-          if (titleEl && titleEl.textContent.trim() === name) {
+          const titleEl = card.querySelector('.product-title, .card-product__title');
+          if (titleEl && titleEl.textContent.trim().toUpperCase() === name.toUpperCase()) {
             const quickViewBtn = card.querySelector('button[data-target="#product_modal"]');
             if (quickViewBtn) {
               quickViewBtn.click();
