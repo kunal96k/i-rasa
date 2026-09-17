@@ -640,14 +640,37 @@ body {
     text-shadow: 1px 1px 2px #000 !important;
 }
 .card-blog {
-    background: #151515 !important;
-    border: 1px solid #333 !important;
+    background: #0e0e0e !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+}
+.card-blog__img {
+    width: 100% !important;
+    height: 250px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    background: #000 !important;
+}
+.card-blog__img a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+.card-blog__img img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
 }
 .card-blog__title a {
     color: #d4af37 !important;
 }
 .card-blog p {
-    color: #b0a58a !important;
+    color: #b5b5b5 !important;
 }
 .subscribe {
     background: #111 !important;
